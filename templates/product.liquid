@@ -83,7 +83,6 @@
 
           {% comment %}
             Add product variants as a dropdown.
-              - Only display the variant dropdown if there are more than one
               - By default, each variant (or combination of variants) will display as its own <option>
               - To separate these into multiple steps, which we suggest, use option_selection.js (see below)
 
@@ -96,7 +95,6 @@
               - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
 
           {% endcomment %}
-          {% if product.variants.size > 1 %}
           <select name="id" id="productSelect">
             {% for variant in product.variants %}
               {% if variant.available == true %}
@@ -115,7 +113,6 @@
               {% endif %}
             {% endfor %}
           </select>
-          {% endif %}
 
           {% comment %}
             Optionally show the 'compare at' or original price of the product.
