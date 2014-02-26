@@ -40,3 +40,4 @@ Thumbs.db
 # Custom #
 ######################
 .sass-cache
+config.yml
