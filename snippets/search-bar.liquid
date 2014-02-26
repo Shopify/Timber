@@ -1,0 +1,26 @@
+{% comment %}
+
+  A snippet to include a search bar anywhere in your theme.
+  Note we are using 'input-group' for the layout. Look under Forms > Input Groups for some demos.
+
+  More information:
+   - http://docs.shopify.com/themes/liquid-variables/search
+
+  Return only products or pages in results:
+    - http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+    - Or manually add type=product or type=page to the search URL as a parameter
+
+{% endcomment %}
+
+<form action="/search" method="get" class="input-group search-bar" role="search">
+
+  {% comment %}
+    Uncomment the following hidden input to only show products in your search results
+  {% endcomment %}
+  {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
+
+  <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="Search our store" class="input-group-field">
+  <span class="input-group-btn">
+    <input type="submit" class="btn" value="Search">
+  </span>
+</form>

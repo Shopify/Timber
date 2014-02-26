@@ -1,0 +1,64 @@
+{% comment %}
+
+  This template will be automatically generated for you if the file doesn't exist,
+  but where's the fun in having no control? Define your layout below.
+
+  The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
+  Your theme's settings determine to use the 'default' or 'theme' customer templates.
+  More info:
+    - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
+
+  Template note:
+    - All IDs on this template are required to make the form(s) submit properly
+
+{% endcomment %}
+
+{% layout settings.customer_layout %}
+
+<div class="grid">
+
+  <div class="grid-item large--one-third push--large--one-third">
+
+    <header class="page-header">
+      <h1>Create Account</h1>
+    </header>
+
+    {% comment %}
+      This form must use 'create_customer'
+    {% endcomment %}
+    {% form 'create_customer' %}
+
+      {% include 'form-errors-custom' %}
+
+      <div id="first_name">
+        <label for="first_name">First Name</label>
+        <input type="text" value="" name="customer[first_name]" id="first_name" {% if form.errors contains "first_name" %} class="error"{% endif %}>
+      </div>
+
+      <div id="last_name">
+        <label for="last_name">Last Name</label>
+        <input type="text" value="" name="customer[last_name]" id="last_name" {% if form.errors contains "last_name" %} class="error"{% endif %}>
+      </div>
+
+      <div id="email">
+        <label for="email">Email Address</label>
+        <input type="email" value="" name="customer[email]" id="email" placeholder="joe.schmo@shopify.com" {% if form.errors contains "email" %} class="error"{% endif %}>
+      </div>
+
+      <div id="create_password">
+        <label for="password">Password</label>
+        <input type="password" value="" name="customer[password]" id="create_password" {% if form.errors contains "password" %} class="error"{% endif %}>
+      </div>
+
+      <div class="text-center">
+        <p>
+          <input type="submit" value="Create" class="btn">
+        </p>
+        or <a href="{{ shop.url }}">Return to Store</a>
+      </div>
+
+    {% endform %}
+
+  </div>
+
+</div>

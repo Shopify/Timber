@@ -1,0 +1,106 @@
+<!--
+  If you're using our theme_gem to upload your files, make sure you close your
+  input and br tags as if it were XHTML.
+    - eg. <br /> and <input type="text" />
+
+    More info on settings:
+      - http://docs.shopify.com/themes/theme-templates/settings
+-->
+
+<div class="section-info">
+  <p>Theme settings allow designers to provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code. Please see our <a title="Open documentation in a new window" target="_blank" href="http://docs.shopify.com/themes/theme-templates/settings">help page on theme settings</a> to learn more about how you can make your theme customizable.</p>
+</div>
+
+<fieldset>
+  <legend>Logo Options</legend>
+  <table>
+    <tr>
+      <td><label for="use_logo">Use Custom Logo?</label></td>
+      <td><input type="checkbox" id="use_logo" name="use_logo" /></td>
+    </tr>
+    <tr>
+      <td><label for="logo_image">Custom Logo</label></td>
+      <td><input type="file" name="logo.png" id="logo_image" data-max-width="500" data-max-height="200" /></td>
+    </tr>
+    <tr>
+      <td colspan="2"><small>Maximum logo dimensions are 500px wide by 200px high.<br />Your uploaded file will be resized to fit within those constraints.</small></td>
+    </tr>
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend>Social Meta Tags</legend>
+  <table>
+    <tr>
+      <td colspan="2">Social helpers include Facebook Open Graph Tags and Twitter Cards. Enable or disable them here, all of the code is taking care of for you in snippets.</td>
+    </tr>
+    <tr>
+      <td><label for="enable_opengraph">Enable <a href="https://developers.facebook.com/docs/opengraph/using-objects/" title="About Facebook Open Graph Objects">Facebook Open Graph Tags</a></label></td>
+      <td><input type="checkbox" id="enable_opengraph" name="enable_opengraph" /></td>
+    </tr>
+    <tr>
+      <td><label for="enable_twittercards">Enable <a href="https://dev.twitter.com/docs/cards/types/product-card" title="About Twitter Product Cards">Twitter Cards</a></label></td>
+      <td><input type="checkbox" id="enable_twittercards" name="enable_twittercards" /></td>
+    </tr>
+    <tr>
+      <th><label for="twittercard_handle">Your site's Twitter Handle</label></th>
+      <td>
+        <input type="text" id="twittercard_handle" name="twittercard_handle" value="" /><br />
+        <small>E.g. @Shopify. Required if Twitter Cards are enabled.</small>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend>Footer</legend>
+  <table>
+    <tr>
+      <td colspan="3"><small>Only a few social links are included. Add more in your <strong>config/settings.html</strong> theme file.<br />Defaults and presets are set in <strong>config/settings_data.json</strong>.</small></td>
+    </tr>
+    <tr>
+      <th><label for="footer_display_contact">Show footer contact info?</label></th>
+      <td colspan="2"><input type="checkbox" id="footer_display_contact" name="footer_display_contact" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="footer_contact_title">Footer contact title</label></th>
+      <td colspan="2"><input type="text" id="footer_contact_title" name="footer_contact_title" value="" /></td>
+    </tr>
+    <tr>
+      <th><label for="footer_contact_text">Footer contact text</label></th>
+      <td colspan="2">
+        <textarea name="footer_contact_text" cols="60" rows="5" id="footer_contact_text" value="" />
+        <small>Basic HTML formatting is allowed</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="footer_display_social">Show social media links?</label></th>
+      <td colspan="2"><input type="checkbox" id="footer_display_social" name="footer_display_social" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="footer_social_title">Social media links title</label></th>
+      <td colspan="2"><input type="text" id="footer_social_title" name="footer_social_title" value="" /></td>
+    </tr>
+    <tr>
+      <td><label for="show_carousel_item_4">Twitter link</label></td>
+      <td colspan="2"><input type="text" id="twitter_link" name="twitter_link" size="50" /></td>
+    </tr>
+    <tr>
+      <td><label for="facebook_link">Facebook link</label></td>
+      <td colspan="2"><input type="text" id="facebook_link" name="facebook_link" size="50" /></td>
+    </tr>
+    <tr>
+      <th><label for="footer_display_newsletter">Show newsletter?</label></th>
+      <td colspan="2"><input type="checkbox" id="footer_display_newsletter" name="footer_display_newsletter" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="footer_newsletter_title">Newsletter title</label></th>
+      <td colspan="2"><input type="text" id="footer_newsletter_title" name="footer_newsletter_title" value="" /></td>
+    </tr>
+    <tr>
+      <th><label for="mailing_list_form_action">MailChimp form action URL</label></th>
+      <td><input type="text" id="mailing_list_form_action" name="mailing_list_form_action" value="" /></td>
+      <td><a href="http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action" target="_blank">Where do I find my MailChimp form action URL?</a></td>
+    </tr>
+  </table>
+</fieldset>

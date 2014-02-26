@@ -1,0 +1,52 @@
+{% comment %}
+  Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
+{% endcomment %}
+{% unless template == 'index' or template == 'cart' %}
+<div class="breadcrumb">
+  <a href="/" title="Back to the frontpage">Home</a>
+
+  {% if template contains 'product' %}
+
+    {% if collection %}
+      <span>&raquo;</span>
+      {% if collection.handle %}
+         {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+         {{ collection.title | link_to: url }}
+      {% endif %}
+    {% endif %}
+    <span>&raquo;</span>
+    <span>{{ product.title }}</span>
+
+  {% elsif template contains 'collection' and collection.handle %}
+
+    {% if current_tags %}
+      <span>&raquo;</span>
+      {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+      {{ collection.title | link_to: url }}
+      <span>&raquo;</span>
+      <span>{{ current_tags.first }}</span>
+    {% else %}
+      <span>&raquo;</span>
+      <span>{{ collection.title }}</span>
+    {% endif %}
+
+  {% elsif template == 'article' %}
+
+    <span>&raquo;</span>
+    {{ blog.title | link_to: blog.url }}
+    <span>&raquo;</span>
+    <span>{{ article.title }}</span>
+
+  {% elsif template contains 'page' %}
+
+   <span>&raquo;</span>
+   <span>{{ page.title }}</span>
+
+  {% else %}
+
+   <span>&raquo;</span>
+   <span>{{ page_title }}</span>
+
+  {% endif %}
+</div>
+{% endunless %}

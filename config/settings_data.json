@@ -1,0 +1,19 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "use_logo": false,
+      "enable_opengraph": true,
+      "enable_twittercards": true,
+      "customer_layout": "theme",
+      "footer_display_contact": true,
+      "footer_contact_title": "Contact Us",
+      "footer_display_social": true,
+      "footer_social_title": "Follow Us",
+      "twitter_link": "http://twitter.com/shopify",
+      "facebook_link": "http://facebook.com/shopify",
+      "footer_display_newsletter": true,
+      "footer_newsletter_title": "Newsletter"
+    }
+  }
+}

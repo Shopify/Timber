@@ -1,0 +1,55 @@
+{% comment %}
+
+  This snippet is used to showcase each product during the loop,
+  'for product in collection.products' in collection.liquid.
+
+  This example has three products per column on desktop, two on
+  our medium breakpoint, and a single row on small screens.
+
+{% endcomment %}
+
+{% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Set a class for sold-out and on-sale items
+{% endcomment %}
+<div class="grid-item large--one-third medium--one-half {% unless product.available %} sold-out{% endunless %} {% if on_sale %} on-sale{% endif %}">
+
+  {% comment %}
+    Link to your product with the 'within: collection' filter for the link to be aware of the collection.
+    This allows you to create collection-based navigation on the product page.
+
+    Results of using 'within: collection':
+    - Instead of a URL with /products/product-handle
+      you would get /collections/collection-handle/products/product-handle
+
+    For more info on navigation within a collection
+      - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
+
+  {% endcomment %}
+  <a href="{{ product.url | within: collection }}" class="product-grid-image">
+    <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+  </a>
+
+  <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+  <span class="prod-price">
+    {% comment %}
+      Some of your product variants may have different prices.
+      You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+    {% endcomment %}
+    {% if product.price_varies %}From{% endif %}
+
+    {{ product.price | money }}
+
+    {% if on_sale %}
+      <p><strong>On Sale</strong> from {{ product.compare_at_price | money }}</p>
+    {% endif %}
+  </span>
+
+</div>

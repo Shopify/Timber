@@ -1,0 +1,48 @@
+{% comment %}
+
+  This template will be automatically generated for you if the file doesn't exist,
+  but where's the fun in having no control? Define your layout below.
+
+  The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
+  Your theme's settings determine to use the 'default' or 'theme' customer templates.
+  More info:
+    - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
+
+  Template note:
+    - All IDs on this template are required to make the form(s) submit properly
+
+{% endcomment %}
+
+{% layout settings.customer_layout %}
+
+<div class="grid">
+  <div class="grid-item large--one-third push--large--one-third">
+
+		<header class="page-header">
+		  <h3>Activate Account</h3>
+		</header>
+		<p>Create your password to activate your account.</p>
+
+		{% comment %}
+		  This form must use 'activate_customer_password'
+		{% endcomment %}
+		{% form 'activate_customer_password' %}
+
+			{% include 'form-errors-custom' %}
+
+		  <label for="customer_password">Password</label>
+		  <input type="password" value="" name="customer[password]" id="customer_password">
+
+		  <label for="customer_password_confirmation">Password Confirmation</label>
+		  <input type="password" value="" name="customer[password_confirmation]" id="customer_password_confirmation">
+
+		  <div class="text-center">
+		  	<p>
+			  	<input type="submit" class="btn" value="Activate Account">
+			  </p>
+		  	or <input type="submit" class="text-link" name="decline" id="customer_decline" value="Decline Invitation">
+		  </div>
+		{% endform %}
+
+	</div>
+</div>

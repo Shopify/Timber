@@ -1,0 +1,244 @@
+{% comment %}
+
+  Rich snippets (itemscope, itemtype, etc.) for products are a theme requirement,
+  and allow search engines to easily understand what the content is.
+
+  For more information on these Scheme.org tags, visit:
+    - http://schema.org/docs/gs.html
+
+{% endcomment %}
+
+<div itemscope itemtype="http://schema.org/Product">
+
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}">
+
+  {% include 'breadcrumb' %}
+
+  <div class="grid">
+    <div class="grid-item large--one-half">
+
+      {% comment %}
+        If we only have one product, show a large version of it.
+        If we have more than 1, show it and loop through the rest as thumbnails.
+      {% endcomment %}
+      {% if product.images.size == 0 %}
+
+        <div class="product-photo-container">
+          <img src="{{ '' | product_img_url: 'grande' }}" alt="">
+        </div>
+
+      {% else %}
+
+        <div class="product-photo-container">
+          <a href="{{ product.featured_image.src | product_img_url: 'original' }}">
+            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+        </div>
+
+        {% comment %}
+          If we have more than one product image, loop through them and create thumbnails.
+
+          By default, images will link to the original size of themselves. It is recommended
+          to add a lightbox or photo-switching effect with JavaScript.
+        {% endcomment %}
+        {% if product.images.size > 1 %}
+          <ul class="product-photo-thumbs grid-uniform">
+
+            {% for image in product.images offset:1 %}
+              <li class="grid-item one-quarter">
+                <a href="{{ image.src | product_img_url: 'original' }}">
+                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                </a>
+              </li>
+            {% endfor %}
+
+          </ul>
+        {% endif %}
+
+      {% endif %}
+
+    </div>
+
+    <div class="grid-item large--one-half">
+
+      <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+
+        <header class="page-header">
+          <h2 itemprop="name">{{ product.title }}</h2>
+        </header>
+
+        {% if product.available %}
+          <link itemprop="availability" href="http://schema.org/InStock">
+        {% else %}
+          <link itemprop="availability" href="http://schema.org/OutOfStock">
+        {% endif %}
+
+        {% comment %}
+          ID addToCartForm is a selector for the ajaxify cart plugin
+        {% endcomment %}
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm">
+
+          {% comment %}
+            Add product variants as a dropdown.
+              - Only display the variant dropdown if there are more than one
+              - By default, each variant (or combination of variants) will display as its own <option>
+              - To separate these into multiple steps, which we suggest, use option_selection.js (see below)
+
+            You can leverage jQuery to add a callback on page load and each time the select element changes:
+              - Include option_selection.js (as seen at the bottom of this file)
+              - This allows you to use JavaScript anytime the variant dropdown changes
+              - This also separates out your variant options (ie. size, color, etc.) to separate select elements
+
+            For more information on products with multiple options, visit:
+              - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
+
+          {% endcomment %}
+          {% if product.variants.size > 1 %}
+          <select name="id" id="productSelect">
+            {% for variant in product.variants %}
+              {% if variant.available == true %}
+
+                {% comment %}
+                  Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+                {% endcomment %}
+                <option value="{{variant.id}}">
+                  {{ variant.title }} - {{ variant.price | money_with_currency }}
+                </option>
+
+              {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - Sold out
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          {% endif %}
+
+          {% comment %}
+            Optionally show the 'compare at' or original price of the product.
+          {% endcomment %}
+          {% if product.compare_at_price > product.price %}
+            <h3>
+              <span id="productPrice" class="on-sale" itemprop="price">
+                {{ product.price | money }}
+              </span>
+            </h3>
+            <h5>
+              <small id="comparePrice">
+                Compare at:
+                {{ product.compare_at_price_max | money }}
+              </small>
+            </h5>
+          {% else %}
+            <h3>
+              <span id="productPrice" itemprop="price">
+                {{ product.price | money }}
+              </span>
+            </h3>
+          {% endif %}
+
+          {% comment %}
+            Quantity selector is optional
+          {% endcomment %}
+          <label for="quantity">Qty: </label>
+          <input min="1" type="number" id="quantity" name="quantity" value="1">
+
+          <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
+        </form>
+
+        <div class="product-description rte" itemprop="description">
+          {{ product.description }}
+        </div>
+
+      </div>
+
+      {% comment %}
+        If the user is on a collection product page (ie with /collections/collection-handle/products/product-handle)
+        in the URL, we can show next/previous links to other products in the collection.
+      {% endcomment %}
+      {% if collection %}
+        {% if collection.previous_product or collection.next_product %}
+          <p>
+
+          {% if collection.previous_product %}
+            {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
+            <span class="left">
+              {{ '&larr; Previous Product' | link_to: prev_url }}
+            </span>
+          {% endif %}
+
+          {% if collection.next_product %}
+            {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
+            <span class="right">
+              {{ 'Next Product &rarr;' | link_to: next_url }}
+            </span>
+          {% endif %}
+
+          </p>
+        {% endif %}
+      {% endif %}
+
+    </div>
+  </div>
+
+</div>
+
+
+{% comment %}
+  To take advantage of a callback on the select dropdown, add option_selection.js
+  and customize the JS below as you need. This is only needed on pages where
+  product variants are accessible, so doesn't need to live in theme.liquid.
+
+  Currently, the code below does:
+    - Overwrites your <select> tag from above
+    - Breaks out the product variants into separate fields, if more than one exists
+{% endcomment %}
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+<script>
+jQuery(function($) {
+
+  var selectCallback = function(variant, selector) {
+
+    var addToCart = $('#addToCart'),
+        productPrice = $('#productPrice'),
+        comparePrice = $('#comparePrice');
+
+    if (variant) {
+      if (variant.available) {
+        // We have a valid product variant, so enable the submit button
+        addToCart.removeClass('disabled').removeAttr('disabled').val('Add to Cart');
+
+      } else {
+        // Variant is sold out, disable the submit button
+        addToCart.val('Sold Out').addClass('disabled').attr('disabled', 'disabled');
+      }
+
+      // Regardless of stock, update the product price
+      productPrice.html(Shopify.formatMoney(variant.price, "{{ shop.money_format }}"));
+
+      // Also update and show the product's compare price if necessary
+      if ( variant.compare_at_price > variant.price ) {
+        comparePrice
+          .html('Compare at: ' + Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"))
+          .show();
+      } else {
+        comparePrice.hide();
+      }
+
+    } else {
+      // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anway
+      addToCart.val('Unavailable').addClass('disabled').attr('disabled', 'disabled');
+    }
+  };
+
+  new Shopify.OptionSelectors('productSelect', {
+    product: {{ product | json }},
+    onVariantSelected: selectCallback
+  });
+
+});
+</script>

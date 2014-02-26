@@ -1,0 +1,41 @@
+{% comment %}
+
+  This snippet gives you a grid layout for each search result.
+
+  It is encouraged to only use this approach for product results,
+  as page results don't look great in a grid without a featured image.
+
+  To use this grid layout, change the grid_results variable
+  in search.liquid to true.
+
+{% endcomment %}
+
+<div class="grid-item large--one-third medium-down--one-half search-result">
+
+  {% if item.featured_image %}
+
+    <a href="{{ item.url }}" title="{{ item.title | escape }}">
+      {{ item.featured_image.src | product_img_url: 'medium' | img_tag: item.featured_image.alt }}
+    </a>
+
+  {% endif %}
+
+    <h5>{{ item.title | link_to: item.url }}</h5>
+
+    <h6>
+      {% if item.compare_at_price > item.price %}
+        <span class="on-sale" itemprop="price">
+          {{ item.price | money }}
+        </span>
+        <small>
+          Compare at:
+          {{ item.compare_at_price_max | money }}
+        </small>
+      {% else %}
+        <span itemprop="price">
+          {{ item.price | money }}
+        </span>
+      {% endif %}
+    </h6>
+
+</div>

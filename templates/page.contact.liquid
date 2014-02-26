@@ -1,0 +1,64 @@
+{% comment %}
+
+  This page template is a requirement if you are submitting your theme to the Shopify Theme Store.
+  Be sure to select page.contact as the template from the admin page to have this template take effect.
+
+  For information on adding more fields, visit:
+    - http://docs.shopify.com/support/configuration/store-customization/adding-fields-to-the-liquid-contact-form
+
+{% endcomment %}
+
+<div class="grid">
+
+  <div class="grid-item large--two-thirds push--large--one-sixth">
+
+    <header class="page-header">
+      <h1>{{ page.title }}</h1>
+    </header>
+
+    {% comment %}
+      Regular page content goes here.
+    {% endcomment %}
+    <div class="rte">
+      {{ page.content }}
+    </div>
+
+    {% comment %}
+      Contact form starts here
+    {% endcomment %}
+    <div>
+      {% form 'contact' %}
+
+        {% comment %}
+          Successful message
+        {% endcomment %}
+        {% if form.posted_successfully? %}
+          <p class="note form-success">
+            Thanks for contacting us! We'll get back to you as soon as possible.
+          </p>
+        {% endif %}
+
+        {% include 'form-errors-custom' %}
+
+        <div id="contactFormWrapper">
+          <label>Your Name:</label>
+          <input type="text" id="contactFormName" name="contact[name]" placeholder="John Doe">
+
+          <label>Email:</label>
+          <input type="email" name="contact[email]" placeholder="john@example.com">
+
+          <label>Phone Number:</label>
+          <input type="telephone" name="contact[phone]" placeholder="555-555-1234">
+
+          <label>Message:</label>
+          <textarea rows="10" name="contact[body]" placeholder="Your Message"></textarea>
+
+          <input type="submit" class="btn right" value="Send">
+        </div>
+
+      {% endform %}
+    </div>
+
+  </div>
+
+</div>

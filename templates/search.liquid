@@ -1,0 +1,100 @@
+{% comment %}
+
+  The {{ content_for_header }} in theme.liquid will output the following stylesheet just for this page:
+    - <link rel="stylesheet" href="/global/search.css" type="text/css">
+
+  It has a few helpers in there, but this theme writes its own styles so there
+  are no dependencies or conflicts. You can ignore that file.
+
+  Return only products or pages in results:
+    - http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+    - Or manually add type=product or type=page to the search URL as a parameter
+
+{% endcomment %}
+
+
+{% comment %}
+  If you're only showing products with the method above, why not show them off in a grid instead?
+  Set grid_results to true and see your updated results page for the new layout.
+{% endcomment %}
+{% assign grid_results = false %}
+
+<div class="grid">
+
+  <div class="grid-item large--two-thirds push--large--one-sixth">
+
+    {% if search.performed %}
+
+      {% comment %}
+        Avoid accessing search.results before the opening paginate tag.
+        If you do, the pagination of results will be broken.
+      {% endcomment %}
+      {% paginate search.results by 10 %}
+
+        {% comment %}
+          We don't have any results to show. Feel free to show off featured products
+          or suggested searches here.
+        {% endcomment %}
+        {% if search.results_count == 0 %}
+
+          <header class="page-header">
+            <h2>Your search for "{{ search.terms }}" did not yield any results.</h2>
+            {% include 'search-bar' %}
+          </header>
+
+        {% else %}
+
+          <header class="page-header">
+            <h2>Your search for "{{ search.terms }}" revealed the following:</h2>
+            {% include 'search-bar' %}
+          </header>
+
+          {% comment %}
+            Each result template, based on the grid_layout variable above
+          {% endcomment %}
+          {% if grid_results == false %}
+
+            {% for item in search.results %}
+              {% include 'search-result' %}
+            {% endfor %}
+
+          {% else %}
+
+            <div class="grid-uniform">
+              {% for item in search.results %}
+                {% include 'search-result-grid' %}
+              {% endfor %}
+            </div>
+
+          {% endif %}
+
+        {% endif %}
+
+        {% if paginate.pages > 1 %}
+          <div class="text-center">
+            {% include 'pagination-custom' %}
+          </div>
+        {% endif %}
+
+      {% endpaginate %}
+
+
+    {% else %}
+
+      {% comment %}
+        If search.performed is false, someone either accessed the page without
+        the q parameter, or it was blank.
+        Be sure to show a search form here, along with anything else you want to showcase.
+      {% endcomment %}
+
+      <header class="page-header">
+        <h2>Search for products on our site</h2>
+        {% include 'search-bar' %}
+      </header>
+
+    {% endif %}
+
+
+  </div>
+
+</div>

@@ -1,0 +1,73 @@
+{% comment %}
+
+  For more information on collection tags:
+    - http://docs.shopify.com/themes/liquid-variables/collection
+
+{% endcomment %}
+
+{% paginate collection.products by 12 %}
+
+{% include 'breadcrumb' %}
+
+<header class="page-header">
+  <h1>{{ collection.title }}</h1>
+</header>
+
+{% comment %}
+  Use .grid--rev so that the collection tags appear below the products on mobile
+{% endcomment %}
+<div class="grid--rev">
+
+  <div class="grid-item large--two-thirds">
+
+    <p class="right">
+      <a href="?view=list" title="List view">List view</a>
+    </p>
+
+    {% comment %}
+      Use class grid-uniform to have evenly sized columns clear
+      each other properly at each breakpoint.
+    {% endcomment %}
+    <div class="grid-uniform">
+
+      {% comment %}
+        Loop through our products in the current collection.
+        See the snippet 'product-grid-item' for the layout.
+      {% endcomment %}
+      {% for product in collection.products %}
+
+        {% include 'product-grid-item' %}
+
+      {% else %}
+
+        <div class="grid-item">
+          <p>There are no products in this collection.</p>
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <hr>
+
+      <div class="text-center">
+        {% include 'pagination-custom' %}
+      </div>
+    {% endif %}
+
+  </div>
+
+  <div class="grid-item large--one-third">
+
+    {% comment %}
+      Loop through the tags in the current collection.
+      See the snippet 'product-grid-item' for the layout.
+    {% endcomment %}
+    {% include 'collection-tags' %}
+
+  </div>
+
+</div>
+
+{% endpaginate %}

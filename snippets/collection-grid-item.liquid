@@ -1,0 +1,28 @@
+{% comment %}
+
+  This snippet is used to showcase each collection during the loop,
+  'for product in collection.products' in list-collections.liquid.
+
+{% endcomment %}
+
+<div class="grid-item medium--one-half large--one-third text-center">
+
+  {% comment %}
+    Use capture to put the collection title in a variable that is used in liquid filters
+  {% endcomment %}
+  {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+
+  <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+    {% if collection.image %}
+      {{ collection.image.src | collection_img_url: 'large' | img_tag: collection_title }}
+    {% else %}
+      {{ collection.products.first.featured_image | product_img_url: 'large' | img_tag: collection_title }}
+    {% endif %}
+  </a>
+
+  <h5>
+    <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">{{ collection.title }}</a>
+    <small>({{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }})</small>
+  </h5>
+
+</div>

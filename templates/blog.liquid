@@ -1,0 +1,89 @@
+{% comment %}
+
+  Loop through a defined number of articles with the 'paginate' tag.
+  Don't forget to close the tag after your loop.
+
+{% endcomment %}
+
+{% paginate blog.articles by 5 %}
+
+{% comment %}
+  This template is also used for listing out articles of a specific tag.
+  You can change layouts or styles by checking if current_tags is true.
+{% endcomment %}
+
+<div class="grid">
+
+  <div class="grid-item large--two-thirds push--large--one-sixth">
+    <header class="page-header">
+
+      {% if current_tags %}
+        <h1>{{ blog.title | link_to: blog.url }} &raquo; {{ current_tags.first }}</h1>
+      {% else %}
+        <h1>{{ blog.title }}</h1>
+      {% endif %}
+
+    </header>
+
+    {% comment %}
+      Loop through each article in your blog. This is limited to what you set for pagination above.
+
+      For more info on article liquid tags:
+        - http://docs.shopify.com/themes/liquid-variables/article
+    {% endcomment %}
+
+    {% for article in blog.articles %}
+
+      <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+      <h6>
+        Posted by {{ article.author }} at
+        <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+          {{ article.published_at | date: '%b %d, %Y' }}
+        </time>
+      </h6>
+
+      {% comment %}
+        Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
+        Since this is just a listing page, you can either use the excerpt or truncate the full article.
+      {% endcomment %}
+      <div class="rte">
+        {% if article.excerpt.size > 0 %}
+          {{ article.excerpt }}
+        {% else %}
+          <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
+        {% endif %}
+      </div>
+
+      {% comment %}
+        Show off meta information like number of comments and tags.
+      {% endcomment %}
+      <ul>
+
+        {% comment %}
+          Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
+        {% endcomment %}
+        {% if blog.comments_enabled? %}
+        <li>
+          <a href="{{ article.url }}#comments">
+            {{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}
+          </a>
+        </li>
+        {% endif %}
+
+        {% include 'tags-article' %}
+
+      </ul>
+
+      <p><a class="blog-read-more" href="{{ article.url }}">Read more →</a></p>
+
+      <hr>
+
+    {% endfor %}
+
+    <div class="text-center">
+      {% include 'pagination-custom' %}
+    </div>
+  </div>
+</div>
+
+{% endpaginate %}

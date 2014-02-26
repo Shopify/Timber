@@ -1,0 +1,62 @@
+<footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="grid">
+
+      {% if settings.footer_display_contact %}
+      <div class="grid-item large--one-third">
+        <h5>{{ settings.footer_contact_title }}</h5>
+        <p>
+          {% if settings.footer_contact_text != blank %}
+            {{ settings.footer_contact_text }}
+          {% else %}
+            Add some text to show here in your <a href="admin/themes" title="Edit theme settings"> theme settings</a>.
+          {% endif %}
+        </p>
+      </div>
+      {% endif %}
+
+      {% if settings.footer_display_social %}
+      <div class="grid-item large--one-third">
+        <h5>{{ settings.footer_social_title }}</h5>
+
+        {% comment %}
+          Loop through the persistent theme settings and list out each social network link.
+        {% endcomment %}
+        <ul class="inline-list">
+          {% if settings.twitter_link != blank %}<a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">Twitter</a>{% endif %}
+          {% if settings.facebook_link != blank %}<a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">Facebook</a>{% endif %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% if settings.footer_display_newsletter %}
+      <div class="grid-item large--one-third">
+        <h5>{{ settings.footer_newsletter_title }}</h5>
+        {% include 'newsletter-form' %}
+      </div>
+      {% endif %}
+    </div>
+
+    <hr>
+
+    {% comment %}
+      Loop through available payment methods and show their icons.
+    {% endcomment %}
+    <ul class="inline-list payment-icons text-center">
+      {% for type in shop.enabled_payment_types %}
+      <li>
+        <img src="{{ type | payment_type_img_url }}" />
+      </li>
+      {% endfor %}
+    </ul>
+
+    <p class="text-center">
+      <a href="">Timber v1.0</a> by <a href="http://www.shopify.com?ref=Timber">Shopify</a><br>
+      <small>{{ powered_by_link }}</small>
+    </p>
+
+  </div>
+
+</footer>

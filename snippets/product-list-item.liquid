@@ -1,0 +1,55 @@
+{% comment %}
+
+  This snippet is used to showcase each product during the loop,
+  'for product in collection.products' in collection.liquid.
+
+  This example has each product on it's own line for all breakpoints.
+
+{% endcomment %}
+
+{% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Set a class for sold-out and on-sale items
+{% endcomment %}
+<div class="grid-item {% unless product.available %} sold-out{% endunless %} {% if on_sale %} on-sale{% endif %}">
+
+  {% comment %}
+    Link to your product with the 'within: collection' filter for the link to be aware of the collection.
+    This allows you to create collection-based navigation on the product page.
+
+    Results of using 'within: collection':
+    - Instead of a URL with /products/product-handle
+      you would get /collections/collection-handle/products/product-handle
+
+    For more info on navigation within a collection
+      - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
+
+  {% endcomment %}
+  <a href="{{ product.url | within: collection }}" class="product-list-thumb">
+    <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}">
+  </a>
+
+  <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+  <span class="prod-price">
+    {% comment %}
+      You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+      if your variants have different prices.
+    {% endcomment %}
+    {% if product.price_varies %}From{% endif %}
+
+    {{ product.price | money }}
+
+    {% if on_sale %}
+      <p><strong>On Sale</strong> from {{ product.compare_at_price | money }}</p>
+    {% endif %}
+  </span>
+  <p>{{ product.description | strip_html | truncatewords: 50 }}</p>
+
+</div>

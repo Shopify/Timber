@@ -1,0 +1,199 @@
+{% comment %}
+
+  This is your /cart template. If you are using the Ajaxify Cart plugin,
+  your form (with action="/cart") layout will be used in the drawer/modal.
+
+  For info on test orders:
+    - General http://docs.shopify.com/manual/your-store/orders/test-orders
+    - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
+
+{% endcomment %}
+
+<header class="page-header">
+  <h1>Shopping Cart</h1>
+</header>
+
+{% if cart.item_count > 0 %}
+  <form action="/cart" method="post">
+
+    <div class="cart-row medium-down--hide">
+      <div class="grid">
+
+        <div class="grid-item one-third push--two-thirds text-right">
+          <div class="grid">
+
+            <div class="grid-item one-third">
+              <h5>Quantity</h5>
+            </div>
+
+            <div class="grid-item two-thirds">
+              <h5>Price <small>(each)</small></h5>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    {% comment %}
+      Loop through products in the cart
+    {% endcomment %}
+    {% for item in cart.items %}
+    <div class="cart-row">
+      <div class="grid">
+
+        {% comment %}
+          Let's use a sub grids to keep our product image and title together,
+          and our quantity, price and remove buttons together
+        {% endcomment %}
+
+        <div class="grid-item large--two-thirds">
+          <div class="grid">
+
+            <div class="grid-item one-third">
+              <a href="{{ item.product.url | within: collections.all }}">
+
+                {% comment %}
+                  More image size options at:
+                    - http://docs.shopify.com/themes/filters/product-img-url
+                {% endcomment %}
+                <img src="{{ item.product.featured_image.src | product_img_url: 'medium' }}" alt="{{ item.title | escape }}">
+              </a>
+            </div>
+
+            {% comment %}
+              If you want the product title and any variants in one line, use {{ item.title }}.
+              Below they've been separated for styling purposes.
+            {% endcomment %}
+            <div class="grid-item two-thirds">
+              <h5>
+                <a href="{{ item.product.url }}">
+                  {{ item.product.title }}
+
+                  {% if item.product.variants.size != 0 %}
+                    {% unless item.variant.title contains 'Default' %}
+                      <br>
+                       <small>{{ item.variant.title }}</small>
+                    {% endunless %}
+                  {% endif %}
+                </a>
+              </h5>
+
+              {% comment %}
+                Optional, add the vendor
+              {% endcomment %}
+              <h6>Vendor: <em>{{ item.vendor }}</em></h6>
+
+              {% comment %}
+                Optional, loop through custom product line items if available
+
+                For more info on line item properties, visit:
+                  - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+              {% endcomment %}
+              {% if item.properties.size > 0 %}
+              <p>
+                {% for p in item.properties %}
+                  {% unless p.last == blank %}
+                    {{ p.first }}:
+
+                    {% comment %}
+                      Check if there was an uploaded file associated
+                    {% endcomment %}
+                    {% if p.last contains '/uploads/' %}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                    {% else %}
+                      {{ p.last }}
+                    {% endif %}
+
+                    <br>
+                  {% endunless %}
+                {% endfor %}
+              </p>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+
+        <div class="grid-item large--one-third medium-down--two-thirds push--medium-down--one-third">
+          <div class="grid">
+
+            <div class="grid-item one-third small--one-half text-right">
+              <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" autocomplete="off" min="0">
+            </div>
+
+            <div class="grid-item one-third small--one-half text-right">
+              {% comment %}
+                To remove an item from the cart, reload the page with the following parameters
+              {% endcomment %}
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a>
+            </div>
+
+            <div class="grid-item one-third small--one-whole text-right">
+              <h5>{{ item.price | money }}</h5>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    {% endfor %}
+
+    <div class="cart-row">
+      <div class="grid">
+
+        <div class="grid-item large--one-half">
+
+          {% comment %}
+            Optional, add a textarea for special notes
+              - If you remove this section, adjust the grid-item width accordingly
+              - Make sure you have name="note" for the message to be submitted properly
+          {% endcomment %}
+
+          <label>Special instructions for seller</label>
+          <textarea name="note" class="input-full">{{ cart.note }}</textarea>
+
+        </div>
+
+        <div class="grid-item large--one-half text-right">
+
+          <h5>Subtotal <em>{{ cart.total_price | money }}</em></h5>
+
+          {% comment %}
+            name="update" is required for the update button to work
+          {% endcomment %}
+          <input type="submit" name="update" class="btn-secondary" value="Update cart">
+
+          {% comment %}
+            name="checkout" is required for the update button to work
+          {% endcomment %}
+          <input type="submit" name="checkout" class="btn" value="Check out">
+
+          {% comment %}
+            Paypal and Google checkout buttons
+          {% endcomment %}
+          {% if additional_checkout_buttons %}
+            <p>{{ content_for_additional_checkout_buttons }}</p>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+
+  </form>
+
+{% else %}
+
+  {% comment %}
+    It's likely people won't have items in the cart sometimes.
+    Do something fun here, it's a great chance to show your company's human side.
+  {% endcomment %}
+
+  <h4>It appears that your cart is currently empty!</h4>
+  <p>You can continue browsing <a href="/collections/all">here</a>.</p>
+
+{% endif %}
