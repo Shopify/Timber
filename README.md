@@ -1,9 +1,14 @@
 Shopify Timber
 =====================
 
-Starter set of liquid, CSS and JavaScript to get your store up and running.
+Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
 
 Designing a store for a client? Earn 20% revenue through our <a href="http://www.shopify.com/partners">Partner program<a/>.
+
+Demo Stores
+---------------------
+- [Demo Store](https://timber-demo.myshopify.com/)
+- [Empty Store](https://timber-demo-empty.myshopify.com/)
 
 Documentation
 ---------------------
@@ -37,11 +42,6 @@ Basic structure
 ├── config.yml
 │   └── if using the theme gem (see link under Additional Resources)
 ```
-
-Demo Stores
----------------------
-- [Demo Store](https://timber-demo.myshopify.com/)
-- [Empty Store](https://timber-demo-empty.myshopify.com/)
 
 Additional resources
 ---------------------
