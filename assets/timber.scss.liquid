@@ -17,7 +17,6 @@
 ==================================================
   #Breakpoint and Grid Variables
   #General Variables
-  #Liquid Variables
   #Sass Mixins
   #Reset
   #Grid Setup
@@ -91,8 +90,11 @@ $colorLinkSecondaryActive: darken($colorLinkSecondaryHover, 10%);
 $colorBody: #fff;
 $colorText: #333;
 $colorHeaders: #999;
-
 $colorTextGrey: #777;
+
+/* Text link colors */
+$colorLink: #51ab62;
+$colorLinkHover: #000;
 
 /* Border colors */
 $borderColor: #e5e5e5;
@@ -114,12 +116,6 @@ $radius: 3px;
 /* Typography */
 $headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-
-// ==============================================================================
-// #Liquid Variables
-// ==============================================================================
-
 
 
 // ==============================================================================
@@ -677,6 +673,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.2em;
   margin-bottom: 0.5em;
   line-height: 1.4;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
 
@@ -756,13 +760,13 @@ hr {
 // #Links
 // ==============================================================================
 a, a:visited {
-  color: #333;
+  color: $colorLink;
   text-decoration: underline;
 }
 
 a:hover,
 a:focus {
-  color: #000;
+  color: $colorLinkHover;
 }
 
 
@@ -789,10 +793,6 @@ li { margin-bottom: 0.25em; }
 table.full {
   width: 100%;
   margin-bottom: 1em;
-
-  @include at-query($max, $small) {
-    font-size: 0.8em;
-  }
 }
 
 th {
@@ -1222,10 +1222,21 @@ a.btn-secondary {
 }
 
 .header-logo {
-  float: left;
   margin-bottom: 0;
 
-  a {
+  @include at-query($min, $medium) {
+    float: left;
+  }
+
+  @include at-query($max, $medium) {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  a,
+  a:hover,
+  a:focus {
+    color: $colorText;
     text-decoration: none;
   }
 
@@ -1237,13 +1248,12 @@ a.btn-secondary {
 // ==============================================================================
 // #Site Nav
 // ==============================================================================
-
 .nav-bar {
   background-color: #f6f6f6;
 }
 
 .nav-bar ul {
-  margin: 3px 0 0;
+  margin: 0;
 }
 
 .nav-bar li {
@@ -1254,11 +1264,18 @@ a.btn-secondary {
 .nav-bar a {
   display: block;
   text-decoration: none;
-  padding: 15px;
+  padding: $gutter/2;
 }
 
 .site-nav {
-  float: left;
+  @include at-query($max, $medium) {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  @include at-query($min, $medium) {
+    float: left;
+  }
 
   li:first-child a {
     padding-left: 0;
@@ -1267,8 +1284,17 @@ a.btn-secondary {
 
 // Search bar in header
 .nav-search {
-  float: right;
   padding: 5px 0;
+
+  @include at-query($max, $medium) {
+    padding: 0 0 $gutter/2;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  @include at-query($min, $medium) {
+    float: right;
+  }
 
   .input-group,
   .input-group-field {
@@ -1277,6 +1303,10 @@ a.btn-secondary {
 
   .search-bar {
     max-width: 300px;
+
+    @include at-query($max, $medium) {
+      margin: 0 auto;
+    }
   }
 }
 
@@ -1287,7 +1317,13 @@ a.btn-secondary {
 .site-footer {
   background-color: #f6f6f6;
   border-top: 1px solid $borderColor;
-  padding: $gutter*2 0;
+  text-align: center;
+  padding: $gutter 0;
+
+  @include at-query($min, $medium) {
+    padding: $gutter*2 0;
+    text-align: left;
+  }
 }
 
 // Credit card icon widths (SVG)

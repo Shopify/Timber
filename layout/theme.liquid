@@ -79,8 +79,7 @@
         {% endif %}
       </h1>
 
-      <div class="right text-right">
-
+      <div class="text-center large-right large--text-right">
         {% comment %}
           You cart/checkout link should at least show the number of items in it.
           Below shows the item count followed by item(s) and the total cart price.
@@ -89,8 +88,7 @@
         {% endcomment %}
         <p>
           <a href="/cart" id="cartToggle">
-            Cart
-            ({{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} {{ cart.total_price | money }})
+            Cart ({{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} {{ cart.total_price | money }})
           </a>
         </p>
 
@@ -116,9 +114,17 @@
 
   <nav class="nav-bar">
     <div class="wrapper">
+      <ul class="site-nav">
+        {% comment %}
+          List out your main-menu linklist (default)
 
-      {% include 'site-nav' %}
-
+          More info on linklists:
+            - http://docs.shopify.com/themes/liquid-variables/linklists
+        {% endcomment %}
+        {% for link in linklists.main-menu.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
       <div class="nav-search">
         {% include 'search-bar' %}
       </div>
