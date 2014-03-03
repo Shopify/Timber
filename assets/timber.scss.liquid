@@ -77,24 +77,24 @@ $breakpoint-has-pull:  ('small', 'medium', 'medium-down', 'large');
 // #General Variables
 // ==============================================================================
 
-/* Link colors */
-$colorLinkPrimary: #ef5e1d;
-$colorLinkPrimaryHover: darken($colorLinkPrimary, 10%);
-$colorLinkPrimaryActive: darken($colorLinkPrimaryHover, 10%);
+/* Button colors */
+$colorBtnPrimary: #ef5e1d; // orange
+$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
+$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
 
-$colorLinkSecondary: #479ccf;
-$colorLinkSecondaryHover: darken($colorLinkSecondary, 10%);
-$colorLinkSecondaryActive: darken($colorLinkSecondaryHover, 10%);
+$colorBtnSecondary: #479ccf;
+$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
+$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
+
+/* Text link colors */
+$colorLink: #515151;
+$colorLinkHover: #333;
 
 /* Text colors */
 $colorBody: #fff;
 $colorText: #333;
 $colorHeaders: #999;
 $colorTextGrey: #777;
-
-/* Text link colors */
-$colorLink: #ef5e1d;
-$colorLinkHover: #000;
 
 /* Border colors */
 $borderColor: #e5e5e5;
@@ -1064,15 +1064,15 @@ a.btn {
   }
 
   // Set primary button colors - can override later
-  background-color: $colorLinkPrimary;
+  background-color: $colorBtnPrimary;
 
   &:hover {
-    background-color: $colorLinkPrimaryHover;
+    background-color: $colorBtnPrimaryHover;
     color: #fff;
   }
 
   &:active {
-   background-color: $colorLinkPrimaryActive;
+   background-color: $colorBtnPrimaryActive;
    color: #fff;
   }
 
@@ -1087,15 +1087,15 @@ a.btn {
 .btn-secondary,
 a.btn-secondary {
   @extend .btn;
-  background-color: $colorLinkSecondary;
+  background-color: $colorBtnSecondary;
 
   &:hover {
-    background-color: $colorLinkSecondaryHover;
+    background-color: $colorBtnSecondaryHover;
     color: #fff;
   }
 
   &:active {
-   background-color: $colorLinkSecondaryActive;
+   background-color: $colorBtnSecondaryActive;
    color: #fff;
   }
 }
@@ -1171,8 +1171,8 @@ a.btn-secondary {
   z-index: 2;
   color: #ffffff;
   cursor: default;
-  background-color: $colorLinkPrimary;
-  border-color: $colorLinkPrimary;
+  background-color: $colorBtnPrimary;
+  border-color: $colorBtnPrimary;
 }
 
 .pagination-custom > .disabled > span,
@@ -1236,8 +1236,10 @@ a.btn-secondary {
   }
 
   @include at-query($max, $medium) {
-    margin: 0 auto;
-    text-align: center;
+    img {
+      margin: 0 auto;
+      margin-bottom: 0.5em;
+    }
   }
 
   a,
@@ -1275,6 +1277,8 @@ a.btn-secondary {
 }
 
 .site-nav {
+  font-size: 1.2em;
+
   @include at-query($max, $medium) {
     margin: 0 auto;
     text-align: center;
@@ -1291,7 +1295,7 @@ a.btn-secondary {
 
 // Search bar in header
 .nav-search {
-  padding: 5px 0;
+  padding: 7px 0;
 
   @include at-query($max, $medium) {
     padding: 0 0 $gutter/2;
