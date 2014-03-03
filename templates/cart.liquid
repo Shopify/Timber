@@ -145,20 +145,23 @@
     <div class="cart-row">
       <div class="grid">
 
-        <div class="grid-item large--one-half">
+        {% comment %}
+          Optional, add a textarea for special notes
+            - Your theme settings can turn this on or off. Default is on.
+            - Make sure you have name="note" for the message to be submitted properly
+        {% endcomment %}
+        {% if settings.cart_notes %}
+          <div class="grid-item large--one-half">
+            <label>Special instructions for seller</label>
+            <textarea name="note" class="input-full">{{ cart.note }}</textarea>
+          </div>
+        {% endif %}
 
-          {% comment %}
-            Optional, add a textarea for special notes
-              - If you remove this section, adjust the grid-item width accordingly
-              - Make sure you have name="note" for the message to be submitted properly
-          {% endcomment %}
+        {% comment %}
+          If notes are used, adjust the column width
+        {% endcomment %}
 
-          <label>Special instructions for seller</label>
-          <textarea name="note" class="input-full">{{ cart.note }}</textarea>
-
-        </div>
-
-        <div class="grid-item large--one-half text-right">
+        <div class="grid-item text-right {% if settings.cart_notes %}large--one-half{% endif %}">
 
           <h5>Subtotal <em>{{ cart.total_price | money }}</em></h5>
 

@@ -138,6 +138,13 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-shadow:         #{$shadow};
 }
 
+@mixin transition($transition:0.1s all) {
+  -webkit-transition: #{$transition};
+  -moz-transition: #{$transition};
+  -o-transition: #{$transition};
+  transition: #{$transition};
+}
+
 /*
   Dependency-free breakpoint mixin
   http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/

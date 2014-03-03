@@ -2,7 +2,7 @@
   "current": "Default",
   "presets": {
     "Default": {
-      "use_logo": false,
+      "use_logo": true,
       "enable_opengraph": true,
       "enable_twittercards": true,
       "customer_layout": "theme",
@@ -13,7 +13,8 @@
       "twitter_link": "http://twitter.com/shopify",
       "facebook_link": "http://facebook.com/shopify",
       "footer_display_newsletter": true,
-      "footer_newsletter_title": "Newsletter"
+      "footer_newsletter_title": "Newsletter",
+      "cart_notes": true
     }
   }
 }
