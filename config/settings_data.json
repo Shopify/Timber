@@ -14,7 +14,8 @@
       "facebook_link": "http://facebook.com/shopify",
       "footer_display_newsletter": true,
       "footer_newsletter_title": "Newsletter",
-      "cart_notes": true
+      "cart_notes": true,
+      "ajax_cart": true
     }
   }
 }

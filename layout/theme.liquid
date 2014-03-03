@@ -36,9 +36,11 @@
 
   <!-- CSS ================================================== -->
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'docs.scss.css' | asset_url | stylesheet_tag }}
+
+  {% if settings.ajax_cart %}
   <!-- Ajaxify Cart Plugin ================================================== -->
   {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
+  {% endif %}
 
   <!--[if lt IE 9]>
   {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
@@ -144,11 +146,15 @@
     docs.js is only used on the documentation page and can be removed on your live site.
   {% endcomment %}
   {{ 'shop.js' | asset_url | script_tag }}
-  {{ 'docs.js' | asset_url | script_tag }}
 
   {% comment %}
+    Ajaxify your cart with this plugin. Adding a product will reveal a drawer, modal, or confirmation button.
+    Enabled by default in theme settings.
 
+    More info:
+      - http://shopify.com/timber/documentation#ajax-cart
   {% endcomment %}
+  {% if settings.ajax_cart %}
   {{ 'ajaxify.js' | asset_url | script_tag }}
   <script>
   jQuery(function($) {
@@ -163,6 +169,7 @@
     });
   });
   </script>
+  {% endif %}
 
 </body>
 </html>
