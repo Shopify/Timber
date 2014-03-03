@@ -297,6 +297,9 @@ var ajaxifyShopify = (function(module, $) {
     // Override defaults with arguments
     $.extend(settings, options);
 
+    // Make sure method is lower case
+    settings.method = settings.method.toLowerCase();
+
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
     $btnClass          = settings.btnClass;
