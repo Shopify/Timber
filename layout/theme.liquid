@@ -36,9 +36,11 @@
 
   <!-- CSS ================================================== -->
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'docs.scss.css' | asset_url | stylesheet_tag }}
+
+  {% if settings.ajax_cart %}
   <!-- Ajaxify Cart Plugin ================================================== -->
   {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
+  {% endif %}
 
   <!--[if lt IE 9]>
   {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
@@ -79,8 +81,7 @@
         {% endif %}
       </h1>
 
-      <div class="right text-right">
-
+      <div class="text-center large-right large--text-right">
         {% comment %}
           You cart/checkout link should at least show the number of items in it.
           Below shows the item count followed by item(s) and the total cart price.
@@ -89,8 +90,7 @@
         {% endcomment %}
         <p>
           <a href="/cart" id="cartToggle">
-            Cart
-            ({{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} {{ cart.total_price | money }})
+            Cart ({{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} {{ cart.total_price | money }})
           </a>
         </p>
 
@@ -116,9 +116,17 @@
 
   <nav class="nav-bar">
     <div class="wrapper">
+      <ul class="site-nav">
+        {% comment %}
+          List out your main-menu linklist (default)
 
-      {% include 'site-nav' %}
-
+          More info on linklists:
+            - http://docs.shopify.com/themes/liquid-variables/linklists
+        {% endcomment %}
+        {% for link in linklists.main-menu.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
       <div class="nav-search">
         {% include 'search-bar' %}
       </div>
@@ -138,16 +146,20 @@
     docs.js is only used on the documentation page and can be removed on your live site.
   {% endcomment %}
   {{ 'shop.js' | asset_url | script_tag }}
-  {{ 'docs.js' | asset_url | script_tag }}
 
   {% comment %}
+    Ajaxify your cart with this plugin. Adding a product will reveal a drawer, modal, or confirmation button.
+    Enabled by default in theme settings.
 
+    More info:
+      - http://shopify.com/timber/documentation#ajax-cart
   {% endcomment %}
+  {% if settings.ajax_cart %}
   {{ 'ajaxify.js' | asset_url | script_tag }}
   <script>
   jQuery(function($) {
     ajaxifyShopify.init({
-      method: 'flip', // Method options are drawer, modal, and flip. Default is drawer.
+      method: '{{ settings.ajax_cart_method }}', // Method options are drawer, modal, and flip. Default is flip.
       wrapperClass: 'wrapper', // The class that defines your site width. Default is null.
       formSelector: '#addToCartForm', // Default is form[action="/cart/add"].
       submitButtonSelector: '#addToCart', // Default is input[type="submit"].
@@ -157,6 +169,7 @@
     });
   });
   </script>
+  {% endif %}
 
 </body>
 </html>

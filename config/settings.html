@@ -6,11 +6,11 @@
     More info on settings:
       - http://docs.shopify.com/themes/theme-templates/settings
 -->
-
-<div class="section-info">
-  <p>Theme settings allow designers to provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code. Please see our <a title="Open documentation in a new window" target="_blank" href="http://docs.shopify.com/themes/theme-templates/settings">help page on theme settings</a> to learn more about how you can make your theme customizable.</p>
-</div>
-
+<table>
+  <tr>
+    <td><p>Theme settings allow designers to provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code. Please see our <a title="Open documentation in a new window" target="_blank" href="http://docs.shopify.com/themes/theme-templates/settings">help page on theme settings</a> to learn more about how you can make your theme customizable.</p></td>
+  </tr>
+</table>
 <fieldset>
   <legend>Logo Options</legend>
   <table>
@@ -32,7 +32,7 @@
   <legend>Social Meta Tags</legend>
   <table>
     <tr>
-      <td colspan="2">Social helpers include Facebook Open Graph Tags and Twitter Cards. Enable or disable them here, all of the code is taking care of for you in snippets.</td>
+      <td colspan="2"><small>Social helpers include Facebook Open Graph Tags and Twitter Cards. Enable or disable them here, all of the code is taking care of for you in snippets.</small></td>
     </tr>
     <tr>
       <td><label for="enable_opengraph">Enable <a href="https://developers.facebook.com/docs/opengraph/using-objects/" title="About Facebook Open Graph Objects">Facebook Open Graph Tags</a></label></td>
@@ -101,6 +101,33 @@
       <th><label for="mailing_list_form_action">MailChimp form action URL</label></th>
       <td><input type="text" id="mailing_list_form_action" name="mailing_list_form_action" value="" /></td>
       <td><a href="http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action" target="_blank">Where do I find my MailChimp form action URL?</a></td>
+    </tr>
+  </table>
+</fieldset>
+
+<fieldset>
+  <legend>Cart</legend>
+  <table>
+    <tr>
+      <td><label for="cart_notes">Allow customers to add notes to their order?</label></td>
+      <td colspan="2"><input type="checkbox" id="cart_notes" name="cart_notes" /></td>
+    </tr>
+    <tr>
+      <td><label for="ajax_cart">Enable Ajaxify Cart</label></td>
+      <td colspan="2">
+        <input type="checkbox" id="ajax_cart" name="ajax_cart" />
+        <small>Documentation - <a href="http://shopify.com/timber/documentation#ajax-cart" title="Ajax Cart Documentation">http://shopify.com/timber/documentation#ajax-cart</a></small>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="ajax_cart_method">Enable Ajaxify Cart</label></td>
+      <td colspan="2">
+        <select name="ajax_cart_method">
+          <option value="flip">Flip</option>
+          <option value="drawer">Drawer</option>
+          <option value="modal">Modal</option>
+        </select>
+      </td>
     </tr>
   </table>
 </fieldset>

@@ -106,11 +106,11 @@ $radius: 5px !default;
 // ==============================================================================
 // Ajaxify Colours
 // ==============================================================================
-$ajaxifyGrey: #333;
+$ajaxifyGrey: #444;
 $ajaxifyGreyLight: #d3d3d3;
 $ajaxifyGreyDark: #454545;
 
-$drawerBackgroundColor: #000;
+$drawerBackgroundColor: #222;
 $drawerTextColor: #fff;
 $drawerLinkColor: #fff;
 
@@ -699,24 +699,8 @@ form[action="/cart/add"] {
     display: inline;
   }
 
-  h5 {
-    margin-bottom: 0;
-  }
-
   p, a {
     color: $drawerTextColor;
-  }
-
-  .ajaxifyCart__col4 {
-
-    input[type="submit"] {
-      // background-color: #fff;
-      // color: #000;
-
-      &:hover {
-        // background-color: #f6f6f6;
-      }
-    }
   }
 }
 
@@ -724,7 +708,7 @@ form[action="/cart/add"] {
   margin: 0 auto;
   opacity: 0;
   overflow: hidden;
-  background-color: #000;
+  background-color: $drawerBackgroundColor;
 
   @include transform-origin(top);
   @include rotateX(-90deg);

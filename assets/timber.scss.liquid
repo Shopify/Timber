@@ -17,7 +17,6 @@
 ==================================================
   #Breakpoint and Grid Variables
   #General Variables
-  #Liquid Variables
   #Sass Mixins
   #Reset
   #Grid Setup
@@ -78,20 +77,23 @@ $breakpoint-has-pull:  ('small', 'medium', 'medium-down', 'large');
 // #General Variables
 // ==============================================================================
 
-/* Link colors */
-$colorLinkPrimary: #51ab62;
-$colorLinkPrimaryHover: darken($colorLinkPrimary, 10%);
-$colorLinkPrimaryActive: darken($colorLinkPrimaryHover, 10%);
+/* Button colors */
+$colorBtnPrimary: #747474; // boring grey
+$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
+$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
 
-$colorLinkSecondary: #479ccf;
-$colorLinkSecondaryHover: darken($colorLinkSecondary, 10%);
-$colorLinkSecondaryActive: darken($colorLinkSecondaryHover, 10%);
+$colorBtnSecondary: #464646;
+$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
+$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
+
+/* Text link colors */
+$colorLink: #515151;
+$colorLinkHover: #333;
 
 /* Text colors */
 $colorBody: #fff;
 $colorText: #333;
 $colorHeaders: #999;
-
 $colorTextGrey: #777;
 
 /* Border colors */
@@ -117,12 +119,6 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 
 // ==============================================================================
-// #Liquid Variables
-// ==============================================================================
-
-
-
-// ==============================================================================
 // #Sass Mixins
 // ==============================================================================
 .clearfix {
@@ -140,6 +136,13 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-box-shadow: #{$shadow};
   -moz-box-shadow:    #{$shadow};
   box-shadow:         #{$shadow};
+}
+
+@mixin transition($transition:0.1s all) {
+  -webkit-transition: #{$transition};
+  -moz-transition: #{$transition};
+  -o-transition: #{$transition};
+  transition: #{$transition};
 }
 
 /*
@@ -677,6 +680,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.2em;
   margin-bottom: 0.5em;
   line-height: 1.4;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
 
@@ -756,13 +767,13 @@ hr {
 // #Links
 // ==============================================================================
 a, a:visited {
-  color: #333;
+  color: $colorLink;
   text-decoration: underline;
 }
 
 a:hover,
 a:focus {
-  color: #000;
+  color: $colorLinkHover;
 }
 
 
@@ -789,10 +800,6 @@ li { margin-bottom: 0.25em; }
 table.full {
   width: 100%;
   margin-bottom: 1em;
-
-  @include at-query($max, $small) {
-    font-size: 0.8em;
-  }
 }
 
 th {
@@ -1057,15 +1064,15 @@ a.btn {
   }
 
   // Set primary button colors - can override later
-  background-color: $colorLinkPrimary;
+  background-color: $colorBtnPrimary;
 
   &:hover {
-    background-color: $colorLinkPrimaryHover;
+    background-color: $colorBtnPrimaryHover;
     color: #fff;
   }
 
   &:active {
-   background-color: $colorLinkPrimaryActive;
+   background-color: $colorBtnPrimaryActive;
    color: #fff;
   }
 
@@ -1080,15 +1087,15 @@ a.btn {
 .btn-secondary,
 a.btn-secondary {
   @extend .btn;
-  background-color: $colorLinkSecondary;
+  background-color: $colorBtnSecondary;
 
   &:hover {
-    background-color: $colorLinkSecondaryHover;
+    background-color: $colorBtnSecondaryHover;
     color: #fff;
   }
 
   &:active {
-   background-color: $colorLinkSecondaryActive;
+   background-color: $colorBtnSecondaryActive;
    color: #fff;
   }
 }
@@ -1164,8 +1171,8 @@ a.btn-secondary {
   z-index: 2;
   color: #ffffff;
   cursor: default;
-  background-color: $colorLinkPrimary;
-  border-color: $colorLinkPrimary;
+  background-color: $colorBtnPrimary;
+  border-color: $colorBtnPrimary;
 }
 
 .pagination-custom > .disabled > span,
@@ -1222,10 +1229,23 @@ a.btn-secondary {
 }
 
 .header-logo {
-  float: left;
   margin-bottom: 0;
 
-  a {
+  @include at-query($min, $medium) {
+    float: left;
+  }
+
+  @include at-query($max, $medium) {
+    img {
+      margin: 0 auto;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  a,
+  a:hover,
+  a:focus {
+    color: $colorText;
     text-decoration: none;
   }
 
@@ -1237,13 +1257,12 @@ a.btn-secondary {
 // ==============================================================================
 // #Site Nav
 // ==============================================================================
-
 .nav-bar {
   background-color: #f6f6f6;
 }
 
 .nav-bar ul {
-  margin: 3px 0 0;
+  margin: 0;
 }
 
 .nav-bar li {
@@ -1254,11 +1273,20 @@ a.btn-secondary {
 .nav-bar a {
   display: block;
   text-decoration: none;
-  padding: 15px;
+  padding: $gutter/2;
 }
 
 .site-nav {
-  float: left;
+  font-size: 1.2em;
+
+  @include at-query($max, $medium) {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  @include at-query($min, $medium) {
+    float: left;
+  }
 
   li:first-child a {
     padding-left: 0;
@@ -1267,8 +1295,17 @@ a.btn-secondary {
 
 // Search bar in header
 .nav-search {
-  float: right;
-  padding: 5px 0;
+  padding: 7px 0;
+
+  @include at-query($max, $medium) {
+    padding: 0 0 $gutter/2;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  @include at-query($min, $medium) {
+    float: right;
+  }
 
   .input-group,
   .input-group-field {
@@ -1277,6 +1314,10 @@ a.btn-secondary {
 
   .search-bar {
     max-width: 300px;
+
+    @include at-query($max, $medium) {
+      margin: 0 auto;
+    }
   }
 }
 
@@ -1287,7 +1328,13 @@ a.btn-secondary {
 .site-footer {
   background-color: #f6f6f6;
   border-top: 1px solid $borderColor;
-  padding: $gutter*2 0;
+  text-align: center;
+  padding: $gutter 0;
+
+  @include at-query($min, $medium) {
+    padding: $gutter*2 0;
+    text-align: left;
+  }
 }
 
 // Credit card icon widths (SVG)
@@ -1422,7 +1469,7 @@ a.btn-secondary {
   border-bottom: 1px solid $borderColor;
 
   .ajaxifyCart__content & {
-    border-bottom-color: #333;
+    border-bottom-color: #444;
   }
 }
 
