@@ -2,7 +2,7 @@
   "current": "Default",
   "presets": {
     "Default": {
-      "use_logo": true,
+      "use_logo": false,
       "enable_opengraph": true,
       "enable_twittercards": true,
       "customer_layout": "theme",
