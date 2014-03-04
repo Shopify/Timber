@@ -1,15 +1,18 @@
-// (c) Copyright 2013 Jaded Pixel. Author: Carson Shold (@cshold). All Rights Reserved.
+// (c) Copyright 2013 Shopify Inc. Author: Carson Shold (@cshold). All Rights Reserved.
 
 /*
- * Ajaxify Shopify
- *
- * Ajaxify the add to cart experience and flip the button so it looks cool,
+ * Ajaxify the add to cart experience and flip the button for inline confirmation,
  * show the cart in a modal, or a 3D drawer.
  *
- * This file includes
+ * This file includes:
  *    - Modernizer | Slim custom build
  *    - Basic Shopify Ajax API calls
  *    - Ajaxify plugin
+ *
+ * This requires:
+ *    - jQuery 1.8+
+ *    - handlebars.min.js (for cart template)
+ *    - snippet/ajax-cart-template.liquid
 */
 
 
@@ -17,13 +20,12 @@
  * Plugin Notes
  *
  * In order to update the cart count on your page when adding a product,
- * warp the number in a span and pass it's selector into the
- * cartCountSelector option.
+ * warp the number in a span and pass it's selector into the 'cartCountSelector' option.
  *
  * Similarly to the cart count, you can add a selector for
- * cartCostSelector to update the total price when an item is added.
+ * 'cartCostSelector' to update the total price when an item is added.
  *
- * If using the drawer method, pass a selector into the toggleCartButton option
+ * If using the drawer method, pass a selector into the 'toggleCartButton' option
  * to toggle the cart open and closed. Leave this out if you'd like the link to
  * take the user to the /cart page.
 */
@@ -140,9 +142,7 @@ Shopify.onError = function(XMLHttpRequest, textStatus) {
   }
 };
 
-// -------------------------------------------------------------------------------------
-// POST to cart/add.js returns the JSON of the line item associated with the added item.
-// -------------------------------------------------------------------------------------
+// POST to cart/add.js returns the JSON of the line item associated with the added item
 Shopify.addItem = function(variant_id, quantity, callback) {
   var quantity = quantity || 1;
   var params = {
@@ -165,40 +165,36 @@ Shopify.addItem = function(variant_id, quantity, callback) {
   jQuery.ajax(params);
 };
 
-// ---------------------------------------------------------
-// POST to cart/add.js returns the JSON of the line item.
+// POST to cart/add.js returns the JSON of the line item
 //   - Allow use of form element instead of id
 //   - Allow custom error callback
-// ---------------------------------------------------------
 Shopify.addItemFromForm = function(form, callback, errorCallback) {
-    var params = {
-      type: 'POST',
-      url: '/cart/add.js',
-      data: jQuery(form).serialize(),
-      dataType: 'json',
-      success: function(line_item) {
-        if ((typeof callback) === 'function') {
-          callback(line_item, form);
-        }
-        else {
-          Shopify.onItemAdded(line_item, form);
-        }
-      },
-      error: function(XMLHttpRequest, textStatus) {
-        if ((typeof errorCallback) === 'function') {
-          errorCallback(XMLHttpRequest, textStatus);
-        }
-        else {
-          Shopify.onError(XMLHttpRequest, textStatus);
-        }
+  var params = {
+    type: 'POST',
+    url: '/cart/add.js',
+    data: jQuery(form).serialize(),
+    dataType: 'json',
+    success: function(line_item) {
+      if ((typeof callback) === 'function') {
+        callback(line_item, form);
       }
-    };
-    jQuery.ajax(params);
+      else {
+        Shopify.onItemAdded(line_item, form);
+      }
+    },
+    error: function(XMLHttpRequest, textStatus) {
+      if ((typeof errorCallback) === 'function') {
+        errorCallback(XMLHttpRequest, textStatus);
+      }
+      else {
+        Shopify.onError(XMLHttpRequest, textStatus);
+      }
+    }
+  };
+  jQuery.ajax(params);
 };
 
-// ---------------------------------------------------------
-// GET cart.js returns the cart in JSON.
-// ---------------------------------------------------------
+// Get from cart.js returns the cart in JSON
 Shopify.getCart = function(callback) {
   jQuery.getJSON('/cart.js', function (cart, textStatus) {
     if ((typeof callback) === 'function') {
@@ -210,9 +206,7 @@ Shopify.getCart = function(callback) {
   });
 };
 
-// ---------------------------------------------------------
-// GET products/<product-handle>.js returns the product in JSON.
-// ---------------------------------------------------------
+// GET products/<product-handle>.js returns the product in JSON
 Shopify.getProduct = function(handle, callback) {
   jQuery.getJSON('/products/' + handle + '.js', function (product, textStatus) {
     if ((typeof callback) === 'function') {
@@ -224,9 +218,7 @@ Shopify.getProduct = function(handle, callback) {
   });
 };
 
-// ---------------------------------------------------------
-// POST to cart/change.js returns the cart in JSON.
-// ---------------------------------------------------------
+// POST to cart/change.js returns the cart in JSON
 Shopify.changeItem = function(variant_id, quantity, callback) {
   var params = {
     type: 'POST',
@@ -248,12 +240,10 @@ Shopify.changeItem = function(variant_id, quantity, callback) {
   jQuery.ajax(params);
 };
 
-
 /* Modernizr 2.7.0 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-csstransforms-csstransforms3d-touch-teststyles-testprop-testallprops-prefixes-domprefixes
  */
 ;window.Modernizr=function(a,b,c){function y(a){i.cssText=a}function z(a,b){return y(l.join(a+";")+(b||""))}function A(a,b){return typeof a===b}function B(a,b){return!!~(""+a).indexOf(b)}function C(a,b){for(var d in a){var e=a[d];if(!B(e,"-")&&i[e]!==c)return b=="pfx"?e:!0}return!1}function D(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:A(f,"function")?f.bind(d||b):f}return!1}function E(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+n.join(d+" ")+d).split(" ");return A(b,"string")||A(b,"undefined")?C(e,b):(e=(a+" "+o.join(d+" ")+d).split(" "),D(e,b,c))}var d="2.7.0",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l=" -webkit- -moz- -o- -ms- ".split(" "),m="Webkit Moz O ms",n=m.split(" "),o=m.toLowerCase().split(" "),p={},q={},r={},s=[],t=s.slice,u,v=function(a,c,d,e){var h,i,j,k,l=b.createElement("div"),m=b.body,n=m||b.createElement("body");if(parseInt(d,10))while(d--)j=b.createElement("div"),j.id=e?e[d]:g+(d+1),l.appendChild(j);return h=["&#173;",'<style id="s',g,'">',a,"</style>"].join(""),l.id=g,(m?l:n).innerHTML+=h,n.appendChild(l),m||(n.style.background="",n.style.overflow="hidden",k=f.style.overflow,f.style.overflow="hidden",f.appendChild(n)),i=c(l,a),m?l.parentNode.removeChild(l):(n.parentNode.removeChild(n),f.style.overflow=k),!!i},w={}.hasOwnProperty,x;!A(w,"undefined")&&!A(w.call,"undefined")?x=function(a,b){return w.call(a,b)}:x=function(a,b){return b in a&&A(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=t.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(t.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(t.call(arguments)))};return e}),p.touch=function(){var c;return"ontouchstart"in a||a.DocumentTouch&&b instanceof DocumentTouch?c=!0:v(["@media (",l.join("touch-enabled),("),g,")","{#modernizr{top:9px;position:absolute}}"].join(""),function(a){c=a.offsetTop===9}),c},p.csstransforms=function(){return!!E("transform")},p.csstransforms3d=function(){var a=!!E("perspective");return a&&"webkitPerspective"in f.style&&v("@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}",function(b,c){a=b.offsetLeft===9&&b.offsetHeight===3}),a};for(var F in p)x(p,F)&&(u=F.toLowerCase(),e[u]=p[F](),s.push((e[u]?"":"no-")+u));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)x(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof enableClasses!="undefined"&&enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},y(""),h=j=null,e._version=d,e._prefixes=l,e._domPrefixes=o,e._cssomPrefixes=n,e.testProp=function(a){return C([a])},e.testAllProps=E,e.testStyles=v,e}(this,this.document);
-
 
 // -------------------------------------------------------------------------------------
 // Ajaxify Shopify Add To Cart
@@ -273,7 +263,7 @@ var ajaxifyShopify = (function(module, $) {
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, flipCartUpdateCallback, buildCart, cartTemplate,adjustCart, adjustCartCallback, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, scrollTop, isEmpty, log;
 
   /**
    * Initialise the plugin and define global options
@@ -417,15 +407,12 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   modalSetup = function () {
-
-    // Create modal DOM elements
-    var modalContainer = '<div id="ajaxifyModal"> \
-          <div id="ajaxifyCart" class="ajaxifyCart__content"></div> \
-        </div>',
-        modalOverlay = '<div id="ajaxifyCart-overlay"></div>';
+    // Create modal DOM elements with handlebars.js template
+    var source   = $("#modalTemplate").html(),
+        template = Handlebars.compile(source);
 
     // Append modal and overlay to body
-    $('body').append(modalContainer).append(modalOverlay);
+    $('body').append(template).append('<div id="ajaxifyCart-overlay"></div>');
 
     // Modal selectors
     $modalContainer = $('#ajaxifyModal');
@@ -438,17 +425,7 @@ var ajaxifyShopify = (function(module, $) {
     }
 
     // Toggle modal with cart button
-    if ($toggleCartButton) {
-      $toggleCartButton.on('click', function(e) {
-        e.preventDefault();
-
-        if ( $modalContainer.hasClass('is-visible') ) {
-          hideModal();
-        } else {
-          showModal(true);
-        }
-      });
-    }
+    setToggleButtons();
 
   };
 
@@ -472,15 +449,15 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   drawerSetup = function () {
+    // Create drawer DOM elements with handlebars.js template
+    var source   = $("#drawerTemplate").html(),
+        template = Handlebars.compile(source),
+        data = {
+          wrapperClass: $wrapperClass
+        };
 
-    // Create drawer DOM elements
-    var drawerContainer = '<div id="ajaxifyDrawer"> \
-        <div id="ajaxifyCart" class="ajaxifyCart__content ' + $wrapperClass +' "></div> \
-        </div> \
-        <div class="ajaxifyDrawer-caret"><span></span></div>';
-
-    // Append drawer and overlay to body
-    $('body').prepend(drawerContainer);
+    // Append drawer to body
+    $('body').prepend(template(data));
 
     // Drawer selectors
     $drawerContainer = $('#ajaxifyDrawer');
@@ -488,22 +465,10 @@ var ajaxifyShopify = (function(module, $) {
     $drawerCaret     = $('.ajaxifyDrawer-caret > span');
 
     // Toggle drawer with cart button
-    if ($toggleCartButton) {
-      $toggleCartButton.on('click', function(e) {
-        e.preventDefault();
-
-        if ( $drawerContainer.hasClass('is-visible') ) {
-          hideDrawer();
-        } else {
-          showDrawer(true);
-        }
-
-      });
-    }
-
-    var timeout;
+    setToggleButtons();
 
     // Position caret and size drawer on resize if drawer is visible
+    var timeout;
     $(window).resize(function() {
       clearTimeout(timeout);
       timeout = setTimeout(function(){
@@ -529,8 +494,6 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   showDrawer = function (toggle) {
-
-    console.log('show drawer');
 
     // If we're toggling with the flip method, use a special callback
     if (settings.method == 'flip') {
@@ -627,6 +590,41 @@ var ajaxifyShopify = (function(module, $) {
 
   };
 
+  setToggleButtons = function () {
+    // Reselect the element in case it just loaded
+    $toggleCartButton  = $(settings.toggleCartButton);
+
+    if ($toggleCartButton) {
+      // Turn it off by default, in case it's initialized twice
+      $toggleCartButton.off('click');
+
+      // Toggle the cart, based on the method
+      $toggleCartButton.on('click', function(e) {
+        e.preventDefault();
+
+        switch (settings.method) {
+          case 'modal':
+            if ( $modalContainer.hasClass('is-visible') ) {
+              hideModal();
+            } else {
+              showModal(true);
+            }
+            break;
+          case 'drawer':
+          case 'flip':
+            if ( $drawerContainer.hasClass('is-visible') ) {
+              hideDrawer();
+            } else {
+              showDrawer(true);
+            }
+            break;
+        }
+
+      });
+
+    }
+  };
+
   flipCartUpdateCallback = function (cart) {
     buildCart(cart);
   };
@@ -644,14 +642,21 @@ var ajaxifyShopify = (function(module, $) {
     // Empty the current cart items
     $cartContainer.empty();
 
-    // Use the /cart template, or JS-defined layout based on settings
+    // Use the /cart template, or Handlebars.js layout based on theme settings
     if (settings.useCartTemplate) {
       cartTemplate(cart);
       return;
     }
 
-    // JS-defined cart layout
-    var items = '';
+    // Handlebars.js cart layout
+    var items = [],
+        item = {},
+        data = {};
+
+    var source   = $("#cartTemplate").html(),
+        template = Handlebars.compile(source);
+
+    // Add each item to our handlebars.js data
     $.each(cart.items, function(index, cartItem) {
 
       var itemAdd = cartItem.quantity + 1,
@@ -665,58 +670,36 @@ var ajaxifyShopify = (function(module, $) {
       var prodName = cartItem.title.replace(/(\-[^-]*)$/, "");
       var prodVariation = cartItem.title.replace(/^[^\-]*/, "").replace(/-/, "");
 
-      items += '<div class="ajaxifyCart__product"> \
-          <div class="ajaxifyCart__row" data-id="'+ cartItem.variant_id +'"> \
-            <div class="ajaxifyCart__media"> \
-              <a href="'+cartItem.url+'"> <img src="' + prodImg + '" width="60" alt=""></a> \
-            </div> \
-            <div class="ajaxifyCart__col1"> \
-              <p><a href="'+cartItem.url+'">'+ prodName +'</a></p> \
-              <p><small>'+ prodVariation +'</small></p> \
-            </div> \
-            <div class="ajaxifyCart__col2"> \
-              <div class="ajaxifyCart__qty"> \
-                <input type="text" class="ajaxifyCart__num" value="'+ itemQty +'" min="0" data-id="'+ cartItem.variant_id +'"> \
-                <span class="ajaxifyCart__qty-adjuster ajaxifyCart__add" data-id="'+ cartItem.variant_id +'" data-qty="' + itemAdd + '">+</span> \
-                <span class="ajaxifyCart__qty-adjuster ajaxifyCart__minus" data-id="'+ cartItem.variant_id +'" data-qty="' + itemMinus + '">-</span> \
-              </div> \
-            </div> \
-            <div class="ajaxifyCart__col3"> \
-              <p>'+ Shopify.formatMoney(cartItem.price) +'</p> \
-            </div> \
-            <div class="ajaxifyCart__col4"> \
-              <p><a href="#" class="ajaxifyCart__remove" data-id="'+ cartItem.variant_id +'" data-qty="0">Remove from cart</a></p> \
-            </div> \
-          </div> \
-        </div>';
+      // Create item's data object and add to 'items' array
+      item = {
+        id: cartItem.variant_id,
+        url: cartItem.url,
+        img: prodImg,
+        name: prodName,
+        variation: prodVariation,
+        itemAdd: itemAdd,
+        itemMinus: itemMinus,
+        itemQty: itemQty,
+        price: Shopify.formatMoney(cartItem.price)
+      };
 
-      if ( index == (cart.items.length-1) ) {
-        var cartWrap = '<form action="/cart" method="post"> \
-            <h2 class="ajaxifyCart__title">Your Shopping Cart \
-              <span class="ajaxifyCart__close" title="Close Cart">Close Cart</span> \
-            </h2> \
-            <div class="ajaxifyCart__products">'
-            + items +
-            '</div> \
-            <div class="ajaxifyCart__row ajaxifyCart__summary"> \
-              <div class="ajaxifyCart__total"> \
-                <p>Subtotal</p> \
-              </div> \
-              <div class="ajaxifyCart__col3"> \
-                <p>' + Shopify.formatMoney(cart.total_price) + '</p> \
-              </div> \
-              <div class="ajaxifyCart__col4"> \
-                <input type="submit" class="' + $btnClass + '" name="checkout" value="Checkout" /> \
-              </div> \
-            </div></form>';
-
-        $cartContainer.append(cartWrap);
-
-        $closeCart = $('.ajaxifyCart__close');
-        $closeCart.off( 'click', hideModal );
-        $closeCart.on( 'click', hideModal );
-      }
+      items.push(item);
     });
+
+    // Gather all cart data and add to DOM
+    data = {
+      items: items,
+      totalPrice: Shopify.formatMoney(cart.total_price),
+      btnClass: $btnClass
+    }
+    $cartContainer.append(template(data));
+
+    // Link up close modal link
+    if (settings.method == 'modal') {
+      $closeCart = $('.ajaxifyCart__close');
+      $closeCart.off( 'click', hideModal );
+      $closeCart.on( 'click', hideModal );
+    }
 
     // With new elements we need to relink the adjust cart functions
     adjustCart();

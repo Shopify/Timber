@@ -109,6 +109,7 @@ $successGreen: #0a942a;
 /* Width variables */
 $siteWidth: 1180px;
 $gutter: 24px;
+$gridGutter: 24px;
 
 /* Radius */
 $radius: 3px;
@@ -184,7 +185,6 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 // ==============================================================================
 $responsive:         true;
 $mobile-first:       true;
-$gutter:             $gutter;
 $use-silent-classes: false;
 $push:               true;
 $pull:               false;
@@ -255,12 +255,12 @@ $class-type: unquote(".");
   list-style:none;
   margin:0;
   padding:0;
-  margin-left:-$gutter;
+  margin-left:-$gridGutter;
 }
 
 #{$class-type}grid-item {
   float: left;
-  padding-left:$gutter;
+  padding-left:$gridGutter;
   vertical-align:top;
   @if $mobile-first == true {
     width:100%;

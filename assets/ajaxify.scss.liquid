@@ -15,14 +15,6 @@
 // ==============================================================================
 // Sass Helpers
 // ==============================================================================
-$radius: 5px !default;
-
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  border-radius: $radius;
-}
-
 @mixin border-box($type: border-box) {
   -webkit-box-sizing: $type;
   -moz-box-sizing: $type;
@@ -436,7 +428,7 @@ form[action="/cart/add"] {
   position: relative;
   right: -30px;
   border: 1px solid transparent;
-  @include border-radius(2px);
+  border-radius: 2px;
   overflow: hidden;
   font-size: 16px;
   max-width: 90px;
@@ -457,7 +449,7 @@ form[action="/cart/add"] {
   input[type="text"] {
     display: block;
     border: 0 none;
-    @include border-radius(0);
+    border-radius: 0;
     @include box-shadow(none);
     background: none;
     color: $quantityTextColor;

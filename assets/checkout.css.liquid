@@ -1,0 +1,469 @@
+/* ==============================================================================
+//
+//  Override the default checkout styles. Delete the file or change its
+//  filename to revert to the default styles.
+//
+// ============================================================================== */
+
+/* ==============================================================================
+// #General
+// ============================================================================== */
+body, #main, #container, #header, #footer { background: transparent !important; }
+body {
+  padding: 20px;
+}
+
+*, input, :before, :after {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+/* ==============================================================================
+// #Typography
+// ============================================================================== */
+body,
+input,
+textarea,
+button,
+select {
+   font-size: 87.5%;
+   line-height: 1.6;
+   font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   color: #333;
+   font-weight: 300;
+   -webkit-font-smoothing: antialiased;
+   -webkit-text-size-adjust: 100%;
+}
+
+label {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  margin-bottom: 10px;
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.4;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+
+a {
+  color: #515151;
+}
+
+a:hover {
+  color: #333;
+}
+
+
+/* ==============================================================================
+// #Layout
+// ============================================================================== */
+#container {
+  max-width: 980px;
+  margin: 0 auto;
+  font-size: 100%;
+}
+
+#container,
+#main,
+#container.slim #main,
+#content,
+#footer {
+  padding: 0;
+  width: auto;
+}
+
+#container.slim {
+  max-width: 740px;
+}
+
+#content,
+#overview {
+  float: left;
+}
+
+#content {
+  width: 75%;
+  padding-left: 20px;
+}
+
+#overview {
+ width: 25%;
+}
+
+/* ==============================================================================
+// #Responsive Layouts
+// ============================================================================== */
+@media only screen and (max-width:1000px) {
+  #content {
+    width: 65%;
+  }
+
+  #overview {
+    width: 35%;
+  }
+}
+
+@media only screen and (max-width:646px) {
+  #content,
+  #overview {
+    float: none;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+
+/* ==============================================================================
+// #Group and Email Containers
+// ============================================================================== */
+.group {
+  border-radius: 0;
+}
+
+#email,
+.group {
+  margin: 0 0 20px 0;
+  padding: 20px;
+  line-height: 1.5em;
+  border: none;
+}
+
+.group h3,
+.pgroup h3,
+#email label {
+  font-weight: bold;
+  margin: 0 0 12px 0;
+  padding: 0 0 8px 0;
+  border-bottom: dotted 1px #ccc;
+}
+
+
+/* ==============================================================================
+// #Secure Server Bar
+// ============================================================================== */
+#info-bar {
+  display: none;
+}
+
+
+/* ==============================================================================
+// #Header
+// ============================================================================== */
+#header,
+#header h1 {
+  padding: 0;
+}
+
+#header {
+  width: auto;
+}
+
+#tagline .subtitle {
+  display: none;
+}
+
+{% if settings.logo_image == "logo.png" %}
+#logo {
+  width: 100%;
+  height: 200px;
+  background-image: url({{ settings.logo_image | asset_url }});
+  background-repeat: no-repeat;
+  background-position: 0 85%;
+  background-size: auto 200px;
+}
+
+#tagline { display: none; }
+{% endif %}
+
+
+
+/* ==============================================================================
+// #Overview - right column widget
+// ============================================================================== */
+ #overview {
+  border: none;
+  margin: 0 0 20px 0;
+  position: relative;
+  overflow: hidden;
+  height: 1%;
+  padding: 140px 10px 10px;
+}
+
+/* "You're purchasing this.." text */
+#products > h2 {
+  display: none;
+}
+
+#overview #products {
+  width: auto;
+  float: none;
+  border: none;
+}
+
+#wallet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  height: 120px;
+  text-align: center;
+}
+
+.step2 #wallet {
+  height: 165px;
+}
+
+.step2 #overview {
+  padding-top: 165px;
+}
+
+#overview #cost {
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 1.9;
+  text-shadow: none;
+  border-bottom: dotted 1px #ccc;
+}
+
+#overview .hint {
+  margin: 0 0 3px 0;
+  display: block;
+  font-size: 100%;
+}
+
+#overview #steps {
+  margin: 0;
+  padding: 0 0 8px 0;
+  display: block;
+  font-size: 22px;
+  border-bottom: dotted 1px #ccc;
+}
+
+#overview br { display: none; }
+
+#thumbs {
+  margin: 0;
+  border-collapse: collapse;
+}
+
+#thumbs td {
+  overflow: hidden; height: 1%;
+  font-size: 100%;
+  text-align: center;
+  vertical-align: top;
+  padding: 4px;
+  border: dotted 1px #ccc
+}
+
+#thumbs div {
+  float: none;
+  width: 100%!important;
+  height: auto!important;
+  border: none;
+  margin: 0 0 10px 0; padding: 0;
+}
+
+#thumbs img {
+  display: block;
+  margin: 0 auto;
+  padding: 1px;
+}
+
+
+/* Product title color */
+#thumbs h3 {
+
+}
+
+/* Product variant and price color */
+#thumbs span {
+
+}
+
+.slim #overview { display: none; }
+
+
+/* ==============================================================================
+// #Checkout Form
+// ============================================================================== */
+#container input[type="text"] {
+  font-size: 13px;
+  width: 100%;
+}
+
+.form { width: 100%; }
+.form label { font-weight: normal; }
+
+.form td { padding: 10px 0; }
+.form td + td { padding: 5px 0; }
+
+.form td.lbl,
+.form .inline label {
+  text-align: right;
+  padding-right: 8px;
+}
+
+.form td.lbl { width: 165px; }
+.form .inline label {
+  float: left;
+  width: 130px;
+}
+
+.form ul.inline li {
+  float: none!important;
+  width: 100% !important;
+  margin: 0 !important;
+  overflow: hidden;
+  height: 1%;
+  padding: 0 0 10px;
+}
+
+#billing_address_province_li {
+  padding-bottom: 0;
+}
+
+.form .inline select {
+  float: left;
+}
+
+/* Form Errors */
+.field-with-errors {
+
+}
+
+/* Billing/Shipping Addresses */
+#addresses {
+  position: relative;
+  overflow: hidden;
+  height: 1%;
+}
+
+#addresses .gleft,
+#addresses .gright {
+  float: left;
+  width: 50%;
+  padding: 0;
+  margin: 0;
+  min-width: 266px;
+}
+
+#addresses .gright {
+  padding-left: 20px;
+}
+
+@media only screen and (max-width:954px) {
+  #addresses .gleft,
+  #addresses .gright {
+    float: none;
+    width: 100%;
+  }
+
+  #addresses .gleft {
+    margin-bottom: 20px;
+  }
+
+  #addresses .gright {
+    padding-left: 0;
+  }
+}
+
+#billing_address_phone {
+  margin: 0 0 10px 0;
+}
+
+#billing-is-shipping td {
+  border: solid 1px #ccc;
+  padding: 5px;
+}
+
+#addresses #shipping-same.address-notification {
+  padding: 10px;
+  text-align: left;
+  border: none;
+}
+
+@media only screen and (max-width:1000px) {
+  .form .inline label {
+    width: 100px;
+  }
+}
+
+/* ==============================================================================
+// #Step 2 - Paying for your order
+// ============================================================================== */
+.sst .gleft {
+  width: 40%;
+}
+
+#credit-card-info {
+  float: left;
+  width: 60%;
+  margin: 0;
+}
+
+#credit-card-info table {
+  width: 100%;
+}
+
+#container #credit_card_verification_value {
+  width: auto;
+}
+
+@media only screen and (max-width:646px) {
+  .sst .gleft,
+  #credit-card-info {
+    width: 100%;
+    float: none;
+    padding: 0;
+  }
+
+  #payment-methods {
+    margin-bottom: 5px;
+  }
+}
+
+
+/* ==============================================================================
+// #Buttons
+// ============================================================================== */
+#buttons {
+  clear: both;
+  border: 0 none;
+}
+
+#buttons small { font-size: 12px; }
+#buttons input { font-size: 13px; }
+
+#buttons #commit-button,
+#buttons #complete-purchase {
+  display: inline-block;
+  padding: 5px 10px 4px 10px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border: solid 1px #ccc;
+}
+
+#buttons #commit-button:hover,
+#buttons #complete-purchase:hover {
+  border-color: #999;
+}
+
+
+/* ==============================================================================
+// #Footer
+// ============================================================================== */
+#footer {
+  clear: both;
+  padding: 15px 0;
+}

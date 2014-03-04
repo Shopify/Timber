@@ -1,0 +1,70 @@
+{% comment %}
+
+  This snippet provides the default handlebars.js templates for
+  the ajaxify cart plugin. Use the raw liquid tags to keep the
+  handlebar.js template tags as available hooks.
+
+{% endcomment %}
+  <script id="cartTemplate" type="text/template">
+  {% raw %}
+    <form action="/cart" method="post">
+      <h2 class="ajaxifyCart__title">Your Shopping Cart
+        <span class="ajaxifyCart__close" title="Close Cart">Close Cart</span>
+      </h2>
+      <div class="ajaxifyCart__products">
+        {{#items}}
+        <div class="ajaxifyCart__product">
+          <div class="ajaxifyCart__row" data-id="{{id}}">
+            <div class="ajaxifyCart__media">
+              <a href="{{url}}"> <img src="{{img}}" width="60" alt=""></a>
+            </div>
+            <div class="ajaxifyCart__col1">
+              <p><a href="{{url}}">{{name}}</a></p>
+              <p><small>{{variation}}</small></p>
+            </div>
+            <div class="ajaxifyCart__col2">
+              <div class="ajaxifyCart__qty">
+                <input type="text" class="ajaxifyCart__num" value="{{itemQty}}" min="0" data-id="{{id}}">
+                <span class="ajaxifyCart__qty-adjuster ajaxifyCart__add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
+                <span class="ajaxifyCart__qty-adjuster ajaxifyCart__minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
+              </div>
+            </div>
+            <div class="ajaxifyCart__col3">
+              <p>{{price}}</p>
+            </div>
+            <div class="ajaxifyCart__col4">
+              <p><a href="#" class="ajaxifyCart__remove" data-id="{{id}}" data-qty="0">Remove from cart</a></p>
+            </div>
+          </div>
+        </div>
+        {{/items}}
+      </div>
+      <div class="ajaxifyCart__row ajaxifyCart__summary">
+        <div class="ajaxifyCart__total">
+          <p>Subtotal</p>
+        </div>
+        <div class="ajaxifyCart__col3">
+          <p>{{totalPrice}}</p>
+        </div>
+        <div class="ajaxifyCart__col4">
+          <input type="submit" class="{{btnClass}}" name="checkout" value="Checkout">
+        </div>
+      </div>
+    </form>
+  {% endraw %}
+  </script>
+  <script id="drawerTemplate" type="text/template">
+  {% raw %}
+    <div id="ajaxifyDrawer">
+      <div id="ajaxifyCart" class="ajaxifyCart__content {{wrapperClass}}"></div>
+    </div>
+    <div class="ajaxifyDrawer-caret"><span></span></div>
+  {% endraw %}
+  </script>
+  <script id="modalTemplate" type="text/template">
+  {% raw %}
+    <div id="ajaxifyModal">
+      <div id="ajaxifyCart" class="ajaxifyCart__content"></div>
+    </div>
+  {% endraw %}
+  </script>
