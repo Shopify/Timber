@@ -67,6 +67,7 @@ a:hover {
 #container {
   max-width: 980px;
   margin: 0 auto;
+  font-size: 100%;
 }
 
 #container,
@@ -206,7 +207,7 @@ a:hover {
   border: none;
 }
 
-#overview #wallet {
+#wallet {
   position: absolute;
   top: 0;
   left: 0;
@@ -217,8 +218,17 @@ a:hover {
   text-align: center;
 }
 
+.step2 #wallet {
+  height: 165px;
+}
+
+.step2 #overview {
+  padding-top: 165px;
+}
+
 #overview #cost {
-  font: bold 36px/1.0;
+  font-weight: bold;
+  font-size: 36px;
   text-shadow: none;
   border-bottom: dotted 1px #ccc;
 }
@@ -283,12 +293,16 @@ a:hover {
 /* ==============================================================================
 // #Checkout Form
 // ============================================================================== */
+#container input[type="text"] {
+  font-size: 13px;
+  width: 100%;
+}
+
 .form { width: 100%; }
 .form label { font-weight: normal; }
 
 .form td { padding: 10px 0; }
 .form td + td { padding: 5px 0; }
-.form td input[type="text"] { font-size: 13px; width: 100%!important; }
 
 .form td.lbl,
 .form .inline label {
@@ -321,6 +335,7 @@ a:hover {
 
 /* Form Errors */
 .field-with-errors {
+
 }
 
 /* Billing/Shipping Addresses */
@@ -374,30 +389,45 @@ a:hover {
   border: none;
 }
 
-/* paying for your order */
-#payment p.sst {
-  margin-bottom: 0;
-}
-
-.sst .gleft {
-  width: 30%;
-}
-
-#credit-card-info.gright {
-  margin: 0 0 0 10px;
-  float: left;
-}
-
-#payment-methods li {
-  border-bottom: dotted 1px #ccc;
-}
-
 @media only screen and (max-width:1000px) {
   .form .inline label {
     width: 100px;
   }
 }
 
+/* ==============================================================================
+// #Step 2 - Paying for your order
+// ============================================================================== */
+.sst .gleft {
+  width: 40%;
+}
+
+#credit-card-info {
+  float: left;
+  width: 60%;
+  margin: 0;
+}
+
+#credit-card-info table {
+  width: 100%;
+}
+
+#container #credit_card_verification_value {
+  width: auto;
+}
+
+@media only screen and (max-width:646px) {
+  .sst .gleft,
+  #credit-card-info {
+    width: 100%;
+    float: none;
+    padding: 0;
+  }
+
+  #payment-methods {
+    margin-bottom: 5px;
+  }
+}
 
 
 /* ==============================================================================
