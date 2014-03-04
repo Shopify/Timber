@@ -86,7 +86,10 @@
           You cart/checkout link should at least show the number of items in it.
           Below shows the item count followed by item(s) and the total cart price.
 
-          #cartToggle used to show/hide cart with ajaxify plugin
+          Ajaxify Cart Notes:
+            - #cartToggle used to show/hide cart with ajaxify plugin.
+            - Reference http://shopify.com/timber/documentation#ajax-cart for parameters
+                that will auto update cart quantity and price when an item is added.
         {% endcomment %}
         <p>
           <a href="/cart" id="cartToggle">
@@ -156,6 +159,7 @@
   {% endcomment %}
   {% if settings.ajax_cart %}
   {{ 'handlebars.min.js' | asset_url | script_tag }}
+  {% include 'ajax-cart-template' %}
   {{ 'ajaxify.js' | asset_url | script_tag }}
   <script>
   jQuery(function($) {

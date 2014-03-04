@@ -1,15 +1,18 @@
-// (c) Copyright 2013 Jaded Pixel. Author: Carson Shold (@cshold). All Rights Reserved.
+// (c) Copyright 2013 Shopify Inc. Author: Carson Shold (@cshold). All Rights Reserved.
 
 /*
- * Ajaxify Shopify
- *
- * Ajaxify the add to cart experience and flip the button so it looks cool,
+ * Ajaxify the add to cart experience and flip the button for inline confirmation,
  * show the cart in a modal, or a 3D drawer.
  *
- * This file includes
+ * This file includes:
  *    - Modernizer | Slim custom build
  *    - Basic Shopify Ajax API calls
  *    - Ajaxify plugin
+ *
+ * This requires:
+ *    - jQuery 1.8+
+ *    - handlebars.min.js (for cart template)
+ *    - snippet/ajax-cart-template.liquid
 */
 
 
@@ -404,15 +407,12 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   modalSetup = function () {
-
-    // Create modal DOM elements
-    var modalContainer = '<div id="ajaxifyModal"> \
-          <div id="ajaxifyCart" class="ajaxifyCart__content"></div> \
-        </div>',
-        modalOverlay = '<div id="ajaxifyCart-overlay"></div>';
+    // Create modal DOM elements with handlebars.js template
+    var source   = $("#modalTemplate").html(),
+        template = Handlebars.compile(source);
 
     // Append modal and overlay to body
-    $('body').append(modalContainer).append(modalOverlay);
+    $('body').append(template).append('<div id="ajaxifyCart-overlay"></div>');
 
     // Modal selectors
     $modalContainer = $('#ajaxifyModal');
@@ -449,14 +449,15 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   drawerSetup = function () {
-    // Create drawer DOM elements
-    var drawerContainer = '<div id="ajaxifyDrawer"> \
-        <div id="ajaxifyCart" class="ajaxifyCart__content ' + $wrapperClass +' "></div> \
-        </div> \
-        <div class="ajaxifyDrawer-caret"><span></span></div>';
+    // Create drawer DOM elements with handlebars.js template
+    var source   = $("#drawerTemplate").html(),
+        template = Handlebars.compile(source),
+        data = {
+          wrapperClass: $wrapperClass
+        };
 
     // Append drawer to body
-    $('body').prepend(drawerContainer);
+    $('body').prepend(template(data));
 
     // Drawer selectors
     $drawerContainer = $('#ajaxifyDrawer');
@@ -493,8 +494,6 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   showDrawer = function (toggle) {
-
-    console.log('show drawer');
 
     // If we're toggling with the flip method, use a special callback
     if (settings.method == 'flip') {
@@ -643,14 +642,21 @@ var ajaxifyShopify = (function(module, $) {
     // Empty the current cart items
     $cartContainer.empty();
 
-    // Use the /cart template, or JS-defined layout based on settings
+    // Use the /cart template, or Handlebars.js layout based on theme settings
     if (settings.useCartTemplate) {
       cartTemplate(cart);
       return;
     }
 
-    // JS-defined cart layout
-    var items = '';
+    // Handlebars.js cart layout
+    var items = [],
+        item = {},
+        data = {};
+
+    var source   = $("#cartTemplate").html(),
+        template = Handlebars.compile(source);
+
+    // Add each item to our handlebars.js data
     $.each(cart.items, function(index, cartItem) {
 
       var itemAdd = cartItem.quantity + 1,
@@ -664,58 +670,36 @@ var ajaxifyShopify = (function(module, $) {
       var prodName = cartItem.title.replace(/(\-[^-]*)$/, "");
       var prodVariation = cartItem.title.replace(/^[^\-]*/, "").replace(/-/, "");
 
-      items += '<div class="ajaxifyCart__product"> \
-          <div class="ajaxifyCart__row" data-id="'+ cartItem.variant_id +'"> \
-            <div class="ajaxifyCart__media"> \
-              <a href="'+cartItem.url+'"> <img src="' + prodImg + '" width="60" alt=""></a> \
-            </div> \
-            <div class="ajaxifyCart__col1"> \
-              <p><a href="'+cartItem.url+'">'+ prodName +'</a></p> \
-              <p><small>'+ prodVariation +'</small></p> \
-            </div> \
-            <div class="ajaxifyCart__col2"> \
-              <div class="ajaxifyCart__qty"> \
-                <input type="text" class="ajaxifyCart__num" value="'+ itemQty +'" min="0" data-id="'+ cartItem.variant_id +'"> \
-                <span class="ajaxifyCart__qty-adjuster ajaxifyCart__add" data-id="'+ cartItem.variant_id +'" data-qty="' + itemAdd + '">+</span> \
-                <span class="ajaxifyCart__qty-adjuster ajaxifyCart__minus" data-id="'+ cartItem.variant_id +'" data-qty="' + itemMinus + '">-</span> \
-              </div> \
-            </div> \
-            <div class="ajaxifyCart__col3"> \
-              <p>'+ Shopify.formatMoney(cartItem.price) +'</p> \
-            </div> \
-            <div class="ajaxifyCart__col4"> \
-              <p><a href="#" class="ajaxifyCart__remove" data-id="'+ cartItem.variant_id +'" data-qty="0">Remove from cart</a></p> \
-            </div> \
-          </div> \
-        </div>';
+      // Create item's data object and add to 'items' array
+      item = {
+        id: cartItem.variant_id,
+        url: cartItem.url,
+        img: prodImg,
+        name: prodName,
+        variation: prodVariation,
+        itemAdd: itemAdd,
+        itemMinus: itemMinus,
+        itemQty: itemQty,
+        price: Shopify.formatMoney(cartItem.price)
+      };
 
-      if ( index == (cart.items.length-1) ) {
-        var cartWrap = '<form action="/cart" method="post"> \
-            <h2 class="ajaxifyCart__title">Your Shopping Cart \
-              <span class="ajaxifyCart__close" title="Close Cart">Close Cart</span> \
-            </h2> \
-            <div class="ajaxifyCart__products">'
-            + items +
-            '</div> \
-            <div class="ajaxifyCart__row ajaxifyCart__summary"> \
-              <div class="ajaxifyCart__total"> \
-                <p>Subtotal</p> \
-              </div> \
-              <div class="ajaxifyCart__col3"> \
-                <p>' + Shopify.formatMoney(cart.total_price) + '</p> \
-              </div> \
-              <div class="ajaxifyCart__col4"> \
-                <input type="submit" class="' + $btnClass + '" name="checkout" value="Checkout" /> \
-              </div> \
-            </div></form>';
-
-        $cartContainer.append(cartWrap);
-
-        $closeCart = $('.ajaxifyCart__close');
-        $closeCart.off( 'click', hideModal );
-        $closeCart.on( 'click', hideModal );
-      }
+      items.push(item);
     });
+
+    // Gather all cart data and add to DOM
+    data = {
+      items: items,
+      totalPrice: Shopify.formatMoney(cart.total_price),
+      btnClass: $btnClass
+    }
+    $cartContainer.append(template(data));
+
+    // Link up close modal link
+    if (settings.method == 'modal') {
+      $closeCart = $('.ajaxifyCart__close');
+      $closeCart.off( 'click', hideModal );
+      $closeCart.on( 'click', hideModal );
+    }
 
     // With new elements we need to relink the adjust cart functions
     adjustCart();
