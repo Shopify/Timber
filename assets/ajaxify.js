@@ -272,7 +272,7 @@ var ajaxifyShopify = (function(module, $) {
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, flipCartUpdateCallback, buildCart, cartTemplate,adjustCart, adjustCartCallback, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate,adjustCart, adjustCartCallback, scrollTop, isEmpty, log;
 
   /**
    * Initialise the plugin and define global options
@@ -437,17 +437,7 @@ var ajaxifyShopify = (function(module, $) {
     }
 
     // Toggle modal with cart button
-    if ($toggleCartButton) {
-      $toggleCartButton.on('click', function(e) {
-        e.preventDefault();
-
-        if ( $modalContainer.hasClass('is-visible') ) {
-          hideModal();
-        } else {
-          showModal(true);
-        }
-      });
-    }
+    setToggleButtons();
 
   };
 
@@ -487,22 +477,10 @@ var ajaxifyShopify = (function(module, $) {
     $drawerCaret     = $('.ajaxifyDrawer-caret > span');
 
     // Toggle drawer with cart button
-    if ($toggleCartButton) {
-      $toggleCartButton.on('click', function(e) {
-        e.preventDefault();
-
-        if ( $drawerContainer.hasClass('is-visible') ) {
-          hideDrawer();
-        } else {
-          showDrawer(true);
-        }
-
-      });
-    }
-
-    var timeout;
+    setToggleButtons();
 
     // Position caret and size drawer on resize if drawer is visible
+    var timeout;
     $(window).resize(function() {
       clearTimeout(timeout);
       timeout = setTimeout(function(){
@@ -624,6 +602,41 @@ var ajaxifyShopify = (function(module, $) {
         break;
     }
 
+  };
+
+  setToggleButtons = function () {
+    // Reselect the element in case it just loaded
+    $toggleCartButton  = $(settings.toggleCartButton);
+
+    if ($toggleCartButton) {
+      // Turn it off by default, in case it's initialized twice
+      $toggleCartButton.off('click');
+
+      // Toggle the cart, based on the method
+      $toggleCartButton.on('click', function(e) {
+        e.preventDefault();
+
+        switch (settings.method) {
+          case 'modal':
+            if ( $modalContainer.hasClass('is-visible') ) {
+              hideModal();
+            } else {
+              showModal(true);
+            }
+            break;
+          case 'drawer':
+          case 'flip':
+            if ( $drawerContainer.hasClass('is-visible') ) {
+              hideDrawer();
+            } else {
+              showDrawer(true);
+            }
+            break;
+        }
+
+      });
+
+    }
   };
 
   flipCartUpdateCallback = function (cart) {
