@@ -155,6 +155,7 @@
       - http://shopify.com/timber/documentation#ajax-cart
   {% endcomment %}
   {% if settings.ajax_cart %}
+  {{ 'handlebars.min.js' | asset_url | script_tag }}
   {{ 'ajaxify.js' | asset_url | script_tag }}
   <script>
   jQuery(function($) {
