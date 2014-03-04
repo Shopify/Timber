@@ -151,7 +151,7 @@
     Ajaxify your cart with this plugin. Adding a product will reveal a drawer, modal, or confirmation button.
     Enabled by default in theme settings.
 
-    More info:
+    Ajaxify Cart Documentation:
       - http://shopify.com/timber/documentation#ajax-cart
   {% endcomment %}
   {% if settings.ajax_cart %}
@@ -162,8 +162,8 @@
       method: '{{ settings.ajax_cart_method }}', // Method options are drawer, modal, and flip. Default is flip.
       wrapperClass: 'wrapper', // The class that defines your site width. Default is null.
       formSelector: '#addToCartForm', // Default is form[action="/cart/add"].
-      submitButtonSelector: '#addToCart', // Default is input[type="submit"].
-      toggleCartButton: '#cartToggle', // To toggle drawer/modal cart, include the selector here. Default is null.
+      submitButtonSelector: '#addToCart', // Default is input[type="submit"] within 'formSelector'.
+      toggleCartButton: '#cartToggle', // To toggle drawer/modal cart, include the selector here. Default is null and will take you to /cart page.
       useCartTemplate: true, // Set to true to use your /cart template. Default is false.
       btnClass: 'btn' // Your main button class for styling purposes if useCartTemplate is set to false. Default is null.
     });

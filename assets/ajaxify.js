@@ -17,13 +17,12 @@
  * Plugin Notes
  *
  * In order to update the cart count on your page when adding a product,
- * warp the number in a span and pass it's selector into the
- * cartCountSelector option.
+ * warp the number in a span and pass it's selector into the 'cartCountSelector' option.
  *
  * Similarly to the cart count, you can add a selector for
- * cartCostSelector to update the total price when an item is added.
+ * 'cartCostSelector' to update the total price when an item is added.
  *
- * If using the drawer method, pass a selector into the toggleCartButton option
+ * If using the drawer method, pass a selector into the 'toggleCartButton' option
  * to toggle the cart open and closed. Leave this out if you'd like the link to
  * take the user to the /cart page.
 */
