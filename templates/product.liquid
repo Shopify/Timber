@@ -226,8 +226,13 @@ jQuery(function($) {
         comparePrice.hide();
       }
 
+      // Hide the variant dropdown if there is only one
+      if (variant.options.length == 1) {
+        $('.selector-wrapper').hide();
+      }
+
     } else {
-      // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anway
+      // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anyway
       addToCart.val('Unavailable').addClass('disabled').attr('disabled', 'disabled');
     }
   };
