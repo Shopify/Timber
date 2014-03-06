@@ -27,7 +27,7 @@
   #Lists
   #Tables
   #OOCSS Media Object
-  #Images
+  #Images and Iframes
   #Forms
   #Buttons
   #Pagination
@@ -109,7 +109,7 @@ $successGreen: #0a942a;
 /* Width variables */
 $siteWidth: 1180px;
 $gutter: 24px;
-$gridGutter: 24px;
+$gridGutter: 5%; // can be a %, but nested grids will have smaller margins because of it
 
 /* Radius */
 $radius: 3px;
@@ -718,16 +718,16 @@ blockquote {
 
   p {
     margin-bottom: 0;
+
+    & + cite {
+      margin-top: $gutter/2;
+    }
   }
 
   cite {
     display: block;
     font-size: 0.75em;
     color: $colorTextGrey;
-
-    p + & {
-      margin-top: $gutter/2;
-    }
 
     &:before {
       content: "\2014 \0020";
@@ -841,10 +841,11 @@ th, td {
 
 
 // ==============================================================================
-// #Images
+// #Images and Iframes
 // ==============================================================================
 img.auto,
-.grid-item img {
+.grid-item img,
+.grid-item iframe {
   max-width: 100%;
   height: auto;
 }
@@ -853,6 +854,9 @@ img.auto,
 // ==============================================================================
 // #Forms
 // ==============================================================================
+form {
+  margin-bottom: $gutter;
+}
 input,
 textarea,
 select,
@@ -948,6 +952,8 @@ label[for] {
 /* Horizontal Form */
 form.form-horizontal,
 .form-horizontal {
+  margin-bottom: 0;
+
   input[type="text"],
   input[type="password"],
   input[type="email"],
@@ -1468,7 +1474,7 @@ a.btn-secondary {
   padding-bottom: $gutter;
   border-bottom: 1px solid $borderColor;
 
-  .ajaxifyCart__content & {
+  .ajaxifyCart--content & {
     border-bottom-color: #444;
   }
 }
