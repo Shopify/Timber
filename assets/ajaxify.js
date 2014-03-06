@@ -361,9 +361,9 @@ var ajaxifyShopify = (function(module, $) {
     $addToCart.addClass('flip-front').wrap('<div class="flip"></div>');
 
     // Write a (hidden) Checkout button, a loader, and the extra view cart button
-    var checkoutBtn = $('<a href="/checkout" class="flip-back" style="background-color: #C00; color: #fff;" id="flip__checkout">Checkout</a>').addClass($btnClass),
-        flipLoader = $('<span class="ajaxifyCart__loader"></span>'),
-        flipExtra = $('<div class="flip__extra">or <a href="#" class="flip__cart">View Cart (<span></span>)</a></div>');
+    var checkoutBtn = $('<a href="/checkout" class="flip-back" style="background-color: #C00; color: #fff;" id="flip-checkout">Checkout</a>').addClass($btnClass),
+        flipLoader = $('<span class="ajaxifyCart-loader"></span>'),
+        flipExtra = $('<div class="flip-extra">or <a href="#" class="flip-cart">View Cart (<span></span>)</a></div>');
 
     // Append checkout button and loader
     checkoutBtn.insertAfter($addToCart);
@@ -378,7 +378,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Setup extra selectors once appended
     flipExtra.insertAfter($flipContainer);
-    $flipCart = $('.flip__cart');
+    $flipCart = $('.flip-cart');
 
     $flipCart.on('click', function(e) {
       e.preventDefault();
@@ -561,7 +561,7 @@ var ajaxifyShopify = (function(module, $) {
 
     switch (settings.method) {
       case 'flip':
-        $('.flip__cart span').html(cart.item_count);
+        $('.flip-cart span').html(cart.item_count);
         break;
       case 'modal':
         buildCart(cart);
@@ -684,7 +684,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Link up close modal link
     if (settings.method == 'modal') {
-      $closeCart = $('.ajaxifyCart__close');
+      $closeCart = $('.ajaxifyCart--close');
       $closeCart.off( 'click', hideModal );
       $closeCart.on( 'click', hideModal );
     }
@@ -727,7 +727,7 @@ var ajaxifyShopify = (function(module, $) {
             // ** Will work on a better solution to image loading here soon. **
             setTimeout(function() {
               sizeDrawer();
-            }, 1200);
+            }, 1000);
           } else {
             sizeDrawer(true);
           }
@@ -750,18 +750,18 @@ var ajaxifyShopify = (function(module, $) {
     }
 
     // Update quantify selectors
-    var qtyAdjust = $('.ajaxifyCart__qty span');
+    var qtyAdjust = $('.ajaxifyCart--qty span');
 
     // Add or remove from the quantity
     qtyAdjust.off('click');
     qtyAdjust.on('click', function() {
       var el = $(this),
           id = el.data('id'),
-          qtySelector = el.siblings('.ajaxifyCart__num'),
+          qtySelector = el.siblings('.ajaxifyCart--num'),
           qty = parseInt( qtySelector.val() );
 
       // Add or subtract from the current quantity
-      if (el.hasClass('ajaxifyCart__add')) {
+      if (el.hasClass('ajaxifyCart--add')) {
         qty = qty + 1;
       } else {
         qty = qty - 1;
@@ -779,7 +779,7 @@ var ajaxifyShopify = (function(module, $) {
     });
 
     // Update quantity based on input on change
-    var qtyInput = $('.ajaxifyCart__num');
+    var qtyInput = $('.ajaxifyCart--num');
     qtyInput.off('change');
     qtyInput.on('change', function() {
       var el = $(this),
@@ -811,7 +811,7 @@ var ajaxifyShopify = (function(module, $) {
     });
 
     // Completely remove product
-    $('.ajaxifyCart__remove').on('click', function(e) {
+    $('.ajaxifyCart--remove').on('click', function(e) {
       var el = $(this),
           id = el.data('id') || null,
           qty = 0;
@@ -829,7 +829,7 @@ var ajaxifyShopify = (function(module, $) {
       // This function only adds activity classes if using the default handlebar.js templates.
       // The item quantity will be updated normally if using the /cart template.
       if (!settings.useCartTemplate) {
-        var row = $('.ajaxifyCart__row[data-id="' + id + '"]').parent().addClass('ajaxifyCart--is-loading');
+        var row = $('.ajaxifyCart--row[data-id="' + id + '"]').parent().addClass('ajaxifyCart--is-loading');
 
         if ( qty == 0 ) {
           row.addClass('is-removed');
@@ -905,7 +905,7 @@ var ajaxifyShopify = (function(module, $) {
     // If there is a regular link to remove an item, add attributes needed to ajaxify it
     if ($('a[href^="/cart/change"]', $cartContainer).length) {
       $('a[href^="/cart/change"]', $cartContainer).each(function() {
-        var el = $(this).addClass('ajaxifyCart__remove');
+        var el = $(this).addClass('ajaxifyCart--remove');
       });
     }
   },

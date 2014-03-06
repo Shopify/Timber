@@ -718,16 +718,16 @@ blockquote {
 
   p {
     margin-bottom: 0;
+
+    & + cite {
+      margin-top: $gutter/2;
+    }
   }
 
   cite {
     display: block;
     font-size: 0.75em;
     color: $colorTextGrey;
-
-    p + & {
-      margin-top: $gutter/2;
-    }
 
     &:before {
       content: "\2014 \0020";
@@ -1474,7 +1474,7 @@ a.btn-secondary {
   padding-bottom: $gutter;
   border-bottom: 1px solid $borderColor;
 
-  .ajaxifyCart__content & {
+  .ajaxifyCart--content & {
     border-bottom-color: #444;
   }
 }
