@@ -435,7 +435,8 @@ form[action="/cart/add"] {
   @include transition(all 0.4s ease-out);
 
   .ajaxifyCart__product:hover &,
-  .ajaxify-touch & {
+  .ajaxify-touch &,
+  &:hover {
     border-color: $ajaxifyGreyDark;
     @include transition(none);
   }
@@ -476,7 +477,8 @@ form[action="/cart/add"] {
   @include transition(all 0.2s ease-out);
 
   .ajaxifyCart__product:hover &,
-  .ajaxify-touch & {
+  .ajaxify-touch &,
+  .ajaxifyCart__qty:hover & {
     opacity: 1;
     @include transition(background-color 0.2s ease-out);
   }

@@ -68,3 +68,12 @@
     </div>
   {% endraw %}
   </script>
+  <script id="ajaxifyQty" type="text/template">
+  {% raw %}
+    <div class="ajaxifyCart__qty">
+      <input type="text" class="ajaxifyCart__num" value="{{itemQty}}" min="0" data-id="{{id}}">
+      <span class="ajaxifyCart__qty-adjuster ajaxifyCart__add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
+      <span class="ajaxifyCart__qty-adjuster ajaxifyCart__minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
+    </div>
+  {% endraw %}
+  </script>

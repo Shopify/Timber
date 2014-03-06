@@ -755,6 +755,29 @@ var ajaxifyShopify = (function(module, $) {
   adjustCart = function () {
     // This function runs on load, and when the cart is reprinted.
 
+    // If there is a normal quantity number field in the ajax cart, replace it with our version
+    if ($('input[type="number"]', $cartContainer).length) {
+      $('input[type="number"]', $cartContainer).each(function() {
+        var el = $(this),
+            currentQty = el.val();
+
+        var itemAdd = currentQty + 1,
+            itemMinus = currentQty - 1,
+            itemQty = currentQty + ' x';
+
+        var source   = $("#ajaxifyQty").html(),
+            template = Handlebars.compile(source),
+            data = {
+              id: el.data('id'),
+              itemQty: itemQty,
+              itemAdd: itemAdd,
+              itemMinus: itemMinus
+            };
+
+        el.after(template(data)).hide();
+      });
+    }
+
     // Update quantify selectors
     var qtyAdjust = $('.ajaxifyCart__qty span');
 
