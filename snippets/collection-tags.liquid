@@ -34,10 +34,9 @@
 {% assign type_escaped = collection.products.first.type | escape %}
 {% assign vendor_escaped = collection.products.first.vendor | escape %}
 
-  <h5>Tags</h5>
+  <h4>Tags</h4>
 
-  <ul class="collection-sub-categories">
-
+  <ul>
     <li{% unless current_tags %} class="active"{% endunless %}>
 
       {% comment %}
