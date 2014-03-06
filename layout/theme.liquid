@@ -87,13 +87,16 @@
           Below shows the item count followed by item(s) and the total cart price.
 
           Ajaxify Cart Notes:
-            - #cartToggle used to show/hide cart with ajaxify plugin.
-            - Reference http://shopify.com/timber/documentation#ajax-cart for parameters
-                that will auto update cart quantity and price when an item is added.
+            - #cartToggle toggles cart visibility (drawer or modal)
+            - #cartCount updates the total number of items in the cart
+            - #cartCost updates the total cost of the cart
+            - Documentation:  http://shopify.com/timber/documentation#ajax-cart
         {% endcomment %}
         <p>
           <a href="/cart" id="cartToggle">
-            Cart ({{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} {{ cart.total_price | money }})
+            Cart
+            (<span id="cartCount">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: 'item', 'items' }}
+            <span id="cartCost">{{ cart.total_price | money }})</span>
           </a>
         </p>
 
@@ -167,7 +170,9 @@
       method: '{{ settings.ajax_cart_method }}', // Method options are drawer, modal, and flip. Default is flip.
       wrapperClass: 'wrapper', // The class that defines your site width. Default is null.
       formSelector: '#addToCartForm', // Default is form[action="/cart/add"].
-      submitButtonSelector: '#addToCart', // Default is input[type="submit"] within 'formSelector'.
+      addToCartSelector: '#addToCart', // Default is input[type="submit"] within 'formSelector'.
+      cartCountSelector: '#cartCount',
+      cartCostSelector: '#cartCost',
       toggleCartButton: '#cartToggle', // To toggle drawer/modal cart, include the selector here. Default is null and will take you to /cart page.
       useCartTemplate: true, // True to use cart.liquid markup. Default is false and uses handlebars.js for template.
       btnClass: 'btn' // Your main button class for styling purposes if useCartTemplate is set to false. Default is null.

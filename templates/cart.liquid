@@ -121,14 +121,15 @@
 
             <div class="grid-item one-third small--one-half text-right">
               {% comment %}
-                Adding data-id attribute for the ajax cart implementation only.
+                Added data-id for the ajax cart implementation only.
               {% endcomment %}
               <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" autocomplete="off" min="0" data-id="{{ item.id }}">
             </div>
 
             <div class="grid-item one-third small--one-half text-right">
               {% comment %}
-                To remove an item from the cart, reload the page with the following parameters
+                To remove an item from the cart, reload the page with the following parameters.
+                Added data-id for the ajax cart implementation only.
               {% endcomment %}
               <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a>
             </div>

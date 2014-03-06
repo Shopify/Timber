@@ -401,9 +401,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   revertFlipButton = function () {
-
     $flipContainer.removeClass('is-flipped');
-
   };
 
   modalSetup = function () {
@@ -839,17 +837,31 @@ var ajaxifyShopify = (function(module, $) {
       }, 50);
     });
 
+    // If there is a regular link to remove an item, add attributes needed to ajaxify it
+    if ($('a[href^="/cart/change"]', $cartContainer).length) {
+      $('a[href^="/cart/change"]', $cartContainer).each(function() {
+        var el = $(this).addClass('ajaxifyCart__remove');
+      });
+    }
+
     // Completely remove product
     $('.ajaxifyCart__remove').on('click', function(e) {
-      e.preventDefault();
       var el = $(this),
-          id = el.data('id'),
-          qty = el.data('qty');
+          id = el.data('id') || null,
+          qty = 0;
 
+      // Without an id, let the default link action take over
+      if (!id) {
+        return;
+      }
+
+      e.preventDefault();
       updateQuantity(id, qty);
     });
 
     function updateQuantity(id, qty) {
+      // This function only adds activity classes if using the default handlebar.js templates.
+      // The item quantity will be updated normally if using the /cart template.
       var row = $('.ajaxifyCart__row[data-id="' + id + '"]').parent().addClass('ajaxifyCart--is-loading');
 
       if ( qty == 0 ) {

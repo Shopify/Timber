@@ -426,6 +426,7 @@ form[action="/cart/add"] {
 
 .ajaxifyCart__qty {
   position: relative;
+  top: -5px;
   right: -30px;
   border: 1px solid transparent;
   border-radius: 2px;
@@ -433,6 +434,10 @@ form[action="/cart/add"] {
   font-size: 16px;
   max-width: 90px;
   @include transition(all 0.4s ease-out);
+
+  .ajaxifyCart__row & {
+    top: 0;
+  }
 
   .ajaxifyCart__product:hover &,
   .ajaxify-touch &,
@@ -457,7 +462,7 @@ form[action="/cart/add"] {
     font-size: 1em;
     text-align: center;
     width: 100%;
-    padding: 5px 30px;
+    padding: 5px 25px;
     margin: 0;
   }
 }
