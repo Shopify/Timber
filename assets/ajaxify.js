@@ -723,10 +723,11 @@ var ajaxifyShopify = (function(module, $) {
           if (cart.item_count > 0) {
             sizeDrawer();
 
-            // Since your /cart template might use larger images, resize again
+            // Since your /cart template might use larger images, resize again.
+            // ** Will work on a better solution to image loading here soon. **
             setTimeout(function() {
               sizeDrawer();
-            }, 500);
+            }, 1200);
           } else {
             sizeDrawer(true);
           }
@@ -827,10 +828,12 @@ var ajaxifyShopify = (function(module, $) {
     function updateQuantity(id, qty) {
       // This function only adds activity classes if using the default handlebar.js templates.
       // The item quantity will be updated normally if using the /cart template.
-      var row = $('.ajaxifyCart__row[data-id="' + id + '"]').parent().addClass('ajaxifyCart--is-loading');
+      if (!settings.useCartTemplate) {
+        var row = $('.ajaxifyCart__row[data-id="' + id + '"]').parent().addClass('ajaxifyCart--is-loading');
 
-      if ( qty == 0 ) {
-        row.addClass('is-removed');
+        if ( qty == 0 ) {
+          row.addClass('is-removed');
+        }
       }
 
       // Slight delay to make sure removed animation is done

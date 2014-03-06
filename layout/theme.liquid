@@ -165,7 +165,7 @@
   <script>
   jQuery(function($) {
     ajaxifyShopify.init({
-      method: 'drawer', // Method options are drawer, modal, and flip. Default is flip.
+      method: '{{ settings.ajax_cart_method }}', // Method options are drawer, modal, and flip. Default is flip.
       wrapperClass: 'wrapper', // The class that defines your site width. Default is null.
       formSelector: '#addToCartForm', // Default is form[action="/cart/add"].
       addToCartSelector: '#addToCart', // Default is input[type="submit"] within 'formSelector'.
