@@ -131,7 +131,7 @@
                 To remove an item from the cart, reload the page with the following parameters.
                 Added data-id for the ajax cart implementation only.
               {% endcomment %}
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a>
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">Remove</a>
             </div>
 
             <div class="grid-item one-third small--one-whole text-right">

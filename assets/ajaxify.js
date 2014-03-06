@@ -263,7 +263,7 @@ var ajaxifyShopify = (function(module, $) {
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, scrollTop, isEmpty, log;
 
   /**
    * Initialise the plugin and define global options
@@ -343,7 +343,7 @@ var ajaxifyShopify = (function(module, $) {
       $cartCountSelector.html(cart.item_count);
     }
     if ($cartCostSelector) {
-      var price = Shopify.formatMoney(cart.total_price);
+      $cartCostSelector.html(Shopify.formatMoney(cart.total_price));
     }
   };
 
@@ -363,7 +363,6 @@ var ajaxifyShopify = (function(module, $) {
     // Write a (hidden) Checkout button, a loader, and the extra view cart button
     var checkoutBtn = $('<a href="/checkout" class="flip-back" style="background-color: #C00; color: #fff;" id="flip__checkout">Checkout</a>').addClass($btnClass),
         flipLoader = $('<span class="ajaxifyCart__loader"></span>'),
-        // flipExtra = $('<div class="flip__extra">or <a href="#" class="flip__cart">View Cart (<span></span>)</a> <a href="#" class="flip__close" title="Add another one">&times;</a></div>');
         flipExtra = $('<div class="flip__extra">or <a href="#" class="flip__cart">View Cart (<span></span>)</a></div>');
 
     // Append checkout button and loader
@@ -379,14 +378,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Setup extra selectors once appended
     flipExtra.insertAfter($flipContainer);
-    // $flipClose = $('.flip__close');
     $flipCart = $('.flip__cart');
-
-    // Close and view cart buttons
-    // $flipClose.on('click', function(e) {
-    //   e.preventDefault();
-    //   revertFlipButton();
-    // });
 
     $flipCart.on('click', function(e) {
       e.preventDefault();
@@ -514,8 +506,8 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   hideDrawer = function () {
+    console.log('hide drawer');
     $drawerContainer.removeAttr('style').removeClass('is-visible');
-
     scrollTop();
   };
 
@@ -551,7 +543,7 @@ var ajaxifyShopify = (function(module, $) {
       case 'flip':
         setTimeout(function () {
           $flipContainer.removeClass('flip--is-loading').addClass('is-flipped');
-        }, 1000);
+        }, 600);
         break;
     }
     Shopify.getCart(cartUpdateCallback);
@@ -570,16 +562,13 @@ var ajaxifyShopify = (function(module, $) {
     updateCountPrice(cart);
 
     switch (settings.method) {
-
       case 'flip':
         $('.flip__cart span').html(cart.item_count);
         break;
-
       case 'modal':
         buildCart(cart);
         showModal();
         break;
-
       case 'drawer':
         buildCart(cart);
         showDrawer();
@@ -624,15 +613,17 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   flipCartUpdateCallback = function (cart) {
+    console.log('flipCartUpdateCallback');
     buildCart(cart);
+    console.log('bulidcart is done');
   };
 
   buildCart = function (cart) {
-
     // Show empty cart
     if (cart.item_count <= 0) {
       $cartContainer.empty();
       $cartContainer.append('<h2>You cart is empty</h2>');
+      console.log('sizeDrawer 1');
       sizeDrawer();
       return;
     }
@@ -709,7 +700,7 @@ var ajaxifyShopify = (function(module, $) {
         if (cart.item_count > 0) {
           sizeDrawer();
         } else {
-          sizeDrawer('empty');
+          sizeDrawer(true);
         }
         break;
       default:
@@ -738,7 +729,7 @@ var ajaxifyShopify = (function(module, $) {
               sizeDrawer();
             }, 500);
           } else {
-            sizeDrawer('empty');
+            sizeDrawer(true);
           }
           break;
         default:
@@ -753,27 +744,9 @@ var ajaxifyShopify = (function(module, $) {
   adjustCart = function () {
     // This function runs on load, and when the cart is reprinted.
 
-    // If there is a normal quantity number field in the ajax cart, replace it with our version
-    if ($('input[type="number"]', $cartContainer).length) {
-      $('input[type="number"]', $cartContainer).each(function() {
-        var el = $(this),
-            currentQty = el.val();
-
-        var itemAdd = currentQty + 1,
-            itemMinus = currentQty - 1,
-            itemQty = currentQty + ' x';
-
-        var source   = $("#ajaxifyQty").html(),
-            template = Handlebars.compile(source),
-            data = {
-              id: el.data('id'),
-              itemQty: itemQty,
-              itemAdd: itemAdd,
-              itemMinus: itemMinus
-            };
-
-        el.after(template(data)).hide();
-      });
+    // Create ajax friendly quantity fields and remove links
+    if (settings.useCartTemplate) {
+      createQtySelectors();
     }
 
     // Update quantify selectors
@@ -837,13 +810,6 @@ var ajaxifyShopify = (function(module, $) {
       }, 50);
     });
 
-    // If there is a regular link to remove an item, add attributes needed to ajaxify it
-    if ($('a[href^="/cart/change"]', $cartContainer).length) {
-      $('a[href^="/cart/change"]', $cartContainer).each(function() {
-        var el = $(this).addClass('ajaxifyCart__remove');
-      });
-    }
-
     // Completely remove product
     $('.ajaxifyCart__remove').on('click', function(e) {
       var el = $(this),
@@ -854,6 +820,8 @@ var ajaxifyShopify = (function(module, $) {
       if (!id) {
         return;
       }
+
+      console.log('remove click');
 
       e.preventDefault();
       updateQuantity(id, qty);
@@ -871,6 +839,7 @@ var ajaxifyShopify = (function(module, $) {
       // Slight delay to make sure removed animation is done
       setTimeout(function() {
         Shopify.changeItem(id, qty, adjustCartCallback);
+        console.log('item removed on timeout');
       }, 250);
     }
 
@@ -892,26 +861,53 @@ var ajaxifyShopify = (function(module, $) {
 
     // Hide the modal or drawer if we're at 0 items
     if ( cart.item_count == 0 ) {
-
       // Handle each add to cart method
       switch (settings.method) {
-
         case 'modal':
           hideModal();
           break;
-
         case 'flip':
         case 'drawer':
           hideDrawer();
           break;
       }
+    } else {
+      // Reprint cart
+      Shopify.getCart(buildCart);
+    }
+  };
 
+  createQtySelectors = function() {
+    // If there is a normal quantity number field in the ajax cart, replace it with our version
+    if ($('input[type="number"]', $cartContainer).length) {
+      $('input[type="number"]', $cartContainer).each(function() {
+        var el = $(this),
+            currentQty = el.val();
+
+        var itemAdd = currentQty + 1,
+            itemMinus = currentQty - 1,
+            itemQty = currentQty + ' x';
+
+        var source   = $("#ajaxifyQty").html(),
+            template = Handlebars.compile(source),
+            data = {
+              id: el.data('id'),
+              itemQty: itemQty,
+              itemAdd: itemAdd,
+              itemMinus: itemMinus
+            };
+
+        el.after(template(data)).hide();
+      });
     }
 
-    // Reprint cart
-    Shopify.getCart(buildCart);
-
-  };
+    // If there is a regular link to remove an item, add attributes needed to ajaxify it
+    if ($('a[href^="/cart/change"]', $cartContainer).length) {
+      $('a[href^="/cart/change"]', $cartContainer).each(function() {
+        var el = $(this).addClass('ajaxifyCart__remove');
+      });
+    }
+  },
 
   scrollTop = function () {
     if ($('body').scrollTop() > 0) {
