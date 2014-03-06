@@ -532,7 +532,6 @@ var ajaxifyShopify = (function(module, $) {
           $flipContainer.addClass('flip--is-loading');
           break;
       }
-
     });
 
   };
@@ -613,9 +612,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   flipCartUpdateCallback = function (cart) {
-    console.log('flipCartUpdateCallback');
     buildCart(cart);
-    console.log('bulidcart is done');
   };
 
   buildCart = function (cart) {
@@ -623,8 +620,11 @@ var ajaxifyShopify = (function(module, $) {
     if (cart.item_count <= 0) {
       $cartContainer.empty();
       $cartContainer.append('<h2>You cart is empty</h2>');
-      console.log('sizeDrawer 1');
       sizeDrawer();
+
+      if (!$cartContainer.hasClass('is-visible') && cartInit) {
+        sizeDrawer(true);
+      }
       return;
     }
 
@@ -821,8 +821,6 @@ var ajaxifyShopify = (function(module, $) {
         return;
       }
 
-      console.log('remove click');
-
       e.preventDefault();
       updateQuantity(id, qty);
     });
@@ -839,7 +837,6 @@ var ajaxifyShopify = (function(module, $) {
       // Slight delay to make sure removed animation is done
       setTimeout(function() {
         Shopify.changeItem(id, qty, adjustCartCallback);
-        console.log('item removed on timeout');
       }, 250);
     }
 
@@ -871,10 +868,12 @@ var ajaxifyShopify = (function(module, $) {
           hideDrawer();
           break;
       }
-    } else {
-      // Reprint cart
-      Shopify.getCart(buildCart);
     }
+
+    // Reprint cart on short timeout so you don't see the content being removed
+    setTimeout(function() {
+      Shopify.getCart(buildCart);
+    }, 150)
   };
 
   createQtySelectors = function() {
