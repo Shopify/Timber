@@ -506,7 +506,6 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   hideDrawer = function () {
-    console.log('hide drawer');
     $drawerContainer.removeAttr('style').removeClass('is-visible');
     scrollTop();
   };
@@ -742,7 +741,7 @@ var ajaxifyShopify = (function(module, $) {
   }
 
   adjustCart = function () {
-    // This function runs on load, and when the cart is reprinted.
+    // This function runs on load, and when the cart is reprinted
 
     // Create ajax friendly quantity fields and remove links
     if (settings.useCartTemplate) {
@@ -765,7 +764,7 @@ var ajaxifyShopify = (function(module, $) {
         qty = qty + 1;
       } else {
         qty = qty - 1;
-        if (qty <= 1) qty = 1;
+        if (qty <= 0) qty = 0;
       }
 
       // If it has a data-id, update the cart.
