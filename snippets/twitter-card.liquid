@@ -25,11 +25,12 @@
   <meta name="twitter:image:height" content="240">
   <meta name="twitter:label1" content="Price">
   <meta name="twitter:data1" content="{% if product.price_varies %}From {% endif %}{{ product.price | money_with_currency | strip_html }}">
-  <meta name="twitter:label2" content="Availability">
-  {% if product.available %}
-  <meta name="twitter:data2" content="In stock">
+  {% if product.vendor != blank %}
+  <meta name="twitter:label2" content="Brand">
+  <meta name="twitter:data2" content="{{ product.vendor | escape }}">
   {% else %}
-  <meta name="twitter:data2" content="Out of stock">
+  <meta name="twitter:label2" content="Availability">
+  <meta name="twitter:data2" content="In stock">
   {% endif %}
 {% elsif template contains 'article' %}
   <meta name="twitter:card" content="summary">

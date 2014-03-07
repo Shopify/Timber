@@ -16,9 +16,17 @@
 {% endif %}
 
 {% comment %}
+  Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if product.available  %}
+  {% assign sold_out = false %}
+{% endif %}
+
+{% comment %}
   Set a class for sold-out and on-sale items
 {% endcomment %}
-<div class="grid-item {% unless product.available %} sold-out{% endunless %} {% if on_sale %} on-sale{% endif %}">
+<div class="grid-item{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
 
   {% comment %}
     Link to your product with the 'within: collection' filter for the link to be aware of the collection.
@@ -37,19 +45,24 @@
   </a>
 
   <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-  <span class="prod-price">
-    {% comment %}
-      You can show a leading 'from' or 'up to' by checking 'product.price_varies'
-      if your variants have different prices.
-    {% endcomment %}
-    {% if product.price_varies %}From{% endif %}
+  <p class="prod-price">
+    <span>
+      {% if sold_out %} 
+      <strong>Sold Out</strong>
+      {% endif %}
+    
+      {% comment %}
+        You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+        if your variants have different prices.
+      {% endcomment %}
+      {% if product.price_varies %}From{% endif %}
 
-    {{ product.price | money }}
-
+      {{ product.price | money }}
+    </span>
     {% if on_sale %}
-      <p><strong>On Sale</strong> from {{ product.compare_at_price | money }}</p>
+      <span><strong>On Sale</strong> from {{ product.compare_at_price | money }}</span>
     {% endif %}
-  </span>
+  </p>
   <p>{{ product.description | strip_html | truncatewords: 50 }}</p>
 
 </div>

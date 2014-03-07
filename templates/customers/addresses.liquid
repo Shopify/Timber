@@ -123,7 +123,7 @@
           {% endif %}
           {{ address.zip | upcase }}<br>
           {{ address.country }}<br>
-          {{ address.phone }}</p>
+          {{ address.phone }}
         </p>
         <p>
           {{ "Edit" | edit_customer_address_link: address.id }} |
@@ -197,9 +197,13 @@
         <hr>
 
       {% endfor %}
+    
+      {% if paginate.pages > 1 %}
       <div class="text-center">
         {% include 'pagination-custom' %}
       </div>
+      {% endif %}
+    
     {% endpaginate %}
 
 
