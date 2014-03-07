@@ -110,7 +110,10 @@
   <table>
     <tr>
       <td><label for="cart_notes">Allow customers to add notes to their order?</label></td>
-      <td colspan="2"><input type="checkbox" id="cart_notes" name="cart_notes" /></td>
+      <td colspan="2">
+        <input type="checkbox" id="cart_notes" name="cart_notes" />
+        <small>Only enabled in the ajax cart if you use your <strong>cart.liquid</strong> markup. See docs below.</small>
+      </td>
     </tr>
     <tr>
       <td><label for="ajax_cart">Enable Ajaxify Cart</label></td>
@@ -120,11 +123,11 @@
       </td>
     </tr>
     <tr>
-      <td><label for="ajax_cart_method">Enable Ajaxify Cart</label></td>
+      <td><label for="ajax_cart_method">Ajax Cart Type</label></td>
       <td colspan="2">
         <select name="ajax_cart_method">
-          <option value="flip">Flip</option>
           <option value="drawer">Drawer</option>
+          <option value="flip">Flip</option>
           <option value="modal">Modal</option>
         </select>
       </td>

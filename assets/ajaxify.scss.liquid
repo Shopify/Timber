@@ -406,6 +406,7 @@ form[action="/cart/add"] {
   font-size: 16px;
   max-width: 90px;
   @include transition(all 0.4s ease-out);
+  @include backface();
 
   .ajaxifyCart--row & {
     top: 0;
@@ -494,7 +495,7 @@ form[action="/cart/add"] {
   top: 50%;
   left: 50%;
   width: 100%;
-  max-width: 850px;
+  max-width: 960px;
   max-height: 80%;
   height: auto;
   z-index: 99999999;

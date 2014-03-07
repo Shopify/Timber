@@ -621,7 +621,7 @@ var ajaxifyShopify = (function(module, $) {
       $cartContainer.append('<h2>You cart is empty</h2>');
       sizeDrawer();
 
-      if (!$cartContainer.hasClass('is-visible') && cartInit) {
+      if (!$drawerContainer.hasClass('is-visible') && cartInit) {
         sizeDrawer(true);
       }
       return;
