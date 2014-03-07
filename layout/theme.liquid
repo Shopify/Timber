@@ -31,9 +31,6 @@
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width">
 
-  <!-- Header hook for plugins ================================================== -->
-  {{ content_for_header }}
-
   <!-- CSS ================================================== -->
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
 
@@ -41,6 +38,9 @@
   <!-- Ajaxify Cart Plugin ================================================== -->
   {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
+  
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
 
   <!--[if lt IE 9]>
   {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
