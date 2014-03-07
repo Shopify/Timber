@@ -11,13 +11,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <!-- Title and description ================================================== -->
-  {% if template == 'index' %}
-  <title>{{ shop.name }} | {{ page_title }}</title>
-  {% elsif template == '404' %}
-  <title>Page Not Found | {{ shop.name }}</title>
-  {% else %}
-  <title>{{ page_title }} | {{ shop.name }}</title>
-  {% endif %}
+  <title>
+  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
 
   {% if page_description %}
   <meta name="description" content="{{ page_description | escape }}">
