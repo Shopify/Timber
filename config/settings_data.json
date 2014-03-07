@@ -16,7 +16,7 @@
       "footer_newsletter_title": "Newsletter",
       "cart_notes": true,
       "ajax_cart": true,
-      "ajax_cart_method": "Flip"
+      "ajax_cart_method": "Drawer"
     }
   }
 }

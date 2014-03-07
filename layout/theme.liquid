@@ -34,7 +34,7 @@
   <!-- Ajaxify Cart Plugin ================================================== -->
   {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
-  
+
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
 
@@ -87,7 +87,7 @@
             - #cartToggle toggles cart visibility (drawer or modal)
             - #cartCount updates the total number of items in the cart
             - #cartCost updates the total cost of the cart
-            - Documentation:  http://shopify.com/timber/documentation#ajax-cart
+            - Documentation:  http://shopify.com/timber#ajax-cart
         {% endcomment %}
         <p>
           <a href="/cart" id="cartToggle">
@@ -153,7 +153,7 @@
     Enabled by default in theme settings.
 
     Ajaxify Cart Documentation:
-      - http://shopify.com/timber/documentation#ajax-cart
+      - http://shopify.com/timber#ajax-cart
   {% endcomment %}
   {% if settings.ajax_cart %}
   {{ 'handlebars.min.js' | asset_url | script_tag }}
@@ -162,14 +162,14 @@
   <script>
   jQuery(function($) {
     ajaxifyShopify.init({
-      method: '{{ settings.ajax_cart_method }}', // Method options are drawer, modal, and flip. Default is flip.
+      method: '{{ settings.ajax_cart_method }}', // Method options are drawer, modal, and flip. Default is drawer.
       wrapperClass: 'wrapper', // The class that defines your site width. Default is null.
       formSelector: '#addToCartForm', // Default is form[action="/cart/add"].
       addToCartSelector: '#addToCart', // Default is input[type="submit"] within 'formSelector'.
       cartCountSelector: '#cartCount', // Update number of items in the cart when a product is added. Default is null.
       cartCostSelector: '#cartCost', // Update the total cart cost when a product is added. Default is null.
       toggleCartButton: '#cartToggle', // To toggle drawer/modal cart, include the selector here. Default is null and will take you to /cart page.
-      useCartTemplate: true, // True to use cart.liquid markup. Default is false and uses handlebars.js for template.
+      useCartTemplate: false, // True to use cart.liquid markup. Default is false and uses handlebars.js for template.
       btnClass: 'btn' // Your main button class for styling purposes if useCartTemplate is set to false. Default is null.
     });
   });

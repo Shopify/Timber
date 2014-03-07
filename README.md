@@ -9,7 +9,7 @@ Designing a store for a client? Earn 20% revenue through our <a href="http://www
 
 Documentation
 ---------------------
-Visit the [Timber's Documentation](http://shopify.com/timber/documentation) page to find out more about the templates, liquid tags, CSS framework, and JavaScript modules included.
+Visit the [Timber's Documentation](http://shopify.com/timber) page to find out more about the templates, liquid tags, CSS framework, and JavaScript modules included.
 
 Demo Stores
 ---------------------

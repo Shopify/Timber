@@ -45,12 +45,12 @@
   </a>
 
   <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-  <p class="prod-price">
+  <p>
     <span>
-      {% if sold_out %} 
+      {% if sold_out %}
       <strong>Sold Out</strong>
       {% endif %}
-    
+
       {% comment %}
         You can show a leading 'from' or 'up to' by checking 'product.price_varies'
         if your variants have different prices.
