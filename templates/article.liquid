@@ -29,11 +29,9 @@
     {% include 'breadcrumb' %}
 
     <header class="page-header">
-      <h6>
-        <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-          {{ article.published_at | date: '%b %d, %Y' }}
-        </time>
-      </h6>
+      <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+        {{ article.published_at | date: '%b %d, %Y' }}
+      </time>
       <h1>{{ article.title }}</h1>
     </header>
 
