@@ -62,6 +62,10 @@ Additional resources
 - [Free Workshops][5]: Sign up for a free Shopify For Designers workshop in a city near you.
 - Need more help? Ask a question in our [Design Forums][6].
 
+License
+---------------------
+Timber is released under the [MIT License](LICENSE).
+
 [1]: http://docs.shopify.com/themes
 [2]: https://github.com/Shopify/shopify_theme
 [3]: http://apps.shopify.com/desktop-theme-editor
