@@ -156,8 +156,8 @@
         {% endcomment %}
         {% if settings.cart_notes %}
           <div class="grid-item large--one-half">
-            <label>Special instructions for seller</label>
-            <textarea name="note" class="input-full">{{ cart.note }}</textarea>
+            <label for="cartSpecialInstructions">Special instructions for seller</label>
+            <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
           </div>
         {% endif %}
 

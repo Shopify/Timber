@@ -19,7 +19,7 @@
   {% endcomment %}
   {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
 
-  <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="Search our store" class="input-group-field">
+  <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="Search our store" class="input-group-field" aria-label="Search Site">
   <span class="input-group-btn">
     <input type="submit" class="btn" value="Search">
   </span>
