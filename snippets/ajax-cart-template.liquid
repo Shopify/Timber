@@ -24,7 +24,7 @@
             </div>
             <div class="ajaxifyCart--col2">
               <div class="ajaxifyCart--qty">
-                <input type="text" class="ajaxifyCart--num" value="{{itemQty}}" min="0" data-id="{{id}}">
+                <input type="text" class="ajaxifyCart--num" value="{{itemQty}}" min="0" data-id="{{id}}" aria-label="quantity">
                 <span class="ajaxifyCart--qty-adjuster ajaxifyCart--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
                 <span class="ajaxifyCart--qty-adjuster ajaxifyCart--minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
               </div>
@@ -71,7 +71,7 @@
   <script id="ajaxifyQty" type="text/template">
   {% raw %}
     <div class="ajaxifyCart--qty">
-      <input type="text" class="ajaxifyCart--num" value="{{itemQty}}" min="0" data-id="{{id}}">
+      <input type="text" class="ajaxifyCart--num" value="{{itemQty}}" min="0" data-id="{{id}}" aria-label="quantity">
       <span class="ajaxifyCart--qty-adjuster ajaxifyCart--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
       <span class="ajaxifyCart--qty-adjuster ajaxifyCart--minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
     </div>

@@ -95,6 +95,7 @@
               - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
 
           {% endcomment %}
+          <label for="productSelect">Select Product</label>
           <select name="id" id="productSelect">
             {% for variant in product.variants %}
               {% if variant.available %}
