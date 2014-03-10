@@ -62,7 +62,7 @@
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="wrapper">
 
       {% comment %}
@@ -115,7 +115,7 @@
     </div>
   </header>
 
-  <nav class="nav-bar">
+  <nav class="nav-bar" role="navigation">
     <div class="wrapper">
       <ul class="site-nav">
         {% comment %}
@@ -134,11 +134,11 @@
     </div>
   </nav>
 
-  <div class="wrapper main-content">
+  <main class="wrapper main-content" role="main">
 
     {{ content_for_layout }}
 
-  </div>
+  </main>
 
   {% include 'footer' %}
 
