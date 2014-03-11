@@ -46,11 +46,9 @@
     {% endcomment %}
     <ul class="inline-list payment-icons text-center">
       {% for type in shop.enabled_payment_types %}
-      {% unless type == 'bogus' %}
       <li>
         <img src="{{ type | payment_type_img_url }}" />
       </li>
-      {% endunless %}
       {% endfor %}
     </ul>
 
