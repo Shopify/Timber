@@ -117,17 +117,7 @@
 
   <nav class="nav-bar" role="navigation">
     <div class="wrapper">
-      <ul class="site-nav">
-        {% comment %}
-          List out your main-menu linklist (default)
-
-          More info on linklists:
-            - http://docs.shopify.com/themes/liquid-variables/linklists
-        {% endcomment %}
-        {% for link in linklists.main-menu.links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
+      {% include 'site-nav' %}
       <div class="nav-search">
         {% include 'search-bar' %}
       </div>
