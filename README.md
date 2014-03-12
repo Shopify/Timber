@@ -7,6 +7,12 @@ Styling and customization is left up to you. Some base styles and helpers are in
 
 Designing a store for a client? Earn 20% revenue through our <a href="http://www.shopify.com/partners">Partner program<a/>.
 
+Getting Started
+---------------------
+- Download the [latest release](https://github.com/Shopify/Timber/releases)
+- Clone the repo `git clone https://github.com/Shopify/Timber.git`
+- Install with [Bower](http://bower.io/) `bower install timber`
+
 Documentation
 ---------------------
 Visit the [Timber's Documentation](http://shopify.com/timber) page to find out more about the templates, liquid tags, CSS framework, and JavaScript modules included.
