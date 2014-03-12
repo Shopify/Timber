@@ -95,7 +95,6 @@
               - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
 
           {% endcomment %}
-          <label for="productSelect">Select Product</label>
           <select name="id" id="productSelect">
             {% for variant in product.variants %}
               {% if variant.available %}
@@ -226,29 +225,26 @@ var selectCallback = function(variant, selector) {
       comparePrice.hide();
     }
 
-    // Hide the variant dropdown if there is only one
-    if (variant.options.length == 1) {
-      $('.selector-wrapper').hide();
-    }
-
   } else {
     // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anyway
     addToCart.val('Unavailable').addClass('disabled').attr('disabled', 'disabled');
   }
 };
-  
+
 jQuery(function($) {
 
   new Shopify.OptionSelectors('productSelect', {
     product: {{ product | json }},
     onVariantSelected: selectCallback
   });
-  
+
   // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
   {% if product.options.size == 1 and product.options.first != 'Title' %}
     $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
+  {% else %}
+    $('.selector-wrapper').hide();
   {% endif %}
-  
+
   // Auto-select first available variant on page load. Otherwise the product looks sold out.
   {% assign found_one_in_stock = false %}
   {% for variant in product.variants %}
