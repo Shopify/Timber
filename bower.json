@@ -12,20 +12,8 @@
     "responsive",
     "front-end"
   ],
-  "main": [
-    "assets/*",
-    "config/*",
-    "layout/*",
-    "snippets/*",
-    "templates/*"
-  ],
   "ignore": [
-    ".*",
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    ".*"
   ],
   "dependencies": {
     "jquery": ">= 1.9.1"
