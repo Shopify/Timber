@@ -41,4 +41,4 @@ Thumbs.db
 ######################
 *.sass-cache*
 config.yml
-/deploy
+/_site

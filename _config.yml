@@ -1,8 +1,0 @@
-# Change destination from default _site
-destination: deploy
-
-# Mimic GitHub's safe environment
-safe: true
-
-# Exclude metadata and development time dependencies (like Grunt plugins)
-exclude: [Rakefile, Gemfile, Gemfile.lock]
