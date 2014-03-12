@@ -1,0 +1,1647 @@
+---
+layout: timber
+title: Shopify Theme Development Framework - Timber
+description: Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
+canonical: /timber
+version: v1.1.0
+---
+
+<div class="cta-wrapper">
+  <header class="pagewidth home-cta">
+    <h1 class="home-title">Timber</h1>
+    <h2 class="home-subtitle">A faster and easier way to build Shopify themes</h2>
+
+    <a href="https://github.com/Shopify/Timber/archive/{{ page.version }}.zip" title="Download the .zip" class="btn-timber" data-track="Download" data-version="{{ page.version }}">Download Timber Theme</a>
+    <p class="docs-text">
+      Latest build: <span class="build-date">{{ page.version }}</span> •
+      <a href="https://github.com/Shopify/Timber" title="Get the source" class="text-link-on-orange">View Source on Github</a> •
+      <a href="https://timber-demo.myshopify.com/" title="See Timber in action" class="text-link-on-orange" data-track="Demo" title="View Demo Store">View Demo Store</a>
+    </p>
+  </header>
+
+  <div class="home-buckets">
+
+    <div class="pagewidth">
+      <div class="grid">
+
+        <div class="grid-item large--one-third">
+          <div class="bucket-devices"></div>
+          <h3 class="bucket-title">Built for all devices</h3>
+          <p class="bucket-description">Develop on top of a responsive, mobile-first and flexible foundation.</p>
+        </div>
+
+        <div class="grid-item large--one-third">
+          <div class="bucket-documented"></div>
+          <h3 class="bucket-title">Documented</h3>
+          <p class="bucket-description">All the basic liquid and templating tags, well documented for you.</p>
+        </div>
+
+        <div class="grid-item large--one-third">
+          <div class="bucket-customizable"></div>
+          <h3 class="bucket-title">Customizable</h3>
+          <p class="bucket-description">Add and remove components easily and build the store you want.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="docs-wrapper">
+  <div class="pagewidth">
+    <div class="grid">
+
+      <div class="grid-item large--three-quarters docs-body">
+
+        <!-- =====================================
+          WHO IS THIS FOR
+        ===================================== -->
+        <h2 class="doc-title gettingstarted-title" id="who-for"><strong>1.1 </strong>Who Is This For</h2>
+        <p class="docs-note">Timber is a front-end framework which makes building Shopify themes quick and easy. It can be used by theme creators of any skill level for themes of any scope.</p>
+        <p class="docs-text">Seasoned pros and newbies alike can benefit from the starter templates, liquid markup, modules, and CSS frameworks provided in Timber.</p>
+
+        <hr>
+
+        <!-- =====================================
+          WHAT COMES WITH TIMBER
+        ===================================== -->
+        <h2 class="doc-title gettingstarted-title" id="comes-with"><strong>1.2 </strong>What is Included</h2>
+        <div class="grid">
+          <div class="grid-item one-third small--one-whole">
+            <h4 class="docs-h4">Required Templates</h4>
+            <p class="docs-text">Every template your store needs is included in one handy place, so no more sticky notes with checklists on your desk.</p>
+          </div>
+          <div class="grid-item one-third small--one-whole">
+            <h4 class="docs-h4">Basic Markup</h4>
+            <p class="docs-text">Jump past the learning curve of <strong class="docs-strong">liquid template tags</strong> because we've provided you with the essentials.</p>
+          </div>
+          <div class="grid-item one-third small--one-whole">
+            <h4 class="docs-h4">CSS Framework</h4>
+            <p class="docs-text">Grounded in <a href="#sass" class="docs-link">Sass</a>, Timber provides you with a barebone set of styles that you can quickly put your designer touch on.</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          DOWNLOAD TIMBER
+        ===================================== -->
+        <h2 class="doc-title gettingstarted-title" id="get-started"><strong>1.3 </strong>Download Timber</h2>
+        <p class="docs-text"><a href="https://github.com/Shopify/Timber/archive/{{ page.version }}.zip" class="docs-link" data-track="Download" data-version="{{ page.version }}">Download timber.zip <strong class="docs-strong">{{ page.version }}</strong></a> or clone the latest master branch from <a href="https://github.com/Shopify/Timber" class="docs-link">GitHub</a>:</p>
+<pre>
+git clone https://github.com/Shopify/Timber.git
+</pre>
+
+        <div class="grid">
+          <div class="grid-item one-half small--one-whole">
+            <h4 class="docs-h4">Dev Notes</h4>
+            <p class="docs-text">Shopify Timber Tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android.</p>
+          </div>
+          <div class="grid-item one-half small--one-whole">
+            <h4 class="docs-h4">Selling Shopify Themes</h4>
+            <p class="docs-text">You can sell your theme in <a href="https://themes.shopify.com?ref=Timber" class="docs-link">Shopify's Theme Store</a> by following our <a href="https://themes.shopify.com/services/themes/guidelines?ref=Timber" class="docs-link">Guideline Checklist</a>. You can also earn 20% of each customer’s bill that you refer to Shopify by enrolling in the <a href="http://www.shopify.com/partners?ref=Timber" class="docs-link">Shopify Partner Program</a>.</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          DEMO STORE
+        ===================================== -->
+        <h2 class="doc-title gettingstarted-title" id="demos"><strong>1.4 </strong>Demo Store</h2>
+        <div class="grid">
+          <div class="grid-item large--two-thirds">
+            <p class="docs-note">Enough gibber jabber. Check out <a href="https://timber-demo.myshopify.com?ref=Timber" title="View Timber Theme" class="docs-link" data-track="Demo">Timber's Demo Store</a> for the full experience of what you'll download.</p>
+          </div>
+          <div class="grid-item large--one-third">
+            <a href="https://timber-demo.myshopify.com?ref=Timber" title="View Demo Store" class="btn-timber-small full" data-track="Demo">View Demo Store</a>
+          </div>
+        </div>
+        <p class="docs-text">The demo has fake products inserted so you can see what a populated site would look like. To see what your brand new site will look like when you install the theme, check out our <a href="http://timber-demo-empty.myshopify.com?ref=Timber" class="docs-link" data-track="Demo Empty">empty store demo</a>.</p>
+
+        <hr>
+
+        <!-- =====================================
+          THEME EDITING
+        ===================================== -->
+        <h2 class="doc-title gettingstarted-title" id="theme-editing"><strong>1.5 </strong>Theme Editing</h2>
+        <p class="docs-note">Edit your files locally and watch the changes happen on your live site. Use the <a href="https://github.com/Shopify/shopify_theme" class="docs-link">Theme Gem</a> or <a href="https://apps.shopify.com/desktop-theme-editor?ref=Timber" class="docs-link">Desktop Theme Editor</a> for easy theme management.</p>
+        <p class="docs-text">Once you've downloaded your theme it's time to get it onto your store. Either upload the zip to <code>your-url.com/admin/themes</code> or use one of the programs below. Either way, you can use your text editor of choice.</p>
+
+        <div class="grid">
+          <div class="grid-item one-half small--one-whole">
+            <h4 class="docs-h4">Theme Gem</h4>
+            <p class="docs-text">If you're comfortable with the command line, use the <a href="https://github.com/Shopify/shopify_theme" class="docs-link">Shopify Theme Gem</a> on OSX or Windows to make live changes to your theme with ease.</p>
+          </div>
+          <div class="grid-item one-half small--one-whole">
+            <h4 class="docs-h4">Desktop Theme Editor</h4>
+            <p class="docs-text">If you prefer a beautiful interface, use the <a href="https://github.com/Shopify/shopify_theme" class="docs-link">Desktop Theme Editor</a> and start managing all of your theme assets.</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          SASS
+        ===================================== -->
+        <h2 class="doc-title grid-title" id="sass"><strong>2.1 </strong>Sass</h2>
+
+        <p class="docs-note">Timber is built with <a href="http://sass-lang.com/">Sass</a>, but <strong class="docs-strong">you don't have to know it to use it</strong>.</p>
+        <p class="docs-text">The compiling is all done on the Shopify server, so edit the <strong class="docs-strong">.scss.liquid</strong> file just as you would CSS and watch the magic happen on your site.</p>
+
+        <h4 class="docs-h4">Imports and Mixins</h4>
+        <p class="docs-text">You cannot use <code>@imports</code> in a Sass liquid file. That means no dependence on Compass, Bourbon or similar Sass frameworks.</p>
+        <p class="docs-text">A section labeled <strong>Sass Mixins</strong> has been included in <strong class="docs-strong">timber.scss.liquid</strong> with a few <a href="#sass-mixins" title="Sass mixins" class="docs-link">helpers</a> to start you off.</p>
+
+        <hr>
+
+        <!-- =====================================
+          Media Queries
+        ===================================== -->
+        <h2 class="doc-title grid-title" id="breakpoints"><strong>2.2 </strong>Breakpoints</h2>
+
+        <ul class="tabs">
+          <li><a href="#breakpoints-example">Example</a></li>
+          <li><a href="#breakpoints-code">Code</a></li>
+        </ul>
+
+        <div id="breakpoints-example" class="tab-content">
+          <p class="docs-note">Define your breakpoints once, and Sass handles the rest.</p>
+          <p class="docs-text">All breakpoints are defined in the <strong>Breakpoint and Grid Variables</strong> section of <strong class="docs-strong">timber.scss.liquid</strong>. Easily change, add, or remove the breakpoints and names to suit your needs.</p>
+          <p class="docs-text"><strong class="docs-strong">Default breakpoints:</strong></p>
+          <ul class="disc docs-text">
+            <li>Small: 480px</li>
+            <li>Medium: 768px</li>
+            <li>Large: 769px</li>
+          </ul>
+        </div>
+        <div id="breakpoints-code" class="tab-content">
+          <p class="docs-text"><code>$breakpoints</code> is broken down into four lines, each a breakpoint: <strong>'small'</strong>, <strong>'medium'</strong>, <strong>'medium-down'</strong>, and <strong>'large'</strong>. These are the names used in your classes to define each column width.</p>
+          <p class="docs-text"><strong class="docs-strong">Example:</strong> A <code>.grid-item</code> div with a class of <code>large--one-half</code> will span 50% of its parent above 769px. Any screen size below that breakpoint will default to (mobile-first) 100%.</p>
+<pre>
+$viewportIncrement: 1px;
+
+$small: 480px;
+$medium: 768px;
+$large: 769px;
+
+$postSmall: $small + $viewportIncrement;
+$preMedium: $medium - $viewportIncrement;
+$preLarge: $large - $viewportIncrement;
+
+/* The following are dependencies of csswizardry grid */
+$breakpoints: (
+  'small' '(max-width: #{$small})',
+  'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
+  'medium-down' '(max-width: #{$medium})',
+  'large' '(min-width: #{$large})'
+);
+</pre>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          GRID
+        ===================================== -->
+        <h2 class="doc-title grid-title" id="grid"><strong>2.3 </strong>Grid</h2>
+
+        <p class="docs-text">This grid is based on <a href="https://github.com/csswizardry/csswizardry-grids" class="docs-link">csswizardry grids</a>, though with some slight modifications. Built with Sass, the grid is fully integrated into your <strong class="docs-strong">timber.scss.liquid</strong> stylesheet and has no external dependencies.</p>
+        <p class="docs-text"><a href="#helper-classes" class="docs-link">Helper classes</a> are generated by custom functions added to default grid Sass.</p>
+        <p class="docs-text">Class names are created based on the <code>$breakpoints</code> variable in <strong class="docs-strong">timber.scss.liquid</strong>.</p>
+
+        <ul class="tabs">
+          <li><a href="#grid-example">Example</a></li>
+          <li><a href="#grid-code">Code</a></li>
+        </ul>
+
+
+        <div id="grid-example" class="tab-content">
+          <div class="grid">
+
+            <div class="grid-item">
+              <p class="grid-demo">1</p>
+            </div>
+
+            <div class="grid-item">
+
+              <div class="grid">
+
+                <div class="grid-item large--one-half medium--one-third">
+                  <p class="grid-demo">2.1</p>
+                </div>
+
+                <div class="grid-item large--one-quarter medium--one-third">
+                  <p class="grid-demo">2.2</p>
+                </div>
+
+                <div class="grid-item large--one-quarter medium--one-third">
+                  <p class="grid-demo">2.3</p>
+                </div>
+
+                <div class="grid-item large--one-third medium--one-whole">
+                  <p class="grid-demo">2.4</p>
+                </div>
+
+                <div class="grid-item large--one-third medium--one-half small--one-half">
+                  <p class="grid-demo">2.5</p>
+                </div>
+
+                <div class="grid-item large--one-third medium--one-half small--one-half">
+                  <p class="grid-demo">2.6</p>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="grid-item">
+
+              <div class="grid">
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.1</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.2</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.3</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.4</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.5</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.6</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.7</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.8</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.9</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.10</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">3.11</p>
+                </div>
+
+                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                  <p class="grid-demo">2.12</p>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div id="grid-code" class="tab-content">
+<pre>
+&lt;div class="grid"&gt;
+
+  &lt;div class="grid-item large--one-half small--one-whole"&gt;
+    &lt;p class="grid-demo"&gt;1&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="grid-item large--one-half small--one-whole"&gt;
+    &lt;p class="grid-demo"&gt;2&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="grid-item"&gt;
+    &lt;div class="grid"&gt;
+
+      &lt;div class="grid-item large--one-half medium--one-third"&gt;
+        &lt;p class="grid-demo"&gt;3&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-quarter medium--one-third"&gt;
+        &lt;p class="grid-demo"&gt;4&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-quarter medium--one-third"&gt;
+        &lt;p class="grid-demo"&gt;5&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-third medium--one-whole"&gt;
+        &lt;p class="grid-demo"&gt;6&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-third medium--one-half small--one-half"&gt;
+        &lt;p class="grid-demo"&gt;7&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-third medium--one-half small--one-half"&gt;
+        &lt;p class="grid-demo"&gt;8&lt;/p&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+    // End sub grid
+  &lt;/div&gt;
+  // End grid-item
+
+  &lt;div class="grid-item"&gt;
+    &lt;div class="grid"&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;9&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;10&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;11&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;12&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;13&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;14&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;15&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;16&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;17&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;18&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;19&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+        &lt;p class="grid-demo"&gt;20&lt;/p&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+    // End sub grid
+  &lt;/div&gt;
+  // End grid-item
+
+&lt;/div&gt;
+// End grid
+</pre>
+        </div>
+
+        <h4 class="docs-h4">Columns and Sub Grids</h4>
+
+        <ul class="tabs">
+          <li><a href="#columns-example">Example</a></li>
+          <li><a href="#columns-code">Code</a></li>
+        </ul>
+
+        <div id="columns-example" class="tab-content">
+          <p class="docs-text">Each column — or <code>.grid-item</code> — should be a direct child of a <code>.grid</code> container.</p>
+          <p class="docs-text">This grid is easily nestable. A <code>.grid-item</code> column can contain another <code>.grid</code>, which would consist of its own children. View the sub grid in <strong class="docs-strong">Example 2</strong> below.</p>
+
+          <h4 class="docs-example">Example 1: Two column grid:</h4>
+          <div class="grid">
+            <div class="grid-item one-half">
+              <p class="grid-demo">1.1</p>
+            </div>
+            <div class="grid-item one-half">
+              <p class="grid-demo">1.2</p>
+            </div>
+          </div>
+
+          <h4 class="docs-example">Example 2: Two column with sub grid:</h4>
+          <div class="grid">
+            <div class="grid-item large--one-half">
+              <p class="grid-demo">1.1</p>
+            </div>
+            <div class="grid-item large--one-half">
+              <div class="grid">
+                <div class="grid-item large--one-third">
+                  <p class="grid-demo">1.2</p>
+                </div>
+                <div class="grid-item large--one-third">
+                  <p class="grid-demo">1.3</p>
+                </div>
+                <div class="grid-item large--one-third">
+                  <p class="grid-demo">1.4</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="columns-code" class="tab-content">
+<pre>
+// Two column grid
+&lt;div class="grid"&gt;
+  &lt;div class="grid-item one-half"&gt;
+    &lt;p class="grid-demo"&gt;1.1&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid-item one-half"&gt;
+    &lt;p class="grid-demo"&gt;1.2&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+// Two column with sub grid
+&lt;div class="grid"&gt;
+  &lt;div class="grid-item large--one-half"&gt;
+    &lt;p class="grid-demo"&gt;1.1&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid-item large--one-half"&gt;
+    &lt;div class="grid"&gt;
+      &lt;div class="grid-item large--one-third"&gt;
+        &lt;p class="grid-demo"&gt;1.2&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="grid-item large--one-third"&gt;
+        &lt;p class="grid-demo"&gt;1.3&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="grid-item large--one-third"&gt;
+        &lt;p class="grid-demo"&gt;1.4&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+        </div>
+
+        <h4 class="docs-h4">Class Names</h4>
+        <ul class="disc docs-text">
+          <li>A <code>grid-item</code> will default to a 100% width</li>
+          <li>Class names use an easy to read variation of the <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" class="docs-link">BEM naming convention</a></li>
+          <li>Class name format: <code>breakpoint--column-width</code> - e.g. <code>large--one-half</code></li>
+        </ul>
+
+        <h4 class="docs-h4">Silent Classes</h4>
+        <p class="docs-note">If you don't know what silent classes are, you can ignore this section.</p>
+        <p class="docs-text">The biggest point of contention for many grid systems is how many classes are required in your markup. With Sass, you can use <a href="http://blog.teamtreehouse.com/extending-placeholder-selectors-with-sass" class="docs-link">silent classes</a> to handle all <code>.grid-item</code> widths in your stylesheet.</p>
+        <p class="docs-text">Set <code>$use-silent-classes</code> to <strong class="docs-strong">true</strong> in <strong class="docs-strong">timber.scss.liquid</strong>, and use the following code to set the widths:</p>
+
+<pre>
+.foo {
+  @extend %grid-item;
+  @extend %small--one-half;
+  @extend %large--one-quarter;
+}
+</pre>
+
+        <hr>
+
+        <!-- =====================================
+          HELPER CLASSES
+        ===================================== -->
+        <h2 class="doc-title grid-title" id="helper-classes"><strong>2.4 </strong>Helper Classes</h2>
+        <p class="docs-text">Each breakpoint you define as part of <code>$breakpoints</code> in <strong class="docs-strong">timber.scss</strong> will have helper classes with the same names generated. Let's work with our default breakpoints:</p>
+        <p class="docs-text"><strong class="docs-strong">Note:</strong> These helper classes use <code>!important</code> to override any previous styling.</p>
+
+        <ul class="tabs">
+          <li><a href="#helper-classes-visibility">Visibility</a></li>
+          <li><a href="#helper-classes-alignment">Text <span class="small--hide">Alignment</span></a></li>
+          <li><a href="#helper-classes-floats">Floats</a></li>
+        </ul>
+
+        <div id="helper-classes-visibility" class="tab-content overflow-auto">
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="text-center">
+                  Small devices<br>
+                  <small>&lt;480px</small>
+                </th>
+                <th class="text-center">
+                  Medium devices only<br>
+                  <small>&gt;481px &amp; &lt;768px</small>
+                </th>
+                <th class="text-center">
+                  Medium and small devices<br>
+                  <small>≤768px</small>
+                </th>
+                <th class="text-center">
+                  Large devices<br>
+                  <small>≥769px</small>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left">.small--show</td>
+                <td class="is-visible">Visible</td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+              </tr>
+              <tr>
+                <td class="text-left">.medium--show</td>
+                <td class="is-hidden"></td>
+                <td class="is-visible">Visible</td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+              </tr>
+              <tr>
+                <td class="text-left">.mediumDown--show</td>
+                <td class="is-visible">Visible</td>
+                <td class="is-visible">Visible</td>
+                <td class="is-visible">Visible</td>
+                <td class="is-hidden"></td>
+              </tr>
+              <tr>
+                <td class="text-left">.large--show</td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+                <td class="is-visible">Visible</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td class="text-left">.small--hide</td>
+                <td class="is-visible">Hidden</td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+              </tr>
+              <tr>
+                <td class="text-left">.medium--hide</td>
+                <td class="is-hidden"></td>
+                <td class="is-visible">Hidden</td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+              </tr>
+              <tr>
+                <td class="text-left">.mediumDown--hide</td>
+                <td class="is-visible">Hidden</td>
+                <td class="is-visible">Hidden</td>
+                <td class="is-visible">Hidden</td>
+                <td class="is-hidden"></td>
+              </tr>
+              <tr>
+                <td class="text-left">.large--hide</td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+                <td class="is-hidden"></td>
+                <td class="is-visible">Hidden</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="helper-classes-alignment" class="tab-content">
+          <h4 class="docs-h4">Basic Text Alignment</h4>
+          <p class="docs-text">Basic helper classes to align an elements text.</p>
+          <p>
+            <code>.text-left</code><br>
+            <code>.text-right</code><br>
+            <code>.text-center</code>
+          </p>
+          <h4 class="docs-h4">Breakpoint-specific Text Alignment</h4>
+          <p class="docs-text">Change text alignment at any breakpoint with the following class format:</p>
+          <p>
+            <code>.breakpoint</code> + <code>--text-left</code><br>
+            <code>.breakpoint</code> + <code>--text-right</code><br>
+            <code>.breakpoint</code> + <code>--text-center</code>
+          </p>
+
+          <h5 class="docs-h4">Example</h5>
+<pre>
+&lt;div class="large--text-center medium--text-right small--text-center"&gt;
+  This will be center aligned on large devices, right aligned on medium-sized devices, and center aligned on small ones.
+&lt;/div&gt;
+</pre>
+
+          <div class="grid-demo large--text-center medium--text-right small--text-center">
+            This will be center aligned on large devices, right aligned on medium-sized devices, and center aligned on small ones.
+          </div>
+        </div>
+
+        <div id="helper-classes-floats" class="tab-content clearfix">
+          <h4 class="docs-h4">Basic Floats</h4>
+          <p>
+            <code>.left</code><br>
+            <code>.right</code>
+          </p>
+
+          <h4 class="docs-h4">Breakpoint-specific Floats</h4>
+          <p>
+            <code>.breakpoint</code> + <code>--left</code><br>
+            <code>.breakpoint</code> + <code>--right</code>
+          </p>
+
+          <h5>Example</h5>
+<pre>
+&lt;div class="large--right"&gt;
+  This will float right on large screens, and not at all at other breakpoints.
+&lt;/div&gt;
+</pre>
+
+          <div class="grid-demo large--right medium--left" style="width: 50%;">
+            This will float right on large screens, and not at all at other breakpoints.
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          SASS MIXINS
+        ===================================== -->
+        <h2 class="doc-title grid-title" id="sass-mixins"><strong>2.5 </strong>Sass Mixins</h2>
+        <p class="docs-text">Shopify liquid files don't support <code>@import</code>. This means you can't rely on helpers like Compass or Bourbon. Instead, there is a section called <strong>Sass Mixins</strong> in <strong class="docs-strong">timber.scss.liquid</strong> that provides a few of these helpers that you may be looking for.</p>
+
+        <h4 class="docs-h4">Breakpoint Mixin</h4>
+        <p class="docs-text">Use this simple mixin to create media queries. Breakpoints are defined under <strong>Breakpoint and Grid Variables</strong> in <strong class="docs-strong">timber.scss.liquid</strong>. This mixin can wrap class declarations (<strong class="docs-strong">Example 1</strong> in Code tab), or be placed within them (<strong class="docs-strong">Example 2</strong> in Code tab).</p>
+        <p class="docs-text">Mixin source: <a href="http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/" class="docs-link">http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/</a></p>
+        <p class="docs-text"><strong class="docs-strong">Note:</strong> Standard media queries will obviously work as well if you'd rather not use the <code>at-query</code> mixin.</p>
+
+<pre>
+@mixin at-query($constraint, $viewport1, $viewport2: null) { ... }
+</pre>
+
+        <ul class="tabs">
+          <li><a href="#mixins-breakpoint-parameters">Parameters</a></li>
+          <li><a href="#mixins-breakpoint-code">Code</a></li>
+        </ul>
+
+        <div id="mixins-breakpoint-parameters" class="tab-content overflow-auto">
+          <table class="docs-table text-left">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  $constraint
+                </td>
+                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>
+                  Options: <strong class="docs-strong">min-width</strong>, <strong class="docs-strong">max-width</strong>, or <strong class="docs-strong">null</strong><br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  $viewport1
+                </td>
+                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>
+                  If <strong class="docs-strong">$constraint</strong> is set to <strong class="docs-strong">max-width</strong>:<br>
+                  <ul class="disc">
+                    <li>$viewport1 will be your media query's <strong class="docs-strong">max-width</strong></li>
+                  </ul>
+                  If <strong class="docs-strong">$constraint</strong> is set to <strong class="docs-strong">min-width</strong> or <strong class="docs-strong">null</strong>:<br>
+                  <ul class="disc">
+                    <li>$viewport1 will be your media query's <strong class="docs-strong">min-width</strong></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  $viewport2
+                </td>
+                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>
+                  If set, this becomes the media query's <strong class="docs-strong">max-width</strong><br>
+                  Default: <strong class="docs-strong">null</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="mixins-breakpoint-code" class="tab-content">
+          <h4 class="docs-example">Example 1</h4>
+<pre>
+@include at-query('max-width', $small) {
+  .foo {
+    font-size: 0.8em;
+  }
+}
+
+Output:
+@media screen and (max-width: 768px) {
+  .foo { font-size: 0.8em; }
+}
+</pre>
+        <h4 class="docs-example">Example 2</h4>
+<pre>
+.foo {
+  @include at-query(null, 480px, 768px) {
+    font-size: 0.8em;
+  }
+}
+
+Output:
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .foo { font-size: 0.8em; }
+}
+</pre>
+        </div>
+
+        <h4 class="docs-h4">Helper Sass Mixins</h4>
+        <p class="docs-text">Since we can't rely on Compass or Bourbon includes, there are a few mixins to get you started. Add any others you want to use under <strong>Sass Mixins</strong> in <strong class="docs-strong">timber.scss.liquid</strong>.</p>
+
+        <ul class="tabs">
+          <li><a href="#mixins-provided">Mixins Provided</a></li>
+          <li><a href="#mixins-examples-code">Code</a></li>
+        </ul>
+
+        <div id="mixins-provided" class="tab-content">
+          <ul class="disc docs-text">
+            <li><code>clearfix</code></li>
+            <li><code>box-shadow</code> - no default</li>
+            <li><code>transition</code> - default <strong>0.1s all</strong></li>
+          </ul>
+        </div>
+
+        <div id="mixins-examples-code" class="tab-content">
+          <p><strong class="docs-strong">Usage:</strong></p>
+<pre>
+.foo {
+  @include box-shadow(1px 1px 10px red);
+  @include transition();
+}
+
+Output:
+.foo {
+  -webkit-box-shadow: 1px 1px 10px red;
+  -moz-box-shadow:    1px 1px 10px red;
+  box-shadow:         1px 1px 10px red;
+  -webkit-transition: 0.1s all;
+  -moz-transition:    0.1s all;
+  -o-transition:      0.1s all;
+  transition:         0.1s all;
+}
+</pre>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          PAGINATION
+        ===================================== -->
+        <h2 class="doc-title module-title" id="pagination"><strong>3.1 </strong>Pagination</h2>
+        <p class="docs-text">Documentation - <a href="http://docs.shopify.com/themes/liquid-variables/paginate?ref=Timber" class="docs-link">http://docs.shopify.com/themes/liquid-variables/paginate</a></p>
+        <p class="docs-text">Pagination will only work when you're trying to access an available object. The snippets below paginates through the <strong class="docs-strong">blogs.news.articles</strong> object, so would only function properly on <strong class="docs-strong">blog.liquid</strong>. View the documentation for <a href="http://docs.shopify.com/themes/liquid-variables/paginate?ref=Timber" class="docs-link">other areas that can be paginated</a>.</p>
+        <p class="docs-text">The <code>paginate</code> liquid tag can limit how many articles are shown per page by wrapping the <strong>article loop</strong> with it.</p>
+        <p class="docs-text">The code lives in <strong class="docs-strong">snippet/pagination-custom</strong>.</p>
+
+        <ul class="tabs">
+          <li><a href="#pagination-examples">Examples</a></li>
+          <li><a href="#pagination-code">Code</a></li>
+        </ul>
+
+        <div id="pagination-examples" class="tab-content">
+          <h4 class="docs-example">Example 1 - Default</h4>
+          <div class="pagination">
+            <span class="page current">1</span>
+            <span class="page"><a href="#" title="">2</a></span>
+            <span class="next"><a href="#" title="">Next »</a></span>
+          </div>
+
+          <hr class="hr-small">
+
+          <h4 class="docs-example">Example 2 - Replace default text</h4>
+          <div class="pagination">
+            <span class="page current">1</span>
+            <span class="page"><a href="#" title="">2</a></span>
+            <span class="next"><a href="#" title="">Older articles »</a></span>
+          </div>
+
+          <hr class="hr-small">
+
+          <h4 class="docs-example">Example 3 - Custom</h4>
+          <p class="docs-text">Place any template's pagination on any other template. Usually, pagination is defined to the current <code>&#123;%paginate%&#125;</code> context, so by adding in the <code>currentUrl</code> variable we make sure the links are pointing to the right pages.</p>
+          <p class="docs-text">This example shows pagination for your blog articles, defined by <code>blog.news.articles</code>.</p>
+          <p class="docs-text">Set a variable named <code>currentUrl</code> to <code>blogs.news.url</code> and all links will be relative to that template.</p>
+
+          <ul class="pagination-custom">
+            <li class="disabled"><span>←</span></li>
+            <li class="active"><span>1</span></li>
+            <li>
+              <a href="#" title="">2</a>
+            </li>
+            <li>
+              <a href="#" title="Next »">→</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="pagination-code" class="tab-content">
+
+          <h4 class="docs-example">Example 1 - Default</h4>
+<pre>
+&#123;% paginate blogs.news.articles by 5 %&#125;
+  &lt;div class="pagination [pagination-custom]"&gt;
+    &#123;&#123; paginate | default_pagination &#125;&#125;
+  &lt;/div&gt;
+&#123;% endpaginate %&#125;
+</pre>
+
+          <h4 class="docs-example">Example 2 - Replace default text</h4>
+<pre>
+&#123;% paginate blogs.news.articles by 5 %&#125;
+  &lt;div class="pagination"&gt;
+    &#123;&#123; paginate | default_pagination | replace: 'Previous', 'Newer articles' | replace: 'Next', 'Older articles' &#125;&#125;
+  &lt;/div&gt;
+&#123;% endpaginate %&#125;
+</pre>
+
+          <h4 class="docs-example">Example 3 - Custom</h4>
+<pre>
+&#123;% paginate blogs.news.articles by 5 %&#125;
+&#123;% assign currentUrl = blogs.news.url %&#125;
+
+&lt;ul class="pagination-custom"&gt;
+&#123;% if paginate.previous %&#125;
+    &lt;li&gt;
+      &lt;a href="&#123;&#123; currentUrl &#125;&#125;&#123;&#123; paginate.previous.url &#125;&#125;" title="&#123;&#123; paginate.previous.title &#125;&#125;"&gt;&larr;&lt;/a&gt;
+    &lt;/li&gt;
+&#123;% else %&#125;
+    &lt;li class="disabled"&gt;&lt;span&gt;&larr;&lt;/span&gt;&lt;/li&gt;
+&#123;% endif %&#125;
+
+&#123;% for part in paginate.parts %&#125;
+  &#123;% if part.is_link %&#125;
+    &lt;li&gt;
+      &lt;a href="&#123;&#123; currentUrl &#125;&#125;&#123;&#123; part.url &#125;&#125;" title=""&gt;&#123;&#123; part.title &#125;&#125;&lt;/a&gt;
+    &lt;/li&gt;
+  &#123;% else %&#125;
+    &#123;% if part.title == paginate.current_page %&#125;
+      &lt;li class="active"&gt;&lt;span&gt;&#123;&#123; part.title &#125;&#125;&lt;/span&gt;&lt;/li&gt;
+    &#123;% else %&#125;
+      &lt;li&gt;&lt;span&gt;&#123;&#123; part.title &#125;&#125;&lt;/span&gt;&lt;/li&gt;
+    &#123;% endif %&#125;
+  &#123;% endif %&#125;
+&#123;% endfor %&#125;
+
+&#123;% if paginate.next %&#125;
+  &lt;li&gt;
+    &lt;a href="&#123;&#123; currentUrl &#125;&#125;&#123;&#123; paginate.next.url &#125;&#125;" title="&#123;&#123; paginate.next.title &#125;&#125;"&gt;&rarr;&lt;/a&gt;
+  &lt;/li&gt;
+&#123;% else %&#125;
+  &lt;li class="disabled"&gt;&lt;span&gt;&rarr;&lt;/span&gt;&lt;/li&gt;
+&#123;% endif %&#125;
+&lt;/ul&gt;
+
+&#123;% endpaginate %&#125;
+</pre>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          TAGS
+        ===================================== -->
+        <h2 class="doc-title module-title" id="tags"><strong>3.2 </strong>Tags</h2>
+        <p class="docs-text">Documentation - <a href="http://docs.shopify.com/themes/liquid-variables/article?ref=Timber" class="docs-link">http://docs.shopify.com/themes/liquid-variables/article</a></p>
+        <p class="docs-text">Get an article's tags with a simple <code>for</code> loop. The example below also adds a comma after each tag, unless it's the last one.</p>
+        <p class="docs-text">The code lives in <strong class="docs-strong">snippet/tags-article</strong>.</p>
+
+        <ul class="tabs">
+          <li><a href="#tags-example">Example</a></li>
+          <li><a href="#tags-code">Code</a></li>
+        </ul>
+
+        <div id="tags-example" class="tab-content">
+          <p>
+            <span>Tags:</span>
+            <a href="#">tag one</a>,
+            <a href="#">tag two</a>
+          </p>
+        </div>
+
+        <div id="tags-code" class="tab-content">
+<pre>
+&#123;% if article.tags.size > 0 %&#125;
+  &lt;span&gt;Tags:&lt;/span&gt;
+  &#123;% for tag in article.tags %&#125;
+    &lt;a href="&#123;&#123; blog.url &#125;&#125;/tagged/&#123;&#123; tag | handle &#125;&#125;"&gt;&#123;&#123; tag &#125;&#125;&lt;/a&gt;&#123;% unless forloop.last %&#125;, &#123;% endunless %&#125;
+  &#123;% endfor %&#125;
+&#123;% endif %&#125;
+</pre>
+        </div>
+
+            <hr>
+
+        <!-- =====================================
+          BREADCRUMBS
+        ===================================== -->
+        <h2 class="doc-title module-title" id="breadcrumbs"><strong>3.3 </strong>Breadcrumbs</h2>
+        <p class="docs-text">Documentation - <a href="http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation?ref=Timber" class="docs-link">http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation</a></p>
+        <p class="docs-text">The code lives in <strong class="docs-strong">snippet/breadcrumb</strong>.</p>
+
+        <ul class="tabs">
+          <li><a href="#breadcrumbs-example">Example</a></li>
+          <li><a href="#breadcrumbs-code">Code</a></li>
+        </ul>
+
+        <div id="breadcrumbs-example" class="tab-content">
+
+          <!-- {% unless template == 'index' or template == 'cart' %}
+          <div class="breadcrumb">
+            <a href="/" title="Back to the frontpage">Home</a>
+
+            {% if template contains 'product' %}
+
+              {% if collection %}
+                <span>&raquo;</span>
+                {% if collection.handle %}
+                   {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+                   {{ collection.title | link_to: url }}
+                {% endif %}
+              {% endif %}
+              <span>&raquo;</span>
+              <span>{{ product.title }}</span>
+
+            {% elsif template contains 'collection' and collection.handle %}
+
+              {% if current_tags %}
+                <span>&raquo;</span>
+                {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+                {{ collection.title | link_to: url }}
+                <span>&raquo;</span>
+                <span>{{ current_tags.first }}</span>
+              {% else %}
+                <span>&raquo;</span>
+                <span>{{ collection.title }}</span>
+              {% endif %}
+
+            {% elsif template == 'article' %}
+
+              <span>&raquo;</span>
+              {{ blog.title | link_to: blog.url }}
+              <span>&raquo;</span>
+              <span>{{ article.title }}</span>
+
+            {% elsif template contains 'page' %}
+
+             <span>&raquo;</span>
+             <span>{{ page.title }}</span>
+
+            {% else %}
+
+             <span>&raquo;</span>
+             <span>{{ page_title }}</span>
+
+            {% endif %}
+          </div>
+          {% endunless %} -->
+
+          <div class="breadcrumb">
+            <a href="#" title="Back to the frontpage">Home</a>
+            <span>»</span>
+               <a href="#" title="">Collection Name</a>
+            <span>»</span>
+            <span>Product Name</span>
+          </div>
+        </div>
+
+        <div id="breadcrumbs-code" class="tab-content">
+<pre>
+&#123;% unless template == 'index' or template == 'cart' %&#125;
+&lt;div class="breadcrumb"&gt;
+  &lt;a href="/" title="Back to the frontpage"&gt;Home&lt;/a&gt;
+
+  &#123;% if template contains 'product' %&#125;
+
+    &#123;% if collection %&#125;
+      &lt;span&gt;&raquo;&lt;/span&gt;
+      &#123;% if collection.handle %&#125;
+         &#123;% capture url %&#125;/collections/&#123;&#123; collection.handle &#125;&#125;&#123;% endcapture %&#125;
+         &#123;&#123; collection.title | link_to: url &#125;&#125;
+      &#123;% endif %&#125;
+    &#123;% endif %&#125;
+    &lt;span&gt;&raquo;&lt;/span&gt;
+    &lt;span&gt;&#123;&#123; product.title &#125;&#125;&lt;/span&gt;
+
+  &#123;% elsif template contains 'collection' and collection.handle %&#125;
+
+    &#123;% if current_tags %&#125;
+      &lt;span&gt;&raquo;&lt;/span&gt;
+      &#123;% capture url %&#125;/collections/&#123;&#123; collection.handle &#125;&#125;&#123;% endcapture %&#125;
+      &#123;&#123; collection.title | link_to: url &#125;&#125;
+      &lt;span&gt;&raquo;&lt;/span&gt;
+      &lt;span&gt;&#123;&#123; current_tags.first &#125;&#125;&lt;/span&gt;
+    &#123;% else %&#125;
+      &lt;span&gt;&raquo;&lt;/span&gt;
+      &lt;span&gt;&#123;&#123; collection.title &#125;&#125;&lt;/span&gt;
+    &#123;% endif %&#125;
+
+  &#123;% elsif template == 'article' %&#125;
+
+    &lt;span&gt;&raquo;&lt;/span&gt;
+    &#123;&#123; blog.title | link_to: blog.url &#125;&#125;
+    &lt;span&gt;&raquo;&lt;/span&gt;
+    &lt;span&gt;&#123;&#123; article.title &#125;&#125;&lt;/span&gt;
+
+  &#123;% elsif template contains 'page' %&#125;
+
+   &lt;span&gt;&raquo;&lt;/span&gt;
+   &lt;span&gt;&#123;&#123; page.title &#125;&#125;&lt;/span&gt;
+
+  &#123;% else %&#125;
+
+   &lt;span&gt;&raquo;&lt;/span&gt;
+   &lt;span&gt;&#123;&#123; page_title &#125;&#125;&lt;/span&gt;
+
+  &#123;% endif %&#125;
+&lt;/div&gt;
+&#123;% endunless %&#125;
+</pre>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          NEWSLETTER FIELD
+        ===================================== -->
+        <h2 class="doc-title module-title" id="newsletter"><strong>3.4 </strong>Newsletter Form</h2>
+        <p class="docs-text">Documentation - <a href="http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action?ref=Timber" class="docs-link">http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action</a></p>
+        <p class="docs-text"><a href="http://mailchimp.com/" title="Visit MailChimp.com"></a>MailChimp is the go-to newsletter service for Shopify. Use the link below to find your <strong class="docs-strong">MailChimp form action</strong> and insert it in your site settings.</p>
+
+        <ul class="tabs">
+          <li><a href="#newsletter-example">Example</a></li>
+          <li><a href="#newsletter-code">Code</a></li>
+        </ul>
+
+        <div id="newsletter-example" class="tab-content">
+          <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+            <input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field">
+            <span class="input-group-btn">
+              <input type="submit" class="btn" value="Subscribe" name="subscribe" id="subscribe">
+            </span>
+          </form>
+        </div>
+
+        <div id="newsletter-code" class="tab-content">
+<pre>
+&lt;form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group"&gt;
+  &lt;input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field"&gt;
+  &lt;span class="input-group-btn"&gt;
+    &lt;input type="submit" class="btn" value="Subscribe" name="subscribe" id="subscribe"&gt;
+  &lt;/span&gt;
+&lt;/form&gt;
+</pre>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          AJAXIFY CART
+        ===================================== -->
+        <h2 class="doc-title js-title" id="ajax-cart"><strong>4.1 </strong>Ajaxify Cart</h2>
+        <p class="docs-note">Being teleported to the cash register in a grocery store after picking up a can of soup doesn't make a ton of sense, so why should your customer end up on a <strong class="docs-strong">/cart</strong> page online?</p>
+        <p class="docs-text">Using the Ajaxify Cart plugin allows a user to add a product to their cart without leaving the current page. The cart will appear as a drawer from the top of the page, a modal, or an inline confirmation.</p>
+        <p class="docs-text"><strong class="docs-strong">Note:</strong> cart.liquid is still a required template and its markup structures the cart in the drawer/modal.</p>
+
+        <ul class="tabs">
+          <li><a href="#ajax-cart-parameters">Parameters</a></li>
+          <li><a href="#ajax-cart-code">Code</a></li>
+        </ul>
+
+        <div id="ajax-cart-parameters" class="tab-content overflow-auto">
+          <p class="docs-text">The cart plugin is enabled by simply calling <code>ajaxifyShopify.init({})</code> after jQuery is loaded. Pass in the parameters below to customize it.</p>
+
+          <h4 class="docs-h4">Plugin Format</h4>
+<pre>
+ajaxifyShopify.init({ [options] })
+</pre>
+
+          <h4 class="docs-h4">Parameters</h4>
+          <table class="docs-table text-left">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>options</strong>
+                </td>
+                <td><a href="http://api.jquery.com/Types/#Object" title="JS Objects" class="docs-link">Object</a></td>
+                <td>A collection of parameters that control the cart plugin, each listed out below.</td>
+              </tr>
+              <tr>
+                <td>debug</td>
+                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>
+                  Set to true for access to a log() function.<br>
+                  Default: <strong class="docs-strong">false</strong>.
+                </td>
+              </tr>
+              <tr>
+                <td>method</td>
+                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>
+                  The type of cart you want to enable.<br>
+                  Options: <strong class="docs-strong">drawer</strong>, <strong class="docs-strong">modal</strong>, and <strong class="docs-strong">flip</strong><br>
+                  Default: <strong class="docs-strong">drawer</strong>.
+                </td>
+              </tr>
+              <tr>
+                <td>wrapperClass</td>
+                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>
+                  The class name that defines your site width, without the leading period.<br>
+                  E.g. <code>wrapperClass: 'site-width'</code><br>
+                  Default: <strong class="docs-strong">null</strong>.
+                </td>
+              </tr>
+              <tr>
+                <td>formSelector</td>
+                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>
+                  Your add to cart <strong>form</strong> selector from the product page.<br>
+                  Default: <strong class="docs-strong">form[action="/cart/add"]</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>addToCartSelector</td>
+                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>
+                  Your add to cart <strong>button</strong> selector from the product page.<br>
+                  Default: <strong class="docs-strong">input[type="submit']</strong> within <strong>formSelector</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>toggleCartButton</td>
+                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>
+                  Toggle your cart open and closed with this selector.<br>
+                  Default: <strong class="docs-strong">null</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>cartCountSelector</td>
+                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>
+                  If you want to include the number of items in your cart, create an element and pass in it's selector here.<br>
+                  E.g. <code>cartCountSelector: '.cart-count'</code><br>
+                  Default: <strong class="docs-strong">null</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>cartCostSelector</td>
+                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>
+                  If you want to include the total cost of the items in your cart, create an element and pass in it's selector here.<br>
+                  E.g. <code>cartCostSelector: '.cart-cost'</code><br>
+                  Default: <strong class="docs-strong">null</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>useCartTemplate</td>
+                <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
+                <td>
+                  Set to <strong class="docs-strong">true</strong> to use the markup from your <strong class="docs-strong">cart.liquid</strong> template. We'll take care of the selector.<br>
+                  Set to <strong class="docs-strong">false</strong> to use the included cart layout (not responsive), generated by <a href="http://handlebarsjs.com/" title="Handlebars.js Documentation">Handlebars.js</a>.<br>
+                  Default: <strong class="docs-strong">false</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>btnClass</td>
+                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>
+                  If <strong>useCartTemplate</strong> is set to false, include your standard button class so we can style the Checkout link the same way.<br>
+                  Default: <strong class="docs-strong">null</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>moneyFormat</td>
+                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>
+                  Pass in your shop's currency with the liquid tag <code>&#123;&#123; shop.money_format | json &#125;&#125;</code>.<br>
+                  Default: <strong class="docs-strong">'$&#123;&#123;amount&#125;&#125;'</strong>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div id="ajax-cart-code" class="tab-content">
+          <h4 class="docs-h4">Required Files</h4>
+          <p class="docs-text">Include the CSS in your document <code>head</code> and JavaScript file after the inclusion of jQuery in your <strong class="docs-strong">theme.liquid</strong> template.</p>
+<pre>
+&#123;&#123; &#39;ajaxify.scss.css&#39; | asset_url | stylesheet_tag &#125;&#125;
+&#123;&#123; &#39;ajaxify.js&#39; | asset_url | script_tag &#125;&#125;
+</pre>
+          <h4 class="docs-h4">Initialize</h4>
+<pre>
+&lt;script&gt;
+jQuery(function($) {
+  ajaxifyShopify.init({
+    method: 'flip',
+    wrapperClass: 'wrapper',
+    formSelector: '#addToCartForm',
+    addToCartSelector: '#addToCart',
+    toggleCartButton: '#cartToggle',
+    useCartTemplate: true,
+    btnClass: 'btn'
+  });
+});
+&lt;/script&gt;
+</pre>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          Start of Style Guide
+        ===================================== -->
+
+        <!-- =====================================
+          Typography
+        ===================================== -->
+        <h2 class="doc-title styleguide-title" id="typography"><strong>5.1 </strong>Typography</h2>
+        <div class="grid">
+          <div class="grid-item large--seven-twelfths">
+
+            <h4 class="docs-h4">Paragraphs</h4>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
+            <p>Suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
+
+            <hr class="hr-small">
+
+            <h4 class="docs-h4">Inline Styles</h4>
+            <ul class="disc">
+              <li><strong>Strong</strong></li>
+              <li><em>Emphasis</em></li>
+              <li><a href="#">Inline link</a></li>
+              <li><strike>Strike</strike></li>
+            </ul>
+
+          </div>
+
+          <div class="grid-item large--five-twelfths">
+
+            <h1>Heading One</h1>
+            <h2>Heading Two</h2>
+            <h3>Heading Three</h3>
+            <h4>Heading Four</h4>
+            <h5>Heading Five</h5>
+            <h6>Heading Six</h6>
+
+          </div>
+        </div>
+
+        <h4 class="docs-h4">Blockquote - Regular</h4>
+        <blockquote>
+          <p>Eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+          <cite>The author of the quote</cite>
+        </blockquote>
+
+        <h4 class="docs-h4">List Types</h4>
+        <table class="full">
+            <tr>
+              <td width="40%">
+                <h6>No bullet <code>ul</code> (default)</h6>
+              </td>
+              <td>
+                <ul>
+                  <li>One</li>
+                  <li>Two</li>
+                  <li>Three</li>
+                  <li>Four</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>Round bullet <code>ul</code></h6>
+                <code>.disc</code>
+              </td>
+              <td>
+                <ul class="disc">
+                  <li>One</li>
+                  <li>Two</li>
+                  <li>Three</li>
+                  <li>Four</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>Square bullet <code>ul</code></h6>
+                <code>.square</code>
+              </td>
+              <td>
+                <ul class="square">
+                  <li>One</li>
+                  <li>Two</li>
+                  <li>Three</li>
+                  <li>Four</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>Numeric bullet <code>ol</code> (default)</h6>
+              </td>
+              <td>
+                <ol>
+                  <li>One</li>
+                  <li>Two</li>
+                  <li>Three</li>
+                  <li>Four</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>Alpha bullet <code>ol</code></h6>
+                <code>.alpha</code>
+              </td>
+              <td>
+                <ol class="alpha">
+                  <li>One</li>
+                  <li>Two</li>
+                  <li>Three</li>
+                  <li>Four</li>
+                </ul>
+              </td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <!-- =====================================
+          Forms
+        ===================================== -->
+        <h2 class="doc-title styleguide-title" id="forms"><strong>5.2 </strong>Forms</h2>
+        <h4 class="docs-h4">Vertical (default)</h4>
+        <p class="docs-text">By default, forms follow this pattern. Be sure to remove element bottom padding if you aren't using a large form.</p>
+        <div class="grid">
+            <div class="grid-item large--one-third">
+              <label for="text1">Text Field</label>
+              <input type="text" id="text1">
+
+              <label for="text2">Placeholder</label>
+              <input type="text" id="text2" placeholder="Placeholder text">
+
+              <label for="text3">Disabled Field</label>
+              <input type="text" id="text3" disabled>
+
+              <label for="text4">Label with Hint <span class="label-hint">A-Z, 0-9</span></label>
+              <input type="text" id="text4">
+
+              <label for="text5" class="error">Text Field (Error)</label>
+              <input type="text" id="text5" class="error" value="Invalid Entry">
+            </div>
+
+            <div class="grid-item large--one-third">
+              <label for="select1">Select Field</label>
+              <select id="select1">
+                <option value="0">-- Choose --</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+
+              <fieldset>
+                <legend>Checkboxes</legend>
+                <input type="checkbox" id="check1"> <label for="check1" class="inline">Checkbox Field</label><br>
+                <input type="checkbox" id="check2"> <label for="check2" class="inline">Checkbox Field</label><br>
+                <input type="checkbox" id="check3"> <label for="check3" class="inline">Checkbox Field</label>
+              </fieldset>
+
+              <fieldset>
+              <legend>Radios</legend>
+                <input type="radio" name="radio" id="radio1"> <label for="radio1" class="inline">Option1</label><br>
+                <input type="radio" name="radio" id="radio2"> <label for="radio2" class="inline">Option1</label><br>
+                <input type="radio" name="radio" id="radio3"> <label for="radio3" class="inline">Option1</label>
+              </fieldset>
+            </div>
+            <div class="grid-item large--one-third">
+              <label for="textarea1">Textarea</label>
+              <textarea id="textarea1" placeholder="Placeholder text"></textarea>
+
+              <label for="file1">File Field</label>
+              <input id="file1" type="file">
+            </div>
+
+        </div>
+
+        <hr class="hr-small">
+
+        <h4 class="docs-h4">Horizontal</h4>
+        <p class="docs-text">To make form elements flow inline, add a class of <code>.form-horizontal</code> to the parent.</p>
+        <form class="form-horizontal">
+          <div class="grid">
+            <div class="grid-item">
+              <label for="text1">Text Field</label>
+              <input type="text" id="text1" placeholder="First name">
+              <input type="text" id="text2" placeholder="Last name">
+              <select id="select1">
+                <option value="0">-- Choose --</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+              <input type="checkbox" id="checkInline"> <label for="checkInline" class="inline">Checkbox Label</label>
+            </div>
+          </div>
+        </form>
+
+        <hr class="hr-small">
+
+        <h4 class="docs-h4">Input Groups</h4>
+        <ul class="tabs">
+          <li><a href="#inputgroups-example">Example</a></li>
+          <li><a href="#inputgroups-code">Code</a></li>
+        </ul>
+
+        <div id="inputgroups-example" class="tab-content">
+          <div class="grid">
+            <div class="grid-item large--one-half">
+              <h4 class="docs-example">Example 1</h4>
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <input type="submit" class="btn" value="Go">
+                </span>
+                <input type="text" name="q" value="" placeholder="Placeholder" class="input-group-field">
+              </div>
+            </div>
+            <div class="grid-item large--one-half">
+              <h4 class="docs-example">Example 2 | Mailchimp Integration</h4>
+              <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+                <input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field">
+                <span class="input-group-btn">
+                  <input type="submit" class="btn-secondary" value="Subscribe" name="subscribe" id="subscribe">
+                </span>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div id="inputgroups-code" class="tab-content">
+          <h4 class="docs-example">Example 1</h4>
+<pre>
+&lt;div class="input-group"&gt;
+  &lt;span class="input-group-btn"&gt;
+    &lt;input type="submit" class="btn" value="Go"&gt;
+  &lt;/span&gt;
+  &lt;input type="text" name="q" value="" placeholder="Placeholder" class="input-group-field"&gt;
+&lt;/div&gt;
+</pre>
+          <h4 class="docs-example">Example 2 | Mailchimp Integration</h4>
+<pre>
+&lt;form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group"&gt;
+  &lt;input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field"&gt;
+  &lt;span class="input-group-btn"&gt;
+    &lt;input type="submit" class="btn-secondary" value="Subscribe" name="subscribe" id="subscribe"&gt;
+  &lt;/span&gt;
+&lt;/form&gt;
+</pre>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          Buttons
+        ===================================== -->
+        <h2 class="doc-title styleguide-title" id="buttons"><strong>5.3 </strong>Buttons</h2>
+        <p class="docs-text">Timber offers a primary and secondary button to be used or customized as you need.</p>
+
+        <ul class="tabs">
+          <li><a href="#buttons-example">Example</a></li>
+          <li><a href="#buttons-code">Code</a></li>
+        </ul>
+
+        <div id="buttons-example" class="tab-content">
+          <p>
+            <a href="#" class="btn">Default Button</a>
+            <a href="#" class="btn small">Small Default Button</a>
+          </p>
+          <p>
+            <a href="#" class="btn-secondary">Secondary Button</a>
+            <a href="#" class="btn-secondary small">Small Secondary Button</a>
+          </p>
+          <p>
+            <a href="#" class="btn disabled">Disabled Button</a>
+            <a href="#" class="btn disabled small">Small Disabled Button</a>
+          </p>
+          <p>
+            <a href="#" class="btn full">Wide Button</a>
+          </p>
+        </div>
+
+        <div id="buttons-code" class="tab-content">
+<pre>
+&lt;!-- Primary --&gt;
+&lt;a href="#" class="btn"&gt;Default Button&lt;/a&gt;
+&lt;a href="#" class="btn small"&gt;Small Default Button&lt;/a&gt;
+&lt;!-- Secondary --&gt;
+&lt;a href="#" class="btn-secondary"&gt;Secondary Button&lt;/a&gt;
+&lt;a href="#" class="btn-secondary small"&gt;Small Default Button&lt;/a&gt;
+&lt;!-- Disabled --&gt;
+&lt;a href="#" class="btn disabled"&gt;Disabled Button&lt;/a&gt;
+&lt;a href="#" class="btn disabled small"&gt;Small Disabled Button&lt;/a&gt;
+&lt;!-- Sized --&gt;
+&lt;a href="#" class="btn full"&gt;Wide Button&lt;/a&gt;
+</pre>
+        </div>
+
+        <hr>
+
+        <!-- =====================================
+          Notes
+        ===================================== -->
+        <h2 class="doc-title styleguide-title" id="notes"><strong>5.4 </strong>Notes and Errors</h2>
+        <p class="docs-text">Use notes as helpers on forms, or brief messages to your customers.</p>
+
+        <ul class="tabs">
+          <li><a href="#notes-example">Example</a></li>
+          <li><a href="#notes-code">Code</a></li>
+        </ul>
+
+        <div id="notes-example" class="tab-content">
+          <div class="note">
+            This is a standard note
+          </div>
+          <div class="note form-success">
+            This is a success message
+          </div>
+          <div class="note form-error">
+            <p>This is an error message.</p>
+            <ul class="disc">
+              <li>Bullets can offer more insight to the error</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="notes-code" class="tab-content">
+<pre>
+&lt;div class="note"&gt;
+  This is a standard note
+&lt;/div&gt;
+&lt;div class="note form-success"&gt;
+  This is a success message
+&lt;/div&gt;
+&lt;div class="note form-error"&gt;
+  &lt;p>This is an error message.&lt;/p&gt;
+  &lt;ul class="disc"&gt;
+    &lt;li>Bullets can offer more insight to the error&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+        </div>
+
+      </div>
+
+      <div class="grid-item large--one-quarter docs-nav-wrapper">
+        <nav class="docs-nav">
+          <h4 class="docs-h4">Table of Contents</h4>
+          <h5 class="docs-h5"><a href="#who-for">Getting Started</a></h5>
+          <ul id="gettingstartedNav" class="current-section"></ul>
+          <h5 class="docs-h5"><a href="#sass">Grid and Sass</a></h5>
+          <ul id="basicNav"></ul>
+          <h5 class="docs-h5"><a href="#pagination">Shopify Components</a></h5>
+          <ul id="moduleNav"></ul>
+          <h5 class="docs-h5"><a href="#ajax-cart">JavaScript Modules</a></h5>
+          <ul id="jsModuleNav"></ul>
+          <h5 class="docs-h5"><a href="#typography">Style Guide</a></h5>
+          <ul id="styleguideNav"></ul>
+        </nav>
+      </div>
+
+    </div><!-- end .grid -->
+  </div>
+</div>
