@@ -1,6 +1,0 @@
-// tell Sass to treat browser as IE
-// This will force all "up" breakpoints to be included
-$old-ie : true;
-
-// import all other CSS
-@import "main";
