@@ -33,7 +33,7 @@
   #Buttons
   #Pagination
   #Site Header
-  #Site Nav
+  #Site Nav and Dropdowns
   #Site Footer
   #Product Grid and List Views
   #Tag List
@@ -99,6 +99,9 @@ $colorTextGrey: #777;
 
 /* Border colors */
 $borderColor: #e5e5e5;
+
+/* Nav and dropdown link background */
+$colorNav: #f6f6f6;
 
 /* Helper colors */
 $disabledGrey: #f6f6f6;
@@ -789,9 +792,7 @@ ul.square { list-style: square outside; }
 ul.disc { list-style: disc outside; }
 ol.alpha { list-style: lower-alpha outside; }
 ul ul, ul ol,
-ol ol, ol ul { margin: 4px 0 5px 20px; font-size: 90%;  }
-ul ul li, ul ol li,
-ol ol li, ol ul li { margin-bottom: 6px; }
+ol ol, ol ul { margin: 4px 0 5px 20px; }
 li { margin-bottom: 0.25em; }
 .inline-list li { display: inline-block; }
 
@@ -1262,29 +1263,39 @@ a.btn-secondary {
 }
 
 // ==============================================================================
-// #Site Nav
+// #Site Nav and Dropdowns
 // ==============================================================================
 .nav-bar {
-  background-color: #f6f6f6;
+  background-color: $colorNav;
 }
 
 .nav-bar ul {
   margin: 0;
 }
 
-.nav-bar li {
-  display: inline-block;
-  margin: 0;
-}
-
-.nav-bar a {
-  display: block;
-  text-decoration: none;
-  padding: $gutter/2;
-}
-
 .site-nav {
   font-size: 1.2em;
+
+  li {
+    margin: 0;
+    display: block;
+  }
+
+  & > li {
+    position: relative;
+    display: inline-block;
+
+    &:first-child a {
+      padding-left: 0;
+    }
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+    padding: $gutter/2;
+    white-space: nowrap;
+  }
 
   @include at-query($max, $medium) {
     margin: 0 auto;
@@ -1294,9 +1305,26 @@ a.btn-secondary {
   @include at-query($min, $medium) {
     float: left;
   }
+}
 
-  li:first-child a {
-    padding-left: 0;
+// Dropdowns
+.site-nav-dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  z-index: 5;
+
+  .site-nav li:hover & {
+    display: block;
+  }
+
+  a {
+    background-color: $colorNav;
+
+    &:hover,
+    &:active {
+      background-color: darken($colorNav, 10%);
+    }
   }
 }
 
@@ -1485,8 +1513,10 @@ a.btn-secondary {
 // ==============================================================================
 .demo-image {
   background: url('//cdn.shopify.com/s/files/1/0383/9765/t/1/assets/blankslate-producticon.png?4') no-repeat center center #eee;
+  display: block;
   text-align: center;
   padding: 100px 0;
   color: #aaa;
   font-size: 0.875em;
+  text-decoration: none;
 }
