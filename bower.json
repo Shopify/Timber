@@ -12,12 +12,16 @@
     "responsive",
     "front-end"
   ],
+  "main": [
+    "assets/*",
+    "config/*",
+    "layout/*",
+    "snippets/*",
+    "templates/*"
+  ],
   "ignore": [
     ".*"
   ],
-  "dependencies": {
-    "jquery": ">= 1.9.1"
-  },
   "homepage": "https://github.com/Shopify/Timber",
   "authors": [
     "Carson Shold <carson.shold@shopify.com>"
