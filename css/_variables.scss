@@ -1,0 +1,48 @@
+// ==============================================================================
+// Breakpoints (for marketing site)
+// ==============================================================================
+$iebp: 0 !default;
+
+// breakpoint values
+$lap: 480px + $iebp;
+$portable: 768px + $iebp;
+$desk: 1023px + $iebp;
+
+$palm_down: unquote( "max-width: #{$lap}" );
+$lap_up: unquote( "min-width: #{$lap + 1}" );
+$lap_down: unquote( "max-width: #{$portable}" );
+$portable_up: unquote( "min-width: #{$portable + 1}" );
+$portable_down: unquote( "max-width: #{$desk}" );
+$desk_up: unquote( "min-width: #{$desk + 1}" );
+
+
+// ==============================================================================
+// Misc. Global Values
+// ==============================================================================
+$margin: 24px;
+$layout_max_width: 1200px;
+$border_radius: 3px;
+
+$docsFont: "Cabin", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+// ==============================================================================
+// Colours
+// ==============================================================================
+
+$orange: #ef5e1d;
+$orangeLight: #e58b1a;
+$orangeDark: #e36f10;
+$textOnOrange: #ffefb7;
+
+$yellow: #ffea00;
+
+$docGreen: #86bf19;
+$docGreenLight: #eef6e3;
+
+$beige: #f1eae6;
+$beigeBorder: #d3c8bf;
+
+$buttonColor: #8cad32;
+
+$bgOrange: #ff7e00;

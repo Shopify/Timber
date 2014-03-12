@@ -1,0 +1,85 @@
+// Of old-ie isn't already set, set it to false
+$old-ie: false !default;
+
+@mixin ieFallback(){
+  @if $old-ie {
+    @content;
+  }
+}
+
+// Will spit out the media query as is for default stylesheet
+// for ie, will ignore that query unless $makeQueryDefault == true
+// in that case, will spit out contents without the media query wrapper
+@mixin responsify($breakpoint, $makeQueryDefault: false){
+  @if $makeQueryDefault and $old-ie {
+    @content;
+  }
+  @else {
+    @include at-breakpoint($breakpoint) {
+      @content;
+    }
+  }
+}
+@mixin at-breakpoint($point) {
+  @media ( $point ) { @content; }
+}
+
+/*
+ * Helper Function to Convert px to em
+ */
+@function convertEm($target, $context: 14) {
+  @return ($target / $context) * 1em;
+}
+
+/*
+ * Retina Images
+ */
+@mixin hidpi {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) and (min-device-width: 1000px) {
+    @content;
+  }
+}
+
+/*
+ * CLEARFIX
+ * Without empty elements
+ */
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  // *zoom: 1;
+}
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  // *zoom: 1;
+}
+
+
+/*
+ * PAGEWIDTH
+ * Center an element and set its max width to the globally defined max site frame width
+ */
+.pagewidth {
+  margin: 0 auto;
+  max-width: $layout_max_width;
+}
+
+@mixin pagewidth() {
+  margin: 0 auto;
+  max-width: $layout_max_width;
+}
+
+/*
+ * DOCS FONT
+ */
+@mixin docsFont() {
+  font-family: $docsFont;
+  font-weight: 400;
+}

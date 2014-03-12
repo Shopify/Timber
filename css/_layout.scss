@@ -1,0 +1,28 @@
+*, input, :before, :after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// ==============================================================================
+// Pagewidth
+//  - Lock an element to the max content area width
+// ==============================================================================
+.pagewidth {
+  max-width: $layout_max_width;
+  padding: 0 $margin;
+}
+
+.pagemargin {
+  padding: {
+    left: $margin;
+    right: $margin;
+  }
+}
+
+
+html, body {
+  margin: 0;
+  font-size: 14px; // Henseforth known as 1em
+  background: #fff;
+}

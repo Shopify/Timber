@@ -1,19 +1,58 @@
----
-layout: default
-title: Shopify Theme Development Framework - Timber
-description: Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
-canonical: /timber
-version: v1.1.0
----
+<!doctype html>
 
-<div class="cta-wrapper">
+<html>
+  <head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+
+  <title>Shopify Theme Development Framework - Timber</title>
+
+
+
+  <meta name="description" content="Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.">
+
+
+
+  <link rel="canonical" href="http://www.shopify.com/timber">
+
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="st:robots" content="index, follow">
+
+
+
+  <meta property='st:type' content="">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<meta property='st:title' content="Shopify Theme Development Framework - Timber">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+  <link href="css/ie.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+<link href='http://fonts.googleapis.com/css?family=Cabin:400,600' rel='stylesheet' type='text/css'>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  </head>
+    <body>
+
+    <div class="cta-wrapper">
   <header class="pagewidth home-cta">
     <h1 class="home-title">Timber</h1>
     <h2 class="home-subtitle">A faster and easier way to build Shopify themes</h2>
 
-    <a href="https://github.com/Shopify/Timber/archive/{{ page.version }}.zip" title="Download the .zip" class="btn-timber" data-track="Download" data-version="{{ page.version }}">Download Timber Theme</a>
+    <a href="https://github.com/Shopify/Timber/archive/v1.1.0.zip" title="Download the .zip" class="btn-timber" data-track="Download" data-version="v1.1.0">Download Timber Theme</a>
     <p class="docs-text">
-      Latest build: <span class="build-date">{{ page.version }}</span> •
+      Latest build: <span class="build-date">v1.1.0</span> •
       <a href="https://github.com/Shopify/Timber" title="Get the source" class="text-link-on-orange">View Source on Github</a> •
       <a href="https://timber-demo.myshopify.com/" title="See Timber in action" class="text-link-on-orange" data-track="Demo" title="View Demo Store">View Demo Store</a>
     </p>
@@ -88,7 +127,7 @@ version: v1.1.0
           DOWNLOAD TIMBER
         ===================================== -->
         <h2 class="doc-title gettingstarted-title" id="get-started"><strong>1.3 </strong>Download Timber</h2>
-        <p class="docs-text"><a href="https://github.com/Shopify/Timber/archive/{{ page.version }}.zip" class="docs-link" data-track="Download" data-version="{{ page.version }}">Download timber.zip <strong class="docs-strong">{{ page.version }}</strong></a> or clone the latest master branch from <a href="https://github.com/Shopify/Timber" class="docs-link">GitHub</a>:</p>
+        <p class="docs-text"><a href="https://github.com/Shopify/Timber/archive/v1.1.0.zip" class="docs-link" data-track="Download" data-version="v1.1.0">Download timber.zip <strong class="docs-strong">v1.1.0</strong></a> or clone the latest master branch from <a href="https://github.com/Shopify/Timber" class="docs-link">GitHub</a>:</p>
 <pre>
 git clone https://github.com/Shopify/Timber.git
 </pre>
@@ -972,55 +1011,18 @@ Output:
 
         <div id="breadcrumbs-example" class="tab-content">
 
-          <!-- {% unless template == 'index' or template == 'cart' %}
+          <!-- 
           <div class="breadcrumb">
             <a href="/" title="Back to the frontpage">Home</a>
 
-            {% if template contains 'product' %}
-
-              {% if collection %}
-                <span>&raquo;</span>
-                {% if collection.handle %}
-                   {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
-                   {{ collection.title | link_to: url }}
-                {% endif %}
-              {% endif %}
-              <span>&raquo;</span>
-              <span>{{ product.title }}</span>
-
-            {% elsif template contains 'collection' and collection.handle %}
-
-              {% if current_tags %}
-                <span>&raquo;</span>
-                {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
-                {{ collection.title | link_to: url }}
-                <span>&raquo;</span>
-                <span>{{ current_tags.first }}</span>
-              {% else %}
-                <span>&raquo;</span>
-                <span>{{ collection.title }}</span>
-              {% endif %}
-
-            {% elsif template == 'article' %}
-
-              <span>&raquo;</span>
-              {{ blog.title | link_to: blog.url }}
-              <span>&raquo;</span>
-              <span>{{ article.title }}</span>
-
-            {% elsif template contains 'page' %}
+            
 
              <span>&raquo;</span>
-             <span>{{ page.title }}</span>
+             <span></span>
 
-            {% else %}
-
-             <span>&raquo;</span>
-             <span>{{ page_title }}</span>
-
-            {% endif %}
+            
           </div>
-          {% endunless %} -->
+           -->
 
           <div class="breadcrumb">
             <a href="#" title="Back to the frontpage">Home</a>
@@ -1645,3 +1647,58 @@ jQuery(function($) {
     </div><!-- end .grid -->
   </div>
 </div>
+
+
+    <footer class="footer">
+  <div class="footer-large">
+    <div class="pagewidth">
+      <div class="grid">
+
+        <div class="grid-item large--one-quarter medium--one-half push--large--one-sixth">
+          <h4 class="footer-title">Shopify Themes</h4>
+          <div class="grid">
+            <div class="grid-item one-half">
+              <p><a href="https://themes.shopify.com/services/themes/guidelines?ref=Timber" title="Guidlines for selling themes" class="footer-link">Selling Themes</a></p>
+            </div>
+            <div class="grid-item one-half">
+              <p><a href="https://ecommerce.shopify.com/c/ecommerce-design?ref=Timber" title="Meet the community" class="footer-link">Shopify Forums</a></p>
+            </div>
+            <div class="grid-item one-half">
+              <p><a href="http://www.shopify.ca/partners?ref=Timber" title="Earn money from referrals" class="footer-link">Partner Program</a></p>
+            </div>
+            <div class="grid-item one-half">
+              <p><a href="http://docs.shopify.com/themes/liquid-basics?ref=Timber" title="Learn the basics of Liquid templating" class="footer-link">Liquid Basics</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item large--seven-twelfths push--large--one-sixth">
+          <h4 class="footer-title">Feedback</h4>
+          <p>Submit issues on <a href="https://github.com/Shopify/Timber/issues" class="footer-link">Github</a> or send us feedback at <a href="mailto:timber@shopify.com?subject=Timber&nbsp;Feedback" class="footer-link">timber@shopify.com</a>.<br>
+            You can follow us on Twitter <a href="https://twitter.com/ShopifyTimber" title="Follow Us" class="footer-link">@ShopifyTimber</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="pagewidth">
+      <div class="grid">
+        <div class="grid-item large--nine-twelfths">
+          Timber v1.1.0 © by Shopify Inc. Built and maintained by the <a href="mailto:timber@shopify.com" title="Corgis rule" class="footer-link">Themes Team</a>.
+        </div>
+        <div class="grid-item large--three-twelfths">
+          <a href="http://www.shopify.com?ref=Timber" title="Shopify Home" class="shopify-logo large--right">Shopify</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<script src="javascripts/libs/modernizr.min.js"></script>
+<script src="javascripts/libs/waypoints.js"></script>
+<script src="javascripts/timber-site.js"></script>
+
+    </body>
+</html>

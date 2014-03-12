@@ -1,0 +1,56 @@
+// ==============================================================================
+// #Default CTA Button
+// ==============================================================================
+.btn-timber,
+.btn-timber:visited {
+  display: inline-block;
+  background-color: $buttonColor;
+  color: #fff;
+  @include docsFont();
+  font-size: 1.429em;
+  font-weight: 600;
+  text-align: center;
+  padding: $margin/2 $margin*2;
+  margin-bottom: $margin/1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2),inset 0 2px 2px rgba(255,255,255,0.3);
+  border-radius: 2px;
+  @include transition(all 0.1s ease-in-out);
+
+  &:hover {
+    color: #fff;
+    background-color: lighten($buttonColor, 4%);
+  }
+
+  &.full {
+    display: block;
+    width: 100%;
+  }
+
+  @include responsify( $palm_down ) {
+    font-size: 1.1em;
+  }
+}
+
+.btn-timber-small {
+  @extend .btn-timber;
+  padding: $margin/3 $margin;
+  font-size: 1em;
+}
+
+// ==============================================================================
+// #Text Link on Orange
+// ==============================================================================
+.text-link-on-orange,
+.text-link-on-orange:visited {
+  color: $textOnOrange;
+  border-bottom: 1px solid #efb047;
+  text-decoration: none;
+  @include transition(all 0.1s ease-in-out);
+
+  &:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+  }
+}
