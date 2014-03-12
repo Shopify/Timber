@@ -34,7 +34,6 @@
 // JQUERY API (c) Copyright 2009 Jaded Pixel. Author: Caroline Schnapp. All Rights Reserved. Includes slight modifications to addItemFromForm
 
 if ((typeof Shopify) === 'undefined') { Shopify = {}; }
-Shopify.money_format = '${{amount}}';
 
 // -------------------------------------------------------------------------------------
 // API Helper Functions
@@ -272,7 +271,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Default settings
     settings = {
-      debug: true,
+      debug: false,
       method: 'drawer', // Method options are drawer, modal, and flip. Default is drawer.
       formSelector: 'form[action="/cart/add"]',
       addToCartSelector: 'input[type="submit"]',
@@ -281,7 +280,8 @@ var ajaxifyShopify = (function(module, $) {
       toggleCartButton: null,
       btnClass: null,
       wrapperClass: null,
-      useCartTemplate: false
+      useCartTemplate: false,
+      moneyFormat: '${{amount}}'
     };
 
     // Override defaults with arguments
@@ -343,7 +343,7 @@ var ajaxifyShopify = (function(module, $) {
       $cartCountSelector.html(cart.item_count);
     }
     if ($cartCostSelector) {
-      $cartCostSelector.html(Shopify.formatMoney(cart.total_price));
+      $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
     }
   };
 
@@ -668,7 +668,7 @@ var ajaxifyShopify = (function(module, $) {
         itemAdd: itemAdd,
         itemMinus: itemMinus,
         itemQty: itemQty,
-        price: Shopify.formatMoney(cartItem.price)
+        price: Shopify.formatMoney(cartItem.price, settings.moneyFormat)
       };
 
       items.push(item);
@@ -677,7 +677,7 @@ var ajaxifyShopify = (function(module, $) {
     // Gather all cart data and add to DOM
     data = {
       items: items,
-      totalPrice: Shopify.formatMoney(cart.total_price),
+      totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat),
       btnClass: $btnClass
     }
     $cartContainer.append(template(data));

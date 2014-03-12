@@ -160,7 +160,8 @@
       cartCostSelector: '#cartCost', // Update the total cart cost when a product is added. Default is null.
       toggleCartButton: '#cartToggle', // To toggle drawer/modal cart, include the selector here. Default is null and will take you to /cart page.
       useCartTemplate: true, // True to use cart.liquid markup. Default is false and uses handlebars.js for template.
-      btnClass: 'btn' // Your main button class for styling purposes if useCartTemplate is set to false. Default is null.
+      btnClass: 'btn', // Your main button class for styling purposes if useCartTemplate is set to false. Default is null.
+      moneyFormat: {{ shop.money_format | json }} // Your shop money format, defined in liquid.
     });
   });
   </script>
