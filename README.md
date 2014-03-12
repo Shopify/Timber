@@ -17,6 +17,8 @@ Documentation
 ---------------------
 Visit the [Timber's Documentation](http://shopify.com/timber) page to find out more about the templates, liquid tags, CSS framework, and JavaScript modules included.
 
+Timber's documentation is hosted on [GitHub Pages](http://pages.github.com/). View the raw files in the [gh-pages branch](https://github.com/Shopify/Timber/tree/gh-pages). Please report any discrepancies, bugs, or requests in [issues](https://github.com/Shopify/Timber/issues).
+
 Demo Stores
 ---------------------
 - [Demo Store](https://timber-demo.myshopify.com/): A store setup with some products, blog posts, and customer accounts
