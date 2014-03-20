@@ -53,13 +53,13 @@ Basic structure
 │   └── if using the theme gem (see link under Additional Resources)
 ```
 
-Community
+Support
 ---------------------
 Get involved with Timber or follow along with updates and news.
 
-- Follow [@ShopifyTimber on Twitter](http://twitter.com/ShopifyTimber).
-- Provide Feedback timber@shopify.com.
-- Track issues here on GitHub.
+- Track all issues and feature requests here on GitHub.
+- Follow author [@cshold on Twitter](http://twitter.com/cshold).
+- Provide feedback at timber@shopify.com.
 
 Additional resources
 ---------------------
