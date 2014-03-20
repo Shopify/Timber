@@ -651,7 +651,9 @@ body {
 }
 
 .main-content {
-  padding: $gutter*2 $gutter;
+  display: block;
+  padding-top: $gutter*2;
+  padding-bottom: $gutter*2;
 }
 
 .left { float: left; }
@@ -1023,12 +1025,18 @@ label.error {
 .input-group-field,
 .input-group-btn {
   display: table-cell;
-  vertical-align: top;
+  vertical-align: middle;
   margin: 0;
 }
 
-.input-group-field {
+.input-group .btn,
+.input-group .input-group-field {
+  height: 37px;
+}
+
+.input-group .input-group-field {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .input-group-btn {

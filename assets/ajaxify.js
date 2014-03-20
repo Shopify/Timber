@@ -135,9 +135,9 @@ Shopify.updateCartNote = function(note, callback) {
 Shopify.onError = function(XMLHttpRequest, textStatus) {
   var data = eval('(' + XMLHttpRequest.responseText + ')');
   if (!!data.message) {
-    // alert(data.message + '(' + data.status  + '): ' + data.description);
+    alert(data.message + '(' + data.status  + '): ' + data.description);
   } else {
-    // alert('Error : ' + Shopify.fullMessagesFromErrors(data).join('; ') + '.');
+    alert('Error : ' + Shopify.fullMessagesFromErrors(data).join('; ') + '.');
   }
 };
 
@@ -547,12 +547,16 @@ var ajaxifyShopify = (function(module, $) {
     Shopify.getCart(cartUpdateCallback);
   };
 
-  itemErrorCallback = function (error) {
+  itemErrorCallback = function (XMLHttpRequest, textStatus) {
     switch (settings.method) {
       case 'flip':
         $flipContainer.removeClass('flip--is-loading');
         break;
     }
+
+    // This is where you handle errors of products being added to the cart.
+    // Default to alert message for errors.
+    Shopify.onError(XMLHttpRequest, textStatus);
   };
 
   cartUpdateCallback = function (cart) {
