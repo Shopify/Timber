@@ -1416,6 +1416,7 @@ jQuery(function($) {
 
         <h4 class="docs-h4">Horizontal</h4>
         <p class="docs-text">To make form elements flow inline, add a class of <code>.form-horizontal</code> to the parent.</p>
+        <p class="docs-text">You cannot add a class directly to most liquid form elements (e.g. <code>{%raw%}{% form 'contact' %}{%endraw%}</code>). Instead, wrap the form in a div with the class <code>.form-horizontal</code> to achieve the same effect.</p>
         <form class="form-horizontal">
           <div class="grid">
             <div class="grid-item">
