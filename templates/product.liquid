@@ -119,7 +119,7 @@
             Optionally show the 'compare at' or original price of the product.
           {% endcomment %}
           {% if product.compare_at_price > product.price %}
-            <strong>
+            <strong class="h2">
               <span id="productPrice" class="on-sale" itemprop="price">
                 {{ product.price | money }}
               </span>
@@ -129,7 +129,7 @@
               {{ product.compare_at_price_max | money }}
             </small>
           {% else %}
-          <strong>
+          <strong class="h2">
               <span id="productPrice" itemprop="price">
                 {{ product.price | money }}
               </span>
@@ -241,7 +241,7 @@ jQuery(function($) {
   {% if product.options.size == 1 and product.options.first != 'Title' %}
     $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
   {% endif %}
-  
+
   // Hide selectors if we only have 1 variant and its title contains 'Default'.
   {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
     $('.selector-wrapper').hide();
