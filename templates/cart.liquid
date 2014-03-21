@@ -23,11 +23,11 @@
           <div class="grid">
 
             <div class="grid-item one-third">
-              <h5>Quantity</h5>
+              Quantity
             </div>
 
             <div class="grid-item two-thirds">
-              <h5>Price <small>(each)</small></h5>
+              Price <small>(each)</small>
             </div>
 
           </div>
@@ -67,7 +67,7 @@
               Below they've been separated for styling purposes.
             {% endcomment %}
             <div class="grid-item two-thirds">
-              <h5>
+              <h2>
                 <a href="{{ item.product.url }}">
                   {{ item.product.title }}
 
@@ -78,12 +78,12 @@
                     {% endunless %}
                   {% endif %}
                 </a>
-              </h5>
+              </h2>
 
               {% comment %}
                 Optional, add the vendor
               {% endcomment %}
-              <h6>Vendor: <em>{{ item.vendor }}</em></h6>
+              Vendor: <em>{{ item.vendor }}</em>
 
               {% comment %}
                 Optional, loop through custom product line items if available
@@ -135,7 +135,7 @@
             </div>
 
             <div class="grid-item one-third small--one-whole text-right">
-              <h5>{{ item.price | money }}</h5>
+              {{ item.price | money }}
             </div>
 
           </div>
@@ -167,7 +167,7 @@
 
         <div class="grid-item text-right {% if settings.cart_notes %}large--one-half{% endif %}">
 
-          <h5>Subtotal <em>{{ cart.total_price | money }}</em></h5>
+          <h3>Subtotal <em>{{ cart.total_price | money }}</em></h3>
 
           {% comment %}
             name="update" is required for the update button to work
@@ -200,7 +200,7 @@
     Do something fun here, it's a great chance to show your company's human side.
   {% endcomment %}
 
-  <h4>It appears that your cart is currently empty!</h4>
+  <h2>It appears that your cart is currently empty!</h2>
   <p>You can continue browsing <a href="/collections/all">here</a>.</p>
 
 {% endif %}

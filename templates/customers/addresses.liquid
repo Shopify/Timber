@@ -22,7 +22,7 @@
   <div class="grid-item large--two-thirds push--large--one-sixth">
 
     <header class="page-header">
-      <h2 class="large--left">My Account</h2>
+      <h1 class="large--left">My Account</h2>
       <p class="large--right">
         <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a>
       </p>
@@ -37,7 +37,7 @@
       {% form 'customer_address', customer.new_address %}
 
         <header class="page-header">
-          <h3>Add a new address</h3>
+          <h2>Add a new address</h2>
         </header>
 
         <div class="grid">
@@ -99,7 +99,7 @@
     </div>
 
     <header class="page-header">
-      <h4>Address Book</h4>
+      <h2>Customer Address Book</h2>
     </header>
 
     {% comment %}
@@ -109,10 +109,10 @@
     {% paginate customer.addresses by 5 %}
       {% for address in customer.addresses %}
 
-        <h5>
+        <h3>
           {{ address.first_name | capitalize }} {{address.last_name | capitalize }}
           {% if address == customer.default_address %}<em>(default)</em>{% endif %}
-        </h5>
+        </h3>
 
         <p>
           {{ address.company }}<br>
@@ -134,7 +134,7 @@
           {% form 'customer_address', address %}
 
             <header class="page-header">
-              <h3>Edit address</h3>
+              <h4>Edit address</h4>
             </header>
 
             <div class="grid">

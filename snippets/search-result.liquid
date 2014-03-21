@@ -32,27 +32,25 @@
     If we don't have a featured_image, add a push-- class to keep the alignment the same
   {% endcomment %}
   <div class="grid-item two-thirds {% unless item.featured_image %}push--one-third{% endunless %}">
-    <h4>{{ item.title | link_to: item.url }}</h4>
+    <h3>{{ item.title | link_to: item.url }}</h3>
 
     {% comment %}
       To show the price, let's pull what was already done on the product page,
       but change product to item.
     {% endcomment %}
-    <h5>
-      {% if item.compare_at_price > item.price %}
-        <span class="on-sale" itemprop="price">
-          {{ item.price | money }}
-        </span>
-        <small>
-          Compare at:
-          {{ item.compare_at_price_max | money }}
-        </small>
-      {% else %}
-        <span itemprop="price">
-          {{ item.price | money }}
-        </span>
-      {% endif %}
-    </h5>
+    {% if item.compare_at_price > item.price %}
+      <span class="on-sale" itemprop="price">
+        {{ item.price | money }}
+      </span>
+      <small>
+        Compare at:
+        {{ item.compare_at_price_max | money }}
+      </small>
+    {% else %}
+      <span itemprop="price">
+        {{ item.price | money }}
+      </span>
+    {% endif %}
 
     {% comment %}
       Get a brief excerpt of raw text from the page/product
