@@ -44,7 +44,9 @@
     {% comment %}
       Loop through available payment methods and show their icons.
     {% endcomment %}
-    <h3>Accepted Payments</h3>
+    {% if shop.enabled_payment_types != empty %}
+      <h4 class="text-center">Accepted Payments</h4>
+    {% endif %}
     <ul class="inline-list payment-icons text-center">
       {% for type in shop.enabled_payment_types %}
       <li>
