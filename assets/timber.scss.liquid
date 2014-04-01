@@ -677,6 +677,7 @@ select {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
+  -webkit-appearance: none;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -898,7 +899,7 @@ input[type="password"],
 input[type="email"],
 input[type="file"],
 input[type="number"],
-input[type="telephone"],
+input[type="tel"],
 textarea,
 select {
   border: 1px solid $borderColor;
@@ -965,7 +966,7 @@ form.form-horizontal,
   input[type="email"],
   input[type="file"],
   input[type="number"],
-  input[type="telephone"],
+  input[type="tel"],
   textarea,
   select {
     display: inline-block;
@@ -980,7 +981,7 @@ input[type="password"],
 input[type="email"],
 input[type="file"],
 input[type="number"],
-input[type="telephone"],
+input[type="tel"],
 textarea {
   &.error {
     border-color: $errorRed;
@@ -1070,6 +1071,7 @@ a.btn {
   -ms-user-select:     none;
   -o-user-select:      none;
   user-select:         none;
+  -webkit-appearance: none;
   border-radius: $radius;
 
   &.small {

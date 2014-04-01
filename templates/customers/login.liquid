@@ -42,7 +42,7 @@
       {% include 'form-errors-custom' %}
 
       <label for="customer_email">Email Address</label>
-      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="your-email@shopify.com" {% if form.errors contains "email" %} class="error"{% endif %}>
+      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="your-email@shopify.com" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off">
 
       {% if form.password_needed %}
 
@@ -92,7 +92,7 @@
         {% endif %}
 
         <label for="recover-email">Email</label>
-        <input type="email" value="" name="email" id="recover-email" placeholder="your-email@shopify.com">
+        <input type="email" value="" name="email" id="recover-email" placeholder="your-email@shopify.com" autocorrect="off" autocapitalize="off">
 
         <div class="text-center">
           <p>
