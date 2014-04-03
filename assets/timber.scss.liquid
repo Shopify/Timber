@@ -1,5 +1,5 @@
 /*
-* Shopify Timber v1.0
+* Shopify Timber v1.1.2
 * Copyright 2014 Shopify Inc.
 * Author Carson Shold @cshold
 * Built with Sass - http://sass-lang.com/
@@ -204,9 +204,8 @@ $pull:               false;
   clear: both;
 }
 
+body {background-color: pink;}
 
-
-/* You do not need to edit anything from this line onward; csswizardry-grids is good to go. Happy griddin’! */
 $class-type: unquote(".");
 
 @if $use-silent-classes == true {
@@ -230,13 +229,13 @@ $class-type: unquote(".");
   }
 
   @if $breakpoint-found == false{
-    @warn "Breakpoint ‘#{$media-query}’ does not exist";
+    @warn "Breakpoint '#{$media-query}' does not exist";
   }
 }
 
 
 /**
- * Drop relative positioning into silent classes which can’t take advantage of
+ * Drop relative positioning into silent classes which can't take advantage of
  * the `[class*="push--"]` and `[class*="pull--"]` selectors.
  */
 @mixin silent-relative() {
@@ -252,7 +251,7 @@ $class-type: unquote(".");
 /**
  * 1. Allow the grid system to be used on lists.
  * 2. Remove any margins and paddings that might affect the grid system.
- * 3. Apply a negative `margin-left` to negate the columns’ gutters.
+ * 3. Apply a negative `margin-left` to negate the columns' gutters.
  */
 #{$class-type}grid,
 #{$class-type}grid-uniform {
@@ -677,7 +676,6 @@ select {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
-  -webkit-appearance: none;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -864,6 +862,14 @@ img.auto,
 form {
   margin-bottom: $gutter;
 }
+
+.btn,
+button,
+input,
+textarea {
+  -webkit-appearance: none;
+}
+
 input,
 textarea,
 select,
