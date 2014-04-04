@@ -1,5 +1,5 @@
 /*
-* Shopify Timber v1.0
+* Shopify Timber v1.1.2
 * Copyright 2014 Shopify Inc.
 * Author Carson Shold @cshold
 * Built with Sass - http://sass-lang.com/
@@ -204,9 +204,8 @@ $pull:               false;
   clear: both;
 }
 
+body {background-color: pink;}
 
-
-/* You do not need to edit anything from this line onward; csswizardry-grids is good to go. Happy griddin’! */
 $class-type: unquote(".");
 
 @if $use-silent-classes == true {
@@ -230,13 +229,13 @@ $class-type: unquote(".");
   }
 
   @if $breakpoint-found == false{
-    @warn "Breakpoint ‘#{$media-query}’ does not exist";
+    @warn "Breakpoint '#{$media-query}' does not exist";
   }
 }
 
 
 /**
- * Drop relative positioning into silent classes which can’t take advantage of
+ * Drop relative positioning into silent classes which can't take advantage of
  * the `[class*="push--"]` and `[class*="pull--"]` selectors.
  */
 @mixin silent-relative() {
@@ -252,7 +251,7 @@ $class-type: unquote(".");
 /**
  * 1. Allow the grid system to be used on lists.
  * 2. Remove any margins and paddings that might affect the grid system.
- * 3. Apply a negative `margin-left` to negate the columns’ gutters.
+ * 3. Apply a negative `margin-left` to negate the columns' gutters.
  */
 #{$class-type}grid,
 #{$class-type}grid-uniform {
@@ -651,7 +650,9 @@ body {
 }
 
 .main-content {
-  padding: $gutter*2 $gutter;
+  display: block;
+  padding-top: $gutter*2;
+  padding-bottom: $gutter*2;
 }
 
 .left { float: left; }
@@ -677,7 +678,8 @@ select {
   -webkit-text-size-adjust: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: $headerFontStack;
   font-weight: normal;
   margin-bottom: 10px;
@@ -693,15 +695,16 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+.h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a { font-weight: inherit; }
 
 // Pixel to EM conversion tool http://pxtoem.com/
-h1 { font-size: 3em; }       // 42px
-h2 { font-size: 2.429em; }   // 34px
-h3 { font-size: 2em; }       // 28px
-h4 { font-size: 1.429em; }   // 20px
-h5 { font-size: 1.143em; }   // 16px
-h6 { font-size: 1em; }       // 14px
+h1, .h1 { font-size: 3em; }       // 42px
+h2, .h2 { font-size: 2.429em; }   // 34px
+h3, .h3 { font-size: 2em; }       // 28px
+h4, .h4 { font-size: 1.429em; }   // 20px
+h5, .h5 { font-size: 1.143em; }   // 16px
+h6, .h6 { font-size: 1em; }       // 14px
 
 p { margin: 0 0 0.75em 0; }
 p img { margin: 0; }
@@ -859,6 +862,14 @@ img.auto,
 form {
   margin-bottom: $gutter;
 }
+
+.btn,
+button,
+input,
+textarea {
+  -webkit-appearance: none;
+}
+
 input,
 textarea,
 select,
@@ -894,7 +905,7 @@ input[type="password"],
 input[type="email"],
 input[type="file"],
 input[type="number"],
-input[type="telephone"],
+input[type="tel"],
 textarea,
 select {
   border: 1px solid $borderColor;
@@ -961,7 +972,7 @@ form.form-horizontal,
   input[type="email"],
   input[type="file"],
   input[type="number"],
-  input[type="telephone"],
+  input[type="tel"],
   textarea,
   select {
     display: inline-block;
@@ -976,7 +987,7 @@ input[type="password"],
 input[type="email"],
 input[type="file"],
 input[type="number"],
-input[type="telephone"],
+input[type="tel"],
 textarea {
   &.error {
     border-color: $errorRed;
@@ -1023,12 +1034,18 @@ label.error {
 .input-group-field,
 .input-group-btn {
   display: table-cell;
-  vertical-align: top;
+  vertical-align: middle;
   margin: 0;
 }
 
-.input-group-field {
+.input-group .btn,
+.input-group .input-group-field {
+  height: 37px;
+}
+
+.input-group .input-group-field {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .input-group-btn {
@@ -1060,6 +1077,7 @@ a.btn {
   -ms-user-select:     none;
   -o-user-select:      none;
   user-select:         none;
+  -webkit-appearance: none;
   border-radius: $radius;
 
   &.small {
@@ -1380,6 +1398,10 @@ a.btn-secondary {
   }
 }
 
+// We use SVG images for the credit card icons, and SVG is not supported in IE8.
+.lt-ie9 .payment-icons {
+  display: none;
+}
 
 // ==============================================================================
 // #Product Grid and List Views
