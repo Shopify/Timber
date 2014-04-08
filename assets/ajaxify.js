@@ -474,12 +474,14 @@ var ajaxifyShopify = (function(module, $) {
 
     // Position the caret
     function positionCaret() {
-      // Get the position of the toggle button to align the carat with
-      var togglePos = $toggleCartButton.offset(),
-          toggleWidth = $toggleCartButton.outerWidth(),
-          toggleMiddle = togglePos.left + toggleWidth/2;
+      if ($toggleCartButton.offset()) {
+        // Get the position of the toggle button to align the carat with
+        var togglePos = $toggleCartButton.offset(),
+            toggleWidth = $toggleCartButton.outerWidth(),
+            toggleMiddle = togglePos.left + toggleWidth/2;
 
-      $drawerCaret.css('left', toggleMiddle + 'px');
+        $drawerCaret.css('left', toggleMiddle + 'px');
+      }
     }
   };
 
