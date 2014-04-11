@@ -624,7 +624,7 @@ var ajaxifyShopify = (function(module, $) {
     // Show empty cart
     if (cart.item_count <= 0) {
       $cartContainer.empty();
-      $cartContainer.append('<h2>You cart is empty</h2>');
+      $cartContainer.append('<h2>Your cart is empty</h2>');
       sizeDrawer();
 
       if (!$drawerContainer.hasClass('is-visible') && cartInit) {
