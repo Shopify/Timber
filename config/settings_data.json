@@ -4,6 +4,7 @@
     "Default": {
       "use_logo": false,
       "enable_opengraph": true,
+      "enable_richpins": true,
       "enable_twittercards": true,
       "customer_layout": "theme",
       "footer_display_contact": true,
