@@ -51,9 +51,10 @@
   {% endif %}
 
   {% comment %}
-    Theme dependent JS is loaded at the very bottom of this file for performance reasons
+    Theme dependent JS is loaded at the very bottom of this file for performance reasons.
+    However, jQuery is included here so that it can be used inside the templates, e.g. in product.liquid.
   {% endcomment %}
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
 
 </head>
 

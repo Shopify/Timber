@@ -189,8 +189,14 @@
   product variants are accessible, so doesn't need to live in theme.liquid.
 
   Currently, the code below does:
-    - Overwrites your <select> tag from above
-    - Breaks out the product variants into separate fields, if more than one exists
+    - Hides your <select> tag from above
+    - Breaks out the product variants into separate product options, if more than one exists
+    - Generates a <select> tag for each product option
+      
+  Don't place your selectCallback function in a DOM-ready handler. Keep the function available
+  to the global scope - window.selectCallback - so that advanced add-ons can override it, e.g.
+  multiple currencies:
+  http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies
 {% endcomment %}
 
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
@@ -205,11 +211,11 @@ var selectCallback = function(variant, selector) {
   if (variant) {
     if (variant.available) {
       // We have a valid product variant, so enable the submit button
-      addToCart.removeClass('disabled').removeAttr('disabled').val('Add to Cart');
+      addToCart.removeClass('disabled').prop('disabled', false).val('Add to Cart');
 
     } else {
       // Variant is sold out, disable the submit button
-      addToCart.val('Sold Out').addClass('disabled').attr('disabled', 'disabled');
+      addToCart.val('Sold Out').addClass('disabled').prop('disabled', true);
     }
 
     // Regardless of stock, update the product price
@@ -226,7 +232,7 @@ var selectCallback = function(variant, selector) {
 
   } else {
     // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anyway
-    addToCart.val('Unavailable').addClass('disabled').attr('disabled', 'disabled');
+    addToCart.val('Unavailable').addClass('disabled').prop('disabled', true);
   }
 };
 
