@@ -95,8 +95,7 @@
               - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
 
           {% endcomment %}
-          <label for="productSelect">Select Product</label>
-          <select name="id" id="productSelect">
+          <select name="id" id="productSelect" class="product-variants">
             {% for variant in product.variants %}
               {% if variant.available %}
 
@@ -189,8 +188,14 @@
   product variants are accessible, so doesn't need to live in theme.liquid.
 
   Currently, the code below does:
-    - Overwrites your <select> tag from above
-    - Breaks out the product variants into separate fields, if more than one exists
+    - Hides your <select> tag from above
+    - Breaks out the product variants into separate product options, if more than one exists
+    - Generates a <select> tag for each product option
+
+  Callback notes:
+    - Keep the callback available to the global scope (window.selectCallback) so that advanced
+      addons can override it.
+      * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
 {% endcomment %}
 
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
@@ -205,11 +210,11 @@ var selectCallback = function(variant, selector) {
   if (variant) {
     if (variant.available) {
       // We have a valid product variant, so enable the submit button
-      addToCart.removeClass('disabled').removeAttr('disabled').val('Add to Cart');
+      addToCart.removeClass('disabled').prop('disabled', false).val('Add to Cart');
 
     } else {
       // Variant is sold out, disable the submit button
-      addToCart.val('Sold Out').addClass('disabled').attr('disabled', 'disabled');
+      addToCart.val('Sold Out').addClass('disabled').prop('disabled', true);
     }
 
     // Regardless of stock, update the product price
@@ -226,7 +231,7 @@ var selectCallback = function(variant, selector) {
 
   } else {
     // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anyway
-    addToCart.val('Unavailable').addClass('disabled').attr('disabled', 'disabled');
+    addToCart.val('Unavailable').addClass('disabled').prop('disabled', true);
   }
 };
 

@@ -44,9 +44,8 @@
     {% comment %}
       Loop through available payment methods and show their icons.
     {% endcomment %}
-    {% if shop.enabled_payment_types != empty %}
-      <h4 class="text-center">Accepted Payments</h4>
-    {% endif %}
+    {% unless shop.enabled_payment_types == empty %}
+    <h4 class="text-center">Accepted Payments</h4>    
     <ul class="inline-list payment-icons text-center">
       {% for type in shop.enabled_payment_types %}
       <li>
@@ -54,6 +53,7 @@
       </li>
       {% endfor %}
     </ul>
+    {% endunless %}
 
     <p class="text-center">
       <a href="">Timber v1.0</a> by <a href="http://www.shopify.com?ref=Timber">Shopify</a><br>

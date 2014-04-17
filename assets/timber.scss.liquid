@@ -659,6 +659,7 @@ body {
 .right { float: right; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }
+.hidden { display: none; }
 
 
 // ==============================================================================
@@ -1450,6 +1451,14 @@ a.btn-secondary {
 // ==============================================================================
 .product-price {
   font-weight: bold;
+}
+
+.product-variants {
+  display: none;
+
+  .no-js & {
+    display: block;
+  }
 }
 
 .product-photo-container {
