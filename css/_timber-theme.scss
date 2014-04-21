@@ -1,5 +1,5 @@
 /*
-* Shopify Timber v1.1.2
+* Shopify Timber
 * Copyright 2014 Shopify Inc.
 * Author Carson Shold @cshold
 * Built with Sass - http://sass-lang.com/
@@ -659,6 +659,7 @@ body {
 .right { float: right; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }
+.hidden { display: none; }
 
 
 // ==============================================================================
@@ -1450,6 +1451,14 @@ a.btn-secondary {
 // ==============================================================================
 .product-price {
   font-weight: bold;
+}
+
+.product-variants {
+  display: none;
+
+  .no-js & {
+    display: block;
+  }
 }
 
 .product-photo-container {
