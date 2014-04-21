@@ -273,7 +273,7 @@ var ajaxifyShopify = (function(module, $) {
     settings = {
       debug: false,
       method: 'drawer', // Method options are drawer, modal, and flip. Default is drawer.
-      formSelector: 'form[action="/cart/add"]',
+      formSelector: 'form[action^="/cart/add"]',
       addToCartSelector: 'input[type="submit"]',
       cartCountSelector: null,
       cartCostSelector: null,

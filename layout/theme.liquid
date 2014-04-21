@@ -154,7 +154,7 @@
     ajaxifyShopify.init({
       method: '{{ settings.ajax_cart_method }}', // Method options are drawer, modal, and flip. Default is drawer.
       wrapperClass: 'wrapper', // The class that defines your site width. Default is null.
-      formSelector: '#addToCartForm', // Default is form[action="/cart/add"].
+      formSelector: '#addToCartForm', // Default is form[action^="/cart/add"].
       addToCartSelector: '#addToCart', // Default is input[type="submit"] within 'formSelector'.
       cartCountSelector: '#cartCount', // Update number of items in the cart when a product is added. Default is null.
       cartCostSelector: '#cartCost', // Update the total cart cost when a product is added. Default is null.

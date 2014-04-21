@@ -139,7 +139,8 @@ $quantityTextColor: #fff;
 // ==============================================================================
 // Ajaxify Flip
 // ==============================================================================
-form[action="/cart/add"] {
+form[action="/cart/add"],
+form[action^="/cart/add"] {
   @include clearfix;
 }
 
