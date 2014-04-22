@@ -697,8 +697,6 @@ h1, h2, h3, h4, h5, h6,
   display: block;
   font-family: $headerFontStack;
   font-weight: normal;
-  margin-bottom: 10px;
-  margin-top: 0.2em;
   margin-bottom: 0.5em;
   line-height: 1.4;
 
@@ -708,6 +706,11 @@ h1, h2, h3, h4, h5, h6,
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  // Add some top margin to headers from the rich text editor
+  .rte & {
+    margin-top: 0.2em;
   }
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,

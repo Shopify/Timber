@@ -1,15 +1,20 @@
-// (c) Copyright 2013 Jaded Pixel. Author: Carson Shold (@cshold). All Rights Reserved.
-
 /*
- * Ajaxify Shopify
- *
- * Ajaxify the add to cart experience and flip the button so it looks cool,
- * show the cart in a modal, or a 3D drawer.
- *
- * This file includes
- *    - Sass helpers
- *    - Colour variables to customize
- *    - Ajaxify styles
+* Shopify Ajax Cart
+* Copyright 2014 Shopify Inc.
+* Author Carson Shold @cshold
+* Built with Sass - http://sass-lang.com/
+
+* Some things to know about this file:
+    - This file uses the same grid as timber.scss.liquid.
+      - If you want to use this separately, please include the following sections from timber.scss.liquid:
+        * #Breakpoint and Grid Variables
+        * #Grid Setup
+      - You may need to massage the code so it doesn't reference any non-existent mixins.
+*
+* This file includes
+*    - Sass helpers
+*    - Colour variables to customize
+*    - Styles for cart drawer, modal, and the flipped add to cart button
 */
 
 // ==============================================================================
@@ -254,14 +259,15 @@ form[action^="/cart/add"] {
     @include transition(all 550ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
   }
 
-  * {
-    @include border-box();
+  form {
+    margin-bottom: 0;
   }
 }
 
 // Row and column spacing
 .ajaxifyCart--products {
   padding-bottom: 10px;
+  margin-bottom: 20px;
   border-bottom: 1px solid $ajaxifyGreyDark;
 }
 
@@ -289,105 +295,28 @@ form[action^="/cart/add"] {
 }
 
 .ajaxifyCart--row {
-  display: table;
-  width: 100%;
   clear: both;
   @include clearfix;
-
-  & > div {
-    padding-left: 45px;
-    display: table-cell;
-    vertical-align: middle;
-
-    &:first-child {
-      padding-left: 0;
-    }
-
-    &.ajaxifyCart--col1 {
-      padding-left: 20px;
-    }
-  }
-
-  &.ajaxifyCart--summary {
-
-    & > div {
-      padding-top: 20px;
-    }
-  }
-}
-
-.ajaxifyCart--row {
-
-  // General typography
-  h1, h2, h3, h4, h5, p {
-    margin: 0;
-  }
-
-  p {
-    font-size: 16px;
-  }
 
   a {
     text-decoration: none;
 
     &.ajaxifyCart--remove {
       text-decoration: underline;
-      font-size: 12px;
     }
   }
 }
 
-.ajaxifyCart--col2,
-.ajaxifyCart--col3,
-.ajaxifyCart--col4 {
-  text-align: right;
-}
-
-
-// Default column widths
-.ajaxifyCart--media {
-  width: 7%;
-
-  & > a {
-    display: block;
-    overflow: hidden;
-    height: 80px;
-  }
+.ajaxCart--product-image {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 15px;
 
   img {
     display: block;
+    margin: 0 auto;
+    max-width: 100%;
   }
-}
-
-.ajaxifyCart--col1 {
-  width: 48%;
-}
-
-.ajaxifyCart--col2 {
-  width: 14%;
-}
-
-.ajaxifyCart--col3 {
-  width: 15%;
-}
-
-.ajaxifyCart--col4 {
-  text-align: center;
-  width: 16%;
-
-  input[type="submit"] {
-    margin: 0;
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-  }
-}
-
-.ajaxifyCart--total {
-  width: 69%;
-  text-align: right;
-  color: $ajaxifyGrey;
 }
 
 
@@ -569,26 +498,6 @@ form[action^="/cart/add"] {
 
   .ajaxifyCart--products {
     border-bottom-color: $ajaxifyGreyLight;
-  }
-
-  .ajaxifyCart--col1 {
-    width: 36%;
-  }
-
-  .ajaxifyCart--col2 {
-    width: 17%;
-  }
-
-  .ajaxifyCart--col3 {
-    width: 17%;
-  }
-
-  .ajaxifyCart--col4 {
-    width: 23%;
-  }
-
-  .ajaxifyCart--total {
-    width: 60%;
   }
 
   // Quantity selectors

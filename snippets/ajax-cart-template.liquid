@@ -13,40 +13,45 @@
         {{#items}}
         <div class="ajaxifyCart--product">
           <div class="ajaxifyCart--row" data-id="{{id}}">
-            <div class="ajaxifyCart--media">
-              <a href="{{url}}"> <img src="{{img}}" width="60" alt=""></a>
-            </div>
-            <div class="ajaxifyCart--col1">
-              <p><a href="{{url}}">{{name}}</a></p>
-              <p><small>{{variation}}</small></p>
-            </div>
-            <div class="ajaxifyCart--col2">
-              <div class="ajaxifyCart--qty">
-                <input type="text" class="ajaxifyCart--num" value="{{itemQty}}" min="0" data-id="{{id}}" aria-label="quantity" pattern="[0-9]*">
-                <span class="ajaxifyCart--qty-adjuster ajaxifyCart--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
-                <span class="ajaxifyCart--qty-adjuster ajaxifyCart--minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
+            <div class="grid">
+              <div class="grid-item large--two-thirds">
+                <div class="grid">
+                  <div class="grid-item one-quarter">
+                    <a href="{{url}}" class="ajaxCart--product-image"><img src="{{img}}" alt=""></a>
+                  </div>
+                  <div class="grid-item three-quarters">
+                    <a href="{{url}}" class="h4">{{name}}</a>
+                    <p>{{variation}}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="ajaxifyCart--col3">
-              <p>{{price}}</p>
-            </div>
-            <div class="ajaxifyCart--col4">
-              <p><a href="/cart/change?id={{id}}&amp;quantity=0" class="ajaxifyCart--remove" data-id="{{id}}">Remove from cart</a></p>
+              <div class="grid-item large--one-third">
+                <div class="grid">
+                  <div class="grid-item one-third">
+                    <div class="ajaxifyCart--qty">
+                      <input type="text" class="ajaxifyCart--num" value="{{itemQty}}" min="0" data-id="{{id}}" aria-label="quantity" pattern="[0-9]*">
+                      <span class="ajaxifyCart--qty-adjuster ajaxifyCart--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
+                      <span class="ajaxifyCart--qty-adjuster ajaxifyCart--minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
+                    </div>
+                  </div>
+                  <div class="grid-item one-third text-center">
+                    <p>{{price}}</p>
+                  </div>
+                  <div class="grid-item one-third text-right">
+                    <p>
+                      <small><a href="/cart/change?id={{id}}&amp;quantity=0" class="ajaxifyCart--remove" data-id="{{id}}">Remove</a></small>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         {{/items}}
       </div>
-      <div class="ajaxifyCart--row ajaxifyCart--summary">
-        <div class="ajaxifyCart--total">
-          <p>Subtotal</p>
-        </div>
-        <div class="ajaxifyCart--col3">
-          <p>{{totalPrice}}</p>
-        </div>
-        <div class="ajaxifyCart--col4">
-          <input type="submit" class="{{btnClass}}" name="checkout" value="Checkout">
-        </div>
+      <div class="ajaxifyCart--row text-right medium-down--text-center">
+        <span class="h3">Subtotal {{totalPrice}}</span>
+        <input type="submit" class="{{btnClass}}" name="checkout" value="Checkout">
       </div>
     </form>
   {% endraw %}
