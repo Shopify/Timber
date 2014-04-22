@@ -22,6 +22,7 @@
   #Reset
   #Grid Setup
   #Basic Styles
+  #Helper Classes
   #Typography
   #Rich Text Editor
   #Links
@@ -655,11 +656,23 @@ body {
   padding-bottom: $gutter*2;
 }
 
+// ==============================================================================
+// #Helper Classes
+// ==============================================================================
 .left { float: left; }
 .right { float: right; }
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 .hidden { display: none; }
+
+.display-table {
+  display: table;
+}
+
+.display-table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
 
 
 // ==============================================================================
@@ -681,6 +694,7 @@ select {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
+  display: block;
   font-family: $headerFontStack;
   font-weight: normal;
   margin-bottom: 10px;
