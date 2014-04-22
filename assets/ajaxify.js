@@ -514,7 +514,7 @@ var ajaxifyShopify = (function(module, $) {
 
   sizeDrawer = function ($empty) {
     if ($empty) {
-      $drawerContainer.css('height',  '0px');
+      $drawerContainer.css('height', '0px');
     } else {
       $drawerHeight = $cartContainer.outerHeight();
       $drawerContainer.css('height',  $drawerHeight + 'px');
@@ -704,6 +704,12 @@ var ajaxifyShopify = (function(module, $) {
       case 'drawer':
         if (cart.item_count > 0) {
           sizeDrawer();
+
+          // Since the template might use larger images, resize again.
+          // ** Will work on a better solution to image loading here soon. **
+          setTimeout(function() {
+            sizeDrawer();
+          }, 1000);
         } else {
           sizeDrawer(true);
         }
