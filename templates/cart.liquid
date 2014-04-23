@@ -67,7 +67,7 @@
               Below they've been separated for styling purposes.
             {% endcomment %}
             <div class="grid-item two-thirds">
-              <h2 class="h4">
+              <span class="h4">
                 <a href="{{ item.product.url }}">
                   {{ item.product.title }}
 
@@ -78,7 +78,7 @@
                     {% endunless %}
                   {% endif %}
                 </a>
-              </h2>
+              </span>
 
               {% comment %}
                 Optional, add the vendor
@@ -167,7 +167,7 @@
 
         <div class="grid-item text-right {% if settings.cart_notes %}large--one-half{% endif %}">
 
-          <h3>Subtotal <em>{{ cart.total_price | money }}</em></h3>
+          <span class="h3">Subtotal {{ cart.total_price | money }}</span>
 
           {% comment %}
             name="update" is required for the update button to work
