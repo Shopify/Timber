@@ -14,7 +14,6 @@
     - https://developers.pinterest.com/rich_pins/validator/
 
 {% endcomment %}
-{% if settings.enable_opengraph %}
 {% if template contains 'product' %}
   <meta property="og:type" content="product">
   <meta property="og:title" content="{{ product.title | strip_html | escape }}">
@@ -46,7 +45,6 @@
 {% endif %}
 {% if page_description %}
   <meta property="og:description" content="{{ page_description | escape }}">
-{% endif %}
 {% endif %}
   <meta property="og:url" content="{{ canonical_url }}">
   <meta property="og:site_name" content="{{ shop.name }}">
