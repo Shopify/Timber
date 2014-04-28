@@ -1204,6 +1204,22 @@ ajaxifyShopify.init({ [options] })
                   Default: <strong class="docs-strong">'$&#123;&#123;amount&#125;&#125;'</strong>
                 </td>
               </tr>
+              <tr>
+                <td>disableAjaxCart</td>
+                <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
+                <td>
+                  Set to <strong class="docs-strong">true</strong> if you want to disable the cart but still use the JS quantity selectors (see below).<br>
+                  Default: <strong class="docs-strong">false</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>enableQtySelectors</td>
+                <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
+                <td>
+                  Replace <code>&lt;input type="number"&gt;</code> elements with a JS quantity selector on your product and cart pages. Set to <strong class="docs-strong">false</strong> to disable this and use the native elements.<br>
+                  Default: <strong class="docs-strong">true</strong>
+                </td>
+              </tr>
 
             </tbody>
           </table>
