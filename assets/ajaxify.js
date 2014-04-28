@@ -921,7 +921,8 @@ var ajaxifyShopify = (function(module, $) {
               itemMinus: itemMinus
             };
 
-        el.after(template(data)).hide();
+        // Append new quantity selector then remove original
+        el.after(template(data)).remove();
       });
     }
 
@@ -942,7 +943,8 @@ var ajaxifyShopify = (function(module, $) {
       numInputs.each(function() {
         var el = $(this),
             currentQty = el.val(),
-            inputName = el.attr('name');
+            inputName = el.attr('name'),
+            inputId = el.attr('id');
 
         // Ignore inputs without a data-id
         if (!el.attr('data-id')) return false;
@@ -958,11 +960,12 @@ var ajaxifyShopify = (function(module, $) {
               itemQty: itemQty,
               itemAdd: itemAdd,
               itemMinus: itemMinus,
-              inputName: inputName
+              inputName: inputName,
+              inputId: inputId
             };
 
         // Append new quantity selector then remove original
-        el.after(template(data)).hide();
+        el.after(template(data)).remove();
       });
 
       // Setup listeners to add/subtract from the input
