@@ -75,3 +75,12 @@
     </div>
   {% endraw %}
   </script>
+  <script id="jsQty" type="text/template">
+  {% raw %}
+    <div class="js-qty">
+      <input type="text" class="js--num" value="{{itemQty}}" min="1" data-id="{{id}}" aria-label="quantity" pattern="[0-9]*" name="{{inputName}}">
+      <span class="js--qty-adjuster js--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
+      <span class="js--qty-adjuster js--minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
+    </div>
+  {% endraw %}
+  </script>

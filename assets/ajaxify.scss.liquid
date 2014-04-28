@@ -106,6 +106,9 @@ $drawerBackgroundColor: #222;
 $drawerTextColor: #fff;
 $drawerLinkColor: #fff;
 
+/* Border colors from Timber */
+$borderColor: #e5e5e5;
+
 $quantityTextColor: #fff;
 
 .ajaxify-grey {
@@ -387,21 +390,72 @@ form[action^="/cart/add"] {
   color: $ajaxifyGrey;
 }
 
-.ajaxifyCart--qty {
+
+// ==============================================================================
+// #Quantity Selectors
+// ==============================================================================
+.js-qty {
   position: relative;
-  top: -5px;
-  right: -30px;
   border: 1px solid transparent;
   border-radius: 2px;
-  overflow: hidden;
-  font-size: 16px;
   max-width: 90px;
+  margin-bottom: 1em;
   @include transition(all 0.4s ease-out);
   @include backface();
 
-  .ajaxifyCart--row & {
-    top: 0;
+  input[type="text"] {
+    display: block;
+    border-radius: 0;
+    background: none;
+    text-align: center;
+    width: 100%;
+    padding: 5px 25px;
+    margin: 0;
+    @include box-shadow(none);
   }
+}
+
+.js--qty-adjuster {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  padding: 5px 0;
+  width: 20px;
+  text-align: center;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select:    none;
+  -ms-user-select:     none;
+  -o-user-select:      none;
+  user-select:         none;
+  @include transition(all 0.2s ease-out);
+
+  &:hover {
+    background-color: $borderColor;
+  }
+}
+
+.js--add {
+  right: 0;
+  border-left: 1px solid $borderColor;
+}
+
+.js--minus {
+  left: 0;
+  border-right: 1px solid $borderColor;
+}
+
+// ==============================================================================
+// #Quantity Selectors in the Ajax Cart
+// ==============================================================================
+.ajaxifyCart--qty {
+  @extend .js-qty;
+  top: -5px;
+  right: -30px;
+  margin-bottom: 0;
+  overflow: hidden;
 
   .ajaxifyCart--product:hover &,
   .ajaxify-touch &,
@@ -410,40 +464,21 @@ form[action^="/cart/add"] {
     @include transition(none);
   }
 
-  .ajaxifyCart--is-loading & {
-    opacity: 0.7;
-    border-color: $ajaxifyGreyDark;
-    @include transition(none);
+  input[type="text"] {
+    color: $quantityTextColor;
+    border: 0 none;
   }
 
-  input[type="text"] {
-    display: block;
-    border: 0 none;
-    border-radius: 0;
-    @include box-shadow(none);
-    background: none;
-    color: $quantityTextColor;
-    font-size: 1em;
-    text-align: center;
-    width: 100%;
-    padding: 5px 25px;
-    margin: 0;
+  .ajaxifyCart--is-loading & {
+    opacity: 0.6;
+    border-color: $ajaxifyGreyDark;
+    @include transition(none);
   }
 }
 
 .ajaxifyCart--qty-adjuster {
-  cursor: pointer;
-  position: absolute;
-  display: block;
+  @extend .js--qty-adjuster;
   opacity: 0;
-  top: 0;
-  bottom: 0;
-  padding: 5px 0;
-  width: 20px;
-  text-align: center;
-  color: $ajaxifyGrey;
-  overflow: hidden;
-  @include transition(all 0.2s ease-out);
 
   .ajaxifyCart--product:hover &,
   .ajaxify-touch &,
@@ -468,12 +503,12 @@ form[action^="/cart/add"] {
 }
 
 .ajaxifyCart--add {
-  right: 0;
+  @extend .js--add;
   border-left: 1px solid $ajaxifyGreyDark;
 }
 
 .ajaxifyCart--minus {
-  left: 0;
+  @extend .js--minus;
   border-right: 1px solid $ajaxifyGreyDark;
 }
 

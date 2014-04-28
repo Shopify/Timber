@@ -40,7 +40,7 @@
       Loop through products in the cart
     {% endcomment %}
     {% for item in cart.items %}
-    <div class="cart-row">
+    <div class="cart-row" data-id="{{ item.product.id }}">
       <div class="grid">
 
         {% comment %}
