@@ -139,7 +139,10 @@
             Quantity selector is optional
           {% endcomment %}
           <label for="quantity">Qty: </label>
-          <input min="1" type="number" id="quantity" name="quantity" value="1">
+          {% comment %}
+            Added data-id for the ajax cart implementation only.
+          {% endcomment %}
+          <input type="number" id="quantity" name="quantity" value="1" min="1" data-id="{{ product.id }}">
 
           <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
         </form>

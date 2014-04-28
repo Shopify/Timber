@@ -1,4 +1,4 @@
-// (c) Copyright 2013 Shopify Inc. Author: Carson Shold (@cshold). All Rights Reserved.
+// (c) Copyright 2014 Shopify Inc. Author: Carson Shold (@cshold). All Rights Reserved.
 
 /*
  * Ajaxify the add to cart experience and flip the button for inline confirmation,
@@ -31,7 +31,8 @@
 */
 
 
-// JQUERY API (c) Copyright 2009 Jaded Pixel. Author: Caroline Schnapp. All Rights Reserved. Includes slight modifications to addItemFromForm
+// JQUERY API (c) Copyright 2009-2014 Shopify Inc. Author: Caroline Schnapp. All Rights Reserved.
+// Includes slight modifications to addItemFromForm.
 
 if ((typeof Shopify) === 'undefined') { Shopify = {}; }
 
@@ -262,7 +263,7 @@ var ajaxifyShopify = (function(module, $) {
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
 
   /**
    * Initialise the plugin and define global options
@@ -281,7 +282,9 @@ var ajaxifyShopify = (function(module, $) {
       btnClass: null,
       wrapperClass: null,
       useCartTemplate: false,
-      moneyFormat: '${{amount}}'
+      moneyFormat: '${{amount}}',
+      disableAjaxCart: false,
+      enableQtySelectors: true
     };
 
     // Override defaults with arguments
@@ -312,25 +315,32 @@ var ajaxifyShopify = (function(module, $) {
       $('body').addClass('ajaxify-touch');
     }
 
-    // Handle each case add to cart method
-    switch (settings.method) {
-
-      case 'flip':
-        flipSetup();
-        break;
-
-      case 'modal':
-        modalSetup();
-        break;
-
-      case 'drawer':
-        drawerSetup();
-        break;
+    // Setup ajax quantity selectors on the any template if enableQtySelectors is true
+    if (settings.enableQtySelectors) {
+      qtySelectors();
     }
 
-    if ( $addToCart.length ) {
-      // Take over the add to cart form submit
-      formOverride();
+    // Enable the ajax cart
+    if (!settings.disableAjaxCart) {
+      // Handle each case add to cart method
+      switch (settings.method) {
+        case 'flip':
+          flipSetup();
+          break;
+
+        case 'modal':
+          modalSetup();
+          break;
+
+        case 'drawer':
+          drawerSetup();
+          break;
+      }
+
+      if ( $addToCart.length ) {
+        // Take over the add to cart form submit
+        formOverride();
+      }
     }
 
     // Run this function in case we're using the quantity selector outside of the cart
@@ -525,6 +535,9 @@ var ajaxifyShopify = (function(module, $) {
     $formContainer.submit(function(e) {
       e.preventDefault();
 
+      // Remove any previous quantity errors
+      $('.qty-error').remove();
+
       Shopify.addItemFromForm(e.target, itemAddedCallback, itemErrorCallback);
 
       // Set the flip button to a loading state
@@ -556,9 +569,12 @@ var ajaxifyShopify = (function(module, $) {
         break;
     }
 
-    // This is where you handle errors of products being added to the cart.
-    // Default to alert message for errors.
-    Shopify.onError(XMLHttpRequest, textStatus);
+    var data = eval('(' + XMLHttpRequest.responseText + ')');
+    if (!!data.message) {
+      if (data.status == 422) {
+        $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
+      }
+    }
   };
 
   cartUpdateCallback = function (cart) {
@@ -750,7 +766,7 @@ var ajaxifyShopify = (function(module, $) {
   adjustCart = function () {
     // This function runs on load, and when the cart is reprinted
 
-    // Create ajax friendly quantity fields and remove links
+    // Create ajax friendly quantity fields and remove links in the ajax cart
     if (settings.useCartTemplate) {
       createQtySelectors();
     }
@@ -832,14 +848,15 @@ var ajaxifyShopify = (function(module, $) {
     });
 
     function updateQuantity(id, qty) {
-      // This function only adds activity classes if using the default handlebar.js templates.
-      // The item quantity will be updated normally if using the /cart template.
+      // Add activity classes when changing cart quantities
       if (!settings.useCartTemplate) {
-        var row = $('.ajaxifyCart--row[data-id="' + id + '"]').parent().addClass('ajaxifyCart--is-loading');
+        var row = $('.ajaxifyCart--row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
+      } else {
+        var row = $('.cart-row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
+      }
 
-        if ( qty == 0 ) {
-          row.addClass('is-removed');
-        }
+      if ( qty == 0 ) {
+        row.addClass('is-removed');
       }
 
       // Slight delay to make sure removed animation is done
@@ -914,7 +931,60 @@ var ajaxifyShopify = (function(module, $) {
         var el = $(this).addClass('ajaxifyCart--remove');
       });
     }
-  },
+  };
+
+  qtySelectors = function() {
+    // Change number inputs to JS ones, similar to ajax cart but without API integration.
+    // Make sure to add the existing ID to the new input element
+    var numInputs = $('input[type="number"]');
+
+    if (numInputs.length) {
+      numInputs.each(function() {
+        var el = $(this),
+            currentQty = el.val(),
+            inputName = el.attr('name');
+
+        // Ignore inputs without a data-id
+        if (!el.attr('data-id')) return false;
+
+        var itemAdd = currentQty + 1,
+            itemMinus = currentQty - 1,
+            itemQty = currentQty;
+
+        var source   = $("#jsQty").html(),
+            template = Handlebars.compile(source),
+            data = {
+              id: el.data('id'),
+              itemQty: itemQty,
+              itemAdd: itemAdd,
+              itemMinus: itemMinus,
+              inputName: inputName
+            };
+
+        // Append new quantity selector then remove original
+        el.after(template(data)).hide();
+      });
+
+      // Setup listeners to add/subtract from the input
+      $('.js--qty-adjuster').on('click', function() {
+        var el = $(this),
+            id = el.data('id'),
+            qtySelector = el.siblings('.js--num'),
+            qty = parseInt( qtySelector.val() );
+
+        // Add or subtract from the current quantity
+        if (el.hasClass('js--add')) {
+          qty = qty + 1;
+        } else {
+          qty = qty - 1;
+          if (qty <= 1) qty = 1;
+        }
+
+        // Update the input's number
+        qtySelector.val(qty);
+      });
+    }
+  };
 
   scrollTop = function () {
     if ($('body').scrollTop() > 0) {
