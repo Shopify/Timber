@@ -525,6 +525,9 @@ var ajaxifyShopify = (function(module, $) {
     $formContainer.submit(function(e) {
       e.preventDefault();
 
+      // Remove any previous quantity errors
+      $('.qty-error').remove();
+
       Shopify.addItemFromForm(e.target, itemAddedCallback, itemErrorCallback);
 
       // Set the flip button to a loading state
@@ -556,9 +559,12 @@ var ajaxifyShopify = (function(module, $) {
         break;
     }
 
-    // This is where you handle errors of products being added to the cart.
-    // Default to alert message for errors.
-    Shopify.onError(XMLHttpRequest, textStatus);
+    var data = eval('(' + XMLHttpRequest.responseText + ')');
+    if (!!data.message) {
+      if (data.status == 422) {
+        $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
+      }
+    }
   };
 
   cartUpdateCallback = function (cart) {
