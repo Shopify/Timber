@@ -15,7 +15,7 @@
   {% endcomment %}
   {% assign child_list_handle = link.title | handleize %}
   {% if linklists[child_list_handle].links != blank %}
-  <li>
+  <li {% if link.active %}class="site-nav-active"{% endif %}>
     <a href="{{ link.url }}">{{ link.title }}</a>
     <ul class="site-nav-dropdown">
         {% for childlink in linklists[child_list_handle].links %}
@@ -24,7 +24,9 @@
     </ul>
   </li>
   {% else %}
-      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      <li {% if link.active %}class="site-nav-active"{% endif %}>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
   {% endif %}
   {% endfor %}
 </ul>
