@@ -102,7 +102,7 @@
         {% if shop.customer_accounts_enabled %}
         <p>
           {% if customer %}
-            Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
+            Logged in as <a href="/account">{{ customer.first_name }}</a> &middot; {{ 'Log out' | customer_logout_link }}
           {% else %}
             {{ 'Log in' | customer_login_link }}
             {% if shop.customer_accounts_optional %}
