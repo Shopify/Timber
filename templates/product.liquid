@@ -31,8 +31,8 @@
       {% else %}
 
         <div class="product-photo-container">
-          <a href="{{ product.featured_image.src | product_img_url: 'original' }}">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}">
+          <a href="{{ product | first_variant_or_product_img_url: 'medium' }}" >
+            <img src="{{ product | first_variant_or_product_img_url: 'medium' }}" alt="{{ product.title | escape }}">
           </a>
         </div>
 
@@ -45,10 +45,10 @@
         {% if product.images.size > 1 %}
           <ul class="product-photo-thumbs grid-uniform">
 
-            {% for image in product.images offset:1 %}
+            {% for image in product.images %}
               <li class="grid-item one-quarter">
-                <a href="{{ image.src | product_img_url: 'original' }}">
-                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                <a href="{{ image.src | img_url: 'original' }}">
+                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                 </a>
               </li>
             {% endfor %}
@@ -191,6 +191,7 @@
     - Hides your <select> tag from above
     - Breaks out the product variants into separate product options, if more than one exists
     - Generates a <select> tag for each product option
+    - Switches the large product image with the newly selected variant on (if set in the admin)
 
   Callback notes:
     - Keep the callback available to the global scope (window.selectCallback) so that advanced
@@ -202,6 +203,8 @@
 <script>
 
 var selectCallback = function(variant, selector) {
+
+  console.log(variant);
 
   var addToCart = $('#addToCart'),
       productPrice = $('#productPrice'),
@@ -232,6 +235,12 @@ var selectCallback = function(variant, selector) {
   } else {
     // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anyway
     addToCart.val('Unavailable').addClass('disabled').prop('disabled', true);
+  }
+
+  if (variant && variant.featured_image) {
+    var originalImage = $(".product-photo-container img"),
+        newImage = variant.featured_image;
+    Shopify.Image.switchImage(newImage, originalImage[0]);
   }
 };
 
