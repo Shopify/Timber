@@ -24,6 +24,8 @@ Demo Stores
 - [Demo Store](https://timber-demo.myshopify.com/): A store setup with some products, blog posts, and customer accounts
 - [Empty Store](https://timber-demo-empty.myshopify.com/): A fresh store, just what you should expect when you install on your new store
 
+For a set of demo products to use during development, [download this CSV file](http://www.tetchi.ca/wp-content/uploads/2013/04/products1.csv) and import it on our products page.
+
 Basic structure
 ---------------
 ```
