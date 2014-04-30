@@ -52,7 +52,7 @@
           <div class="grid">
 
             <div class="grid-item one-third">
-              <a href="{{ item.product.url | within: collections.all }}">
+              <a href="{{ item.product.url | within: collections.all }}?variant={{ item.id }}">
 
                 {% comment %}
                   More image size options at:

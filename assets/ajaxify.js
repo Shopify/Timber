@@ -683,7 +683,7 @@ var ajaxifyShopify = (function(module, $) {
       // Create item's data object and add to 'items' array
       item = {
         id: cartItem.variant_id,
-        url: cartItem.url,
+        url: cartItem.url + '?variant='+cartItem.variant_id,
         img: prodImg,
         name: prodName,
         variation: prodVariation,
