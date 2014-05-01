@@ -7,8 +7,8 @@
 {% endcomment %}
   <script id="cartTemplate" type="text/template">
   {% raw %}
+    <button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>
     <form action="/cart" method="post" novalidate>
-      <button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>
       <div class="ajaxifyCart--products">
         {{#items}}
         <div class="ajaxifyCart--product">
