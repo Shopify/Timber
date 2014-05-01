@@ -263,7 +263,7 @@ var ajaxifyShopify = (function(module, $) {
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, closeModalButton, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
 
   /**
    * Initialise the plugin and define global options
@@ -442,10 +442,18 @@ var ajaxifyShopify = (function(module, $) {
     }
   };
 
-  hideModal = function () {
+  hideModal = function (e) {
+    e.preventDefault();
     if ($modalContainer) {
       $modalContainer.removeClass('is-visible');
     }
+  };
+
+  closeModalButton = function () {
+    // Link up close modal link
+    $closeCart = $('.ajaxifyCart--close');
+    $closeCart.off('click');
+    $closeCart.on('click', hideModal);
   };
 
   drawerSetup = function () {
@@ -704,18 +712,14 @@ var ajaxifyShopify = (function(module, $) {
     }
     $cartContainer.append(template(data));
 
-    // Link up close modal link
-    if (settings.method == 'modal') {
-      $closeCart = $('.ajaxifyCart--close');
-      $closeCart.off( 'click', hideModal );
-      $closeCart.on( 'click', hideModal );
-    }
-
     // With new elements we need to relink the adjust cart functions
     adjustCart();
 
-    // Size drawer at this point
+    // Setup close modal button and size drawer
     switch (settings.method) {
+      case 'modal':
+        closeModalButton();
+        break;
       case 'flip':
       case 'drawer':
         if (cart.item_count > 0) {
@@ -746,6 +750,10 @@ var ajaxifyShopify = (function(module, $) {
 
       // Size drawer at this point
       switch (settings.method) {
+        case 'modal':
+          $cartContainer.prepend('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
+          closeModalButton();
+          break;
         case 'flip':
         case 'drawer':
           if (cart.item_count > 0) {
