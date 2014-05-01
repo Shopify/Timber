@@ -883,8 +883,7 @@ form {
 
 .btn,
 button,
-input,
-textarea {
+input[type="submit"] {
   -webkit-appearance: none;
 }
 
@@ -1341,6 +1340,10 @@ a.btn-secondary {
   @include at-query($min, $medium) {
     float: left;
   }
+}
+
+.site-nav-active {
+  font-weight: bold;
 }
 
 // Dropdowns
