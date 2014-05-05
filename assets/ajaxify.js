@@ -263,7 +263,7 @@ var ajaxifyShopify = (function(module, $) {
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, closeModalButton, drawerSetup, showDrawer, hideDrawer, sizeDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, closeModalButton, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadDrawerImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
 
   /**
    * Initialise the plugin and define global options
@@ -539,6 +539,20 @@ var ajaxifyShopify = (function(module, $) {
     }
   };
 
+  loadDrawerImages = function () {
+    // Size drawer once all images are loaded
+    var drawerImages = $('img', $cartContainer),
+        count = drawerImages.length,
+        index = 0;
+
+    drawerImages.on('load', function() {
+      index++;
+      if (index==count) {
+        sizeDrawer();
+      }
+    });
+  };
+
   formOverride = function () {
     $formContainer.submit(function(e) {
       e.preventDefault();
@@ -723,13 +737,7 @@ var ajaxifyShopify = (function(module, $) {
       case 'flip':
       case 'drawer':
         if (cart.item_count > 0) {
-          sizeDrawer();
-
-          // Since the template might use larger images, resize again.
-          // ** Will work on a better solution to image loading here soon. **
-          setTimeout(function() {
-            sizeDrawer();
-          }, 1000);
+          loadDrawerImages();
         } else {
           sizeDrawer(true);
         }
@@ -757,13 +765,7 @@ var ajaxifyShopify = (function(module, $) {
         case 'flip':
         case 'drawer':
           if (cart.item_count > 0) {
-            sizeDrawer();
-
-            // Since your /cart template might use larger images, resize again.
-            // ** Will work on a better solution to image loading here soon. **
-            setTimeout(function() {
-              sizeDrawer();
-            }, 1000);
+            loadDrawerImages();
           } else {
             sizeDrawer(true);
           }
