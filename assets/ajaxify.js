@@ -350,7 +350,17 @@ var ajaxifyShopify = (function(module, $) {
 
   updateCountPrice = function (cart) {
     if ($cartCountSelector) {
-      $cartCountSelector.html(cart.item_count);
+      switch(cart.item_count) {
+        case 0:
+          $cartCountSelector.html('0 items');
+          break;
+        case 1:
+          $cartCountSelector.html('1 item');
+          break;
+        default:
+          $cartCountSelector.html('" + cart.item_count + " items');
+          break;
+      }
     }
     if ($cartCostSelector) {
       $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
