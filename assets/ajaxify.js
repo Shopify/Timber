@@ -866,7 +866,7 @@ var ajaxifyShopify = (function(module, $) {
     function updateQuantity(id, qty) {
       // Add activity classes when changing cart quantities
       if (!settings.useCartTemplate) {
-        var row = $('.ajaxifyCart--row[data-id="' + id + '"]').parent().addClass('ajaxifyCart--is-loading');
+        var row = $('.ajaxifyCart--row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
       } else {
         var row = $('.cart-row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
       }
