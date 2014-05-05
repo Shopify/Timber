@@ -358,7 +358,7 @@ var ajaxifyShopify = (function(module, $) {
           $cartCountSelector.html('1 item');
           break;
         default:
-          $cartCountSelector.html('" + cart.item_count + " items');
+          $cartCountSelector.html(+ cart.item_count + ' items');
           break;
       }
     }
