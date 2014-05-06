@@ -1296,7 +1296,6 @@ a.btn-secondary {
   a,
   a:hover,
   a:focus {
-    color: $colorText;
     text-decoration: none;
   }
 
@@ -1393,13 +1392,13 @@ a.btn-secondary {
   .input-group-field {
     margin-bottom: 0;
   }
+}
 
-  .search-bar {
-    max-width: 300px;
+.search-bar {
+  max-width: 300px;
 
-    @include at-query($max, $medium) {
-      margin: 0 auto;
-    }
+  @include at-query($max, $medium) {
+    margin: 0 auto;
   }
 }
 
