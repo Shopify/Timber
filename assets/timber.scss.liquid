@@ -104,6 +104,9 @@ $borderColor: #e5e5e5;
 /* Nav and dropdown link background */
 $colorNav: #f6f6f6;
 
+/* Footer */
+$colorFooterBg: #f6f6f6;
+
 /* Helper colors */
 $disabledGrey: #f6f6f6;
 $disabledBorder: darken($disabledGrey, 25%);
@@ -644,7 +647,7 @@ $class-type: unquote(".");
 // #Basic Styles
 // ==============================================================================
 html {
-  background-color: #f6f6f6;
+  background-color: $colorFooterBg;
 }
 
 body {
@@ -1407,7 +1410,7 @@ a.btn-secondary {
 // #Site Footer
 // ==============================================================================
 .site-footer {
-  background-color: #f6f6f6;
+  background-color: $colorFooterBg;
   border-top: 1px solid $borderColor;
   text-align: center;
   padding: $gutter 0;
