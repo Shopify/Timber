@@ -260,7 +260,7 @@ var ajaxifyShopify = (function(module, $) {
   var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $isTouch;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer;
+  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $prependDrawerTo, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $body;
 
   // Private functions
   var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, closeModalButton, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadDrawerImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
@@ -284,7 +284,8 @@ var ajaxifyShopify = (function(module, $) {
       useCartTemplate: false,
       moneyFormat: '${{amount}}',
       disableAjaxCart: false,
-      enableQtySelectors: true
+      enableQtySelectors: true,
+      prependDrawerTo: 'body'
     };
 
     // Override defaults with arguments
@@ -304,15 +305,19 @@ var ajaxifyShopify = (function(module, $) {
     $cartCostSelector  = $(settings.cartCostSelector);
     $toggleCartButton  = $(settings.toggleCartButton);
     $modal             = null;
+    $prependDrawerTo   = $(settings.prependDrawerTo);
 
     // CSS Checks
     $cssTransforms   = Modernizr.csstransforms;
     $cssTransforms3d = Modernizr.csstransforms3d;
     $isTouch         = Modernizr.touch;
 
+    // General Selectors
+    $body = $('body');
+
     // Touch check
     if ($isTouch) {
-      $('body').addClass('ajaxify-touch');
+      $body.addClass('ajaxify-touch');
     }
 
     // Setup ajax quantity selectors on the any template if enableQtySelectors is true
@@ -412,7 +417,7 @@ var ajaxifyShopify = (function(module, $) {
         template = Handlebars.compile(source);
 
     // Append modal and overlay to body
-    $('body').append(template).append('<div id="ajaxifyCart-overlay"></div>');
+    $body.append(template).append('<div id="ajaxifyCart-overlay"></div>');
 
     // Modal selectors
     $modalContainer = $('#ajaxifyModal');
@@ -464,8 +469,8 @@ var ajaxifyShopify = (function(module, $) {
           wrapperClass: $wrapperClass
         };
 
-    // Append drawer to body
-    $('body').prepend(template(data));
+    // Append drawer (defaults to body)
+    $prependDrawerTo.prepend(template(data));
 
     // Drawer selectors
     $drawerContainer = $('#ajaxifyDrawer');
@@ -1003,7 +1008,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   scrollTop = function () {
-    if ($('body').scrollTop() > 0) {
+    if ($body.scrollTop() > 0) {
       $('html, body').animate({
         scrollTop: 0
       }, 250, 'swing');
