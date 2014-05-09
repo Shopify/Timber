@@ -1158,7 +1158,7 @@ ajaxifyShopify.init({ [options] })
                 <td>toggleCartButton</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  Toggle your cart open and closed with this selector.<br>
+                  Toggle the cart open and closed with this selector.<br>
                   Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
@@ -1166,7 +1166,7 @@ ajaxifyShopify.init({ [options] })
                 <td>cartCountSelector</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  If you want to include the number of items in your cart, create an element and pass in it's selector here.<br>
+                  Update the number of items in the cart.<br>
                   E.g. <code>cartCountSelector: '.cart-count'</code><br>
                   Default: <strong class="docs-strong">null</strong>
                 </td>
@@ -1175,7 +1175,7 @@ ajaxifyShopify.init({ [options] })
                 <td>cartCostSelector</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  If you want to include the total cost of the items in your cart, create an element and pass in it's selector here.<br>
+                  Update the total cart cost when products are added or removed.<br>
                   E.g. <code>cartCostSelector: '.cart-cost'</code><br>
                   Default: <strong class="docs-strong">null</strong>
                 </td>
@@ -1226,6 +1226,7 @@ ajaxifyShopify.init({ [options] })
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
                   The selector for which element the drawer cart is appended to.
+                  E.g. <code>prependDrawerTo: '#page'</code><br>
                   Default: <strong class="docs-strong">body</strong>
                 </td>
               </tr>
