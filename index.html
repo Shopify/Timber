@@ -3,7 +3,7 @@ layout: default
 title: Shopify Theme Development Framework - Timber
 description: Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
 canonical: /timber
-version: v1.2.0
+version: v1.2.1
 ---
 
 <!-- gh-pages -->
@@ -1219,6 +1219,14 @@ ajaxifyShopify.init({ [options] })
                 <td>
                   Replace <code>&lt;input type="number"&gt;</code> elements with a JS quantity selector on your product and cart pages. Set to <strong class="docs-strong">false</strong> to disable this and use the native elements.<br>
                   Default: <strong class="docs-strong">true</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>prependDrawerTo</td>
+                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>
+                  The selector for which element the drawer cart is appended to.
+                  Default: <strong class="docs-strong">body</strong>
                 </td>
               </tr>
 
