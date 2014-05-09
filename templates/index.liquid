@@ -83,37 +83,37 @@
 
     {% endunless %}
 
-    {% if isEmpty %}
-      <div class="grid-item">
-        <p>You don't have any collections to show here. <a href="/admin/custom_collections">Add some collections</a> to go along with the default Frontpage.</p>
-      </div>
-      <div class="grid-item">
-        <div class="grid-uniform">
-          <div class="grid-item large--one-third medium--one-half text-center">
-            <div class="demo-image">
-              Collection Image
-            </div>
-            <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(3 items)</small></p>
-          </div>
-          <div class="grid-item large--one-third medium--one-half text-center">
-            <div class="demo-image">
-              Collection Image
-            </div>
-            <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(13 items)</small></p>
-          </div>
-          <div class="grid-item large--one-third medium--one-half text-center">
-            <div class="demo-image">
-              Collection Image
-            </div>
-            <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
-          </div>
-        </div>
-      </div>
-    {% endif %}
-
     {% comment %}Add 1 to the current index{% endcomment %}
     {% assign index = index | plus: 1 %}
   {% endfor %}
+
+  {% if isEmpty %}
+    <div class="grid-item">
+      <p>You don't have any collections to show here. <a href="/admin/custom_collections">Add some collections</a> to go along with the default Frontpage.</p>
+    </div>
+    <div class="grid-item">
+      <div class="grid-uniform">
+        <div class="grid-item large--one-third medium--one-half text-center">
+          <div class="demo-image">
+            Collection Image
+          </div>
+          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(3 items)</small></p>
+        </div>
+        <div class="grid-item large--one-third medium--one-half text-center">
+          <div class="demo-image">
+            Collection Image
+          </div>
+          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(13 items)</small></p>
+        </div>
+        <div class="grid-item large--one-third medium--one-half text-center">
+          <div class="demo-image">
+            Collection Image
+          </div>
+          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
 </div>
 
