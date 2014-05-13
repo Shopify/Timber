@@ -1,5 +1,5 @@
 /*
-* Shopify Timber v1.2.0
+* Shopify Timber v1.2.1
 * Copyright 2014 Shopify Inc.
 * Author Carson Shold @cshold
 * Built with Sass - http://sass-lang.com/
@@ -104,6 +104,9 @@ $borderColor: #e5e5e5;
 /* Nav and dropdown link background */
 $colorNav: #f6f6f6;
 
+/* Footer */
+$colorFooterBg: #f6f6f6;
+
 /* Helper colors */
 $disabledGrey: #f6f6f6;
 $disabledBorder: darken($disabledGrey, 25%);
@@ -149,6 +152,16 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -moz-transition: #{$transition};
   -o-transition: #{$transition};
   transition: #{$transition};
+}
+
+@mixin gradient($from, $to, $fallback) {
+  background: $fallback;
+  background: -moz-linear-gradient(top, $from 0%, $to 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
+  background: -webkit-linear-gradient(top, $from 0%,$to 100%);
+  background: -o-linear-gradient(top, $from 0%,$to 100%);
+  background: -ms-linear-gradient(top, $from 0%,$to 100%);
+  background: linear-gradient(top bottom, $from 0%,$to 100%);
 }
 
 /*
@@ -204,8 +217,6 @@ $pull:               false;
 .grid-item.clear {
   clear: both;
 }
-
-body {background-color: pink;}
 
 $class-type: unquote(".");
 
@@ -636,7 +647,7 @@ $class-type: unquote(".");
 // #Basic Styles
 // ==============================================================================
 html {
-  background-color: #f6f6f6;
+  background-color: $colorFooterBg;
 }
 
 body {
@@ -730,6 +741,11 @@ p img { margin: 0; }
 em { font-style: italic; }
 strong { font-weight: bold; }
 small { font-size: 80%; }
+sup {
+  position: relative;
+  top: -0.5em;
+  font-size: 60%;
+}
 
 // Blockquotes
 blockquote {
@@ -883,6 +899,12 @@ form {
 
 .btn,
 button,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+input[type="number"],
+input[type="tel"],
 input[type="submit"] {
   -webkit-appearance: none;
 }
@@ -991,7 +1013,8 @@ form.form-horizontal,
   input[type="number"],
   input[type="tel"],
   textarea,
-  select {
+  select,
+  label {
     display: inline-block;
     margin-bottom: 0;
     width: auto;
@@ -1288,7 +1311,6 @@ a.btn-secondary {
   a,
   a:hover,
   a:focus {
-    color: $colorText;
     text-decoration: none;
   }
 
@@ -1385,13 +1407,13 @@ a.btn-secondary {
   .input-group-field {
     margin-bottom: 0;
   }
+}
 
-  .search-bar {
-    max-width: 300px;
+.search-bar {
+  max-width: 300px;
 
-    @include at-query($max, $medium) {
-      margin: 0 auto;
-    }
+  @include at-query($max, $medium) {
+    margin: 0 auto;
   }
 }
 
@@ -1400,7 +1422,7 @@ a.btn-secondary {
 // #Site Footer
 // ==============================================================================
 .site-footer {
-  background-color: #f6f6f6;
+  background-color: $colorFooterBg;
   border-top: 1px solid $borderColor;
   text-align: center;
   padding: $gutter 0;
@@ -1444,8 +1466,10 @@ a.btn-secondary {
 
 .product-grid-image {
   display: block;
+  margin: 0 auto;
 
   img {
+    display: block;
     margin: 0 auto;
   }
 }
@@ -1554,7 +1578,7 @@ a.btn-secondary {
   padding-bottom: $gutter;
   border-bottom: 1px solid $borderColor;
 
-  .ajaxifyCart--content & {
+  #ajaxifyDrawer & {
     border-bottom-color: #444;
   }
 }
