@@ -20,6 +20,13 @@
   {% endcomment %}
   {% for product in collections.frontpage.products limit:6 %}
 
+    {% comment %}
+      Change the grid item width by using classes from the grid in
+      the grid_item_width variable.
+
+      Example (and default):
+        - {% assign grid_item_width = 'large--one-third medium--one-half' %}
+    {% endcomment %}
     {% include 'product-grid-item' %}
 
   {% else %}

@@ -3,10 +3,22 @@
   This snippet is used to showcase each product during the loop,
   'for product in collection.products' in collection.liquid.
 
-  This example has three products per column on desktop, two on
-  our medium breakpoint, and a single row on small screens.
+  A liquid variable (grid_item_width) is set just before the this
+  snippet is included to change the size of the container.
+  Once the variable is set on a page, all future instances of this
+  snippet will use that width. Overwrite the variable to adjust this.
+
+  Example
+    - assign grid_item_width = 'large--one-quarter medium--one-half'
 
 {% endcomment %}
+
+{% comment %}
+  Set the default grid_item_width if no variable is set
+{% endcomment %}
+{% unless grid_item_width %}
+  {% assign grid_item_width = 'large--one-third medium--one-half' %}
+{% endunless %}
 
 {% comment %}
   Check if the product is on sale and set a variable to be used below.
@@ -27,7 +39,7 @@
 {% comment %}
   Set a class for sold-out and on-sale items
 {% endcomment %}
-<div class="grid-item large--one-third medium--one-half{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+<div class="grid-item {{grid_item_width}}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
 
   {% comment %}
     Link to your product with the 'within: collection' filter for the link to be aware of the collection.
