@@ -10,7 +10,7 @@
 
 <div itemscope itemtype="http://schema.org/Product">
 
-  {% assign featured_image = product.selected_or_first_available_variant.featured_image | product.featured_image %}
+  {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
 
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ featured_image | product_img_url: 'original' }}">
@@ -33,7 +33,7 @@
       {% else %}
 
         <div class="product-photo-container">
-          <a href="{{ product | first_variant_or_product_img_url: 'grande' }}" >
+          <a href="{{ featured_image | img_url: 'original' }}" >
             <img src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}">
           </a>
         </div>
