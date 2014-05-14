@@ -52,7 +52,7 @@
           <div class="grid">
 
             <div class="grid-item one-third">
-              <a href="{{ item.product.url | within: collections.all }}?variant={{ item.id }}">
+              <a href="{{ item.url | within: collections.all }}">
 
                 {% comment %}
                   More image size options at:
@@ -68,7 +68,7 @@
             {% endcomment %}
             <div class="grid-item two-thirds">
               <span class="h4">
-                <a href="{{ item.product.url }}">
+                <a href="{{ item.url }}">
                   {{ item.product.title }}
 
                   {% if item.product.variants.size != 0 %}

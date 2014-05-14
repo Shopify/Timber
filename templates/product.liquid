@@ -10,8 +10,10 @@
 
 <div itemscope itemtype="http://schema.org/Product">
 
+  {% assign featured_image = product.selected_or_first_available_variant.featured_image | product.featured_image %}
+
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-  <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}">
+  <meta itemprop="image" content="{{ featured_image | product_img_url: 'original' }}">
 
   {% include 'breadcrumb' %}
 
@@ -25,14 +27,14 @@
       {% if product.images.size == 0 %}
 
         <div class="product-photo-container">
-          <img src="{{ '' | product_img_url: 'grande' }}" alt="">
+          <img src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" />
         </div>
 
       {% else %}
 
         <div class="product-photo-container">
-          <a href="{{ product | first_variant_or_product_img_url: 'medium' }}" >
-            <img src="{{ product | first_variant_or_product_img_url: 'medium' }}" alt="{{ product.title | escape }}">
+          <a href="{{ product | first_variant_or_product_img_url: 'grande' }}" >
+            <img src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}">
           </a>
         </div>
 
@@ -102,9 +104,10 @@
                 {% comment %}
                   Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
                 {% endcomment %}
-                <option value="{{variant.id}}">
+                <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} value="{{ variant.id }}">
                   {{ variant.title }} - {{ variant.price | money_with_currency }}
                 </option>
+
 
               {% else %}
                 <option disabled="disabled">
@@ -117,20 +120,21 @@
           {% comment %}
             Optionally show the 'compare at' or original price of the product.
           {% endcomment %}
-          {% if product.compare_at_price > product.price %}
+          {% assign variant = product.selected_or_first_available_variant %}
+          {% if variant.compare_at_price > variant.price %}
             <strong class="h2">
               <span id="productPrice" class="on-sale" itemprop="price">
-                {{ product.price | money }}
+                {{ variant.price | money }}
               </span>
             </strong>
             <small id="comparePrice">
               Compare at:
-              {{ product.compare_at_price_max | money }}
+              {{ variant.compare_at_price | money }}
             </small>
           {% else %}
           <strong class="h2">
               <span id="productPrice" itemprop="price">
-                {{ product.price | money }}
+               {{ variant.price | money }}
               </span>
             </strong>
           {% endif %}
@@ -236,9 +240,12 @@ var selectCallback = function(variant, selector) {
   }
 
   if (variant && variant.featured_image) {
-    var originalImage = $(".product-photo-container img"),
-        newImage = variant.featured_image;
-    Shopify.Image.switchImage(newImage, originalImage[0]);
+    var original_image = $(".product-photo-container img"),
+        new_image = variant.featured_image;
+    Shopify.Image.switchImage(new_image, original_image[0], function (new_image_src, original_image, element) {
+      $(element).parents('a').attr('href', new_image_src);
+      $(element).attr('src', new_image_src);
+    });
   }
 };
 
@@ -246,10 +253,11 @@ jQuery(function($) {
 
   new Shopify.OptionSelectors('productSelect', {
     product: {{ product | json }},
-    onVariantSelected: selectCallback
+    onVariantSelected: selectCallback,
+    enableHistoryState: true
   });
 
-  // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+  // Add label if there is a single product option and it isn't 'Title'. Could be 'Size'.
   {% if product.options.size == 1 and product.options.first != 'Title' %}
     $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
   {% endif %}
@@ -265,7 +273,9 @@ jQuery(function($) {
     {% if variant.available and found_one_in_stock == false %}
       {% assign found_one_in_stock = true %}
       {% for option in product.options %}
-      $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+        {% if variant.featured_image == featured_image %}
+          $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+        {% endif %}
       {% endfor %}
     {% endif %}
   {% endfor %}
