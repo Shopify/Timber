@@ -31,7 +31,7 @@
     {% endcomment %}
     {% for type in collections.all.all_types %}
       {% if collection.current_type == type %}
-      <li class="active-tag">
+      <li class="active-filter">
         {{ type | link_to_remove_type }}
       </li>
       {% else %}
@@ -61,7 +61,7 @@
     {% endcomment %}
     {% for vendor in collections.all.all_vendors %}
       {% if collection.current_vendor == vendor %}
-      <li class="active-tag">
+      <li class="active-filter">
         {{ vendor | link_to_remove_vendor }}
       </li>
       {% else %}
@@ -91,7 +91,7 @@
   {% endcomment %}
 
   <ul>
-    <li{% unless current_tags %} class="active"{% endunless %}>
+    <li{% unless current_tags %} class="active-filter"{% endunless %}>
 
       {% comment %}
         Good for /collections/all collection and regular collections
@@ -119,7 +119,7 @@
     {% endcomment %}
     {% for tag in collection.all_tags %}
       {% if current_tags contains tag %}
-      <li class="active-tag">
+      <li class="active-filter">
         {{ tag | link_to_remove_tag: tag }}
       </li>
       {% else %}
