@@ -230,7 +230,10 @@ var selectCallback = function(variant, selector) {
     }
 
   } else {
-    // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anyway
+    // The variant doesn't exist, disable submit button.
+    // This may be an error or notice that a specific variant is not available.
+    // To only show available variants, implement linked product options:
+    //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
     addToCart.val('Unavailable').addClass('disabled').prop('disabled', true);
   }
 };
