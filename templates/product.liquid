@@ -104,10 +104,9 @@
                 {% comment %}
                   Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
                 {% endcomment %}
-                <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} value="{{ variant.id }}">
+                <option {% if variant == product.selected_or_first_available_variant %}selected{% endif %} value="{{ variant.id }}">
                   {{ variant.title }} - {{ variant.price | money_with_currency }}
                 </option>
-
 
               {% else %}
                 <option disabled="disabled">
@@ -266,19 +265,6 @@ jQuery(function($) {
   {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
     $('.selector-wrapper').hide();
   {% endif %}
-
-  // Auto-select first available variant on page load. Otherwise the product looks sold out.
-  {% assign found_one_in_stock = false %}
-  {% for variant in product.variants %}
-    {% if variant.available and found_one_in_stock == false %}
-      {% assign found_one_in_stock = true %}
-      {% for option in product.options %}
-        {% if variant.featured_image == featured_image %}
-          $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
 
 });
 </script>
