@@ -7,7 +7,7 @@
 
   Use product tags to manage subcategories inside collections.
   See 'How do I create subcategories of products?' for more documentation.
-    - http://support.shopify.com/customer/portal/articles/75425
+    - http://docs.shopify.com/manual/configuration/store-customization/page-specific/collections/subcategories
 
 {% endcomment %}
 
@@ -26,13 +26,8 @@
 
 {% comment %}
   Say we want to provide a 'catch-all' link at the top of the list,
-  we'd check against the product.handle, product type, and vendor.
-
-  Alas, the collection title is escaped, while vendor and type aren't,
-  so in comparisons we need to escape type and vendor.
+  we'd check against the collection.handle, product type, and vendor.
 {% endcomment %}
-{% assign type_escaped = collection.products.first.type | escape %}
-{% assign vendor_escaped = collection.products.first.vendor | escape %}
 
   <h3>Tags</h3>
 
@@ -48,14 +43,14 @@
       {% comment %}
         Good for automatic type collections
       {% endcomment %}
-      {% elsif type_escaped == collection.title %}
-      <a href="{{ collection.products.first.type | url_for_type }}">Everything in {{ collection.title }}</a>
+      {% elsif collection.current_type %}
+      <a href="{{ collection.current_type | url_for_type }}">Everything in {{ collection.title }}</a>
 
       {% comment %}
         Good for automatic vendor collections
       {% endcomment %}
-      {% elsif vendor_escaped == collection.title %}
-        <a href="{{ collection.products.first.vendor | url_for_vendor }}">Everything in {{ collection.title }}</a>
+      {% elsif collection.current_vendor %}
+        <a href="{{ collection.current_vendor | url_for_vendor }}">Everything in {{ collection.title }}</a>
 
       {% endif %}
     </li>
@@ -79,6 +74,6 @@
 
 {% else %}
 
-<p>Add some tags for a sub navigation to built itself here. Manage this list in <strong>collection-tags.liquid</strong>.</p>
+<p>Add some tags for a sub navigation to build itself here. Manage this list in <strong>collection-tags.liquid</strong>.</p>
 
 {% endif %}
