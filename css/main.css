@@ -509,7 +509,7 @@
 =============================================================
 ========================================================== */
 /*
-* Shopify Timber v1.2.0
+* Shopify Timber v1.2.1
 * Copyright 2014 Shopify Inc.
 * Author Carson Shold @cshold
 * Built with Sass - http://sass-lang.com/
@@ -564,6 +564,7 @@
 /* Text colors */
 /* Border colors */
 /* Nav and dropdown link background */
+/* Footer */
 /* Helper colors */
 /* Width variables */
 /* Radius */
@@ -621,9 +622,6 @@ pre {
 /* Manual grid-item clearfix */
 .grid-item.clear {
   clear: both; }
-
-body {
-  background-color: pink; }
 
 /**
  * Drop relative positioning into silent classes which can't take advantage of
@@ -1829,6 +1827,11 @@ strong {
 small {
   font-size: 80%; }
 
+sup {
+  position: relative;
+  top: -0.5em;
+  font-size: 60%; }
+
 blockquote {
   font-size: 1.125em;
   line-height: 1.45;
@@ -1946,8 +1949,13 @@ form {
 .btn, .btn-secondary,
 a.btn-secondary,
 button,
-input,
-textarea {
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+input[type="number"],
+input[type="tel"],
+input[type="submit"] {
   -webkit-appearance: none; }
 
 input,
@@ -2059,6 +2067,7 @@ form.form-horizontal,
   form.form-horizontal input[type="tel"],
   form.form-horizontal textarea,
   form.form-horizontal select,
+  form.form-horizontal label,
   .form-horizontal input[type="text"],
   .form-horizontal input[type="password"],
   .form-horizontal input[type="email"],
@@ -2066,7 +2075,8 @@ form.form-horizontal,
   .form-horizontal input[type="number"],
   .form-horizontal input[type="tel"],
   .form-horizontal textarea,
-  .form-horizontal select {
+  .form-horizontal select,
+  .form-horizontal label {
     display: inline-block;
     margin-bottom: 0;
     width: auto; }
@@ -2307,7 +2317,6 @@ a.btn-secondary {
   .header-logo a,
   .header-logo a:hover,
   .header-logo a:focus {
-    color: #333333;
     text-decoration: none; }
   .header-logo a, .header-logo img {
     display: block; }
@@ -2341,6 +2350,9 @@ a.btn-secondary {
     .site-nav {
       float: left; } }
 
+.site-nav-active {
+  font-weight: bold; }
+
 .site-nav-dropdown {
   display: none;
   position: absolute;
@@ -2366,11 +2378,12 @@ a.btn-secondary {
   .nav-search .input-group,
   .nav-search .input-group-field {
     margin-bottom: 0; }
-  .nav-search .search-bar {
-    max-width: 300px; }
-    @media screen and (max-width: 768px) {
-      .nav-search .search-bar {
-        margin: 0 auto; } }
+
+.search-bar {
+  max-width: 300px; }
+  @media screen and (max-width: 768px) {
+    .search-bar {
+      margin: 0 auto; } }
 
 .site-footer {
   background-color: #f6f6f6;
@@ -2396,8 +2409,10 @@ a.btn-secondary {
   margin-bottom: 24px; }
 
 .product-grid-image {
-  display: block; }
+  display: block;
+  margin: 0 auto; }
   .product-grid-image img {
+    display: block;
     margin: 0 auto; }
 
 .active-tag {
@@ -2467,7 +2482,7 @@ a.btn-secondary {
   margin-bottom: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #e5e5e5; }
-  .ajaxifyCart--content .cart-row {
+  #ajaxifyDrawer .cart-row {
     border-bottom-color: #444; }
 
 .demo-image {
@@ -2569,7 +2584,7 @@ html, body {
   background: url("../images/shopify-logo-white.png") top left no-repeat; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) and (min-device-width: 1000px) {
     .shopify-logo {
-      background-image: url("shopify-assets/logos/shopify-logo-2x.png");
+      background-image: url("../images/shopify-logo-white-2x.png");
       background-size: 99px auto; } }
   @media (min-width: 769px) {
     .shopify-logo {

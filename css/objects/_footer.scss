@@ -58,7 +58,7 @@
   background: url('../images/shopify-logo-white.png') top left no-repeat;
 
   @include hidpi() {
-    background-image: url('shopify-assets/logos/shopify-logo-2x.png');
+    background-image: url('../images/shopify-logo-white-2x.png');
     background-size: 99px auto;
   }
 
