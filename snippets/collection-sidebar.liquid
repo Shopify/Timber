@@ -1,9 +1,7 @@
 {% comment %}
 
-  Listing all tags within the current collection.
-
-  We suggest creating a mobile-friendly version of the tag list so it
-  doesn't take up an entire page on small screens.
+  Side navigation for the type (category), vendor (brand), and tags
+  in the current collection.
 
   Use product tags to manage subcategories inside collections.
   See 'How do I create subcategories of products?' for more documentation.
@@ -13,7 +11,7 @@
 
 
 {% comment %}
-  An optional addition, show the description for the current collection.
+  Show the description for the current collection
 {% endcomment %}
 {% if collection.description.size > 0 %}
 <div class="rte">
@@ -21,15 +19,76 @@
 </div>
 {% endif %}
 
+{% comment %}
+  Product types in the current collection
+{% endcomment %}
+<h3>Categories</h3>
+{% if collection.all_types.size > 0 %}
 
+  <ul>
+    {% comment %}
+      And for the good stuff, loop through the tags themselves.
+    {% endcomment %}
+    {% for type in collection.all_types %}
+      {% if collection.current_type contains type %}
+      <li class="active-tag">
+        {{ type | link_to_remove_type }}
+      </li>
+      {% else %}
+      <li>
+        {{ type | link_to_type }}
+      </li>
+      {% endif %}
+    {% endfor %}
+
+  </ul>
+
+{% else %}
+
+  <p>Add a type to your products for this list to build itself. All lists are created in <strong>collection-tags.liquid</strong>.</p>
+
+{% endif %}
+
+{% comment %}
+  Product vendors in the current collection
+{% endcomment %}
+<h3>Brands</h3>
+{% if collection.all_vendors.size > 0 %}
+
+  <ul>
+    {% comment %}
+      And for the good stuff, loop through the tags themselves.
+    {% endcomment %}
+    {% for vendor in collection.all_vendors %}
+      {% if collection.current_vendor == vendor %}
+      <li class="active-tag">
+        {{ vendor | link_to_remove_vendor }}
+      </li>
+      {% else %}
+      <li>
+        {{ vendor | link_to_vendor }}
+      </li>
+      {% endif %}
+    {% endfor %}
+
+  </ul>
+
+{% else %}
+
+  <p>Add a vendor to your product for this list to build itself.</p>
+
+{% endif %}
+
+{% comment %}
+  Product tags in the current collection
+{% endcomment %}
+<h3>Tags</h3>
 {% if collection.all_tags.size > 0 %}
 
   {% comment %}
     Say we want to provide a 'catch-all' link at the top of the list,
     we'd check against the collection.handle, product type, and vendor.
   {% endcomment %}
-
-  <h3>Tags</h3>
 
   <ul>
     <li{% unless current_tags %} class="active"{% endunless %}>
@@ -74,6 +133,6 @@
 
 {% else %}
 
-<p>Add some tags for a sub navigation to build itself here. Manage this list in <strong>collection-tags.liquid</strong>.</p>
+  <p>Add tags to your products for this list to build itself.</p>
 
 {% endif %}
