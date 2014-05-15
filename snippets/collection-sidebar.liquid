@@ -30,7 +30,7 @@
       And for the good stuff, loop through the tags themselves.
     {% endcomment %}
     {% for type in collection.all_types %}
-      {% if collection.current_type contains type %}
+      {% if collection.current_type == type %}
       <li class="active-tag">
         {{ type | link_to_remove_type }}
       </li>
