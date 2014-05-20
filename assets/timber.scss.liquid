@@ -1318,13 +1318,25 @@ a.btn-secondary {
 // ==============================================================================
 .site-header {
   padding: $gutter 0;
+
+  @include at-query($min, $large) {
+    .grid {
+      display: table;
+
+      & > .grid-item {
+        float: none;
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+  }
 }
 
 .header-logo {
   text-align: center;
   margin: 0 auto $gutter/2;
 
-  @include at-query($min, $medium) {
+  @include at-query($min, $large) {
     margin-bottom: 0;
   }
 
@@ -1382,10 +1394,6 @@ a.btn-secondary {
     margin: 0 auto;
     text-align: center;
   }
-
-  @include at-query($min, $medium) {
-    float: left;
-  }
 }
 
 .site-nav-active {
@@ -1415,16 +1423,13 @@ a.btn-secondary {
 
 // Search bar in header
 .nav-search {
+  position: relative;
   padding: 7px 0;
 
   @include at-query($max, $medium) {
     padding: 0 0 $gutter/2;
     margin: 0 auto;
     text-align: center;
-  }
-
-  @include at-query($min, $medium) {
-    float: right;
   }
 
   .input-group,
@@ -1434,7 +1439,7 @@ a.btn-secondary {
 }
 
 .search-bar {
-  max-width: 300px;
+  max-width: 100%;
 
   @include at-query($max, $medium) {
     margin: 0 auto;
@@ -1451,7 +1456,7 @@ a.btn-secondary {
   text-align: center;
   padding: $gutter 0;
 
-  @include at-query($min, $medium) {
+  @include at-query($min, $large) {
     padding: $gutter*2 0;
     text-align: left;
   }
