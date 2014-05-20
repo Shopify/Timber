@@ -15,21 +15,11 @@
  *    - snippet/ajax-cart-template.liquid
 */
 
-
 /*
- * Plugin Notes
+ * Plugin Documentation
  *
- * In order to update the cart count on your page when adding a product,
- * warp the number in a span and pass it's selector into the 'cartCountSelector' option.
- *
- * Similarly to the cart count, you can add a selector for
- * 'cartCostSelector' to update the total price when an item is added.
- *
- * If using the drawer method, pass a selector into the 'toggleCartButton' option
- * to toggle the cart open and closed. Leave this out if you'd like the link to
- * take the user to the /cart page.
+ * View the complete documentation at http://shopify.com/timber
 */
-
 
 // JQUERY API (c) Copyright 2009-2014 Shopify Inc. Author: Caroline Schnapp. All Rights Reserved.
 // Includes slight modifications to addItemFromForm.

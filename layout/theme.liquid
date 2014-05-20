@@ -66,51 +66,52 @@
   <header class="site-header" role="banner">
     <div class="wrapper">
 
-      {% comment %}
-        Use the uploaded logo from theme settings if enabled
-      {% endcomment %}
-      <h1 class="header-logo">
-        {% if settings.use_logo %}
-          <a href="/">
-            {{ 'logo.png' | asset_url | img_tag: shop.name }}
-          </a>
-        {% else %}
-          <a href="/">{{ shop.name }}</a>
-        {% endif %}
-      </h1>
+      <div class="grid">
+        <div class="grid-item large--one-half">
+          {% comment %}
+            Use the uploaded logo from theme settings if enabled
+          {% endcomment %}
+          <h1 class="header-logo large--left">
+            {% if settings.use_logo %}
+              <a href="/">
+                {{ 'logo.png' | asset_url | img_tag: shop.name }}
+              </a>
+            {% else %}
+              <a href="/">{{ shop.name }}</a>
+            {% endif %}
+          </h1>
+        </div>
+        <div class="grid-item large--one-half text-center large--text-right">
+          {% comment %}
+            You cart/checkout link should at least show the number of items in it.
+            Below shows the item count followed by item(s) and the total cart price.
 
-      <div class="text-center large-right large--text-right">
-        {% comment %}
-          You cart/checkout link should at least show the number of items in it.
-          Below shows the item count followed by item(s) and the total cart price.
-
-          Ajaxify Cart Notes:
-            - #cartToggle toggles cart visibility (drawer or modal)
-            - #cartCount updates the total number of items in the cart
-            - #cartCost updates the total cost of the cart
-            - Documentation:  http://shopify.com/timber#ajax-cart
-        {% endcomment %}
-        <p>
+            Ajaxify Cart Notes:
+              - #cartToggle toggles cart visibility (drawer or modal)
+              - #cartCount updates the total number of items in the cart
+              - #cartCost updates the total cost of the cart
+              - Documentation:  http://shopify.com/timber#ajax-cart
+          {% endcomment %}
           <a href="/cart" id="cartToggle">
             Cart (<span id="cartCount">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: 'item', 'items' }} <span id="cartCost">{{ cart.total_price | money }}</span>)
           </a>
-        </p>
 
-        {% comment %}
-          If customer accounts are enabled, provide login and create account links
-        {% endcomment %}
-        {% if shop.customer_accounts_enabled %}
-        <p>
-          {% if customer %}
-            Logged in as <a href="/account">{{ customer.first_name }}</a> &middot; {{ 'Log out' | customer_logout_link }}
-          {% else %}
-            {{ 'Log in' | customer_login_link }}
-            {% if shop.customer_accounts_optional %}
-            or {{ 'Create an account' | customer_register_link }}
+          {% comment %}
+            If customer accounts are enabled, provide login and create account links
+          {% endcomment %}
+          {% if shop.customer_accounts_enabled %}
+          <p>
+            {% if customer %}
+              Logged in as <a href="/account">{{ customer.first_name }}</a> &middot; {{ 'Log out' | customer_logout_link }}
+            {% else %}
+              {{ 'Log in' | customer_login_link }}
+              {% if shop.customer_accounts_optional %}
+              or {{ 'Create an account' | customer_register_link }}
+              {% endif %}
             {% endif %}
+          </p>
           {% endif %}
-        </p>
-        {% endif %}
+        </div>
       </div>
 
     </div>
@@ -118,9 +119,15 @@
 
   <nav class="nav-bar" role="navigation">
     <div class="wrapper">
-      {% include 'site-nav' %}
-      <div class="nav-search">
-        {% include 'search-bar' %}
+      <div class="grid">
+        <div class="grid-item large--two-thirds">
+          {% include 'site-nav' %}
+        </div>
+        <div class="grid-item large--one-third">
+          <div class="nav-search">
+            {% include 'search-bar' %}
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -164,7 +171,7 @@
       moneyFormat: {{ shop.money_format | json }}, // Your shop money format, defined in liquid.
       disableAjaxCart: false, // If for some reason you want to disable the cart, set to true. Default is false.
       enableQtySelectors: true, // Enable the quantity selectors on your templates, even if disableAjaxCart is false. Default is true.
-      prependDrawerTo: 'body' // The element selector where the cart is prepended. This is used for the drawer and flip methods. Default is $('body').
+      prependDrawerTo: 'body' // The element selector where the cart is prepended. This is used for the drawer and flip methods. Default is 'body'.
     });
   });
   </script>
