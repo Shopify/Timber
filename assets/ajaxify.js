@@ -450,18 +450,36 @@ var ajaxifyShopify = (function(module, $) {
       $modalContainer.after('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
     }
 
-    $closeCart = $('.ajaxifyCart--close');
-
-    // Position close button then show it
-    var w = $(window);
-    $closeCart.css({
-      top: ( w.height() - ( $modalContainer.offset().top + $modalContainer.outerHeight() ) - 15 ),
-      right: ( w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 )
-    });
-
     // Reset close modal listener
+    $closeCart = $('.ajaxifyCart--close');
     $closeCart.off('click');
     $closeCart.on('click', hideModal);
+
+    // Position button
+    var w = $(window);
+    positionButton();
+
+    $(window).on({
+      orientationchange: function(e) {
+        positionButton(true);
+      }, resize: function(e) {
+        positionButton(true);
+      }
+    });
+
+    function positionButton(isResizing) {
+      if ( !isResizing ) {
+        $closeCart.css('opacity', 0);
+      }
+      clearTimeout(positionTimeout);
+      var positionTimeout = setTimeout(function() {
+        $closeCart.css({
+          top: ( w.height() - ( $modalContainer.offset().top + $modalContainer.outerHeight() ) - 15 ),
+          right: ( w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
+          opacity: 1
+        });
+      }, 200);
+    }
   };
 
   drawerSetup = function () {
