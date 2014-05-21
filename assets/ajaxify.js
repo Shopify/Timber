@@ -445,8 +445,21 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   closeModalButton = function () {
-    // Link up close modal link
+    // Create close button if it doesn't exist
+    if ( !$('.ajaxifyCart--close').length ) {
+      $modalContainer.after('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
+    }
+
     $closeCart = $('.ajaxifyCart--close');
+
+    // Position close button then show it
+    var w = $(window);
+    $closeCart.css({
+      top: ( w.height() - ( $modalContainer.offset().top + $modalContainer.outerHeight() ) - 15 ),
+      right: ( w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 )
+    });
+
+    // Reset close modal listener
     $closeCart.off('click');
     $closeCart.on('click', hideModal);
   };
@@ -754,7 +767,6 @@ var ajaxifyShopify = (function(module, $) {
       // Size drawer at this point
       switch (settings.method) {
         case 'modal':
-          $cartContainer.prepend('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
           closeModalButton();
           break;
         case 'flip':
