@@ -25,7 +25,11 @@
 {% comment %}
   Use .grid--rev so that the collection tags appear below the products on mobile
 {% endcomment %}
-<div class="grid--rev">
+<div class="grid">
+
+  <div class="grid-item large--one-third">
+    {% include 'collection-sidebar' %}
+  </div>
 
   <div class="grid-item large--two-thirds">
 
@@ -64,16 +68,6 @@
         {% include 'pagination-custom' %}
       </div>
     {% endif %}
-
-  </div>
-
-  <div class="grid-item large--one-third">
-
-    {% comment %}
-      Side navigation for the type (category), vendor (brand), and tags
-      in the current collection.
-    {% endcomment %}
-    {% include 'collection-sidebar' %}
 
   </div>
 
