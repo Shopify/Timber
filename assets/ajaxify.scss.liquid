@@ -329,16 +329,12 @@ form[action^="/cart/add"] {
 // ==============================================================================
 .js-qty {
   position: relative;
-  border: 1px solid transparent;
-  border-radius: 2px;
   margin-bottom: 1em;
   max-width: 100px;
-  @include transition(all 0.4s ease-out);
   @include backface();
 
   input[type="text"] {
     display: block;
-    border-radius: 0;
     background: none;
     text-align: center;
     width: 100%;
@@ -367,6 +363,10 @@ form[action^="/cart/add"] {
   &:hover {
     background-color: $borderColor;
   }
+
+  &:active {
+    background-color: darken($borderColor, 10%);
+  }
 }
 
 .js--add {
@@ -390,16 +390,16 @@ form[action^="/cart/add"] {
   overflow: hidden;
   max-width: 90px;
 
-  .ajaxifyCart--product:hover &,
-  .ajaxify-touch &,
-  &:hover {
-    border-color: $ajaxifyGreyDark;
-    @include transition(none);
-  }
-
   input[type="text"] {
     color: $quantityTextColor;
-    border: 0 none;
+    border-color: rgba(0,0,0,0);
+    @include transition(all 0.1s ease-out);
+  }
+
+  .ajaxifyCart--product:hover input[type="text"],
+  .ajaxify-touch input[type="text"],
+  &:hover input[type="text"] {
+    border-color: $ajaxifyGreyDark;
   }
 
   .ajaxifyCart--is-loading & {
@@ -426,7 +426,6 @@ form[action^="/cart/add"] {
 
   &:active {
     background-color: darken($ajaxifyGreyDark, 10%);
-    color: #c7c7c7;
   }
 
   // Turn off animation on initial hover
