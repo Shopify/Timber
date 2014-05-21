@@ -250,10 +250,10 @@ var ajaxifyShopify = (function(module, $) {
   var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $isTouch;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $prependDrawerTo, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $body;
+  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $body;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, hideModal, closeModalButton, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadDrawerImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, closeModalButton, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
 
   /**
    * Initialise the plugin and define global options
@@ -428,12 +428,37 @@ var ajaxifyShopify = (function(module, $) {
     // Build the cart if it isn't already there
     if ( !cartInit && toggle ) {
       Shopify.getCart(cartUpdateCallback);
+    } else {
+      sizeModal();
     }
 
     if ($modalContainer) {
-      $modalContainer.addClass('is-visible');
       $modalOverlay.off( 'click', hideModal );
       $modalOverlay.on( 'click', hideModal );
+    }
+  };
+
+  sizeModal = function() {
+    // Position modal on load
+    positionModal();
+
+    $(window).on({
+      orientationchange: function(e) {
+        positionModal(true);
+      }, resize: function(e) {
+        positionModal(true);
+      }
+    });
+
+    function positionModal(isResizing) {
+      if (!isResizing) {
+        $modalContainer.css('opacity', 0);
+      }
+      $modalContainer.css({
+        'margin-left': - ($modalContainer.outerWidth() / 2),
+        'margin-top': - ($modalContainer.outerHeight() / 2),
+        'opacity': 1
+      }).addClass('is-visible');
     }
   };
 
@@ -455,7 +480,7 @@ var ajaxifyShopify = (function(module, $) {
     $closeCart.off('click');
     $closeCart.on('click', hideModal);
 
-    // Position button
+    // Position button on load
     var w = $(window);
     positionButton();
 
@@ -565,16 +590,25 @@ var ajaxifyShopify = (function(module, $) {
     }
   };
 
-  loadDrawerImages = function () {
-    // Size drawer once all images are loaded
-    var drawerImages = $('img', $cartContainer),
-        count = drawerImages.length,
+  loadCartImages = function () {
+    // Size cart once all images are loaded
+    var cartImages = $('img', $cartContainer),
+        count = cartImages.length,
         index = 0;
 
-    drawerImages.on('load', function() {
+    cartImages.on('load', function() {
       index++;
+
       if (index==count) {
-        sizeDrawer();
+        switch (settings.method) {
+          case 'modal':
+            sizeModal();
+            break;
+          case 'flip':
+          case 'drawer':
+            sizeDrawer();
+            break;
+        }
       }
     });
   };
@@ -758,12 +792,13 @@ var ajaxifyShopify = (function(module, $) {
     // Setup close modal button and size drawer
     switch (settings.method) {
       case 'modal':
+        loadCartImages();
         closeModalButton();
         break;
       case 'flip':
       case 'drawer':
         if (cart.item_count > 0) {
-          loadDrawerImages();
+          loadCartImages();
         } else {
           sizeDrawer(true);
         }
@@ -785,12 +820,13 @@ var ajaxifyShopify = (function(module, $) {
       // Size drawer at this point
       switch (settings.method) {
         case 'modal':
+          loadCartImages();
           closeModalButton();
           break;
         case 'flip':
         case 'drawer':
           if (cart.item_count > 0) {
-            loadDrawerImages();
+            loadCartImages();
           } else {
             sizeDrawer(true);
           }
