@@ -1,0 +1,27 @@
+{% comment %}
+  Recent blog posts
+{% endcomment %}
+<h4>Recent Articles</h4>
+{% for article in blog.articles limit:6 %}
+  <p>
+    <a href="{{ article.url }}">{{ article.title }}</a>
+    <br>
+    <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+      <em class="text-light">{{ article.published_at | date: '%b %d, %Y' }}</em>
+    </time>
+  </p>
+{% endfor %}
+
+{% comment %}
+  Blog tags
+{% endcomment %}
+{% if blog.tags.size > 0 %}
+<h4>Categories</h4>
+  <ul>
+    {% for tag in blog.tags  %}
+      <li>
+        <a href="{{ tag.url }}">{{ tag.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

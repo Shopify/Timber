@@ -7,6 +7,8 @@
 
 {% paginate blog.articles by 5 %}
 
+{% include 'breadcrumb' %}
+
 {% comment %}
   This template is also used for listing out articles of a specific tag.
   You can change layouts or styles by checking if current_tags is true.
@@ -14,7 +16,7 @@
 
 <div class="grid">
 
-  <div class="grid-item large--two-thirds push--large--one-sixth">
+  <div class="grid-item large--three-quarters">
     <header class="page-header">
 
       {% if current_tags %}
@@ -83,7 +85,11 @@
       {% include 'pagination-custom' %}
     </div>
     {% endif %}
-    
+
+  </div>
+
+  <div class="grid-item large--one-quarter">
+    {% include 'blog-sidebar' %}
   </div>
 </div>
 

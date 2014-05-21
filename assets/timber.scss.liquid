@@ -40,6 +40,7 @@
   #Tag List
   #Breadcrumbs
   #Product Page
+  #Blogs and Comments
   #Notes and Form Feedback
   #Cart Page
   #Demo Styles - for empty store state
@@ -1546,6 +1547,31 @@ a.btn-secondary {
   li {
     margin-bottom: $gutter;
   }
+}
+
+// ==============================================================================
+// #Blogs and Comments
+// ==============================================================================
+.template-article {
+  .article-header {
+    margin-bottom: 0;
+
+    & + .text-light {
+      display: block;
+      margin-bottom: $gutter;
+    }
+  }
+}
+
+// Comments
+.comment-content {
+  margin-bottom: -$gutter/2;
+}
+
+.comment-author {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: $gutter;
 }
 
 

@@ -22,17 +22,22 @@
   {% assign number_of_comments = article.comments_count | plus: 1 %}
 {% endif %}
 
+{% include 'breadcrumb' %}
+
 <div class="grid">
 
-  <div class="grid-item large--two-thirds push--large--one-sixth">
-
-    {% include 'breadcrumb' %}
+  <div class="grid-item large--three-quarters">
 
     <header class="page-header">
-      <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-        {{ article.published_at | date: '%b %d, %Y' }}
-      </time>
-      <h1>{{ article.title }}</h1>
+      <h1 class="article-header">{{ article.title }}</h1>
+      <em class="text-light">
+        Posted by <strong>{{ article.author }}</strong> on
+        <strong>
+          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{ article.published_at | date: '%b %d, %Y' }}
+          </time>
+        </strong>
+      </em>
     </header>
 
     <div class="rte">
@@ -85,8 +90,6 @@
     </p>
     {% endif %}
 
-
-
     {% if blog.comments_enabled? %}
 
     <hr>
@@ -114,7 +117,9 @@
 
         {% if number_of_comments > 0 %}
           <ul>
-            {% comment %}If a comment was just submitted with no blank field, let's show it.{% endcomment %}
+            {% comment %}
+              If a comment was just submitted with no blank field, show it.
+            {% endcomment %}
             {% if comment and comment.created_at %}
             <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
 
@@ -179,6 +184,10 @@
 
           </div>
 
+          {% if blog.moderated? %}
+            <p class="text-light"><em><strong>Please note:</strong> comments must be approved before they are published</em></p>
+          {% endif %}
+
           <input type="submit" class="btn" value="Post Comment">
 
           {% if form.errors %}
@@ -201,5 +210,9 @@
 
     {% endif %}
 
+  </div>
+
+  <div class="grid-item large--one-quarter">
+    {% include 'blog-sidebar' %}
   </div>
 </div>

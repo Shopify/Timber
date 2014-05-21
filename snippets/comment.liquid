@@ -9,14 +9,15 @@
 
 {% endcomment %}
 
-<h3 class="comment-author">
-  {{ comment.author }} says...
-</h3>
-
-<h5 class="comment-date">
-  On {{ comment.created_at | date: "%B %d, %Y" }}
-</h5>
-
 <div class="comment-content">
   {{ comment.content }}
 </div>
+
+<p class="comment-author text-light">
+  <strong>{{ comment.author }}</strong> on
+  <strong>
+    <time datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">
+      {{ comment.created_at | date: '%b %d, %Y' }}
+    </time>
+  </strong>
+</p>
