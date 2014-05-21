@@ -454,6 +454,7 @@ form[action^="/cart/add"] {
   position: fixed;
   top: 50%;
   left: 50%;
+  margin: -50% 0 0 -50%; // overridden with JS
   width: 100%;
   max-width: 960px;
   max-height: 80%;
@@ -461,7 +462,6 @@ form[action^="/cart/add"] {
   z-index: 99999999;
   visibility: hidden;
   overflow: auto;
-  @include transform(translateX(-50%) translateY(-50%));
   @include transition(box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms);
 
   .ajaxifyCart--content {
