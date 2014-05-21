@@ -29,10 +29,15 @@
   <div class="grid-item large--three-quarters">
 
     <header class="page-header">
-      <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-        {{ article.published_at | date: '%b %d, %Y' }}
-      </time>
-      <h1>{{ article.title }}</h1>
+      <h1 class="article-header">{{ article.title }}</h1>
+      <em class="text-light">
+        Posted by <strong>{{ article.author }}</strong> on
+        <strong>
+          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{ article.published_at | date: '%b %d, %Y' }}
+          </time>
+        </strong>
+      </em>
     </header>
 
     <div class="rte">
@@ -84,8 +89,6 @@
       {% endif %}
     </p>
     {% endif %}
-
-
 
     {% if blog.comments_enabled? %}
 
