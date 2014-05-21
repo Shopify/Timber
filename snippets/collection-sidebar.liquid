@@ -31,13 +31,13 @@
   Product types in the current collection
 {% endcomment %}
 <h3>Categories</h3>
-{% if collections.all.all_types.size > 0 %}
+{% if collection.all_types.size > 0 %}
 
   <ul>
     {% comment %}
       And for the good stuff, loop through the tags themselves.
     {% endcomment %}
-    {% for type in collections.all.all_types %}
+    {% for type in collection.all_types %}
       {% if collection.current_type == type %}
       <li class="active-filter">
         {{ type | link_to_remove_type }}
@@ -61,13 +61,13 @@
   Product vendors in the current collection
 {% endcomment %}
 <h3>Brands</h3>
-{% if collections.all.all_vendors.size > 0 %}
+{% if collection.all_vendors.size > 0 %}
 
   <ul>
     {% comment %}
       And for the good stuff, loop through the tags themselves.
     {% endcomment %}
-    {% for vendor in collections.all.all_vendors %}
+    {% for vendor in collection.all_vendors %}
       {% if collection.current_vendor == vendor %}
       <li class="active-filter">
         {{ vendor | link_to_remove_vendor }}
