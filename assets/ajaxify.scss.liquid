@@ -99,22 +99,29 @@
   @include clearfix;
 }
 
+@function color-control($color) {
+  @if (lightness( $color ) > 40) {
+    @return #000;
+  }
+  @else {
+    @return #fff;
+  }
+}
 
 // ==============================================================================
 // Ajaxify Colours
 // ==============================================================================
 $ajaxifyGrey: #444;
-$ajaxifyGreyLight: #d3d3d3;
 $ajaxifyGreyDark: #454545;
 
 $drawerBackgroundColor: #000;
-$drawerTextColor: #fff;
-$drawerLinkColor: #fff;
+$drawerBorderColor: #454545;
+
+$modalBackgroundColor: #fff;
+$modalBorderColor: #e5e5e5; // borders from timber
 
 /* Border colors from Timber */
 $borderColor: #e5e5e5;
-
-$quantityTextColor: #fff;
 
 .ajaxify-grey {
   color: $ajaxifyGrey;
@@ -268,7 +275,6 @@ form[action^="/cart/add"] {
 .ajaxifyCart--products {
   padding-bottom: 10px;
   margin-bottom: 20px;
-  border-bottom: 1px solid $ajaxifyGreyDark;
 }
 
 .ajaxifyCart--product {
@@ -331,7 +337,8 @@ form[action^="/cart/add"] {
   position: relative;
   margin-bottom: 1em;
   max-width: 100px;
-  @include backface();
+  overflow: visible;
+  @include backface(hidden);
 
   input[type="text"] {
     display: block;
@@ -385,26 +392,15 @@ form[action^="/cart/add"] {
 .ajaxifyCart--qty {
   @extend .js-qty;
   top: -5px;
-  right: -30px;
   margin-bottom: 0;
-  overflow: hidden;
-  max-width: 90px;
 
   input[type="text"] {
-    color: $quantityTextColor;
-    border-color: rgba(0,0,0,0);
+    border: 1px solid rgba(0,0,0,0);
     @include transition(all 0.1s ease-out);
   }
 
-  .ajaxifyCart--product:hover input[type="text"],
-  .ajaxify-touch input[type="text"],
-  &:hover input[type="text"] {
-    border-color: $ajaxifyGreyDark;
-  }
-
   .ajaxifyCart--is-loading & {
-    opacity: 0.6;
-    border-color: $ajaxifyGreyDark;
+    opacity: 0.5;
     @include transition(none);
   }
 }
@@ -413,9 +409,9 @@ form[action^="/cart/add"] {
   @extend .js--qty-adjuster;
   opacity: 0;
 
+  .cart-row:hover &,
   .ajaxifyCart--product:hover &,
-  .ajaxify-touch &,
-  .ajaxifyCart--qty:hover & {
+  .ajaxify-touch & {
     opacity: 1;
     @include transition(background-color 0.2s ease-out);
   }
@@ -436,12 +432,10 @@ form[action^="/cart/add"] {
 
 .ajaxifyCart--add {
   @extend .js--add;
-  border-left: 1px solid $ajaxifyGreyDark;
 }
 
 .ajaxifyCart--minus {
   @extend .js--minus;
-  border-right: 1px solid $ajaxifyGreyDark;
 }
 
 
@@ -454,7 +448,7 @@ form[action^="/cart/add"] {
   left: 50%;
   margin: -50% 0 0 -50%; // overridden with JS
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   max-height: 80%;
   height: auto;
   z-index: 99999999;
@@ -498,39 +492,6 @@ form[action^="/cart/add"] {
     @include transform(none);
   }
 
-  .ajaxifyCart--products {
-    border-bottom-color: $ajaxifyGreyLight;
-  }
-
-  // Quantity selectors
-  .ajaxifyCart--product:hover .ajaxifyCart--qty {
-    border-color: $ajaxifyGreyLight;
-  }
-
-  .ajaxifyCart--is-loading .ajaxifyCart--qty {
-    opacity: 0.7;
-    border-color: $ajaxifyGreyLight;
-  }
-
-  .ajaxifyCart--qty-adjuster {
-
-    &:hover {
-      background-color: $ajaxifyGreyLight;
-    }
-
-    &:active {
-      background-color: darken($ajaxifyGreyLight, 10%);
-    }
-  }
-
-  .ajaxifyCart--add {
-    border-left-color: $ajaxifyGreyLight;
-  }
-
-  .ajaxifyCart--minus {
-    border-right-color: $ajaxifyGreyLight;
-  }
-
 }
 
 #ajaxifyCart-overlay {
@@ -553,10 +514,29 @@ form[action^="/cart/add"] {
   @include transition(opacity 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
 }
 
+// Modal colors and general styles
 #ajaxifyModal .ajaxifyCart--content {
-  background-color: #fff;
+  background-color: $modalBackgroundColor;
   @include transform(scale(0.7));
   opacity: 0;
+
+  // Typography styles
+  h1, h2, h3, h4 {
+    color: color-control($modalBackgroundColor);
+
+    a {
+      color: color-control($modalBackgroundColor);
+    }
+
+  }
+
+  p, a {
+    color: color-control($modalBackgroundColor);
+  }
+
+  input[type="text"] {
+    color: color-control($modalBackgroundColor);
+  }
 }
 
 #ajaxifyModal.is-visible .ajaxifyCart--content {
@@ -564,9 +544,34 @@ form[action^="/cart/add"] {
   opacity: 1;
 }
 
+// Quantity selector colors in the modal
 #ajaxifyModal {
-  .ajaxifyCart--qty input[type="text"] {
-    color: #000;
+  .cart-row:hover input[type="text"],
+  .ajaxifyCart--product:hover input[type="text"],
+  .ajaxify-touch input[type="text"] {
+    border-color: $modalBorderColor;
+  }
+
+  .js--add {
+    border-left: 1px solid $modalBorderColor;
+  }
+
+  .js--minus {
+    border-right: 1px solid $modalBorderColor;
+  }
+
+  .ajaxifyCart--products {
+    border-bottom: 1px solid $modalBorderColor;
+  }
+
+  .ajaxifyCart--qty-adjuster {
+    &:hover {
+      background-color: $modalBorderColor;
+    }
+
+    &:active {
+      background-color: darken($modalBorderColor, 10%);
+    }
   }
 }
 
@@ -575,7 +580,6 @@ form[action^="/cart/add"] {
 // ==============================================================================
 #ajaxifyDrawer {
   background-color: $drawerBackgroundColor;
-  color: #fff;
   height: 0px;
   overflow: hidden;
   @include perspective (1000px);
@@ -585,34 +589,33 @@ form[action^="/cart/add"] {
   &.is-visible {
     @include transition(all 550ms cubic-bezier(0.47, 0, 0, 0.95));
   }
-
-  // Typography styles
-  h1, h2, h3, h4 {
-    color: $drawerTextColor;
-    margin-bottom: 6px;
-
-    a {
-      color: $drawerLinkColor;
-    }
-
-  }
-
-  h4 {
-    font-size: 18px;
-    line-height: 22px;
-    display: inline;
-  }
-
-  p, a {
-    color: $drawerTextColor;
-  }
 }
 
+// Drawer colors and general styles
 #ajaxifyDrawer .ajaxifyCart--content {
   margin: 0 auto;
   opacity: 0;
   overflow: hidden;
   background-color: $drawerBackgroundColor;
+  color: color-control($drawerBackgroundColor);
+
+  // Typography styles
+  h1, h2, h3, h4 {
+    color: color-control($drawerBackgroundColor);
+
+    a {
+      color: color-control($drawerBackgroundColor);
+    }
+
+  }
+
+  p, a {
+    color: color-control($drawerBackgroundColor);
+  }
+
+  input[type="text"] {
+    color: color-control($drawerBackgroundColor);
+  }
 
   @include transform-origin(top);
   @include rotateX(-90deg);
@@ -621,6 +624,37 @@ form[action^="/cart/add"] {
 #ajaxifyDrawer.is-visible .ajaxifyCart--content {
   opacity: 1;
   @include rotateX(0deg);
+}
+
+// Quantity selector colors in the drawer
+#ajaxifyDrawer {
+  .cart-row:hover input[type="text"],
+  .ajaxifyCart--product:hover input[type="text"],
+  .ajaxify-touch input[type="text"] {
+    border-color: $drawerBorderColor;
+  }
+
+  .js--add {
+    border-left: 1px solid $drawerBorderColor;
+  }
+
+  .js--minus {
+    border-right: 1px solid $drawerBorderColor;
+  }
+
+  .ajaxifyCart--products {
+    border-bottom: 1px solid $drawerBorderColor;
+  }
+
+  .ajaxifyCart--qty-adjuster {
+    &:hover {
+      background-color: $drawerBorderColor;
+    }
+
+    &:active {
+      background-color: darken($drawerBorderColor, 10%);
+    }
+  }
 }
 
 .ajaxifyDrawer-caret {
@@ -702,7 +736,7 @@ form[action^="/cart/add"] {
   }
 
   &:hover {
-    background-color: $ajaxifyGreyLight;
+    background-color: lighten($ajaxifyGreyDark, 50%);
   }
 
   @media only screen and (max-width:972px) {
