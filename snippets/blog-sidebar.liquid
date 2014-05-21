@@ -7,17 +7,21 @@
     <a href="{{ article.url }}">{{ article.title }}</a>
     <br>
     <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-      <em>{{ article.published_at | date: '%b %d, %Y' }}</em>
+      <em class="text-light">{{ article.published_at | date: '%b %d, %Y' }}</em>
     </time>
   </p>
 {% endfor %}
 
 {% comment %}
-  Blog categories
+  Blog tags
 {% endcomment %}
+{% if blog.tags.size > 0 %}
 <h4>Categories</h4>
-{% for tag in blog.tags  %}
-  <p>
-    <a href="{{ tag.url }}">{{ tag.title }}</a>
-  </p>
-{% endfor %}
+  <ul>
+    {% for tag in blog.tags  %}
+      <li>
+        <a href="{{ tag.url }}">{{ tag.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
