@@ -1337,8 +1337,9 @@ a.btn-secondary {
   }
 
   @include at-query($min, $large) {
-    .grid {
+    .grid--full {
       display: table;
+      width: 100%;
 
       & > .grid-item {
         float: none;
