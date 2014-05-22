@@ -714,10 +714,6 @@ h1, h2, h3, h4, h5, h6,
 
   a {
     text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   // Add some top margin to headers from the rich text editor
@@ -943,6 +939,11 @@ input {
   width: auto;
 }
 
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
 /* Input width and border */
 input[type="text"],
 input[type="password"],
@@ -996,7 +997,7 @@ select {
 
   // Hide the svg arrow in IE9 and below
   .ie9 &,
-  .lt-ie9 {
+  .lt-ie9 & {
     padding-right: 10px;
     background-image: none;
   }
@@ -1202,7 +1203,6 @@ a.btn-secondary {
   display: inline;
   border: 0 none;
   background: none;
-  text-decoration: underline;
   padding: 0;
   margin: 0;
 }
@@ -1473,11 +1473,11 @@ a.btn-secondary {
     width: 48px;
     margin: 0 $gutter/4;
   }
-}
 
-// We use SVG images for the credit card icons, and SVG is not supported in IE8.
-.lt-ie9 .payment-icons {
-  display: none;
+  // We use SVG images for the credit card icons, and SVG is not supported in IE8.
+  .lt-ie9 & {
+    display: none;
+  }
 }
 
 // ==============================================================================
