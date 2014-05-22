@@ -659,13 +659,21 @@ body {
   @include clearfix();
   max-width: $siteWidth;
   margin: 0 auto;
-  padding: 0 $gutter;
+  padding: 0 $gutter/2;
+
+  @include at-query($min, $small) {
+    padding: 0 $gutter;
+  }
 }
 
 .main-content {
   display: block;
-  padding-top: $gutter*2;
+  padding-top: $gutter;
   padding-bottom: $gutter*2;
+
+  @include at-query($min, $large) {
+    padding-top: $gutter*2;
+  }
 }
 
 // ==============================================================================
@@ -1519,8 +1527,22 @@ a.btn-secondary {
 // #Breadcrumbs
 // ==============================================================================
 .breadcrumb {
-  font-size: 0.75em; //12px
-  margin-bottom: 1em;
+  margin-bottom: $gutter;
+  margin-top: -$gutter; // offset .main-content padding
+
+  @include at-query($min, $large) {
+    margin-top: -$gutter*2;
+  }
+
+  a,
+  span {
+    display: inline-block;
+    padding: $gutter/2 7px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
 }
 
 
