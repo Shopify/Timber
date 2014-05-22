@@ -250,10 +250,10 @@ var ajaxifyShopify = (function(module, $) {
   var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $isTouch;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $body;
+  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $w, $body;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, closeModalButton, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
 
   /**
    * Initialise the plugin and define global options
@@ -303,6 +303,7 @@ var ajaxifyShopify = (function(module, $) {
     $isTouch         = Modernizr.touch;
 
     // General Selectors
+    $w    = $(window);
     $body = $('body');
 
     // Touch check
@@ -438,10 +439,21 @@ var ajaxifyShopify = (function(module, $) {
     }
   };
 
-  sizeModal = function() {
+  sizeModal = function(invisible) {
+    // Create close button if it doesn't exist
+    if ( !$('.ajaxifyCart--close').length ) {
+      $modalContainer.after('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
+    }
+
+    // Reset close modal listener
+    $closeCart = $('.ajaxifyCart--close');
+    $closeCart.off('click');
+    $closeCart.on('click', hideModal);
+
     // Position modal on load
     positionModal();
 
+    // Update modal position on screen change
     $(window).on({
       orientationchange: function(e) {
         positionModal(true);
@@ -453,57 +465,38 @@ var ajaxifyShopify = (function(module, $) {
     function positionModal(isResizing) {
       if (!isResizing) {
         $modalContainer.css('opacity', 0);
+        $closeCart.css('opacity', 0);
       }
+
+      // Position modal by negative margin
       $modalContainer.css({
         'margin-left': - ($modalContainer.outerWidth() / 2),
         'margin-top': - ($modalContainer.outerHeight() / 2),
         'opacity': 1
-      }).addClass('is-visible');
+      });
+
+      if (!invisible) {
+        $modalContainer.addClass('is-visible');
+      }
+
+      // Position close button on slight timeout
+      clearTimeout(positionTimeout);
+      var positionTimeout = setTimeout(function() {
+        $closeCart.css({
+          top: ( $w.height() - ( $modalContainer.offset().top + $modalContainer.outerHeight() ) - 15 ),
+          right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
+          opacity: 1
+        });
+      }, 200);
     }
   };
 
   hideModal = function (e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     if ($modalContainer) {
       $modalContainer.removeClass('is-visible');
-    }
-  };
-
-  closeModalButton = function () {
-    // Create close button if it doesn't exist
-    if ( !$('.ajaxifyCart--close').length ) {
-      $modalContainer.after('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
-    }
-
-    // Reset close modal listener
-    $closeCart = $('.ajaxifyCart--close');
-    $closeCart.off('click');
-    $closeCart.on('click', hideModal);
-
-    // Position button on load
-    var w = $(window);
-    positionButton();
-
-    $(window).on({
-      orientationchange: function(e) {
-        positionButton(true);
-      }, resize: function(e) {
-        positionButton(true);
-      }
-    });
-
-    function positionButton(isResizing) {
-      if ( !isResizing ) {
-        $closeCart.css('opacity', 0);
-      }
-      clearTimeout(positionTimeout);
-      var positionTimeout = setTimeout(function() {
-        $closeCart.css({
-          top: ( w.height() - ( $modalContainer.offset().top + $modalContainer.outerHeight() ) - 15 ),
-          right: ( w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
-          opacity: 1
-        });
-      }, 200);
     }
   };
 
@@ -719,20 +712,30 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   buildCart = function (cart) {
+    // Empty cart if using default layout or not using the .load method to get /cart
+    if (!settings.useCartTemplate || cart.item_count == 0) {
+      $cartContainer.empty();
+    }
+
     // Show empty cart
     if (cart.item_count <= 0) {
-      $cartContainer.empty();
       $cartContainer.append('<h2>Your cart is empty</h2>');
-      sizeDrawer();
 
-      if (!$drawerContainer.hasClass('is-visible') && cartInit) {
-        sizeDrawer(true);
+      switch (settings.method) {
+        case 'modal':
+          sizeModal(true);
+          break;
+        case 'flip':
+        case 'drawer':
+          sizeDrawer();
+
+          if (!$drawerContainer.hasClass('is-visible') && cartInit) {
+            sizeDrawer(true);
+          }
+          break;
       }
       return;
     }
-
-    // Empty the current cart items
-    $cartContainer.empty();
 
     // Use the /cart template, or Handlebars.js layout based on theme settings
     if (settings.useCartTemplate) {
@@ -793,7 +796,6 @@ var ajaxifyShopify = (function(module, $) {
     switch (settings.method) {
       case 'modal':
         loadCartImages();
-        closeModalButton();
         break;
       case 'flip':
       case 'drawer':
@@ -821,7 +823,6 @@ var ajaxifyShopify = (function(module, $) {
       switch (settings.method) {
         case 'modal':
           loadCartImages();
-          closeModalButton();
           break;
         case 'flip':
         case 'drawer':

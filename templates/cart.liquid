@@ -22,7 +22,7 @@
         <div class="grid-item one-third push--two-thirds text-right">
           <div class="grid">
 
-            <div class="grid-item one-third">
+            <div class="grid-item one-third text-center">
               Quantity
             </div>
 
@@ -70,14 +70,13 @@
               <span class="h4">
                 <a href="{{ item.product.url }}">
                   {{ item.product.title }}
-
-                  {% if item.product.variants.size != 0 %}
-                    {% unless item.variant.title contains 'Default' %}
-                      <br>
-                       <small>{{ item.variant.title }}</small>
-                    {% endunless %}
-                  {% endif %}
                 </a>
+                {% if item.product.variants.size != 0 %}
+                  {% unless item.variant.title contains 'Default' %}
+                    <br>
+                     <small>{{ item.variant.title }}</small>
+                  {% endunless %}
+                {% endif %}
               </span>
 
               {% comment %}
