@@ -42,3 +42,5 @@ Thumbs.db
 *.sass-cache*
 config.yml
 /_site
+config/settings_data.json
+assets/logo.png
