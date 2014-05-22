@@ -1,5 +1,7 @@
 {
-  "current": "Default",
+  "current": {
+    "use_logo": true
+  },
   "presets": {
     "Default": {
       "use_logo": false,
