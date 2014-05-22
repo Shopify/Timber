@@ -78,11 +78,11 @@
 }
 
 @mixin transition($transition) {
-  -webkit-transition: $transition;
-  -moz-transition: $transition;
-  -ms-transition: $transition;
-  -o-transition: $transition;
-  transition: $transition;
+  -webkit-transition: #{$transition};
+  -moz-transition: #{$transition};
+  -ms-transition: #{$transition};
+  -o-transition: #{$transition};
+  transition: #{$transition};
 }
 
 @mixin clearfix() {
@@ -453,7 +453,7 @@ form[action^="/cart/add"] {
   position: fixed;
   top: 50%;
   left: 50%;
-  margin: -50% 0 0 -50%; // overridden with JS
+  margin: -300px 0 0 -500px; // overridden with JS
   width: 100%;
   max-width: 1000px;
   max-height: 80%;
@@ -461,7 +461,7 @@ form[action^="/cart/add"] {
   z-index: 99999999;
   visibility: hidden;
   overflow: auto;
-  @include transition(box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms);
+  @include transition('box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms, margin-top 200ms ease-in-out');
 
   .ajaxifyCart--content {
     padding: 30px;
@@ -511,14 +511,18 @@ form[action^="/cart/add"] {
   z-index: 99999998;
   opacity: 0;
   cursor: pointer;
-  background-color: rgba(211,211,211,0.8);
+  background-color: #d3d3d3;
   @include transition(opacity 450ms cubic-bezier(0.57,.06,.05,.95));
 }
 
 .is-visible ~ #ajaxifyCart-overlay {
-  opacity: 1;
+  opacity: 0.8;
   visibility: visible;
   @include transition(opacity 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
+
+  .lt-ie9 & {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  }
 }
 
 // Modal colors and general styles
@@ -727,7 +731,7 @@ form[action^="/cart/add"] {
   background-color: $ajaxifyGreyDark;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkMzRUY2REVBNDY1QjExRTM4ODdCODU0OEQ4MDA1MjgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkMzRUY2REVCNDY1QjExRTM4ODdCODU0OEQ4MDA1MjgwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QzNFRjZERTg0NjVCMTFFMzg4N0I4NTQ4RDgwMDUyODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QzNFRjZERTk0NjVCMTFFMzg4N0I4NTQ4RDgwMDUyODAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7sdZ8fAAAAp0lEQVR42nSPQQ6CMBBFx4ZEj+DSY8BGt9SVwRP1QBDdULeygaN4BFzpn+Q3mZCW5DFk/uvQ2YUQfiIygYuUnzc4O7wW/QCxIEbmi8oNG23mgO03js0reDF4gCNry77mUpkpHvSgo7QHA7gnwW1+q8FKcbViTtbJB/Bl7Uty5BWe4MTa2aWTPJplbuDDmpYe04IzqBn4zbU8J2udHcUpI9oDmtd/AQYAX20mtnhTCxQAAAAASUVORK5CYII=);
   z-index: 999999999;
-  @include transition(all 0.1s);
+  @include transition('background-color 100ms ease-in-out, margin 100ms ease-in-out');
 
   #ajaxifyModal.is-visible + & {
     display: block;

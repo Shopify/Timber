@@ -247,10 +247,10 @@ var ajaxifyShopify = (function(module, $) {
   var init;
 
   // Private general variables
-  var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $isTouch;
+  var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $isTouch, $nojQueryLoad, $w, $body;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $w, $body;
+  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo;
 
   // Private functions
   var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop;
@@ -309,6 +309,12 @@ var ajaxifyShopify = (function(module, $) {
     // Touch check
     if ($isTouch) {
       $body.addClass('ajaxify-touch');
+    }
+
+    // Check if we can use .load
+    $nojQueryLoad = $('html').hasClass('lt-ie9');
+    if ($nojQueryLoad) {
+      settings.useCartTemplate = false;
     }
 
     // Setup ajax quantity selectors on the any template if enableQtySelectors is true
@@ -412,10 +418,32 @@ var ajaxifyShopify = (function(module, $) {
     $modalOverlay   = $('#ajaxifyCart-overlay');
     $cartContainer  = $('#ajaxifyCart');
 
+    // Close modal when clicking the overlay
+    $modalOverlay.on('click', hideModal);
+
+    // Create a close modal button
+    $modalContainer.after('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
+    $closeCart = $('.ajaxifyCart--close');
+    $closeCart.on('click', hideModal);
+
     // Add a class if CSS translate isn't available
     if (!$cssTransforms) {
       $modalContainer.addClass('no-transforms')
     }
+
+    // Update modal position on screen changes
+    $(window).on({
+      orientationchange: function(e) {
+        if ($modalContainer.hasClass('is-visible')) {
+          sizeModal('resize');
+        }
+      }, resize: function(e) {
+        // IE8 fires this when overflow on body is changed. Ignore IE8.
+        if (!$nojQueryLoad && $modalContainer.hasClass('is-visible')) {
+          sizeModal('resize');
+        }
+      }
+    });
 
     // Toggle modal with cart button
     setToggleButtons();
@@ -428,70 +456,41 @@ var ajaxifyShopify = (function(module, $) {
     } else {
       sizeModal();
     }
-
-    if ($modalContainer) {
-      $modalOverlay.off( 'click', hideModal );
-      $modalOverlay.on( 'click', hideModal );
-    }
   };
 
-  sizeModal = function(invisible) {
-    // Create close button if it doesn't exist
-    if ( !$('.ajaxifyCart--close').length ) {
-      $modalContainer.after('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
+  sizeModal = function(isResizing) {
+    if (!isResizing) {
+      $modalContainer.css('opacity', 0);
+      $closeCart.css('opacity', 0);
     }
 
-    // Reset close modal listener
-    $closeCart = $('.ajaxifyCart--close');
-    $closeCart.off('click');
-    $closeCart.on('click', hideModal);
-
-    // Position modal on load
-    positionModal();
-
-    // Update modal position on screen change
-    $(window).on({
-      orientationchange: function(e) {
-        positionModal(true);
-      }, resize: function(e) {
-        positionModal(true);
-      }
+    // Position modal by negative margin
+    $modalContainer.css({
+      'margin-left': - ($modalContainer.outerWidth() / 2),
+      'margin-top': - ($modalContainer.outerHeight() / 2),
+      'opacity': 1
     });
 
-    function positionModal(isResizing) {
-      if (!isResizing) {
-        $modalContainer.css('opacity', 0);
-        $closeCart.css('opacity', 0);
-      }
+    $modalContainer.addClass('is-visible');
+    $body.addClass('ajaxify-lock');
 
-      // Position modal by negative margin
-      $modalContainer.css({
-        'margin-left': - ($modalContainer.outerWidth() / 2),
-        'margin-top': - ($modalContainer.outerHeight() / 2),
-        'opacity': 1
+    // Position close button on slight timeout
+    clearTimeout(positionTimeout);
+    var fromTop = window.pageYOffset | document.documentElement.scrollTop;
+    var positionTimeout = setTimeout(function() {
+      $closeCart.css({
+        top: ( $w.height() - ( $modalContainer.offset().top - fromTop + $modalContainer.outerHeight() ) - 15 ),
+        right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
+        opacity: 1
       });
-
-      if (!invisible) {
-        $modalContainer.addClass('is-visible');
-        $body.addClass('ajaxify-lock');
-      }
-
-      // Position close button on slight timeout
-      clearTimeout(positionTimeout);
-      var positionTimeout = setTimeout(function() {
-        $closeCart.css({
-          top: ( $w.height() - ( $modalContainer.offset().top - document.body.scrollTop + $modalContainer.outerHeight() ) - 15 ),
-          right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
-          opacity: 1
-        });
-      }, 200);
-    }
+    }, 200);
   };
 
   hideModal = function (e) {
     if (e) {
       e.preventDefault();
     }
+
     if ($modalContainer) {
       $modalContainer.removeClass('is-visible');
       $body.removeClass('ajaxify-lock');
@@ -658,7 +657,6 @@ var ajaxifyShopify = (function(module, $) {
         break;
       case 'modal':
         buildCart(cart);
-        showModal();
         break;
       case 'drawer':
         buildCart(cart);
@@ -709,17 +707,17 @@ var ajaxifyShopify = (function(module, $) {
 
   buildCart = function (cart) {
     // Empty cart if using default layout or not using the .load method to get /cart
-    if (!settings.useCartTemplate || cart.item_count == 0) {
+    if (!settings.useCartTemplate || cart.item_count === 0) {
       $cartContainer.empty();
     }
 
     // Show empty cart
-    if (cart.item_count <= 0) {
+    if (cart.item_count === 0) {
       $cartContainer.append('<h2>Your cart is empty</h2>');
 
       switch (settings.method) {
         case 'modal':
-          sizeModal(true);
+          sizeModal('resize');
           break;
         case 'flip':
         case 'drawer':
@@ -929,7 +927,7 @@ var ajaxifyShopify = (function(module, $) {
         var row = $('.cart-row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
       }
 
-      if ( qty == 0 ) {
+      if ( qty === 0 ) {
         row.addClass('is-removed');
       }
 
@@ -956,11 +954,10 @@ var ajaxifyShopify = (function(module, $) {
     updateCountPrice(cart);
 
     // Hide the modal or drawer if we're at 0 items
-    if ( cart.item_count == 0 ) {
+    if ( cart.item_count === 0 ) {
       // Handle each add to cart method
       switch (settings.method) {
         case 'modal':
-          hideModal();
           break;
         case 'flip':
         case 'drawer':
