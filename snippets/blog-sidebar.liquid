@@ -18,10 +18,12 @@
 {% if blog.tags.size > 0 %}
 <h4>Categories</h4>
   <ul>
-    {% for tag in blog.tags  %}
-      <li>
-        <a href="{{ tag.url }}">{{ tag.title }}</a>
-      </li>
+    {% for tag in blog.tags %}
+      {% if current_tags contains tag %}
+      <li>{{ tag }}</li>
+      {% else %}
+      <li>{{ tag | link_to_tag: tag }}</li>
+      {% endif %}
     {% endfor %}
   </ul>
 {% endif %}
