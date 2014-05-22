@@ -253,7 +253,7 @@ var ajaxifyShopify = (function(module, $) {
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $w, $body;
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, isEmpty, log;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop;
 
   /**
    * Initialise the plugin and define global options
@@ -341,7 +341,6 @@ var ajaxifyShopify = (function(module, $) {
 
     // Run this function in case we're using the quantity selector outside of the cart
     adjustCart();
-
   };
 
   updateCountPrice = function (cart) {
@@ -354,7 +353,6 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   flipSetup = function () {
-
     // Build and append the drawer in the DOM
     drawerSetup();
 
@@ -395,7 +393,6 @@ var ajaxifyShopify = (function(module, $) {
     $('input[type="checkbox"], input[type="radio"], select', $formContainer).on('click', function() {
       revertFlipButton();
     })
-
   };
 
   revertFlipButton = function () {
@@ -422,7 +419,6 @@ var ajaxifyShopify = (function(module, $) {
 
     // Toggle modal with cart button
     setToggleButtons();
-
   };
 
   showModal = function (toggle) {
@@ -477,13 +473,14 @@ var ajaxifyShopify = (function(module, $) {
 
       if (!invisible) {
         $modalContainer.addClass('is-visible');
+        $body.addClass('ajaxify-lock');
       }
 
       // Position close button on slight timeout
       clearTimeout(positionTimeout);
       var positionTimeout = setTimeout(function() {
         $closeCart.css({
-          top: ( $w.height() - ( $modalContainer.offset().top + $modalContainer.outerHeight() ) - 15 ),
+          top: ( $w.height() - ( $modalContainer.offset().top - document.body.scrollTop + $modalContainer.outerHeight() ) - 15 ),
           right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
           opacity: 1
         });
@@ -497,6 +494,7 @@ var ajaxifyShopify = (function(module, $) {
     }
     if ($modalContainer) {
       $modalContainer.removeClass('is-visible');
+      $body.removeClass('ajaxify-lock');
     }
   };
 
@@ -548,7 +546,6 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   showDrawer = function (toggle) {
-
     // If we're toggling with the flip method, use a special callback
     if (settings.method == 'flip') {
       Shopify.getCart(flipCartUpdateCallback);
@@ -566,7 +563,6 @@ var ajaxifyShopify = (function(module, $) {
     $drawerContainer.addClass('is-visible');
 
     scrollTop();
-
   };
 
   hideDrawer = function () {
@@ -1070,20 +1066,6 @@ var ajaxifyShopify = (function(module, $) {
         scrollTop: 0
       }, 250, 'swing');
     }
-  };
-
-  isEmpty = function(el) {
-    return !$.trim(el.html());
-  };
-
-  log = function (arg) {
-    if (settings && settings.debug && window.console) {
-      try {
-        console.log(arg);
-      }
-      catch (e) {}
-    }
-
   };
 
   module = {
