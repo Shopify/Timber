@@ -1330,7 +1330,11 @@ a.btn-secondary {
 // #Site Header
 // ==============================================================================
 .site-header {
-  padding: $gutter 0;
+  padding: $gutter/2 0;
+
+  @include at-query($min, $large) {
+    padding: $gutter 0;
+  }
 
   @include at-query($min, $large) {
     .grid {
@@ -1537,7 +1541,8 @@ a.btn-secondary {
   a,
   span {
     display: inline-block;
-    padding: $gutter/2 7px;
+    padding: $gutter/2 7px $gutter/2 0;
+    margin-right: 7px;
 
     &:first-child {
       padding-left: 0;
