@@ -1,39 +1,36 @@
-window.shop = window.shop || {};
+window.timber = window.timber || {};
 
-var shop = {
+timber.cache = {
+  html: $('html'),
+  body: $('body')
+}
 
-  el: {
-    html: $('html'),
-    body: $('body')
-  },
+timber.init = function () {
+  timber.cache.html.removeClass('no-js').addClass('js');
 
-  init: function () {
-    shop.el.html.removeClass('no-js').addClass('js');
+  // Run on load
+  timber.productImageSwitch();
+}
 
-    this.productImageSwitch();
-  },
+timber.productImageSwitch = function () {
+  var mainImage = $('#productPhoto img'),
+      thumbImages = $('#productThumbs a'),
+      newImage;
 
-  productImageSwitch: function () {
-    var mainImage = $('#productPhoto img'),
-        thumbImages = $('#productThumbs a'),
-        newImage;
-
-    if (!thumbImages.length) {
-      return;
-    }
-
-    // Switch the main image with one of the thumbnails
-    // Note: this does not change the variant selected, just the image
-    thumbImages.on('click', function(e) {
-      e.preventDefault();
-      newImage = $(this).attr('href');
-      console.log(newImage);
-      mainImage.attr({ src: newImage });
-    });
+  if (!thumbImages.length) {
+    return;
   }
+
+  // Switch the main image with one of the thumbnails
+  // Note: this does not change the variant selected, just the image
+  thumbImages.on('click', function(e) {
+    e.preventDefault();
+    newImage = $(this).attr('href');
+    mainImage.attr({ src: newImage });
+  });
 }
 
 // Initialize Timber's JS on docready
 $(function() {
-  window.shop.init();
+  window.timber.init();
 });
