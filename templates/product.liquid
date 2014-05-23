@@ -242,8 +242,9 @@ var selectCallback = function(variant, selector) {
     var original_image = $(".product-photo-container img"),
         new_image = variant.featured_image;
     Shopify.Image.switchImage(new_image, original_image[0], function (new_image_src, original_image, element) {
-      $(element).parents('a').attr('href', new_image_src);
-      $(element).attr('src', new_image_src);
+      var el = $(element);
+      el.parents('a').attr('href', new_image_src);
+      el.attr('src', new_image_src);
     });
   }
 };
