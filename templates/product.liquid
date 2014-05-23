@@ -118,27 +118,23 @@
             Optionally show the 'compare at' or original price of the product.
           {% endcomment %}
           {% if product.compare_at_price > product.price %}
-            <strong class="h2">
-              <span id="productPrice" class="on-sale" itemprop="price">
-                {{ product.price | money }}
-              </span>
-            </strong>
-            <small id="comparePrice">
+            <span id="productPrice" class="h2 on-sale" itemprop="price">
+              {{ product.price | money }}
+            </span>
+            <span id="comparePrice" class="h5">
               Compare at:
               {{ product.compare_at_price_max | money }}
-            </small>
+            </span>
           {% else %}
-            <strong class="h2">
-              <span id="productPrice" itemprop="price">
-                {{ product.price | money }}
-              </span>
-            </strong>
+            <span id="productPrice" class="h2" itemprop="price">
+              {{ product.price | money }}
+            </span>
           {% endif %}
 
           {% comment %}
             Quantity selector is optional
           {% endcomment %}
-          <label for="quantity">Qty: </label>
+          <label for="quantity">Quantity </label>
           <input type="number" id="quantity" name="quantity" value="1" min="1">
 
           <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
