@@ -39,15 +39,15 @@
         {% comment %}
           If we have more than one product image, loop through them and create thumbnails.
 
-          By default, images will link to the original size of themselves. It is recommended
-          to add a lightbox or photo-switching effect with JavaScript.
+          By default, images will link to their grande size (600x600).
+          Thumbnail swapping is enabled in shop.js.liquid.
         {% endcomment %}
         {% if product.images.size > 1 %}
           <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
 
             {% for image in product.images %}
               <li class="grid-item one-quarter">
-                <a href="{{ image.src | product_img_url: 'original' }}">
+                <a href="{{ image.src | product_img_url: 'grande' }}">
                   <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                 </a>
               </li>
