@@ -24,13 +24,13 @@
       {% endcomment %}
       {% if product.images.size == 0 %}
 
-        <div class="product-photo-container">
+        <div class="product-photo-container" id="productPhoto">
           <img src="{{ '' | product_img_url: 'grande' }}" alt="">
         </div>
 
       {% else %}
 
-        <div class="product-photo-container">
+        <div class="product-photo-container" id="productPhoto">
           <a href="{{ product.featured_image.src | product_img_url: 'original' }}">
             <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}">
           </a>
@@ -43,9 +43,9 @@
           to add a lightbox or photo-switching effect with JavaScript.
         {% endcomment %}
         {% if product.images.size > 1 %}
-          <ul class="product-photo-thumbs grid-uniform">
+          <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
 
-            {% for image in product.images offset:1 %}
+            {% for image in product.images %}
               <li class="grid-item one-quarter">
                 <a href="{{ image.src | product_img_url: 'original' }}">
                   <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">

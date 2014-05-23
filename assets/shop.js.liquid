@@ -1,5 +1,39 @@
+window.shop = window.shop || {};
+
+var shop = {
+
+  el: {
+    html: $('html'),
+    body: $('body')
+  },
+
+  init: function () {
+    shop.el.html.removeClass('no-js').addClass('js');
+
+    this.productImageSwitch();
+  },
+
+  productImageSwitch: function () {
+    var mainImage = $('#productPhoto img'),
+        thumbImages = $('#productThumbs a'),
+        newImage;
+
+    if (!thumbImages.length) {
+      return;
+    }
+
+    // Switch the main image with one of the thumbnails
+    // Note: this does not change the variant selected, just the image
+    thumbImages.on('click', function(e) {
+      e.preventDefault();
+      newImage = $(this).attr('href');
+      console.log(newImage);
+      mainImage.attr({ src: newImage });
+    });
+  }
+}
+
+// Initialize Timber's JS on docready
 $(function() {
-
-  $('html').removeClass('no-js').addClass('js');
-
+  window.shop.init();
 });
