@@ -10,8 +10,10 @@
 
 <div itemscope itemtype="http://schema.org/Product">
 
+  {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-  <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}">
+  <meta itemprop="image" content="{{ featured_image | product_img_url: 'original' }}">
 
   {% include 'breadcrumb' %}
 
@@ -25,14 +27,14 @@
       {% if product.images.size == 0 %}
 
         <div class="product-photo-container">
-          <img src="{{ '' | product_img_url: 'grande' }}" alt="">
+          <img src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" />
         </div>
 
       {% else %}
 
         <div class="product-photo-container">
-          <a href="{{ product.featured_image.src | product_img_url: 'original' }}">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}">
+          <a href="{{ featured_image | img_url: 'original' }}" >
+            <img src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}">
           </a>
         </div>
 
@@ -45,10 +47,10 @@
         {% if product.images.size > 1 %}
           <ul class="product-photo-thumbs grid-uniform">
 
-            {% for image in product.images offset:1 %}
+            {% for image in product.images %}
               <li class="grid-item one-quarter">
-                <a href="{{ image.src | product_img_url: 'original' }}">
-                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                <a href="{{ image.src | img_url: 'original' }}">
+                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                 </a>
               </li>
             {% endfor %}
@@ -102,7 +104,7 @@
                 {% comment %}
                   Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
                 {% endcomment %}
-                <option value="{{variant.id}}">
+                <option {% if variant == product.selected_or_first_available_variant %}selected{% endif %} value="{{ variant.id }}">
                   {{ variant.title }} - {{ variant.price | money_with_currency }}
                 </option>
 
@@ -117,20 +119,21 @@
           {% comment %}
             Optionally show the 'compare at' or original price of the product.
           {% endcomment %}
-          {% if product.compare_at_price > product.price %}
+          {% assign variant = product.selected_or_first_available_variant %}
+          {% if variant.compare_at_price > variant.price %}
             <strong class="h2">
               <span id="productPrice" class="on-sale" itemprop="price">
-                {{ product.price | money }}
+                {{ variant.price | money }}
               </span>
             </strong>
             <small id="comparePrice">
               Compare at:
-              {{ product.compare_at_price_max | money }}
+              {{ variant.compare_at_price | money }}
             </small>
           {% else %}
           <strong class="h2">
               <span id="productPrice" itemprop="price">
-                {{ product.price | money }}
+               {{ variant.price | money }}
               </span>
             </strong>
           {% endif %}
@@ -191,6 +194,7 @@
     - Hides your <select> tag from above
     - Breaks out the product variants into separate product options, if more than one exists
     - Generates a <select> tag for each product option
+    - Switches the large product image with the newly selected variant on (if set in the admin)
 
   Callback notes:
     - Keep the callback available to the global scope (window.selectCallback) so that advanced
@@ -236,16 +240,27 @@ var selectCallback = function(variant, selector) {
     //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
     addToCart.val('Unavailable').addClass('disabled').prop('disabled', true);
   }
+
+  if (variant && variant.featured_image) {
+    var original_image = $(".product-photo-container img"),
+        new_image = variant.featured_image;
+    Shopify.Image.switchImage(new_image, original_image[0], function (new_image_src, original_image, element) {
+      var el = $(element);
+      el.parents('a').attr('href', new_image_src);
+      el.attr('src', new_image_src);
+    });
+  }
 };
 
 jQuery(function($) {
 
   new Shopify.OptionSelectors('productSelect', {
     product: {{ product | json }},
-    onVariantSelected: selectCallback
+    onVariantSelected: selectCallback,
+    enableHistoryState: true
   });
 
-  // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+  // Add label if there is a single product option and it isn't 'Title'. Could be 'Size'.
   {% if product.options.size == 1 and product.options.first != 'Title' %}
     $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
   {% endif %}
@@ -254,17 +269,6 @@ jQuery(function($) {
   {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
     $('.selector-wrapper').hide();
   {% endif %}
-
-  // Auto-select first available variant on page load. Otherwise the product looks sold out.
-  {% assign found_one_in_stock = false %}
-  {% for variant in product.variants %}
-    {% if variant.available and found_one_in_stock == false %}
-      {% assign found_one_in_stock = true %}
-      {% for option in product.options %}
-      $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
 
 });
 </script>
