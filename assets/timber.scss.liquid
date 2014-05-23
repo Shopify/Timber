@@ -25,13 +25,12 @@
   #Helper Classes
   #Typography
   #Rich Text Editor
-  #Links
+  #Links and Buttons
   #Lists
   #Tables
   #OOCSS Media Object
   #Images and Iframes
   #Forms
-  #Buttons
   #Pagination
   #Site Header
   #Site Nav and Dropdowns
@@ -824,6 +823,83 @@ a:focus {
   color: $colorLinkHover;
 }
 
+.btn,
+a.btn {
+  display: inline-block;
+  padding: 8px 10px;
+  margin: 0;
+  line-height: 1.42;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid transparent;
+  -webkit-user-select: none;
+  -moz-user-select:    none;
+  -ms-user-select:     none;
+  -o-user-select:      none;
+  user-select:         none;
+  -webkit-appearance: none;
+  border-radius: $radius;
+
+  &.small {
+    padding: 4px 5px;
+    font-size: 0.75em; //12px
+  }
+
+  &.full {
+    width: 100%;
+  }
+
+  // Set primary button colors - can override later
+  background-color: $colorBtnPrimary;
+
+  &:hover {
+    background-color: $colorBtnPrimaryHover;
+    color: #fff;
+  }
+
+  &:active {
+   background-color: $colorBtnPrimaryActive;
+   color: #fff;
+  }
+
+  &[disabled],
+  &.disabled {
+    cursor: default;
+    color: $disabledBorder;
+    background-color: $disabledGrey;
+  }
+}
+
+.btn-secondary,
+a.btn-secondary {
+  @extend .btn;
+  background-color: $colorBtnSecondary;
+
+  &:hover {
+    background-color: $colorBtnSecondaryHover;
+    color: #fff;
+  }
+
+  &:active {
+   background-color: $colorBtnSecondaryActive;
+   color: #fff;
+  }
+}
+
+// Force an input/button to look like a text link
+.text-link {
+  display: inline;
+  border: 0 none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
 
 // ==============================================================================
 // #Lists
@@ -838,7 +914,10 @@ ol.alpha { list-style: lower-alpha outside; }
 ul ul, ul ol,
 ol ol, ol ul { margin: 4px 0 5px 20px; }
 li { margin-bottom: 0.25em; }
-.inline-list li { display: inline-block; }
+.inline-list li {
+  display: inline-block;
+  margin-bottom: 0;
+}
 
 // ==============================================================================
 // #Tables
@@ -1134,87 +1213,6 @@ label.error {
   width: 1%;
   padding: 0;
 }
-
-// ==============================================================================
-// #Buttons
-// ==============================================================================
-.btn,
-a.btn {
-  display: inline-block;
-  padding: 8px 10px;
-  margin: 0;
-  line-height: 1.42;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  cursor: pointer;
-  color: #fff;
-  border: 1px solid transparent;
-  -webkit-user-select: none;
-  -moz-user-select:    none;
-  -ms-user-select:     none;
-  -o-user-select:      none;
-  user-select:         none;
-  -webkit-appearance: none;
-  border-radius: $radius;
-
-  &.small {
-    padding: 4px 5px;
-    font-size: 0.75em; //12px
-  }
-
-  &.full {
-    width: 100%;
-  }
-
-  // Set primary button colors - can override later
-  background-color: $colorBtnPrimary;
-
-  &:hover {
-    background-color: $colorBtnPrimaryHover;
-    color: #fff;
-  }
-
-  &:active {
-   background-color: $colorBtnPrimaryActive;
-   color: #fff;
-  }
-
-  &[disabled],
-  &.disabled {
-    cursor: default;
-    color: $disabledBorder;
-    background-color: $disabledGrey;
-  }
-}
-
-.btn-secondary,
-a.btn-secondary {
-  @extend .btn;
-  background-color: $colorBtnSecondary;
-
-  &:hover {
-    background-color: $colorBtnSecondaryHover;
-    color: #fff;
-  }
-
-  &:active {
-   background-color: $colorBtnSecondaryActive;
-   color: #fff;
-  }
-}
-
-// Force an input/button to look like a text link
-.text-link {
-  display: inline;
-  border: 0 none;
-  background: none;
-  padding: 0;
-  margin: 0;
-}
-
 
 // ==============================================================================
 // #Pagination
