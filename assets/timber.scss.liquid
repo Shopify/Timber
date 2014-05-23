@@ -850,12 +850,12 @@ a.btn {
   -webkit-appearance: none;
   border-radius: $radius;
 
-  &.small {
+  &.btn--small {
     padding: 4px 5px;
     font-size: 0.75em; //12px
   }
 
-  &.full {
+  &.btn--full {
     width: 100%;
   }
 
@@ -867,7 +867,8 @@ a.btn {
     color: #fff;
   }
 
-  &:active {
+  &:active,
+  &:focus {
    background-color: $colorBtnPrimaryActive;
    color: #fff;
   }
@@ -890,7 +891,8 @@ a.btn-secondary {
     color: #fff;
   }
 
-  &:active {
+  &:active,
+  &:focus {
    background-color: $colorBtnSecondaryActive;
    color: #fff;
   }
