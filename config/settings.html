@@ -13,45 +13,41 @@
   <p>If you require any support for Timber, please review the <a href="http://shopify.github.io/Timber/">documentation</a> or contact us at <a href="mailto:timber@shopify.com">timber@shopify.com</a></p>
   <br />
 </div>
+
+<!-- Colors -->
 <fieldset>
-  <legend>Logo Options</legend>
+  <legend>Colors</legend>
+  <p>No colors are predefined in Timber. View the intro to theme settings for <a href="http://docs.shopify.com/themes/theme-templates/settings#introduction">documentation</a>.</p>
+</fieldset>
+
+<!-- Typography -->
+<fieldset>
+  <legend>Typography</legend>
+  <p>No typography is predefined in Timber. View the intro to theme settings for <a href="http://docs.shopify.com/themes/theme-templates/settings#introduction">documentation</a>.</p>
+</fieldset>
+
+<!-- Header -->
+<fieldset>
+  <legend>Header</legend>
   <table>
     <tr>
       <td><label for="use_logo">Use Custom Logo?</label></td>
       <td><input type="checkbox" id="use_logo" name="use_logo" /></td>
     </tr>
     <tr>
-      <td><label for="logo_image">Custom Logo</label></td>
+      <th>
+        <label for="logo_image">Custom Logo</label>
+        <small>Maximum logo dimensions are 500px wide by 200px high. Your uploaded file will be resized to fit within those constraints.</small>
+      </th>
       <td><input type="file" name="logo.png" id="logo_image" data-max-width="500" data-max-height="200" /></td>
     </tr>
-    <tr>
-      <td colspan="2"><small>Maximum logo dimensions are 500px wide by 200px high.<br />Your uploaded file will be resized to fit within those constraints.</small></td>
-    </tr>
   </table>
 </fieldset>
 
-<fieldset>
-  <legend>Social Meta Tags</legend>
-  <table>
-    <tr>
-      <td colspan="2"><small>Social meta tags include <a href="https://developers.facebook.com/docs/opengraph/using-objects/" title="About Facebook Open Graph Objects">Facebook</a> and <a href="https://developers.pinterest.com/rich_pins/" title="About Pinterest Rich Pins">Pinterest</a> Open Graph Tags and <a href="https://dev.twitter.com/docs/cards/types/product-card" title="About Twitter Product Cards">Twitter Cards</a>. These are enabled by default to make your store more accessible on different platforms. Add any required information below for them to render properly.</small></td>
-    </tr>
-    <tr>
-      <th><label for="twittercard_handle">Your site's Twitter Handle</label></th>
-      <td>
-        <input type="text" id="twittercard_handle" name="twittercard_handle" value="" /><br />
-        <small>E.g. @Shopify. Required for Twitter Cards.</small>
-      </td>
-    </tr>
-  </table>
-</fieldset>
-
+<!-- Footer -->
 <fieldset>
   <legend>Footer</legend>
   <table>
-    <tr>
-      <td colspan="3"><small>Only a few social links are included. Add more in your <strong>config/settings.html</strong> theme file.<br />Defaults and presets are set in <strong>config/settings_data.json</strong>.</small></td>
-    </tr>
     <tr>
       <th><label for="footer_display_contact">Show footer contact info?</label></th>
       <td colspan="2"><input type="checkbox" id="footer_display_contact" name="footer_display_contact" value="1" /></td>
@@ -70,10 +66,7 @@
     <tr>
       <th><label for="footer_display_social">Show social media links?</label></th>
       <td colspan="2"><input type="checkbox" id="footer_display_social" name="footer_display_social" value="1" /></td>
-    </tr>
-    <tr>
-      <th><label for="footer_social_title">Social media links title</label></th>
-      <td colspan="2"><input type="text" id="footer_social_title" name="footer_social_title" value="" /></td>
+      <td colspan="3"><small>Only a few social links are included. Add more in your <strong>config/settings.html</strong> theme file.<br />Defaults and presets are set in <strong>config/settings_data.json</strong>.</small></td>
     </tr>
     <tr>
       <td><label for="twitter_link">Twitter link</label></td>
@@ -82,6 +75,14 @@
     <tr>
       <td><label for="facebook_link">Facebook link</label></td>
       <td colspan="2"><input type="url" id="facebook_link" name="facebook_link" size="50" /></td>
+    </tr>
+    <tr>
+      <td><label for="pinterest_link">Pinterest link</label></td>
+      <td colspan="2"><input type="url" id="pinterest_link" name="pinterest_link" size="50" /></td>
+    </tr>
+    <tr>
+      <td><label for="instagram_link">Instagram link</label></td>
+      <td colspan="2"><input type="url" id="instagram_link" name="instagram_link" size="50" /></td>
     </tr>
     <tr>
       <th><label for="footer_display_newsletter">Show newsletter?</label></th>
@@ -99,20 +100,58 @@
   </table>
 </fieldset>
 
+<!-- Product Pages -->
 <fieldset>
-  <legend>Cart</legend>
+  <legend>Product Pages</legend>
+  <table>
+    <tr>
+      <td><label for="product_quantity">Show quantity selector</label></td>
+      <td><input type="checkbox" id="product_quantity" name="product_quantity" /></td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <hr />
+        <h3>Social Media Meta Tags</h3>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">Social meta tags include <a href="https://developers.facebook.com/docs/opengraph/using-objects/" title="About Facebook Open Graph Objects">Facebook</a> and <a href="https://developers.pinterest.com/rich_pins/" title="About Pinterest Rich Pins">Pinterest</a> Open Graph Tags and <a href="https://dev.twitter.com/docs/cards/types/product-card" title="About Twitter Product Cards">Twitter Cards</a>. These are enabled by default to make your store more accessible on different platforms. Add any required information below for them to render properly.</td>
+    </tr>
+    <tr>
+      <th><label for="twittercard_handle">Your site's Twitter Handle</label></th>
+      <td>
+        <input type="text" id="twittercard_handle" name="twittercard_handle" size="50" /><br />
+        <small>E.g. @Shopify. Required for Twitter Cards.</small>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+<!-- Collection Pages -->
+<fieldset>
+  <legend>Collection Pages</legend>
+</fieldset>
+
+<!-- Blog Pages -->
+<fieldset>
+  <legend>Blog Pages</legend>
+</fieldset>
+
+<!-- Cart Pages -->
+<fieldset>
+  <legend>Cart pages</legend>
   <table>
     <tr>
       <td><label for="cart_notes">Allow customers to add notes to their order?</label></td>
       <td colspan="2">
-        <input type="checkbox" id="cart_notes" name="cart_notes" />
+        <input type="checkbox" id="cart_notes" name="cart_notes" /><br />
         <small>Only enabled in the ajax cart if you use your <strong>cart.liquid</strong> markup. See docs below.</small>
       </td>
     </tr>
     <tr>
       <td><label for="ajax_cart">Enable Ajaxify Cart</label></td>
       <td colspan="2">
-        <input type="checkbox" id="ajax_cart" name="ajax_cart" />
+        <input type="checkbox" id="ajax_cart" name="ajax_cart" /><br />
         <small>Documentation - <a href="http://shopify.com/timber#ajax-cart" title="Ajax Cart Documentation">http://shopify.com/timber#ajax-cart</a></small>
       </td>
     </tr>

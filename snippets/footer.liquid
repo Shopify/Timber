@@ -25,8 +25,10 @@
           Loop through the persistent theme settings and list out each social network link.
         {% endcomment %}
         <ul class="inline-list">
-          {% if settings.twitter_link != blank %}<a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">Twitter</a>{% endif %}
+          {% if settings.twitter_link != blank %}<a href="{{ settings.twitter_link }}" title="{{ shop.name }} on  Twitter">Twitter</a>{% endif %}
           {% if settings.facebook_link != blank %}<a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">Facebook</a>{% endif %}
+          {% if settings.pinterest_link != blank %}<a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest">Pinterest</a>{% endif %}
+          {% if settings.instagram_link != blank %}<a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">Instagram</a>{% endif %}
         </ul>
       </div>
       {% endif %}

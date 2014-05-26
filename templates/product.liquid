@@ -134,8 +134,10 @@
           {% comment %}
             Quantity selector is optional
           {% endcomment %}
-          <label for="quantity">Quantity</label>
-          <input type="number" id="quantity" name="quantity" value="1" min="1">
+          {% if settings.product_quantity %}
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" value="1" min="1">
+          {% endif %}
 
           <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
         </form>

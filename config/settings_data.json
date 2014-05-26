@@ -8,8 +8,11 @@
     "footer_social_title": "Follow Us",
     "twitter_link": "http://twitter.com/shopify",
     "facebook_link": "http://facebook.com/shopify",
+    "pinterest_link": "http://www.pinterest.com/shopify/",
+    "instagram_link": "http://instagram.com/shopify",
     "footer_display_newsletter": true,
     "footer_newsletter_title": "Newsletter",
+    "product_quantity": true,
     "cart_notes": true,
     "ajax_cart": true,
     "ajax_cart_method": "Drawer"
@@ -24,8 +27,11 @@
       "footer_social_title": "Follow Us",
       "twitter_link": "http://twitter.com/shopify",
       "facebook_link": "http://facebook.com/shopify",
+      "pinterest_link": "http://www.pinterest.com/shopify/",
+      "instagram_link": "http://instagram.com/shopify",
       "footer_display_newsletter": true,
       "footer_newsletter_title": "Newsletter",
+      "product_quantity": true,
       "cart_notes": true,
       "ajax_cart": true,
       "ajax_cart_method": "Drawer"
