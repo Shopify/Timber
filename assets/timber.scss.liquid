@@ -855,9 +855,11 @@ hr {
     vertical-align: middle;
   }
 
-  label + select,
-  .collection-view {
-    margin-left: $gutter/2;
+  @include at-query($min, $postSmall) {
+    label + select,
+    .collection-view {
+      margin-left: $gutter/2;
+    }
   }
 }
 
