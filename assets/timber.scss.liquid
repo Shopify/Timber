@@ -690,10 +690,6 @@ body {
   display: block;
   padding-top: $gutter;
   padding-bottom: $gutter*2;
-
-  @include at-query($min, $large) {
-    padding-top: $gutter*2;
-  }
 }
 
 // ==============================================================================
@@ -817,6 +813,76 @@ hr {
   @extend .clearfix;
   border-bottom: 1px solid $borderColor;
   margin-bottom: $gutter;
+}
+
+.section-header {
+  margin-bottom: $gutter/2;
+}
+
+@include at-query ($min, $large) {
+  .section-header {
+    display: table;
+    width: 100%;
+  }
+
+  .section-header--left {
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 0;
+
+    h1, h2, h3, h4,
+    .h1, .h2, .h3, .h4 {
+      margin-bottom: 0;
+    }
+  }
+
+  .section-header--right {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    width: 320px;
+
+    @include at-query($max, $medium) {
+      margin-bottom: $gutter;
+    }
+  }
+}
+
+.section-header--right {
+  .form-horizontal,
+  .collection-view {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.collection-view {
+  display: inline-block;
+  border: 1px solid $borderColor;
+  border-radius: $radius;
+  padding: 11px;
+  height: 37px; // same as form elements
+
+  a {
+    display: block;
+    float: left;
+    opacity: 0.7;
+    cursor: pointer;
+
+    & + a {
+      margin-left: 10px;
+    }
+
+    &.collection-view--active {
+      opacity: 1;
+      cursor: default;
+    }
+  }
+
+  img {
+    display: block;
+    opacity: inherit;
+  }
 }
 
 // ==============================================================================
@@ -1558,11 +1624,6 @@ label.error {
 // ==============================================================================
 .breadcrumb {
   margin-bottom: $gutter;
-  margin-top: -$gutter; // offset .main-content padding
-
-  @include at-query($min, $large) {
-    margin-top: -$gutter*2;
-  }
 
   a,
   span {

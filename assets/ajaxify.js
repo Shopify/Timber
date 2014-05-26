@@ -309,6 +309,8 @@ var ajaxifyShopify = (function(module, $) {
     // Touch check
     if ($isTouch) {
       $body.addClass('ajaxify-touch');
+    } else {
+      $body.addClass('ajaxify-notouch');
     }
 
     // Check if we can use .load

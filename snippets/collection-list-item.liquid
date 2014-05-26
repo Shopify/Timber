@@ -1,0 +1,22 @@
+{% comment %}
+
+  This snippet is used to showcase each collection during the loop,
+  'for product in collection.products' in list-collections.liquid.
+
+{% endcomment %}
+{% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+
+<div class="section-header">
+  <p class="h1 section-header--left">{{ collection_title }}</p>
+  <div class="section-header--right">
+    <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">More {{ collection_title }} &rsaquo;</a>
+  </div>
+</div>
+
+<div class="grid">
+  {% for product in collection.products limit:5 %}
+    {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
+    {% assign current_collection = collection %}
+    {% include 'product-grid-item' %}
+  {% endfor %}
+</div>

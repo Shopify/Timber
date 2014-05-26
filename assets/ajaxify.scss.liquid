@@ -396,7 +396,7 @@ form[action^="/cart/add"] {
   input[type="text"] {
     @include transition(all 0.1s ease-out);
 
-    :not(body.ajaxify-touch) & {
+    .ajaxify-notouch & {
       border: 1px solid rgba(0,0,0,0);
     }
   }
