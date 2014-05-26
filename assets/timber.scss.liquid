@@ -863,6 +863,11 @@ hr {
   padding: 11px;
   height: 37px; // same as form elements
 
+  // We use SVG icons, so simply hide this in oldIE
+  .lt-ie9 & {
+    display: none;
+  }
+
   a {
     display: block;
     float: left;
