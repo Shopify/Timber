@@ -9,32 +9,12 @@
 
 {% endcomment %}
 
-<header class="page-header">
-  <h1>Shopping Cart</h1>
-</header>
-
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
 
-    <div class="cart-row medium-down--hide">
-      <div class="grid">
-
-        <div class="grid-item one-third push--two-thirds text-right">
-          <div class="grid">
-
-            <div class="grid-item one-third text-center">
-              Quantity
-            </div>
-
-            <div class="grid-item two-thirds">
-              Price <small>(each)</small>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
+    <header class="page-header">
+      <h1>Shopping Cart</h1>
+    </header>
 
     {% comment %}
       Loop through products in the cart
@@ -115,26 +95,26 @@
           </div>
         </div>
 
-        <div class="grid-item large--one-third medium-down--two-thirds push--medium-down--one-third">
+        <div class="grid-item large--one-third">
           <div class="grid">
 
-            <div class="grid-item one-third small--one-half text-right">
+            <div class="grid-item one-third medium-down--one-third text-right">
               {% comment %}
                 Added data-id for the ajax cart implementation only.
               {% endcomment %}
               <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
             </div>
 
-            <div class="grid-item one-third small--one-half text-right">
+            <div class="grid-item one-third medium-down--one-third medium-down--text-left text-right">
+              <span class="h4">{{ item.price | money }}</span>
+            </div>
+
+            <div class="grid-item one-third medium-down--one-third text-right">
               {% comment %}
                 To remove an item from the cart, reload the page with the following parameters.
                 Added data-id for the ajax cart implementation only.
               {% endcomment %}
               <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">Remove</a>
-            </div>
-
-            <div class="grid-item one-third small--one-whole text-right">
-              {{ item.price | money }}
             </div>
 
           </div>
