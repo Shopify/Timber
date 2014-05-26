@@ -1,5 +1,5 @@
 /*
-* Shopify Timber v1.2.1
+* Shopify Timber v1.3.0
 * Copyright 2014 Shopify Inc.
 * Author Carson Shold @cshold
 * Built with Sass - http://sass-lang.com/
@@ -8,8 +8,7 @@
     - Sass is compiled on Shopify's server so you don't need to convert it to CSS yourself
     - The output CSS is compressed and comments are removed
     - You cannot use @imports in this file
-        * This is due to security reasons on the Shopify servers, though we are looking into it
-        * Prevents you from using helpers like Compass/Bourbon, and can cause a long file
+        * Use grunt or gulp tasks to enable @imports - https://github.com/Shopify/shopify-css-import
     - Helpers variables, mixins, and starter classes are provided. Change as needed.
     - The file is prepped with a CSS reset
 */
@@ -79,22 +78,27 @@ $breakpoint-has-pull:  ('small', 'medium', 'medium-down', 'large');
 // #General Variables
 // ==============================================================================
 
+// Timber Colors
+$colorPrimary: #747474; // boring grey
+$colorSecondary: #464646; // dark grey
+$colorAccent: #ffea00; // yellow
+
 /* Button colors */
-$colorBtnPrimary: #747474; // boring grey
+$colorBtnPrimary: $colorPrimary;
 $colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
 $colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
 
-$colorBtnSecondary: #464646;
+$colorBtnSecondary: $colorSecondary;
 $colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
 $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
 
 /* Text link colors */
-$colorLink: #515151;
+$colorLink: $colorPrimary;
 $colorLinkHover: #333;
 
 /* Text colors */
 $colorBody: #fff;
-$colorText: #333;
+$colorTextBody: #333; // dark grey
 $colorHeaders: #999;
 $colorTextGrey: #777;
 
@@ -106,6 +110,7 @@ $colorNav: #f6f6f6;
 
 /* Footer */
 $colorFooterBg: #f6f6f6;
+$colorFooterText: #636363; // medium grey
 
 /* Helper colors */
 $disabledGrey: #f6f6f6;
@@ -162,6 +167,22 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: -o-linear-gradient(top, $from 0%,$to 100%);
   background: -ms-linear-gradient(top, $from 0%,$to 100%);
   background: linear-gradient(top bottom, $from 0%,$to 100%);
+}
+
+@mixin backface($visibility: hidden) {
+  -moz-backface-visibility: $visibility;
+  -webkit-backface-visibility: $visibility;
+  -o-backface-visibility: $visibility;
+  backface-visibility: $visibility;
+}
+
+@function color-control($color) {
+  @if (lightness( $color ) > 40) {
+    @return #000;
+  }
+  @else {
+    @return #fff;
+  }
 }
 
 /*
@@ -705,7 +726,7 @@ select {
   font-size: 87.5%; // Henseforth known as 1em (assumed at 14px)
   line-height: 1.6;
   font-family: $bodyFontStack;
-  color: $colorText;
+  color: $colorTextBody;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -1477,6 +1498,7 @@ label.error {
   background-color: $colorFooterBg;
   border-top: 1px solid $borderColor;
   padding: $gutter 0;
+  color: $colorFooterText;
 
   @include at-query($min, $large) {
     padding: $gutter*2 0;
