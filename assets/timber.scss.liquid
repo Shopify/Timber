@@ -840,7 +840,7 @@ hr {
     display: table-cell;
     vertical-align: middle;
     text-align: right;
-    width: 320px;
+    width: 325px;
 
     @include at-query($max, $medium) {
       margin-bottom: $gutter;
@@ -853,6 +853,11 @@ hr {
   .collection-view {
     display: inline-block;
     vertical-align: middle;
+  }
+
+  label + select,
+  .collection-view {
+    margin-left: $gutter/2;
   }
 }
 
