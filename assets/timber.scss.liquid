@@ -185,14 +185,13 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 }
 
-/*
-  Dependency-free breakpoint mixin
-  http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
-*/
+// ==============================================================================
+// Dependency-free breakpoint mixin
+// http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+// ==============================================================================
 $min: min-width;
 $max: max-width;
-@mixin at-query($constraint, $viewport1, $viewport2:null) {
-
+@mixin at-query ($constraint, $viewport1, $viewport2:null) {
   @if $constraint == $min {
     @media screen and ($min: $viewport1) {
       @content;
@@ -206,7 +205,6 @@ $max: max-width;
       @content;
     }
   }
-
 }
 
 // ==============================================================================

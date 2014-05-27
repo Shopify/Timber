@@ -18,6 +18,41 @@
 */
 
 // ==============================================================================
+// #Breakpoint and Grid Variables (from timber.scss.liquid)
+// ==============================================================================
+$viewportIncrement: 1px;
+
+$small: 480px;
+$medium: 768px;
+$large: 769px;
+
+$postSmall: $small + $viewportIncrement;
+$preMedium: $medium - $viewportIncrement;
+$preLarge: $large - $viewportIncrement;
+
+// ==============================================================================
+// Dependency-free breakpoint mixin
+// http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+// ==============================================================================
+$min: min-width;
+$max: max-width;
+@mixin at-query ($constraint, $viewport1, $viewport2:null) {
+  @if $constraint == $min {
+    @media screen and ($min: $viewport1) {
+      @content;
+    }
+  } @else if $constraint == $max {
+    @media screen and ($max: $viewport1) {
+      @content;
+    }
+  } @else {
+    @media screen and ($min: $viewport1) and ($max: $viewport2) {
+      @content;
+    }
+  }
+}
+
+// ==============================================================================
 // Sass Helpers
 // ==============================================================================
 @mixin border-box($type: border-box) {
@@ -276,6 +311,11 @@ form[action^="/cart/add"] {
   form {
     margin-bottom: 0;
   }
+
+  @include at-query ($max, $medium) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 }
 
 // Row and column spacing
@@ -450,7 +490,7 @@ form[action^="/cart/add"] {
   left: 50%;
   margin: -300px 0 0 -500px; // overridden with JS
   width: 100%;
-  max-width: 1000px;
+  max-width: 760px;
   max-height: 80%;
   height: auto;
   z-index: 99999999;
@@ -458,8 +498,37 @@ form[action^="/cart/add"] {
   overflow: auto;
   @include transition('box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms, margin-top 200ms ease-in-out');
 
+  // Medium-down screens
+  @include at-query ($max, $medium) {
+    max-width: 90%;
+  }
+
+  // Small screens
+  @include at-query ($max, $small) {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0!important;
+    max-height: none;
+    max-width: none;
+  }
+
   .ajaxifyCart--content {
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    // Medium-down screens
+    @include at-query ($max, $medium) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    // Small screens
+    @include at-query ($max, $small) {
+      padding-bottom: 60px;
+      height: 100%;
+    }
+
   }
 
   &.is-visible {
@@ -742,9 +811,9 @@ form[action^="/cart/add"] {
     background-color: lighten($ajaxifyGreyDark, 50%);
   }
 
-  @media only screen and (max-width:972px) {
+  @include at-query ($max, 972px) {
     background-color: transparent;
-    @include transform(translateY(150%) translateX(-150%));
+    @include transform(translateY(32px) translateX(-32px));
   }
 }
 
