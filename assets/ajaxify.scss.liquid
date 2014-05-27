@@ -494,6 +494,10 @@ form[action^="/cart/add"] {
     @include transform(none);
   }
 
+  .update-cart {
+    display: none!important;
+  }
+
 }
 
 #ajaxifyCart-overlay {
@@ -739,6 +743,7 @@ form[action^="/cart/add"] {
   }
 
   @media only screen and (max-width:972px) {
+    background-color: transparent;
     @include transform(translateY(150%) translateX(-150%));
   }
 }
