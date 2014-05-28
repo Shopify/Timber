@@ -1479,6 +1479,14 @@ label.error {
   }
 }
 
+.search-bar {
+  max-width: 100%;
+
+  @include at-query($max, $medium) {
+    margin: 0 auto;
+  }
+}
+
 // ==============================================================================
 // #Site Nav and Dropdowns
 // ==============================================================================
@@ -1563,14 +1571,6 @@ label.error {
   .input-group,
   .input-group-field {
     margin-bottom: 0;
-  }
-}
-
-.search-bar {
-  max-width: 100%;
-
-  @include at-query($max, $medium) {
-    margin: 0 auto;
   }
 }
 
