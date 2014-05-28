@@ -24,15 +24,15 @@
         {% comment %}
           Loop through the persistent theme settings and list out each social network link.
         {% endcomment %}
-        <ul class="inline-list">
-          {% if settings.twitter_link != blank %}<li class="social-link twitter"><a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">Twitter</a></li>{% endif %}
-          {% if settings.facebook_link != blank %}<li class="social-link facebook"><a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">Facebook</a></li>{% endif %}
-          {% if settings.pinterest_link != blank %}<li class="social-link pinterest"><a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest">Pinterest</a></li>{% endif %}
-          {% if settings.google_plus_link != blank %}<li class="social-link google-plus"><a href="{{ settings.google_plus_link }}" title="{{ shop.name }} on Google+">Google+</a></li>{% endif %}
-          {% if settings.instagram_link != blank %}<li class="social-link instagram"><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">Instagram</a></li>{% endif %}
-          {% if settings.tumblr_link != blank %}<li class="social-link tumblr"><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr">Tumblr</a></li>{% endif %}
-          {% if settings.youtube_link != blank %}<li class="social-link youtube"><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube">YouTube</a></li>{% endif %}
-          {% if settings.vimeo_link != blank %}<li class="social-link vimeo"><a href="{{ settings.vimeo-url }}" title="{{ shop.name }} on Vimeo">Vimeo</a></li>{% endif %}
+        <ul class="inline-list social-icons">
+          {% if settings.twitter_link != blank %}<li class="twitter"><a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">T</a></li>{% endif %}
+          {% if settings.facebook_link != blank %}<li class="facebook"><a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">f</a></li>{% endif %}
+          {% if settings.pinterest_link != blank %}<li class="pinterest"><a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest">p</a></li>{% endif %}
+          {% if settings.google_plus_link != blank %}<li class="google-plus"><a href="{{ settings.google_plus_link }}" title="{{ shop.name }} on Google+">g</a></li>{% endif %}
+          {% if settings.instagram_link != blank %}<li class="instagram"><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">i</a></li>{% endif %}
+          {% if settings.tumblr_link != blank %}<li class="tumblr"><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr">t</a></li>{% endif %}
+          {% if settings.youtube_link != blank %}<li class="youtube"><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube">y</a></li>{% endif %}
+          {% if settings.vimeo_link != blank %}<li class="vimeo"><a href="{{ settings.vimeo-url }}" title="{{ shop.name }} on Vimeo">v</a></li>{% endif %}
         </ul>
       </div>
       {% endif %}
@@ -54,9 +54,20 @@
     <h4 class="text-center">Accepted Payments</h4>
     <ul class="inline-list payment-icons text-center">
       {% for type in shop.enabled_payment_types %}
-      <li>
-        <img src="{{ type | payment_type_img_url }}" />
-      </li>
+        {% if type == "diners_club" %}<li>c</li>{% endif %}
+        {% if type == "maestro" %}<li>m</li>{% endif %}
+        {% if type == "interac" %}<li>I</li>{% endif %}
+        {% if type == "visa" %}<li>V</li>{% endif %}
+        {% if type == "master" %}<li>M</li>{% endif %}
+        {% if type == "discover" %}<li>D</li>{% endif %}
+        {% if type == "dk" %}<li>d</li>{% endif %}
+        {% if type == "american_express" %}<li>A</li>{% endif %}
+        {% if type == "google_wallet" %}<li>G</li>{% endif %}
+        {% if type == "paypal" %}<li>P</li>{% endif %}
+        {% if type == "jcb" %}<li>J</li>{% endif %}
+        {% if type == "cirrus" %}<li>C</li>{% endif %}
+        {% if type == "stripe" %}<li>S</li>{% endif %}
+        {% if type == "bitcoin" %}<li>B</li>{% endif %}
       {% endfor %}
     </ul>
     {% endunless %}
