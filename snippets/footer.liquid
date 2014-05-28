@@ -25,10 +25,14 @@
           Loop through the persistent theme settings and list out each social network link.
         {% endcomment %}
         <ul class="inline-list">
-          {% if settings.twitter_link != blank %}<a href="{{ settings.twitter_link }}" title="{{ shop.name }} on  Twitter">Twitter</a>{% endif %}
-          {% if settings.facebook_link != blank %}<a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">Facebook</a>{% endif %}
-          {% if settings.pinterest_link != blank %}<a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest">Pinterest</a>{% endif %}
-          {% if settings.instagram_link != blank %}<a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">Instagram</a>{% endif %}
+          {% if settings.twitter_link != blank %}<li class="social-link twitter"><a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">Twitter</a></li>{% endif %}
+          {% if settings.facebook_link != blank %}<li class="social-link facebook"><a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">Facebook</a></li>{% endif %}
+          {% if settings.pinterest_link != blank %}<li class="social-link pinterest"><a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest">Pinterest</a></li>{% endif %}
+          {% if settings.google_plus_link != blank %}<li class="social-link google-plus"><a href="{{ settings.google_plus_link }}" title="{{ shop.name }} on Google+">Google+</a></li>{% endif %}
+          {% if settings.instagram_link != blank %}<li class="social-link instagram"><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">Instagram</a></li>{% endif %}
+          {% if settings.tumblr_link != blank %}<li class="social-link tumblr"><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr">Tumblr</a></li>{% endif %}
+          {% if settings.youtube_link != blank %}<li class="social-link youtube"><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube">YouTube</a></li>{% endif %}
+          {% if settings.vimeo_link != blank %}<li class="social-link vimeo"><a href="{{ settings.vimeo-url }}" title="{{ shop.name }} on Vimeo">Vimeo</a></li>{% endif %}
         </ul>
       </div>
       {% endif %}
