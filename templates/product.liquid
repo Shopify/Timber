@@ -117,17 +117,14 @@
           {% comment %}
             Optionally show the 'compare at' or original price of the product.
           {% endcomment %}
+          <span id="productPrice" class="h2{% if product.compare_at_price > product.price %} on-sale{% endif %}" itemprop="price">
+            {{ product.price | money }}
+          </span>
+
           {% if product.compare_at_price > product.price %}
-            <span id="productPrice" class="h2 on-sale" itemprop="price">
-              {{ product.price | money }}
-            </span>
             <span id="comparePrice" class="h5">
               Compare at:
               {{ product.compare_at_price_max | money }}
-            </span>
-          {% else %}
-            <span id="productPrice" class="h2" itemprop="price">
-              {{ product.price | money }}
             </span>
           {% endif %}
 
