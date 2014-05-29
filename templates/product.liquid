@@ -25,14 +25,14 @@
       {% if product.images.size == 0 %}
 
         <div class="product-photo-container" id="productPhoto">
-          <img src="{{ '' | product_img_url: 'grande' }}" alt="">
+          <img src="{{ '' | product_img_url: 'grande' }}" alt="" id="productPhotoImg">
         </div>
 
       {% else %}
 
         <div class="product-photo-container" id="productPhoto">
           <a href="{{ product.featured_image.src | product_img_url: 'original' }}">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}">
+            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" id="productPhotoImg">
           </a>
         </div>
 
