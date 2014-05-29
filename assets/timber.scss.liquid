@@ -694,7 +694,7 @@ body {
   margin: 0 auto;
   padding: 0 $gutter/2;
 
-  @include at-query($min, $small) {
+  @include at-query ($min, $small) {
     padding: 0 $gutter;
   }
 }
@@ -855,7 +855,7 @@ hr {
     text-align: right;
     width: 325px;
 
-    @include at-query($max, $medium) {
+    @include at-query ($max, $medium) {
       margin-bottom: $gutter;
     }
   }
@@ -868,7 +868,7 @@ hr {
     vertical-align: middle;
   }
 
-  @include at-query($min, $postSmall) {
+  @include at-query ($min, $postSmall) {
     label + select,
     .collection-view {
       margin-left: $gutter/2;
@@ -1500,11 +1500,11 @@ label.error {
 .site-header {
   padding: $gutter/2 0;
 
-  @include at-query($min, $large) {
+  @include at-query ($min, $large) {
     padding: $gutter 0;
   }
 
-  @include at-query($min, $large) {
+  @include at-query ($min, $large) {
     .grid--full {
       display: table;
       width: 100%;
@@ -1522,7 +1522,7 @@ label.error {
   text-align: center;
   margin: 0 auto $gutter/2;
 
-  @include at-query($min, $large) {
+  @include at-query ($min, $large) {
     margin-bottom: 0;
   }
 
@@ -1544,7 +1544,7 @@ label.error {
 .search-bar {
   max-width: 100%;
 
-  @include at-query($max, $medium) {
+  @include at-query ($max, $medium) {
     margin: 0 auto;
   }
 }
@@ -1588,7 +1588,7 @@ label.error {
     white-space: nowrap;
   }
 
-  @include at-query($max, $medium) {
+  @include at-query ($max, $medium) {
     margin: 0 auto;
     text-align: center;
   }
@@ -1624,7 +1624,7 @@ label.error {
   position: relative;
   padding: 7px 0;
 
-  @include at-query($max, $medium) {
+  @include at-query ($max, $medium) {
     padding: 0 0 $gutter/2;
     margin: 0 auto;
     text-align: center;
@@ -1646,7 +1646,7 @@ label.error {
   padding: $gutter 0;
   color: $colorFooterText;
 
-  @include at-query($min, $large) {
+  @include at-query ($min, $large) {
     padding: $gutter*2 0;
   }
 }
