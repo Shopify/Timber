@@ -15,7 +15,9 @@
     "product_quantity": true,
     "cart_notes": true,
     "ajax_cart": true,
-    "ajax_cart_method": "Drawer"
+    "ajax_cart_method": "Drawer",
+    "related_products": true,
+    "related_products_title": "We Also Recommend"
   },
   "presets": {
     "Default": {
@@ -34,7 +36,9 @@
       "product_quantity": true,
       "cart_notes": true,
       "ajax_cart": true,
-      "ajax_cart_method": "Drawer"
+      "ajax_cart_method": "Drawer",
+      "related_products": true,
+      "related_products_title": "We Also Recommend"
     }
   }
 }
