@@ -485,7 +485,7 @@ var ajaxifyShopify = (function(module, $) {
         right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
         opacity: 1
       });
-    }, 200);
+    }, 600);
   };
 
   hideModal = function (e) {
