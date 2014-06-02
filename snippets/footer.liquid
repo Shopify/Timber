@@ -32,7 +32,8 @@
           {% if settings.instagram_link != blank %}<li class="instagram"><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">i</a></li>{% endif %}
           {% if settings.tumblr_link != blank %}<li class="tumblr"><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr">t</a></li>{% endif %}
           {% if settings.youtube_link != blank %}<li class="youtube"><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube">y</a></li>{% endif %}
-          {% if settings.vimeo_link != blank %}<li class="vimeo"><a href="{{ settings.vimeo-url }}" title="{{ shop.name }} on Vimeo">v</a></li>{% endif %}
+          {% if settings.vimeo_link != blank %}<li class="vimeo"><a href="{{ settings.vimeo_link }}" title="{{ shop.name }} on Vimeo">v</a></li>{% endif %}
+          {% if settings.fancy_link != blank %}<li class="fancy"><a href="{{ settings.fancy_link }}" title="{{ shop.name }} on Fancy">F</a></li>{% endif %}
         </ul>
       </div>
       {% endif %}
