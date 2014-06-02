@@ -928,7 +928,7 @@ hr {
 // ==============================================================================
 // #Links and Buttons
 // ==============================================================================
-a, a:visited {
+a {
   color: $colorLink;
   text-decoration: underline;
 }
@@ -938,8 +938,7 @@ a:focus {
   color: $colorLinkHover;
 }
 
-.btn,
-a.btn {
+.btn {
   display: inline-block;
   padding: 8px 10px;
   margin: 0;
@@ -950,7 +949,6 @@ a.btn {
   vertical-align: middle;
   white-space: nowrap;
   cursor: pointer;
-  color: #fff;
   border: 1px solid transparent;
   -webkit-user-select: none;
   -moz-user-select:    none;
@@ -971,6 +969,7 @@ a.btn {
 
   // Set primary button colors - can override later
   background-color: $colorBtnPrimary;
+  color: #fff;
 
   &:hover {
     background-color: $colorBtnPrimaryHover;
@@ -991,8 +990,7 @@ a.btn {
   }
 }
 
-.btn-secondary,
-a.btn-secondary {
+.btn-secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
 
@@ -1571,6 +1569,7 @@ label.error {
 
 .site-nav {
   font-size: 1.2em;
+  cursor: default;
 
   li {
     margin: 0;
@@ -1599,12 +1598,12 @@ label.error {
   }
 }
 
-.site-nav-active > a {
+.site-nav--active > a {
   font-weight: bold;
 }
 
 // Dropdowns
-.site-nav-dropdown {
+.site-nav--dropdown {
   display: none;
   position: absolute;
   left: 0;
