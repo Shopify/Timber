@@ -17,7 +17,49 @@
 <!-- Colors -->
 <fieldset>
   <legend>Colors</legend>
-  <p>No colors are predefined in Timber. View the intro to theme settings for <a href="http://docs.shopify.com/themes/theme-templates/settings#introduction">documentation</a>.</p>
+  <table>
+    <tr>
+      <td colspan="2">
+        Use <em>class="color"</em> on a an <em>input</em> tag to bring up the color picker.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <h3 class="heading">General Colors</h3>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="primary_color">Primary Color</label>
+        <small>Used for text links and primary buttons</small>
+      </th>
+      <td><input id="primary_color" name="primary_color" class="color" type="text" value="#204a80" /></td>
+    </tr>
+    <tr>
+      <th>
+        <label for="secondary_color">Secondary Color</label>
+        <small>Used for secondary buttons</small>
+      </th>
+      <td><input id="secondary_color" name="secondary_color" class="color" type="text" value="#dcdcdc" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <h3 class="heading">Body and Text Colors</h3>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="body_background_color">Body Background</label>
+      </th>
+      <td><input id="body_background_color" name="body_background_color" class="color" type="text" value="#ffffff" /></td>
+    </tr>
+    <tr>
+      <th>
+        <label for="body_text_color">Body Text</label>
+      </th>
+      <td><input id="body_text_color" name="body_text_color" class="color" type="text" value="#333333" /></td>
+    </tr>
+  </table>
 </fieldset>
 
 <!-- Typography -->

@@ -80,9 +80,8 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 // ==============================================================================
 
 // Timber Colors
-$colorPrimary: #747474; // boring grey
-$colorSecondary: #464646; // dark grey
-$colorAccent: #ffea00; // yellow
+$colorPrimary: {{ settings.primary_color }};
+$colorSecondary: {{ settings.secondary_color }};
 
 /* Button colors */
 $colorBtnPrimary: $colorPrimary;
@@ -98,8 +97,8 @@ $colorLink: $colorPrimary;
 $colorLinkHover: #333;
 
 /* Text colors */
-$colorBody: #fff;
-$colorTextBody: #333; // dark grey
+$colorBody: {{ settings.body_background_color }};
+$colorTextBody: {{ settings.body_text_color }};
 $colorHeaders: #999;
 $colorTextGrey: #777;
 
@@ -685,7 +684,7 @@ html {
 }
 
 body {
-  background-color: #fff;
+  background-color: $colorBody;
 }
 
 .wrapper {

@@ -22,7 +22,12 @@
     "ajax_cart": true,
     "ajax_cart_method": "Drawer",
     "related_products": true,
-    "related_products_title": "We Also Recommend"
+    "related_products_title": "We Also Recommend",
+    "primary_color": "#747474",
+    "secondary_color": "#464646",
+    "accent_color": "#ffea00",
+    "body_text_color": "#333333",
+    "body_background_color": "#ffffff"
   },
   "presets": {
     "Default": {
@@ -39,7 +44,11 @@
       "ajax_cart": true,
       "ajax_cart_method": "Drawer",
       "related_products": true,
-      "related_products_title": "We Also Recommend"
+      "related_products_title": "We Also Recommend",
+      "primary_color": "#747474",
+      "secondary_color": "#464646",
+      "accent_color": "#ffea00",
+      "body_text_color": "#333333"
     }
   }
 }
