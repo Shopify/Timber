@@ -71,7 +71,7 @@
           {% comment %}
             Use the uploaded logo from theme settings if enabled
           {% endcomment %}
-          <h1 class="header-logo large--left">
+          <h1 class="header-logo">
             {% if settings.use_logo %}
               <a href="/">
                 {{ 'logo.png' | asset_url | img_tag: shop.name }}
