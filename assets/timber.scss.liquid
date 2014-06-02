@@ -109,8 +109,8 @@ $borderColor: #e5e5e5;
 $colorNav: #f2f2f2;
 
 /* Footer */
-$colorFooterBg: #f2f2f2; // soft grey
-$colorFooterText: #636363; // medium grey
+$colorFooterBg: {{ settings.footer_color }};
+$colorFooterText: {{ settings.footer_text_color }};
 
 /* Helper colors */
 $disabledGrey: #f6f6f6;
@@ -1372,7 +1372,7 @@ label.error {
     left: 0;
     bottom: 0;
     height: 0;
-    color: #bbbbbb;
+    color: {{ settings.footer_social_link_color }};
     text-decoration: none;
     -webkit-font-smoothing: antialiased;
 
