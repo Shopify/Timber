@@ -145,12 +145,15 @@
         {% endcomment %}
         <div class="grid-item text-right {% if settings.cart_notes %}large--one-half{% endif %}">
 
-          <span class="h3">Subtotal {{ cart.total_price | money }}</span>
+          <div class="cart-subtotal">
+            Subtotal
+            <span class="h1 cart-subtotal--price">{{ cart.total_price | money }}</span>
+          </div>
 
           {% comment %}
             name="update" is required for the update button to work
           {% endcomment %}
-          <input type="submit" name="update" class="btn-secondary" value="Update cart">
+          <input type="submit" name="update" class="btn-secondary update-cart" value="Update cart">
 
           {% comment %}
             name="checkout" is required for the update button to work
@@ -178,7 +181,7 @@
     Do something fun here, it's a great chance to show your company's human side.
   {% endcomment %}
 
-  <h2>It appears that your cart is currently empty!</h2>
-  <p>You can continue browsing <a href="/collections/all">here</a>.</p>
+  <h2>It appears that your cart is currently empty.</h2>
+  <p>Continue browsing <a href="/collections/all">here</a>.</p>
 
 {% endif %}

@@ -824,8 +824,6 @@ hr {
 
 .page-header {
   @extend .clearfix;
-  border-bottom: 1px solid $borderColor;
-  margin-bottom: $gutter;
 }
 
 .section-header {
@@ -1824,13 +1822,40 @@ label.error {
 // #Cart Page
 // ==============================================================================
 .cart-row {
-  margin-bottom: $gutter;
-  padding-bottom: $gutter;
-  border-bottom: 1px solid $borderColor;
+  margin-top: $gutter;
+  padding-top: $gutter;
+  border-top: 1px solid $borderColor;
 
   #ajaxifyDrawer & {
-    border-bottom-color: #444;
+    border-top-color: #444;
   }
+
+  &:first-child,
+  .page-header + & {
+    margin-top: 0;
+  }
+
+  &:first-child {
+    padding-top: 0;
+    border-top: 0 none;
+  }
+
+  a {
+    color: $colorTextBody;
+
+    &:hover {
+      color: $colorPrimary;
+    }
+  }
+}
+
+.cart-subtotal {
+  margin-bottom: $gutter;
+}
+
+.cart-subtotal--price {
+  margin: 0 0 0 $gutter/3;
+  display: inline;
 }
 
 // ==============================================================================
