@@ -25,7 +25,7 @@
           Loop through the persistent theme settings and list out each social network link.
         {% endcomment %}
         <ul class="inline-list social-icons">
-          {% if settings.twitter_link != blank %}
+          {% if settings.twitter_link %}
             <li>
               <a class="icon-fallback-text" href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">
                 <span class="icon icon-twitter" aria-hidden="true"></span>
@@ -33,7 +33,7 @@
               </a>
             </li>
           {% endif %}
-          {% if settings.facebook_link != blank %}
+          {% if settings.facebook_link %}
             <li>
               <a class="icon-fallback-text" href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">
                 <span class="icon icon-facebook" aria-hidden="true"></span>
