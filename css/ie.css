@@ -523,8 +523,8 @@
 
 @font-face {
   font-family: "icons";
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.eot?8532  ");
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.eot?8532 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.woff?8532  ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.ttf?8532  ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.svg?8532 #atlantic-icons ") format("svg");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.eot?8549  ");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.eot?8549 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.woff?8549  ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.ttf?8549  ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.svg?8549 #atlantic-icons ") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -1802,12 +1802,13 @@ label, legend {
 label.inline, legend.inline {
   display: inline; }
 
-label.hidden-label, legend.hidden-label {
+.form-horizontal label.hidden-label, label.hidden-label, .form-horizontal legend.hidden-label, legend.hidden-label {
   height: 0;
+  width: 0;
   margin-bottom: 0;
   overflow: hidden; }
 
-.ie9 label.hidden-label, .lt-ie9 label.hidden-label, .ie9 legend.hidden-label, .lt-ie9 legend.hidden-label {
+.ie9 .form-horizontal label.hidden-label, .lt-ie9 .form-horizontal label.hidden-label, .ie9 label.hidden-label, .lt-ie9 label.hidden-label, .ie9 .form-horizontal legend.hidden-label, .lt-ie9 .form-horizontal legend.hidden-label, .ie9 legend.hidden-label, .lt-ie9 legend.hidden-label {
   height: auto;
   margin-bottom: 2px;
   overflow: visible; }
