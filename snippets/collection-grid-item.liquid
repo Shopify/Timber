@@ -5,7 +5,14 @@
 
 {% endcomment %}
 
-<div class="grid-item medium--one-half large--one-third text-center">
+{% comment %}
+  Set the default collection_item_width if no variable is set
+{% endcomment %}
+{% unless collection_item_width %}
+  {% assign collection_item_width = 'medium--one-half large--one-third' %}
+{% endunless %}
+
+<div class="grid-item {{collection_item_width}} text-center">
 
   {% comment %}
     Use capture to put the collection title in a variable that is used in liquid filters
