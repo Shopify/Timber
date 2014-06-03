@@ -1,6 +1,6 @@
 {
   "current": {
-    "use_logo": true,
+    "use_logo": false,
     "customer_layout": "theme",
     "footer_display_contact": true,
     "footer_contact_title": "Contact Us",
