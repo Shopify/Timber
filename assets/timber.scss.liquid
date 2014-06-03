@@ -1527,6 +1527,7 @@ label.error {
 .header-logo {
   text-align: center;
   margin: 0 auto $gutter/2;
+  max-width: {{ settings.logo_max_width }};
 
   @include at-query ($min, $large) {
     margin-bottom: 0;

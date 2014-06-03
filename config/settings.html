@@ -97,9 +97,16 @@
     <tr>
       <th>
         <label for="logo_image">Custom Logo</label>
-        <small>Maximum logo dimensions are 500px wide by 200px high. The uploaded file will be resized to fit within those constraints.</small>
+        <small>Maximum logo dimensions are 450px wide by 200px high. The uploaded file will be resized to fit within those constraints.</small>
       </th>
-      <td><input type="file" name="logo.png" id="logo_image" data-max-width="500" data-max-height="200" /></td>
+      <td><input type="file" name="logo.png" id="logo_image" data-max-width="450" data-max-height="200" /></td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_max_width">Max Logo Width</label>
+        <small>Defines the CSS max-width. Include the unit (px, em, %, etc).</small>
+      </th>
+      <td><input type="text" id="logo_max_width" name="logo_max_width" size="50" value="450px" /></td>
     </tr>
   </table>
 </fieldset>
