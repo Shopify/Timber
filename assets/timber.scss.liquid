@@ -1353,6 +1353,61 @@ label.error {
 // ==============================================================================
 // #Icons
 // ==============================================================================
+.icon-fallback-text .icon {
+  display: none;
+
+  .supports-fontface & {
+    display: inline-block;
+  }
+}
+
+.supports-fontface .icon-fallback-text .fallback-text {
+  /* a generic way to visually hide content while remaining accessible to screen readers (h5bp.com) */
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}
+
+.icon:before {
+  display: none;
+}
+
+.supports-fontface .icon:before {
+  display: inline;
+  font-family: $socialIconFontStack;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Payment icons
+.icon-diners_club:before { content: 'c'; }
+.icon-maestro:before { content: 'm'; }
+.icon-interact:before { content: 'I'; }
+.icon-visa:before { content: 'V'; }
+.icon-master:before { content: 'M'; }
+.icon-discover:before { content: 'D'; }
+.icon-dk:before { content: 'd'; }
+.icon-american_express:before { content: 'A'; }
+.icon-google:before { content: 'G'; }
+.icon-paypal:before { content: 'P'; }
+.icon-jcb:before { content: 'J'; }
+.icon-cirrus:before { content: 'C'; }
+.icon-stripe:before { content: 'S'; }
+.icon-bitcoin:before { content: 'B'; }
+
+// Social icons
+.icon-twitter:before { content: 'T'; }
+.icon-facebook:before { content: 'f'; }
+.icon-pinterest:before { content: 'p'; }
+.icon-fancy:before { content: 'F'; }
+.icon-google:before { content: 'g'; }
+.icon-instagram:before { content: 'i'; }
+.icon-youtube:before { content: 'y'; }
+.icon-vimeo:before { content: 'v'; }
+.icon-tumblr:before { content: 't'; }
+
 .payment-icons {
   -webkit-user-select: none;
   -moz-user-select:    none;
@@ -1363,10 +1418,17 @@ label.error {
 
   li {
     margin: 0 $gutter/4 $gutter/4;
-    font-family: $socialIconFontStack;
+    color: {{ settings.footer_social_link_color }};
+    cursor: default;
+  }
+
+  .icon {
     font-size: 30px;
     line-height: 30px;
-    color: {{ settings.footer_social_link_color }};
+  }
+
+  .fallback-text {
+    text-transform: capitalize;
   }
 }
 
@@ -1378,16 +1440,16 @@ label.error {
     margin-left: 0;
   }
 
-  a {
-    font-family: $socialIconFontStack;
+  .icon {
     font-size: 30px;
-    line-height: 26px; // same as .social-link height
+    line-height: 26px;
+  }
+
+  a {
     color: {{ settings.footer_social_link_color }};
-    text-decoration: none;
-    -webkit-font-smoothing: antialiased;
 
     &:hover {
-      color: $colorPrimary;
+      color: darken({{ settings.footer_social_link_color }}, 10%);
     }
   }
 }

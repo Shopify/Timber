@@ -25,15 +25,78 @@
           Loop through the persistent theme settings and list out each social network link.
         {% endcomment %}
         <ul class="inline-list social-icons">
-          {% if settings.twitter_link != blank %}<li class="twitter"><a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">T</a></li>{% endif %}
-          {% if settings.facebook_link != blank %}<li class="facebook"><a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">f</a></li>{% endif %}
-          {% if settings.pinterest_link != blank %}<li class="pinterest"><a href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest">p</a></li>{% endif %}
-          {% if settings.google_plus_link != blank %}<li class="google-plus"><a href="{{ settings.google_plus_link }}" title="{{ shop.name }} on Google+">g</a></li>{% endif %}
-          {% if settings.instagram_link != blank %}<li class="instagram"><a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">i</a></li>{% endif %}
-          {% if settings.tumblr_link != blank %}<li class="tumblr"><a href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr">t</a></li>{% endif %}
-          {% if settings.youtube_link != blank %}<li class="youtube"><a href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube">y</a></li>{% endif %}
-          {% if settings.vimeo_link != blank %}<li class="vimeo"><a href="{{ settings.vimeo_link }}" title="{{ shop.name }} on Vimeo">v</a></li>{% endif %}
-          {% if settings.fancy_link != blank %}<li class="fancy"><a href="{{ settings.fancy_link }}" title="{{ shop.name }} on Fancy">F</a></li>{% endif %}
+          {% if settings.twitter_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">
+                <span class="icon icon-twitter" aria-hidden="true"></span>
+                <span class="fallback-text">Twitter</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if settings.facebook_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">
+                <span class="icon icon-facebook" aria-hidden="true"></span>
+                <span class="fallback-text">Facebook</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if settings.pinterest_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.pinterest_link }}" title="{{ shop.name }} on Pinterest">
+                <span class="icon icon-pinterest" aria-hidden="true"></span>
+                <span class="fallback-text">Pinterest</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if settings.google_plus_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.google_plus_link }}" title="{{ shop.name }} on Google">
+                <span class="icon icon-google" aria-hidden="true"></span>
+                <span class="fallback-text">Google</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if settings.instagram_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">
+                <span class="icon icon-instagram" aria-hidden="true"></span>
+                <span class="fallback-text">Instagram</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if settings.tumblr_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.tumblr_link }}" title="{{ shop.name }} on Tumblr">
+                <span class="icon icon-tumblr" aria-hidden="true"></span>
+                <span class="fallback-text">Tumblr</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if settings.youtube_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.youtube_link }}" title="{{ shop.name }} on YouTube">
+                <span class="icon icon-youtube" aria-hidden="true"></span>
+                <span class="fallback-text">YouTube</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if settings.vimeo_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.vimeo_link }}" title="{{ shop.name }} on Vimeo">
+                <span class="icon icon-vimeo" aria-hidden="true"></span>
+                <span class="fallback-text">Vimeo</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if settings.fancy_link != blank %}
+            <li>
+              <a class="icon-fallback-text" href="{{ settings.fancy_link }}" title="{{ shop.name }} on Fancy">
+                <span class="icon icon-fancy" aria-hidden="true"></span>
+                <span class="fallback-text">Fancy</span>
+              </a>
+            </li>
+          {% endif %}
         </ul>
       </div>
       {% endif %}
@@ -55,20 +118,12 @@
     <h4 class="text-center">Accepted Payments</h4>
     <ul class="inline-list payment-icons text-center">
       {% for type in shop.enabled_payment_types %}
-        {% if type == "diners_club" %}<li>c</li>{% endif %}
-        {% if type == "maestro" %}<li>m</li>{% endif %}
-        {% if type == "interac" %}<li>I</li>{% endif %}
-        {% if type == "visa" %}<li>V</li>{% endif %}
-        {% if type == "master" %}<li>M</li>{% endif %}
-        {% if type == "discover" %}<li>D</li>{% endif %}
-        {% if type == "dk" %}<li>d</li>{% endif %}
-        {% if type == "american_express" %}<li>A</li>{% endif %}
-        {% if type == "google" %}<li>G</li>{% endif %}
-        {% if type == "paypal" %}<li>P</li>{% endif %}
-        {% if type == "jcb" %}<li>J</li>{% endif %}
-        {% if type == "cirrus" %}<li>C</li>{% endif %}
-        {% if type == "stripe" %}<li>S</li>{% endif %}
-        {% if type == "bitcoin" %}<li>B</li>{% endif %}
+        <li>
+          <span class="icon-fallback-text">
+            <span class="icon icon-{{type}}" aria-hidden="true"></span>
+            <span class="fallback-text">{{type | replace: '_',' '}}</span>
+          </span>
+        </li>
       {% endfor %}
     </ul>
     {% endunless %}
