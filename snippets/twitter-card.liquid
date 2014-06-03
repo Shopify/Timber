@@ -26,7 +26,7 @@
   <meta name="twitter:image:width" content="240">
   <meta name="twitter:image:height" content="240">
   <meta name="twitter:label1" content="Price">
-  <meta name="twitter:data1" content="{% if product.price_varies %}From {% endif %}{{ product.price | money_with_currency | strip_html }}">
+  <meta name="twitter:data1" content="{% if product.price_varies %}From {% endif %}{{ product.price | money_with_currency | strip_html | escape }}">
   {% if product.vendor != blank %}
   <meta name="twitter:label2" content="Brand">
   <meta name="twitter:data2" content="{{ product.vendor | escape }}">

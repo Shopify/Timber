@@ -20,9 +20,9 @@
   <ul>
     {% for tag in blog.tags %}
       {% if current_tags contains tag %}
-      <li>{{ tag }}</li>
+        <li>{{ tag }}</li>
       {% else %}
-      <li>{{ tag | link_to_tag: tag }}</li>
+        <li>{{ tag | link_to_tag: tag }}</li>
       {% endif %}
     {% endfor %}
   </ul>
