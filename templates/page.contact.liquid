@@ -42,16 +42,16 @@
 
         <div id="contactFormWrapper">
           <label for="contactFormName">Your Name</label>
-          <input type="text" id="contactFormName" name="contact[name]" placeholder="John Doe" autocapitalize="words" value="{% if customer %}{{ customer.name }}{% endif %}">
+          <input type="text" id="contactFormName" name="contact[name]" placeholder="John Doe" autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
 
           <label for="contactFormEmail">Email</label>
-          <input type="email" name="contact[email]" placeholder="john@example.com" id="contactFormEmail" autocorrect="off" autocapitalize="off" value="{% if customer %}{{ customer.email }}{% endif %}">
+          <input type="email" name="contact[email]" placeholder="john@example.com" id="contactFormEmail" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
 
           <label for="contactFormPhone">Phone Number</label>
-          <input type="tel" name="contact[phone]" id="contactFormPhone" placeholder="555-555-1234" pattern="[0-9]*">
+          <input type="tel" name="contact[phone]" id="contactFormPhone" placeholder="555-555-1234" pattern="[0-9]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
 
           <label for="contactFormMessage">Message</label>
-          <textarea rows="10" name="contact[body]" placeholder="Your Message" id="contactFormMessage"></textarea>
+          <textarea rows="10" name="contact[body]" placeholder="Your Message" id="contactFormMessage">{% if form.body %}{{ form.body }}{% endif %}</textarea>
 
           <input type="submit" class="btn right" value="Send">
         </div>
