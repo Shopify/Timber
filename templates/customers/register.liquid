@@ -28,7 +28,7 @@
       {% include 'form-errors-custom' %}
 
       <label for="first_name" class="hidden-label">First Name</label>
-      <input type="text" value="" name="customer[first_name]" id="first_name" placeholder="First Name" {% if form.errors contains "first_name" %} class="error"{% endif %} autocapitalize="words">
+      <input type="text" value="" name="customer[first_name]" id="first_name" placeholder="First Name" {% if form.errors contains "first_name" %} class="error"{% endif %} autocapitalize="words" autofocus>
 
       <label for="last_name" class="hidden-label">Last Name</label>
       <input type="text" value="" name="customer[last_name]" id="last_name" placeholder="Last Name" {% if form.errors contains "last_name" %} class="error"{% endif %} autocapitalize="words">
