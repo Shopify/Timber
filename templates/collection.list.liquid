@@ -18,10 +18,6 @@
 
 {% include 'breadcrumb' %}
 
-<header class="page-header">
-  <h2>{{ collection.title }}</h2>
-</header>
-
 {% comment %}
   Use .grid--rev so that the collection tags appear below the products on mobile
 {% endcomment %}
@@ -33,9 +29,15 @@
 
   <div class="grid-item large--two-thirds">
 
-    <p class="right">
-      <a href="?" title="Grid view">Grid view</a>
-    </p>
+    <header class="section-header">
+      <h1 class="section-header--left">{{ collection.title }}</h1>
+      <div class="section-header--right">
+
+        {% include 'collection-sorting' %}
+        {% include 'collection-views' %}
+
+      </div>
+    </header>
 
     {% comment %}
       Use class grid-uniform to have evenly sized columns clear
@@ -54,7 +56,7 @@
       {% else %}
 
         <div class="grid-item">
-          <p>There are no products in this collection.</p>
+          <p>Sorry, there are no products matching your search.</p>
         </div>
 
       {% endfor %}

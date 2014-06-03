@@ -10,23 +10,17 @@
 
 {% include 'breadcrumb' %}
 
-<header class="page-header">
-  <h2>Product Collections</h2>
-</header>
+{% comment %}
+  Loop through each collection, except 'frontpage'
+{% endcomment %}
+{% for collection in collections %}
 
-<div class="grid-uniform">
+  {% unless collection.handle == 'frontpage' %}
 
-  {% comment %}
-    Loop through each collection, except 'frontpage'
-  {% endcomment %}
-  {% for collection in collections %}
+    {% include 'collection-list-item' %}
 
-    {% unless collection.handle == 'frontpage' %}
+    {% unless forloop.last %}<hr>{% endunless %}
 
-      {% include 'collection-grid-item' %}
+  {% endunless %}
 
-    {% endunless %}
-
-  {% endfor %}
-
-</div>
+{% endfor %}

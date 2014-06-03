@@ -41,13 +41,13 @@
 
       {% include 'form-errors-custom' %}
 
-      <label for="customer_email">Email Address</label>
-      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="your-email@shopify.com" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off">
+      <label for="customer_email" class="hidden-label">Email Address</label>
+      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="Email" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
 
       {% if form.password_needed %}
 
-        <label for="customer_password">Password</label>
-        <input type="password" value="" name="customer[password]" id="customer_password" {% if form.errors contains "password" %} class="error"{% endif %}>
+        <label for="customer_password" class="hidden-label">Password</label>
+        <input type="password" value="" name="customer[password]" id="customer_password" placeholder="Password" {% if form.errors contains "password" %} class="error"{% endif %}>
 
         <p>
           <a href="#" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
@@ -70,9 +70,7 @@
     {% endcomment %}
     <div id="recover_password" style="display: none;">
 
-      <header class="page-header">
-        <h2>Reset your password</h2>
-      </header>
+      <h2>Reset your password</h2>
       <p>We will send you an email to reset your password.</p>
 
       {% comment %}
@@ -91,8 +89,8 @@
           {% assign reset_success = true %}
         {% endif %}
 
-        <label for="recover-email">Email</label>
-        <input type="email" value="" name="email" id="recover-email" placeholder="your-email@shopify.com" autocorrect="off" autocapitalize="off">
+        <label for="recover-email" class="hidden-label">Email</label>
+        <input type="email" value="" name="email" id="recover-email" placeholder="Email" autocorrect="off" autocapitalize="off">
 
         <div class="text-center">
           <p>

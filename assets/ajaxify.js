@@ -309,6 +309,8 @@ var ajaxifyShopify = (function(module, $) {
     // Touch check
     if ($isTouch) {
       $body.addClass('ajaxify-touch');
+    } else {
+      $body.addClass('ajaxify-notouch');
     }
 
     // Check if we can use .load
@@ -483,7 +485,7 @@ var ajaxifyShopify = (function(module, $) {
         right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
         opacity: 1
       });
-    }, 200);
+    }, 600);
   };
 
   hideModal = function (e) {

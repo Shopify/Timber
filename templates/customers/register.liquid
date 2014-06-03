@@ -27,25 +27,17 @@
 
       {% include 'form-errors-custom' %}
 
-      <div id="first_name">
-        <label for="first_name">First Name</label>
-        <input type="text" value="" name="customer[first_name]" id="first_name" {% if form.errors contains "first_name" %} class="error"{% endif %} autocapitalize="words">
-      </div>
+      <label for="first_name" class="hidden-label">First Name</label>
+      <input type="text" value="" name="customer[first_name]" id="first_name" placeholder="First Name" {% if form.errors contains "first_name" %} class="error"{% endif %} autocapitalize="words" autofocus>
 
-      <div id="last_name">
-        <label for="last_name">Last Name</label>
-        <input type="text" value="" name="customer[last_name]" id="last_name" {% if form.errors contains "last_name" %} class="error"{% endif %} autocapitalize="words">
-      </div>
+      <label for="last_name" class="hidden-label">Last Name</label>
+      <input type="text" value="" name="customer[last_name]" id="last_name" placeholder="Last Name" {% if form.errors contains "last_name" %} class="error"{% endif %} autocapitalize="words">
 
-      <div id="email">
-        <label for="email">Email Address</label>
-        <input type="email" value="" name="customer[email]" id="email" placeholder="your-email@shopify.com" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off">
-      </div>
+      <label for="email" class="hidden-label">Email Address</label>
+      <input type="email" value="" name="customer[email]" id="email" placeholder="Email" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off">
 
-      <div id="create_password">
-        <label for="password">Password</label>
-        <input type="password" value="" name="customer[password]" id="create_password" {% if form.errors contains "password" %} class="error"{% endif %}>
-      </div>
+      <label for="password" class="hidden-label">Password</label>
+      <input type="password" value="" name="customer[password]" id="create_password" placeholder="Password" {% if form.errors contains "password" %} class="error"{% endif %}>
 
       <div class="text-center">
         <p>

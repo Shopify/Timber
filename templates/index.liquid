@@ -18,15 +18,16 @@
     Loop through products in your Frontpage collection.
     This collection is created by default, but you must add products to it.
   {% endcomment %}
-  {% for product in collections.frontpage.products limit:6 %}
+  {% for product in collections.frontpage.products limit:4 %}
 
     {% comment %}
       Change the grid item width by using classes from the grid in
       the grid_item_width variable.
 
-      Example (and default):
+      Example:
         - {% assign grid_item_width = 'large--one-third medium--one-half' %}
     {% endcomment %}
+    {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
     {% include 'product-grid-item' %}
 
   {% else %}
@@ -37,19 +38,25 @@
 
     <div class="grid-item">
       <div class="grid-uniform">
-        <div class="grid-item large--one-third medium--one-half text-center">
+        <div class="grid-item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
             Add a Product
           </a>
           <p><a href="/admin/products">Example Product Title</a> $19.99</p>
         </div>
-        <div class="grid-item large--one-third medium--one-half text-center">
+        <div class="grid-item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
             Add a Product
           </a>
           <p><a href="/admin/products">Example Product Title</a> $19.99</p>
         </div>
-        <div class="grid-item large--one-third medium--one-half text-center">
+        <div class="grid-item large--one-quarter medium--one-half text-center">
+          <a href="/admin/products" class="demo-image">
+            Add a Product
+          </a>
+          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+        </div>
+        <div class="grid-item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
             Add a Product
           </a>
@@ -80,11 +87,12 @@
   {% assign index = 1 %}
   {% assign isEmpty = true %}
 
-  {% for collection in collections limit:4 %}
-    {% unless index > 4 %}
+  {% for collection in collections limit:6 %}
+    {% unless index > 6 %}
 
       {% unless collection.handle == 'frontpage' %}
         {% assign isEmpty = false %}
+        {% assign collection_item_width = 'large--one-fifth medium--one-third' %}
         {% include 'collection-grid-item' %}
       {% endunless %}
 
@@ -100,19 +108,31 @@
     </div>
     <div class="grid-item">
       <div class="grid-uniform">
-        <div class="grid-item large--one-third medium--one-half text-center">
+        <div class="grid-item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
             Collection Image
           </div>
           <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(3 items)</small></p>
         </div>
-        <div class="grid-item large--one-third medium--one-half text-center">
+        <div class="grid-item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
             Collection Image
           </div>
           <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(13 items)</small></p>
         </div>
-        <div class="grid-item large--one-third medium--one-half text-center">
+        <div class="grid-item large--one-fifth medium--one-half text-center">
+          <div class="demo-image">
+            Collection Image
+          </div>
+          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+        </div>
+        <div class="grid-item large--one-fifth medium--one-half text-center">
+          <div class="demo-image">
+            Collection Image
+          </div>
+          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+        </div>
+        <div class="grid-item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
             Collection Image
           </div>

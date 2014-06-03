@@ -24,30 +24,30 @@
       {% endcomment %}
       {% if product.images.size == 0 %}
 
-        <div class="product-photo-container">
-          <img src="{{ '' | product_img_url: 'grande' }}" alt="">
+        <div class="product-photo-container" id="productPhoto">
+          <img src="{{ '' | product_img_url: 'grande' }}" alt="" id="productPhotoImg">
         </div>
 
       {% else %}
 
-        <div class="product-photo-container">
+        <div class="product-photo-container" id="productPhoto">
           <a href="{{ product.featured_image.src | product_img_url: 'original' }}">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}">
+            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" id="productPhotoImg">
           </a>
         </div>
 
         {% comment %}
           If we have more than one product image, loop through them and create thumbnails.
 
-          By default, images will link to the original size of themselves. It is recommended
-          to add a lightbox or photo-switching effect with JavaScript.
+          By default, images will link to their grande size (600x600).
+          Thumbnail swapping is enabled in shop.js.liquid.
         {% endcomment %}
         {% if product.images.size > 1 %}
-          <ul class="product-photo-thumbs grid-uniform">
+          <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
 
-            {% for image in product.images offset:1 %}
+            {% for image in product.images %}
               <li class="grid-item one-quarter">
-                <a href="{{ image.src | product_img_url: 'original' }}">
+                <a href="{{ image.src | product_img_url: 'grande' }}">
                   <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                 </a>
               </li>
@@ -117,29 +117,24 @@
           {% comment %}
             Optionally show the 'compare at' or original price of the product.
           {% endcomment %}
+          <span id="productPrice" class="h2{% if product.compare_at_price > product.price %} on-sale{% endif %}" itemprop="price">
+            {{ product.price | money }}
+          </span>
+
           {% if product.compare_at_price > product.price %}
-            <strong class="h2">
-              <span id="productPrice" class="on-sale" itemprop="price">
-                {{ product.price | money }}
-              </span>
-            </strong>
-            <small id="comparePrice">
+            <span id="comparePrice" class="h5">
               Compare at:
               {{ product.compare_at_price_max | money }}
-            </small>
-          {% else %}
-          <strong class="h2">
-              <span id="productPrice" itemprop="price">
-                {{ product.price | money }}
-              </span>
-            </strong>
+            </span>
           {% endif %}
 
           {% comment %}
             Quantity selector is optional
           {% endcomment %}
-          <label for="quantity">Qty: </label>
-          <input type="number" id="quantity" name="quantity" value="1" min="1">
+          {% if settings.product_quantity %}
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" value="1" min="1">
+          {% endif %}
 
           <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
         </form>
@@ -178,6 +173,11 @@
 
     </div>
   </div>
+
+  {% if settings.related_products %}
+    {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
+    {% include 'related-products' %}
+  {% endif %}
 
 </div>
 

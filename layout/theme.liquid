@@ -66,7 +66,7 @@
   <header class="site-header" role="banner">
     <div class="wrapper">
 
-      <div class="grid">
+      <div class="grid--full">
         <div class="grid-item large--one-half">
           {% comment %}
             Use the uploaded logo from theme settings if enabled
@@ -100,7 +100,7 @@
             If customer accounts are enabled, provide login and create account links
           {% endcomment %}
           {% if shop.customer_accounts_enabled %}
-          <p>
+          <p class="site-header--text-links">
             {% if customer %}
               Logged in as <a href="/account">{{ customer.first_name }}</a> &middot; {{ 'Log out' | customer_logout_link }}
             {% else %}

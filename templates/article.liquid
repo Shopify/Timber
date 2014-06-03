@@ -155,7 +155,7 @@
         {% comment %}
           Comment submission form
         {% endcomment %}
-        {% form article %}
+        {% form 'new_comment', article %}
 
           {% comment %}
             #add-comment-title is used simply as an anchor link
@@ -167,16 +167,16 @@
           <div class="grid">
 
             <div class="grid-item large--one-half">
-              <label for="comment-author">Your Name</label>
-              <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="John Doe" id="comment-author" value="{{ form.author }}" autocapitalize="words">
+              <label for="comment-author" class="hidden-label">Name</label>
+              <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="Name" id="comment-author" value="{{ form.author }}" autocapitalize="words">
 
-              <label for="comment-email">Email</label>
-              <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="your-email@shopify.com" id="comment-email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+              <label for="comment-email" class="hidden-label">Email</label>
+              <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="Email" id="comment-email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
             </div>
 
-            <div class="grid-item large--one-half">
-              <label for="comment-body">Message</label>
-              <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body">{{ form.body }}</textarea>
+            <div class="grid-item">
+              <label for="comment-body" class="hidden-label">Message</label>
+              <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body" placeholder="Message">{{ form.body }}</textarea>
             </div>
 
           </div>

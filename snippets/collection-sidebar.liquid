@@ -13,9 +13,9 @@
   Show the description for the current collection
 {% endcomment %}
 {% if collection.description.size > 0 %}
-<div class="rte">
-  {{ collection.description }}
-</div>
+  <div class="rte">
+    {{ collection.description }}
+  </div>
 {% endif %}
 
 {% comment %}
@@ -25,29 +25,24 @@
 {% endcomment %}
 <h3>Product Types</h3>
 {% if collection.all_types.size > 0 %}
-
   <ul>
     {% comment %}
       And for the good stuff, loop through the tags themselves.
     {% endcomment %}
     {% for type in collection.all_types %}
       {% if collection.current_type == type %}
-      <li class="active-filter">
-        {{ type | link_to_remove_type }}
-      </li>
+        <li class="active-filter">
+          {{ type | link_to_remove_type }}
+        </li>
       {% else %}
-      <li>
-        {{ type | link_to_type }}
-      </li>
+        <li>
+          {{ type | link_to_type }}
+        </li>
       {% endif %}
     {% endfor %}
-
   </ul>
-
 {% else %}
-
   <p>Add a type to your products for this list to build itself. All lists are created in <strong>collection-tags.liquid</strong>.</p>
-
 {% endif %}
 
 {% comment %}
@@ -64,22 +59,19 @@
     {% endcomment %}
     {% for vendor in collection.all_vendors %}
       {% if collection.current_vendor == vendor %}
-      <li class="active-filter">
-        {{ vendor | link_to_remove_vendor }}
-      </li>
+        <li class="active-filter">
+          {{ vendor | link_to_remove_vendor }}
+        </li>
       {% else %}
-      <li>
-        {{ vendor | link_to_vendor }}
-      </li>
+        <li>
+          {{ vendor | link_to_vendor }}
+        </li>
       {% endif %}
     {% endfor %}
-
   </ul>
 
 {% else %}
-
   <p>Add a vendor to your product for this list to build itself.</p>
-
 {% endif %}
 
 {% comment %}
@@ -106,7 +98,7 @@
         Good for automatic type collections
       {% endcomment %}
       {% elsif collection.current_type %}
-      <a href="{{ collection.current_type | url_for_type }}">Everything in {{ collection.title }}</a>
+        <a href="{{ collection.current_type | url_for_type }}">Everything in {{ collection.title }}</a>
 
       {% comment %}
         Good for automatic vendor collections
@@ -122,17 +114,17 @@
     {% endcomment %}
     {% for tag in collection.all_tags %}
       {% if current_tags contains tag %}
-      <li class="active-filter">
-        {{ tag | link_to_remove_tag: tag }}
-      </li>
+        <li class="active-filter">
+          {{ tag | link_to_remove_tag: tag }}
+        </li>
       {% else %}
-      <li>
-        {% comment %}
-          Use link_to_add_tag if you want to allow filtering
-          by multiple tags
-        {% endcomment %}
-        {{ tag | link_to_tag: tag }}
-      </li>
+        <li>
+          {% comment %}
+            Use link_to_add_tag if you want to allow filtering
+            by multiple tags
+          {% endcomment %}
+          {{ tag | link_to_tag: tag }}
+        </li>
       {% endif %}
     {% endfor %}
 

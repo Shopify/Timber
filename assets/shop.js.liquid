@@ -1,5 +1,38 @@
+window.timber = window.timber || {};
+
+timber.cache = {
+  // General
+  html: $('html'),
+  body: $('body'),
+
+  // Product Page
+  mainImage: $('#productPhotoImg'),
+  thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
+  newImage: null
+}
+
+timber.init = function () {
+  timber.cache.html.removeClass('no-js').addClass('js');
+
+  // Run on load
+  timber.productImageSwitch();
+}
+
+timber.productImageSwitch = function () {
+  if ( !timber.cache.thumbImages.length ) {
+    return;
+  }
+
+  // Switch the main image with one of the thumbnails
+  // Note: this does not change the variant selected, just the image
+  timber.cache.thumbImages.on('click', function(e) {
+    e.preventDefault();
+    timber.cache.newImage = $(this).attr('href');
+    timber.cache.mainImage.attr({ src: timber.cache.newImage });
+  });
+}
+
+// Initialize Timber's JS on docready
 $(function() {
-
-  $('html').removeClass('no-js').addClass('js');
-
+  window.timber.init();
 });

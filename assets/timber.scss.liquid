@@ -1,5 +1,5 @@
 /*
-* Shopify Timber v1.2.1
+* Shopify Timber v1.3.0
 * Copyright 2014 Shopify Inc.
 * Author Carson Shold @cshold
 * Built with Sass - http://sass-lang.com/
@@ -8,13 +8,12 @@
     - Sass is compiled on Shopify's server so you don't need to convert it to CSS yourself
     - The output CSS is compressed and comments are removed
     - You cannot use @imports in this file
-        * This is due to security reasons on the Shopify servers, though we are looking into it
-        * Prevents you from using helpers like Compass/Bourbon, and can cause a long file
+        * Use grunt or gulp tasks to enable @imports - https://github.com/Shopify/shopify-css-import
     - Helpers variables, mixins, and starter classes are provided. Change as needed.
     - The file is prepped with a CSS reset
 */
 
-/* Table of Content
+/* Table of Contents
 ==================================================
   #Breakpoint and Grid Variables
   #General Variables
@@ -25,13 +24,13 @@
   #Helper Classes
   #Typography
   #Rich Text Editor
-  #Links
+  #Links and Buttons
   #Lists
   #Tables
   #OOCSS Media Object
   #Images and Iframes
   #Forms
-  #Buttons
+  #Icons
   #Pagination
   #Site Header
   #Site Nav and Dropdowns
@@ -73,29 +72,33 @@ $breakpoints: (
   'large' '(min-width: #{$large})'
 );
 $breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
-$breakpoint-has-push:  ('small', 'medium', 'medium-down', 'large');
-$breakpoint-has-pull:  ('small', 'medium', 'medium-down', 'large');
+$breakpoint-has-push:  ('medium', 'medium-down', 'large');
+$breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 
 // ==============================================================================
 // #General Variables
 // ==============================================================================
 
+// Timber Colors
+$colorPrimary: {{ settings.primary_color }};
+$colorSecondary: {{ settings.secondary_color }};
+
 /* Button colors */
-$colorBtnPrimary: #747474; // boring grey
+$colorBtnPrimary: $colorPrimary;
 $colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
 $colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
 
-$colorBtnSecondary: #464646;
+$colorBtnSecondary: $colorSecondary;
 $colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
 $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
 
 /* Text link colors */
-$colorLink: #515151;
+$colorLink: $colorPrimary;
 $colorLinkHover: #333;
 
 /* Text colors */
-$colorBody: #fff;
-$colorText: #333;
+$colorBody: {{ settings.body_background_color }};
+$colorTextBody: {{ settings.body_text_color }};
 $colorHeaders: #999;
 $colorTextGrey: #777;
 
@@ -103,10 +106,11 @@ $colorTextGrey: #777;
 $borderColor: #e5e5e5;
 
 /* Nav and dropdown link background */
-$colorNav: #f6f6f6;
+$colorNav: #f2f2f2;
 
 /* Footer */
-$colorFooterBg: #f6f6f6;
+$colorFooterBg: {{ settings.footer_color }};
+$colorFooterText: {{ settings.footer_text_color }};
 
 /* Helper colors */
 $disabledGrey: #f6f6f6;
@@ -126,6 +130,20 @@ $radius: 3px;
 /* Typography */
 $headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* Icon font */
+@font-face {
+  font-family: "icons";
+  src: url(' {{ "icons.eot" | asset_url }}  ');
+  src: url(' {{ "icons.eot" | asset_url }} ?#iefix ') format("embedded-opentype"),
+       url(' {{ "icons.woff" | asset_url }}  ') format("woff"),
+       url(' {{ "icons.ttf" | asset_url }}  ') format("truetype"),
+       url(' {{ "icons.svg" | asset_url }} #atlantic-icons ') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$socialIconFontStack: "icons";
 
 
 // ==============================================================================
@@ -165,14 +183,29 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: linear-gradient(top bottom, $from 0%,$to 100%);
 }
 
-/*
-  Dependency-free breakpoint mixin
-  http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
-*/
+@mixin backface($visibility: hidden) {
+  -moz-backface-visibility: $visibility;
+  -webkit-backface-visibility: $visibility;
+  -o-backface-visibility: $visibility;
+  backface-visibility: $visibility;
+}
+
+@function color-control($color) {
+  @if (lightness( $color ) > 40) {
+    @return #000;
+  }
+  @else {
+    @return #fff;
+  }
+}
+
+// ==============================================================================
+// Dependency-free breakpoint mixin
+// http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+// ==============================================================================
 $min: min-width;
 $max: max-width;
-@mixin at-query($constraint, $viewport1, $viewport2:null) {
-
+@mixin at-query ($constraint, $viewport1, $viewport2:null) {
   @if $constraint == $min {
     @media screen and ($min: $viewport1) {
       @content;
@@ -186,7 +219,6 @@ $max: max-width;
       @content;
     }
   }
-
 }
 
 // ==============================================================================
@@ -652,19 +684,23 @@ html {
 }
 
 body {
-  background-color: #fff;
+  background-color: $colorBody;
 }
 
 .wrapper {
   @include clearfix();
   max-width: $siteWidth;
   margin: 0 auto;
-  padding: 0 $gutter;
+  padding: 0 $gutter/2;
+
+  @include at-query ($min, $small) {
+    padding: 0 $gutter;
+  }
 }
 
 .main-content {
   display: block;
-  padding-top: $gutter*2;
+  padding-top: $gutter;
   padding-bottom: $gutter*2;
 }
 
@@ -698,7 +734,7 @@ select {
   font-size: 87.5%; // Henseforth known as 1em (assumed at 14px)
   line-height: 1.6;
   font-family: $bodyFontStack;
-  color: $colorText;
+  color: $colorTextBody;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -714,15 +750,6 @@ h1, h2, h3, h4, h5, h6,
 
   a {
     text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  // Add some top margin to headers from the rich text editor
-  .rte & {
-    margin-top: 0.2em;
   }
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
@@ -796,8 +823,88 @@ hr {
 
 .page-header {
   @extend .clearfix;
-  border-bottom: 1px solid $borderColor;
-  margin-bottom: $gutter;
+}
+
+.section-header {
+  margin-bottom: $gutter/2;
+}
+
+@include at-query ($min, $large) {
+  .section-header {
+    display: table;
+    width: 100%;
+  }
+
+  .section-header--left {
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 0;
+
+    h1, h2, h3, h4,
+    .h1, .h2, .h3, .h4 {
+      margin-bottom: 0;
+    }
+  }
+
+  .section-header--right {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    width: 325px;
+
+    @include at-query ($max, $medium) {
+      margin-bottom: $gutter;
+    }
+  }
+}
+
+.section-header--right {
+  .form-horizontal,
+  .collection-view {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @include at-query ($min, $postSmall) {
+    label + select,
+    .collection-view {
+      margin-left: $gutter/2;
+    }
+  }
+}
+
+.collection-view {
+  display: inline-block;
+  border: 1px solid $borderColor;
+  border-radius: $radius;
+  padding: 11px;
+  height: 37px; // same as form elements
+
+  // We use SVG icons, so simply hide this in oldIE
+  .lt-ie9 & {
+    display: none;
+  }
+
+  a {
+    display: block;
+    float: left;
+    opacity: 0.7;
+    cursor: pointer;
+
+    & + a {
+      margin-left: 10px;
+    }
+
+    &.collection-view--active {
+      opacity: 1;
+      cursor: default;
+    }
+  }
+
+  img {
+    display: block;
+    opacity: inherit;
+  }
 }
 
 // ==============================================================================
@@ -805,12 +912,22 @@ hr {
 // ==============================================================================
 .rte {
   margin-bottom: 1em;
+
+  // Add some top margin to headers from the rich text editor
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-top: 0.2em;
+  }
+
+  & > div {
+    margin-bottom: 1em;
+  }
 }
 
 // ==============================================================================
-// #Links
+// #Links and Buttons
 // ==============================================================================
-a, a:visited {
+a {
   color: $colorLink;
   text-decoration: underline;
 }
@@ -820,6 +937,82 @@ a:focus {
   color: $colorLinkHover;
 }
 
+.btn {
+  display: inline-block;
+  padding: 8px 10px;
+  margin: 0;
+  line-height: 1.42;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  -webkit-user-select: none;
+  -moz-user-select:    none;
+  -ms-user-select:     none;
+  -o-user-select:      none;
+  user-select:         none;
+  -webkit-appearance: none;
+  border-radius: $radius;
+
+  &.btn--small {
+    padding: 4px 5px;
+    font-size: 0.75em; //12px
+  }
+
+  &.btn--full {
+    width: 100%;
+  }
+
+  // Set primary button colors - can override later
+  background-color: $colorBtnPrimary;
+  color: #fff;
+
+  &:hover {
+    background-color: $colorBtnPrimaryHover;
+    color: #fff;
+  }
+
+  &:active,
+  &:focus {
+   background-color: $colorBtnPrimaryActive;
+   color: #fff;
+  }
+
+  &[disabled],
+  &.disabled {
+    cursor: default;
+    color: $disabledBorder;
+    background-color: $disabledGrey;
+  }
+}
+
+.btn-secondary {
+  @extend .btn;
+  background-color: $colorBtnSecondary;
+
+  &:hover {
+    background-color: $colorBtnSecondaryHover;
+    color: #fff;
+  }
+
+  &:active,
+  &:focus {
+   background-color: $colorBtnSecondaryActive;
+   color: #fff;
+  }
+}
+
+// Force an input/button to look like a text link
+.text-link {
+  display: inline;
+  border: 0 none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
 
 // ==============================================================================
 // #Lists
@@ -834,7 +1027,10 @@ ol.alpha { list-style: lower-alpha outside; }
 ul ul, ul ol,
 ol ol, ol ul { margin: 4px 0 5px 20px; }
 li { margin-bottom: 0.25em; }
-.inline-list li { display: inline-block; }
+.inline-list li {
+  display: inline-block;
+  margin-bottom: 0;
+}
 
 // ==============================================================================
 // #Tables
@@ -903,6 +1099,7 @@ form {
 .btn,
 button,
 input[type="text"],
+input[type="search"],
 input[type="password"],
 input[type="email"],
 input[type="file"],
@@ -943,8 +1140,14 @@ input {
   width: auto;
 }
 
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
 /* Input width and border */
 input[type="text"],
+input[type="search"],
 input[type="password"],
 input[type="email"],
 input[type="file"],
@@ -996,7 +1199,7 @@ select {
 
   // Hide the svg arrow in IE9 and below
   .ie9 &,
-  .lt-ie9 {
+  .lt-ie9 & {
     padding-right: 10px;
     background-image: none;
   }
@@ -1015,6 +1218,19 @@ legend {
 
   &.inline {
     display: inline;
+  }
+
+  &.hidden-label {
+    height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+
+    .ie9 &,
+    .lt-ie9 & {
+      height: auto;
+      margin-bottom: 2px;
+      overflow: visible;
+    }
   }
 }
 
@@ -1038,6 +1254,7 @@ form.form-horizontal,
   margin-bottom: 0;
 
   input[type="text"],
+  input[type="search"],
   input[type="password"],
   input[type="email"],
   input[type="file"],
@@ -1054,6 +1271,7 @@ form.form-horizontal,
 
 /* Error styles */
 input[type="text"],
+input[type="search"],
 input[type="password"],
 input[type="email"],
 input[type="file"],
@@ -1126,87 +1344,51 @@ label.error {
   padding: 0;
 }
 
+.form-spacer {
+  margin: 0 $gutter/2;
+}
+
 // ==============================================================================
-// #Buttons
+// #Icons
 // ==============================================================================
-.btn,
-a.btn {
-  display: inline-block;
-  padding: 8px 10px;
-  margin: 0;
-  line-height: 1.42;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  cursor: pointer;
-  color: #fff;
-  border: 1px solid transparent;
+.payment-icons {
   -webkit-user-select: none;
   -moz-user-select:    none;
   -ms-user-select:     none;
   -o-user-select:      none;
   user-select:         none;
-  -webkit-appearance: none;
-  border-radius: $radius;
+  cursor: default;
 
-  &.small {
-    padding: 4px 5px;
-    font-size: 0.75em; //12px
-  }
-
-  &.full {
-    width: 100%;
-  }
-
-  // Set primary button colors - can override later
-  background-color: $colorBtnPrimary;
-
-  &:hover {
-    background-color: $colorBtnPrimaryHover;
-    color: #fff;
-  }
-
-  &:active {
-   background-color: $colorBtnPrimaryActive;
-   color: #fff;
-  }
-
-  &[disabled],
-  &.disabled {
-    cursor: default;
-    color: $disabledBorder;
-    background-color: $disabledGrey;
+  li {
+    margin: 0 $gutter/4 $gutter/4;
+    font-family: $socialIconFontStack;
+    font-size: 30px;
+    line-height: 30px;
+    color: {{ settings.footer_social_link_color }};
   }
 }
 
-.btn-secondary,
-a.btn-secondary {
-  @extend .btn;
-  background-color: $colorBtnSecondary;
+.social-icons li {
+  margin: 0 $gutter/2 $gutter/2;
+  vertical-align: middle;
 
-  &:hover {
-    background-color: $colorBtnSecondaryHover;
-    color: #fff;
+  @include at-query ($min, $postSmall) {
+    margin-left: 0;
   }
 
-  &:active {
-   background-color: $colorBtnSecondaryActive;
-   color: #fff;
+  a {
+    font-family: $socialIconFontStack;
+    font-size: 30px;
+    line-height: 26px; // same as .social-link height
+    color: {{ settings.footer_social_link_color }};
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+
+    &:hover {
+      color: $colorPrimary;
+    }
   }
 }
-
-// Force an input/button to look like a text link
-.text-link {
-  display: inline;
-  border: 0 none;
-  background: none;
-  text-decoration: underline;
-  padding: 0;
-  margin: 0;
-}
-
 
 // ==============================================================================
 // #Pagination
@@ -1322,11 +1504,16 @@ a.btn-secondary {
 // #Site Header
 // ==============================================================================
 .site-header {
-  padding: $gutter 0;
+  padding: $gutter/2 0;
 
-  @include at-query($min, $large) {
-    .grid {
+  @include at-query ($min, $large) {
+    padding: $gutter 0;
+  }
+
+  @include at-query ($min, $large) {
+    .grid--full {
       display: table;
+      width: 100%;
 
       & > .grid-item {
         float: none;
@@ -1340,8 +1527,9 @@ a.btn-secondary {
 .header-logo {
   text-align: center;
   margin: 0 auto $gutter/2;
+  max-width: {{ settings.logo_max_width }};
 
-  @include at-query($min, $large) {
+  @include at-query ($min, $large) {
     margin-bottom: 0;
   }
 
@@ -1360,19 +1548,36 @@ a.btn-secondary {
   }
 }
 
+.site-header--text-links {
+  margin-bottom: 0;
+}
+
+.search-bar {
+  max-width: 100%;
+
+  @include at-query ($max, $medium) {
+    margin: 0 auto;
+  }
+}
+
 // ==============================================================================
 // #Site Nav and Dropdowns
 // ==============================================================================
 .nav-bar {
   background-color: $colorNav;
-}
 
-.nav-bar ul {
-  margin: 0;
+  ul {
+    margin: 0;
+  }
+
+  li {
+    margin: 0;
+  }
 }
 
 .site-nav {
   font-size: 1.2em;
+  cursor: default;
 
   li {
     margin: 0;
@@ -1395,18 +1600,18 @@ a.btn-secondary {
     white-space: nowrap;
   }
 
-  @include at-query($max, $medium) {
+  @include at-query ($max, $medium) {
     margin: 0 auto;
     text-align: center;
   }
 }
 
-.site-nav-active {
+.site-nav--active > a {
   font-weight: bold;
 }
 
 // Dropdowns
-.site-nav-dropdown {
+.site-nav--dropdown {
   display: none;
   position: absolute;
   left: 0;
@@ -1431,7 +1636,7 @@ a.btn-secondary {
   position: relative;
   padding: 7px 0;
 
-  @include at-query($max, $medium) {
+  @include at-query ($max, $medium) {
     padding: 0 0 $gutter/2;
     margin: 0 auto;
     text-align: center;
@@ -1443,14 +1648,6 @@ a.btn-secondary {
   }
 }
 
-.search-bar {
-  max-width: 100%;
-
-  @include at-query($max, $medium) {
-    margin: 0 auto;
-  }
-}
-
 
 // ==============================================================================
 // #Site Footer
@@ -1458,26 +1655,12 @@ a.btn-secondary {
 .site-footer {
   background-color: $colorFooterBg;
   border-top: 1px solid $borderColor;
-  text-align: center;
   padding: $gutter 0;
+  color: $colorFooterText;
 
-  @include at-query($min, $large) {
+  @include at-query ($min, $large) {
     padding: $gutter*2 0;
-    text-align: left;
   }
-}
-
-// Credit card icon widths (SVG)
-.payment-icons {
-  li {
-    width: 48px;
-    margin: 0 $gutter/4;
-  }
-}
-
-// We use SVG images for the credit card icons, and SVG is not supported in IE8.
-.lt-ie9 .payment-icons {
-  display: none;
 }
 
 // ==============================================================================
@@ -1491,11 +1674,12 @@ a.btn-secondary {
 
 }
 
-.product-list-thumb {
+.product-list-image {
   display: block;
   float: left;
   margin-right: $gutter;
   margin-bottom: $gutter;
+  max-width: 40%;
 }
 
 .product-grid-image {
@@ -1519,8 +1703,18 @@ a.btn-secondary {
 // #Breadcrumbs
 // ==============================================================================
 .breadcrumb {
-  font-size: 0.75em; //12px
-  margin-bottom: 1em;
+  margin-bottom: $gutter;
+
+  a,
+  span {
+    display: inline-block;
+    padding: $gutter/2 7px $gutter/2 0;
+    margin-right: 7px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
 }
 
 
@@ -1547,7 +1741,9 @@ a.btn-secondary {
 .product-photo-thumbs {
   a, img {
     display: block;
+    margin: 0 auto;
   }
+
   li {
     margin-bottom: $gutter;
   }
@@ -1633,13 +1829,40 @@ a.btn-secondary {
 // #Cart Page
 // ==============================================================================
 .cart-row {
-  margin-bottom: $gutter;
-  padding-bottom: $gutter;
-  border-bottom: 1px solid $borderColor;
+  margin-top: $gutter;
+  padding-top: $gutter;
+  border-top: 1px solid $borderColor;
 
   #ajaxifyDrawer & {
-    border-bottom-color: #444;
+    border-top-color: #444;
   }
+
+  &:first-child,
+  .page-header + & {
+    margin-top: 0;
+  }
+
+  &:first-child {
+    padding-top: 0;
+    border-top: 0 none;
+  }
+
+  a {
+    color: $colorTextBody;
+
+    &:hover {
+      color: $colorPrimary;
+    }
+  }
+}
+
+.cart-subtotal {
+  margin-bottom: $gutter;
+}
+
+.cart-subtotal--price {
+  margin: 0 0 0 $gutter/3;
+  display: inline;
 }
 
 // ==============================================================================

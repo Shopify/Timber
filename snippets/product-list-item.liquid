@@ -40,7 +40,7 @@
       - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
 
   {% endcomment %}
-  <a href="{{ product.url | within: collection }}" class="product-list-thumb">
+  <a href="{{ product.url | within: collection }}" class="product-list-image">
     <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}">
   </a>
 
@@ -48,7 +48,7 @@
   <p>
     <span>
       {% if sold_out %}
-      <strong>Sold Out</strong>
+        <strong>Sold Out</strong>
       {% endif %}
 
       {% comment %}
