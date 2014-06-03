@@ -17,14 +17,14 @@
 
   {% if item.featured_image %}
 
-  {% comment %}
-    We have a featured_image, so it's likely a product
-  {% endcomment %}
-  <div class="grid-item one-third">
-      <a href="{{ item.url }}" title="{{ item.title | escape }}">
-        {{ item.featured_image.src | product_img_url: 'medium' | img_tag: item.featured_image.alt }}
-      </a>
-  </div>
+    {% comment %}
+      We have a featured_image, so it's likely a product
+    {% endcomment %}
+    <div class="grid-item one-third">
+        <a href="{{ item.url }}" title="{{ item.title | escape }}">
+          {{ item.featured_image.src | product_img_url: 'medium' | img_tag: item.featured_image.alt }}
+        </a>
+    </div>
 
   {% endif %}
 
