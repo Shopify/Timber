@@ -70,9 +70,7 @@
     {% endcomment %}
     <div id="recover_password" style="display: none;">
 
-      <header class="page-header">
-        <h2>Reset your password</h2>
-      </header>
+      <h2>Reset your password</h2>
       <p>We will send you an email to reset your password.</p>
 
       {% comment %}
@@ -91,8 +89,8 @@
           {% assign reset_success = true %}
         {% endif %}
 
-        <label for="recover-email">Email</label>
-        <input type="email" value="" name="email" id="recover-email" placeholder="your-email@shopify.com" autocorrect="off" autocapitalize="off">
+        <label for="recover-email" class="hidden-label">Email</label>
+        <input type="email" value="" name="email" id="recover-email" placeholder="Email" autocorrect="off" autocapitalize="off">
 
         <div class="text-center">
           <p>

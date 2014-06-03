@@ -63,24 +63,28 @@
         <label for="address_address2_new">Address 2</label>
         <input type="text" id="address_address2_new" class="address_form" name="address[address2]" value="{{form.address2}}" autocapitalize="words">
 
-        <label for="address_city_new">City</label>
-        <input type="text" id="address_city_new" class="address_form" name="address[city]" value="{{form.city}}" autocapitalize="words">
-
-        <label for="address_country_new">Country</label>
-        <select id="address_country_new" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
-
-        <div id="address_province_container_new" style="display:none">
-          <label for="address_province_new">Province</label>
-          <select id="address_province_new" class="address_form" name="address[province]" data-default="{{form.province}}"></select>
-        </div>
-
         <div class="grid">
-          <div class="grid-item one-half small--one-whole">
+          <div class="grid-item large--one-half">
+            <label for="address_city_new">City</label>
+            <input type="text" id="address_city_new" class="address_form" name="address[city]" value="{{form.city}}" autocapitalize="words">
+          </div>
+
+          <div class="grid-item large--one-half">
+            <label for="address_country_new">Country</label>
+            <select id="address_country_new" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+          </div>
+
+          <div class="grid-item" id="address_province_container_new" style="display:none">
+            <label for="address_province_new">Province</label>
+            <select id="address_province_new" class="address_form" name="address[province]" data-default="{{form.province}}"></select>
+          </div>
+
+          <div class="grid-item large--one-half">
             <label for="address_zip_new">Postal/Zip Code</label>
             <input type="text" id="address_zip_new" class="address_form" name="address[zip]" value="{{form.zip}}" autocapitalize="characters">
           </div>
 
-          <div class="grid-item one-half small--one-whole">
+          <div class="grid-item large--one-half">
             <label for="address_phone_new">Phone</label>
             <input type="tel" id="address_phone_new" class="address_form" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
           </div>
@@ -92,7 +96,8 @@
         </p>
 
         <input type="submit" class="btn" value="Add Address">
-        or <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Cancel</a>
+        <span class="form-spacer">or</span>
+        <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Cancel</a>
 
       {% endform %}
       <hr>
