@@ -21,7 +21,7 @@
   <meta property="og:image" content="http:{{ image.src | product_img_url: 'grande' }}">
   <meta property="og:image:secure_url" content="https:{{ image.src | product_img_url: 'grande' }}">
   {% endfor %}
-  <meta property="og:price:amount" content="{{ product.price | money_without_currency }}">
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | stip_html | escape }}">
   <meta property="og:price:currency" content="{{ shop.currency }}">
 {% elsif template contains 'article' %}
   <meta property="og:type" content="article">
