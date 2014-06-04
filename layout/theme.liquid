@@ -71,15 +71,23 @@
           {% comment %}
             Use the uploaded logo from theme settings if enabled
           {% endcomment %}
-          <h1 class="header-logo large--left">
+          {% if template == 'index' %}
+            <h1 class="header-logo large--left" itemscope itemtype="http://schema.org/Organization">
+          {% else %}
+            <div class="header-logo large--left" itemscope itemtype="http://schema.org/Organization">
+          {% endif %}
             {% if settings.use_logo %}
-              <a href="/">
-                {{ 'logo.png' | asset_url | img_tag: shop.name }}
+              <a href="/" itemprop="url">
+                <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
               </a>
             {% else %}
-              <a href="/">{{ shop.name }}</a>
+              <a href="/" itemprop="url">{{ shop.name }}</a>
             {% endif %}
-          </h1>
+          {% if template == 'index' %}
+            </h1>
+          {% else %}
+            </div>
+          {% endif %}
         </div>
         <div class="grid-item large--one-half text-center large--text-right">
           {% comment %}
