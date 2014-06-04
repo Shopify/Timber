@@ -438,7 +438,7 @@ form[action^="/cart/add"] {
   input[type="text"] {
     @include transition(all 0.1s ease-out);
 
-    .ajaxify-notouch & {
+    .supports-no-touch & {
       border: 1px solid rgba(0,0,0,0);
     }
   }
@@ -455,7 +455,7 @@ form[action^="/cart/add"] {
 
   .cart-row:hover &,
   .ajaxifyCart--product:hover &,
-  .ajaxify-touch & {
+  .supports-touch & {
     opacity: 1;
     @include transition(background-color 0.2s ease-out);
   }
@@ -625,7 +625,7 @@ form[action^="/cart/add"] {
 #ajaxifyModal {
   .cart-row:hover input[type="text"],
   .ajaxifyCart--product:hover input[type="text"],
-  .ajaxify-touch input[type="text"],
+  .supports-touch input[type="text"],
   .page-header {
     border-color: $modalBorderColor;
   }
@@ -709,7 +709,7 @@ form[action^="/cart/add"] {
 #ajaxifyDrawer {
   .cart-row:hover input[type="text"],
   .ajaxifyCart--product:hover input[type="text"],
-  .ajaxify-touch input[type="text"],
+  .supports-touch input[type="text"],
   .page-header {
     border-color: $drawerBorderColor;
   }
