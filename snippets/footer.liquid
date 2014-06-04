@@ -6,7 +6,7 @@
 
       {% if settings.footer_display_contact %}
       <div class="grid-item medium--one-half large--one-third">
-        <h3>{{ settings.footer_contact_title }}</h3>
+        <h3>Contact Us</h3>
         <p>
           {% if settings.footer_contact_text != blank %}
             {{ settings.footer_contact_text }}
@@ -19,7 +19,7 @@
 
       {% if settings.footer_display_social %}
       <div class="grid-item medium--one-half large--one-third">
-        <h3>{{ settings.footer_social_title }}</h3>
+        <h3>Follow Us</h3>
 
         {% comment %}
           Loop through the persistent theme settings and list out each social network link.
@@ -40,7 +40,7 @@
 
       {% if settings.footer_display_newsletter %}
       <div class="grid-item large--one-third">
-        <h3>{{ settings.footer_newsletter_title }}</h3>
+        <h3>Newsletter</h3>
         {% include 'newsletter-form' %}
       </div>
       {% endif %}

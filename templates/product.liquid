@@ -128,13 +128,8 @@
             </span>
           {% endif %}
 
-          {% comment %}
-            Quantity selector is optional
-          {% endcomment %}
-          {% if settings.product_quantity %}
-            <label for="quantity">Quantity</label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1">
-          {% endif %}
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1">
 
           <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
         </form>
@@ -173,11 +168,6 @@
 
     </div>
   </div>
-
-  {% if settings.related_products %}
-    {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
-    {% include 'related-products' %}
-  {% endif %}
 
 </div>
 
