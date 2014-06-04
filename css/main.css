@@ -523,8 +523,8 @@
 
 @font-face {
   font-family: "icons";
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?8850  ");
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?8850 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?8850  ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?8850  ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?8850 #atlantic-icons ") format("svg");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?8864  ");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?8864 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?8864  ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?8864  ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?8864 #atlantic-icons ") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -1932,7 +1932,7 @@ label.error {
 .icon-cirrus:before {
   content: "\43"; }
 
-.icon-google_waller:before {
+.icon-google_wallet:before {
   content: "\47"; }
 
 .icon-dk:before {
