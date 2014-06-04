@@ -1378,35 +1378,41 @@ label.error {
   display: inline;
   font-family: $socialIconFontStack;
   text-decoration: none;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-// Payment icons
-.icon-diners_club:before { content: 'c'; }
-.icon-maestro:before { content: 'm'; }
-.icon-interact:before { content: 'I'; }
-.icon-visa:before { content: 'V'; }
-.icon-master:before { content: 'M'; }
-.icon-discover:before { content: 'D'; }
-.icon-dk:before { content: 'd'; }
-.icon-american_express:before { content: 'A'; }
-.icon-google:before { content: 'G'; }
-.icon-paypal:before { content: 'P'; }
-.icon-jcb:before { content: 'J'; }
-.icon-cirrus:before { content: 'C'; }
-.icon-stripe:before { content: 'S'; }
-.icon-bitcoin:before { content: 'B'; }
-
-// Social icons
-.icon-twitter:before { content: 'T'; }
-.icon-facebook:before { content: 'f'; }
-.icon-pinterest:before { content: 'p'; }
-.icon-fancy:before { content: 'F'; }
-.icon-google:before { content: 'g'; }
-.icon-instagram:before { content: 'i'; }
-.icon-youtube:before { content: 'y'; }
-.icon-vimeo:before { content: 'v'; }
-.icon-tumblr:before { content: 't'; }
+// Icon mapping
+.icon-cart:before { content: "\5b"; }
+.icon-american_express:before { content: "\41"; }
+.icon-master:before { content: "\4d"; }
+.icon-visa:before { content: "\56"; }
+.icon-paypal:before { content: "\50"; }
+.icon-discover:before { content: "\44"; }
+.icon-stripe:before { content: "\53"; }
+.icon-interac:before { content: "\49"; }
+.icon-cirrus:before { content: "\43"; }
+.icon-google_wallet:before { content: "\47"; }
+.icon-dk:before { content: "\64"; }
+.icon-jcb:before { content: "\4a"; }
+.icon-maestro:before { content: "\6d"; }
+.icon-diners_club:before { content: "\63"; }
+.icon-bitcoin:before { content: "\42"; }
+.icon-tumblr:before { content: "\74"; }
+.icon-vimeo:before { content: "\76"; }
+.icon-youtube:before { content: "\79"; }
+.icon-google:before { content: "\67"; }
+.icon-twitter:before { content: "\54"; }
+.icon-facebook:before { content: "\66"; }
+.icon-pinterest:before { content: "\70"; }
+.icon-instagram:before { content: "\69"; }
+.icon-fancy:before { content: "\46"; }
 
 .payment-icons {
   -webkit-user-select: none;
