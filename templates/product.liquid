@@ -47,7 +47,7 @@
 
             {% for image in product.images %}
               <li class="grid-item one-quarter">
-                <a href="{{ image.src | product_img_url: 'grande' }}">
+                <a href="{{ image.src | product_img_url: 'grande' }}" class="product-photo-thumb">
                   <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                 </a>
               </li>
