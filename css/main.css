@@ -523,8 +523,8 @@
 
 @font-face {
   font-family: "icons";
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.eot?8549  ");
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.eot?8549 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.woff?8549  ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.ttf?8549  ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/2/assets/icons.svg?8549 #atlantic-icons ") format("svg");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?8832  ");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?8832 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?8832  ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?8832  ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?8832 #atlantic-icons ") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -1876,6 +1876,97 @@ label.error {
 .form-spacer {
   margin: 0 12px; }
 
+.icon-fallback-text .icon {
+  display: none; }
+
+.supports-fontface .icon-fallback-text .icon {
+  display: inline-block; }
+
+.supports-fontface .icon-fallback-text .fallback-text {
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  position: absolute;
+  height: 1px;
+  width: 1px; }
+
+.icon:before {
+  display: none; }
+
+.supports-fontface .icon:before {
+  display: inline;
+  font-family: "icons";
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased; }
+
+.icon-diners_club:before {
+  content: 'c'; }
+
+.icon-maestro:before {
+  content: 'm'; }
+
+.icon-interact:before {
+  content: 'I'; }
+
+.icon-visa:before {
+  content: 'V'; }
+
+.icon-master:before {
+  content: 'M'; }
+
+.icon-discover:before {
+  content: 'D'; }
+
+.icon-dk:before {
+  content: 'd'; }
+
+.icon-american_express:before {
+  content: 'A'; }
+
+.icon-google:before {
+  content: 'G'; }
+
+.icon-paypal:before {
+  content: 'P'; }
+
+.icon-jcb:before {
+  content: 'J'; }
+
+.icon-cirrus:before {
+  content: 'C'; }
+
+.icon-stripe:before {
+  content: 'S'; }
+
+.icon-bitcoin:before {
+  content: 'B'; }
+
+.icon-twitter:before {
+  content: 'T'; }
+
+.icon-facebook:before {
+  content: 'f'; }
+
+.icon-pinterest:before {
+  content: 'p'; }
+
+.icon-fancy:before {
+  content: 'F'; }
+
+.icon-google:before {
+  content: 'g'; }
+
+.icon-instagram:before {
+  content: 'i'; }
+
+.icon-youtube:before {
+  content: 'y'; }
+
+.icon-vimeo:before {
+  content: 'v'; }
+
+.icon-tumblr:before {
+  content: 't'; }
+
 .payment-icons {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1886,10 +1977,15 @@ label.error {
 
 .payment-icons li {
   margin: 0 6px 6px;
-  font-family: "icons";
+  color: #bbbbbb;
+  cursor: default; }
+
+.payment-icons .icon {
   font-size: 30px;
-  line-height: 30px;
-  color: #bbbbbb; }
+  line-height: 30px; }
+
+.payment-icons .fallback-text {
+  text-transform: capitalize; }
 
 .social-icons li {
   margin: 0 12px 12px;
@@ -1898,16 +1994,15 @@ label.error {
 @media screen and (min-width: 481px) {
   .social-icons li {
     margin-left: 0; } }
-.social-icons li a {
-  font-family: "icons";
+.social-icons li .icon {
   font-size: 30px;
-  line-height: 26px;
-  color: #bbbbbb;
-  text-decoration: none;
-  -webkit-font-smoothing: antialiased; }
+  line-height: 26px; }
+
+.social-icons li a {
+  color: #bbbbbb; }
 
 .social-icons li a:hover {
-  color: #747474; }
+  color: #a2a2a2; }
 
 .pagination {
   margin-bottom: 1em; }
