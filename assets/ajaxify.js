@@ -337,7 +337,11 @@ var ajaxifyShopify = (function(module, $) {
 
   updateCountPrice = function (cart) {
     if ($cartCountSelector) {
-      $cartCountSelector.html(cart.item_count);
+      $cartCountSelector.html(cart.item_count).removeClass('hidden-count');
+
+      if (cart.item_count === 0) {
+        $cartCountSelector.addClass('hidden-count');
+      }
     }
     if ($cartCostSelector) {
       $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
