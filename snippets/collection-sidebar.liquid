@@ -32,7 +32,7 @@
     {% for type in collection.all_types %}
       {% if collection.current_type == type %}
         <li class="active-filter">
-          {{ type | link_to_remove_type }}
+          {{ type }}
         </li>
       {% else %}
         <li>
@@ -60,7 +60,7 @@
     {% for vendor in collection.all_vendors %}
       {% if collection.current_vendor == vendor %}
         <li class="active-filter">
-          {{ vendor | link_to_remove_vendor }}
+          {{ vendor }}
         </li>
       {% else %}
         <li>
