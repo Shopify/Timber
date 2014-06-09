@@ -107,6 +107,7 @@ $borderColor: #e5e5e5;
 
 /* Nav and dropdown link background */
 $colorNav: #f2f2f2;
+$colorNavText: #333;
 
 /* Footer */
 $colorFooterBg: {{ settings.footer_color }};
@@ -1634,6 +1635,15 @@ label.error {
 // ==============================================================================
 .nav-bar {
   background-color: $colorNav;
+
+  a {
+    color: $colorNavText;
+
+    &:hover,
+    &:focus {
+      color: darken($colorNavText, 15%);
+    }
+  }
 
   ul {
     margin: 0;
