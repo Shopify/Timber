@@ -16,7 +16,6 @@
 <div class="grid">
   {% for product in collection.products limit:5 %}
     {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
-    {% assign current_collection = collection %}
     {% include 'product-grid-item' %}
   {% endfor %}
 </div>

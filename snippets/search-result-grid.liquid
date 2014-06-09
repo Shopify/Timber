@@ -14,7 +14,7 @@
 
   {% if item.featured_image %}
 
-    <a href="{{ item.url }}" title="{{ item.title | escape }}">
+    <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
       {{ item.featured_image.src | product_img_url: 'medium' | img_tag: item.featured_image.alt }}
     </a>
 
