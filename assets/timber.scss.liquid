@@ -128,11 +128,6 @@ $gridGutter: 24px; // can be a %, but nested grids will have smaller margins bec
 $radius: 3px;
 
 /* Typography */
-$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
-
-/* Icon font */
 @font-face {
   font-family: "icons";
   src: url(' {{ "icons.eot" | asset_url }}  ');
@@ -144,7 +139,10 @@ $baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
   font-style: normal;
 }
 
+$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $socialIconFontStack: "icons";
+$baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
 
 
 // ==============================================================================
