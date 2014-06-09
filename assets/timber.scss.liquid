@@ -130,6 +130,7 @@ $radius: 3px;
 /* Typography */
 $headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
 
 /* Icon font */
 @font-face {
@@ -731,7 +732,7 @@ input,
 textarea,
 button,
 select {
-  font-size: 87.5%; // Henseforth known as 1em (assumed at 14px)
+  font-size: $baseFontSize;
   line-height: 1.6;
   font-family: $bodyFontStack;
   color: $colorTextBody;
