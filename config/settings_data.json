@@ -2,6 +2,8 @@
   "current": {
     "use_logo": false,
     "customer_layout": "theme",
+    "footer_display_quicklinks": true,
+    "footer_quicklinks_linklist": "footer",
     "footer_display_contact": true,
     "footer_display_social": true,
     "twitter_link": "https://twitter.com/shopify",
@@ -23,6 +25,8 @@
       "use_logo": false,
       "logo_max_width": "450px",
       "customer_layout": "theme",
+      "footer_display_quicklinks": true,
+      "footer_quicklinks_linklist": "footer",
       "footer_display_contact": true,
       "footer_display_social": true,
       "footer_display_newsletter": true,
