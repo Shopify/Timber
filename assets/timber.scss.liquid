@@ -859,6 +859,10 @@ hr {
 }
 
 .section-header--right {
+  @include at-query ($max, $medium) {
+    margin-top: -0.4em; // don't exceed h1 margin-bottom
+  }
+
   .form-horizontal,
   .collection-view {
     display: inline-block;
