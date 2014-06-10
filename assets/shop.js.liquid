@@ -22,10 +22,11 @@ timber.init = function () {
 }
 
 timber.accessibleNav = function () {
-  var allLinks = timber.cache.navigation.find('a'),
-      topLevel = timber.cache.navigation.children('li').find('a'),
-      parents = timber.cache.navigation.find('.site-nav--has-dropdown'),
-      subMenus = timber.cache.navigation.find('.site-nav--dropdown');
+  var nav = timber.cache.navigation,
+      allLinks = nav.find('a'),
+      topLevel = nav.children('li').find('a'),
+      parents = nav.find('.site-nav--has-dropdown'),
+      subMenus = nav.find('.site-nav--dropdown');
 
   // Mouseenter
   parents.on('mouseenter', function() {
