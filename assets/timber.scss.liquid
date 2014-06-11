@@ -1621,6 +1621,7 @@ label.error {
     color: $colorNavText;
 
     &:hover,
+    &:active,
     &:focus {
       color: darken($colorNavText, 15%);
     }
@@ -1677,7 +1678,9 @@ label.error {
   left: 0;
   z-index: 5;
 
-  .site-nav li:hover & {
+  .site-nav--has-dropdown:hover &,
+  .site-nav--has-dropdown.nav-hover &,
+  .nav-focus + & {
     display: block;
   }
 
@@ -1685,7 +1688,8 @@ label.error {
     background-color: $colorNav;
 
     &:hover,
-    &:active {
+    &:active,
+    &:focus {
       background-color: darken($colorNav, 10%);
     }
   }

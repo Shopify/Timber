@@ -5,6 +5,9 @@ timber.cache = {
   html: $('html'),
   body: $('body'),
 
+  // Navigation
+  navigation: $('#accessibleNav'),
+
   // Product Page
   mainImage: $('#productPhotoImg'),
   thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
@@ -14,7 +17,63 @@ timber.cache = {
 timber.init = function () {
 
   // Run on load
+  timber.accessibleNav();
   timber.productImageSwitch();
+}
+
+timber.accessibleNav = function () {
+  var nav = timber.cache.navigation,
+      allLinks = nav.find('a'),
+      topLevel = nav.children('li').find('a'),
+      parents = nav.find('.site-nav--has-dropdown'),
+      subMenus = nav.find('.site-nav--dropdown');
+
+  // Mouseenter
+  parents.on('mouseenter', function() {
+    $(this).addClass('nav-hover');
+  });
+
+  // Mouseout
+  parents.on('mouseout', function() {
+    $(this).removeClass('nav-hover');
+  });
+
+  // Focus
+  allLinks.focus(function(e) {
+    handleFocus($(this));
+  });
+
+  // Blur
+  allLinks.blur(function(e) {
+    topLevel.removeClass('nav-focus');
+    subMenus.attr('aria-hidden', 'true');
+  });
+
+  // accessibleNav private methods
+  function handleFocus (el) {
+    var subMenu = el.next('ul');
+        hasSubMenu = subMenu.hasClass('site-nav--dropdown') ? true : false,
+        isSubItem = $('.site-nav--dropdown').has(el).length;
+
+    // Add focus class for top level items, or keep menu shown
+    if ( !isSubItem ) {
+      topLevel.removeClass('nav-focus');
+      el.addClass('nav-focus');
+    } else {
+      el.closest('.site-nav--has-dropdown').find('a').addClass('nav-focus');
+      el.closest('.site-nav--dropdown').attr('aria-hidden', 'false');
+    }
+
+    // Toggle aria-hidden attribute for top level items
+    if ( hasSubMenu ) {
+      if (subMenu.attr('aria-hidden') == 'true') {
+        subMenu.attr('aria-hidden', 'false');
+      } else {
+        subMenu.attr('aria-hidden', 'true');
+      }
+    }
+
+  }
 }
 
 timber.productImageSwitch = function () {
