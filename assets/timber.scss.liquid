@@ -65,7 +65,7 @@ $postSmall: $small + $viewportIncrement;
 $preMedium: $medium - $viewportIncrement;
 $preLarge: $large - $viewportIncrement;
 
-/* The following are dependencies of csswizardry grid */
+/*================ The following are dependencies of csswizardry grid ================*/
 $breakpoints: (
   'small' '(max-width: #{$small})',
   'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
@@ -84,7 +84,7 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 $colorPrimary: {{ settings.primary_color }};
 $colorSecondary: {{ settings.secondary_color }};
 
-/* Button colors */
+// Button colors
 $colorBtnPrimary: $colorPrimary;
 $colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
 $colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
@@ -93,43 +93,43 @@ $colorBtnSecondary: $colorSecondary;
 $colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
 $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
 
-/* Text link colors */
+// Text link colors
 $colorLink: $colorPrimary;
 $colorLinkHover: #333;
 
-/* Text colors */
+// Text colors
 $colorBody: {{ settings.body_background_color }};
 $colorTextBody: {{ settings.body_text_color }};
 $colorHeaders: #999;
 $colorTextGrey: #777;
 
-/* Border colors */
+// Border colors
 $borderColor: #e5e5e5;
 
-/* Nav and dropdown link background */
+// Nav and dropdown link background
 $colorNav: #f2f2f2;
 $colorNavText: #333;
 
-/* Footer */
+// Footer
 $colorFooterBg: {{ settings.footer_color }};
 $colorFooterText: {{ settings.footer_text_color }};
 
-/* Helper colors */
+// Helper colors
 $disabledGrey: #f6f6f6;
 $disabledBorder: darken($disabledGrey, 25%);
 $errorRed: #dc0000;
 $errorRedBg: lighten($errorRed, 55%);
 $successGreen: #0a942a;
 
-/* Width variables */
+// Width variables
 $siteWidth: 1180px;
 $gutter: 24px;
 $gridGutter: 24px; // can be a %, but nested grids will have smaller margins because of it
 
-/* Radius */
+// Radius
 $radius: 3px;
 
-/* Typography */
+// Typography
 @font-face {
   font-family: "icons";
   src: url(' {{ "icons.eot" | asset_url }}  ');
@@ -644,7 +644,6 @@ $class-type: unquote(".");
   }
 }
 
-
 /*============================================================================
   #Basic Styles
 ==============================================================================*/
@@ -861,7 +860,7 @@ hr {
     display: none;
   }
 
-  // Only show on larger screens
+  /*================ Only show on larger screens ================*/
   @include at-query ($min, $large) {
     display: inline-block;
   }
