@@ -946,7 +946,7 @@ a:focus {
     width: 100%;
   }
 
-  // Set primary button colors - can override later
+  /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
   color: #fff;
 
@@ -1177,7 +1177,7 @@ select {
   text-indent: 0.01px;
   text-overflow: '';
 
-  // Hide the svg arrow in IE9 and below
+  /*================ Hide the svg arrow in IE9 and below ================*/
   .ie9 &,
   .lt-ie9 & {
     padding-right: 10px;
@@ -1216,7 +1216,7 @@ legend {
   }
 }
 
-/* We don't want the same label treatment for checkboxes/radios */
+/*================ We don't want the same label treatment for checkboxes/radios ================*/
 input[type="checkbox"] + label,
 input[type="radio"] + label {
   font-weight: normal;
@@ -1341,8 +1341,11 @@ label.error {
   }
 }
 
+/*============================================================================
+  A generic way to visually hide content while
+  remaining accessible to screen readers (h5bp.com)
+==============================================================================*/
 .supports-fontface .icon-fallback-text .fallback-text {
-  /* a generic way to visually hide content while remaining accessible to screen readers (h5bp.com) */
   clip: rect(0 0 0 0);
   overflow: hidden;
   position: absolute;
