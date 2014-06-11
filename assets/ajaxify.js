@@ -1,32 +1,29 @@
-// (c) Copyright 2014 Shopify Inc. Author: Carson Shold (@cshold). All Rights Reserved.
+/*============================================================================
+  (c) Copyright 2014 Shopify Inc. Author: Carson Shold (@cshold). All Rights Reserved.
 
-/*
- * Ajaxify the add to cart experience and flip the button for inline confirmation,
- * show the cart in a modal, or a 3D drawer.
- *
- * This file includes:
- *    - Basic Shopify Ajax API calls
- *    - Ajaxify plugin
- *
- * This requires:
- *    - jQuery 1.8+
- *    - handlebars.min.js (for cart template)
- *    - modernizer.min.js
- *    - snippet/ajax-cart-template.liquid
-*/
+  Plugin Documentation - http://shopify.github.io/Timber/#ajax-cart
 
-/*
- * Plugin Documentation - http://shopify.github.io/Timber/#ajax-cart
-*/
+  Ajaxify the add to cart experience and flip the button for inline confirmation,
+  show the cart in a modal, or a 3D drawer.
 
-// JQUERY API (c) Copyright 2009-2014 Shopify Inc. Author: Caroline Schnapp. All Rights Reserved.
-// Includes slight modifications to addItemFromForm.
+  This file includes:
+    - Basic Shopify Ajax API calls
+    - Ajaxify plugin
 
+  This requires:
+    - jQuery 1.8+
+    - handlebars.min.js (for cart template)
+    - modernizer.min.js
+    - snippet/ajax-cart-template.liquid
+
+  JQUERY API (c) Copyright 2009-2014 Shopify Inc. Author: Caroline Schnapp. All Rights Reserved.
+  Includes slight modifications to addItemFromForm.
+==============================================================================*/
 if ((typeof Shopify) === 'undefined') { Shopify = {}; }
 
-// -------------------------------------------------------------------------------------
-// API Helper Functions
-// -------------------------------------------------------------------------------------
+/*============================================================================
+  API Helper Functions
+==============================================================================*/
 function floatToString(numeric, decimals) {
   var amount = numeric.toFixed(decimals).toString();
   if(amount.match(/^\.\d+/)) {return "0"+amount; }
@@ -61,9 +58,9 @@ function getCookie(c_name) {
   return c_value;
 }
 
-// -------------------------------------------------------------------------------------
-// API Functions
-// -------------------------------------------------------------------------------------
+/*============================================================================
+  API Functions
+==============================================================================*/
 Shopify.formatMoney = function(cents, format) {
 
   if (typeof cents == 'string') cents = cents.replace('.','');
@@ -130,7 +127,9 @@ Shopify.onError = function(XMLHttpRequest, textStatus) {
   }
 };
 
-// POST to cart/add.js returns the JSON of the line item associated with the added item
+/*============================================================================
+  POST to cart/add.js returns the JSON of the line item associated with the added item
+==============================================================================*/
 Shopify.addItem = function(variant_id, quantity, callback) {
   var quantity = quantity || 1;
   var params = {
@@ -153,9 +152,11 @@ Shopify.addItem = function(variant_id, quantity, callback) {
   jQuery.ajax(params);
 };
 
-// POST to cart/add.js returns the JSON of the line item
-//   - Allow use of form element instead of id
-//   - Allow custom error callback
+/*============================================================================
+  POST to cart/add.js returns the JSON of the line item
+    - Allow use of form element instead of id
+    - Allow custom error callback
+==============================================================================*/
 Shopify.addItemFromForm = function(form, callback, errorCallback) {
   var params = {
     type: 'POST',
@@ -228,10 +229,9 @@ Shopify.changeItem = function(variant_id, quantity, callback) {
   jQuery.ajax(params);
 };
 
-// -------------------------------------------------------------------------------------
-// Ajaxify Shopify Add To Cart
-// -------------------------------------------------------------------------------------
-
+/*============================================================================
+  Ajaxify Shopify Add To Cart
+==============================================================================*/
 var ajaxifyShopify = (function(module, $) {
 
   'use strict';
@@ -248,9 +248,9 @@ var ajaxifyShopify = (function(module, $) {
   // Private functions
   var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop;
 
-  /**
-   * Initialise the plugin and define global options
-   */
+  /*============================================================================
+    Initialise the plugin and define global options
+  ==============================================================================*/
   init = function (options) {
 
     // Default settings
