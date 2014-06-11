@@ -1,20 +1,21 @@
-/*
-* Shopify Timber v1.3.0
-* Copyright 2014 Shopify Inc.
-* Author Carson Shold @cshold
-* Built with Sass - http://sass-lang.com/
+/*============================================================================
+  Shopify Timber v1.3.0
+  Copyright 2014 Shopify Inc.
+  Author Carson Shold @cshold
+  Built with Sass - http://sass-lang.com/
 
-* Some things to know about this file:
+  Some things to know about this file:
     - Sass is compiled on Shopify's server so you don't need to convert it to CSS yourself
     - The output CSS is compressed and comments are removed
     - You cannot use @imports in this file
         * Use grunt or gulp tasks to enable @imports - https://github.com/Shopify/shopify-css-import
     - Helpers variables, mixins, and starter classes are provided. Change as needed.
     - The file is prepped with a CSS reset
-*/
+==============================================================================*/
 
-/* Table of Contents
-==================================================
+/*============================================================================
+  Table of Contents
+
   #Breakpoint and Grid Variables
   #General Variables
   #Sass Mixins
@@ -43,7 +44,7 @@
   #Notes and Form Feedback
   #Cart Page
   #Demo Styles - for empty store state
-================================================== */
+==============================================================================*/
 
 *, input, :before, :after {
   -webkit-box-sizing:border-box;
@@ -51,9 +52,9 @@
   box-sizing:border-box;
 }
 
-// ==============================================================================
-// #Breakpoint and Grid Variables
-// ==============================================================================
+/*============================================================================
+  #Breakpoint and Grid Variables
+==============================================================================*/
 $viewportIncrement: 1px;
 
 $small: 480px;
@@ -75,9 +76,9 @@ $breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
 $breakpoint-has-push:  ('medium', 'medium-down', 'large');
 $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 
-// ==============================================================================
-// #General Variables
-// ==============================================================================
+/*============================================================================
+  #General Variables
+==============================================================================*/
 
 // Timber Colors
 $colorPrimary: {{ settings.primary_color }};
@@ -145,10 +146,9 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $socialIconFontStack: "icons";
 $baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
 
-
-// ==============================================================================
-// #Sass Mixins
-// ==============================================================================
+/*============================================================================
+  #Sass Mixins
+==============================================================================*/
 .clearfix {
   &:after {
     content: "";
@@ -199,10 +199,10 @@ $baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
   }
 }
 
-// ==============================================================================
-// Dependency-free breakpoint mixin
-// http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
-// ==============================================================================
+/*============================================================================
+  Dependency-free breakpoint mixin
+    - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+==============================================================================*/
 $min: min-width;
 $max: max-width;
 @mixin at-query ($constraint, $viewport1, $viewport2:null) {
@@ -221,19 +221,17 @@ $max: max-width;
   }
 }
 
-// ==============================================================================
-// #Reset
-// ==============================================================================
+/*============================================================================
+  #Reset
+==============================================================================*/
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:none;}table{border-collapse:collapse;border-spacing:0;}code,pre{background-color:#faf7f5;font-family:Consolas,monospace;border:0 none;padding:0 2px;color:#51ab62;}pre{overflow:auto;padding:0.5em;margin:0 0 1em;}
 
-
-// ==============================================================================
-// #Grid Setup
-//
-// - Based on csswizardry grid, but with floated columns and a fixed gutter size
-// - Breakpoints defined above, under #Breakpoint and Grid Variables
-// - Note the inclusion of .grid-uniform to take care of clearfixes on evenly sized grid-items
-// ==============================================================================
+/*============================================================================
+  #Grid Setup
+    - Based on csswizardry grid, but with floated columns and a fixed gutter size
+    - Breakpoints defined above, under #Breakpoint and Grid Variables
+    - Note the inclusion of .grid-uniform to take care of clearfixes on evenly sized grid-items
+==============================================================================*/
 $responsive:         true;
 $mobile-first:       true;
 $use-silent-classes: false;
@@ -279,25 +277,22 @@ $class-type: unquote(".");
 }
 
 
-/**
- * Drop relative positioning into silent classes which can't take advantage of
- * the `[class*="push--"]` and `[class*="pull--"]` selectors.
- */
+/*============================================================================
+  Drop relative positioning into silent classes which can't take advantage of
+  the `[class*="push--"]` and `[class*="pull--"]` selectors.
+==============================================================================*/
 @mixin silent-relative() {
   @if $use-silent-classes == true{
     position:relative;
   }
 }
 
-
-/*------------------------------------*\
-  $GRID SETUP
-\*------------------------------------*/
-/**
- * 1. Allow the grid system to be used on lists.
- * 2. Remove any margins and paddings that might affect the grid system.
- * 3. Apply a negative `margin-left` to negate the columns' gutters.
- */
+/*============================================================================
+  Grid Setup
+    1. Allow the grid system to be used on lists.
+    2. Remove any margins and paddings that might affect the grid system.
+    3. Apply a negative `margin-left` to negate the columns' gutters.
+==============================================================================*/
 #{$class-type}grid,
 #{$class-type}grid-uniform {
   list-style:none;
@@ -318,10 +313,10 @@ $class-type: unquote(".");
   box-sizing:border-box;
 }
 
-/**
- * Reversed grids allow you to structure your source in the opposite
- * order to how your rendered layout will appear.
- */
+/*============================================================================
+  Reversed grids allow you to structure your source in the opposite
+  order to how your rendered layout will appear.
+==============================================================================*/
 #{$class-type}grid--rev {
   @extend #{$class-type}grid;
   direction:rtl;
@@ -367,14 +362,11 @@ $class-type: unquote(".");
   }
 }
 
-/*------------------------------------*\
-  $WIDTHS
-\*------------------------------------*/
-/**
- * Create our width classes, prefixed by the specified namespace.
- */
+/*============================================================================
+  WIDTHS
+    - Create width classes, prefixed by the specified namespace.
+==============================================================================*/
 @mixin device-type($namespace:"") {
-
   /** Whole */
   #{$class-type}#{$namespace}one-whole       { width:100%; }
 
@@ -435,14 +427,10 @@ $class-type: unquote(".");
   #{$class-type}#{$namespace}nine-twelfths   { @extend #{$class-type}#{$namespace}three-quarters; }
   #{$class-type}#{$namespace}ten-twelfths    { @extend #{$class-type}#{$namespace}five-sixths; }
   #{$class-type}#{$namespace}eleven-twelfths { width:91.666%; }
-
 }
 
-/**
-  * Create a clearfix helper on uniform grids
-  */
+/*================ Clearfix helper on uniform grids ================*/
 @mixin clearfix-helper($namespace:"") {
-
   .grid-uniform {
     #{$class-type}#{$namespace}one-half:nth-child(2n+1),
     #{$class-type}#{$namespace}one-third:nth-child(3n+1),
@@ -458,20 +446,16 @@ $class-type: unquote(".");
     #{$class-type}#{$namespace}two-twelfths:nth-child(6n+1),
     #{$class-type}#{$namespace}three-twelfths:nth-child(4n+1),
     #{$class-type}#{$namespace}four-twelfths:nth-child(3n+1),
-    #{$class-type}#{$namespace}six-twelfths:nth-child(2n+1)     { clear:both; }
+    #{$class-type}#{$namespace}six-twelfths:nth-child(2n+1)    { clear:both; }
   }
-
 }
 
+/*============================================================================
+  HELPERS
+==============================================================================*/
 
-/*------------------------------------*\
-  $HELPERS
-\*------------------------------------*/
-/**
- * Create helper show/hide classes around our breakpoints.
- */
+/*================ Helper show/hide classes around our breakpoints ================*/
 @mixin device-helper($namespace:"") {
-
   #{$class-type}#{$namespace}show        { display:block!important; }
   #{$class-type}#{$namespace}hide        { display:none!important; }
 
@@ -481,17 +465,14 @@ $class-type: unquote(".");
 
   #{$class-type}#{$namespace}left        { float:left!important; }
   #{$class-type}#{$namespace}right       { float:right!important; }
-
 }
 
-
-/* Our regular, non-responsive width and helper classes. */
+/*================ Our regular, non-responsive width and helper classes ================*/
 @include device-type();
 @include device-helper();
 
-/* Our responsive classes, if we have enabled them. */
+/*================ Our responsive classes, if we have enabled them ================*/
 @if $responsive == true {
-
   @each $name in $breakpoint-has-widths {
     @include grid-media-query($name) {
       @include device-type('#{$name}--');
@@ -499,18 +480,13 @@ $class-type: unquote(".");
       @include clearfix-helper('#{$name}--');
     }
   }
-
 }
 
-
-/*------------------------------------*\
-  $PUSH
-\*------------------------------------*/
-/**
- * Push classes, to move grid items over to the right by certain amounts.
- */
+/*============================================================================
+  PUSH
+    - Push classes, to move grid items over to the right by certain amounts
+==============================================================================*/
 @mixin push-setup($namespace: "") {
-
   /* Whole */
   #{$class-type}push--#{$namespace}one-whole       { left:100%; @include silent-relative(); }
 
@@ -574,8 +550,6 @@ $class-type: unquote(".");
 }
 
 @if $push == true {
-
-  /* Not a particularly great selector, but the DRYest way to do things. */
   [class*="push--"]{ position:relative; }
 
   @include push-setup();
@@ -587,14 +561,12 @@ $class-type: unquote(".");
       }
     }
   }
-
 }
 
-
-/*------------------------------------*\
-  $PULL
-\*------------------------------------*/
-/* Pull classes, to move grid items back to the left by certain amounts. */
+/*============================================================================
+  PULL
+    - Pull classes, to move grid items back to the left by certain amounts
+==============================================================================*/
 @mixin pull-setup($namespace: "") {
   /* Whole */
   #{$class-type}pull--#{$namespace}one-whole       { right:100%; @include silent-relative(); }
@@ -659,8 +631,6 @@ $class-type: unquote(".");
 }
 
 @if $pull == true {
-
-  /* Not a particularly great selector, but the DRYest way to do things. */
   [class*="pull--"]{ position:relative; }
 
   @include pull-setup();
@@ -672,13 +642,12 @@ $class-type: unquote(".");
       }
     }
   }
-
 }
 
 
-// ==============================================================================
-// #Basic Styles
-// ==============================================================================
+/*============================================================================
+  #Basic Styles
+==============================================================================*/
 html {
   background-color: $colorFooterBg;
 }
@@ -704,9 +673,9 @@ body {
   padding-bottom: $gutter*2;
 }
 
-// ==============================================================================
-// #Helper Classes
-// ==============================================================================
+/*============================================================================
+  #Helper Classes
+==============================================================================*/
 .left { float: left; }
 .right { float: right; }
 .text-center { text-align: center; }
@@ -723,9 +692,9 @@ body {
 }
 
 
-// ==============================================================================
-// #Typography
-// ==============================================================================
+/*============================================================================
+  #Typography
+==============================================================================*/
 body,
 input,
 textarea,
@@ -755,7 +724,10 @@ h1, h2, h3, h4, h5, h6,
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
 .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a { font-weight: inherit; }
 
-// Pixel to EM conversion tool http://pxtoem.com/
+/*============================================================================
+  Pixel to EM conversion tool
+    - http://pxtoem.com/
+==============================================================================*/
 h1, .h1 { font-size: 3em; }       // 42px
 h2, .h2 { font-size: 2.429em; }   // 34px
 h3, .h3 { font-size: 2em; }       // 28px
@@ -777,7 +749,7 @@ sup {
 
 .text-light { color: $colorTextGrey; }
 
-// Blockquotes
+/*================ Blockquotes ================*/
 blockquote {
   font-size: 1.125em;
   line-height: 1.45;
@@ -884,9 +856,14 @@ hr {
   padding: 11px;
   height: 37px; // same as form elements
 
-  // We use SVG icons, so simply hide this in oldIE
+  /*================ We use SVG icons, so simply hide this in oldIE ================*/
   .lt-ie9 & {
     display: none;
+  }
+
+  // Only show on larger screens
+  @include at-query ($min, $large) {
+    display: inline-block;
   }
 
   a {
@@ -911,9 +888,9 @@ hr {
   }
 }
 
-// ==============================================================================
-// #Rich Text Editor
-// ==============================================================================
+/*============================================================================
+  #Rich Text Editor
+==============================================================================*/
 .rte {
   margin-bottom: 1em;
 
@@ -928,9 +905,9 @@ hr {
   }
 }
 
-// ==============================================================================
-// #Links and Buttons
-// ==============================================================================
+/*============================================================================
+  #Links and Buttons
+==============================================================================*/
 a {
   color: $colorLink;
   text-decoration: underline;
@@ -1009,7 +986,7 @@ a:focus {
   }
 }
 
-// Force an input/button to look like a text link
+/*================ Force an input/button to look like a text link ================*/
 .text-link {
   display: inline;
   border: 0 none;
@@ -1018,9 +995,9 @@ a:focus {
   margin: 0;
 }
 
-// ==============================================================================
-// #Lists
-// ==============================================================================
+/*============================================================================
+  #Lists
+==============================================================================*/
 ul, ol { margin-bottom: 1em; }
 ul { list-style: none outside; }
 ol { list-style: decimal; }
@@ -1036,9 +1013,9 @@ li { margin-bottom: 0.25em; }
   margin-bottom: 0;
 }
 
-// ==============================================================================
-// #Tables
-// ==============================================================================
+/*============================================================================
+  #Tables
+==============================================================================*/
 table.full {
   width: 100%;
   margin-bottom: 1em;
@@ -1055,10 +1032,10 @@ th, td {
 }
 
 
-// ==============================================================================
-// #OOCSS Media Object
+/*============================================================================
+  #OOCSS Media Object
 //  - http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
-// ==============================================================================
+==============================================================================*/
 .media,
 .media-flex {
   overflow: hidden;
@@ -1082,9 +1059,9 @@ th, td {
 }
 
 
-// ==============================================================================
-// #Images and Iframes
-// ==============================================================================
+/*============================================================================
+  #Images and Iframes
+==============================================================================*/
 img.auto,
 .grid-item img,
 .grid-item iframe {
@@ -1093,9 +1070,9 @@ img.auto,
 }
 
 
-// ==============================================================================
-// #Forms
-// ==============================================================================
+/*============================================================================
+  #Forms
+==============================================================================*/
 form {
   margin-bottom: $gutter;
 }
@@ -1149,7 +1126,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-/* Input width and border */
+/*================ Input width and border ================*/
 input[type="text"],
 input[type="search"],
 input[type="password"],
@@ -1213,7 +1190,7 @@ select::-ms-expand {
     display: none;
 }
 
-/* Form labels */
+/*================ Form labels ================*/
 label,
 legend {
   display: block;
@@ -1254,7 +1231,7 @@ label[for] {
   color: #999;
 }
 
-/* Horizontal Form */
+/*================ Horizontal Form ================*/
 form.form-horizontal,
 .form-horizontal {
   margin-bottom: 0;
@@ -1275,7 +1252,7 @@ form.form-horizontal,
   }
 }
 
-/* Error styles */
+/*================ Error styles ================*/
 input[type="text"],
 input[type="search"],
 input[type="password"],
@@ -1296,7 +1273,7 @@ label.error {
 }
 
 
-/* Input Groups */
+/*================ Input Group ================*/
 .input-group {
   position: relative;
   display: table;
@@ -1354,9 +1331,9 @@ label.error {
   margin: 0 $gutter/2;
 }
 
-// ==============================================================================
-// #Icons
-// ==============================================================================
+/*============================================================================
+  #Icons
+==============================================================================*/
 .icon-fallback-text .icon {
   display: none;
 
@@ -1392,7 +1369,7 @@ label.error {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Icon mapping
+/*================ Icon mapping ================*/
 .icon-cart:before { content: "\5b"; }
 .icon-american_express:before { content: "\41"; }
 .icon-master:before { content: "\4d"; }
@@ -1464,14 +1441,14 @@ label.error {
   }
 }
 
-// ==============================================================================
-// #Pagination
-// ==============================================================================
+/*============================================================================
+  #Pagination
+==============================================================================*/
 .pagination {
   margin-bottom: 1em;
 }
 
-/* Custom Pagination */
+/*================ Custom Pagination ================*/
 .pagination-custom {
   display: inline-block;
   padding-left: 0;
@@ -1574,9 +1551,9 @@ label.error {
 }
 
 
-// ==============================================================================
-// #Site Header
-// ==============================================================================
+/*============================================================================
+  #Site Header
+==============================================================================*/
 .site-header {
   padding: $gutter/2 0;
 
@@ -1634,9 +1611,9 @@ label.error {
   }
 }
 
-// ==============================================================================
-// #Site Nav and Dropdowns
-// ==============================================================================
+/*============================================================================
+  #Site Nav and Dropdowns
+==============================================================================*/
 .nav-bar {
   background-color: $colorNav;
 
@@ -1693,7 +1670,7 @@ label.error {
   font-weight: bold;
 }
 
-// Dropdowns
+/*================ Dropdowns ================*/
 .site-nav--dropdown {
   display: none;
   position: absolute;
@@ -1714,7 +1691,7 @@ label.error {
   }
 }
 
-// Search bar in header
+/*================ Search bar in header ================*/
 .nav-search {
   position: relative;
   padding: 7px 0;
@@ -1732,9 +1709,9 @@ label.error {
 }
 
 
-// ==============================================================================
-// #Site Footer
-// ==============================================================================
+/*============================================================================
+  #Site Footer
+==============================================================================*/
 .site-footer {
   background-color: $colorFooterBg;
   border-top: 1px solid $borderColor;
@@ -1746,9 +1723,9 @@ label.error {
   }
 }
 
-// ==============================================================================
-// #Product Grid and List Views
-// ==============================================================================
+/*============================================================================
+  #Product Grid and List Views
+==============================================================================*/
 .sold-out {
 
 }
@@ -1775,16 +1752,16 @@ label.error {
   }
 }
 
-// ==============================================================================
-// #Collection Filters
-// ==============================================================================
+/*============================================================================
+  #Collection Filters
+==============================================================================*/
 .active-filter {
   font-weight: bold;
 }
 
-// ==============================================================================
-// #Breadcrumbs
-// ==============================================================================
+/*============================================================================
+  #Breadcrumbs
+==============================================================================*/
 .breadcrumb {
   margin-bottom: $gutter;
 
@@ -1801,9 +1778,9 @@ label.error {
 }
 
 
-// ==============================================================================
-// #Product Page
-// ==============================================================================
+/*============================================================================
+  #Product Page
+==============================================================================*/
 .product-price {
   font-weight: bold;
 }
@@ -1832,9 +1809,9 @@ label.error {
   }
 }
 
-// ==============================================================================
-// #Blogs and Comments
-// ==============================================================================
+/*============================================================================
+  #Blogs and Comments
+==============================================================================*/
 .template-article {
   .article-header {
     margin-bottom: 0;
@@ -1846,7 +1823,7 @@ label.error {
   }
 }
 
-// Comments
+/*================ Comments ================*/
 .comment-content {
   margin-bottom: -$gutter/2;
 }
@@ -1858,9 +1835,9 @@ label.error {
 }
 
 
-// ==============================================================================
-// #Notes and Form Feedback
-// ==============================================================================
+/*============================================================================
+  #Notes and Form Feedback
+==============================================================================*/
 .note,
 .errors {
   border-radius: $radius;
@@ -1908,9 +1885,9 @@ label.error {
 }
 
 
-// ==============================================================================
-// #Cart Page
-// ==============================================================================
+/*============================================================================
+  #Cart Page
+==============================================================================*/
 .cart-row {
   margin-top: $gutter;
   padding-top: $gutter;
@@ -1948,9 +1925,9 @@ label.error {
   display: inline;
 }
 
-// ==============================================================================
-// #Demo Styles - for empty store state
-// ==============================================================================
+/*============================================================================
+  #Demo Styles - for empty store state
+==============================================================================*/
 .demo-image {
   background: url('//cdn.shopify.com/s/files/1/0383/9765/t/1/assets/blankslate-producticon.png?4') no-repeat center center #eee;
   display: block;
