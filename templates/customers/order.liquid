@@ -15,18 +15,14 @@
 
 {% layout settings.customer_layout %}
 
-<header class="page-header">
-  <h1>My Account</h1>
-</header>
+<h1>My Account</h1>
 
 <p><a href="/account">Return to Account Details</a></p>
 
 <div class="grid">
 
   <div class="grid-item two-thirds medium-down--one-whole">
-    <header class="page-header">
-      <h4>Order {{ order.name }}</h4>
-    </header>
+    <h4>Order {{ order.name }}</h4>
 
     <p>Placed on <strong>{{ order.created_at | date: "%B %d, %Y %I:%M%p" }}</strong></p>
 
@@ -108,9 +104,7 @@
 
   <div class="grid-item one-third medium-down--one-whole">
 
-    <div class="page-header">
-      <h4>Billing Information</h4>
-    </div>
+    <h4>Billing Information</h4>
 
     <p><strong>Payment Status:</strong> {{ order.financial_status }}</p>
 
@@ -129,9 +123,7 @@
       {{ order.billing_address.phone }}
     </p>
 
-    <div class="page-header">
-      <h4>Shipping Information</h4>
-    </div>
+    <h4>Shipping Information</h4>
 
     <p><strong>Fulfillment Status:</strong> {{ order.fulfillment_status }}</p>
 

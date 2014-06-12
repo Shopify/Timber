@@ -18,17 +18,21 @@
 
 {% layout settings.customer_layout %}
 
+<header class="section-header">
+  <h1 class="section-header--left">My Account</h1>
+  <div class="section-header--right">
+    <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a>
+  </div>
+</header>
+
+<hr class="hr-small">
+
 <div class="grid">
-  <div class="grid-item large--two-thirds push--large--one-sixth">
 
-    <header class="page-header">
-      <h1 class="large--left">My Account</h1>
-      <p class="large--right">
-        <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a>
-      </p>
-    </header>
-
-    <p class="large--text-right"><a href="/account">Return to Account Details</a></p>
+  <div class="grid-item one-third medium-down--one-whole">
+    <p><a href="/account">Return to Account Details</a></p>
+  </div>
+  <div class="grid-item two-thirds medium-down--one-whole">
 
     {% comment %}
       Add address form, hidden by default
@@ -36,9 +40,7 @@
     <div id="add_address" style="display: none;">
       {% form 'customer_address', customer.new_address %}
 
-        <header class="page-header">
-          <h2>Add a new address</h2>
-        </header>
+        <h2>Add a new address</h2>
 
         <div class="grid">
 
@@ -99,13 +101,11 @@
         <span class="form-spacer">or</span>
         <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Cancel</a>
 
+        <hr>
       {% endform %}
-      <hr>
     </div>
 
-    <header class="page-header">
-      <h2>Customer Address Book</h2>
-    </header>
+    <h2>Customer Address Book</h2>
 
     {% comment %}
       List all customer addresses with a unique edit form.
@@ -138,9 +138,7 @@
         <div id="edit_address_{{address.id}}" style="display:none;">
           {% form 'customer_address', address %}
 
-            <header class="page-header">
-              <h4>Edit address</h4>
-            </header>
+            <h4>Edit address</h4>
 
             <div class="grid">
 
@@ -196,10 +194,9 @@
             <input type="submit" class="btn" value="Update Address">
             or <a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">Cancel</a>
 
+            <hr>
           {% endform %}
         </div>
-
-        <hr>
 
       {% endfor %}
 
@@ -210,9 +207,8 @@
       {% endif %}
 
     {% endpaginate %}
-
-
   </div>
+
 </div>
 
 

@@ -792,10 +792,7 @@ hr {
   }
 }
 
-.page-header {
-  @extend .clearfix;
-}
-
+/*================ Section Headers ================*/
 .section-header {
   margin-bottom: $gutter/2;
 }
@@ -1818,16 +1815,6 @@ label.error {
 /*============================================================================
   #Blogs and Comments
 ==============================================================================*/
-.template-article {
-  .article-header {
-    margin-bottom: 0;
-
-    & + .text-light {
-      display: block;
-      margin-bottom: $gutter;
-    }
-  }
-}
 
 /*================ Comments ================*/
 .comment-content {
@@ -1903,8 +1890,7 @@ label.error {
     border-top-color: #444;
   }
 
-  &:first-child,
-  .page-header + & {
+  &:first-child {
     margin-top: 0;
   }
 

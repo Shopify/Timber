@@ -17,15 +17,12 @@
 <div class="grid">
 
   <div class="grid-item large--three-quarters">
-    <header class="page-header">
 
-      {% if current_tags %}
-        <h2>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h2>
-      {% else %}
-        <h2>{{ blog.title }}</h2>
-      {% endif %}
-
-    </header>
+    {% if current_tags %}
+      <h2>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h2>
+    {% else %}
+      <h2>{{ blog.title }}</h2>
+    {% endif %}
 
     {% comment %}
       Loop through each article in your blog. This is limited to what you set for pagination above.
@@ -37,10 +34,12 @@
     {% for article in blog.articles %}
 
       <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
-        <span class="blog_author">Posted by {{ article.author }} at
-        <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+      <p class="text-light">
+        Posted by <strong>{{ article.author }}</strong> at
+        <strong><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
           {{ article.published_at | date: '%b %d, %Y' }}
-        </time></span>
+        </time></strong>
+      </p>
 
       {% comment %}
         Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
@@ -74,7 +73,7 @@
 
       </ul>
 
-      <p><a class="blog-read-more" href="{{ article.url }}">Read more →</a></p>
+      <p><a href="{{ article.url }}">Read more →</a></p>
 
       <hr>
 
