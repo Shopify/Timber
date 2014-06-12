@@ -13,6 +13,15 @@
 </div>
 
 <script>
+  function replaceUrlParam(url, paramName, paramValue) {
+    var pattern = new RegExp('('+paramName+'=).*?(&|$)'),
+        newUrl = url.replace(pattern,'$1' + paramValue + '$2');
+    if ( newUrl == url ) {
+      newUrl = newUrl + (newUrl.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
+    }
+    return newUrl;
+  }
+
   $(function() {
     $('.change-view').on('click', function() {
       var view = $(this).data('view'),
@@ -20,7 +29,7 @@
           hasParams = url.indexOf('?') > -1;
 
       if (hasParams) {
-        window.location = url + '&view=' + view;
+        window.location = replaceUrlParam(url, 'view', view);
       } else {
         window.location = url + '?view=' + view;
       }
