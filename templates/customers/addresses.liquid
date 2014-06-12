@@ -21,14 +21,16 @@
 <div class="grid">
   <div class="grid-item large--two-thirds push--large--one-sixth">
 
+    <p><a href="/account">Return to Account Details</a></p>
+
     <header class="section-header">
       <p class="h1 section-header--left">My Account</p>
       <div class="section-header--right">
-        <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a>
+        <a href="#" class="btn btn--small" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a>
       </div>
     </header>
 
-    <p class="large--text-right"><a href="/account">Return to Account Details</a></p>
+    <hr class="hr-small">
 
     {% comment %}
       Add address form, hidden by default
@@ -97,8 +99,8 @@
         <span class="form-spacer">or</span>
         <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Cancel</a>
 
+        <hr>
       {% endform %}
-      <hr>
     </div>
 
     <h2>Customer Address Book</h2>
@@ -190,10 +192,9 @@
             <input type="submit" class="btn" value="Update Address">
             or <a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">Cancel</a>
 
+            <hr>
           {% endform %}
         </div>
-
-        <hr>
 
       {% endfor %}
 
