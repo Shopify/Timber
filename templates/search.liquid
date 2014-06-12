@@ -37,17 +37,13 @@
         {% endcomment %}
         {% if search.results_count == 0 %}
 
-          <header class="page-header">
-            <h2>Your search for "{{ search.terms }}" did not yield any results.</h2>
-            {% include 'search-bar' %}
-          </header>
+          <h2>Your search for "{{ search.terms }}" did not yield any results.</h2>
+          {% include 'search-bar' %}
 
         {% else %}
 
-          <header class="page-header">
-            <h2>Your search for "{{ search.terms }}" revealed the following:</h2>
-            {% include 'search-bar' %}
-          </header>
+          <h2>Your search for "{{ search.terms }}" revealed the following:</h2>
+          {% include 'search-bar' %}
 
           {% comment %}
             Each result template, based on the grid_layout variable above
@@ -86,11 +82,8 @@
         the q parameter, or it was blank.
         Be sure to show a search form here, along with anything else you want to showcase.
       {% endcomment %}
-
-      <header class="page-header">
-        <h2>Search for products on our site</h2>
-        {% include 'search-bar' %}
-      </header>
+      <h2>Search for products on our site</h2>
+      {% include 'search-bar' %}
 
     {% endif %}
 

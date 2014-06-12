@@ -21,11 +21,11 @@
 <div class="grid">
   <div class="grid-item large--two-thirds push--large--one-sixth">
 
-    <header class="page-header">
-      <h1 class="large--left">My Account</h1>
-      <p class="large--right">
+    <header class="section-header">
+      <p class="h1 section-header--left">My Account</p>
+      <div class="section-header--right">
         <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">Add New Address</a>
-      </p>
+      </div>
     </header>
 
     <p class="large--text-right"><a href="/account">Return to Account Details</a></p>
@@ -36,9 +36,7 @@
     <div id="add_address" style="display: none;">
       {% form 'customer_address', customer.new_address %}
 
-        <header class="page-header">
-          <h2>Add a new address</h2>
-        </header>
+        <h2>Add a new address</h2>
 
         <div class="grid">
 
@@ -103,9 +101,7 @@
       <hr>
     </div>
 
-    <header class="page-header">
-      <h2>Customer Address Book</h2>
-    </header>
+    <h2>Customer Address Book</h2>
 
     {% comment %}
       List all customer addresses with a unique edit form.
@@ -138,9 +134,7 @@
         <div id="edit_address_{{address.id}}" style="display:none;">
           {% form 'customer_address', address %}
 
-            <header class="page-header">
-              <h4>Edit address</h4>
-            </header>
+            <h4>Edit address</h4>
 
             <div class="grid">
 

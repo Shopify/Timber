@@ -28,16 +28,16 @@
 
   <div class="grid-item large--three-quarters">
 
-    <header class="page-header">
-      <h1 class="article-header">{{ article.title }}</h1>
-      <em class="text-light">
-        Posted by <strong>{{ article.author }}</strong> on
-        <strong>
-          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+    <header class="section-header">
+      <div class="section-header--left">
+        <h1>{{ article.title }}</h1>
+        <p class="text-light">
+          Posted by <strong>{{ article.author }}</strong> at
+          <strong><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
             {{ article.published_at | date: '%b %d, %Y' }}
-          </time>
-        </strong>
-      </em>
+          </time></strong>
+        </p>
+      </div>
     </header>
 
     <div class="rte">
