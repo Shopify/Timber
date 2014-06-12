@@ -20,7 +20,7 @@
     <header class="page-header">
 
       {% if current_tags %}
-        <h2>{{ blog.title | link_to: blog.url }} &raquo; {{ current_tags.first }}</h2>
+        <h2>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h2>
       {% else %}
         <h2>{{ blog.title }}</h2>
       {% endif %}
