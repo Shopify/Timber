@@ -336,6 +336,10 @@ h2.doc-title {
     padding: $margin/3;
   }
 
+  tr:nth-child(2n) {
+    background-color: #fcf5f0;
+  }
+
   th {
     font-weight: bold;
     background-color: $beige;
@@ -361,6 +365,10 @@ h2.doc-title {
   td.is-hidden {
     color: #ccc;
     background-color: #f6f6f6;
+  }
+
+  ul {
+    margin: 10px 0;
   }
 
 }

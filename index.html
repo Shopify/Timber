@@ -1223,7 +1223,19 @@ ajaxifyShopify.init({ [options] })
                   Default: <strong class="docs-strong">body</strong>
                 </td>
               </tr>
-
+              <tr>
+                <td>onToggleCallback</td>
+                <td><a href="http://api.jquery.com/Types/#Function" title="JS Function" class="docs-link">Function</a></td>
+                <td>
+                  Set a callback function to run each time the cart is toggled.<br>
+                  An object is returned with the values:<br>
+                  <ul>
+                    <li><code>is_visible: true/false</code></li>
+                  </ul>
+                  Added in <strong class="docs-strong">v.1.3.1</strong><br>
+                  Default: <strong class="docs-strong">null</strong>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
