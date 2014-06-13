@@ -15,18 +15,9 @@
         </div>
       {% endif %}
 
-      {% if settings.footer_display_contact %}
+      {% if settings.footer_display_social %}
       <div class="grid-item medium--one-half large--five-twelfths">
-        <h3>Contact Us</h3>
-        <p>
-          {% if settings.footer_contact_text != blank %}
-            {{ settings.footer_contact_text }}
-          {% else %}
-            Add some text to show here in your <a href="/admin/themes" title="Edit theme settings"> theme settings</a>.
-          {% endif %}
-        </p>
-
-        {% if settings.footer_display_social %}
+        <h3>Get Connected</h3>
           {% comment %}
             Loop through the social network links
           {% endcomment %}
@@ -48,7 +39,6 @@
               </li>
             {% endif %}
           </ul>
-        {% endif %}
       </div>
       {% endif %}
 

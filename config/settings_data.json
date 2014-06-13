@@ -4,7 +4,6 @@
     "customer_layout": "theme",
     "footer_display_quicklinks": true,
     "footer_quicklinks_linklist": "footer",
-    "footer_display_contact": true,
     "footer_display_social": true,
     "twitter_link": "https://twitter.com/shopify",
     "facebook_link": "https://facebook.com/shopify",
@@ -15,7 +14,6 @@
     "primary_color": "#747474",
     "secondary_color": "#464646",
     "body_text_color": "#333333",
-    "body_background_color": "#ffffff",
     "footer_color": "#f2f2f2",
     "footer_text_color": "#636363",
     "footer_social_link_color": "#bbbbbb"
@@ -27,7 +25,6 @@
       "customer_layout": "theme",
       "footer_display_quicklinks": true,
       "footer_quicklinks_linklist": "footer",
-      "footer_display_contact": true,
       "footer_display_social": true,
       "footer_display_newsletter": true,
       "cart_notes": true,

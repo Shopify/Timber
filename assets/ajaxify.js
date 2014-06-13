@@ -243,10 +243,10 @@ var ajaxifyShopify = (function(module, $) {
   var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo;
+  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, toggleCallback;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -267,7 +267,8 @@ var ajaxifyShopify = (function(module, $) {
       moneyFormat: '${{amount}}',
       disableAjaxCart: false,
       enableQtySelectors: true,
-      prependDrawerTo: 'body'
+      prependDrawerTo: 'body',
+      onToggleCallback: null
     };
 
     // Override defaults with arguments
@@ -474,6 +475,10 @@ var ajaxifyShopify = (function(module, $) {
         opacity: 1
       });
     }, 600);
+
+    toggleCallback({
+      'is_visible': true
+    });
   };
 
   hideModal = function (e) {
@@ -485,6 +490,10 @@ var ajaxifyShopify = (function(module, $) {
       $modalContainer.removeClass('is-visible');
       $body.removeClass('ajaxify-lock');
     }
+
+    toggleCallback({
+      'is_visible': false
+    });
   };
 
   drawerSetup = function () {
@@ -552,11 +561,18 @@ var ajaxifyShopify = (function(module, $) {
     $drawerContainer.addClass('is-visible');
 
     scrollTop();
+
+    toggleCallback({
+      'is_visible': true
+    });
   };
 
   hideDrawer = function () {
     $drawerContainer.removeAttr('style').removeClass('is-visible');
     scrollTop();
+    toggleCallback({
+      'is_visible': false
+    });
   };
 
   sizeDrawer = function ($empty) {
@@ -607,7 +623,6 @@ var ajaxifyShopify = (function(module, $) {
           break;
       }
     });
-
   };
 
   itemAddedCallback = function (product) {
@@ -650,10 +665,11 @@ var ajaxifyShopify = (function(module, $) {
         break;
       case 'drawer':
         buildCart(cart);
-        showDrawer();
+        if ( !$drawerContainer.hasClass('is-visible') ) {
+          showDrawer();
+        }
         break;
     }
-
   };
 
   setToggleButtons = function () {
@@ -936,7 +952,6 @@ var ajaxifyShopify = (function(module, $) {
       // Simply updating the cart note in case they don't click update/checkout
       Shopify.updateCartNote(newNote, function(cart) {});
     });
-
   };
 
   adjustCartCallback = function (cart) {
@@ -1052,6 +1067,13 @@ var ajaxifyShopify = (function(module, $) {
       $('html, body').animate({
         scrollTop: 0
       }, 250, 'swing');
+    }
+  };
+
+  toggleCallback = function (data) {
+    // Run the callback if it's a function
+    if (typeof settings.onToggleCallback == 'function') {
+      settings.onToggleCallback.call(this, data);
     }
   };
 
