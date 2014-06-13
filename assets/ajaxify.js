@@ -243,7 +243,7 @@ var ajaxifyShopify = (function(module, $) {
   var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo;
+  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
 
   // Private functions
   var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, toggleCallback;
@@ -476,7 +476,9 @@ var ajaxifyShopify = (function(module, $) {
       });
     }, 600);
 
-    toggleCallback('visible');
+    toggleCallback({
+      'is_visible': true
+    });
   };
 
   hideModal = function (e) {
@@ -489,7 +491,9 @@ var ajaxifyShopify = (function(module, $) {
       $body.removeClass('ajaxify-lock');
     }
 
-    toggleCallback();
+    toggleCallback({
+      'is_visible': false
+    });
   };
 
   drawerSetup = function () {
@@ -557,13 +561,18 @@ var ajaxifyShopify = (function(module, $) {
     $drawerContainer.addClass('is-visible');
 
     scrollTop();
-    toggleCallback('visible');
+
+    toggleCallback({
+      'is_visible': true
+    });
   };
 
   hideDrawer = function () {
     $drawerContainer.removeAttr('style').removeClass('is-visible');
     scrollTop();
-    toggleCallback();
+    toggleCallback({
+      'is_visible': false
+    });
   };
 
   sizeDrawer = function ($empty) {
@@ -1061,10 +1070,10 @@ var ajaxifyShopify = (function(module, $) {
     }
   };
 
-  toggleCallback = function (state) {
+  toggleCallback = function (data) {
     // Run the callback if it's a function
     if (typeof settings.onToggleCallback == 'function') {
-      settings.onToggleCallback.call(this, state);
+      settings.onToggleCallback.call(this, data);
     }
   };
 
