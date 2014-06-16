@@ -129,7 +129,17 @@ $gridGutter: 24px; // can be a %, but nested grids will have smaller margins bec
 // Radius
 $radius: 3px;
 
-// Typography
+/*================ Typography ================*/
+
+// Header Font
+$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headerFontWeight: 700;
+
+// Body Font
+$bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
+
+// Icons
 @font-face {
   font-family: "icons";
   src: url(' {{ "icons.eot" | asset_url }} ');
@@ -140,11 +150,8 @@ $radius: 3px;
   font-weight: normal;
   font-style: normal;
 }
-
-$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $socialIconFontStack: "icons";
-$baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
+
 
 /*============================================================================
   #Sass Mixins
@@ -712,7 +719,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   display: block;
   font-family: $headerFontStack;
-  font-weight: normal;
+  font-weight: $headerFontWeight;
   margin-bottom: 0.5em;
   line-height: 1.4;
 
@@ -720,6 +727,7 @@ h1, h2, h3, h4, h5, h6,
     text-decoration: none;
   }
 }
+
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
 .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a { font-weight: inherit; }
 
