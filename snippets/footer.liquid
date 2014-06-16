@@ -22,17 +22,17 @@
             Loop through the social network links
           {% endcomment %}
           <ul class="inline-list social-icons">
-            {% if settings.twitter_link != blank %}
+            {% if settings.social_twitter_link != blank %}
               <li>
-                <a class="icon-fallback-text" href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">
+                <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
                   <span class="icon icon-twitter" aria-hidden="true"></span>
                   <span class="fallback-text">Twitter</span>
                 </a>
               </li>
             {% endif %}
-            {% if settings.facebook_link != blank %}
+            {% if settings.social_facebook_link != blank %}
               <li>
-                <a class="icon-fallback-text" href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">
+                <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
                   <span class="icon icon-facebook" aria-hidden="true"></span>
                   <span class="fallback-text">Facebook</span>
                 </a>
