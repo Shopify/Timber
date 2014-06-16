@@ -26,7 +26,7 @@
 
 <div class="grid">
 
-  <div class="grid-item large--three-quarters">
+  <article class="grid-item large--three-quarters" itemscope itemtype="http://schema.org/Article">
 
     <header class="section-header">
       <div class="section-header--left">
@@ -40,7 +40,7 @@
       </div>
     </header>
 
-    <div class="rte">
+    <div class="rte" itemprop="articleBody">
       {{ article.content }}
     </div>
 
@@ -207,9 +207,9 @@
 
     {% endif %}
 
-  </div>
+  </article>
 
-  <div class="grid-item large--one-quarter">
+  <aside class="grid-item large--one-quarter" role="complementary">
     {% include 'blog-sidebar' %}
-  </div>
+  </aside>
 </div>

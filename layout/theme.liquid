@@ -70,17 +70,26 @@
       <div class="grid--full">
         <div class="grid-item large--one-half">
           {% comment %}
-            Use the uploaded logo from theme settings if enabled
+            Use the uploaded logo from theme settings if enabled.
+            Site name gets precedence with H1 tag on homepage, div on other pages.
           {% endcomment %}
-          <h1 class="header-logo large--left">
+          {% if template == 'index' %}
+            <h1 class="header-logo large--left" itemscope itemtype="http://schema.org/Organization">
+          {% else %}
+            <div class="h1 header-logo large--left" itemscope itemtype="http://schema.org/Organization">
+          {% endif %}
             {% if settings.use_logo %}
-              <a href="/">
-                {{ 'logo.png' | asset_url | img_tag: shop.name }}
+              <a href="/" itemprop="url">
+                <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
               </a>
             {% else %}
-              <a href="/">{{ shop.name }}</a>
+              <a href="/" itemprop="url">{{ shop.name }}</a>
             {% endif %}
-          </h1>
+          {% if template == 'index' %}
+            </h1>
+          {% else %}
+            </div>
+          {% endif %}
         </div>
         <div class="grid-item large--one-half text-center large--text-right">
           {% comment %}
