@@ -38,7 +38,7 @@
 {% else %}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ page_title | escape }}">
-  {% if settings.use_logo %}
+  {% if settings.logo_use_image %}
   <meta property="og:image" content="http:{{ 'logo.png' | asset_url }}">
   <meta property="og:image:secure_url" content="https:{{ 'logo.png' | asset_url }}">
   {% endif %}

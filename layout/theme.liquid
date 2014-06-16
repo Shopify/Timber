@@ -78,7 +78,7 @@
           {% else %}
             <div class="h1 header-logo large--left" itemscope itemtype="http://schema.org/Organization">
           {% endif %}
-            {% if settings.use_logo %}
+            {% if settings.logo_use_image %}
               <a href="/" itemprop="url">
                 <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
               </a>

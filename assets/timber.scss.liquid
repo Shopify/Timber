@@ -81,8 +81,8 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 ==============================================================================*/
 
 // Timber Colors
-$colorPrimary: {{ settings.primary_color }};
-$colorSecondary: {{ settings.secondary_color }};
+$colorPrimary: {{ settings.color_primary }};
+$colorSecondary: {{ settings.color_secondary }};
 
 // Button colors
 $colorBtnPrimary: $colorPrimary;
@@ -99,7 +99,7 @@ $colorLinkHover: #333;
 
 // Text colors
 $colorBody: #fff;
-$colorTextBody: {{ settings.body_text_color }};
+$colorTextBody: {{ settings.color_body_text }};
 $colorHeaders: #999;
 $colorTextGrey: #777;
 
@@ -111,8 +111,8 @@ $colorNav: #f2f2f2;
 $colorNavText: #333;
 
 // Footer
-$colorFooterBg: {{ settings.footer_color }};
-$colorFooterText: {{ settings.footer_text_color }};
+$colorFooterBg: {{ settings.color_footer_bg }};
+$colorFooterText: {{ settings.color_footer_text }};
 
 // Helper colors
 $disabledGrey: #f6f6f6;
@@ -1404,7 +1404,7 @@ label.error {
 
   li {
     margin: 0 $gutter/4 $gutter/4;
-    color: {{ settings.footer_social_link_color }};
+    color: {{ settings.color_footer_social_link }};
     cursor: default;
   }
 
@@ -1432,10 +1432,10 @@ label.error {
   }
 
   a {
-    color: {{ settings.footer_social_link_color }};
+    color: {{ settings.color_footer_social_link }};
 
     &:hover {
-      color: darken({{ settings.footer_social_link_color }}, 10%);
+      color: darken({{ settings.color_footer_social_link }}, 10%);
     }
   }
 }
