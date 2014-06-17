@@ -515,8 +515,8 @@
 
 @font-face {
   font-family: "icons";
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?10323  ");
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?10323 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?10323  ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?10323  ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?10323 #atlantic-icons ") format("svg");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?10437 ");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?10437 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?10437 ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?10437 ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?10437 #timber-icons ") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -1433,7 +1433,7 @@ body, input, textarea, button, select {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   display: block;
   font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: normal;
+  font-weight: 700;
   margin-bottom: 0.5em;
   line-height: 1.4; }
 
@@ -1513,10 +1513,10 @@ hr {
   border-width: 1px 0 0;
   margin: 48px 0; }
 
-hr.hr-small {
+hr.hr--small {
   margin: 24px 0; }
 
-hr.hr-clear {
+hr.hr--clear {
   border-top: 0 none; }
 
 .section-header {
@@ -1587,10 +1587,16 @@ hr.hr-clear {
   margin-bottom: 1em; }
 
 .rte h1, .rte h2, .rte h3, .rte h4, .rte h5, .rte h6, .rte .h1, .rte .h2, .rte .h3, .rte .h4, .rte .h5, .rte .h6 {
-  margin-top: 0.2em; }
+  margin-top: 2em; }
 
 .rte > div {
   margin-bottom: 1em; }
+
+.rte ul, .rte ol {
+  margin-left: 35px; }
+
+.rte li {
+  margin-bottom: 0.4em; }
 
 a {
   color: #747474;
@@ -1668,13 +1674,13 @@ ul {
 ol {
   list-style: decimal; }
 
-ol, ul.square, ul.disc {
+ol, ul.square, ul.disc, .rte ul {
   margin-left: 20px; }
 
 ul.square {
   list-style: square outside; }
 
-ul.disc {
+ul.disc, .rte ul {
   list-style: disc outside; }
 
 ol.alpha {
@@ -1903,38 +1909,47 @@ label.error {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icon-cart:before {
-  content: "\5b"; }
-
 .icon-american_express:before {
   content: "\41"; }
 
-.icon-master:before {
-  content: "\4d"; }
+.icon-arrow-down:before {
+  content: "\34"; }
 
-.icon-visa:before {
-  content: "\56"; }
+.icon-bitcoin:before {
+  content: "\42"; }
 
-.icon-paypal:before {
-  content: "\50"; }
-
-.icon-discover:before {
-  content: "\44"; }
-
-.icon-stripe:before {
-  content: "\53"; }
-
-.icon-interac:before {
-  content: "\49"; }
+.icon-cart:before {
+  content: "\5b"; }
 
 .icon-cirrus:before {
   content: "\43"; }
 
-.icon-google_wallet:before {
-  content: "\47"; }
+.icon-diners_club:before {
+  content: "\63"; }
+
+.icon-discover:before {
+  content: "\44"; }
 
 .icon-dk:before {
   content: "\64"; }
+
+.icon-facebook:before {
+  content: "\66"; }
+
+.icon-fancy:before {
+  content: "\46"; }
+
+.icon-google:before {
+  content: "\67"; }
+
+.icon-google_wave:before {
+  content: "\47"; }
+
+.icon-instagram:before {
+  content: "\69"; }
+
+.icon-interac:before {
+  content: "\49"; }
 
 .icon-jcb:before {
   content: "\4a"; }
@@ -1942,38 +1957,38 @@ label.error {
 .icon-maestro:before {
   content: "\6d"; }
 
-.icon-diners_club:before {
-  content: "\63"; }
+.icon-master:before {
+  content: "\4d"; }
 
-.icon-bitcoin:before {
-  content: "\42"; }
-
-.icon-tumblr:before {
-  content: "\74"; }
-
-.icon-vimeo:before {
-  content: "\76"; }
-
-.icon-youtube:before {
-  content: "\79"; }
-
-.icon-google:before {
-  content: "\67"; }
-
-.icon-twitter:before {
-  content: "\54"; }
-
-.icon-facebook:before {
-  content: "\66"; }
+.icon-paypal:before {
+  content: "\50"; }
 
 .icon-pinterest:before {
   content: "\70"; }
 
-.icon-instagram:before {
-  content: "\69"; }
+.icon-search:before {
+  content: "\73"; }
 
-.icon-fancy:before {
-  content: "\46"; }
+.icon-stripe:before {
+  content: "\53"; }
+
+.icon-tumblr:before {
+  content: "\74"; }
+
+.icon-twitter:before {
+  content: "\54"; }
+
+.icon-vimeo:before {
+  content: "\76"; }
+
+.icon-visa:before {
+  content: "\56"; }
+
+.icon-x:before {
+  content: "\78"; }
+
+.icon-youtube:before {
+  content: "\79"; }
 
 .payment-icons {
   -webkit-user-select: none;

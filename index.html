@@ -326,10 +326,10 @@ $breakpoints: (
   &lt;div class="grid-item"&gt;
     &lt;p class="grid-demo"&gt;1&lt;/p&gt;
   &lt;/div&gt;
-  
+
   &lt;div class="grid-item"&gt;
     &lt;div class="grid"&gt;
-      
+
       &lt;div class="grid-item large--one-half medium--one-third"&gt;
         &lt;p class="grid-demo"&gt;2.1&lt;/p&gt;
       &lt;/div&gt;
@@ -353,7 +353,7 @@ $breakpoints: (
       &lt;div class="grid-item large--one-third medium--one-half small--one-half"&gt;
         &lt;p class="grid-demo"&gt;2.6&lt;/p&gt;
       &lt;/div&gt;
-    
+
     &lt;/div&gt;
     // End sub grid
   &lt;/div&gt;
@@ -409,7 +409,7 @@ $breakpoints: (
       &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
         &lt;p class="grid-demo"&gt;3.12&lt;/p&gt;
       &lt;/div&gt;
-      
+
     &lt;/div&gt;
     // End sub grid
   &lt;/div&gt;
@@ -832,7 +832,7 @@ Output:
             <span class="next"><a href="#" title="">Next »</a></span>
           </div>
 
-          <hr class="hr-small">
+          <hr class="hr--small">
 
           <h4 class="docs-example">Example 2 - Replace default text</h4>
           <div class="pagination">
@@ -841,7 +841,7 @@ Output:
             <span class="next"><a href="#" title="">Older articles »</a></span>
           </div>
 
-          <hr class="hr-small">
+          <hr class="hr--small">
 
           <h4 class="docs-example">Example 3 - Custom</h4>
           <p class="docs-text">Place any template's pagination on any other template. Usually, pagination is defined to the current <code>&#123;%paginate%&#125;</code> context, so by adding in the <code>currentUrl</code> variable we make sure the links are pointing to the right pages.</p>
@@ -1278,7 +1278,7 @@ jQuery(function($) {
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
             <p>Suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
 
-            <hr class="hr-small">
+            <hr class="hr--small">
 
             <h4 class="docs-h4">Inline Styles</h4>
             <ul class="disc">
@@ -1454,7 +1454,7 @@ jQuery(function($) {
 
         </div>
 
-        <hr class="hr-small">
+        <hr class="hr--small">
 
         <h4 class="docs-h4">Horizontal</h4>
         <p class="docs-text">To make form elements flow inline, add a class of <code>.form-horizontal</code> to the parent.</p>
@@ -1497,7 +1497,7 @@ jQuery(function($) {
 </pre>
         </div>
 
-        <hr class="hr-small">
+        <hr class="hr--small">
 
         <h4 class="docs-h4">Invisible Labels</h4>
         <p class="docs-text">Add a class of <code>hidden-label</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
@@ -1532,7 +1532,7 @@ jQuery(function($) {
 </pre>
         </div>
 
-        <hr class="hr-small">
+        <hr class="hr--small">
 
         <h4 class="docs-h4">Input Groups</h4>
         <ul class="tabs">
@@ -1688,23 +1688,12 @@ jQuery(function($) {
         </ul>
 
         <div id="icons-example" class="tab-content">
+          <p>Payment Icons</p>
           <ul class="inline-list icon-font-demo">
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-cart"></span>
-                <span class="fallback-text">Cart</span>
-              </span>
-            </li>
             <li>
               <div class="icon-fallback-text">
                 <span class="icon icon-american_express"></span>
                 <span class="fallback-text">American Express</span>
-              </span>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-master"></span>
-                <span class="fallback-text">Master Card</span>
               </span>
             </li>
             <li>
@@ -1723,6 +1712,12 @@ jQuery(function($) {
               <div class="icon-fallback-text">
                 <span class="icon icon-discover"></span>
                 <span class="fallback-text">Discover</span>
+              </span>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-master"></span>
+                <span class="fallback-text">Master Card</span>
               </span>
             </li>
             <li>
@@ -1779,6 +1774,12 @@ jQuery(function($) {
                 <span class="fallback-text">Bitcoin</span>
               </span>
             </li>
+          </ul>
+
+          <hr class="hr--small">
+
+          <p>Social Icons</p>
+          <ul class="inline-list icon-font-demo">
             <li>
               <div class="icon-fallback-text">
                 <span class="icon icon-tumblr"></span>
@@ -1833,6 +1834,30 @@ jQuery(function($) {
                 <span class="fallback-text">Fancy</span>
               </span>
             </li>
+          </ul>
+
+          <hr class="hr--small">
+
+          <p>General Icons</p>
+          <ul class="inline-list icon-font-demo">
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-cart"></span>
+                <span class="fallback-text">Cart</span>
+              </span>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-arrow-down"></span>
+              </span>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-x"></span>
+                <span class="fallback-text">X</span>
+              </span>
+            </li>
+          </ul>
           </ul>
         </div>
 
