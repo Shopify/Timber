@@ -98,7 +98,7 @@
     <tr>
       <th>
         <label for="logo_max_width">Max Logo Width</label>
-        <small>Defines the CSS max-width. Include the unit (px, em, %, etc).</small>
+        <small>Defines the CSS max-width.</small>
       </th>
       <td><input type="text" id="logo_max_width" name="logo_max_width" size="50" value="450px" /></td>
     </tr>
@@ -193,26 +193,23 @@
 
 <!-- Cart Pages -->
 <fieldset>
-  <legend>Cart pages</legend>
+  <legend>Cart Page</legend>
   <table>
     <tr>
-      <td><label for="cart_notes">Allow customers to add notes to their order</label></td>
-      <td colspan="2">
-        <input type="checkbox" id="cart_notes" name="cart_notes" /><br />
-        <small>Only enabled in the ajax cart if you use the <strong>cart.liquid</strong> markup. See docs below.</small>
+      <th><label for="cart_notes">Allow notes with orders</label></th>
+      <td><input type="checkbox" id="cart_notes" name="cart_notes" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="ajax_cart">Enable Ajaxify Cart</label></th>
+      <td>
+        <input type="checkbox" id="ajax_cart" name="ajax_cart" />
+        <small><a href="http://shopify.com/timber#ajax-cart" title="Ajax Cart Documentation">View Documentation</a></small>
       </td>
     </tr>
     <tr>
-      <td><label for="ajax_cart">Enable Ajaxify Cart</label></td>
-      <td colspan="2">
-        <input type="checkbox" id="ajax_cart" name="ajax_cart" /><br />
-        <small>Documentation - <a href="http://shopify.com/timber#ajax-cart" title="Ajax Cart Documentation">http://shopify.com/timber#ajax-cart</a></small>
-      </td>
-    </tr>
-    <tr>
-      <td><label for="ajax_cart_method">Ajax Cart Type</label></td>
-      <td colspan="2">
-        <select name="ajax_cart_method">
+      <th><label for="ajax_cart_method">Ajax Cart Type</label></th>
+      <td>
+        <select name="ajax_cart_method" id="ajax_cart_method">
           <option value="drawer">Drawer</option>
           <option value="flip">Flip</option>
           <option value="modal">Modal</option>
