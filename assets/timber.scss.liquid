@@ -893,11 +893,23 @@ hr {
   // Add some top margin to headers from the rich text editor
   h1, h2, h3, h4, h5, h6,
   .h1, .h2, .h3, .h4, .h5, .h6 {
-    margin-top: 0.2em;
+    margin-top: 2em;
   }
 
   & > div {
     margin-bottom: 1em;
+  }
+
+  ul, ol {
+    margin-left: 35px;
+  }
+
+  ul {
+    @extend ul.disc;
+  }
+
+  li {
+    margin-bottom: 0.4em;
   }
 }
 
