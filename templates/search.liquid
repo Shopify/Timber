@@ -12,7 +12,6 @@
 
 {% endcomment %}
 
-
 {% comment %}
   If you're only showing products with the method above, why not show them off in a grid instead?
   Set grid_results to true and see your updated results page for the new layout.
@@ -20,7 +19,6 @@
 {% assign grid_results = false %}
 
 <div class="grid">
-
   <div class="grid-item large--two-thirds push--large--one-sixth">
 
     {% if search.performed %}
@@ -37,12 +35,12 @@
         {% endcomment %}
         {% if search.results_count == 0 %}
 
-          <h2>Your search for "{{ search.terms }}" did not yield any results.</h2>
+          <h2 class="text-center">Your search for "{{ search.terms }}" did not yield any results.</h2>
           {% include 'search-bar' %}
 
         {% else %}
 
-          <h2>Your search for "{{ search.terms }}" revealed the following:</h2>
+          <h2 class="text-center">Your search for "{{ search.terms }}" revealed the following:</h2>
           {% include 'search-bar' %}
 
           {% comment %}
@@ -58,6 +56,7 @@
 
             <div class="grid-uniform">
               {% for item in search.results %}
+                {% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
                 {% include 'search-result-grid' %}
               {% endfor %}
             </div>
@@ -74,7 +73,6 @@
 
       {% endpaginate %}
 
-
     {% else %}
 
       {% comment %}
@@ -82,12 +80,10 @@
         the q parameter, or it was blank.
         Be sure to show a search form here, along with anything else you want to showcase.
       {% endcomment %}
-      <h2>Search for products on our site</h2>
+      <h2 class="text-center">Search for products on our site</h2>
       {% include 'search-bar' %}
 
     {% endif %}
 
-
   </div>
-
 </div>
