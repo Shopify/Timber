@@ -24,7 +24,7 @@
       {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
       {{ collection.title | link_to: url }}
       <span>&rsaquo;</span>
-      <span>{{ current_tags.first }}</span>
+      <span>{{ current_tags | join: " + " }}</span>
     {% else %}
       <span>&rsaquo;</span>
       <span>{{ collection.title }}</span>
