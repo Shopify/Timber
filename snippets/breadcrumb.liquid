@@ -34,13 +34,9 @@
 
     <span>&rsaquo;</span>
     {% if current_tags %}
-      {% for tag in current_tags  %}
-        {% if current_tags contains tag %}
-          {{ blog.title | link_to: blog.url }}
-          <span>&rsaquo;</span>
-          <span>{{ tag }}</span>
-        {% endif %}
-      {% endfor %}
+      {{ blog.title | link_to: blog.url }}
+      <span>&rsaquo;</span>
+      <span>{{ current_tags | join: " + " }}</span>
     {% else %}
     <span>{{ blog.title }}</span>
     {% endif %}
