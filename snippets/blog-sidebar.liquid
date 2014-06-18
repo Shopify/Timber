@@ -15,10 +15,10 @@
 {% comment %}
   Blog tags
 {% endcomment %}
-{% if blog.tags.size > 0 %}
+{% if blog.all_tags.size > 0 %}
   <h4>Categories</h4>
   <ul>
-    {% for tag in blog.tags %}
+    {% for tag in blog.all_tags %}
       {% if current_tags contains tag %}
       <li>{{ tag }}</li>
       {% else %}
