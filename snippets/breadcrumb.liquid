@@ -30,6 +30,21 @@
       <span>{{ collection.title }}</span>
     {% endif %}
 
+  {% elsif template == 'blog' %}
+
+    <span>&rsaquo;</span>
+    {% if current_tags %}
+      {% for tag in current_tags  %}
+        {% if current_tags contains tag %}
+          {{ blog.title | link_to: blog.url }}
+          <span>&rsaquo;</span>
+          <span>{{ tag }}</span>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+    <span>{{ blog.title }}</span>
+    {% endif %}
+
   {% elsif template == 'article' %}
 
     <span>&rsaquo;</span>
