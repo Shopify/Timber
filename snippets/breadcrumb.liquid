@@ -10,8 +10,8 @@
     {% if collection %}
       <span aria-hidden="true">&rsaquo;</span>
       {% if collection.handle %}
-         {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
-         {{ collection.title | link_to: url }}
+        {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+        {{ collection.title | link_to: url }}
       {% endif %}
     {% endif %}
     <span aria-hidden="true">&rsaquo;</span>
