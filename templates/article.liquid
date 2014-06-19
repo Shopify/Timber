@@ -31,7 +31,7 @@
     <header class="section-header">
       <div class="section-header--left">
         <h1>{{ article.title }}</h1>
-        <p class="text-light">
+        <p>
           Posted by <strong>{{ article.author }}</strong> at
           <strong><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
             {{ article.published_at | date: '%b %d, %Y' }}
@@ -182,7 +182,7 @@
           </div>
 
           {% if blog.moderated? %}
-            <p class="text-light"><em><strong>Please note:</strong> comments must be approved before they are published</em></p>
+            <p><em><strong>Please note:</strong> comments must be approved before they are published</em></p>
           {% endif %}
 
           <input type="submit" class="btn" value="Post Comment">
