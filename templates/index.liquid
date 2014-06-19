@@ -76,10 +76,10 @@
 <div class="grid-uniform">
 
   {% comment %}
-    Show three collections, unless it's 'frontpage'.
+    Show five collections, unless it's 'frontpage'.
 
     Use an index variable in combination to the limit filter
-    to account for the frontpage collection being in top 3 returned.
+    to account for the frontpage collection being in top six returned.
 
     Use variable isEmpty to check if no collections will be shown.
     For empty store demo only.
@@ -88,18 +88,18 @@
   {% assign isEmpty = true %}
 
   {% for collection in collections limit:6 %}
-    {% unless index > 6 %}
+    {% unless index > 5 %}
 
       {% unless collection.handle == 'frontpage' %}
         {% assign isEmpty = false %}
         {% assign collection_item_width = 'large--one-fifth medium--one-third' %}
         {% include 'collection-grid-item' %}
+        {% comment %}Add 1 to the current index{% endcomment %}
+        {% assign index = index | plus: 1 %}
       {% endunless %}
 
     {% endunless %}
 
-    {% comment %}Add 1 to the current index{% endcomment %}
-    {% assign index = index | plus: 1 %}
   {% endfor %}
 
   {% if isEmpty %}
