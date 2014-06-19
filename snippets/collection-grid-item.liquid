@@ -27,9 +27,9 @@
     {% endif %}
   </a>
 
-  <h3 class="h5">
-    <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">{{ collection.title }}</a>
-    <small>({{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }})</small>
-  </h3>
+  <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">{{ collection.title }}</a>
+  <p>
+    ({{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }})
+  </p>
 
 </div>
