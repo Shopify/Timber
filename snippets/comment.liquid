@@ -9,15 +9,17 @@
 
 {% endcomment %}
 
-<div class="comment-content">
-  {{ comment.content }}
-</div>
+<div class="comment">
+  <div class="rte">
+    {{ comment.content }}
+  </div>
 
-<p class="comment-author text-light">
-  <strong>{{ comment.author }}</strong> on
-  <strong>
-    <time datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">
-      {{ comment.created_at | date: '%b %d, %Y' }}
-    </time>
-  </strong>
-</p>
+  <em>
+    <strong>{{ comment.author }}</strong> on
+    <strong>
+      <time datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">
+        {{ comment.created_at | date: '%b %d, %Y' }}
+      </time>
+    </strong>
+  </em>
+</div>

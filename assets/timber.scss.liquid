@@ -101,7 +101,6 @@ $colorLinkHover: #333;
 $colorBody: #fff;
 $colorTextBody: {{ settings.color_body_text }};
 $colorHeaders: #999;
-$colorTextGrey: #777;
 
 // Border colors
 $borderColor: #e5e5e5;
@@ -742,7 +741,7 @@ h4, .h4 { font-size: 1.429em; }   // 20px
 h5, .h5 { font-size: 1.143em; }   // 16px
 h6, .h6 { font-size: 1em; }       // 14px
 
-p { margin: 0 0 0.75em 0; }
+p { margin: 0 0 $gutter/2 0; }
 p img { margin: 0; }
 
 em { font-style: italic; }
@@ -754,13 +753,10 @@ sup {
   font-size: 60%;
 }
 
-.text-light { color: $colorTextGrey; }
-
 /*================ Blockquotes ================*/
 blockquote {
   font-size: 1.125em;
   line-height: 1.45;
-  color: $colorTextGrey;
   font-style: italic;
   margin: 0 0 $gutter;
   padding: $gutter/2 $gutter;
@@ -777,7 +773,6 @@ blockquote {
   cite {
     display: block;
     font-size: 0.75em;
-    color: $colorTextGrey;
 
     &:before {
       content: "\2014 \0020";
@@ -789,10 +784,10 @@ hr {
   clear: both;
   border-top: solid $borderColor;
   border-width: 1px 0 0;
-  margin: $gutter*2 0;
+  margin: $gutter 0;
 
   &.hr--small {
-    margin: $gutter 0;
+    margin: $gutter/2 0;
   }
 
   &.hr--clear {
@@ -896,16 +891,19 @@ hr {
   #Rich Text Editor
 ==============================================================================*/
 .rte {
-  margin-bottom: 1em;
+  margin-bottom: $gutter/2;
 
   // Add some top margin to headers from the rich text editor
-  h1, h2, h3, h4, h5, h6,
-  .h1, .h2, .h3, .h4, .h5, .h6 {
-    margin-top: 2em;
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0.5em;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   & > div {
-    margin-bottom: 1em;
+    margin-bottom: $gutter/2;
   }
 
   ul, ol {
@@ -1838,16 +1836,13 @@ label.error {
 /*============================================================================
   #Blogs and Comments
 ==============================================================================*/
-
-/*================ Comments ================*/
-.comment-content {
-  margin-bottom: -$gutter/2;
-}
-
-.comment-author {
-  font-size: 14px;
-  font-style: italic;
+.comment {
   margin-bottom: $gutter;
+
+  & + & {
+    border-top: 1px solid $borderColor;
+    padding-top: $gutter;
+  }
 }
 
 
@@ -1858,7 +1853,7 @@ label.error {
 .errors {
   border-radius: $radius;
   padding: $gutter/2;
-  margin-bottom: 1em;
+  margin-bottom: $gutter/2;
   border: 1px solid transparent;
 
   ul,

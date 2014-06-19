@@ -34,7 +34,7 @@
     {% for article in blog.articles %}
 
       <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
-      <p class="text-light">
+      <p>
         Posted by <strong>{{ article.author }}</strong> at
         <strong><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
           {{ article.published_at | date: '%b %d, %Y' }}
