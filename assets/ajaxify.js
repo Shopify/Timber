@@ -452,7 +452,6 @@ var ajaxifyShopify = (function(module, $) {
   sizeModal = function(isResizing) {
     if (!isResizing) {
       $modalContainer.css('opacity', 0);
-      $closeCart.css('opacity', 0);
     }
 
     // Position modal by negative margin
@@ -474,7 +473,7 @@ var ajaxifyShopify = (function(module, $) {
         right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
         opacity: 1
       });
-    }, 600);
+    }, 460);
 
     toggleCallback({
       'is_visible': true
@@ -760,8 +759,9 @@ var ajaxifyShopify = (function(module, $) {
 
       /* Hack to get product image thumbnail
        *   - Remove file extension, add _small, and re-add extension
+       *   - Create server relative link
       */
-      var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1");
+      var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', '');
       var prodName = cartItem.title.replace(/(\-[^-]*)$/, "");
       var prodVariation = cartItem.title.replace(/^[^\-]*/, "").replace(/-/, "");
 
