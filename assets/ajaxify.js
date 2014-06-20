@@ -666,6 +666,8 @@ var ajaxifyShopify = (function(module, $) {
         buildCart(cart);
         if ( !$drawerContainer.hasClass('is-visible') ) {
           showDrawer();
+        } else {
+          scrollTop();
         }
         break;
     }
