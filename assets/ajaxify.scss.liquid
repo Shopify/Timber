@@ -378,6 +378,7 @@ form[action^="/cart/add"] {
   position: relative;
   margin-bottom: 1em;
   max-width: 100px;
+  min-width: 75px;
   overflow: visible;
   @include backface(hidden);
 
@@ -432,7 +433,6 @@ form[action^="/cart/add"] {
 ==============================================================================*/
 .ajaxifyCart--qty {
   @extend .js-qty;
-  top: -5px;
   margin-bottom: 0;
 
   input[type="text"] {
@@ -710,6 +710,10 @@ form[action^="/cart/add"] {
   .ajaxifyCart--product:hover input[type="text"],
   .supports-touch input[type="text"] {
     border-color: $drawerBorderColor;
+  }
+
+  .js-qty {
+    margin: 0 auto;
   }
 
   .js--add {
