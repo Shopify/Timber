@@ -46,7 +46,6 @@ timber.accessibleNav = function () {
   // Blur
   allLinks.blur(function(e) {
     topLevel.removeClass('nav-focus');
-    subMenus.attr('aria-hidden', 'true');
   });
 
   // accessibleNav private methods
@@ -61,16 +60,6 @@ timber.accessibleNav = function () {
       el.addClass('nav-focus');
     } else {
       el.closest('.site-nav--has-dropdown').find('a').addClass('nav-focus');
-      el.closest('.site-nav--dropdown').attr('aria-hidden', 'false');
-    }
-
-    // Toggle aria-hidden attribute for top level items
-    if ( hasSubMenu ) {
-      if (subMenu.attr('aria-hidden') == 'true') {
-        subMenu.attr('aria-hidden', 'false');
-      } else {
-        subMenu.attr('aria-hidden', 'true');
-      }
     }
 
   }
