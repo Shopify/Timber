@@ -326,6 +326,21 @@ var ajaxifyShopify = (function(module, $) {
           break;
       }
 
+      // Escape key closes cart
+      $(document).keyup( function (evt) {
+        if (evt.keyCode == 27) {
+          switch (settings.method) {
+            case 'flip':
+            case 'drawer':
+              hideDrawer();
+              break;
+            case 'modal':
+              hideModal();
+              break;
+          }
+        }
+      });
+
       if ( $addToCart.length ) {
         // Take over the add to cart form submit
         formOverride();
@@ -416,13 +431,6 @@ var ajaxifyShopify = (function(module, $) {
     $modalContainer.prepend('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
     $closeCart = $('.ajaxifyCart--close');
     $closeCart.on('click', hideModal);
-
-    // Escape also closes cart
-    $(document).keyup( function (evt) {
-      if (evt.keyCode == 27) {
-        hideModal();
-      }
-    });
 
     // Add a class if CSS translate isn't available
     if (!$cssTransforms) {
