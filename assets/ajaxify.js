@@ -468,6 +468,11 @@ var ajaxifyShopify = (function(module, $) {
       'opacity': 1
     });
 
+    // Position close button relative to title
+    $closeCart.css({
+      'top': 10 + ( $cartContainer.find('h1').height() / 2 )
+    })
+
     $modalContainer.addClass('is-visible');
     $body.addClass('ajaxify-lock');
 
