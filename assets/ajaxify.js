@@ -413,9 +413,16 @@ var ajaxifyShopify = (function(module, $) {
     $modalOverlay.on('click', hideModal);
 
     // Create a close modal button
-    $modalContainer.after('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
+    $modalContainer.prepend('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
     $closeCart = $('.ajaxifyCart--close');
     $closeCart.on('click', hideModal);
+
+    // Escape also closes cart
+    $(document).keyup( function (evt) {
+      if (evt.keyCode == 27) {
+        hideModal();
+      }
+    });
 
     // Add a class if CSS translate isn't available
     if (!$cssTransforms) {
@@ -463,17 +470,6 @@ var ajaxifyShopify = (function(module, $) {
 
     $modalContainer.addClass('is-visible');
     $body.addClass('ajaxify-lock');
-
-    // Position close button on slight timeout
-    clearTimeout(positionTimeout);
-    var fromTop = window.pageYOffset | document.documentElement.scrollTop;
-    var positionTimeout = setTimeout(function() {
-      $closeCart.css({
-        top: ( $w.height() - ( $modalContainer.offset().top - fromTop + $modalContainer.outerHeight() ) - 15 ),
-        right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
-        opacity: 1
-      });
-    }, 460);
 
     toggleCallback({
       'is_visible': true
