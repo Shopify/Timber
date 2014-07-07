@@ -464,7 +464,6 @@ var ajaxifyShopify = (function(module, $) {
     // Position modal by negative margin
     $modalContainer.css({
       'margin-left': - ($modalContainer.outerWidth() / 2),
-      'margin-top': - ($modalContainer.outerHeight() / 2),
       'opacity': 1
     });
 
@@ -474,7 +473,8 @@ var ajaxifyShopify = (function(module, $) {
     })
 
     $modalContainer.addClass('is-visible');
-    $body.addClass('ajaxify-lock');
+
+    scrollTop();
 
     toggleCallback({
       'is_visible': true
