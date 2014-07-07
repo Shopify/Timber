@@ -326,6 +326,21 @@ var ajaxifyShopify = (function(module, $) {
           break;
       }
 
+      // Escape key closes cart
+      $(document).keyup( function (evt) {
+        if (evt.keyCode == 27) {
+          switch (settings.method) {
+            case 'flip':
+            case 'drawer':
+              hideDrawer();
+              break;
+            case 'modal':
+              hideModal();
+              break;
+          }
+        }
+      });
+
       if ( $addToCart.length ) {
         // Take over the add to cart form submit
         formOverride();
@@ -413,7 +428,7 @@ var ajaxifyShopify = (function(module, $) {
     $modalOverlay.on('click', hideModal);
 
     // Create a close modal button
-    $modalContainer.after('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
+    $modalContainer.prepend('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
     $closeCart = $('.ajaxifyCart--close');
     $closeCart.on('click', hideModal);
 
@@ -457,23 +472,17 @@ var ajaxifyShopify = (function(module, $) {
     // Position modal by negative margin
     $modalContainer.css({
       'margin-left': - ($modalContainer.outerWidth() / 2),
-      'margin-top': - ($modalContainer.outerHeight() / 2),
       'opacity': 1
     });
 
-    $modalContainer.addClass('is-visible');
-    $body.addClass('ajaxify-lock');
+    // Position close button relative to title
+    $closeCart.css({
+      'top': 10 + ( $cartContainer.find('h1').height() / 2 )
+    })
 
-    // Position close button on slight timeout
-    clearTimeout(positionTimeout);
-    var fromTop = window.pageYOffset | document.documentElement.scrollTop;
-    var positionTimeout = setTimeout(function() {
-      $closeCart.css({
-        top: ( $w.height() - ( $modalContainer.offset().top - fromTop + $modalContainer.outerHeight() ) - 15 ),
-        right: ( $w.width() - ( $modalContainer.offset().left + $modalContainer.outerWidth() ) - 15 ),
-        opacity: 1
-      });
-    }, 460);
+    $modalContainer.addClass('is-visible');
+
+    scrollTop();
 
     toggleCallback({
       'is_visible': true

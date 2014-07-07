@@ -165,13 +165,6 @@ $modalBorderColor: $borderColor;
 }
 
 /*============================================================================
-  Ajaxify Helpers
-==============================================================================*/
-body.ajaxify-lock {
-  overflow: hidden;
-}
-
-/*============================================================================
   Ajaxify Loader
 ==============================================================================*/
 .ajaxifyCart-loader {
@@ -341,11 +334,14 @@ form[action^="/cart/add"] {
   @include transition(all 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
   @include rotateX(0deg);
   max-height: 500px;
+  visibility: visible;
 
   &.is-removed {
     overflow: hidden;
     opacity: 0;
     padding: 0;
+    margin: -$gutter 0 0;
+    visibility: hidden;
     @include rotateX(-92deg);
     @include backface(hidden);
     @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
@@ -433,19 +429,19 @@ form[action^="/cart/add"] {
 ==============================================================================*/
 .ajaxifyCart--qty {
   @extend .js-qty;
-  margin-bottom: 0;
-
-  input[type="text"] {
-    @include transition(all 0.1s ease-out);
-
-    .supports-no-touch & {
-      border: 1px solid rgba(0,0,0,0);
-    }
-  }
+  margin: 0;
 
   .ajaxifyCart--is-loading & {
     opacity: 0.5;
     @include transition(none);
+  }
+}
+
+.ajaxifyCart--num {
+  @include transition(all 0.1s ease-out);
+
+  .supports-no-touch & {
+    border: 1px solid rgba(0,0,0,0);
   }
 }
 
@@ -487,18 +483,21 @@ form[action^="/cart/add"] {
   Ajaxify Modal
 ==============================================================================*/
 #ajaxifyModal {
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 170px;
   left: 50%;
-  margin: -300px 0 0 -500px; // overridden with JS
+  margin-left: -500px; // overridden with JS
   width: 100%;
   max-width: 760px;
-  max-height: 80%;
   height: auto;
   z-index: 99999999;
   visibility: hidden;
-  overflow: auto;
   @include transition('box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms, margin-top 200ms ease-in-out');
+
+  // Short screens
+  @media only screen and (max-height:645px) {
+    top: 70px;
+  }
 
   // Medium-down screens
   @include at-query ($max, $medium) {
@@ -535,7 +534,11 @@ form[action^="/cart/add"] {
 
   &.is-visible {
     visibility: visible;
-    @include box-shadow(0px 10px 80px rgba(0,0,0,.25));
+
+    // Large screens
+    @include at-query ($min, $large) {
+      @include box-shadow(0px 10px 80px rgba(0,0,0,.25));
+    }
   }
 
   &.no-transforms {
@@ -585,13 +588,15 @@ form[action^="/cart/add"] {
   @include transition(opacity 450ms cubic-bezier(0.57,.06,.05,.95));
 }
 
-#ajaxifyModal.is-visible ~ #ajaxifyCart-overlay {
-  opacity: 0.8;
-  visibility: visible;
-  @include transition(opacity 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
+@include at-query ($min, $postSmall) {
+  #ajaxifyModal.is-visible ~ #ajaxifyCart-overlay {
+    opacity: 0.8;
+    visibility: visible;
+    @include transition(opacity 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
 
-  .lt-ie9 & {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    .lt-ie9 & {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    }
   }
 }
 
@@ -648,6 +653,17 @@ form[action^="/cart/add"] {
 
     &:active {
       background-color: darken($modalBorderColor, 10%);
+    }
+  }
+
+  // Small screen quantity appearance
+  @include at-query ($max, $medium) {
+    input[type="text"] {
+      border-color: $modalBorderColor;
+    }
+
+    .ajaxifyCart--qty-adjuster {
+      opacity: 1;
     }
   }
 }
@@ -800,30 +816,31 @@ form[action^="/cart/add"] {
 
 .ajaxifyCart--close {
   @extend .sprite;
-  display: none;
-  position: fixed;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  visibility: hidden;
   border: 0 none;
   width: 30px;
-  height: 30px;
+  height: 25px;
   cursor: pointer;
-  border-radius: 30px;
-  background-position: center center;
-  background-color: $ajaxifyGreyDark;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkMzRUY2REVBNDY1QjExRTM4ODdCODU0OEQ4MDA1MjgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkMzRUY2REVCNDY1QjExRTM4ODdCODU0OEQ4MDA1MjgwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QzNFRjZERTg0NjVCMTFFMzg4N0I4NTQ4RDgwMDUyODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QzNFRjZERTk0NjVCMTFFMzg4N0I4NTQ4RDgwMDUyODAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7sdZ8fAAAAp0lEQVR42nSPQQ6CMBBFx4ZEj+DSY8BGt9SVwRP1QBDdULeygaN4BFzpn+Q3mZCW5DFk/uvQ2YUQfiIygYuUnzc4O7wW/QCxIEbmi8oNG23mgO03js0reDF4gCNry77mUpkpHvSgo7QHA7gnwW1+q8FKcbViTtbJB/Bl7Uty5BWe4MTa2aWTPJplbuDDmpYe04IzqBn4zbU8J2udHcUpI9oDmtd/AQYAX20mtnhTCxQAAAAASUVORK5CYII=);
+  background: {
+    color: transparent;
+    position: center center;
+    image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkMzRUY2REVBNDY1QjExRTM4ODdCODU0OEQ4MDA1MjgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkMzRUY2REVCNDY1QjExRTM4ODdCODU0OEQ4MDA1MjgwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QzNFRjZERTg0NjVCMTFFMzg4N0I4NTQ4RDgwMDUyODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QzNFRjZERTk0NjVCMTFFMzg4N0I4NTQ4RDgwMDUyODAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7sdZ8fAAAAp0lEQVR42nSPQQ6CMBBFx4ZEj+DSY8BGt9SVwRP1QBDdULeygaN4BFzpn+Q3mZCW5DFk/uvQ2YUQfiIygYuUnzc4O7wW/QCxIEbmi8oNG23mgO03js0reDF4gCNry77mUpkpHvSgo7QHA7gnwW1+q8FKcbViTtbJB/Bl7Uty5BWe4MTa2aWTPJplbuDDmpYe04IzqBn4zbU8J2udHcUpI9oDmtd/AQYAX20mtnhTCxQAAAAASUVORK5CYII=)
+  }
   z-index: 999999999;
-  @include transition(opacity 100ms ease-in-out);
+  @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
 
-  #ajaxifyModal.is-visible + & {
-    display: block;
+  .is-visible & {
+    opacity: 0.8;
+    visibility: visible;
+    @include transition(opacity 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95) 200ms);
   }
 
   &:hover {
-    background-color: lighten($ajaxifyGreyDark, 50%);
-  }
-
-  @include at-query ($max, 972px) {
-    background-color: transparent;
-    @include transform(translateY(32px) translateX(-32px));
+    opacity: 1;
   }
 }
 
