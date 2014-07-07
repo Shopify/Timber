@@ -433,19 +433,19 @@ form[action^="/cart/add"] {
 ==============================================================================*/
 .ajaxifyCart--qty {
   @extend .js-qty;
-  margin-bottom: 0;
-
-  input[type="text"] {
-    @include transition(all 0.1s ease-out);
-
-    .supports-no-touch & {
-      border: 1px solid rgba(0,0,0,0);
-    }
-  }
+  margin: 0;
 
   .ajaxifyCart--is-loading & {
     opacity: 0.5;
     @include transition(none);
+  }
+}
+
+.ajaxifyCart--num {
+  @include transition(all 0.1s ease-out);
+
+  .supports-no-touch & {
+    border: 1px solid rgba(0,0,0,0);
   }
 }
 
@@ -648,6 +648,17 @@ form[action^="/cart/add"] {
 
     &:active {
       background-color: darken($modalBorderColor, 10%);
+    }
+  }
+
+  // Small screen quantity appearance
+  @include at-query ($max, $medium) {
+    input[type="text"] {
+      border-color: $modalBorderColor;
+    }
+
+    .ajaxifyCart--qty-adjuster {
+      opacity: 1;
     }
   }
 }
