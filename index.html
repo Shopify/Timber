@@ -1111,8 +1111,8 @@ ajaxifyShopify.init({ [options] })
                 <td>method</td>
                 <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
                 <td>
-                  The type of cart you want to enable.<br>
-                  Options: <strong class="docs-strong">drawer</strong>, <strong class="docs-strong">modal</strong>, and <strong class="docs-strong">flip</strong><br>
+                  <p>The type of cart you want to enable.</p>
+                  <p>Options: <strong class="docs-strong">drawer</strong>, <strong class="docs-strong">modal</strong>, and <strong class="docs-strong">flip</strong></p>
                   Default: <strong class="docs-strong">drawer</strong>.
                 </td>
               </tr>
@@ -1120,8 +1120,8 @@ ajaxifyShopify.init({ [options] })
                 <td>wrapperClass</td>
                 <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
                 <td>
-                  The class name that defines your site width, without the leading period.<br>
-                  E.g. <code>wrapperClass: 'site-width'</code><br>
+                  <p>The class name that defines your site width, without the leading period.</p>
+                  <p>E.g. <code>wrapperClass: 'site-width'</code></p>
                   Default: <strong class="docs-strong">null</strong>.
                 </td>
               </tr>
@@ -1129,7 +1129,7 @@ ajaxifyShopify.init({ [options] })
                 <td>formSelector</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  Your add to cart <strong>form</strong> selector from the product page.<br>
+                  <p>Your add to cart <strong>form</strong> selector from the product page.</p>
                   Default: <strong class="docs-strong">form[action^="/cart/add"]</strong>
                 </td>
               </tr>
@@ -1137,8 +1137,8 @@ ajaxifyShopify.init({ [options] })
                 <td>addToCartSelector</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  Your add to cart <strong>button</strong> selector from the product page.<br>
-                  A class of <code>is-adding</code> is added to the button once clicked. <code>is-added</code> will take its place and remain on the button after the product is successfully added.<br>
+                  <p>Your add to cart <strong>button</strong> selector from the product page.</p>
+                  <p>A class of <code>is-adding</code> is added to the button once clicked. <code>is-added</code> will take its place and remain on the button after the product is successfully added.</p>
                   Default: <strong class="docs-strong">input[type="submit']</strong> within <strong>formSelector</strong>
                 </td>
               </tr>
@@ -1146,7 +1146,7 @@ ajaxifyShopify.init({ [options] })
                 <td>toggleCartButton</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  Toggle the cart open and closed with this selector.<br>
+                  <p>Toggle the cart open and closed with this selector.</p>
                   Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
@@ -1154,8 +1154,8 @@ ajaxifyShopify.init({ [options] })
                 <td>cartCountSelector</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  Update the number of items in the cart.<br>
-                  E.g. <code>cartCountSelector: '.cart-count'</code><br>
+                  <p>Update the number of items in the cart.</p>
+                  <p>E.g. <code>cartCountSelector: '.cart-count'</code></p>
                   Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
@@ -1163,8 +1163,8 @@ ajaxifyShopify.init({ [options] })
                 <td>cartCostSelector</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  Update the total cart cost when products are added or removed.<br>
-                  E.g. <code>cartCostSelector: '.cart-cost'</code><br>
+                  <p>Update the total cart cost when products are added or removed.</p>
+                  <p>E.g. <code>cartCostSelector: '.cart-cost'</code></p>
                   Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
@@ -1172,9 +1172,9 @@ ajaxifyShopify.init({ [options] })
                 <td>useCartTemplate</td>
                 <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
                 <td>
-                  Set to <strong class="docs-strong">true</strong> to use the markup from your <strong class="docs-strong">cart.liquid</strong> template. We'll take care of the selector.<br>
-                  Set to <strong class="docs-strong">false</strong> to use the included cart layout, generated by <a href="http://handlebarsjs.com/" title="Handlebars.js Documentation">Handlebars.js</a>.<br>
-                  IE8 and below will default to false as they cannot use jQuery's .load event.<br>
+                  <p>Set to <strong class="docs-strong">true</strong> to use the markup from your <strong class="docs-strong">cart.liquid</strong> template. We'll take care of the selector.<br>
+                  Set to <strong class="docs-strong">false</strong> to use the included cart layout, generated by <a href="http://handlebarsjs.com/" title="Handlebars.js Documentation">Handlebars.js</a>.</p>
+                  <p>IE8 and below will default to false as they cannot use jQuery's .load event.</p>
                   Default: <strong class="docs-strong">false</strong>
                 </td>
               </tr>
@@ -1182,7 +1182,7 @@ ajaxifyShopify.init({ [options] })
                 <td>btnClass</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  If <strong>useCartTemplate</strong> is set to false, include your standard button class so we can style the Checkout link the same way.<br>
+                  <p>If <strong>useCartTemplate</strong> is set to false, include your standard button class so we can style the Checkout link the same way.</p>
                   Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
@@ -1190,7 +1190,7 @@ ajaxifyShopify.init({ [options] })
                 <td>moneyFormat</td>
                 <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
                 <td>
-                  Pass in your shop's currency with the liquid tag <code>&#123;&#123; shop.money_format | json &#125;&#125;</code>.<br>
+                  <p>Pass in your shop's currency with the liquid tag <code>&#123;&#123; shop.money_format | json &#125;&#125;</code>.</p>
                   Default: <strong class="docs-strong">'$&#123;&#123;amount&#125;&#125;'</strong>
                 </td>
               </tr>
@@ -1198,7 +1198,7 @@ ajaxifyShopify.init({ [options] })
                 <td>disableAjaxCart</td>
                 <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
                 <td>
-                  Set to <strong class="docs-strong">true</strong> if you want to disable the cart but still use the JS quantity selectors (see below).<br>
+                  <p>Set to <strong class="docs-strong">true</strong> if you want to disable the cart but still use the JS quantity selectors (see below).</p>
                   Default: <strong class="docs-strong">false</strong>
                 </td>
               </tr>
@@ -1206,7 +1206,7 @@ ajaxifyShopify.init({ [options] })
                 <td>enableQtySelectors</td>
                 <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
                 <td>
-                  Replace <code>&lt;input type="number"&gt;</code> elements with a JS quantity selector on your product and cart pages. Set to <strong class="docs-strong">false</strong> to disable this and use the native elements.<br>
+                  <p>Replace <code>&lt;input type="number"&gt;</code> elements with a JS quantity selector on your product and cart pages. Set to <strong class="docs-strong">false</strong> to disable this and use the native elements.</p>
                   Default: <strong class="docs-strong">true</strong>
                 </td>
               </tr>
@@ -1214,8 +1214,8 @@ ajaxifyShopify.init({ [options] })
                 <td>prependDrawerTo</td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
                 <td>
-                  The selector for which element the drawer cart is appended to.<br>
-                  E.g. <code>prependDrawerTo: '#page'</code><br>
+                  <p>The selector for which element the drawer cart is appended to.</p>
+                  <p>E.g. <code>prependDrawerTo: '#page'</code></p>
                   Default: <strong class="docs-strong">body</strong>
                 </td>
               </tr>
@@ -1223,12 +1223,11 @@ ajaxifyShopify.init({ [options] })
                 <td>onToggleCallback</td>
                 <td><a href="http://api.jquery.com/Types/#Function" title="JS Function" class="docs-link">Function</a></td>
                 <td>
-                  Set a callback function to run each time the cart is toggled.<br>
-                  An object is returned with the values:<br>
+                  <p>Set a callback function to run each time the cart is toggled.</p>
+                  An object is returned with the values:
                   <ul>
                     <li><code>is_visible: true/false</code></li>
                   </ul>
-                  Added in <strong class="docs-strong">v.1.3.1</strong><br>
                   Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
