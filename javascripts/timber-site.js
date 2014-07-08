@@ -119,7 +119,7 @@ jQuery(function($){
         setTimeout(function() {
           docsNavWrapper.scrollToFixed({
             marginTop: 48,
-            limit: $('#notes').offset().top
+            limit: $('#icons').offset().top
           });
         }, 500);
 
