@@ -1819,6 +1819,15 @@ label.error {
   }
 }
 
+@include at-query($min, $large) {
+  .selector-wrapper,
+  .product-variants {
+    select {
+      max-width: 40%;
+    }
+  }
+}
+
 .product-photo-container {
   margin-bottom: $gutter;
 }
