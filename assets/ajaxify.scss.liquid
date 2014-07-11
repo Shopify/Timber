@@ -30,7 +30,7 @@ $postSmall: $small + $viewportIncrement;
 $preMedium: $medium - $viewportIncrement;
 $preLarge: $large - $viewportIncrement;
 
-$gutter: 24px;
+$gutter: 30px;
 
 /*============================================================================
   Dependency-free breakpoint mixin
@@ -165,8 +165,14 @@ $modalBorderColor: $borderColor;
 }
 
 /*============================================================================
-  Ajaxify Loader
+  General Styles
 ==============================================================================*/
+@include at-query ($max, $small) {
+  body.ajaxify-modal-visible {
+    overflow: hidden;
+  }
+}
+
 .ajaxifyCart-loader {
   display: none;
   opacity: 0;
@@ -492,6 +498,8 @@ form[action^="/cart/add"] {
   height: auto;
   z-index: 99999999;
   visibility: hidden;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   @include transition('box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms, margin-top 200ms ease-in-out');
 
   // Short screens
