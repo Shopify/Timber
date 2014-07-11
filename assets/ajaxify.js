@@ -621,6 +621,9 @@ var ajaxifyShopify = (function(module, $) {
     $formContainer.submit(function(e) {
       e.preventDefault();
 
+      // Add class to be styled if desired
+      $addToCart.removeClass('is-added').addClass('is-adding');
+
       // Remove any previous quantity errors
       $('.qty-error').remove();
 
@@ -636,6 +639,8 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   itemAddedCallback = function (product) {
+    $addToCart.removeClass('is-adding').addClass('is-added');
+
     // Slight delay of flip to mimic a longer load
     switch (settings.method) {
       case 'flip':
