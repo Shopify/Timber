@@ -515,8 +515,8 @@
 
 @font-face {
   font-family: "icons";
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?10443 ");
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?10443 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?10443 ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?10443 ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?10443 #timber-icons ") format("svg");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?11279 ");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?11279 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?11279 ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?11279 ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?11279 #timber-icons ") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -575,6 +575,7 @@ pre {
 
 .grid-item {
   float: left;
+  min-height: 1px;
   padding-left: 24px;
   vertical-align: top;
   width: 100%;
@@ -1396,7 +1397,7 @@ body {
     padding: 0 24px; } }
 .main-content {
   display: block;
-  padding-top: 24px;
+  margin-top: 24px;
   padding-bottom: 48px; }
 
 .left {
@@ -1447,10 +1448,10 @@ h1, .h1 {
   font-size: 3em; }
 
 h2, .h2 {
-  font-size: 2.429em; }
+  font-size: 2em; }
 
 h3, .h3 {
-  font-size: 2em; }
+  font-size: 1.571em; }
 
 h4, .h4 {
   font-size: 1.429em; }
@@ -1462,7 +1463,7 @@ h6, .h6 {
   font-size: 1em; }
 
 p {
-  margin: 0 0 0.75em 0; }
+  margin: 0 0 12px 0; }
 
 p img {
   margin: 0; }
@@ -1481,13 +1482,9 @@ sup {
   top: -0.5em;
   font-size: 60%; }
 
-.text-light {
-  color: #777; }
-
 blockquote {
   font-size: 1.125em;
   line-height: 1.45;
-  color: #777;
   font-style: italic;
   margin: 0 0 24px;
   padding: 12px 24px;
@@ -1501,8 +1498,7 @@ blockquote p + cite {
 
 blockquote cite {
   display: block;
-  font-size: 0.75em;
-  color: #777; }
+  font-size: 0.75em; }
 
 blockquote cite:before {
   content: "\2014 \0020"; }
@@ -1511,13 +1507,13 @@ hr {
   clear: both;
   border-top: solid #e5e5e5;
   border-width: 1px 0 0;
-  margin: 48px 0; }
-
-hr.hr--small {
   margin: 24px 0; }
 
+hr.hr--small {
+  margin: 12px 0; }
+
 hr.hr--clear {
-  border-top: 0 none; }
+  border-top-color: transparent; }
 
 .section-header {
   margin-bottom: 12px; }
@@ -1584,13 +1580,16 @@ hr.hr--clear {
   opacity: inherit; }
 
 .rte {
-  margin-bottom: 1em; }
+  margin-bottom: 12px; }
 
-.rte h1, .rte h2, .rte h3, .rte h4, .rte h5, .rte h6, .rte .h1, .rte .h2, .rte .h3, .rte .h4, .rte .h5, .rte .h6 {
+.rte h1, .rte h2, .rte h3, .rte h4, .rte h5, .rte h6 {
   margin-top: 2em; }
 
+.rte h1:first-child, .rte h2:first-child, .rte h3:first-child, .rte h4:first-child, .rte h5:first-child, .rte h6:first-child {
+  margin-top: 0; }
+
 .rte > div {
-  margin-bottom: 1em; }
+  margin-bottom: 12px; }
 
 .rte ul, .rte ol {
   margin-left: 35px; }
@@ -1605,7 +1604,7 @@ a {
 a:hover, a:focus {
   color: #333; }
 
-.btn, .btn-secondary {
+.btn, .btn-secondary, input[type="submit"] {
   display: inline-block;
   padding: 8px 10px;
   margin: 0;
@@ -1627,22 +1626,22 @@ a:hover, a:focus {
   background-color: #747474;
   color: #fff; }
 
-.btn.btn--small, .btn--small.btn-secondary {
+.btn.btn--small, .btn--small.btn-secondary, input.btn--small[type="submit"] {
   padding: 4px 5px;
   font-size: 0.75em; }
 
-.btn.btn--full, .btn--full.btn-secondary {
+.btn.btn--full, .btn--full.btn-secondary, input.btn--full[type="submit"] {
   width: 100%; }
 
-.btn:hover, .btn-secondary:hover {
+.btn:hover, .btn-secondary:hover, input[type="submit"]:hover {
   background-color: #5b5b5b;
   color: #fff; }
 
-.btn:active, .btn-secondary:active, .btn:focus, .btn-secondary:focus {
+.btn:active, .btn-secondary:active, input[type="submit"]:active, .btn:focus, .btn-secondary:focus, input[type="submit"]:focus {
   background-color: #414141;
   color: #fff; }
 
-.btn[disabled], [disabled].btn-secondary, .btn.disabled, .disabled.btn-secondary {
+.btn[disabled], [disabled].btn-secondary, input[disabled][type="submit"], .btn.disabled, .disabled.btn-secondary, input.disabled[type="submit"] {
   cursor: default;
   color: #b6b6b6;
   background-color: #f6f6f6; }
@@ -1731,7 +1730,7 @@ img.auto, .grid-item img, .grid-item iframe {
 form {
   margin-bottom: 24px; }
 
-.btn, .btn-secondary, button, input[type="text"], input[type="search"], input[type="password"], input[type="email"], input[type="file"], input[type="number"], input[type="tel"], input[type="submit"], textarea {
+.btn, .btn-secondary, input[type="submit"], button, input[type="text"], input[type="search"], input[type="password"], input[type="email"], input[type="file"], input[type="number"], input[type="tel"], input[type="submit"], textarea {
   -webkit-appearance: none;
   -moz-appearance: none; }
 
@@ -1847,10 +1846,10 @@ label.error {
   display: table;
   border-collapse: separate; }
 
-.input-group .input-group-field:first-child, .input-group .input-group-btn:first-child, .input-group .input-group-btn:first-child > .btn, .input-group .input-group-btn:first-child > .btn-secondary, .input-group input[type="hidden"]:first-child + .input-group-field, .input-group input[type="hidden"]:first-child + .input-group-btn > .btn, .input-group input[type="hidden"]:first-child + .input-group-btn > .btn-secondary {
+.input-group .input-group-field:first-child, .input-group .input-group-btn:first-child, .input-group .input-group-btn:first-child > .btn, .input-group .input-group-btn:first-child > .btn-secondary, .input-group .input-group-btn:first-child > input[type="submit"], .input-group input[type="hidden"]:first-child + .input-group-field, .input-group input[type="hidden"]:first-child + .input-group-btn > .btn, .input-group input[type="hidden"]:first-child + .input-group-btn > .btn-secondary, .input-group input[type="hidden"]:first-child + .input-group-btn > input[type="submit"] {
   border-radius: 3px 0 0 3px; }
 
-.input-group .input-group-field:last-child, .input-group .input-group-btn:last-child > .btn, .input-group .input-group-btn:last-child > .btn-secondary {
+.input-group .input-group-field:last-child, .input-group .input-group-btn:last-child > .btn, .input-group .input-group-btn:last-child > .btn-secondary, .input-group .input-group-btn:last-child > input[type="submit"] {
   border-radius: 0 3px 3px 0; }
 
 .input-group input::-moz-focus-inner {
@@ -1864,7 +1863,7 @@ label.error {
   vertical-align: middle;
   margin: 0; }
 
-.input-group .btn, .input-group .btn-secondary, .input-group .input-group-field {
+.input-group .btn, .input-group .btn-secondary, .input-group input[type="submit"], .input-group .input-group-field {
   height: 37px; }
 
 .input-group .input-group-field {
@@ -1965,6 +1964,9 @@ label.error {
 
 .icon-pinterest:before {
   content: "\70"; }
+
+.icon-rss:before {
+  content: "\72"; }
 
 .icon-search:before {
   content: "\73"; }
@@ -2187,7 +2189,7 @@ label.error {
   left: 0;
   z-index: 5; }
 
-.site-nav--has-dropdown:hover .site-nav--dropdown, .site-nav--has-dropdown.nav-hover .site-nav--dropdown, .nav-focus + .site-nav--dropdown {
+.supports-no-touch .site-nav--has-dropdown:hover .site-nav--dropdown, .site-nav--has-dropdown.nav-hover .site-nav--dropdown, .nav-focus + .site-nav--dropdown {
   display: block; }
 
 .site-nav--dropdown a {
@@ -2246,15 +2248,15 @@ label.error {
 .breadcrumb a:first-child, .breadcrumb span:first-child {
   padding-left: 0; }
 
-.product-price {
-  font-weight: bold; }
-
 .product-variants {
   display: none; }
 
 .no-js .product-variants {
   display: block; }
 
+@media screen and (min-width: 769px) {
+  .selector-wrapper select, .product-variants select {
+    max-width: 40%; } }
 .product-photo-container {
   margin-bottom: 24px; }
 
@@ -2265,18 +2267,17 @@ label.error {
 .product-photo-container li, .product-photo-thumbs li {
   margin-bottom: 24px; }
 
-.comment-content {
-  margin-bottom: -12px; }
-
-.comment-author {
-  font-size: 14px;
-  font-style: italic;
+.comment {
   margin-bottom: 24px; }
+
+.comment + .comment {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 24px; }
 
 .note, .errors {
   border-radius: 3px;
   padding: 12px;
-  margin-bottom: 1em;
+  margin-bottom: 12px;
   border: 1px solid transparent; }
 
 .note ul, .note ol, .errors ul, .errors ol {
