@@ -945,6 +945,7 @@ a:focus {
   border: 1px solid transparent;
   @include prefix('user-select', 'none');
   -webkit-appearance: none;
+  -moz-appearance: none;
   border-radius: $radius;
 
   &.btn--small {
@@ -1086,7 +1087,6 @@ form {
   margin-bottom: $gutter;
 }
 
-.btn,
 button,
 input[type="text"],
 input[type="search"],
