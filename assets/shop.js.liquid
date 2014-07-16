@@ -32,13 +32,13 @@ timber.accessibleNav = function () {
 
   // Mouseenter
   $parents.on('mouseenter touchstart', function(evt) {
-    var el = $(this);
+    var $el = $(this);
 
-    if (!el.hasClass(activeClass)) {
+    if (!$el.hasClass(activeClass)) {
       evt.preventDefault();
     }
 
-    showDropdown(el);
+    showDropdown($el);
   });
 
   // Mouseout
@@ -60,18 +60,18 @@ timber.accessibleNav = function () {
   });
 
   // accessibleNav private methods
-  function handleFocus (el) {
-    var $subMenu = el.next('ul');
+  function handleFocus ($el) {
+    var $subMenu = $el.next('ul');
         hasSubMenu = $subMenu.hasClass('sub-nav') ? true : false,
-        isSubItem = $('.site-nav--dropdown').has(el).length,
+        isSubItem = $('.site-nav--dropdown').has($el).length,
         $newFocus = null;
 
     // Add focus class for top level items, or keep menu shown
     if ( !isSubItem ) {
       removeFocus($topLevel);
-      addFocus(el);
+      addFocus($el);
     } else {
-      $newFocus = el.closest('.site-nav--has-dropdown').find('a');
+      $newFocus = $el.closest('.site-nav--has-dropdown').find('a');
       addFocus($newFocus);
     }
   }
