@@ -498,7 +498,7 @@ form[action^="/cart/add"] {
   height: auto;
   z-index: 99999999;
   visibility: hidden;
-  overflow: scroll;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
   @include transition('left 0s linear 700ms, box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms, margin-top 200ms ease-in-out');
 
@@ -548,6 +548,11 @@ form[action^="/cart/add"] {
     // Large screens
     @include at-query ($min, $large) {
       @include box-shadow(0px 10px 80px rgba(0,0,0,.25));
+    }
+
+    // Small screens
+    @include at-query ($max, $small) {
+      left: 0;
     }
   }
 
