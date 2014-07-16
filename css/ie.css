@@ -508,15 +508,10 @@
 
 =============================================================
 ========================================================== */
-*, input, :before, :after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
 @font-face {
   font-family: "icons";
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?11279 ");
-  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?11279 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?11279 ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?11279 ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?11279 #timber-icons ") format("svg");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?11310 ");
+  src: url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.eot?11310 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.woff?11310 ") format("woff"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.ttf?11310 ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0383/9765/t/3/assets/icons.svg?11310 #timber-icons ") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -563,6 +558,11 @@ pre {
   overflow: auto;
   padding: 0.5em;
   margin: 0 0 1em; }
+
+*, input, :before, :after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 
 .grid-item.clear {
   clear: both; }

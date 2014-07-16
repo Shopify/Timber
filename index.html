@@ -781,7 +781,7 @@ Output:
         <div id="mixins-provided" class="tab-content">
           <ul class="disc docs-text">
             <li><code>clearfix</code></li>
-            <li><code>box-shadow</code> - no default</li>
+            <li><code>prefix</code> - no default</li>
             <li><code>transition</code> - default <strong>0.1s all</strong></li>
           </ul>
         </div>
@@ -789,20 +789,37 @@ Output:
         <div id="mixins-examples-code" class="tab-content">
           <p><strong class="docs-strong">Usage:</strong></p>
 <pre>
+Clearfix:
+
 .foo {
-  @include box-shadow(1px 1px 10px red);
-  @include transition();
+  @include clearfix();
+}
+
+Ouput:
+.foo {
+  *zoom: 1; // oldIE
+}
+.foo:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+Prefix:
+
+.foo {
+  @include prefix('user-select', 'none');
 }
 
 Output:
+
 .foo {
-  -webkit-box-shadow: 1px 1px 10px red;
-  -moz-box-shadow:    1px 1px 10px red;
-  box-shadow:         1px 1px 10px red;
-  -webkit-transition: 0.1s all;
-  -moz-transition:    0.1s all;
-  -o-transition:      0.1s all;
-  transition:         0.1s all;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 </pre>
         </div>
