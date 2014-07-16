@@ -781,16 +781,17 @@ Output:
         <div id="mixins-provided" class="tab-content">
           <ul class="disc docs-text">
             <li><code>clearfix</code></li>
-            <li><code>prefix</code> - no default</li>
-            <li><code>transition</code> - default <strong>0.1s all</strong></li>
+            <li><code>prefix($property, $value)</code> - no default</li>
+            <li><code>transition($transition)</code> - default <strong>0.1s all</strong></li>
+            <li><code>gradient($from, $to, $fallback)</code></li>
+            <li><code>backface($visibility)</code> - default <strong>hidden</strong></li>
           </ul>
         </div>
 
         <div id="mixins-examples-code" class="tab-content">
           <p><strong class="docs-strong">Usage:</strong></p>
 <pre>
-Clearfix:
-
+Clearfix Input:
 .foo {
   @include clearfix();
 }
@@ -805,15 +806,12 @@ Ouput:
   clear: both;
 }
 
-
-Prefix:
-
+Prefix Input:
 .foo {
   @include prefix('user-select', 'none');
 }
 
 Output:
-
 .foo {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -821,6 +819,23 @@ Output:
   -o-user-select: none;
   user-select: none;
 }
+
+Gradient Input:
+.foo {
+  @include gradient(#900, #950, #900) // from red to orange, red fallback
+}
+
+Output:
+.foo {
+  background: #900;
+  background: -moz-linear-gradient(top, #900 0%, #950 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#900), color-stop(100%,#950));
+  background: -webkit-linear-gradient(top, #900 0%, #950 100%);
+  background: -o-linear-gradient(top, #900 0%, #950 100%);
+  background: -ms-linear-gradient(top, #900 0%, #950 100%);
+  background: linear-gradient(top bottom, #900 0%, #950 100%);
+}
+
 </pre>
         </div>
 
