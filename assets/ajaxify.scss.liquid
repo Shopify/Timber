@@ -491,7 +491,7 @@ form[action^="/cart/add"] {
 #ajaxifyModal {
   position: absolute;
   top: 170px;
-  left: 50%;
+  left: -200%;
   margin-left: -500px; // overridden with JS
   width: 100%;
   max-width: 760px;
@@ -500,7 +500,7 @@ form[action^="/cart/add"] {
   visibility: hidden;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
-  @include transition('box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms, margin-top 200ms ease-in-out');
+  @include transition('left 0s linear 700ms, box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms, margin-top 200ms ease-in-out');
 
   // Short screens
   @media only screen and (max-height:645px) {
@@ -542,6 +542,8 @@ form[action^="/cart/add"] {
 
   &.is-visible {
     visibility: visible;
+    left: 50%;
+    @include transition('left 0s linear, box-shadow 600ms cubic-bezier(0.47, 0.5, 0, 0.95) 400ms, margin-top 200ms ease-in-out');
 
     // Large screens
     @include at-query ($min, $large) {
