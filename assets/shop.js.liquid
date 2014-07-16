@@ -2,16 +2,16 @@ window.timber = window.timber || {};
 
 timber.cache = {
   // General
-  html: $('html'),
-  body: $('body'),
+  $html: $('html'),
+  $body: $('body'),
 
   // Navigation
-  navigation: $('#accessibleNav'),
+  $navigation: $('#accessibleNav'),
 
   // Product Page
-  mainImage: $('#productPhotoImg'),
-  thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
-  newImage: null
+  $mainImage: $('#productPhotoImg'),
+  $thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
+  $newImage: null
 }
 
 timber.init = function () {
@@ -22,17 +22,16 @@ timber.init = function () {
 }
 
 timber.accessibleNav = function () {
-  var nav = timber.cache.navigation,
-      allLinks = nav.find('a'),
-      topLevel = nav.children('li').find('a'),
-      parents = nav.find('.site-nav--has-dropdown'),
-      subMenus = nav.find('.site-nav--dropdown'),
-      subMenuLinks = subMenus.find('a'),
+  var $nav = timber.cache.$navigation,
+      $allLinks = $nav.find('a'),
+      $topLevel = $nav.children('li').find('a'),
+      $parents = $nav.find('.site-nav--has-dropdown'),
+      $subMenuLinks = $nav.find('.site-nav--dropdown').find('a'),
       activeClass = 'nav-hover',
       focusClass = 'nav-focus';
 
   // Mouseenter
-  parents.on('mouseenter touchstart', function(evt) {
+  $parents.on('mouseenter touchstart', function(evt) {
     var el = $(this);
 
     if (!el.hasClass(activeClass)) {
@@ -43,75 +42,75 @@ timber.accessibleNav = function () {
   });
 
   // Mouseout
-  parents.on('mouseleave', function() {
+  $parents.on('mouseleave', function() {
     hideDropdown($(this));
   });
 
-  subMenuLinks.on('touchstart', function(evt) {
+  $subMenuLinks.on('touchstart', function(evt) {
     // Prevent touchstart on body from firing instead of link
     evt.stopImmediatePropagation();
   });
 
-  allLinks.focus(function() {
+  $allLinks.focus(function() {
     handleFocus($(this));
   });
 
-  allLinks.blur(function() {
-    removeFocus(topLevel);
+  $allLinks.blur(function() {
+    removeFocus($topLevel);
   });
 
   // accessibleNav private methods
   function handleFocus (el) {
-    var subMenu = el.next('ul');
-        hasSubMenu = subMenu.hasClass('sub-nav') ? true : false,
+    var $subMenu = el.next('ul');
+        hasSubMenu = $subMenu.hasClass('sub-nav') ? true : false,
         isSubItem = $('.site-nav--dropdown').has(el).length,
-        newFocus = null;
+        $newFocus = null;
 
     // Add focus class for top level items, or keep menu shown
     if ( !isSubItem ) {
-      removeFocus(topLevel);
+      removeFocus($topLevel);
       addFocus(el);
     } else {
-      newFocus = el.closest('.site-nav--has-dropdown').find('a');
-      addFocus(newFocus);
+      $newFocus = el.closest('.site-nav--has-dropdown').find('a');
+      addFocus($newFocus);
     }
   }
 
-  function showDropdown (el) {
-    el.addClass(activeClass);
+  function showDropdown ($el) {
+    $el.addClass(activeClass);
 
     setTimeout(function() {
-      timber.cache.body.on('touchstart', function() {
-        hideDropdown(el);
+      timber.cache.$body.on('touchstart', function() {
+        hideDropdown($el);
       });
     }, 250);
   }
 
-  function hideDropdown (el) {
-    el.removeClass(activeClass);
-    timber.cache.body.off('touchstart');
+  function hideDropdown ($el) {
+    $el.removeClass(activeClass);
+    timber.cache.$body.off('touchstart');
   }
 
-  function addFocus (el) {
-    el.addClass(focusClass);
+  function addFocus ($el) {
+    $el.addClass(focusClass);
   }
 
-  function removeFocus (el) {
-    el.removeClass(focusClass);
+  function removeFocus ($el) {
+    $el.removeClass(focusClass);
   }
 }
 
 timber.productImageSwitch = function () {
-  if ( !timber.cache.thumbImages.length ) {
+  if ( !timber.cache.$thumbImages.length ) {
     return;
   }
 
   // Switch the main image with one of the thumbnails
   // Note: this does not change the variant selected, just the image
-  timber.cache.thumbImages.on('click', function(e) {
+  timber.cache.$thumbImages.on('click', function(e) {
     e.preventDefault();
-    timber.cache.newImage = $(this).attr('href');
-    timber.cache.mainImage.attr({ src: timber.cache.newImage });
+    timber.cache.$newImage = $(this).attr('href');
+    timber.cache.$mainImage.attr({ src: timber.cache.$newImage });
   });
 }
 
