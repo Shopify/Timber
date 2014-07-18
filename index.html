@@ -1128,139 +1128,136 @@ ajaxifyShopify.init({ [options] })
               <tr>
                 <th>Name</th>
                 <th>Type</th>
+                <th>Default</th>
                 <th>Description</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>
-                  <strong>options</strong>
-                </td>
-                <td><a href="http://api.jquery.com/Types/#Object" title="JS Objects" class="docs-link">Object</a></td>
-                <td>A collection of parameters that control the cart plugin, each listed out below.</td>
-              </tr>
-              <tr>
-                <td>method</td>
+                <td><code>method</code></td>
                 <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>drawer</td>
                 <td>
                   <p>The type of cart you want to enable.</p>
                   <p>Options: <strong class="docs-strong">drawer</strong>, <strong class="docs-strong">modal</strong>, and <strong class="docs-strong">flip</strong></p>
-                  Default: <strong class="docs-strong">drawer</strong>.
                 </td>
               </tr>
               <tr>
-                <td>wrapperClass</td>
+                <td><code>wrapperClass</code></td>
                 <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>null</td>
                 <td>
                   <p>The class name that defines your site width, without the leading period.</p>
                   <p>E.g. <code>wrapperClass: 'site-width'</code></p>
-                  Default: <strong class="docs-strong">null</strong>.
                 </td>
               </tr>
               <tr>
-                <td>formSelector</td>
+                <td><code>formSelector</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>form[action^="/cart/add"]</td>
                 <td>
                   <p>Your add to cart <strong>form</strong> selector from the product page.</p>
-                  Default: <strong class="docs-strong">form[action^="/cart/add"]</strong>
                 </td>
               </tr>
               <tr>
-                <td>addToCartSelector</td>
+                <td><code>addToCartSelector</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>
+                  input[type="submit']<br>
+                  (within formSelector)
+                </td>
                 <td>
                   <p>Your add to cart <strong>button</strong> selector from the product page.</p>
                   <p>A class of <code>is-adding</code> is added to the button once clicked. <code>is-added</code> will take its place and remain on the button after the product is successfully added.</p>
-                  Default: <strong class="docs-strong">input[type="submit']</strong> within <strong>formSelector</strong>
                 </td>
               </tr>
               <tr>
-                <td>toggleCartButton</td>
+                <td><code>toggleCartButton</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>null</td>
                 <td>
                   <p>Toggle the cart open and closed with this selector.</p>
-                  Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
               <tr>
-                <td>cartCountSelector</td>
+                <td><code>cartCountSelector</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>null</td>
                 <td>
                   <p>Update the number of items in the cart.</p>
                   <p>E.g. <code>cartCountSelector: '.cart-count'</code></p>
-                  Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
               <tr>
-                <td>cartCostSelector</td>
+                <td><code>cartCostSelector</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>null</td>
                 <td>
                   <p>Update the total cart cost when products are added or removed.</p>
                   <p>E.g. <code>cartCostSelector: '.cart-cost'</code></p>
-                  Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
               <tr>
-                <td>useCartTemplate</td>
+                <td><code>useCartTemplate</code></td>
                 <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
+                <td>false</td>
                 <td>
                   <p>Set to <strong class="docs-strong">true</strong> to use the markup from your <strong class="docs-strong">cart.liquid</strong> template. We'll take care of the selector.<br>
                   Set to <strong class="docs-strong">false</strong> to use the included cart layout, generated by <a href="http://handlebarsjs.com/" title="Handlebars.js Documentation">Handlebars.js</a>.</p>
                   <p>IE8 and below will default to false as they cannot use jQuery's .load event.</p>
-                  Default: <strong class="docs-strong">false</strong>
                 </td>
               </tr>
               <tr>
-                <td>btnClass</td>
+                <td><code>btnClass</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>null</td>
                 <td>
                   <p>If <strong>useCartTemplate</strong> is set to false, include your standard button class so we can style the Checkout link the same way.</p>
-                  Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
               <tr>
-                <td>moneyFormat</td>
+                <td><code>moneyFormat</code></td>
                 <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
+                <td>$&#123;&#123;amount&#125;&#125;</td>
                 <td>
                   <p>Pass in your shop's currency with the liquid tag <code>&#123;&#123; shop.money_format | json &#125;&#125;</code>.</p>
-                  Default: <strong class="docs-strong">'$&#123;&#123;amount&#125;&#125;'</strong>
                 </td>
               </tr>
               <tr>
-                <td>disableAjaxCart</td>
+                <td><code>disableAjaxCart</code></td>
                 <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
+                <td>false</td>
                 <td>
                   <p>Set to <strong class="docs-strong">true</strong> if you want to disable the cart but still use the JS quantity selectors (see below).</p>
-                  Default: <strong class="docs-strong">false</strong>
                 </td>
               </tr>
               <tr>
-                <td>enableQtySelectors</td>
+                <td><code>enableQtySelectors</code></td>
                 <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
+                <td>true</td>
                 <td>
                   <p>Replace <code>&lt;input type="number"&gt;</code> elements with a JS quantity selector on your product and cart pages. Set to <strong class="docs-strong">false</strong> to disable this and use the native elements.</p>
-                  Default: <strong class="docs-strong">true</strong>
                 </td>
               </tr>
               <tr>
-                <td>prependDrawerTo</td>
+                <td><code>prependDrawerTo</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
+                <td>body</td>
                 <td>
                   <p>The selector for which element the drawer cart is appended to.</p>
                   <p>E.g. <code>prependDrawerTo: '#page'</code></p>
-                  Default: <strong class="docs-strong">body</strong>
                 </td>
               </tr>
               <tr>
-                <td>onToggleCallback</td>
+                <td><code>onToggleCallback</code></td>
                 <td><a href="http://api.jquery.com/Types/#Function" title="JS Function" class="docs-link">Function</a></td>
+                <td>null</td>
                 <td>
                   <p>Set a callback function to run each time the cart is toggled.</p>
                   An object is returned with the values:
                   <ul>
                     <li><code>is_visible: true/false</code></li>
                   </ul>
-                  Default: <strong class="docs-strong">null</strong>
                 </td>
               </tr>
             </tbody>

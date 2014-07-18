@@ -2765,6 +2765,9 @@ h2.doc-title {
     background-color: #f6f6f6; }
   .docs-table ul {
     margin: 10px 0; }
+  .docs-table .disc,
+  .docs-table .square {
+    margin-left: 20px; }
 
 ul.tabs {
   margin: 12px 0 -1px 0;
