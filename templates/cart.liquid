@@ -49,12 +49,10 @@
                 <a href="{{ item.product.url }}">
                   {{ item.product.title }}
                 </a>
-                {% if item.product.variants.size != 0 %}
-                  {% unless item.variant.title contains 'Default' %}
-                    <br>
-                     <small>{{ item.variant.title }}</small>
-                  {% endunless %}
-                {% endif %}
+                {% unless item.variant.title contains 'Default' %}
+                <br>
+                <small>{{ item.variant.title }}</small>
+                {% endunless %}
               </span>
 
               {% comment %}
