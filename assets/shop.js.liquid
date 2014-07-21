@@ -14,14 +14,14 @@ timber.cacheSelectors = function () {
     $thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
     newImage: null
   }
-}
+};
 
 timber.init = function () {
   timber.cacheSelectors();
   timber.accessibleNav();
   timber.productImageSwitch();
   timber.responsiveVideos();
-}
+};
 
 timber.accessibleNav = function () {
   var $nav = timber.cache.$navigation,
@@ -100,26 +100,30 @@ timber.accessibleNav = function () {
   function removeFocus ($el) {
     $el.removeClass(focusClass);
   }
-}
+};
 
 timber.productImageSwitch = function () {
-  if ( !timber.cache.$thumbImages.length ) {
-    return;
+  if ( timber.cache.$thumbImages.length ) {
+    // Switch the main image with one of the thumbnails
+    // Note: this does not change the variant selected, just the image
+    timber.cache.$thumbImages.on('click', function(evt) {
+      evt.preventDefault();
+      var newImage = $(this).attr('href');
+      timber.switchImage(newImage, null, timber.cache.$productImage);
+    });
   }
+};
 
-  // Switch the main image with one of the thumbnails
-  // Note: this does not change the variant selected, just the image
-  timber.cache.$thumbImages.on('click', function(e) {
-    e.preventDefault();
-    timber.cache.newImage = $(this).attr('href');
-    timber.cache.$mainImage.attr({ src: timber.cache.newImage });
-  });
-}
+timber.switchImage = function (src, imgObject, el) {
+  // Make sure element is a jquery object
+  var $el = $(el);
+  $el.attr('src', src);
+};
 
 timber.responsiveVideos = function () {
   $('iframe[src*="youtube.com/embed"]').wrap('<div class="video-wrapper"></div>');
   $('iframe[src*="player.vimeo"]').wrap('<div class="video-wrapper"></div>');
-}
+};
 
 // Initialize Timber's JS on docready
 $(timber.init)
