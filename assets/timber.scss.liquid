@@ -157,7 +157,11 @@ $socialIconFontStack: 'icons';
   *zoom: 1;
 }
 @mixin clearfix() {
-  @extend .clearfix;
+  &:after {
+    content: "";
+    display: table;
+    clear: both; }
+  *zoom: 1;
 }
 
 @mixin prefix($property, $value) {
