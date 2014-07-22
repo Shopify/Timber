@@ -34,10 +34,9 @@ $gutter: 24px;
 
 /*============================================================================
   Ajaxify Colours
+  Add your theme colors in here, or create new styles.
+    - If creating new styles, you may have to restyle text, headers and links
 ==============================================================================*/
-$ajaxifyGrey: #444;
-
-/* Update with your theme colors, or choose unique cart styles */
 $colorBody: {{ settings.color_body_bg }};
 $colorTextBody: {{ settings.color_body_text }};
 $colorBorder: #e5e5e5;
@@ -400,7 +399,7 @@ form[action^="/cart/add"] {
 }
 
 // Backup for no transforms
-.no-transforms {
+.flip.no-transforms {
   .flip-back {
     display: none;
   }
@@ -494,7 +493,6 @@ form[action^="/cart/add"] {
       padding-bottom: 60px;
       min-height: 100%;
     }
-
   }
 
   &.is-visible {
@@ -511,13 +509,6 @@ form[action^="/cart/add"] {
     @include at-query ($max, $small) {
       left: 0;
     }
-  }
-
-  &.no-transforms {
-    width: 700px;
-    max-height: 500px;
-    margin: -250px 0 0 -350px;
-    border: 1px solid $ajaxifyGrey; // TO DO
   }
 
   .ajaxifyCart--row {
@@ -537,6 +528,11 @@ form[action^="/cart/add"] {
 
   .update-cart {
     display: none!important;
+  }
+
+  // No transform fallback
+  &.no-transforms {
+    border: 1px solid $colorBorder;
   }
 
 }
@@ -600,12 +596,14 @@ form[action^="/cart/add"] {
 .ajaxify-drawer {
   height: 0px;
   overflow: hidden;
+  border-bottom: 0px solid transparent;
   @include perspective (1000px);
   @include transform-style(preserve-3d);
   @include transition(all 600ms cubic-bezier(0.47, 0.5, 0, 0.95));
 
   &.is-visible {
     @include transition(all 550ms cubic-bezier(0.47, 0, 0, 0.95));
+    border-bottom: 1px solid $colorBorder;
   }
 
   .update-cart {
