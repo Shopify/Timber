@@ -457,7 +457,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   showModal = function (toggle) {
-    $body.addClass('ajaxify-modal-visible');
+    $body.addClass('ajaxify-modal--visible');
     // Build the cart if it isn't already there
     if ( !cartInit && toggle ) {
       Shopify.getCart(cartUpdateCallback);
@@ -492,7 +492,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   hideModal = function (e) {
-    $body.removeClass('ajaxify-modal-visible');
+    $body.removeClass('ajaxify-modal--visible');
     if (e) {
       e.preventDefault();
     }
