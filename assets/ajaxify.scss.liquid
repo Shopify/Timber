@@ -547,15 +547,25 @@ form[action^="/cart/add"] {
   z-index: 99999998;
   opacity: 0;
   cursor: pointer;
-  background-color: #d3d3d3;
   @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
+  @if (lightness( $colorBody ) > 40) {
+    background-color: #d3d3d3;
+  }
+  @else {
+    background-color: #333333;
+  }
 }
 
 @include at-query ($min, $postSmall) {
   .is-visible ~ #ajaxifyCart-overlay {
-    opacity: 0.8;
     visibility: visible;
     @include transition(all 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
+    @if (lightness( $colorBody ) > 40) {
+      opacity: 0.8;
+    }
+    @else {
+      opacity: 0.95;
+    }
 
     .lt-ie9 & {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
