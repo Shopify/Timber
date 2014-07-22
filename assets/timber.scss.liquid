@@ -234,10 +234,6 @@ $max: max-width;
   @include box-sizing();
 }
 
-html, body {
-  margin: 0 auto;
-}
-
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
   display: block;
 }
@@ -677,6 +673,11 @@ $class-type: unquote(".");
 /*============================================================================
   #Basic Styles
 ==============================================================================*/
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
 html {
   background-color: $colorFooterBg;
 }
