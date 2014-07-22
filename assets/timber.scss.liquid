@@ -89,21 +89,21 @@ $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
 
 // Text link colors
 $colorLink: $colorPrimary;
-$colorLinkHover: #333;
+$colorLinkHover: lighten($colorPrimary, 15%);
 
 // Text colors
-$colorBody: #fff;
+$colorBody: {{ settings.color_body_bg }};
 $colorTextBody: {{ settings.color_body_text }};
 $colorHeaders: #999;
 
 // Border colors
-$borderColor: #e5e5e5;
+$colorBorder: #e5e5e5;
 
 // Nav and dropdown link background
 $colorNav: #f2f2f2;
 $colorNavText: #333;
 
-// Footer
+// Site Footer
 $colorFooterBg: {{ settings.color_footer_bg }};
 $colorFooterText: {{ settings.color_footer_text }};
 
@@ -763,7 +763,7 @@ blockquote {
   font-style: italic;
   margin: 0 0 $gutter;
   padding: $gutter/2 $gutter;
-  border-left: 1px solid $borderColor;
+  border-left: 1px solid $colorBorder;
 
   p {
     margin-bottom: 0;
@@ -785,7 +785,7 @@ blockquote {
 
 hr {
   clear: both;
-  border-top: solid $borderColor;
+  border-top: solid $colorBorder;
   border-width: 1px 0 0;
   margin: $gutter 0;
 
@@ -853,7 +853,7 @@ hr {
 
 .collection-view {
   display: inline-block;
-  border: 1px solid $borderColor;
+  border: 1px solid $colorBorder;
   border-radius: $radius;
   padding: 11px;
   height: 37px; // same as form elements
@@ -1043,7 +1043,7 @@ th {
 th, td {
   text-align: left;
   padding: $gutter/2;
-  border: 1px solid $borderColor;
+  border: 1px solid $colorBorder;
 }
 
 
@@ -1154,14 +1154,14 @@ input[type="number"],
 input[type="tel"],
 textarea,
 select {
-  border: 1px solid $borderColor;
+  border: 1px solid $colorBorder;
   width: 100%;
   max-width: 100%;
   display: block;
   margin: 0 0 1em;
 
   &:focus {
-    border: 1px solid darken($borderColor, 10%);
+    border: 1px solid darken($colorBorder, 10%);
   }
 
   &[disabled],
@@ -1491,7 +1491,7 @@ label.error {
   line-height: 1.42;
   text-decoration: none;
   background-color: #ffffff;
-  border: 1px solid $borderColor;
+  border: 1px solid $colorBorder;
 }
 
 .pagination-custom > li:first-child > a,
@@ -1740,7 +1740,7 @@ label.error {
 ==============================================================================*/
 .site-footer {
   background-color: $colorFooterBg;
-  border-top: 1px solid $borderColor;
+  border-top: 1px solid $colorBorder;
   padding: $gutter 0;
   color: $colorFooterText;
 
@@ -1847,7 +1847,7 @@ label.error {
   margin-bottom: $gutter;
 
   & + & {
-    border-top: 1px solid $borderColor;
+    border-top: 1px solid $colorBorder;
     padding-top: $gutter;
   }
 }
@@ -1879,7 +1879,7 @@ label.error {
 }
 
 .note {
-  border-color: $borderColor;
+  border-color: $colorBorder;
 }
 
 .errors {
@@ -1909,11 +1909,7 @@ label.error {
 .cart-row {
   margin-top: $gutter;
   padding-top: $gutter;
-  border-top: 1px solid $borderColor;
-
-  #ajaxifyDrawer & {
-    border-top-color: #444;
-  }
+  border-top: 1px solid $colorBorder;
 
   &:first-child {
     margin-top: 0;

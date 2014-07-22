@@ -33,6 +33,15 @@ $preLarge: $large - $viewportIncrement;
 $gutter: 24px;
 
 /*============================================================================
+  Ajaxify Colours
+  Add your theme colors in here, or create new styles.
+    - If creating new styles, you may have to restyle text, headers and links
+==============================================================================*/
+$colorBody: {{ settings.color_body_bg }};
+$colorTextBody: {{ settings.color_body_text }};
+$colorBorder: #e5e5e5;
+
+/*============================================================================
   Dependency-free breakpoint mixin
 // http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
 ==============================================================================*/
@@ -57,69 +66,42 @@ $max: max-width;
 /*============================================================================
   Sass Helpers
 ==============================================================================*/
-@mixin border-box($type: border-box) {
-  -webkit-box-sizing: $type;
-  -moz-box-sizing: $type;
-  box-sizing: $type;
-}
-
-@mixin box-shadow($shadow) {
-  -webkit-box-shadow: $shadow;
-  -moz-box-shadow: $shadow;
-  box-shadow: $shadow;
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
 }
 
 @mixin transform-origin($origin) {
-  -webkit-transform-origin: $origin;
-  -moz-transform-origin: $origin;
-  -o-transform-origin: $origin;
-  -ms-transform-origin: $origin;
-  transform-origin: $origin;
+  @include prefix('transform-origin', #{$origin});
 }
 
 @mixin transform-style($style: preserve-3d) {
-  -moz-transform-style: $style;
-  -webkit-transform-style: $style;
-  -o-transform-style: $style;
-  transform-style: $style;
+  @include prefix('transform-style', #{$style});
 }
 
-@mixin rotateX($t) {
-  -webkit-transform: rotateX($t);
-  -moz-transform: rotateX($t);
-  -o-transform: rotateX($t);
-  -ms-transform: rotateX($t);
-  transform: rotateX($t);
-}
-
-@mixin perspective ($p) {
-  -webkit-perspective: $p;
-  -moz-perspective: $p;
-  -o-perspective: $p;
-  perspective: $p;
+@mixin perspective($perspective) {
+  @include prefix('perspective', #{$perspective});
 }
 
 @mixin backface($visibility: hidden) {
-  -moz-backface-visibility: $visibility;
-  -webkit-backface-visibility: $visibility;
-  -o-backface-visibility: $visibility;
-  backface-visibility: $visibility;
+  @include prefix('backface-visibility', #{$visibility});
+}
+
+@mixin box-sizing($box-sizing: border-box) {
+  -webkit-box-sizing: #{$box-sizing};
+  -moz-box-sizing: #{$box-sizing};
+  box-sizing: #{$box-sizing};
 }
 
 @mixin transform($transform) {
-  -webkit-transform: $transform;
-     -moz-transform: $transform;
-      -ms-transform: $transform;
-       -o-transform: $transform;
-          transform: $transform;
+  @include prefix('transform', #{$transform});
 }
 
-@mixin transition($transition) {
-  -webkit-transition: #{$transition};
-  -moz-transition: #{$transition};
-  -ms-transition: #{$transition};
-  -o-transition: #{$transition};
-  transition: #{$transition};
+@mixin transition($transition: 0.1s all) {
+  @include prefix('transition', #{$transition});
 }
 
 @mixin clearfix() {
@@ -128,12 +110,6 @@ $max: max-width;
     display: table;
     clear: both;
   }
-
-  *zoom: 1;
-}
-
-.ajaxify-clearfix {
-  @include clearfix;
 }
 
 @function color-control($color) {
@@ -146,29 +122,10 @@ $max: max-width;
 }
 
 /*============================================================================
-  Ajaxify Colours
-==============================================================================*/
-$ajaxifyGrey: #444;
-$ajaxifyGreyDark: #454545;
-
-/* Border colors from Timber */
-$borderColor: #e5e5e5;
-
-$drawerBackgroundColor: #000;
-$drawerBorderColor: #454545;
-
-$modalBackgroundColor: #fff;
-$modalBorderColor: $borderColor;
-
-.ajaxify-grey {
-  color: $ajaxifyGrey;
-}
-
-/*============================================================================
   General Styles
 ==============================================================================*/
 @include at-query ($max, $small) {
-  body.ajaxify-modal-visible {
+  body.ajaxify-modal--visible {
     overflow: hidden;
   }
 }
@@ -193,103 +150,9 @@ $modalBorderColor: $borderColor;
   }
 }
 
-/*============================================================================
-  Ajaxify Flip
-==============================================================================*/
 form[action="/cart/add"],
 form[action^="/cart/add"] {
   @include clearfix;
-}
-
-.flip {
-  display: block;
-  float: left;
-  position: relative;
-  @include perspective(600px);
-}
-
-.flip-front,
-.flip-back {
-  @include transform-style(preserve-3d);
-  @include transition(all 0.3s);
-  @include backface(hidden);
-  overflow: hidden;
-
-  position: relative;
-  z-index: 10;
-
-  &:focus {
-    outline: 0 none;
-  }
-}
-
-.flip-front {
-  @include transform-origin(100% 0);
-
-  .is-flipped & {
-    @include transform(rotateX(92deg) translateY(-50%));
-  }
-}
-
-.flip-back {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  text-align: center;
-  background-color: #464646;
-  @include border-box();
-  @include transform(rotateX(-90deg) translateY(50%));
-  @include transform-origin(0 100%);
-
-  .is-flipped & {
-    opacity: 1;
-    @include rotateX(0);
-  }
-}
-
-// Backup for no transforms
-.no-transforms {
-  .flip-back {
-    display: none;
-  }
-
-  &.is-flipped {
-    .flip-back {
-      display: block;
-    }
-  }
-}
-
-.flip-extra {
-  display: inline;
-  position: relative;
-  padding: 2px 10px;
-  opacity: 0;
-  visibility: hidden;
-  overflow: visible;
-  white-space: nowrap;
-  z-index: 5;
-  top: 4px;
-  line-height: 34px;
-  @include transition(opacity 450ms cubic-bezier(0.57,.06,.05,.95));
-
-  .is-flipped + & {
-    opacity: 1;
-    visibility: visible;
-    @include transition(opacity 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95) 750ms);
-  }
-}
-
-.flip-cart {
-  display: inline-block;
-  padding: 0 8px;
-}
-
-.flip-checkout {
-  margin: 0;
 }
 
 
@@ -298,11 +161,13 @@ form[action^="/cart/add"] {
 ==============================================================================*/
 .ajaxifyCart--content {
   position: relative;
+  background-color: $colorBody;
   @include perspective(1000px);
   @include transform-style(preserve-3d);
   @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
   padding-top: $gutter;
   padding-bottom: $gutter;
+  overflow: hidden;
 
   .is-visible & {
     @include transition(all 550ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
@@ -337,7 +202,7 @@ form[action^="/cart/add"] {
 .cart-row {
   @include transform-origin(top);
   @include transition(all 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
-  @include rotateX(0deg);
+  @include transform('rotateX(0deg)');
   max-height: 500px;
   visibility: visible;
 
@@ -347,7 +212,7 @@ form[action^="/cart/add"] {
     padding: 0;
     margin: -$gutter 0 0;
     visibility: hidden;
-    @include rotateX(-92deg);
+    @include transform('rotateX(-92deg)');
     @include backface(hidden);
     @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
     max-height: 0;
@@ -411,22 +276,22 @@ form[action^="/cart/add"] {
   @include transition(all 0.2s ease-out);
 
   &:hover {
-    background-color: $borderColor;
+    background-color: $colorBorder;
   }
 
   &:active {
-    background-color: darken($borderColor, 10%);
+    background-color: darken($colorBorder, 10%);
   }
 }
 
 .js--add {
   right: 0;
-  border-left: 1px solid $borderColor;
+  border-left: 1px solid $colorBorder;
 }
 
 .js--minus {
   left: 0;
-  border-right: 1px solid $borderColor;
+  border-right: 1px solid $colorBorder;
 }
 
 /*============================================================================
@@ -448,6 +313,12 @@ form[action^="/cart/add"] {
   .supports-no-touch & {
     border: 1px solid rgba(0,0,0,0);
   }
+
+  .cart-row:hover &,
+  .ajaxifyCart--product:hover &,
+  .supports-touch & {
+    border-color: $colorBorder;
+  }
 }
 
 .ajaxifyCart--qty-adjuster {
@@ -459,14 +330,6 @@ form[action^="/cart/add"] {
   .supports-touch & {
     opacity: 1;
     @include transition(background-color 0.2s ease-out);
-  }
-
-  &:hover {
-    background-color: $ajaxifyGreyDark;
-  }
-
-  &:active {
-    background-color: darken($ajaxifyGreyDark, 10%);
   }
 
   // Turn off animation on initial hover
@@ -485,9 +348,104 @@ form[action^="/cart/add"] {
 
 
 /*============================================================================
+  Ajaxify Flip
+==============================================================================*/
+.flip {
+  display: block;
+  float: left;
+  position: relative;
+  @include perspective(600px);
+}
+
+.flip-front,
+.flip-back {
+  @include transform-style(preserve-3d);
+  @include transition(all 0.3s);
+  @include backface(hidden);
+  overflow: hidden;
+
+  position: relative;
+  z-index: 10;
+
+  &:focus {
+    outline: 0 none;
+  }
+}
+
+.flip-front {
+  @include transform-origin(100% 0);
+
+  .is-flipped & {
+    @include transform('rotateX(92deg) translateY(-50%)');
+  }
+}
+
+.flip-back {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  text-align: center;
+  background-color: #464646;
+  @include box-sizing();
+  @include transform('rotateX(-90deg) translateY(50%)');
+  @include transform-origin(0 100%);
+
+  .is-flipped & {
+    opacity: 1;
+    @include transform('rotateX(0deg)');
+  }
+}
+
+// Backup for no transforms
+.flip.no-transforms {
+  .flip-back {
+    display: none;
+  }
+
+  &.is-flipped {
+    .flip-back {
+      display: block;
+    }
+  }
+}
+
+.flip-extra {
+  display: inline;
+  position: relative;
+  padding: 2px 10px;
+  opacity: 0;
+  visibility: hidden;
+  overflow: visible;
+  white-space: nowrap;
+  z-index: 5;
+  top: 4px;
+  line-height: 34px;
+  @include transition(opacity 450ms cubic-bezier(0.57,.06,.05,.95));
+
+  .is-flipped + & {
+    opacity: 1;
+    visibility: visible;
+    @include transition(opacity 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95) 750ms);
+  }
+}
+
+.flip-cart {
+  display: inline-block;
+  padding: 0 8px;
+}
+
+.flip-checkout {
+  margin: 0;
+}
+
+
+/*============================================================================
   Ajaxify Modal
 ==============================================================================*/
-#ajaxifyModal {
+.ajaxify-modal {
   position: absolute;
   top: 170px;
   left: -200%;
@@ -513,8 +471,8 @@ form[action^="/cart/add"] {
 
   // Small screens
   @include at-query ($max, $small) {
+    position: fixed;
     top: 0;
-    left: 0;
     bottom: 0;
     margin: 0!important;
     max-height: none;
@@ -536,7 +494,6 @@ form[action^="/cart/add"] {
       padding-bottom: 60px;
       min-height: 100%;
     }
-
   }
 
   &.is-visible {
@@ -546,25 +503,13 @@ form[action^="/cart/add"] {
 
     // Large screens
     @include at-query ($min, $large) {
-      @include box-shadow(0px 10px 80px rgba(0,0,0,.25));
+      box-shadow: 0px 10px 80px rgba(0,0,0,.25);
     }
 
     // Small screens
     @include at-query ($max, $small) {
       left: 0;
     }
-  }
-
-  &.no-transforms {
-    width: 700px;
-    max-height: 500px;
-    margin: -250px 0 0 -350px;
-    border: 1px solid $ajaxifyGrey;
-  }
-
-  // Typography
-  .ajaxifyCart--remove:hover {
-    color: #555;
   }
 
   .ajaxifyCart--row {
@@ -586,6 +531,11 @@ form[action^="/cart/add"] {
     display: none!important;
   }
 
+  // No transform fallback
+  &.no-transforms {
+    border: 1px solid $colorBorder;
+  }
+
 }
 
 #ajaxifyCart-overlay {
@@ -598,15 +548,25 @@ form[action^="/cart/add"] {
   z-index: 99999998;
   opacity: 0;
   cursor: pointer;
-  background-color: #d3d3d3;
   @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
+  @if (lightness( $colorBody ) > 40) {
+    background-color: #d3d3d3;
+  }
+  @else {
+    background-color: #333333;
+  }
 }
 
 @include at-query ($min, $postSmall) {
-  #ajaxifyModal.is-visible ~ #ajaxifyCart-overlay {
-    opacity: 0.8;
+  .is-visible ~ #ajaxifyCart-overlay {
     visibility: visible;
     @include transition(all 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
+    @if (lightness( $colorBody ) > 40) {
+      opacity: 0.8;
+    }
+    @else {
+      opacity: 0.95;
+    }
 
     .lt-ie9 & {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
@@ -614,66 +574,25 @@ form[action^="/cart/add"] {
   }
 }
 
-// Modal colors and general styles
-#ajaxifyModal .ajaxifyCart--content {
-  background-color: $modalBackgroundColor;
-  color: color-control($modalBackgroundColor);
+// Modal content transition
+.ajaxify-modal .ajaxifyCart--content {
   @include transform(scale(0.9));
   opacity: 0;
-
-  // Typography styles
-  h1, h2, h3, h4 {
-    color: color-control($modalBackgroundColor);
-  }
-
-  a {
-    color: color-control($modalBackgroundColor);
-  }
-
-  input[type="text"] {
-    color: color-control($modalBackgroundColor);
-  }
 }
 
-#ajaxifyModal.is-visible .ajaxifyCart--content {
+.ajaxify-modal.is-visible .ajaxifyCart--content {
   @include transform(scale(1));
   opacity: 1;
 }
 
 // Quantity selector colors in the modal
-#ajaxifyModal {
-  .cart-row:hover input[type="text"],
-  .ajaxifyCart--product:hover input[type="text"],
-  .supports-touch input[type="text"] {
-    border-color: $modalBorderColor;
-  }
-
-  .js--add {
-    border-left: 1px solid $modalBorderColor;
-  }
-
-  .js--minus {
-    border-right: 1px solid $modalBorderColor;
-  }
-
-  .ajaxifyCart--products {
-    border-bottom: 1px solid $modalBorderColor;
-  }
-
-  .ajaxifyCart--qty-adjuster {
-    &:hover {
-      background-color: $modalBorderColor;
-    }
-
-    &:active {
-      background-color: darken($modalBorderColor, 10%);
-    }
-  }
+// TO DO
+.ajaxify-modal {
 
   // Small screen quantity appearance
   @include at-query ($max, $medium) {
     input[type="text"] {
-      border-color: $modalBorderColor;
+      border-color: $colorBorder;
     }
 
     .ajaxifyCart--qty-adjuster {
@@ -685,87 +604,36 @@ form[action^="/cart/add"] {
 /*============================================================================
   Ajaxify Drawer
 ==============================================================================*/
-#ajaxifyDrawer {
-  background-color: $drawerBackgroundColor;
+.ajaxify-drawer {
   height: 0px;
   overflow: hidden;
+  border-bottom: 0px solid transparent;
   @include perspective (1000px);
   @include transform-style(preserve-3d);
   @include transition(all 600ms cubic-bezier(0.47, 0.5, 0, 0.95));
 
   &.is-visible {
     @include transition(all 550ms cubic-bezier(0.47, 0, 0, 0.95));
+    border-bottom: 1px solid $colorBorder;
   }
 
   .update-cart {
     display: none!important;
   }
-}
 
-// Drawer colors and general styles
-#ajaxifyDrawer .ajaxifyCart--content {
-  margin: 0 auto;
-  opacity: 0;
-  overflow: hidden;
-  padding-top: $gutter;
-  padding-bottom: $gutter;
-  background-color: $drawerBackgroundColor;
-  color: color-control($drawerBackgroundColor);
-
-  // Typography styles
-  h1, h2, h3, h4 {
-    color: color-control($drawerBackgroundColor);
-  }
-
-  a {
-    color: color-control($drawerBackgroundColor);
-  }
-
-  input[type="text"] {
-    color: color-control($drawerBackgroundColor);
-  }
-
-  @include transform-origin(top);
-  @include rotateX(-90deg);
-}
-
-#ajaxifyDrawer.is-visible .ajaxifyCart--content {
-  opacity: 1;
-  @include rotateX(0deg);
-}
-
-// Quantity selector colors in the drawer
-#ajaxifyDrawer {
-  .cart-row:hover input[type="text"],
-  .ajaxifyCart--product:hover input[type="text"],
-  .supports-touch input[type="text"] {
-    border-color: $drawerBorderColor;
-  }
-
-  .js-qty {
+  .ajaxifyCart--content {
     margin: 0 auto;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: $gutter;
+    padding-bottom: $gutter;
+    @include transform-origin(top);
+    @include transform('rotateX(-90deg)');
   }
 
-  .js--add {
-    border-left: 1px solid $drawerBorderColor;
-  }
-
-  .js--minus {
-    border-right: 1px solid $drawerBorderColor;
-  }
-
-  .ajaxifyCart--products {
-    border-bottom: 1px solid $drawerBorderColor;
-  }
-
-  .ajaxifyCart--qty-adjuster {
-    &:hover {
-      background-color: $drawerBorderColor;
-    }
-
-    &:active {
-      background-color: darken($drawerBorderColor, 10%);
-    }
+  &.is-visible .ajaxifyCart--content {
+    opacity: 1;
+    @include transform('rotateX(0deg)');
   }
 }
 
@@ -790,7 +658,7 @@ form[action^="/cart/add"] {
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid $drawerBackgroundColor;
+    border-top: 6px solid $colorBody;
     margin-left: -6px;
     opacity: 0;
     @include transform(translate(0,-12px));

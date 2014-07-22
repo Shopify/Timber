@@ -7,7 +7,6 @@
 {% endcomment %}
   <script id="cartTemplate" type="text/template">
   {% raw %}
-    <button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>
     <form action="/cart" method="post" novalidate>
       <div class="ajaxifyCart--products">
         {{#items}}
@@ -58,7 +57,7 @@
   </script>
   <script id="drawerTemplate" type="text/template">
   {% raw %}
-    <div id="ajaxifyDrawer">
+    <div id="ajaxifyDrawer" class="ajaxify-drawer">
       <div id="ajaxifyCart" class="ajaxifyCart--content {{wrapperClass}}"></div>
     </div>
     <div class="ajaxifyDrawer-caret"><span></span></div>
@@ -66,7 +65,7 @@
   </script>
   <script id="modalTemplate" type="text/template">
   {% raw %}
-    <div id="ajaxifyModal">
+    <div id="ajaxifyModal" class="ajaxify-modal">
       <div id="ajaxifyCart" class="ajaxifyCart--content"></div>
     </div>
   {% endraw %}
