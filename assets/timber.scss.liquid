@@ -19,7 +19,7 @@
   #Breakpoint and Grid Variables
   #General Variables
   #Sass Mixins
-  #Reset
+  #Normalize
   #Grid Setup
   #Basic Styles
   #Helper Classes
@@ -228,12 +228,33 @@ $max: max-width;
 }
 
 /*============================================================================
-  #Reset
+  #Normalize
 ==============================================================================*/
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:none;}table{border-collapse:collapse;border-spacing:0;}code,pre{background-color:#faf7f5;font-family:Consolas,monospace;border:0 none;padding:0 2px;color:#51ab62;}pre{overflow:auto;padding:0.5em;margin:0 0 1em;}
-
 *, input, :before, :after {
   @include box-sizing();
+}
+
+html, body {
+  margin: 0 auto;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+  display: block;
+}
+
+audio, canvas, progress, video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
 }
 
 /*============================================================================
@@ -722,7 +743,7 @@ h1, h2, h3, h4, h5, h6,
   display: block;
   font-family: $headerFontStack;
   font-weight: $headerFontWeight;
-  margin-bottom: 0.5em;
+  margin: 0 0 0.5em;
   line-height: 1.4;
 
   a {
@@ -733,10 +754,7 @@ h1, h2, h3, h4, h5, h6,
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
 .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a { font-weight: inherit; }
 
-/*============================================================================
-  Pixel to EM conversion tool
-    - http://pxtoem.com/
-==============================================================================*/
+/*================ Pixel to EM conversion tool - http://pxtoem.com/ ================*/
 h1, .h1 { font-size: 3em; }       // 42px
 h2, .h2 { font-size: 2em; }       // 28px
 h3, .h3 { font-size: 1.571em; }   // 21px
@@ -748,13 +766,15 @@ p { margin: 0 0 $gutter/2 0; }
 p img { margin: 0; }
 
 em { font-style: italic; }
-strong { font-weight: bold; }
+b, strong { font-weight: bold; }
 small { font-size: 80%; }
-sup {
+sup, sub {
   position: relative;
-  top: -0.5em;
   font-size: 60%;
+  vertical-align: baseline;
 }
+sup { top: -0.5em; }
+sub { bottom: -0.5em; }
 
 /*================ Blockquotes ================*/
 blockquote {
@@ -783,11 +803,29 @@ blockquote {
   }
 }
 
+/*================ Code ================*/
+code, pre {
+  background-color: #faf7f5;
+  font-family: Consolas,monospace;
+  font-size: 1em;
+  border: 0 none;
+  padding: 0 2px;
+  color: #51ab62;
+}
+
+pre {
+  overflow: auto;
+  padding: 0.5em;
+  margin: 0 0 1em;
+}
+
+/*================ Horizontal Rules ================*/
 hr {
   clear: both;
   border-top: solid $colorBorder;
   border-width: 1px 0 0;
   margin: $gutter 0;
+  height: 0;
 
   &.hr--small {
     margin: $gutter/2 0;
@@ -928,11 +966,21 @@ hr {
 a {
   color: $colorLink;
   text-decoration: underline;
+  background: transparent;
 }
 
 a:hover,
 a:focus {
   color: $colorLinkHover;
+}
+
+button {
+  overflow: visible;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
 }
 
 .btn {
@@ -1013,7 +1061,7 @@ input.btn-secondary {
 /*============================================================================
   #Lists
 ==============================================================================*/
-ul, ol { margin-bottom: 1em; }
+ul, ol { margin: 0 0 1em; padding: 0; }
 ul { list-style: none outside; }
 ol { list-style: decimal; }
 ol, ul.square, ul.disc { margin-left: 20px; }
@@ -1023,14 +1071,16 @@ ol.alpha { list-style: lower-alpha outside; }
 ul ul, ul ol,
 ol ol, ol ul { margin: 4px 0 5px 20px; }
 li { margin-bottom: 0.25em; }
-.inline-list li {
-  display: inline-block;
-  margin-bottom: 0;
-}
+.inline-list li { display: inline-block; margin-bottom: 0; }
 
 /*============================================================================
   #Tables
 ==============================================================================*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 table.full {
   width: 100%;
   margin-bottom: 1em;
@@ -1077,6 +1127,14 @@ th, td {
 /*============================================================================
   #Images and Iframes
 ==============================================================================*/
+img {
+  border: 0 none;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
 img.auto,
 .grid-item img,
 .grid-item iframe {
@@ -1127,7 +1185,17 @@ textarea {
 }
 
 fieldset {
+  border: 1px solid $colorBorder;
   padding: $gutter/2 0;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+}
+
+optgroup {
+  font-weight: bold;
 }
 
 input {
@@ -1180,6 +1248,7 @@ input[type="checkbox"],
 input[type="radio"] {
   display: inline;
   margin: 0;
+  padding: 0;
 }
 
 select {
@@ -1190,7 +1259,7 @@ select {
     image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNy43cHgiIGhlaWdodD0iNC4zcHgiIHZpZXdCb3g9IjAgMCA3LjcgNC4zIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA3LjcgNC4zIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiM5OTk5OTkiIGQ9Ik03LjEsMC4xQzYuNywwLjUsMy45LDMuMiwzLjksMy4yUzEsMC41LDAuNiwwLjFTMCwwLjcsMCwwLjdsMy45LDMuNmwzLjgtMy42QzcuNywwLjcsNy41LTAuMyw3LjEsMC4xeiIvPg0KPC9zdmc+DQo="); // svg base64 encoded arrow
     repeat: no-repeat;
     position: right 10px center;
-    color: #fff;
+    color: transparent;
   }
   padding-right: 28px;
   text-indent: 0.01px;
