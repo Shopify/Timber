@@ -240,7 +240,7 @@ var ajaxifyShopify = (function(module, $) {
   var init;
 
   // Private general variables
-  var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body;
+  var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body, $html;
 
   // Private plugin variables
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
@@ -297,9 +297,10 @@ var ajaxifyShopify = (function(module, $) {
     // General Selectors
     $w    = $(window);
     $body = $('body');
+    $html = $('html');
 
     // Check if we can use .load
-    $nojQueryLoad = $('html').hasClass('lt-ie9');
+    $nojQueryLoad = $html.hasClass('lt-ie9');
     if ($nojQueryLoad) {
       settings.useCartTemplate = false;
     }
@@ -456,7 +457,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   showModal = function (toggle) {
-    $body.addClass('ajaxify-modal-visible');
+    $body.addClass('ajaxify-modal--visible');
     // Build the cart if it isn't already there
     if ( !cartInit && toggle ) {
       Shopify.getCart(cartUpdateCallback);
@@ -491,7 +492,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   hideModal = function (e) {
-    $body.removeClass('ajaxify-modal-visible');
+    $body.removeClass('ajaxify-modal--visible');
     if (e) {
       e.preventDefault();
     }
@@ -1081,7 +1082,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   scrollTop = function () {
-    if ($body.scrollTop() > 0) {
+    if ($body.scrollTop() > 0 || $html.scrollTop() > 0) {
       $('html, body').animate({
         scrollTop: 0
       }, 250, 'swing');

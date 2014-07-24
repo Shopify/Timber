@@ -1,5 +1,5 @@
 /*============================================================================
-  Shopify Timber v1.3.0
+  Shopify Timber v1.3.1
   Copyright 2014 Shopify Inc.
   Author Carson Shold @cshold
   Built with Sass - http://sass-lang.com/
@@ -46,12 +46,6 @@
   #Demo Styles - for empty store state
 ==============================================================================*/
 
-*, input, :before, :after {
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  box-sizing:border-box;
-}
-
 /*============================================================================
   #Breakpoint and Grid Variables
 ==============================================================================*/
@@ -95,21 +89,21 @@ $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
 
 // Text link colors
 $colorLink: $colorPrimary;
-$colorLinkHover: #333;
+$colorLinkHover: lighten($colorPrimary, 15%);
 
 // Text colors
-$colorBody: #fff;
+$colorBody: {{ settings.color_body_bg }};
 $colorTextBody: {{ settings.color_body_text }};
 $colorHeaders: #999;
 
 // Border colors
-$borderColor: #e5e5e5;
+$colorBorder: #e5e5e5;
 
 // Nav and dropdown link background
 $colorNav: #f2f2f2;
 $colorNavText: #333;
 
-// Footer
+// Site Footer
 $colorFooterBg: {{ settings.color_footer_bg }};
 $colorFooterText: {{ settings.color_footer_text }};
 
@@ -163,37 +157,43 @@ $socialIconFontStack: 'icons';
   *zoom: 1;
 }
 @mixin clearfix() {
-  @extend .clearfix;
+  &:after {
+    content: "";
+    display: table;
+    clear: both; }
+  *zoom: 1;
 }
 
-@mixin box-shadow($shadow) {
-  -webkit-box-shadow: #{$shadow};
-  -moz-box-shadow:    #{$shadow};
-  box-shadow:         #{$shadow};
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
 }
 
-@mixin transition($transition:0.1s all) {
-  -webkit-transition: #{$transition};
-  -moz-transition: #{$transition};
-  -o-transition: #{$transition};
-  transition: #{$transition};
+@mixin transition($transition: 0.1s all) {
+  @include prefix('transition', #{$transition});
 }
 
 @mixin gradient($from, $to, $fallback) {
   background: $fallback;
   background: -moz-linear-gradient(top, $from 0%, $to 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
-  background: -webkit-linear-gradient(top, $from 0%,$to 100%);
-  background: -o-linear-gradient(top, $from 0%,$to 100%);
-  background: -ms-linear-gradient(top, $from 0%,$to 100%);
-  background: linear-gradient(top bottom, $from 0%,$to 100%);
+  background: -webkit-linear-gradient(top, $from 0%, $to 100%);
+  background: -o-linear-gradient(top, $from 0%, $to 100%);
+  background: -ms-linear-gradient(top, $from 0%, $to 100%);
+  background: linear-gradient(top bottom, $from 0%, $to 100%);
 }
 
 @mixin backface($visibility: hidden) {
-  -moz-backface-visibility: $visibility;
-  -webkit-backface-visibility: $visibility;
-  -o-backface-visibility: $visibility;
-  backface-visibility: $visibility;
+  @include prefix('backface-visibility', #{$visibility});
+}
+
+@mixin box-sizing($box-sizing: border-box) {
+  -webkit-box-sizing: #{$box-sizing};
+  -moz-box-sizing: #{$box-sizing};
+  box-sizing: #{$box-sizing};
 }
 
 @function color-control($color) {
@@ -231,6 +231,10 @@ $max: max-width;
   #Reset
 ==============================================================================*/
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:none;}table{border-collapse:collapse;border-spacing:0;}code,pre{background-color:#faf7f5;font-family:Consolas,monospace;border:0 none;padding:0 2px;color:#51ab62;}pre{overflow:auto;padding:0.5em;margin:0 0 1em;}
+
+*, input, :before, :after {
+  @include box-sizing();
+}
 
 /*============================================================================
   #Grid Setup
@@ -315,9 +319,7 @@ $class-type: unquote(".");
   @if $mobile-first == true {
     width:100%;
   }
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  box-sizing:border-box;
+  @include box-sizing();
 }
 
 /*============================================================================
@@ -761,7 +763,7 @@ blockquote {
   font-style: italic;
   margin: 0 0 $gutter;
   padding: $gutter/2 $gutter;
-  border-left: 1px solid $borderColor;
+  border-left: 1px solid $colorBorder;
 
   p {
     margin-bottom: 0;
@@ -783,7 +785,7 @@ blockquote {
 
 hr {
   clear: both;
-  border-top: solid $borderColor;
+  border-top: solid $colorBorder;
   border-width: 1px 0 0;
   margin: $gutter 0;
 
@@ -851,7 +853,7 @@ hr {
 
 .collection-view {
   display: inline-block;
-  border: 1px solid $borderColor;
+  border: 1px solid $colorBorder;
   border-radius: $radius;
   padding: 11px;
   height: 37px; // same as form elements
@@ -945,12 +947,9 @@ a:focus {
   white-space: nowrap;
   cursor: pointer;
   border: 1px solid transparent;
-  -webkit-user-select: none;
-  -moz-user-select:    none;
-  -ms-user-select:     none;
-  -o-user-select:      none;
-  user-select:         none;
+  @include prefix('user-select', 'none');
   -webkit-appearance: none;
+  -moz-appearance: none;
   border-radius: $radius;
 
   &.btn--small {
@@ -985,7 +984,8 @@ a:focus {
   }
 }
 
-.btn-secondary {
+.btn-secondary,
+input.btn-secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
 
@@ -1043,7 +1043,7 @@ th {
 th, td {
   text-align: left;
   padding: $gutter/2;
-  border: 1px solid $borderColor;
+  border: 1px solid $colorBorder;
 }
 
 
@@ -1092,7 +1092,6 @@ form {
   margin-bottom: $gutter;
 }
 
-.btn,
 button,
 input[type="text"],
 input[type="search"],
@@ -1155,14 +1154,14 @@ input[type="number"],
 input[type="tel"],
 textarea,
 select {
-  border: 1px solid $borderColor;
+  border: 1px solid $colorBorder;
   width: 100%;
   max-width: 100%;
   display: block;
   margin: 0 0 1em;
 
   &:focus {
-    border: 1px solid darken($borderColor, 10%);
+    border: 1px solid darken($colorBorder, 10%);
   }
 
   &[disabled],
@@ -1196,6 +1195,7 @@ select {
   padding-right: 28px;
   text-indent: 0.01px;
   text-overflow: '';
+  cursor: pointer;
 
   /*================ Hide the svg arrow in IE9 and below ================*/
   .ie9 &,
@@ -1422,11 +1422,7 @@ label.error {
 .icon-youtube:before { content: "\79"; }
 
 .payment-icons {
-  -webkit-user-select: none;
-  -moz-user-select:    none;
-  -ms-user-select:     none;
-  -o-user-select:      none;
-  user-select:         none;
+  @include prefix('user-select', 'none');
   cursor: default;
 
   li {
@@ -1495,7 +1491,7 @@ label.error {
   line-height: 1.42;
   text-decoration: none;
   background-color: #ffffff;
-  border: 1px solid $borderColor;
+  border: 1px solid $colorBorder;
 }
 
 .pagination-custom > li:first-child > a,
@@ -1744,7 +1740,7 @@ label.error {
 ==============================================================================*/
 .site-footer {
   background-color: $colorFooterBg;
-  border-top: 1px solid $borderColor;
+  border-top: 1px solid $colorBorder;
   padding: $gutter 0;
   color: $colorFooterText;
 
@@ -1851,7 +1847,7 @@ label.error {
   margin-bottom: $gutter;
 
   & + & {
-    border-top: 1px solid $borderColor;
+    border-top: 1px solid $colorBorder;
     padding-top: $gutter;
   }
 }
@@ -1883,7 +1879,7 @@ label.error {
 }
 
 .note {
-  border-color: $borderColor;
+  border-color: $colorBorder;
 }
 
 .errors {
@@ -1913,11 +1909,7 @@ label.error {
 .cart-row {
   margin-top: $gutter;
   padding-top: $gutter;
-  border-top: 1px solid $borderColor;
-
-  #ajaxifyDrawer & {
-    border-top-color: #444;
-  }
+  border-top: 1px solid $colorBorder;
 
   &:first-child {
     margin-top: 0;

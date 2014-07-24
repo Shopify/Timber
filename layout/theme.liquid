@@ -20,7 +20,7 @@
   {% endif %}
 
   <!-- Product meta ================================================== -->
-  {% include 'fb-open-graph-tags' %}
+  {% include 'open-graph-tags' %}
   {% include 'twitter-card' %}
 
   <!-- Helpers ================================================== -->
@@ -38,18 +38,7 @@
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
 
-  {% comment %}
-    Setup respond.js for media query support in oldIE
-    - By Gavin Ballard: http://gavinballard.com/using-respond.js-with-shopify-redux/
-  {% endcomment %}
-  {% assign respond_js_secret_key = (shop.domain | md5) %}
-  <!--[if lt IE 9]>
-  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
-  <script src="{{ 'respond.min.js' | asset_url }}"></script>
-  <link href="{{ 'respond-proxy.html' | asset_url | split: '?' | first }}" id="respond-proxy" rel="respond-proxy" />
-  <link href="//{{shop.domain}}/search?q={{ respond_js_secret_key }}" id="respond-redirect" rel="respond-redirect" />
-  <script src="//{{shop.domain}}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
-  <![endif]-->
+  {% include 'oldIE-js' %}
 
   {% comment %}
     If you store has customers disabled, you can remove the following JS file

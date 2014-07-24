@@ -12,7 +12,7 @@
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
 
-    <h1>Shopping Cart</h1>
+    <h1 class="h2">Shopping Cart</h1 class="h2">
 
     {% comment %}
       Loop through products in the cart
@@ -49,12 +49,10 @@
                 <a href="{{ item.product.url }}">
                   {{ item.product.title }}
                 </a>
-                {% if item.product.variants.size != 0 %}
-                  {% unless item.variant.title contains 'Default' %}
-                    <br>
-                     <small>{{ item.variant.title }}</small>
-                  {% endunless %}
-                {% endif %}
+                {% unless item.variant.title contains 'Default' %}
+                  <br>
+                   <small>{{ item.variant.title }}</small>
+                {% endunless %}
               </span>
 
               {% comment %}
