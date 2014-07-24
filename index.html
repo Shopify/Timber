@@ -822,6 +822,20 @@ Output:
   user-select: none;
 }
 
+Prefix Input:
+.foo {
+  @include transition(opacity 50ms ease-in-out);
+}
+
+Output:
+.foo {
+  -webkit-transition: opacity 50ms ease-in-out;
+  -moz-transition: opacity 50ms ease-in-out;
+  -ms-transition: opacity 50ms ease-in-out;
+  -o-transition: opacity 50ms ease-in-out;
+  transition: opacity 50ms ease-in-out;
+}
+
 Gradient Input:
 .foo {
   @include gradient(#900, #950, #900) // from red to orange, red fallback
