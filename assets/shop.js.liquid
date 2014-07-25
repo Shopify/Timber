@@ -1,18 +1,20 @@
 window.timber = window.timber || {};
 
-timber.cache = {
-  // General
-  $html: $('html'),
-  $body: $('body'),
+$(function() {
+  timber.cache = {
+    // General
+    $html: $('html'),
+    $body: $('body'),
 
-  // Navigation
-  $navigation: $('#accessibleNav'),
+    // Navigation
+    $navigation: $('#accessibleNav'),
 
-  // Product Page
-  $mainImage: $('#productPhotoImg'),
-  $thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
-  $newImage: null
-}
+    // Product Page
+    $mainImage: $('#productPhotoImg'),
+    $thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
+    $newImage: null
+  }
+});
 
 timber.init = function () {
 
