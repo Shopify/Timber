@@ -15,8 +15,7 @@ timber.cache = {
 }
 
 timber.init = function () {
-
-  // Run on load
+  timber.cache();
   timber.accessibleNav();
   timber.productImageSwitch();
 }
@@ -115,6 +114,4 @@ timber.productImageSwitch = function () {
 }
 
 // Initialize Timber's JS on docready
-$(function() {
-  window.timber.init();
-});
+$(timber.init)
