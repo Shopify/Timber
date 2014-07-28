@@ -1,22 +1,23 @@
 window.timber = window.timber || {};
 
-timber.cache = {
-  // General
-  $html: $('html'),
-  $body: $('body'),
+timber.cacheSelectors = function () {
+  timber.cache = {
+    // General
+    $html: $('html'),
+    $body: $('body'),
 
-  // Navigation
-  $navigation: $('#accessibleNav'),
+    // Navigation
+    $navigation: $('#accessibleNav'),
 
-  // Product Page
-  $mainImage: $('#productPhotoImg'),
-  $thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
-  $newImage: null
+    // Product Page
+    $mainImage: $('#productPhotoImg'),
+    $thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
+    newImage: null
+  }
 }
 
 timber.init = function () {
-
-  // Run on load
+  timber.cacheSelectors();
   timber.accessibleNav();
   timber.productImageSwitch();
 }
@@ -109,12 +110,10 @@ timber.productImageSwitch = function () {
   // Note: this does not change the variant selected, just the image
   timber.cache.$thumbImages.on('click', function(e) {
     e.preventDefault();
-    timber.cache.$newImage = $(this).attr('href');
-    timber.cache.$mainImage.attr({ src: timber.cache.$newImage });
+    timber.cache.newImage = $(this).attr('href');
+    timber.cache.$mainImage.attr({ src: timber.cache.newImage });
   });
 }
 
 // Initialize Timber's JS on docready
-$(function() {
-  window.timber.init();
-});
+$(timber.init)
