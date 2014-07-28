@@ -73,10 +73,10 @@
     {% if product.price_varies %}From{% endif %}
     {{ product.price | money }}
     {% if sold_out %}
-    <br><strong>Sold Out</strong>
+      <br><strong>Sold Out</strong>
     {% endif %}
     {% if on_sale %}
-    <br><strong>On Sale</strong> from {{ product.compare_at_price | money }}
+      <br><strong>On Sale</strong> from {{ product.compare_at_price | money }}
     {% endif %}
   </p>
 

@@ -60,20 +60,18 @@
         </div>
       </div>
       <div class="grid-item large--one-fifth large--display-table-cell medium--two-thirds">
-        <div class="product-item--price">
-          <p>
-            {% if product.price_varies %}From{% endif %}
-            {{ product.price | money }}
-          </p>
-
-          {% if on_sale %}
-            <p><strong>On Sale</strong> from {{ product.compare_at_price | money }}</p>
-          {% endif %}
-
-          {% if sold_out %}
-            <p><strong>Sold Out</strong></p>
-          {% endif %}
-        </div>
+        {% comment %}
+          You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+          if your variants have different prices.
+        {% endcomment %}
+        {% if product.price_varies %}From{% endif %}
+        {{ product.price | money }}
+        {% if sold_out %}
+          <br><strong>Sold Out</strong>
+        {% endif %}
+        {% if on_sale %}
+          <br><strong>On Sale</strong> from {{ product.compare_at_price | money }}
+        {% endif %}
       </div>
     </div>
   </a>
