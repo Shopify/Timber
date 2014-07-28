@@ -7,6 +7,10 @@
 
 {% endcomment %}
 
+{% unless current_collection %}
+  {% assign current_collection = collection %}
+{% endunless %}
+
 {% comment %}
   Check if the product is on sale and set a variable to be used below.
 {% endcomment %}
@@ -40,29 +44,37 @@
       - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
 
   {% endcomment %}
-  <a href="{{ product.url | within: collection }}" class="product-list-image">
-    <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}">
+  <a href="{{ product.url | within: current_collection }}" class="product-grid-item product-list-item">
+    <div class="grid large--display-table">
+      <div class="grid-item large--one-fifth large--display-table-cell medium--one-third">
+        <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="product-grid-image">
+      </div>
+      <div class="grid-item large--three-fifths large--display-table-cell medium--two-thirds">
+        <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+        <div class="rte">
+          {% if product.excerpt.size > 0 %}
+            {{ product.excerpt }}
+          {% else %}
+            <p>{{ product.content | strip_html | truncatewords: 30 }}</p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid-item large--one-fifth large--display-table-cell medium--two-thirds">
+        <div class="product-item--price">
+          <p>
+            {% if product.price_varies %}From{% endif %}
+            {{ product.price | money }}
+          </p>
+
+          {% if on_sale %}
+            <p><strong>On Sale</strong> from {{ product.compare_at_price | money }}</p>
+          {% endif %}
+
+          {% if sold_out %}
+            <p><strong>Sold Out</strong></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
   </a>
-
-  <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-  <p>
-    <span>
-      {% if sold_out %}
-        <strong>Sold Out</strong>
-      {% endif %}
-
-      {% comment %}
-        You can show a leading 'from' or 'up to' by checking 'product.price_varies'
-        if your variants have different prices.
-      {% endcomment %}
-      {% if product.price_varies %}From{% endif %}
-
-      {{ product.price | money }}
-    </span>
-    {% if on_sale %}
-      <span><strong>On Sale</strong> from {{ product.compare_at_price | money }}</span>
-    {% endif %}
-  </p>
-  <p>{{ product.description | strip_html | truncatewords: 50 }}</p>
-
 </div>
