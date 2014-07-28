@@ -44,7 +44,7 @@
       - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
 
   {% endcomment %}
-  <a href="{{ product.url | within: current_collection }}" class="product-grid-item product-list-item">
+  <a href="{{ product.url | within: current_collection }}" class="product-grid-item">
     <div class="grid large--display-table">
       <div class="grid-item large--one-fifth large--display-table-cell medium--one-third">
         <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="product-grid-image">
