@@ -50,7 +50,7 @@
         <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="product-grid-image">
       </div>
       <div class="grid-item large--three-fifths large--display-table-cell medium--two-thirds">
-        <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+        <p class="h6">{{ product.title }}</p>
         <div class="rte">
           {% if product.excerpt.size > 0 %}
             {{ product.excerpt }}

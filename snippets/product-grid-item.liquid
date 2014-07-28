@@ -64,7 +64,9 @@
     <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
   </a>
 
-  <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+  <p class="h6">
+    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+  </p>
   <p>
     {% comment %}
       You can show a leading 'from' or 'up to' by checking 'product.price_varies'
