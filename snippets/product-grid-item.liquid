@@ -21,6 +21,13 @@
 {% endunless %}
 
 {% comment %}
+  Set the default within collection filter if not set
+{% endcomment %}
+{% unless current_collection %}
+  {% assign current_collection = collection %}
+{% endunless %}
+
+{% comment %}
   Check if the product is on sale and set a variable to be used below.
 {% endcomment %}
 {% assign on_sale = false %}
@@ -57,23 +64,21 @@
     <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
   </a>
 
-  <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+  <p class="h6">
+    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+  </p>
   <p>
-     <span>
-      {% if sold_out %}
-        <strong>Sold Out</strong>
-      {% endif %}
-
-      {% comment %}
-        You can show a leading 'from' or 'up to' by checking 'product.price_varies'
-        if your variants have different prices.
-      {% endcomment %}
-      {% if product.price_varies %}From{% endif %}
-
-      {{ product.price | money }}
-    </span>
+    {% comment %}
+      You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+      if your variants have different prices.
+    {% endcomment %}
+    {% if product.price_varies %}From{% endif %}
+    {{ product.price | money }}
+    {% if sold_out %}
+      <br><strong>Sold Out</strong>
+    {% endif %}
     {% if on_sale %}
-      <span><strong>On Sale</strong> from {{ product.compare_at_price | money }}</span>
+      <br><strong>On Sale</strong> from {{ product.compare_at_price | money }}
     {% endif %}
   </p>
 

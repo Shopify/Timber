@@ -699,6 +699,18 @@ body {
   vertical-align: middle;
 }
 
+@include at-query ($min, $large) {
+  .large--display-table {
+    display: table;
+  }
+
+  .large--display-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    float: none;
+  }
+}
+
 
 /*============================================================================
   #Typography
@@ -1760,17 +1772,13 @@ label.error {
 
 }
 
-.product-list-image {
+.product-grid-item {
   display: block;
-  float: left;
-  margin-right: $gutter;
-  margin-bottom: $gutter;
-  max-width: 40%;
 }
 
 .product-grid-image {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto $gutter/2;
 
   img {
     display: block;

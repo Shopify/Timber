@@ -16,6 +16,10 @@
 
 <div class="grid">
 
+  <div class="grid-item large--one-quarter">
+    {% include 'blog-sidebar' %}
+  </div>
+
   <div class="grid-item large--three-quarters">
 
     {% if current_tags %}
@@ -87,9 +91,6 @@
 
   </div>
 
-  <div class="grid-item large--one-quarter">
-    {% include 'blog-sidebar' %}
-  </div>
 </div>
 
 {% endpaginate %}
