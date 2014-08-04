@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="product">
   <meta name="twitter:title" content="{{ product.title }}">
   <meta name="twitter:description" content="{{ product.description | strip_html | truncatewords: 140, '' | escape }}">
-  <meta name="twitter:image" content="https:{{ product.featured_image.src | product_img_url: 'medium' }}">
+  <meta name="twitter:image" content="https:{{ product.featured_image.src | img_url: 'medium' }}">
   <meta name="twitter:image:width" content="240">
   <meta name="twitter:image:height" content="240">
   <meta name="twitter:label1" content="Price">
