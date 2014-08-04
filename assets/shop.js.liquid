@@ -20,6 +20,7 @@ timber.init = function () {
   timber.cacheSelectors();
   timber.accessibleNav();
   timber.productImageSwitch();
+  timber.responsiveVideos();
 }
 
 timber.accessibleNav = function () {
@@ -113,6 +114,11 @@ timber.productImageSwitch = function () {
     timber.cache.newImage = $(this).attr('href');
     timber.cache.$mainImage.attr({ src: timber.cache.newImage });
   });
+}
+
+timber.responsiveVideos = function () {
+  $('iframe[src*="youtube.com/embed"').wrap('<div class="video-wrapper"></div>');
+  $('iframe[src*="player.vimeo"').wrap('<div class="video-wrapper"></div>');
 }
 
 // Initialize Timber's JS on docready
