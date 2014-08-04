@@ -62,17 +62,13 @@
 
     <div class="grid-item large--one-half">
 
+      <h2 itemprop="name">{{ product.title }}</h2>
+
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
 
-        <h2 itemprop="name">{{ product.title }}</h2>
-
-        {% if product.available %}
-          <link itemprop="availability" href="http://schema.org/InStock">
-        {% else %}
-          <link itemprop="availability" href="http://schema.org/OutOfStock">
-        {% endif %}
+        <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
         {% comment %}
           ID addToCartForm is a selector for the ajaxify cart plugin
@@ -132,10 +128,10 @@
           <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
         </form>
 
-        <div class="product-description rte" itemprop="description">
-          {{ product.description }}
-        </div>
+      </div>
 
+      <div class="product-description rte" itemprop="description">
+        {{ product.description }}
       </div>
 
       {% comment %}
