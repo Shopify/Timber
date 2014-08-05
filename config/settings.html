@@ -110,7 +110,19 @@
         <input type="text" id="logo_max_width" name="logo_max_width" size="2" value="450" class="inline" />
         <span>px</span>
       </td>
-
+      <tr>
+        <td colspan="2">
+          <h3 class="heading">Favicon</h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="favicon_enable">
+            <input type="checkbox" id="favicon_enable" name="favicon_enable" value="1" selected="selected" />Use custom icon?<br />
+            <small>(16px x 16px png)</small></label>
+        </td>
+        <td><input type="file" id="favicon" name="favicon.png" data-max-width="16" data-max-height="16" /></td>
+      </tr>
     </tr>
   </table>
 </fieldset>
