@@ -19,29 +19,28 @@
   <legend>Colors</legend>
   <table>
     <tr>
-      <td colspan="2">
+      <td colspan="3">
         Use <em>class="color"</em> on a an <em>input</em> tag to bring up the color picker.<br />
         Only a few colors have been included here as an example.
       </td>
     </tr>
     <tr>
-      <td colspan="2">
+      <td colspan="3">
         <h3 class="heading">General Colors</h3>
       </td>
     </tr>
     <tr>
       <th>
         <label for="color_primary">Primary Color</label>
-        <small>Used for text links and primary buttons</small>
       </th>
       <td><input id="color_primary" name="color_primary" class="color" type="text" value="#204a80" /></td>
+      <td><small>Used for text links, and primary buttons</small></td>
     </tr>
     <tr>
       <th>
-        <label for="color_secondary">Secondary Color</label>
-        <small>Used for secondary buttons</small>
-      </th>
+        <label for="color_secondary">Secondary Color</label></th>
       <td><input id="color_secondary" name="color_secondary" class="color" type="text" value="#dcdcdc" /></td>
+      <td><small>Used for secondary buttons</small></td>
     </tr>
     <tr>
       <th>
@@ -50,7 +49,7 @@
       <td colspan="2"><input id="color_body_bg" name="color_body_bg" class="color" type="text" value="#fffff" /></td>
     </tr>
     <tr>
-      <td colspan="2">
+      <td colspan="3">
         <h3 class="heading">Body Text</h3>
       </td>
     </tr>
@@ -58,24 +57,24 @@
       <th>
         <label for="color_body_text">Body Text</label>
       </th>
-      <td><input id="color_body_text" name="color_body_text" class="color" type="text" value="#333333" /></td>
+      <td colspan="2"><input id="color_body_text" name="color_body_text" class="color" type="text" value="#333333" /></td>
     </tr>
     <tr>
-      <td colspan="2">
+      <td colspan="3">
         <h3 class="heading">Footer</h3>
       </td>
     </tr>
     <tr>
       <th><label for="color_footer_bg">Footer Background</label></th>
-      <td><input id="color_footer_bg" name="color_footer_bg" class="color" type="text" value="#f2f2f2" /></td>
+      <td colspan="2"><input id="color_footer_bg" name="color_footer_bg" class="color" type="text" value="#f2f2f2" /></td>
     </tr>
     <tr>
       <th><label for="color_footer_text">Footer Text</label></th>
-      <td><input id="color_footer_text" name="color_footer_text" class="color" type="text" value="#636363" /></td>
+      <td colspan="2"><input id="color_footer_text" name="color_footer_text" class="color" type="text" value="#636363" /></td>
     </tr>
     <tr>
       <th><label for="color_footer_social_link">Social Icons</label></th>
-      <td><input id="color_footer_social_link" name="color_footer_social_link" class="color" type="text" value="#bbbbbb" /></td>
+      <td colspan="2"><input id="color_footer_social_link" name="color_footer_social_link" class="color" type="text" value="#bbbbbb" /></td>
     </tr>
   </table>
 </fieldset>
@@ -91,38 +90,46 @@
   <legend>Header</legend>
   <table>
     <tr>
-      <td><label for="logo_use_image">Use Custom Logo</label></td>
-      <td><input type="checkbox" id="logo_use_image" name="logo_use_image" /></td>
+      <td colspan="3">
+        <h3 class="heading">Logo</h3>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="logo_use_image">Use Custom Logo</label>
+      </th>
+      <td colspan="2"><input type="checkbox" id="logo_use_image" name="logo_use_image" /></td>
     </tr>
     <tr>
       <th>
         <label for="logo_image">Custom Logo</label>
-        <small>Maximum logo dimensions are 450px wide by 200px high. The uploaded file will be resized to fit within those constraints.</small>
       </th>
       <td><input type="file" name="logo.png" id="logo_image" data-max-width="450" data-max-height="200" /></td>
+      <td><small>Maximum logo dimensions are 450px wide by 200px high. The uploaded file will be resized to fit within those constraints.</small></td>
     </tr>
     <tr>
       <th>
         <label for="logo_max_width">Max Logo Width</label>
-        <small>Defines the CSS max-width.</small>
       </th>
       <td>
         <input type="text" id="logo_max_width" name="logo_max_width" size="2" value="450" class="inline" />
         <span>px</span>
       </td>
-      <tr>
-        <td colspan="2">
-          <h3 class="heading">Favicon</h3>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="favicon_enable">
-            <input type="checkbox" id="favicon_enable" name="favicon_enable" value="1" selected="selected" />Use custom icon?<br />
-            <small>(16px x 16px png)</small></label>
-        </td>
-        <td><input type="file" id="favicon" name="favicon.png" data-max-width="16" data-max-height="16" /></td>
-      </tr>
+      <td><small>Defines the CSS max-width.</small></td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <h3 class="heading">Favicon</h3>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="favicon_enable">
+          <input type="checkbox" id="favicon_enable" name="favicon_enable" value="1" selected="selected" />Use custom icon?
+        </label>
+      </td>
+      <td><input type="file" id="favicon" name="favicon.png" data-max-width="16" data-max-height="16" /></td>
+      <td><small>16px x 16px png</small></td>
     </tr>
   </table>
 </fieldset>
