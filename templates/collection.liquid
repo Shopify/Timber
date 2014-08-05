@@ -17,15 +17,32 @@
 
   <div class="grid-item large--three-quarters">
 
+    {% comment %}
+      Different markup if a collection description exists
+    {% endcomment %}
+    {% if collection.description != blank %}
+      <header class="section-header">
+        <h1 class="section-header--title">{{ collection.title }}</h1>
+        <div class="rte rte--header">
+          {{ collection.description }}
+        </div>
+      </header>
+      <hr>
+      <div class="section-header">
+        <div class="section-header--right">
+          {% include 'collection-sorting' %}
+          {% include 'collection-views' %}
+        </div>
+      </div>
+    {% else %}
     <header class="section-header">
-      <h1 class="section-header--left">{{ collection.title }}</h1>
+      <h1 class="section-header--title section-header--left">{{ collection.title }}</h1>
       <div class="section-header--right">
-
         {% include 'collection-sorting' %}
         {% include 'collection-views' %}
-
       </div>
     </header>
+    {% endif %}
 
     {% comment %}
       Use class grid-uniform to have evenly sized columns clear

@@ -875,13 +875,17 @@ hr {
 
 /*================ Section Headers ================*/
 .section-header {
-  margin-bottom: $gutter/2;
+  margin-bottom: $gutter/1.5;
 }
 
 @include at-query ($min, $large) {
   .section-header {
     display: table;
     width: 100%;
+  }
+
+  .section-header--title {
+    margin-bottom: $gutter/2.5;
   }
 
   .section-header--left {
@@ -899,7 +903,7 @@ hr {
     display: table-cell;
     vertical-align: middle;
     text-align: right;
-    width: 325px;
+    width: 335px;
 
     @include at-query ($max, $medium) {
       margin-bottom: $gutter;
@@ -908,9 +912,6 @@ hr {
 }
 
 .section-header--right {
-  @include at-query ($max, $medium) {
-    margin-top: -0.4em; // don't exceed h1 margin-bottom
-  }
 
   .form-horizontal,
   .collection-view {
@@ -995,6 +996,10 @@ hr {
   li {
     margin-bottom: 0.4em;
   }
+}
+
+.rte-header {
+  margin-bottom: 0;
 }
 
 /*============================================================================
