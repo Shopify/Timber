@@ -10,15 +10,6 @@
 {% endcomment %}
 
 {% comment %}
-  Show the description for the current collection
-{% endcomment %}
-{% if collection.description.size > 0 %}
-  <div class="rte">
-    {{ collection.description }}
-  </div>
-{% endif %}
-
-{% comment %}
   Product types in the current collection
     - List all of the shop's types with collections.all.all_types
     - List the current collection's types with collection.all_types
