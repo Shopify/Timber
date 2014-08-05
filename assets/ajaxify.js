@@ -591,6 +591,7 @@ var ajaxifyShopify = (function(module, $) {
       $drawerContainer.css('height', '0px');
     } else {
       $drawerHeight = $cartContainer.outerHeight();
+      $('.cart-row img').css('width', 'auto'); // fix Chrome image size bug
       $drawerContainer.css('height',  $drawerHeight + 'px');
     }
   };
