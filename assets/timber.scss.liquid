@@ -1602,7 +1602,6 @@ label.error {
   margin-left: -1px;
   line-height: 1.42;
   text-decoration: none;
-  background-color: #ffffff;
   border: 1px solid $colorBorder;
 }
 
@@ -1623,7 +1622,7 @@ label.error {
 .pagination-custom > li > span:hover,
 .pagination-custom > li > a:focus,
 .pagination-custom > li > span:focus {
-  background-color: #eeeeee;
+  // hover color
 }
 
 .pagination-custom > .active > a,
@@ -1633,10 +1632,8 @@ label.error {
 .pagination-custom > .active > a:focus,
 .pagination-custom > .active > span:focus {
   z-index: 2;
-  color: #ffffff;
   cursor: default;
-  background-color: $colorBtnPrimary;
-  border-color: $colorBtnPrimary;
+  color: $colorTextBody;
 }
 
 .pagination-custom > .disabled > span,
@@ -1645,7 +1642,6 @@ label.error {
 .pagination-custom > .disabled > a:focus {
   color: #999999;
   cursor: not-allowed;
-  background-color: $disabledGrey;
 }
 
 .pagination-custom-lg > li > a,
