@@ -11,7 +11,7 @@
 <div itemscope itemtype="http://schema.org/Product">
 
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-  <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
   {% include 'breadcrumb' %}
 
@@ -25,14 +25,14 @@
       {% if product.images.size == 0 %}
 
         <div class="product-photo-container" id="productPhoto">
-          <img src="{{ '' | product_img_url: 'grande' }}" alt="" id="productPhotoImg">
+          <img src="{{ '' | img_url: 'grande' }}" alt="" id="productPhotoImg">
         </div>
 
       {% else %}
 
         <div class="product-photo-container" id="productPhoto">
-          <a href="{{ product.featured_image.src | product_img_url: 'original' }}">
-            <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" id="productPhotoImg">
+          <a href="{{ product.featured_image.src | img_url: 'original' }}">
+            <img src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" id="productPhotoImg">
           </a>
         </div>
 
@@ -47,8 +47,8 @@
 
             {% for image in product.images %}
               <li class="grid-item one-quarter">
-                <a href="{{ image.src | product_img_url: 'grande' }}" class="product-photo-thumb">
-                  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                <a href="{{ image.src | img_url: 'grande' }}" class="product-photo-thumb">
+                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
                 </a>
               </li>
             {% endfor %}

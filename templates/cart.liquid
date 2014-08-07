@@ -36,7 +36,7 @@
                   More image size options at:
                     - http://docs.shopify.com/themes/filters/product-img-url
                 {% endcomment %}
-                <img src="{{ item.product.featured_image.src | product_img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                <img src="{{ item.product.featured_image.src | img_url: 'medium' }}" alt="{{ item.title | escape }}">
               </a>
             </div>
 

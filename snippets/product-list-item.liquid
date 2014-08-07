@@ -47,7 +47,7 @@
   <a href="{{ product.url | within: current_collection }}" class="product-grid-item">
     <div class="grid large--display-table">
       <div class="grid-item large--one-fifth large--display-table-cell medium--one-third">
-        <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="product-grid-image">
+        <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="product-grid-image">
       </div>
       <div class="grid-item large--three-fifths large--display-table-cell medium--two-thirds">
         <p class="h6">{{ product.title }}</p>

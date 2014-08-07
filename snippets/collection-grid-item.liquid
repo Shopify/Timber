@@ -21,9 +21,9 @@
 
   <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
     {% if collection.image %}
-      {{ collection.image.src | collection_img_url: 'large' | img_tag: collection_title }}
+      {{ collection.image.src | img_url: 'large' | img_tag: collection_title }}
     {% else %}
-      {{ collection.products.first.featured_image | product_img_url: 'large' | img_tag: collection_title }}
+      {{ collection.products.first.featured_image | img_url: 'large' | img_tag: collection_title }}
     {% endif %}
   </a>
 
