@@ -129,7 +129,7 @@
             - Your theme settings can turn this on or off. Default is on.
             - Make sure you have name="note" for the message to be submitted properly
         {% endcomment %}
-        {% if settings.cart_notes %}
+        {% if settings.cart_notes_enable %}
           <div class="grid-item large--one-half">
             <label for="cartSpecialInstructions">Special instructions for seller</label>
             <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
@@ -139,7 +139,7 @@
         {% comment %}
           If notes are used, adjust the column width
         {% endcomment %}
-        <div class="grid-item text-right {% if settings.cart_notes %}large--one-half{% endif %}">
+        <div class="grid-item text-right {% if settings.cart_notes_enable %}large--one-half{% endif %}">
 
           <div class="cart-subtotal">
             Subtotal

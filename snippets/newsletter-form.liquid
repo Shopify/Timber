@@ -8,7 +8,7 @@
    - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
 
 {% endcomment %}
-<form action="{{ settings.mailing_list_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+<form action="{{ settings.newsletter_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
   <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="your-email@shopify.com" name="EMAIL" id="mail" class="input-group-field" aria-label="Email Address" autocorrect="off" autocapitalize="off">
   <span class="input-group-btn">
     <input type="submit" class="btn" value="Subscribe" name="subscribe" id="subscribe">

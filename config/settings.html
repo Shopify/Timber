@@ -49,6 +49,12 @@
       <td colspan="2"><input id="color_body_bg" name="color_body_bg" class="color" type="text" value="#fffff" /></td>
     </tr>
     <tr>
+      <th>
+        <label for="color_borders">Border Colors</label>
+      </th>
+      <td colspan="2"><input id="color_borders" name="color_borders" class="color" type="text" value="#e5e5e5" /></td>
+    </tr>
+    <tr>
       <td colspan="3">
         <h3 class="heading">Body Text</h3>
       </td>
@@ -139,8 +145,8 @@
   <legend>Footer</legend>
   <table>
     <tr>
-      <th><label for="footer_display_quicklinks">Show quick links</label></th>
-      <td colspan="2"><input type="checkbox" id="footer_display_quicklinks" name="footer_display_quicklinks" value="1" /></td>
+      <th><label for="footer_quicklinks_enable">Show quick links</label></th>
+      <td colspan="2"><input type="checkbox" id="footer_quicklinks_enable" name="footer_quicklinks_enable" value="1" /></td>
     </tr>
     <tr>
       <th><label for="footer_quicklinks_linklist">Quick links link list</label></th>
@@ -152,8 +158,8 @@
       </td>
     </tr>
     <tr>
-      <th><label for="footer_display_social">Show social media links</label></th>
-      <td colspan="2"><input type="checkbox" id="footer_display_social" name="footer_display_social" value="1" /></td>
+      <th><label for="footer_social_enable">Show social media links</label></th>
+      <td colspan="2"><input type="checkbox" id="footer_social_enable" name="footer_social_enable" value="1" /></td>
     </tr>
     <tr>
       <td><label for="social_twitter_link">Twitter link</label></td>
@@ -169,12 +175,12 @@
       </td>
     </tr>
     <tr>
-      <th><label for="footer_display_newsletter">Show Newsletter Field</label></th>
-      <td colspan="2"><input type="checkbox" id="footer_display_newsletter" name="footer_display_newsletter" value="1" /></td>
+      <th><label for="footer_newsletter_enable">Show Newsletter Field</label></th>
+      <td colspan="2"><input type="checkbox" id="footer_newsletter_enable" name="footer_newsletter_enable" value="1" /></td>
     </tr>
     <tr>
-      <th><label for="mailing_list_form_action">MailChimp Form Action URL</label></th>
-      <td><input type="text" id="mailing_list_form_action" name="mailing_list_form_action" value="" /></td>
+      <th><label for="newsletter_form_action">MailChimp Form Action URL</label></th>
+      <td><input type="text" id="newsletter_form_action" name="newsletter_form_action" value="" /></td>
       <td><a href="http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action" target="_blank">Where do I find my MailChimp form action URL?</a></td>
     </tr>
   </table>
@@ -189,23 +195,7 @@
 <!-- Product Pages -->
 <fieldset>
   <legend>Product Pages</legend>
-  <table>
-    <tr>
-      <td colspan="3">
-        <h3 class="heading">Social Media Meta Tags</h3>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">Social meta tags include <a href="https://developers.facebook.com/docs/opengraph/using-objects/" title="About Facebook Open Graph Objects">Facebook</a> and <a href="https://developers.pinterest.com/rich_pins/" title="About Pinterest Rich Pins">Pinterest</a> Open Graph Tags and <a href="https://dev.twitter.com/docs/cards/types/product-card" title="About Twitter Product Cards">Twitter Cards</a>. These are enabled by default to make the store more accessible on different platforms, and more readable for search engines.</td>
-    </tr>
-    <tr>
-      <th><label for="twittercard_handle">The Site's Twitter Handle</label></th>
-      <td>
-        <input type="text" id="twittercard_handle" name="twittercard_handle" size="50" /><br />
-        <small>E.g. @Shopify. Required for Twitter Cards.</small>
-      </td>
-    </tr>
-  </table>
+  <p>No product page settings are predefined in Timber.</p>
 </fieldset>
 
 <!-- Collection Pages -->
@@ -225,13 +215,13 @@
   <legend>Cart Page</legend>
   <table>
     <tr>
-      <th><label for="cart_notes">Allow notes with orders</label></th>
-      <td><input type="checkbox" id="cart_notes" name="cart_notes" value="1" /></td>
+      <th><label for="cart_notes_enable">Allow notes with orders</label></th>
+      <td><input type="checkbox" id="cart_notes_enable" name="cart_notes_enable" value="1" /></td>
     </tr>
     <tr>
-      <th><label for="ajax_cart">Enable Ajaxify Cart</label></th>
+      <th><label for="ajax_cart_enable">Enable Ajaxify Cart</label></th>
       <td>
-        <input type="checkbox" id="ajax_cart" name="ajax_cart" />
+        <input type="checkbox" id="ajax_cart_enable" name="ajax_cart_enable" />
         <small><a href="http://shopify.com/timber#ajax-cart" title="Ajax Cart Documentation">View Documentation</a></small>
       </td>
     </tr>
@@ -244,6 +234,19 @@
           <option value="modal">Modal</option>
         </select>
       </td>
+    </tr>
+  </table>
+</fieldset>
+
+<!-- Social Sharing -->
+<fieldset>
+  <legend>Social Sharing</legend>
+  <table>
+    <tr>
+      <th>
+        <label for="twittercard_handle">Twitter Handle</label>
+      </th>
+      <td><input type="text" id="twittercard_handle" name="twittercard_handle" value="@" /></td>
     </tr>
   </table>
 </fieldset>
