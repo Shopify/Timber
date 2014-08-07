@@ -107,10 +107,9 @@
           </span>
 
           {% if product.compare_at_price > product.price %}
-            <span id="comparePrice" class="h5">
-              Compare at:
-              {{ product.compare_at_price_max | money }}
-            </span>
+            <p id="comparePrice" class="h5">
+              Compare at: {{ product.compare_at_price_max | money }}
+            </p>
           {% endif %}
 
           <label for="quantity" class="quantity-selector">Quantity</label>
@@ -214,8 +213,7 @@
 
       // Also update and show the product's compare price if necessary
       if ( variant.compare_at_price > variant.price ) {
-        var priceSaving = timber.formatSaleTag( Shopify.formatMoney(variant.compare_at_price - variant.price, "{{ shop.money_format }}") );;
-        $comparePrice.html('Save ' + priceSaving).show();
+        $comparePrice.html( 'Compare at: ' + Shopify.formatMoney(variant.compare_at_price) ).show();
       } else {
         $comparePrice.hide();
       }
