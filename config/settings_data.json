@@ -2,11 +2,12 @@
   "current": "Default",
   "presets": {
     "Default": {
-      "ajax_cart": true,
+      "ajax_cart_enable": true,
       "ajax_cart_method": "Drawer",
-      "cart_notes": true,
+      "cart_notes_enable": true,
       "color_body_bg": "#fff",
       "color_body_text": "#333333",
+      "color_borders": "#e5e5e5",
       "color_footer_bg": "#f2f2f2",
       "color_footer_social_link": "#bbbbbb",
       "color_footer_text": "#636363",
@@ -14,10 +15,10 @@
       "color_secondary": "#464646",
       "customer_layout": "theme",
       "favicon_enable": false,
-      "footer_display_newsletter": true,
-      "footer_display_quicklinks": true,
-      "footer_display_social": true,
+      "footer_newsletter_enable": true,
+      "footer_quicklinks_enable": true,
       "footer_quicklinks_linklist": "footer",
+      "footer_social_enable": true,
       "logo_max_width": "450",
       "logo_use_image": false
     }

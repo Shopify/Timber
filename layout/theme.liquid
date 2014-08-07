@@ -34,7 +34,7 @@
   <!-- CSS ================================================== -->
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
 
-  {% if settings.ajax_cart %}
+  {% if settings.ajax_cart_enable %}
   <!-- Ajaxify Cart Plugin ================================================== -->
   {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
@@ -164,7 +164,7 @@
     Ajaxify Cart Documentation:
       - http://shopify.com/timber#ajax-cart
   {% endcomment %}
-  {% if settings.ajax_cart %}
+  {% if settings.ajax_cart_enable %}
   {{ 'handlebars.min.js' | asset_url | script_tag }}
   {% include 'ajax-cart-template' %}
   {{ 'ajaxify.js' | asset_url | script_tag }}

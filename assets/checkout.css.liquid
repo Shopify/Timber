@@ -265,7 +265,7 @@ h1#tagline {
   font-size: 26px;
   line-height: 1.9;
   text-shadow: none;
-  border-bottom: dotted 1px #e5e5e5;
+  border-bottom: dotted 1px {{ settings.color_borders }};
 }
 
 #overview .hint {
@@ -279,7 +279,7 @@ h1#tagline {
   padding: 0 0 8px 0;
   display: block;
   font-size: 22px;
-  border-bottom: dotted 1px #e5e5e5;
+  border-bottom: dotted 1px {{ settings.color_borders }};
 }
 
 #overview br { display: none; }
@@ -295,7 +295,7 @@ h1#tagline {
   text-align: center;
   vertical-align: top;
   padding: 4px;
-  border: dotted 1px #e5e5e5;
+  border: dotted 1px {{ settings.color_borders }};
 }
 
 #thumbs div {
@@ -413,7 +413,7 @@ h1#tagline {
 }
 
 #billing-is-shipping td {
-  border: solid 1px #e5e5e5;
+  border: solid 1px {{ settings.color_borders }};
   padding: 5px;
 }
 
@@ -581,7 +581,7 @@ input[type="submit"] {
 #container input[type="tel"],
 #container textarea,
 #container select {
-  border: 1px solid #e5e5e5;
+  border: 1px solid {{ settings.color_borders }};
   width: 100%;
   max-width: 100%;
   display: block;
