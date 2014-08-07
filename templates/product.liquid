@@ -238,8 +238,6 @@
     // Hide selectors if we only have 1 variant and its title contains 'Default'.
     {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
       $('.selector-wrapper').hide();
-    {% else %}
-      $('#variantBreak').removeClass('hr--clear');
     {% endif %}
   });
 </script>
