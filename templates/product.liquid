@@ -16,36 +16,28 @@
   {% include 'breadcrumb' %}
 
   <div class="grid">
-    <div class="grid-item large--one-half">
-      {% comment %}
-        Sub-grid to give a bit more padding on the right
-      {% endcomment %}
-      <div class="grid">
-        <div class="grid-item large--eleven-twelfths text-center">
-          <div class="product-photo-container" id="productPhoto">
-            {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-            <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="productPhotoImg">
-          </div>
-
-          {% comment %}
-            If we have more than one product image, loop through them and create thumbnails.
-          {% endcomment %}
-          {% if product.images.size > 1 %}
-            <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
-
-              {% for image in product.images %}
-                <li class="grid-item one-quarter">
-                  <a href="{{ image.src | product_img_url: 'large' }}" class="product-photo-thumb">
-                    <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-                  </a>
-                </li>
-              {% endfor %}
-
-            </ul>
-          {% endif %}
-        </div>
+    <div class="grid-item large--one-half text-center">
+      <div class="product-photo-container" id="productPhoto">
+        {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+        <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="productPhotoImg">
       </div>
 
+      {% comment %}
+        Create thumbnails if we have more than one product image
+      {% endcomment %}
+      {% if product.images.size > 1 %}
+        <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
+
+          {% for image in product.images %}
+            <li class="grid-item one-quarter">
+              <a href="{{ image.src | product_img_url: 'large' }}" class="product-photo-thumb">
+                <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+              </a>
+            </li>
+          {% endfor %}
+
+        </ul>
+      {% endif %}
     </div>
 
     <div class="grid-item large--one-half">
