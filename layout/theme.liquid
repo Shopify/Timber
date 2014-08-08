@@ -95,8 +95,7 @@
         </div>
         <div class="grid-item large--one-half text-center large--text-right">
           {% comment %}
-            You cart/checkout link should at least show the number of items in it.
-            Below shows the item count followed by item(s) and the total cart price.
+            Show number of items in the cart and total cost in the /cart link
 
             Ajaxify Cart Notes:
               - #cartToggle toggles cart visibility (drawer or modal)
@@ -105,7 +104,10 @@
               - Documentation:  http://shopify.com/timber#ajax-cart
           {% endcomment %}
           <a href="/cart" id="cartToggle">
-            Cart (<span id="cartCount">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: 'item', 'items' }} <span id="cartCost">{{ cart.total_price | money }}</span>)
+            {{ 'layout.cart.title' | t }}
+            (<span id="cartCount">{{ cart.item_count }}</span>
+            {{ 'layout.cart.count' | t: count: customer.orders_count }}
+            <span id="cartCost">{{ cart.total_price | money }}</span>)
           </a>
 
           {% comment %}
@@ -114,11 +116,12 @@
           {% if shop.customer_accounts_enabled %}
           <p class="site-header--text-links">
             {% if customer %}
-              Logged in as <a href="/account">{{ customer.first_name }}</a> &middot; {{ 'Log out' | customer_logout_link }}
+              {{ 'layout.customer.logged_in_as' | t }} <a href="/account">{{ customer.first_name }}</a>
+              | {{ 'layout.customer.log_out' | t | customer_logout_link }}
             {% else %}
-              {{ 'Log in' | customer_login_link }}
+              {{ 'layout.customer.log_in' | t | customer_login_link }}
               {% if shop.customer_accounts_optional %}
-              or {{ 'Create an account' | customer_register_link }}
+              | {{ 'layout.customer.create_account' | t | customer_register_link }}
               {% endif %}
             {% endif %}
           </p>
