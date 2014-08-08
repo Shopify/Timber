@@ -32,7 +32,11 @@
       <div class="section-header--left">
         <h1>{{ article.title }}</h1>
         {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
+<<<<<<< HEAD
         <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: published_at }}</p>
+=======
+        <p>{{ 'article.author_on_date_html' | t: author: article.author date: published_at }}</p>
+>>>>>>> Fix bugs on blog/article/layout localization
       </div>
     </header>
 
@@ -44,6 +48,20 @@
       Show off meta information like comments and tags.
     {% endcomment %}
     <ul>
+<<<<<<< HEAD
+=======
+      {% comment %}
+        comments_enabled? and moderated? are the only instances of punctuation in liquid tags.
+      {% endcomment %}
+      {% if blog.comments_enabled? %}
+      <li>
+        <a href="#comments">
+          {{ 'article.comments.count' | t: count: number_of_comments }}
+        </a>
+      </li>
+      {% endif %}
+
+>>>>>>> Fix bugs on blog/article/layout localization
       {% include 'tags-article' %}
     </ul>
 
