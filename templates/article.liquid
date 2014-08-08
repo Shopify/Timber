@@ -32,10 +32,9 @@
       <div class="section-header--left">
         <h1>{{ article.title }}</h1>
         <p>
-          Posted by <strong>{{ article.author }}</strong> at
-          <strong><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-            {{ article.published_at | date: '%b %d, %Y' }}
-          </time></strong>
+          {{ 'article.author_html' | t }}<br>
+          {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
+          <strong>{{ 'article.date_html' | t: date: published_at }}</strong>
         </p>
       </div>
     </header>
@@ -48,163 +47,144 @@
       Show off meta information like comments and tags.
     {% endcomment %}
     <ul>
-
       {% comment %}
-        Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
         This and moderated? are the only instances of punctuation in liquid tags.
       {% endcomment %}
       {% if blog.comments_enabled? %}
       <li>
         <a href="#comments">
-          {{ number_of_comments }} {{ number_of_comments | pluralize: 'comment', 'comments' }}
+          {{ number_of_comments }} {{ 'article.comments.count' | t: count: article.comments_count }}
         </a>
       </li>
       {% endif %}
 
       {% include 'tags-article' %}
-
     </ul>
 
     {% comment %}
       Create links to the next and previous articles, if available.
     {% endcomment %}
-
     {% if blog.next_article or blog.previous_article %}
-    <hr>
-
-    {% comment %}
-      If you only have elements floated in a container, you can use the
-      .clearfix class to force the parent to maintain its structure.
-    {% endcomment %}
-    <p class="clearfix">
-      {% if blog.previous_article %}
-        <span class="left">
-          {{ '&larr; Older Post' | link_to: blog.previous_article }}
-        </span>
-      {% endif %}
-      {% if blog.next_article %}
-        <span class="right">
-          {{ 'Newer Post &rarr;' | link_to: blog.next_article }}
-        </span>
-      {% endif %}
-    </p>
+      <hr>
+      <p class="clearfix">
+        {% if blog.previous_article %}
+          <span class="left">
+            {{ 'article.older_post' | t | link_to: blog.previous_article }}
+          </span>
+        {% endif %}
+        {% if blog.next_article %}
+          <span class="right">
+            {{ 'article.newer_post' | t | link_to: blog.next_article }}
+          </span>
+        {% endif %}
+      </p>
     {% endif %}
 
     {% if blog.comments_enabled? %}
-
-    <hr>
-
-    {% comment %}
-      Just like our blog.liquid page, define how many comments should be on each page.
-    {% endcomment %}
-
-      {% paginate article.comments by 5 %}
+      <hr>
 
       {% comment %}
-        #comments is required, it is used as an anchor link by Shopify.
+        Just like blog.liquid page, define how many comments should be on each page.
       {% endcomment %}
-      <div id="comments">
+      {% paginate article.comments by 5 %}
+        {% comment %}
+          #comments is required, it is used as an anchor link by Shopify.
+        {% endcomment %}
+        <div id="comments">
 
-        {% if comment and comment.created_at %}
-        <p class="note form-success">
-          {% if blog.moderated? %}
-            Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.
-          {% else %}
-            Your comment was posted successfully! Thank you!
+          {% if comment and comment.created_at %}
+            <p class="note form-success">
+              {% if blog.moderated? %}
+                {{ 'article.comments.success_moderated' | t }}
+              {% else %}
+                {{ 'article.comments.success' | t }}
+              {% endif %}
+            </p>
           {% endif %}
-        </p>
-        {% endif %}
 
-        {% if number_of_comments > 0 %}
-          <ul>
-            {% comment %}
-              If a comment was just submitted with no blank field, show it.
-            {% endcomment %}
-            {% if comment and comment.created_at %}
-            <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+          {% if number_of_comments > 0 %}
+            <ul>
+              {% comment %}
+                If a comment was just submitted with no blank field, show it.
+              {% endcomment %}
+              {% if comment and comment.created_at %}
+                <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+                  {% include 'comment' %}
+                </li>
+              {% endif %}
 
-              {% include 'comment' %}
+              {% comment %}
+                Showing the rest of the comments.
+              {% endcomment %}
+              {% for comment in article.comments %}
+                <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+                  {% include 'comment' %}
+                </li>
+              {% endfor %}
+            </ul>
 
-            </li>
+            {% if paginate.pages > 1 %}
+              <hr>
+              <div class="text-center">
+                {% include 'pagination-custom' %}
+              </div>
             {% endif %}
 
-            {% comment %}
-              Showing the rest of the comments.
-            {% endcomment %}
-            {% for comment in article.comments %}
-            <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+            <hr>
 
-              {% include 'comment' %}
-
-            </li>
-            {% endfor %}
-
-          </ul>
-
-          {% if paginate.pages > 1 %}
-          <hr>
-          <div class="text-center">
-            {% include 'pagination-custom' %}
-          </div>
           {% endif %}
-
-          <hr>
-
-        {% endif %}
-
-        {% comment %}
-          Comment submission form
-        {% endcomment %}
-        {% form 'new_comment', article %}
 
           {% comment %}
-            #add-comment-title is used simply as an anchor link
+            Comment submission form
           {% endcomment %}
-          <h3 id="add-comment-title">Leave a comment</h3>
+          {% form 'new_comment', article %}
 
-          {% include 'form-errors-custom' %}
+            {% comment %}
+              #add-comment-title is used simply as an anchor link
+            {% endcomment %}
+            <h3 id="add-comment-title">{{ 'article.comments.title' | t }}</h3>
 
-          <div class="grid">
+            {% include 'form-errors-custom' %}
 
-            <div class="grid-item large--one-half">
-              <label for="comment-author" class="hidden-label">Name</label>
-              <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="Name" id="comment-author" value="{{ form.author }}" autocapitalize="words">
+            <div class="grid">
 
-              <label for="comment-email" class="hidden-label">Email</label>
-              <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="Email" id="comment-email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+              <div class="grid-item large--one-half">
+                <label for="comment-author" class="hidden-label">{{ 'article.comments.name' | t }}</label>
+                <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{{ 'article.comments.name' | t }}" id="comment-author" value="{{ form.author }}" autocapitalize="words">
+
+                <label for="comment-email" class="hidden-label">{{ 'article.comments.email' | t }}</label>
+                <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{{ 'article.comments.email' | t }}" id="comment-email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+              </div>
+
+              <div class="grid-item">
+                <label for="comment-body" class="hidden-label">{{ 'article.comments.message' | t }}</label>
+                <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body" placeholder="{{ 'article.comments.message' | t }}">{{ form.body }}</textarea>
+              </div>
+
             </div>
 
-            <div class="grid-item">
-              <label for="comment-body" class="hidden-label">Message</label>
-              <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body" placeholder="Message">{{ form.body }}</textarea>
-            </div>
+            {% if blog.moderated? %}
+              <p><em>{{ 'article.comments.moderated' | t }}</em></p>
+            {% endif %}
 
-          </div>
+            <input type="submit" class="btn" value="{{ 'article.comments.post' | t }}">
 
-          {% if blog.moderated? %}
-            <p><em><strong>Please note:</strong> comments must be approved before they are published</em></p>
-          {% endif %}
+            {% if form.errors %}
+              <script>
+                window.location.hash = '#add-comment-title';
+              </script>
+            {% endif %}
 
-          <input type="submit" class="btn" value="Post Comment">
+            {% if form.posted_successfully? %}
+              <script>
+                window.location.hash = '#comments';
+              </script>
+            {% endif %}
 
-          {% if form.errors %}
-            <script>
-              window.location.hash = '#add-comment-title';
-            </script>
-          {% endif %}
+          {% endform %}
 
-          {% if form.posted_successfully? %}
-            <script>
-              window.location.hash = '#comments';
-            </script>
-          {% endif %}
-
-        {% endform %}
-
-      </div>
-
+        </div>
       {% endpaginate %}
-
     {% endif %}
 
   </article>
