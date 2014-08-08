@@ -21,7 +21,7 @@
 {% comment %}
   Check to enforce respond.js
 {% endcomment %}
-{% assign respond_js_secret_key = (shop.domain | md5) %}
+{% assign respond_js_secret_key = shop.domain | md5 %}
 {% unless search.terms == respond_js_secret_key %}
 
   <div class="grid">

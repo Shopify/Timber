@@ -4,7 +4,7 @@
   - respond.js Gavin Ballard
   - http://gavinballard.com/using-respond.js-with-shopify-redux/
 {% endcomment %}
-{% assign respond_js_secret_key = (shop.domain | md5) %}
+{% assign respond_js_secret_key = shop.domain | md5 %}
 <!--[if lt IE 9]>
 {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
 {{ 'respond.min.js' | asset_url | script_tag }}
