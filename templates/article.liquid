@@ -69,7 +69,7 @@
     {% if blog.comments_enabled? %}
       <hr>
 
-      <h3>{{ 'general.counts.comments_with_count' | t: count: number_of_comments }}</h3>
+      <h3>{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</h3>
 
       <hr>
 
@@ -154,7 +154,7 @@
             </div>
 
             {% if blog.moderated? %}
-              <p><em>{{ 'blogs.comments.moderated' | t }}</em></p>
+              <p>{{ 'blogs.comments.moderated' | t }}</p>
             {% endif %}
 
             <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
