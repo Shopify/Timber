@@ -31,11 +31,8 @@
     <header class="section-header">
       <div class="section-header--left">
         <h1>{{ article.title }}</h1>
-        <p>
-          {{ 'article.author_html' | t }}<br>
-          {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
-          <strong>{{ 'article.date_html' | t: date: published_at }}</strong>
-        </p>
+        {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
+        <p>{{ 'article.author_on_date_html' | t: author: article.author date: published_at }}</p>
       </div>
     </header>
 
@@ -48,12 +45,12 @@
     {% endcomment %}
     <ul>
       {% comment %}
-        This and moderated? are the only instances of punctuation in liquid tags.
+        comments_enabled? and moderated? are the only instances of punctuation in liquid tags.
       {% endcomment %}
       {% if blog.comments_enabled? %}
       <li>
         <a href="#comments">
-          {{ number_of_comments }} {{ 'article.comments.count' | t: count: article.comments_count }}
+          {{ 'article.comments.count' | t: count: number_of_comments }}
         </a>
       </li>
       {% endif %}
