@@ -63,7 +63,7 @@
         {% if blog.comments_enabled? %}
         <li>
           <a href="{{ article.url }}#comments">
-            {{ 'general.counts.comments_with_count' | t: count: article.comments_count }}
+            {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
           </a>
         </li>
         {% endif %}
@@ -71,9 +71,9 @@
         {% include 'tags-article' %}
       </ul>
 
-      <p><a href="{{ article.url }}">{{ 'blogs.general.read_more_html' | t }}</a></p>
+      <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
 
-      <hr>
+      {% unless forloop.last %}<hr>{% endunless %}
 
     {% endfor %}
 
