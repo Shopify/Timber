@@ -131,7 +131,7 @@
         {% endcomment %}
         {% if settings.cart_notes_enable %}
           <div class="grid-item large--one-half">
-            <label for="cartSpecialInstructions">{{ 'cart.note' t }}</label>
+            <label for="cartSpecialInstructions">{{ 'cart.note' | t }}</label>
             <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
           </div>
         {% endif %}
@@ -167,6 +167,6 @@
   {% comment %}
     The cart is empty
   {% endcomment %}
-  <h2>{{ 'cart.checkout' | t }}</h2>
+  <h2>{{ 'cart.title' | t }}</h2>
   <p>{{ 'cart.continue_browsing_html' | t }}</p>
 {% endif %}
