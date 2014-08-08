@@ -32,7 +32,7 @@
       <div class="section-header--left">
         <h1>{{ article.title }}</h1>
         {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
-        <p>{{ 'article.author_on_date_html' | t: author: article.author date: published_at }}</p>
+        <p>{{ 'article.author_on_date_html' | t: author: article.author, date: published_at }}</p>
       </div>
     </header>
 

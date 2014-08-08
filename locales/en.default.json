@@ -16,10 +16,10 @@
   },
   "404": {
     "title": "404 Page Not Found",
-    "subtext": "The page you requested does not exist. Click <a href='/collections/all'>here</a> to continue shopping."
+    "subtext_html": "The page you requested does not exist. Click <a href='/collections/all'>here</a> to continue shopping."
   },
   "article": {
-    "author_on_date": "Posted by <strong>{{ author }}</strong> on <time pubdate datetime='{{ date }}'>{{ date }}</time>",
+    "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time pubdate datetime='{{ date }}'>{{ date }}</time>",
     "older_post": "&larr; Older Post",
     "newer_post": "Newer Post &rarr;",
     "read_more": "Read more &rarr;",
@@ -48,7 +48,7 @@
     "update": "Update Cart",
     "checkout": "Check Out",
     "empty": "It appears that your cart is currently empty.",
-    "continue_browser": "Continue browsing <a href='/collections/all'>here</a>."
+    "continue_browsing_html": "Continue browsing <a href='/collections/all'>here</a>."
   },
   "breadcrumbs": {
     "home": "Home"
