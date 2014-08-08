@@ -38,12 +38,8 @@
     {% for article in blog.articles %}
 
       <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
-      <p>
-        Posted by <strong>{{ article.author }}</strong> at
-        <strong><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-          {{ article.published_at | date: '%b %d, %Y' }}
-        </time></strong>
-      </p>
+      {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
+      <p>{{ 'article.author_on_date_html' | t: author: article.author date: published_at }}</p>
 
       {% comment %}
         Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
@@ -61,32 +57,30 @@
         Show off meta information like number of comments and tags.
       {% endcomment %}
       <ul>
-
         {% comment %}
-          Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
+          comments_enabled? and moderated? are the only instances of punctuation in liquid tags.
         {% endcomment %}
         {% if blog.comments_enabled? %}
         <li>
           <a href="{{ article.url }}#comments">
-            {{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}
+            {{ 'article.comments.count' | t: count: article.comments_count }}
           </a>
         </li>
         {% endif %}
 
         {% include 'tags-article' %}
-
       </ul>
 
-      <p><a href="{{ article.url }}">Read more →</a></p>
+      <p><a href="{{ article.url }}">{{ 'article.read_more' | t }}</a></p>
 
       <hr>
 
     {% endfor %}
 
     {% if paginate.pages > 1 %}
-    <div class="text-center">
-      {% include 'pagination-custom' %}
-    </div>
+      <div class="text-center">
+        {% include 'pagination-custom' %}
+      </div>
     {% endif %}
 
   </div>
