@@ -12,7 +12,7 @@
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
 
-    <h1>Shopping Cart</h1>
+    <h1 class="h2">{{ 'cart.title' | t }}</h1>
 
     {% comment %}
       Loop through products in the cart
@@ -58,7 +58,7 @@
               {% comment %}
                 Optional, add the vendor
               {% endcomment %}
-              <p>Vendor: <em>{{ item.vendor }}</em></p>
+              <p>{{ 'cart.vendor' | t }} <em>{{ item.vendor }}</em></p>
 
               {% comment %}
                 Optional, loop through custom product line items if available
@@ -110,7 +110,7 @@
                 To remove an item from the cart, reload the page with the following parameters.
                 Added data-id for the ajax cart implementation only.
               {% endcomment %}
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">Remove</a>
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">{{ 'cart.remove' | t }}</a>
             </div>
 
           </div>
@@ -131,7 +131,7 @@
         {% endcomment %}
         {% if settings.cart_notes_enable %}
           <div class="grid-item large--one-half">
-            <label for="cartSpecialInstructions">Special instructions for seller</label>
+            <label for="cartSpecialInstructions">{{ 'cart.note' t }}</label>
             <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
           </div>
         {% endif %}
@@ -142,22 +142,15 @@
         <div class="grid-item text-right {% if settings.cart_notes_enable %}large--one-half{% endif %}">
 
           <div class="cart-subtotal">
-            Subtotal
+            {{ 'cart.subtotal' | t }}
             <span class="h1 cart-subtotal--price">{{ cart.total_price | money }}</span>
           </div>
 
-          {% comment %}
-            name="update" is required for the update button to work
-          {% endcomment %}
-          <input type="submit" name="update" class="btn-secondary update-cart" value="Update cart">
+          <input type="submit" name="update" class="btn-secondary update-cart" value="{{ 'cart.update' | t }}">
+          <input type="submit" name="checkout" class="btn" value="{{ 'cart.checkout' | t }}">
 
           {% comment %}
-            name="checkout" is required for the submit button to work
-          {% endcomment %}
-          <input type="submit" name="checkout" class="btn" value="Check out">
-
-          {% comment %}
-            Paypal and Google checkout buttons
+            Paypal, Google, etc. checkout buttons
           {% endcomment %}
           {% if additional_checkout_buttons %}
             <p>{{ content_for_additional_checkout_buttons }}</p>
@@ -171,13 +164,9 @@
   </form>
 
 {% else %}
-
   {% comment %}
-    It's likely people won't have items in the cart sometimes.
-    Do something fun here, it's a great chance to show your company's human side.
+    The cart is empty
   {% endcomment %}
-
-  <h2>It appears that your cart is currently empty.</h2>
-  <p>Continue browsing <a href="/collections/all">here</a>.</p>
-
+  <h2>{{ 'cart.checkout' | t }}</h2>
+  <p>{{ 'cart.continue_browsing_html' | t }}</p>
 {% endif %}
