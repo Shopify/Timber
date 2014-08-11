@@ -202,6 +202,32 @@
   // Snippets
   "breadcrumbs": {
     "home": "Home"
+  },
+  "blog_sidebar": {
+    "recent_articles": "Recent Articles",
+    "categories": "Categories"
+  },
+  "collection_item": {
+    "link_title": "Browse our {{ title }} collection"
+  },
+  "collection_sidebar": {
+    "types": "Product Types",
+    "no_types_html": "Add a type to your products for this list to build itself. All lists are created in <strong>collection-sidebar.liquid</strong>.",
+    "vendors": "Vendors",
+    "no_vendors": "Add a vendor to your product for this list to build itself.",
+    "tags": "Tags",
+    "no_tags": "Add tags to your products for this list to build itself."
+  },
+  "collection_sorting": {
+    "title": "Sort by",
+    "featured": "Featured",
+    "best_selling": "Best Selling",
+    "az": "Alphabetically, A-Z",
+    "za": "Alphabetically, Z-A",
+    "price_ascending": "Price, low to high",
+    "price_descending": "Price, high to low",
+    "date_descending": "Date, new to old",
+    "date_ascending": "Date, old to new"
   }
 }
 
