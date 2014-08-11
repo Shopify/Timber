@@ -2,12 +2,12 @@
   Recent blog posts
 {% endcomment %}
 <h4>{{ 'blogs.sidebar.recent_articles' | t }}</h4>
-{% for article in blog.articles limit:6 %}
+{% for article in blogs[blog.handle].articles limit:6 %}
   <p>
     <a href="{{ article.url }}">{{ article.title }}</a>
     <br>
     <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-      <em>{{ article.published_at | date: '%Y-%m-%d' }}</em>
+      {{ article.published_at | date: '%Y-%m-%d' }}
     </time>
   </p>
 {% endfor %}
@@ -27,4 +27,3 @@
     {% endfor %}
   </ul>
 {% endif %}
-
