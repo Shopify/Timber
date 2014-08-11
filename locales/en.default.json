@@ -19,7 +19,7 @@
     "subtext_html": "The page you requested does not exist. Click <a href='/collections/all'>here</a> to continue shopping."
   },
   "article": {
-    "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time pubdate datetime='{{ date }}'>{{ date }}</time>",
+    "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime='{{ date }}'>{{ date }}</time>",
     "older_post": "&larr; Older Post",
     "newer_post": "Newer Post &rarr;",
     "read_more": "Read more &rarr;",
