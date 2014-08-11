@@ -6,7 +6,7 @@
     - http://docs.shopify.com/themes/liquid-variables/global
 {% endcomment %}
 
-<h2>Frontpage Collection</h2>
+<h2>{{ 'index.frontpage_title' | t }}</h2>
 
 {% comment %}
   Use class grid-uniform to have evenly sized columns clear
@@ -33,34 +33,34 @@
   {% else %}
 
     <div class="grid-item">
-      <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/custom_collections">add a product to this collection</a>.</p>
+      <p>{{ 'index.frontpage_no_products_html' | t }}</p>
     </div>
 
     <div class="grid-item">
       <div class="grid-uniform">
         <div class="grid-item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
-            Add a Product
+            {{ 'index.frontpage_faux_add' | t }}
           </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+          <p><a href="/admin/products">{{ 'index.frontpage_faux_product' | t }}</a> $19.99</p>
         </div>
         <div class="grid-item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
-            Add a Product
+            {{ 'index.frontpage_faux_add' | t }}
           </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+          <p><a href="/admin/products">{{ 'index.frontpage_faux_product' | t }}</a> $19.99</p>
         </div>
         <div class="grid-item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
-            Add a Product
+            {{ 'index.frontpage_faux_add' | t }}
           </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+          <p><a href="/admin/products">{{ 'index.frontpage_faux_product' | t }}</a> $19.99</p>
         </div>
         <div class="grid-item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
-            Add a Product
+            {{ 'index.frontpage_faux_add' | t }}
           </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+          <p><a href="/admin/products">{{ 'index.frontpage_faux_product' | t }}</a> $19.99</p>
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
 
 <hr>
 
-<h2>Featured Collections</h2>
+<h2>{{ 'index.featured_title' | t }}</h2>
 
 <div class="grid-uniform">
 
@@ -104,39 +104,39 @@
 
   {% if isEmpty %}
     <div class="grid-item">
-      <p>You don't have any collections to show here. <a href="/admin/custom_collections">Add some collections</a> to go along with the default Frontpage.</p>
+      <p>{{ 'index.frontpage_no_collections_html' | t }}</p>
     </div>
     <div class="grid-item">
       <div class="grid-uniform">
         <div class="grid-item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'index.collection_faux_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(3 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'index.frontpage_faux_collection' | t }}</a> <small>(3 {{ 'general.items' | t: count: 3 }})</small></p>
         </div>
         <div class="grid-item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'index.collection_faux_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(13 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'index.frontpage_faux_collection' | t }}</a> <small>(13 {{ 'general.items' | t: count: 13 }})</small></p>
         </div>
         <div class="grid-item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'index.collection_faux_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'index.frontpage_faux_collection' | t }}</a> <small>(25 {{ 'general.items' | t: count: 25 }})</small></p>
         </div>
         <div class="grid-item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'index.collection_faux_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'index.frontpage_faux_collection' | t }}</a> <small>(1 {{ 'general.items' | t: count: 1 }})</small></p>
         </div>
         <div class="grid-item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'index.collection_faux_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'index.frontpage_faux_collection' | t }}</a> <small>(10 {{ 'general.items' | t: count: 10 }})</small></p>
         </div>
       </div>
     </div>
@@ -153,7 +153,7 @@
   handle we want to focus on. For this example we'll use the default 'news',
   but you can create a blog page-specific content if you want.
 {% endcomment %}
-<h2>Latest News</h2>
+<h2>{{ 'index.news_title' | t }}</h2>
 
 <div class="grid">
   {% for article in blogs['news'].articles limit:3 %}
@@ -181,21 +181,17 @@
         Show off meta information like number of comments and tags.
       {% endcomment %}
       <ul>
-
-        {% comment %}
-          Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
-        {% endcomment %}
         {% if blog.comments_enabled? %}
         <li>
           <a href="{{ article.url }}#comments">
-            {{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}
+            {{ article.comments_count }}
+            {{ 'comments_with_count' | t: count: article.comments_count }}
           </a>
         </li>
         {% endif %}
-
       </ul>
 
-      <p><a href="{{ article.url }}">Read more &rarr;</a></p>
+      <p><a href="{{ article.url }}">{{ 'general.read_more' | t }}</a></p>
 
     </div>
 
