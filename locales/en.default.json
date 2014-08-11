@@ -28,7 +28,9 @@
       "send": "Send",
       "submit": "Submit",
       "cancel": "Cancel",
-      "continue": "Continue"
+      "continue": "Continue",
+      "edit": "Edit",
+      "delete": "Delete"
     },
     "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:"
   },
@@ -134,25 +136,21 @@
       "cancel": "Decline Invitation"
     },
     "addresses": {
-      "header": "Account Addresses",
-      "default": "Default Address",
-      "add_new": "Add a new address",
-      "edit": "Edit",
-      "delete": "Delete",
-      "first_name": "First Name",
-      "last_name": "Last Name",
+      "title": "Your Addresses",
+      "default": "Default",
+      "add_new": "Add a New Address",
+      "edit_address": "Edit address",
       "company": "Company",
       "address1": "Address1",
       "address2": "Address2",
       "city": "City",
       "country": "Country",
       "province": "Province",
-      "zip": "Zip",
+      "zip": "Postal/Zip Code",
       "phone": "Phone",
-      "set_as_default": "Set as Default Address?",
+      "set_default": "Set as default address",
       "add": "Add Address",
-      "update": "Update Address",
-      "cancel": "Cancel"
+      "update": "Update Address"
     },
     "login": {
       "title": "Login",
