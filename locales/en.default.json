@@ -32,10 +32,10 @@
   // Pages
   "404": {
     "title": "404 Page Not Found",
-    "subtext_html": "The page you requested does not exist. Click <a href='/collections/all'>here</a> to continue shopping."
+    "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
   },
   "article": {
-    "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime='{{ date }}'>{{ date }}</time>",
+    "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime=\"{{ date }}\">{{ date }}</time>",
     "older_post": "&larr; Older Post",
     "newer_post": "Newer Post &rarr;",
     "tags": "Tags:",
@@ -59,7 +59,7 @@
     "update": "Update Cart",
     "checkout": "Check Out",
     "empty": "It appears that your cart is currently empty.",
-    "continue_browsing_html": "Continue browsing <a href='/collections/all'>here</a>."
+    "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
   },
   "collection": {
     "no_matches": "Sorry, there are no products matching your search."
@@ -77,11 +77,11 @@
   },
   "index": {
     "frontpage_title": "Frontpage Collection",
-    "frontpage_no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href='/admin/custom_collections'>add a product to this collection</a>.",
+    "frontpage_no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"/admin/custom_collections\">add a product to this collection</a>.",
     "frontpage_faux_add": "Add Product",
     "frontpage_faux_product": "Example Product Title",
     "featured_title": "Featured Collections",
-    "frontpage_no_collections_html": "You don't have any collections to show here. <a href='/admin/custom_collections'>Add some collections</a> to go along with the default Frontpage.",
+    "frontpage_no_collections_html": "You don't have any collections to show here. <a href=\'/admin/custom_collections\'>Add some collections</a> to go along with the default Frontpage.",
     "collection_faux_image": "Collection Image",
     "frontpage_faux_collection": "Example Collection Title",
     "news_title": "Latest News"
@@ -96,7 +96,9 @@
     "add_to_cart": "Add to Cart"
   },
   "search": {
-
+    "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
+    "results_for_html": "Your search for \"{{ search.terms }}\" revealed the following:",
+    "title": "Search for products on our site"
   },
 
   // Snippets
