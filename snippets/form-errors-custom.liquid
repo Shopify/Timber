@@ -7,7 +7,7 @@
 {% endcomment %}
 {% if form.errors %}
   <div class="note form-error">
-    <p>Sorry, looks like something went wrong. Please correct the following and submit again:</p>
+    <p>{{ 'contact.post_error' | t }}</p>
 
     <ul class="disc">
       {% for field in form.errors %}
@@ -15,7 +15,6 @@
         {% comment %}
           Check if it's a generic 'form' error and don't show the {{ field }}
         {% endcomment %}
-
         {% if field == 'form' %}
           <li>
             {{ form.errors.messages[field] }}
