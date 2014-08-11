@@ -38,12 +38,12 @@
         <div class="grid">
 
           <div class="grid-item one-half small--one-whole">
-            <label for="address_first_name_new">{{ 'general.forms.first_name' | t }}</label>
+            <label for="address_first_name_new">{{ 'customer.addresses.first_name' | t }}</label>
             <input type="text" id="address_first_name_new" class="address_form" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
           </div>
 
           <div class="grid-item one-half small--one-whole">
-            <label for="address_last_name_new">{{ 'general.forms.last_name' | t }}</label>
+            <label for="address_last_name_new">{{ 'customer.addresses.last_name' | t }}</label>
             <input type="text" id="address_last_name_new" class="address_form" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
           </div>
 
@@ -80,7 +80,7 @@
           </div>
 
           <div class="grid-item large--one-half">
-            <label for="address_phone_new">{{ 'general.forms.phone' | t }}</label>
+            <label for="address_phone_new">{{ 'customer.addresses.phone' | t }}</label>
             <input type="tel" id="address_phone_new" class="address_form" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
           </div>
         </div>
@@ -91,7 +91,7 @@
         </p>
 
         <p><input type="submit" class="btn" value="{{ 'customer.addresses.add' | t }}"></p>
-        <p><a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'general.forms.cancel' | t }}</a></p>
+        <p><a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a></p>
 
         <hr>
       {% endform %}
@@ -123,8 +123,8 @@
           {{ address.phone }}
         </p>
         <p>
-          {{ 'general.forms.edit' | t | edit_customer_address_link: address.id }}
-          {{ 'general.forms.delete' | t | delete_customer_address_link: address.id }}
+          {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }} |
+          {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}
         </p>
 
         <div id="edit_address_{{address.id}}" style="display:none;">
@@ -133,17 +133,15 @@
             <h4>{{ 'customer.addresses.edit_address' | t }}</h4>
 
             <div class="grid">
-
               <div class="grid-item one-half small--one-whole">
-                <label for="address_first_name_{{form.id}}">{{ 'general.forms.first_name' | t }}</label>
+                <label for="address_first_name_{{form.id}}">{{ 'customer.addresses.first_name' | t }}</label>
                 <input type="text" id="address_first_name_{{form.id}}" class="address_form" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
               </div>
 
               <div class="grid-item one-half small--one-whole">
-                <label for="address_last_name_{{form.id}}">{{ 'general.forms.last_name' | t }}</label>
+                <label for="address_last_name_{{form.id}}">{{ 'customer.addresses.last_name' | t }}</label>
                 <input type="text" id="address_last_name_{{form.id}}" class="address_form" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
               </div>
-
             </div>
 
             <label for="address_company_{{form.id}}">{{ 'customer.addresses.company' | t }}</label>
@@ -173,7 +171,7 @@
               </div>
 
               <div class="grid-item one-half small--one-whole">
-                <label for="address_phone_{{form.id}}">{{ 'general.forms.phone' | t }}</label>
+                <label for="address_phone_{{form.id}}">{{ 'customer.addresses.phone' | t }}</label>
                 <input type="tel" id="address_phone_{{form.id}}" class="address_form" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
               </div>
             </div>
@@ -184,7 +182,7 @@
             </p>
 
             <p><input type="submit" class="btn" value="{{ 'customer.addresses.update' | t }}"></p>
-            <p><a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">{{ 'general.forms.cancel' | t }}</a></p>
+            <p><a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">{{ 'customer.addresses.cancel' | t }}</a></p>
 
             <hr>
           {% endform %}
@@ -203,7 +201,6 @@
 
 </div>
 
-
 <script>
   // Initialize observers on address selectors
   new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {
@@ -221,9 +218,7 @@
   Shopify.CustomerAddress = {
     toggleForm: function(id) {
       var editEl = document.getElementById('edit_address_'+id);
-      var viewEl = document.getElementById('view_address_'+id);
       editEl.style.display = editEl.style.display == 'none' ? '' : 'none';
-      viewEl.style.display = viewEl.style.display == 'none' ? '' : 'none';
       return false;
     },
 
