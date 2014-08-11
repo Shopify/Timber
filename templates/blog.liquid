@@ -63,7 +63,7 @@
         {% if blog.comments_enabled? %}
         <li>
           <a href="{{ article.url }}#comments">
-            {{ 'article.comments.count' | t: count: article.comments_count }}
+            {{ 'general.comments_with_count' | t: count: article.comments_count }}
           </a>
         </li>
         {% endif %}
@@ -71,7 +71,7 @@
         {% include 'tags-article' %}
       </ul>
 
-      <p><a href="{{ article.url }}">{{ 'general.read_more' | t }}</a></p>
+      <p><a href="{{ article.url }}">{{ 'general.read_more_html' | t }}</a></p>
 
       <hr>
 

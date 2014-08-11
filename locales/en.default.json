@@ -13,7 +13,7 @@
       "one": "{{ count }} item",
       "other": "{{ count }} items"
     },
-    "read_more": "Read more &rarr;"
+    "read_more_html": "Read more &rarr;"
   },
   "form": {
     "label": {
@@ -67,7 +67,8 @@
       "moderated": "Please note, comments must be approved before they are published",
       "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
       "success": "Your comment was posted successfully! Thank you!"
-    }
+    },
+    "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -99,12 +100,14 @@
   },
   "product": {
     "sold_out": "Sold Out",
+    "on_sale_from": "<strong>On Sale</strong> from {{ price }}",
     "unavailable": "Unavailable",
     "compare_at": "Compare at:",
     "quantity": "Quantity",
     "previous_product": "&larr; Previous Product",
     "next_product": "Next Product &rarr;",
-    "add_to_cart": "Add to Cart"
+    "add_to_cart": "Add to Cart",
+    "from": "From"
   },
   "search": {
     "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
@@ -228,6 +231,25 @@
     "price_descending": "Price, high to low",
     "date_descending": "Date, new to old",
     "date_ascending": "Date, old to new"
+  },
+  "footer": {
+    "linklist_title": "Quick Links",
+    "social_title": "Get Connected",
+    "newsletter_title": "Newsletter",
+    "accepted_payments": "Accepted Payments"
+  },
+  "newsletter_form": {
+    "submit": "Subscribe"
+  },
+  "search_bar": {
+    "placeholder": "Search our store",
+    "submit": "Search"
+  },
+  "open_graph_tags": {
+
+  },
+  "twitter_card": {
+
   }
 }
 
