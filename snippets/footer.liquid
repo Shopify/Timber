@@ -6,7 +6,7 @@
 
       {% if settings.footer_quicklinks_enable %}
         <div class="grid-item medium--one-half large--three-twelfths">
-          <h3>Quick Links</h3>
+          <h3>{{ 'footer.linklist_title' | t }}</h3>
           <ul>
             {% for link in linklists[settings.footer_quicklinks_linklist].links %}
               <li><a href="{{ link.url }}">{{ link.title }}</a></li>
@@ -17,7 +17,7 @@
 
       {% if settings.footer_social_enable %}
       <div class="grid-item medium--one-half large--five-twelfths">
-        <h3>Get Connected</h3>
+        <h3>{{ 'footer.social_title' | t }}</h3>
           {% comment %}
             Loop through the social network links
           {% endcomment %}
@@ -44,7 +44,7 @@
 
       {% if settings.footer_newsletter_enable %}
       <div class="grid-item large--one-third">
-        <h3>Newsletter</h3>
+        <h3>{{ 'footer.newsletter_title' | t }}</h3>
         {% include 'newsletter-form' %}
       </div>
       {% endif %}
@@ -56,7 +56,7 @@
       Loop through available payment methods and show their icons.
     {% endcomment %}
     {% unless shop.enabled_payment_types == empty %}
-    <h4 class="text-center">Accepted Payments</h4>
+    <h4 class="text-center">{{ 'footer.accepted_payments' | t }}</h4>
     <ul class="inline-list payment-icons text-center">
       {% for type in shop.enabled_payment_types %}
         <li>
