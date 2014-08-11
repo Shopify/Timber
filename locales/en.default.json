@@ -115,7 +115,8 @@
     "account": {
       "title": "My Account",
       "details": "Account Details",
-      "view_addresses": "View Addresses"
+      "view_addresses": "View Addresses",
+      "return": "Return to Account Details"
     },
     "orders": {
       "title": "Order History",
@@ -171,14 +172,19 @@
       "submit": "Reset Password"
     },
     "order": {
-      "header_html": "Order {{ name }} <span class='note order_date'>&mdash; {{ created_at }}</span>",
-      "cancelled_html": "Order Cancelled <span class='note'>{{ cancelled_at }}</span>",
+      "title": "Order {{ name }}",
+      "date": "Placed on {{ date }}",
+      "cancelled": "Order Cancelled on {{ date }}",
+      "cancelled_reason": "Reason: {{ reason }}",
       "billing_address": "Billing Address",
       "payment_status": "Payment Status",
       "shipping_address": "Shipping Address",
       "fulfillment_status": "Fulfillment Status",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
       "details": {
-        "item": "Item",
+        "product": "Product",
         "sku": "SKU",
         "price": "Price",
         "quantity": "Quantity",
