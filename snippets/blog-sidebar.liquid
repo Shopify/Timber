@@ -6,7 +6,7 @@
   <p>
     <a href="{{ article.url }}">{{ article.title }}</a>
     <br>
-    <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+    <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
       <em>{{ article.published_at | date: '%b %d, %Y' }}</em>
     </time>
   </p>

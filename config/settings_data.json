@@ -16,6 +16,7 @@
       "customer_layout": "theme",
       "favicon_enable": false,
       "footer_newsletter_enable": true,
+      "newsletter_form_action": "#",
       "footer_quicklinks_enable": true,
       "footer_quicklinks_linklist": "footer",
       "footer_social_enable": true,
