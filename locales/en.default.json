@@ -86,6 +86,18 @@
     "frontpage_faux_collection": "Example Collection Title",
     "news_title": "Latest News"
   },
+  "product": {
+    "sold_out": "Sold Out",
+    "unavailable": "Unavailable",
+    "compare_at": "Compare at:",
+    "quantity": "Quantity",
+    "previous_product": "&larr; Previous Product",
+    "next_product": "Next Product &rarr;",
+    "add_to_cart": "Add to Cart"
+  },
+  "search": {
+
+  },
 
   // Snippets
   "breadcrumbs": {
