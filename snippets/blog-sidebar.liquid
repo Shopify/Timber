@@ -1,7 +1,7 @@
 {% comment %}
   Recent blog posts
 {% endcomment %}
-<h4>Recent Articles</h4>
+<h4>{{ 'blog_sidebar.recent_articles' }}</h4>
 {% for article in blog.articles limit:6 %}
   <p>
     <a href="{{ article.url }}">{{ article.title }}</a>
@@ -16,7 +16,7 @@
   Blog tags
 {% endcomment %}
 {% if blog.all_tags.size > 0 %}
-  <h4>Categories</h4>
+  <h4>{{ 'blog_sidebar.categories' }}</h4>
   <ul>
     {% for tag in blog.all_tags %}
       {% if current_tags contains tag %}
