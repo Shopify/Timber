@@ -1,11 +1,22 @@
 {
+  "general": {
+    "comments_with_count": {
+      "one": "{{ count }} comment",
+      "other": "{{ count }} comments"
+    },
+    "items": {
+      "one": "item",
+      "other": "items"
+    },
+    "items_with_count": {
+      "one": "{{ count }} item",
+      "other": "{{ count }} items"
+    },
+    "read_more": "Read more &rarr;",
+  },
   "layout": {
     "cart": {
-      "title": "Cart",
-      "count": {
-        "one": "item",
-        "other": "items"
-      }
+      "title": "Cart"
     },
     "customer": {
       "logged_in_as": "Logged in as",
@@ -22,13 +33,8 @@
     "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime='{{ date }}'>{{ date }}</time>",
     "older_post": "&larr; Older Post",
     "newer_post": "Newer Post &rarr;",
-    "read_more": "Read more &rarr;",
     "tags": "Tags:",
     "comments": {
-      "count": {
-        "one": "{{ count }} comment",
-        "other": "{{ count }} comments"
-      },
       "title": "Leave a comment",
       "name": "Name",
       "email": "Email",
@@ -49,6 +55,20 @@
     "checkout": "Check Out",
     "empty": "It appears that your cart is currently empty.",
     "continue_browsing_html": "Continue browsing <a href='/collections/all'>here</a>."
+  },
+  "collection": {
+    "no_matches": "Sorry, there are no products matching your search.",
+  },
+  "index": {
+    "frontpage_title": "Frontpage Collection",
+    "frontpage_no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href='/admin/custom_collections'>add a product to this collection</a>.",
+    "frontpage_faux_add": "Add Product",
+    "frontpage_faux_product": "Example Product Title",
+    "featured_title": "Featured Collections",
+    "frontpage_no_collections_html": "You don't have any collections to show here. <a href='/admin/custom_collections'>Add some collections</a> to go along with the default Frontpage.",
+    "collection_faux_image": "Collection Image",
+    "frontpage_faux_collection": "Example Collection Title",
+    "news_title": "Latest News"
   },
   "breadcrumbs": {
     "home": "Home"
