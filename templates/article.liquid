@@ -44,17 +44,6 @@
       Show off meta information like comments and tags.
     {% endcomment %}
     <ul>
-      {% comment %}
-        comments_enabled? and moderated? are the only instances of punctuation in liquid tags.
-      {% endcomment %}
-      {% if blog.comments_enabled? %}
-      <li>
-        <a href="#comments">
-          {{ 'general.comments_with_count' | t: count: number_of_comments }}
-        </a>
-      </li>
-      {% endif %}
-
       {% include 'tags-article' %}
     </ul>
 
@@ -78,6 +67,10 @@
     {% endif %}
 
     {% if blog.comments_enabled? %}
+      <hr>
+
+      <h3>{{ 'general.comments_with_count' | t: count: number_of_comments }}</h3>
+
       <hr>
 
       {% comment %}
