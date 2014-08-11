@@ -16,48 +16,28 @@
   {% include 'breadcrumb' %}
 
   <div class="grid">
-    <div class="grid-item large--one-half">
+    <div class="grid-item large--one-half text-center">
+      <div class="product-photo-container" id="productPhoto">
+        {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+        <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="productPhotoImg">
+      </div>
 
       {% comment %}
-        If we only have one product image, show a large version of it.
-        If we have more than 1, show it then loop through the rest as thumbnails.
+        Create thumbnails if we have more than one product image
       {% endcomment %}
-      {% if product.images.size == 0 %}
+      {% if product.images.size > 1 %}
+        <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
 
-        <div class="product-photo-container" id="productPhoto">
-          <img src="{{ '' | img_url: 'grande' }}" alt="" id="productPhotoImg">
-        </div>
+          {% for image in product.images %}
+            <li class="grid-item one-quarter">
+              <a href="{{ image.src | img_url: 'large' }}" class="product-photo-thumb">
+                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+              </a>
+            </li>
+          {% endfor %}
 
-      {% else %}
-
-        <div class="product-photo-container" id="productPhoto">
-          <a href="{{ product.featured_image.src | img_url: 'original' }}">
-            <img src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" id="productPhotoImg">
-          </a>
-        </div>
-
-        {% comment %}
-          If we have more than one product image, loop through them and create thumbnails.
-
-          By default, images will link to their grande size (600x600).
-          Thumbnail swapping is enabled in shop.js.liquid.
-        {% endcomment %}
-        {% if product.images.size > 1 %}
-          <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
-
-            {% for image in product.images %}
-              <li class="grid-item one-quarter">
-                <a href="{{ image.src | img_url: 'grande' }}" class="product-photo-thumb">
-                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-                </a>
-              </li>
-            {% endfor %}
-
-          </ul>
-        {% endif %}
-
+        </ul>
       {% endif %}
-
     </div>
 
     <div class="grid-item large--one-half">
@@ -65,6 +45,11 @@
       <h2 itemprop="name">{{ product.title }}</h2>
 
       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+        {% comment %}
+          Get first variant, or deep linked one
+        {% endcomment %}
+        {% assign variant = product.selected_or_first_available_variant %}
 
         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
 
@@ -96,9 +81,7 @@
                 {% comment %}
                   Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
                 {% endcomment %}
-                <option value="{{variant.id}}">
-                  {{ variant.title }} - {{ variant.price | money_with_currency }}
-                </option>
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
 
               {% else %}
                 <option disabled="disabled">
@@ -116,16 +99,17 @@
           </span>
 
           {% if product.compare_at_price > product.price %}
-            <span id="comparePrice" class="h5">
-              Compare at:
-              {{ product.compare_at_price_max | money }}
-            </span>
+            <p id="comparePrice" class="h5">
+              Compare at: {{ product.compare_at_price_max | money }}
+            </p>
           {% endif %}
 
-          <label for="quantity">Quantity</label>
-          <input type="number" id="quantity" name="quantity" value="1" min="1">
+          <label for="quantity" class="quantity-selector">Quantity</label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
 
-          <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
+          <button type="submit" name="add" id="addToCart" class="btn">
+            <span id="addToCartText"></span>
+          </button>
         </form>
 
       </div>
@@ -184,71 +168,76 @@
 
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 <script>
+  var selectCallback = function(variant, selector) {
 
-var selectCallback = function(variant, selector) {
+    var $addToCart = $('#addToCart'),
+        $productPrice = $('#productPrice'),
+        $comparePrice = $('#comparePrice'),
+        $quantityElements = $('.quantity-selector, label + .js-qty'),
+        $addToCartText = $('#addToCartText'),
+        $featuredImage = $('#productPhotoImg');
 
-  var addToCart = $('#addToCart'),
-      productPrice = $('#productPrice'),
-      comparePrice = $('#comparePrice');
+    if (variant) {
 
-  if (variant) {
-    if (variant.available) {
-      // We have a valid product variant, so enable the submit button
-      addToCart.removeClass('disabled').prop('disabled', false).val('Add to Cart');
+      // Update variant image, if one is set
+      // Call timber.switchImage function in shop.js
+      if (variant.featured_image) {
+        var newImg = variant.featured_image,
+            el = $featuredImage[0];
+        Shopify.Image.switchImage(newImg, el, timber.switchImage);
+      }
+
+      // Select a valid variant if available
+      if (variant.available) {
+        // We have a valid product variant, so enable the submit button
+        $addToCart.removeClass('disabled').prop('disabled', false);
+        $addToCartText.text('Add to Cart');
+        $quantityElements.show();
+      } else {
+        // Variant is sold out, disable the submit button
+        $addToCart.addClass('disabled').prop('disabled', true);
+        $addToCartText.text('Sold Out');
+        $quantityElements.hide();
+      }
+
+      // Regardless of stock, update the product price
+      $productPrice.html( Shopify.formatMoney(variant.price, "{{ shop.money_format }}") );
+
+      // Also update and show the product's compare price if necessary
+      if ( variant.compare_at_price > variant.price ) {
+        $comparePrice
+          .html('Compare at: ' + Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"))
+          .show();
+      } else {
+        $comparePrice.hide();
+      }
 
     } else {
-      // Variant is sold out, disable the submit button
-      addToCart.val('Sold Out').addClass('disabled').prop('disabled', true);
+      // The variant doesn't exist, disable submit button.
+      // This may be an error or notice that a specific variant is not available.
+      // To only show available variants, implement linked product options:
+      //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
+      $addToCart.addClass('disabled').prop('disabled', true);
+      $addToCartText.text('Unavailable');
+      $quantityElements.hide();
     }
+  };
 
-    // Regardless of stock, update the product price
-    productPrice.html(Shopify.formatMoney(variant.price, "{{ shop.money_format }}"));
+  jQuery(function($) {
+    new Shopify.OptionSelectors('productSelect', {
+      product: {{ product | json }},
+      onVariantSelected: selectCallback,
+      enableHistoryState: true
+    });
 
-    // Also update and show the product's compare price if necessary
-    if ( variant.compare_at_price > variant.price ) {
-      comparePrice
-        .html('Compare at: ' + Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"))
-        .show();
-    } else {
-      comparePrice.hide();
-    }
-
-  } else {
-    // The variant doesn't exist, disable submit button.
-    // This may be an error or notice that a specific variant is not available.
-    // To only show available variants, implement linked product options:
-    //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
-    addToCart.val('Unavailable').addClass('disabled').prop('disabled', true);
-  }
-};
-
-jQuery(function($) {
-
-  new Shopify.OptionSelectors('productSelect', {
-    product: {{ product | json }},
-    onVariantSelected: selectCallback
-  });
-
-  // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
-  {% if product.options.size == 1 and product.options.first != 'Title' %}
-    $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first | escape }}</label>');
-  {% endif %}
-
-  // Hide selectors if we only have 1 variant and its title contains 'Default'.
-  {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-    $('.selector-wrapper').hide();
-  {% endif %}
-
-  // Auto-select first available variant on page load. Otherwise the product looks sold out.
-  {% assign found_one_in_stock = false %}
-  {% for variant in product.variants %}
-    {% if variant.available and found_one_in_stock == false %}
-      {% assign found_one_in_stock = true %}
-      {% for option in product.options %}
-      $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
-      {% endfor %}
+    // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+    {% if product.options.size == 1 and product.options.first != 'Title' %}
+      $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first | escape }}</label>');
     {% endif %}
-  {% endfor %}
 
-});
+    // Hide selectors if we only have 1 variant and its title contains 'Default'.
+    {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+      $('.selector-wrapper').hide();
+    {% endif %}
+  });
 </script>
