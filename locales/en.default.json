@@ -15,6 +15,23 @@
     },
     "read_more": "Read more &rarr;"
   },
+  "form": {
+    "label": {
+      "name": "Name",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "message": "Message",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "send": "Send",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "continue": "Continue"
+    },
+    "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:"
+  },
 
   // Layouts
   "layout": {
@@ -65,15 +82,7 @@
     "no_matches": "Sorry, there are no products matching your search."
   },
   "contact": {
-    "post_success": "Thanks for contacting us! We'll get back to you as soon as possible.",
-    "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:",
-    "label": {
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone Number",
-      "message": "Message",
-      "submit": "Send"
-    }
+    "post_success": "Thanks for contacting us! We'll get back to you as soon as possible."
   },
   "index": {
     "frontpage_title": "Frontpage Collection",
@@ -99,6 +108,91 @@
     "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
     "results_for_html": "Your search for \"{{ search.terms }}\" revealed the following:",
     "title": "Search for products on our site"
+  },
+
+  // Customer Pages
+  "customer": {
+    "account": {
+      "title": "My Account",
+      "details": "Account Details",
+      "view_addresses": "View Addresses"
+    },
+    "orders": {
+      "title": "Order History",
+      "order_number": "Order",
+      "date": "Date",
+      "payment_status": "Payment Status",
+      "fulfillment_status": "Fulfillment Status",
+      "total": "Total",
+      "none": "You haven't placed any orders yet."
+    },
+    "activate_account": {
+      "title": "Activate Account",
+      "subtext": "Create your password to activate your account.",
+      "submit": "Activate Account",
+      "cancel": "Decline Invitation"
+    },
+    "addresses": {
+      "header": "Account Addresses",
+      "default": "Default Address",
+      "add_new": "Add a new address",
+      "edit": "Edit",
+      "delete": "Delete",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "company": "Company",
+      "address1": "Address1",
+      "address2": "Address2",
+      "city": "City",
+      "country": "Country",
+      "province": "Province",
+      "zip": "Zip",
+      "phone": "Phone",
+      "set_as_default": "Set as Default Address?",
+      "add": "Add Address",
+      "update": "Update Address",
+      "cancel": "Cancel"
+    },
+    "login": {
+      "title": "Login",
+      "forgot_password": "Forgot your password?",
+      "sign_in": "Sign In",
+      "cancel": "Return to Store",
+      "guest_title": "Continue as a guest"
+    },
+    "recover_password": {
+      "title": "Reset your password",
+      "subtext": "We will send you an email to reset your password.",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "subtext": "Enter a new password for {{ email }}",
+      "submit": "Reset Password"
+    },
+    "order": {
+      "header_html": "Order {{ name }} <span class='note order_date'>&mdash; {{ created_at }}</span>",
+      "cancelled_html": "Order Cancelled <span class='note'>{{ cancelled_at }}</span>",
+      "billing_address": "Billing Address",
+      "payment_status": "Payment Status",
+      "shipping_address": "Shipping Address",
+      "fulfillment_status": "Fulfillment Status",
+      "details": {
+        "item": "Item",
+        "sku": "SKU",
+        "price": "Price",
+        "quantity": "Quantity",
+        "total": "Total",
+        "fulfilled_at" : "Fulfilled {{ date }}",
+        "subtotal": "Subtotal",
+        "total": "Total"
+      }
+    },
+    "register": {
+      "title": "Create Account",
+      "submit": "Create",
+      "cancel": "Return to Store"
+    }
   },
 
   // Snippets
