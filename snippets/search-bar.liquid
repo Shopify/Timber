@@ -19,8 +19,9 @@
   {% endcomment %}
   {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
 
-  <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}" class="input-group-field" aria-label="{{ 'search.placeholder' | t }}">
+  <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="input-group-field" aria-label="{{ 'general.search.placeholder' | t }}">
   <span class="input-group-btn">
     <input type="submit" class="btn" value="{{ 'general.search.submit' | t }}">
   </span>
 </form>
+
