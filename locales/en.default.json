@@ -106,15 +106,19 @@
     }
   },
   "products": {
-    "sold_out": "Sold Out",
-    "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
-    "unavailable": "Unavailable",
-    "compare_at": "Compare at:",
-    "quantity": "Quantity",
-    "previous_product_html": "&larr; Previous Product",
-    "next_product_html": "Next Product &rarr;",
-    "add_to_cart": "Add to Cart",
-    "from": "From"
+    "general": {
+      "previous_product_html": "&larr; Previous Product",
+      "next_product_html": "Next Product &rarr;",
+      "from": "From"
+    },
+    "product": {
+      "sold_out": "Sold Out",
+      "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
+      "unavailable": "Unavailable",
+      "compare_at": "Compare at:",
+      "quantity": "Quantity",
+      "add_to_cart": "Add to Cart"
+    }
   },
   "contact": {
     "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
@@ -216,15 +220,17 @@
     "news_title": "Latest News"
   },
   "cart": {
-    "title": "Shopping Cart",
-    "vendor": "Vendor:",
-    "remove": "Remove",
-    "note": "Special instructions for seller",
-    "subtotal": "Subtotal",
-    "update": "Update Cart",
-    "checkout": "Check Out",
-    "empty": "Your cart is currently empty.",
-    "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
+    "general": {
+      "title": "Shopping Cart",
+      "vendor": "Vendor:",
+      "remove": "Remove",
+      "note": "Special instructions for seller",
+      "subtotal": "Subtotal",
+      "update": "Update Cart",
+      "checkout": "Check Out",
+      "empty": "Your cart is currently empty.",
+      "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
+    }
   },
   "layout": {
     "cart": {
