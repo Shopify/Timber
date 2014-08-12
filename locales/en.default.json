@@ -78,7 +78,7 @@
     "subtotal": "Subtotal",
     "update": "Update Cart",
     "checkout": "Check Out",
-    "empty": "It appears that your cart is currently empty.",
+    "empty": "Your cart is currently empty.",
     "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
   },
   "collection": {
@@ -93,7 +93,7 @@
     "frontpage_faux_add": "Add Product",
     "frontpage_faux_product": "Example Product Title",
     "featured_title": "Featured Collections",
-    "frontpage_no_collections_html": "You don't have any collections to show here. <a href=\'/admin/custom_collections\'>Add some collections</a> to go along with the default Frontpage.",
+    "frontpage_no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default Frontpage.",
     "collection_faux_image": "Collection Image",
     "frontpage_faux_collection": "Example Collection Title",
     "news_title": "Latest News"
