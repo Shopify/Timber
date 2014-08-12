@@ -56,13 +56,6 @@
       "categories": "Categories"
     }
   },
-<<<<<<< HEAD
-=======
-  "blog": {
-    "recent_articles": "Recent Articles",
-    "categories": "Categories"
-  },
->>>>>>> Consolidated blog i18n
   "cart": {
     "general": {
       "title": "Shopping Cart",
@@ -226,7 +219,6 @@
       "cancel": "Return to Store"
     }
   },
-<<<<<<< HEAD
   "home_page": {
     "sections": {
       "frontpage_title": "Frontpage Collection",
@@ -241,20 +233,6 @@
       "collection_image": "Collection Image",
       "collection_title": "Example Collection Title"
     }
-=======
-
-  // Snippets
-  "breadcrumbs": {
-    "home": "Home"
-  },
-  "collection_sidebar": {
-    "types": "Product Types",
-    "no_types_html": "Add a type to your products for this list to build itself. All lists are created in <strong>collection-sidebar.liquid</strong>.",
-    "vendors": "Vendors",
-    "no_vendors": "Add a vendor to your product for this list to build itself.",
-    "tags": "Tags",
-    "no_tags": "Add tags to your products for this list to build itself."
->>>>>>> Consolidated blog i18n
   },
   "layout": {
     "cart": {
