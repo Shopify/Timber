@@ -85,7 +85,7 @@
 
               {% else %}
                 <option disabled="disabled">
-                  {{ variant.title }} - {{ 'product.sold_out' | t }}
+                  {{ variant.title }} - {{ 'products.sold_out' | t }}
                 </option>
               {% endif %}
             {% endfor %}
@@ -104,11 +104,11 @@
             </p>
           {% endif %}
 
-          <label for="quantity" class="quantity-selector">{{ product.quantity | t }}</label>
+          <label for="quantity" class="quantity-selector">{{ 'products.quantity' | t }}</label>
           <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
 
           <button type="submit" name="add" id="addToCart" class="btn">
-            <span id="addToCartText">{{ 'product.add_to_cart' | t }}</span>
+            <span id="addToCartText">{{ 'products.add_to_cart' | t }}</span>
           </button>
         </form>
 
@@ -129,14 +129,14 @@
           {% if collection.previous_product %}
             {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
             <span class="left">
-              {{ product.previous_product | t | link_to: prev_url }}
+              {{ 'products.previous_product_html' | t | link_to: prev_url }}
             </span>
           {% endif %}
 
           {% if collection.next_product %}
             {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
             <span class="right">
-              {{ product.next_product | t | link_to: next_url }}
+              {{ 'products.next_product_html' | t | link_to: next_url }}
             </span>
           {% endif %}
 
@@ -191,12 +191,12 @@
       if (variant.available) {
         // We have a valid product variant, so enable the submit button
         $addToCart.removeClass('disabled').prop('disabled', false);
-        $addToCartText.text('{{ "product.add_to_cart" | t }}');
+        $addToCartText.text('{{ "products.add_to_cart" | t }}');
         $quantityElements.show();
       } else {
         // Variant is sold out, disable the submit button
         $addToCart.addClass('disabled').prop('disabled', true);
-        $addToCartText.text('{{ "product.sold_out" | t }}');
+        $addToCartText.text('{{ "products.sold_out" | t }}');
         $quantityElements.hide();
       }
 
@@ -218,7 +218,7 @@
       // To only show available variants, implement linked product options:
       //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
       $addToCart.addClass('disabled').prop('disabled', true);
-      $addToCartText.text('{{ "product.unavailable" | t }}');
+      $addToCartText.text('{{ "products.unavailable" | t }}');
       $quantityElements.hide();
     }
   };

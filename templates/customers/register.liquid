@@ -25,17 +25,17 @@
 
       {% include 'form-errors-custom' %}
 
-      <label for="first_name" class="hidden-label">{{ 'form.label.first_name' | t }}</label>
-      <input type="text" value="" name="customer[first_name]" id="first_name" placeholder="{{ 'form.label.first_name' | t }}" {% if form.errors contains "first_name" %} class="error"{% endif %} autocapitalize="words" autofocus>
+      <label for="first_name" class="hidden-label">{{ 'general.forms.first_name' | t }}</label>
+      <input type="text" value="" name="customer[first_name]" id="first_name" placeholder="{{ 'general.forms.first_name' | t }}" {% if form.errors contains "first_name" %} class="error"{% endif %} autocapitalize="words" autofocus>
 
-      <label for="last_name" class="hidden-label">{{ 'form.label.last_name' | t }}</label>
-      <input type="text" value="" name="customer[last_name]" id="last_name" placeholder="{{ 'form.label.last_name' | t }}" {% if form.errors contains "last_name" %} class="error"{% endif %} autocapitalize="words">
+      <label for="last_name" class="hidden-label">{{ 'general.forms.last_name' | t }}</label>
+      <input type="text" value="" name="customer[last_name]" id="last_name" placeholder="{{ 'general.forms.last_name' | t }}" {% if form.errors contains "last_name" %} class="error"{% endif %} autocapitalize="words">
 
-      <label for="email" class="hidden-label">{{ 'form.label.email' | t }}</label>
-      <input type="email" value="" name="customer[email]" id="email" placeholder="{{ 'form.label.email' | t }}" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off">
+      <label for="email" class="hidden-label">{{ 'general.forms.email' | t }}</label>
+      <input type="email" value="" name="customer[email]" id="email" placeholder="{{ 'general.forms.email' | t }}" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off">
 
-      <label for="password" class="hidden-label">{{ 'form.label.password' | t }}</label>
-      <input type="password" value="" name="customer[password]" id="create_password" placeholder="{{ 'form.label.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+      <label for="password" class="hidden-label">{{ 'general.forms.password' | t }}</label>
+      <input type="password" value="" name="customer[password]" id="create_password" placeholder="{{ 'general.forms.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
 
       <div class="text-center">
         <p>

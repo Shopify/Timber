@@ -1,22 +1,25 @@
+/*============================================================================
+  Define your default theme language here
+  Strings require three levels of groupings:
+    - Group > Section > Key
+==============================================================================*/
 {
-  // Reusable Strings
   "general": {
-    "comments_with_count": {
-      "one": "{{ count }} comment",
-      "other": "{{ count }} comments"
+    "counts": {
+      "comments_with_count": {
+        "one": "{{ count }} comment",
+        "other": "{{ count }} comments"
+      },
+      "items": {
+        "one": "item",
+        "other": "items"
+      },
+      "items_with_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      }
     },
-    "items": {
-      "one": "item",
-      "other": "items"
-    },
-    "items_with_count": {
-      "one": "{{ count }} item",
-      "other": "{{ count }} items"
-    },
-    "read_more_html": "Read more &rarr;"
-  },
-  "form": {
-    "label": {
+    "forms": {
       "name": "Name",
       "first_name": "First Name",
       "last_name": "Last Name",
@@ -30,34 +33,42 @@
       "cancel": "Cancel",
       "continue": "Continue",
       "edit": "Edit",
-      "delete": "Delete"
+      "delete": "Delete",
+      "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:"
     },
-    "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:"
-  },
-
-  // Layouts
-  "layout": {
-    "cart": {
-      "title": "Cart"
+    "newsletter_form": {
+      "submit": "Subscribe"
     },
-    "customer": {
-      "logged_in_as": "Logged in as",
-      "log_out": "Log out",
-      "log_in": "Log in",
-      "create_account": "Create an account"
+    "404": {
+      "title": "404 Page Not Found",
+      "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
+    },
+    "breadcrumbs": {
+      "home": "Home"
+    },
+    "search": {
+      "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
+      "results_for_html": "Your search for \"{{ search.terms }}\" revealed the following:",
+      "title": "Search for products on our site",
+      "placeholder": "Search our store",
+      "submit": "Search"
     }
   },
-
-  // Pages
-  "404": {
-    "title": "404 Page Not Found",
-    "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
-  },
-  "article": {
-    "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime=\"{{ date }}\">{{ date }}</time>",
-    "older_post": "&larr; Older Post",
-    "newer_post": "Newer Post &rarr;",
-    "tags": "Tags:",
+  "blogs": {
+    "general": {
+      "read_more_html": "Read more &rarr;"
+    },
+    "sidebar": {
+      "recent_articles": "Recent Articles",
+      "categories": "Categories"
+    },
+    "article": {
+      "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime=\"{{ date }}\">{{ date }}</time>",
+      "older_post": "&larr; Older Post",
+      "newer_post": "Newer Post &rarr;",
+      "tags": "Tags:",
+      "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>"
+    },
     "comments": {
       "title": "Leave a comment",
       "name": "Name",
@@ -67,62 +78,47 @@
       "moderated": "Please note, comments must be approved before they are published",
       "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
       "success": "Your comment was posted successfully! Thank you!"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "Sorry, there are no products matching your search.",
+      "link_title": "Browse our {{ title }} collection"
     },
-    "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>"
+    "sidebar": {
+      "types": "Product Types",
+      "no_types_html": "Add a type to your products for this list to build itself. All lists are created in <strong>collection-sidebar.liquid</strong>.",
+      "vendors": "Vendors",
+      "no_vendors": "Add a vendor to your product for this list to build itself.",
+      "tags": "Tags",
+      "no_tags": "Add tags to your products for this list to build itself."
+    },
+    "sorting": {
+      "title": "Sort by",
+      "featured": "Featured",
+      "best_selling": "Best Selling",
+      "az": "Alphabetically, A-Z",
+      "za": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "date_descending": "Date, new to old",
+      "date_ascending": "Date, old to new"
+    }
   },
-  "blog": {
-    "recent_articles": "Recent Articles",
-    "categories": "Categories"
-  },
-  "cart": {
-    "title": "Shopping Cart",
-    "vendor": "Vendor:",
-    "remove": "Remove",
-    "note": "Special instructions for seller",
-    "subtotal": "Subtotal",
-    "update": "Update Cart",
-    "checkout": "Check Out",
-    "empty": "Your cart is currently empty.",
-    "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
-  },
-  "collection": {
-    "no_matches": "Sorry, there are no products matching your search.",
-    "link_title": "Browse our {{ title }} collection"
-  },
-  "contact": {
-    "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
-  },
-  "index": {
-    "frontpage_title": "Frontpage Collection",
-    "frontpage_no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"/admin/custom_collections\">add a product to this collection</a>.",
-    "frontpage_faux_add": "Add Product",
-    "frontpage_faux_product": "Example Product Title",
-    "featured_title": "Featured Collections",
-    "frontpage_no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default Frontpage.",
-    "collection_faux_image": "Collection Image",
-    "frontpage_faux_collection": "Example Collection Title",
-    "news_title": "Latest News"
-  },
-  "product": {
+  "products": {
     "sold_out": "Sold Out",
     "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
     "unavailable": "Unavailable",
     "compare_at": "Compare at:",
     "quantity": "Quantity",
-    "previous_product": "&larr; Previous Product",
-    "next_product": "Next Product &rarr;",
+    "previous_product_html": "&larr; Previous Product",
+    "next_product_html": "Next Product &rarr;",
     "add_to_cart": "Add to Cart",
     "from": "From"
   },
-  "search": {
-    "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
-    "results_for_html": "Your search for \"{{ search.terms }}\" revealed the following:",
-    "title": "Search for products on our site",
-    "placeholder": "Search our store",
-    "submit": "Search"
+  "contact": {
+    "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
   },
-
-  // Customer Pages
   "customer": {
     "account": {
       "title": "My Account",
@@ -208,37 +204,43 @@
       "cancel": "Return to Store"
     }
   },
-
-  // Snippets
-  "breadcrumbs": {
-    "home": "Home"
+  "home_page": {
+    "frontpage_title": "Frontpage Collection",
+    "frontpage_no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"/admin/custom_collections\">add a product to this collection</a>.",
+    "frontpage_faux_add": "Add Product",
+    "frontpage_faux_product": "Example Product Title",
+    "featured_title": "Featured Collections",
+    "frontpage_no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default Frontpage.",
+    "collection_faux_image": "Collection Image",
+    "frontpage_faux_collection": "Example Collection Title",
+    "news_title": "Latest News"
   },
-  "collection_sidebar": {
-    "types": "Product Types",
-    "no_types_html": "Add a type to your products for this list to build itself. All lists are created in <strong>collection-sidebar.liquid</strong>.",
-    "vendors": "Vendors",
-    "no_vendors": "Add a vendor to your product for this list to build itself.",
-    "tags": "Tags",
-    "no_tags": "Add tags to your products for this list to build itself."
+  "cart": {
+    "title": "Shopping Cart",
+    "vendor": "Vendor:",
+    "remove": "Remove",
+    "note": "Special instructions for seller",
+    "subtotal": "Subtotal",
+    "update": "Update Cart",
+    "checkout": "Check Out",
+    "empty": "Your cart is currently empty.",
+    "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
   },
-  "collection_sorting": {
-    "title": "Sort by",
-    "featured": "Featured",
-    "best_selling": "Best Selling",
-    "az": "Alphabetically, A-Z",
-    "za": "Alphabetically, Z-A",
-    "price_ascending": "Price, low to high",
-    "price_descending": "Price, high to low",
-    "date_descending": "Date, new to old",
-    "date_ascending": "Date, old to new"
-  },
-  "footer": {
-    "linklist_title": "Quick Links",
-    "social_title": "Get Connected",
-    "newsletter_title": "Newsletter",
-    "accepted_payments": "Accepted Payments"
-  },
-  "newsletter_form": {
-    "submit": "Subscribe"
+  "layout": {
+    "cart": {
+      "title": "Cart"
+    },
+    "customer": {
+      "logged_in_as": "Logged in as",
+      "log_out": "Log out",
+      "log_in": "Log in",
+      "create_account": "Create an account"
+    },
+    "footer": {
+      "linklist_title": "Quick Links",
+      "social_title": "Get Connected",
+      "newsletter_title": "Newsletter",
+      "accepted_payments": "Accepted Payments"
+    }
   }
 }

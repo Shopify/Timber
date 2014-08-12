@@ -19,7 +19,7 @@
   {% endcomment %}
   {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
 
-  <a href="{{ collection.url }}" title="{{ 'collection.link_title' | t: title: collection_title }}">
+  <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">
     {% if collection.image %}
       {{ collection.image.src | img_url: 'large' | img_tag: collection_title }}
     {% else %}
@@ -27,9 +27,10 @@
     {% endif %}
   </a>
 
-  <a href="{{ collection.url }}" title="{{ 'collection.link_title' | t: title: collection_title }}">{{ collection.title }}</a>
+  <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">{{ collection.title }}</a>
   <p>
-    {{ 'general.items_with_count' | t: count: collection.all_products_count }}
+    {{ 'general.counts.items_with_count' | t: count: collection.all_products_count }}
   </p>
 
 </div>
+
