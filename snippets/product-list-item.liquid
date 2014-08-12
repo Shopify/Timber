@@ -7,7 +7,7 @@
 
 {% endcomment %}
 
-{% unless current_collection %}
+{% unless current_collection == blank %}
   {% assign current_collection = collection %}
 {% endunless %}
 
