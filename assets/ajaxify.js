@@ -754,7 +754,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Show empty cart
     if (cart.item_count === 0) {
-      $cartContainer.append('<h2>Your cart is empty</h2>');
+      $cartContainer.append('<h2>Your cart is empty</h2><span>Continue browsing <a href="/collections/all">here</a>.</span>');
 
       switch (settings.method) {
         case 'modal':
