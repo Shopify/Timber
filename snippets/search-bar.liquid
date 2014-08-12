@@ -21,6 +21,9 @@
 
   <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="input-group-field" aria-label="{{ 'general.search.placeholder' | t }}">
   <span class="input-group-btn">
-    <button type="submit" class="btn">{{ 'general.search.submit' | t }}</button>
+    <button type="submit" class="btn icon-fallback-text">
+      <span class="icon icon-search" aria-hidden="true"></span>
+      <span class="fallback-text">{{ 'general.search.submit' | t }}</span>
+    </button>
   </span>
 </form>
