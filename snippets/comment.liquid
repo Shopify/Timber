@@ -16,6 +16,6 @@
 
   <em>
     {% assign comment_date = comment.created_at | date: '%b %d, %Y' %}
-    {{ 'article.comment_meta_html' | t: author: comment.author, date: comment_date }}
+    {{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: comment_date }}
   </em>
 </div>
