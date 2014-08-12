@@ -70,7 +70,10 @@
     },
     "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>"
   },
-
+  "blog": {
+    "recent_articles": "Recent Articles",
+    "categories": "Categories"
+  },
   "cart": {
     "title": "Shopping Cart",
     "vendor": "Vendor:",
@@ -209,10 +212,6 @@
   // Snippets
   "breadcrumbs": {
     "home": "Home"
-  },
-  "blog_sidebar": {
-    "recent_articles": "Recent Articles",
-    "categories": "Categories"
   },
   "collection_sidebar": {
     "types": "Product Types",
