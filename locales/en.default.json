@@ -56,6 +56,7 @@
       "categories": "Categories"
     }
   },
+
   "cart": {
     "general": {
       "title": "Shopping Cart",
@@ -109,6 +110,7 @@
     }
   },
   "contact": {
+<<<<<<< HEAD
     "form": {
       "name": "Name",
       "email": "Email",
@@ -117,6 +119,36 @@
       "send": "Send",
       "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
     }
+=======
+    "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+  },
+  "index": {
+    "frontpage_title": "Frontpage Collection",
+    "frontpage_no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"/admin/custom_collections\">add a product to this collection</a>.",
+    "frontpage_faux_add": "Add Product",
+    "frontpage_faux_product": "Example Product Title",
+    "featured_title": "Featured Collections",
+    "frontpage_no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default Frontpage.",
+    "collection_faux_image": "Collection Image",
+    "frontpage_faux_collection": "Example Collection Title",
+    "news_title": "Latest News"
+  },
+  "product": {
+    "sold_out": "Sold Out",
+    "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
+    "unavailable": "Unavailable",
+    "compare_at": "Compare at:",
+    "quantity": "Quantity",
+    "previous_product": "&larr; Previous Product",
+    "next_product": "Next Product &rarr;",
+    "add_to_cart": "Add to Cart",
+    "from": "From"
+  },
+  "search": {
+    "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
+    "results_for_html": "Your search for \"{{ search.terms }}\" revealed the following:",
+    "title": "Search for products on our site"
+>>>>>>> Fixed some broken strings
   },
   "customer": {
     "account": {
