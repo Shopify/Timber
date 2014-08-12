@@ -38,12 +38,12 @@
         <div class="grid">
 
           <div class="grid-item one-half small--one-whole">
-            <label for="address_first_name_new">{{ 'form.label.first_name' | t }}</label>
+            <label for="address_first_name_new">{{ 'general.forms.first_name' | t }}</label>
             <input type="text" id="address_first_name_new" class="address_form" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
           </div>
 
           <div class="grid-item one-half small--one-whole">
-            <label for="address_last_name_new">{{ 'form.label.last_name' | t }}</label>
+            <label for="address_last_name_new">{{ 'general.forms.last_name' | t }}</label>
             <input type="text" id="address_last_name_new" class="address_form" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
           </div>
 
@@ -80,7 +80,7 @@
           </div>
 
           <div class="grid-item large--one-half">
-            <label for="address_phone_new">{{ 'form.label.phone' | t }}</label>
+            <label for="address_phone_new">{{ 'general.forms.phone' | t }}</label>
             <input type="tel" id="address_phone_new" class="address_form" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
           </div>
         </div>
@@ -91,7 +91,7 @@
         </p>
 
         <p><input type="submit" class="btn" value="{{ 'customer.addresses.add' | t }}"></p>
-        <p><a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'form.label.cancel' | t }}</a></p>
+        <p><a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'general.forms.cancel' | t }}</a></p>
 
         <hr>
       {% endform %}
@@ -123,8 +123,8 @@
           {{ address.phone }}
         </p>
         <p>
-          {{ 'form.label.edit' | t | edit_customer_address_link: address.id }}
-          {{ 'form.label.delete' | t | delete_customer_address_link: address.id }}
+          {{ 'general.forms.edit' | t | edit_customer_address_link: address.id }}
+          {{ 'general.forms.delete' | t | delete_customer_address_link: address.id }}
         </p>
 
         <div id="edit_address_{{address.id}}" style="display:none;">
@@ -135,12 +135,12 @@
             <div class="grid">
 
               <div class="grid-item one-half small--one-whole">
-                <label for="address_first_name_{{form.id}}">{{ 'form.label.first_name' | t }}</label>
+                <label for="address_first_name_{{form.id}}">{{ 'general.forms.first_name' | t }}</label>
                 <input type="text" id="address_first_name_{{form.id}}" class="address_form" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
               </div>
 
               <div class="grid-item one-half small--one-whole">
-                <label for="address_last_name_{{form.id}}">{{ 'form.label.last_name' | t }}</label>
+                <label for="address_last_name_{{form.id}}">{{ 'general.forms.last_name' | t }}</label>
                 <input type="text" id="address_last_name_{{form.id}}" class="address_form" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
               </div>
 
@@ -173,7 +173,7 @@
               </div>
 
               <div class="grid-item one-half small--one-whole">
-                <label for="address_phone_{{form.id}}">{{ 'form.label.phone' | t }}</label>
+                <label for="address_phone_{{form.id}}">{{ 'general.forms.phone' | t }}</label>
                 <input type="tel" id="address_phone_{{form.id}}" class="address_form" name="address[phone]" value="{{form.phone}}" placeholder="555-555-1234">
               </div>
             </div>
@@ -184,7 +184,7 @@
             </p>
 
             <p><input type="submit" class="btn" value="{{ 'customer.addresses.update' | t }}"></p>
-            <p><a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">{{ 'form.label.cancel' | t }}</a></p>
+            <p><a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">{{ 'general.forms.cancel' | t }}</a></p>
 
             <hr>
           {% endform %}

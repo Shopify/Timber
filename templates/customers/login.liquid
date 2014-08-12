@@ -39,13 +39,13 @@
 
       {% include 'form-errors-custom' %}
 
-      <label for="customer_email" class="hidden-label">{{ 'form.label.email' | t }}</label>
-      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="{{ 'form.label.email' | t }}" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
+      <label for="customer_email" class="hidden-label">{{ 'general.forms.email' | t }}</label>
+      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="{{ 'general.forms.email' | t }}" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
 
       {% if form.password_needed %}
 
-        <label for="customer_password" class="hidden-label">{{ 'form.label.password' | t }}</label>
-        <input type="password" value="" name="customer[password]" id="customer_password" placeholder="{{ 'form.label.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+        <label for="customer_password" class="hidden-label">{{ 'general.forms.password' | t }}</label>
+        <input type="password" value="" name="customer[password]" id="customer_password" placeholder="{{ 'general.forms.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
 
         <p>
           <a href="#" onclick="showRecoverPasswordForm();return false;">{{ 'customer.login.forgot_password' | t }}</a>
@@ -87,14 +87,14 @@
           {% assign reset_success = true %}
         {% endif %}
 
-        <label for="recover-email" class="hidden-label">{{ 'form.label.email' | t }}</label>
-        <input type="email" value="" name="email" id="recover-email" placeholder="{{ 'form.label.email' | t }}" autocorrect="off" autocapitalize="off">
+        <label for="recover-email" class="hidden-label">{{ 'general.forms.email' | t }}</label>
+        <input type="email" value="" name="email" id="recover-email" placeholder="{{ 'general.forms.email' | t }}" autocorrect="off" autocapitalize="off">
 
         <div class="text-center">
           <p>
-            <input type="submit" class="btn" value="{{ 'form.label.submit' | t }}">
+            <input type="submit" class="btn" value="{{ 'general.forms.submit' | t }}">
           </p>
-          <a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'form.label.cancel' | t }}</a>
+          <a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'general.forms.cancel' | t }}</a>
         </div>
       {% endform %}
 
@@ -109,7 +109,7 @@
         <h2>{{ 'customer.login.guest_title' | t }}</h2>
 
         {% form 'guest_login' %}
-          <input  type="submit" class="btn" value="{{ 'form.label.continue' | t }}">
+          <input  type="submit" class="btn" value="{{ 'general.forms.continue' | t }}">
         {% endform %}
       {% endif %}
 

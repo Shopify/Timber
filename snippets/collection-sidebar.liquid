@@ -15,7 +15,7 @@
     - List the current collection's types with collection.all_types
 {% endcomment %}
 {% if collection.all_types.size > 0 %}
-<h3>{{ 'collection_sidebar.types' | t }}</h3>
+<h3>{{ 'collections.sidebar.types' | t }}</h3>
   <ul>
     {% for type in collection.all_types %}
       {% if collection.current_type == type %}
@@ -30,7 +30,7 @@
     {% endfor %}
   </ul>
 {% else %}
-  <p>{{ 'collection_sidebar.no_types_html' | t }}</p>
+  <p>{{ 'collections.sidebar.no_types_html' | t }}</p>
 {% endif %}
 
 {% comment %}
@@ -39,7 +39,7 @@
     - List the current collection's vendors with collection.all_vendors
 {% endcomment %}
 {% if collection.all_vendors.size > 0 %}
-<h3>{{ 'collection_sidebar.vendors' | t }}</h3>
+<h3>{{ 'collections.sidebar.vendors' | t }}</h3>
   <ul>
     {% for vendor in collection.all_vendors %}
       {% if collection.current_vendor == vendor %}
@@ -55,14 +55,14 @@
   </ul>
 
 {% else %}
-  <p>{{ 'collection_sidebar.no_vendors' | t }}</p>
+  <p>{{ 'collections.sidebar.no_vendors' | t }}</p>
 {% endif %}
 
 {% comment %}
   Product tags in the current collection
 {% endcomment %}
 {% if collection.all_tags.size > 0 %}
-<h3>{{ 'collection_sidebar.tags' | t }}</h3>
+<h3>{{ 'collections.sidebar.tags' | t }}</h3>
 
   {% comment %}
     To provide a 'catch-all' link at the top of the list,
@@ -114,5 +114,5 @@
   </ul>
 
 {% else %}
-  <p>{{ 'collection_sidebar.no_tags' | t }}</p>
+  <p>{{ 'collections.sidebar.no_tags' | t }}</p>
 {% endif %}
