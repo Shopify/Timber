@@ -70,6 +70,7 @@
     },
     "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>"
   },
+
   "cart": {
     "title": "Shopping Cart",
     "vendor": "Vendor:",
@@ -85,7 +86,7 @@
     "no_matches": "Sorry, there are no products matching your search."
   },
   "contact": {
-    "post_success": "Thanks for contacting us! We'll get back to you as soon as possible."
+    "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
   },
   "index": {
     "frontpage_title": "Frontpage Collection",
@@ -100,7 +101,7 @@
   },
   "product": {
     "sold_out": "Sold Out",
-    "on_sale_from": "<strong>On Sale</strong> from {{ price }}",
+    "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
     "unavailable": "Unavailable",
     "compare_at": "Compare at:",
     "quantity": "Quantity",
