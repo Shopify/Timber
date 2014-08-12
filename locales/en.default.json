@@ -83,7 +83,8 @@
     "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
   },
   "collection": {
-    "no_matches": "Sorry, there are no products matching your search."
+    "no_matches": "Sorry, there are no products matching your search.",
+    "link_title": "Browse our {{ title }} collection"
   },
   "contact": {
     "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
@@ -212,9 +213,6 @@
   "blog_sidebar": {
     "recent_articles": "Recent Articles",
     "categories": "Categories"
-  },
-  "collection_item": {
-    "link_title": "Browse our {{ title }} collection"
   },
   "collection_sidebar": {
     "types": "Product Types",
