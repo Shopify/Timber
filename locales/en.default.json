@@ -1,10 +1,9 @@
-/*============================================================================
-  Define your default theme language here
-  Strings require three levels of groupings:
-    - Group > Section > Key
-==============================================================================*/
 {
   "general": {
+    "404": {
+      "title": "404 Page Not Found",
+      "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
+    },
     "counts": {
       "comments_with_count": {
         "one": "{{ count }} comment",
@@ -34,21 +33,18 @@
       "continue": "Continue",
       "edit": "Edit",
       "delete": "Delete",
-      "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:"
+      "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:",
+      "newsletter_email": "your-email@example.com"
     },
     "newsletter_form": {
       "submit": "Subscribe"
-    },
-    "404": {
-      "title": "404 Page Not Found",
-      "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
     },
     "breadcrumbs": {
       "home": "Home"
     },
     "search": {
       "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
-      "results_for_html": "Your search for \"{{ search.terms }}\" revealed the following:",
+      "results_for_html": "Your search for \"{{ terms }}\" revealed the following:",
       "title": "Search for products on our site",
       "placeholder": "Search our store",
       "submit": "Search"
@@ -64,9 +60,9 @@
     },
     "article": {
       "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime=\"{{ date }}\">{{ date }}</time>",
-      "older_post": "&larr; Older Post",
-      "newer_post": "Newer Post &rarr;",
-      "tags": "Tags:",
+      "older_post": "Older Post",
+      "newer_post": "Newer Post",
+      "tags": "Tags",
       "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>"
     },
     "comments": {
@@ -115,7 +111,7 @@
       "sold_out": "Sold Out",
       "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
       "unavailable": "Unavailable",
-      "compare_at": "Compare at:",
+      "compare_at": "Compare at",
       "quantity": "Quantity",
       "add_to_cart": "Add to Cart"
     }
@@ -197,15 +193,26 @@
         "price": "Price",
         "quantity": "Quantity",
         "total": "Total",
-        "fulfilled_at" : "Fulfilled {{ date }}",
-        "subtotal": "Subtotal",
-        "total": "Total"
+        "fulfilled_at": "Fulfilled {{ date }}",
+        "subtotal": "Subtotal"
       }
     },
     "register": {
       "title": "Create Account",
       "submit": "Create",
       "cancel": "Return to Store"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Here's your {{ value }} gift card for {{ shop }}!",
+      "subtext": "Here's your gift card!",
+      "disabled": "Disabled",
+      "expired": "Expired on {{ expiry }}",
+      "active": "Expires on {{ expiry }}",
+      "redeem": "Use this code at checkout to redeem your gift card",
+      "shop_link": "Start shopping",
+      "print": "Print"
     }
   },
   "home_page": {
@@ -222,7 +229,7 @@
   "cart": {
     "general": {
       "title": "Shopping Cart",
-      "vendor": "Vendor:",
+      "vendor": "Vendor",
       "remove": "Remove",
       "note": "Special instructions for seller",
       "subtotal": "Subtotal",
@@ -246,7 +253,8 @@
       "linklist_title": "Quick Links",
       "social_title": "Get Connected",
       "newsletter_title": "Newsletter",
-      "accepted_payments": "Accepted Payments"
+      "accepted_payments": "Accepted Payments",
+      "theme_title": "by"
     }
   }
 }
