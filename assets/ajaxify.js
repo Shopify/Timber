@@ -284,13 +284,13 @@ var ajaxifyShopify = (function(module, $) {
     // Override defaults with arguments
     $.extend(settings, options);
 
-    // Make sure method is lower case
-    settings.method = settings.method.toLowerCase();
-
     // If method parameter is set, override the defined method (used for demos)
     if ( urlParams('method') ) {
       settings.method = urlParams('method');
     }
+
+    // Make sure method is lower case
+    settings.method = settings.method.toLowerCase();
 
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
