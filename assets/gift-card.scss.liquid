@@ -4,6 +4,8 @@
   #General Variables
   #Sass Mixins
   #Base Styles
+  #Media Queries
+  #Print Styles
   #Keyframe Animations
 ==============================================================================*/
 
@@ -73,6 +75,12 @@ $gutter: 24px;
   padding: $gutter*2 0;
   -webkit-animation: fadein 0.5s ease-in-out both 0.4s;
   animation: fadein 0.5s ease-in-out both 0.4s;
+}
+
+.shop-url {
+  display: none;
+  text-align: center;
+  color: #7c8f97;
 }
 
 .giftcard {
@@ -344,168 +352,115 @@ $gutter: 24px;
   }
 }
 
-footer[role='contentinfo'] {
+.giftcard__footer {
   text-align: center;
-  padding: 3em 0;
+  padding: $gutter*2 0;
   -webkit-animation: fadein 0.5s ease-in-out both 0.4s;
   animation: fadein 0.5s ease-in-out both 0.4s
 }
 
-#footer-links {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  padding-bottom: 3em
-}
 
-#footer-links li {
-  display: inline-block;
-  vertical-align: baseline;
-  zoom: 1;
-  *display: inline;
-  *vertical-align: auto
-}
-
-#footer-links li+li {
-  margin-left: 1em
-}
-
-#footer-links li a {
-  color: #bfbfbf
-}
-
-#footer-links li a:hover {
-  color: #999999
-}
-
-footer[role='contentinfo'] .gift-card-icon {
+.giftcard__icon {
   width: 45px;
   display: inline-block;
   vertical-align: baseline;
-  zoom: 1;
-  *display: inline;
-  *vertical-align: auto
 }
 
+
+/*============================================================================
+  #Media Queries
+==============================================================================*/
+
+/*================ Medium-down width ================*/
 @media screen and (max-width: 580px) {
-  body {
-    font-size:12px
-  }
-
-  h2 {
-    font-size: 1.5em
-  }
-
-  .tooltip-container {
+  .tooltip {
     top: -65%
   }
 
-  #gift-card-actions .btn {
+  .giftcard__actions .btn {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
-    font-size: 1.125em
   }
 
   .action-link {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    font-size: 1.125em;
-    display: none
-  }
-
-  .action-link+.action-link {
-    margin-left: 1.5em
-  }
-
-  #footer-links li {
-    font-size: 1.125em
+    display: none;
   }
 }
 
+/*================ Small width ================*/
 @media screen and (max-width: 400px) {
-  h2 {
-    font-size:1.25em
+  .giftcard {
+    font-size: 12px;
   }
 
-  #gift-card {
-    font-size: 10px
+  .gifcard-wrap__corner {
+    display: none;
   }
 
-  #gift-card-holder .corner {
-    display: none
+  .giftcard__amount strong {
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
   }
 
-  #gift-card-holder .corner.bottom-right {
-    background-position: bottom right !important
-  }
-
-  #gift-card-amount strong {
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.1)
-  }
-
-  .tooltip-container {
-    top: -75%
+  .tooltip {
+    top: -75%;
   }
 }
 
+
+/*================ Small height ================*/
 @media screen and (max-height: 800px) {
   .logo {
-    max-height:100px
+    max-height: 90px;
   }
 }
 
-@media screen and (max-height: 750px) {
-  .logo {
-    max-height:80px
-  }
-}
 
+/*============================================================================
+  #Print Styles
+==============================================================================*/
 @media print {
   @page {
-    margin: 0.5cm
+    margin: 0.5cm;
   }
 
-  p,h2,h3 {
+  p, h2, h3 {
     orphans: 3;
-    widows: 3
+    widows: 3;
   }
 
-  h2,h3 {
-    page-break-after: avoid
+  h2, h3 {
+    page-break-after: avoid;
   }
 
   body {
-    background-color: #fff
+    background-color: #fff;
   }
 
-  #gift-card-actions,#gift-card-holder .corner,.tooltip-container,#gift-card:before {
-    display: none
+  .giftcard__content,
+  .giftcard__border {
+    border: 0 none;
   }
 
-  #gift-card-code-inner strong {
-    color: #555
+  .giftcard__actions,
+  .gifcard-wrap__corner,
+  .tooltip,
+  .giftcard-wrap:before {
+    display: none;
   }
 
-  #gift-card-amount .tooltip {
-    color: #fff !important
+  .giftcard-code__text {
+    color: #555;
   }
 
   .shop-url {
-    color: #7c8f97;
-    display: block
+    display: block;
   }
 
   .logo {
-    color: #58686F
+    color: #58686F;
   }
 }
-
-
-
 
 /*============================================================================
   #Keyframe Animations
