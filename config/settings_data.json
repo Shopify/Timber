@@ -22,8 +22,8 @@
       "footer_social_enable": true,
       "logo_max_width": "450",
       "logo_use_image": false,
-      "social_facebook_link": "#",
-      "social_twitter_link": "#"
+      "social_facebook_link": "https://www.facebook.com/shopify",
+      "social_twitter_link": "https://twitter.com/shopify"
     }
   }
 }
