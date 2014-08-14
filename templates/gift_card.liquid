@@ -27,6 +27,7 @@
   <meta name="format-detection" content="telephone=no">
 
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'gift-card.scss.css' | asset_url | stylesheet_tag }}
   {{ 'modernizr.gift-card.js' | shopify_asset_url | script_tag }}
   <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
@@ -59,7 +60,7 @@
 
 <body>
 
-  <div class="giftcard-wrap">
+  <div class="wrapper">
 
     <header class="giftcard-header" role="banner">
       <div class="h1 header-logo" itemscope itemtype="http://schema.org/Organization">
@@ -73,23 +74,24 @@
       </div>
     </header>
 
-    <main role="main">
-      <div id="gift-card-outer-container" {% if gift_card.expired or gift_card.enabled != true %}class="disabled"{% endif %}>
-        <div id="gift-card-inner-container">
+    <main class="giftcard" role="main">
+      <div class="giftcard__border{% if gift_card.expired or gift_card.enabled != true %} disabled{% endif %}">
+        <div class="giftcard__content">
 
-          <header id="gift-card-header">
-            <h2>{{ 'gift_cards.issued.subtext' | t }}</h2>
+          <div class="giftcard__header">
+            <h2 class="giftcard__title">{{ 'gift_cards.issued.subtext' | t }}</h2>
+            <span class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</span>
             {% unless gift_card.enabled %}
-              <span class="tag">{{ 'gift_cards.issued.disabled' | t }}</span>
+              <span class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</span>
             {% endunless %}
             {% assign gift_card_expiry_date = gift_card.expires_on | date: "%d/%m/%y" %}
             {% if gift_card.expired and gift_card.enabled %}
-               <span class="tag">{{ 'gift_cards.issued.expired' | t: expiry: gift_card_expiry_date }}</span>
+               <span class="giftcard__tag">{{ 'gift_cards.issued.expired' | t: expiry: gift_card_expiry_date }}</span>
             {% endif %}
             {% if gift_card.expired != true and gift_card.expires_on and gift_card.enabled %}
-              <span class="tag light">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</span>
+              <span class="giftcard__tag giftcard__tag--active">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</span>
             {% endif %}
-          </header>
+          </div>
 
           <div id="gift-card-holder">
             <div class="corner top-left"></div>
