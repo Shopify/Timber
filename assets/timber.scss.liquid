@@ -692,16 +692,21 @@ body {
 
 .display-table {
   display: table;
+  table-layout: fixed;
+  width: 100%;
 }
 
 .display-table-cell {
   display: table-cell;
   vertical-align: middle;
+  float: none;
 }
 
 @include at-query ($min, $large) {
   .large--display-table {
     display: table;
+    table-layout: fixed;
+    width: 100%;
   }
 
   .large--display-table-cell {
@@ -1694,6 +1699,7 @@ label.error {
   @include at-query ($min, $large) {
     .grid {
       display: table;
+      table-layout: fixed;
       width: 100%;
 
       & > .grid-item {
@@ -1870,6 +1876,7 @@ label.error {
 
 .product-grid-item {
   display: block;
+  text-decoration: none;
 }
 
 .product-grid-image {
