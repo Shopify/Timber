@@ -72,6 +72,7 @@
           <a href="/" itemprop="url">{{ shop.name }}</a>
         {% endif %}
       </div>
+      <div class="shop-url">{{ shop.url }}</div>
     </header>
 
     <main class="giftcard" role="main">
@@ -101,7 +102,7 @@
             <img src="{{ 'gift-card/card.jpg' | shopify_asset_url }}" alt="Gift card illustration">
 
             {% assign initial_value_size = formatted_initial_value | size %}
-            <div class="giftcard__amount {% if initial_value_size > 6 %}giftcard__amount--medium{% endif %}">
+            <div class="giftcard__amount{% if initial_value_size > 6 %} giftcard__amount--medium{% endif %}">
               {% if gift_card.balance != gift_card.initial_value %}
                 <span class="tooltip">
                   <span class="tooltip__label">{{ gift_card.balance | money }} <small>left</small></span>
@@ -133,8 +134,8 @@
       </div>
     </main>
 
-    <footer role="contentinfo">
-      <img src="{{ 'gift-card/icon-bug.png' | shopify_asset_url }}" class="gift-card-icon" alt="{{ 'gift_cards.issued.subtext' | t }}">
+    <footer class="giftcard__footer" role="contentinfo">
+      <img src="{{ 'gift-card/icon-bug.png' | shopify_asset_url }}" class="giftcard__icon" alt="{{ 'gift_cards.issued.subtext' | t }}">
     </footer>
 
   </div>
