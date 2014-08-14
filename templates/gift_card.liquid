@@ -80,7 +80,6 @@
 
           <div class="giftcard__header">
             <h2 class="giftcard__title">{{ 'gift_cards.issued.subtext' | t }}</h2>
-            <span class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</span>
             {% unless gift_card.enabled %}
               <span class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</span>
             {% endunless %}
@@ -93,36 +92,41 @@
             {% endif %}
           </div>
 
-          <div id="gift-card-holder">
-            <div class="corner top-left"></div>
-            <div class="corner bottom-right"></div>
-            <div class="corner top-right"></div>
-            <div class="corner bottom-left"></div>
-            <div id="gift-card">
-              <img src="{{ 'gift-card/card.jpg' | shopify_asset_url }}" alt="Gift card illustration">
-              {% assign initial_value_size = formatted_initial_value | size %}
-              <div id="gift-card-amount" class="{% if initial_value_size > 6 %}medium{% endif %}">
-                {% if gift_card.balance != gift_card.initial_value %}
-                  <span class="tooltip-container"><span class="tooltip-label">{{ gift_card.balance | money }} <small>left</small></span><span class="tooltip-triangle"></span></span>
-                {% endif %}
-                <strong>{{ formatted_initial_value }}</strong>
-              </div>
-              {% assign code_size = gift_card.code | format_code | size %}
-              <div id="gift-card-code-outer" class="{% if code_size <= 25 %}large{% elsif code_size > 25 and code_size <= 30 %}medium{% else %}small{% endif %}" onclick="selectText('gift-card-code-digits');">
-                <div id="gift-card-code-inner">
-                  <strong id="gift-card-code-digits">{{ gift_card.code | format_code }}</strong>
-                </div>
+          <div class="giftcard-wrap">
+            <div class="gifcard-wrap__corner top-left"></div>
+            <div class="gifcard-wrap__corner bottom-right"></div>
+            <div class="gifcard-wrap__corner top-right"></div>
+            <div class="gifcard-wrap__corner bottom-left"></div>
+
+            <img src="{{ 'gift-card/card.jpg' | shopify_asset_url }}" alt="Gift card illustration">
+
+            {% assign initial_value_size = formatted_initial_value | size %}
+            <div class="giftcard__amount {% if initial_value_size > 6 %}giftcard__amount--medium{% endif %}">
+              {% if gift_card.balance != gift_card.initial_value %}
+                <span class="tooltip">
+                  <span class="tooltip__label">{{ gift_card.balance | money }} <small>left</small></span>
+                </span>
+              {% endif %}
+              <strong>{{ formatted_initial_value }}</strong>
+            </div>
+
+            {% assign code_size = gift_card.code | format_code | size %}
+            <div class="giftcard-code{% if code_size > 25 and code_size <= 30 %} giftcard-code--medium{% else %} giftcard-code--small{% endif %}" onclick="selectText('gift-card-code-digits');">
+              <div class="giftcard-code__inner">
+                <strong class="giftcard-code__text">{{ gift_card.code | format_code }}</strong>
               </div>
             </div>
           </div>
 
-          <div id="gift-card-instructions">
-            <p>{{ 'gift_cards.issued.redeem' | t }}</p>
-          </div>
+          <p class="giftcard__instructions">
+            {{ 'gift_cards.issued.redeem' | t }}
+          </p>
 
-          <div id="gift-card-actions">
-            <a href="{{ shop.url }}" class="btn center" target="_blank">{{ 'gift_cards.issued.shop_link' | t }}</a>
-            <a href="#" class="action-link left" onclick="window.print();"><i class="ico-16 print"></i>{{ 'gift_cards.issued.print' | t }}</a>
+          <div class="giftcard__actions">
+            <a href="{{ shop.url }}" class="btn" target="_blank">{{ 'gift_cards.issued.shop_link' | t }}</a>
+            <a href="#" class="action-link" onclick="window.print();">
+              <i class="action-link__print"></i>{{ 'gift_cards.issued.print' | t }}
+            </a>
           </div>
 
         </div>
