@@ -35,27 +35,6 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
-  <script type="text/javascript">
-    function selectText(element) {
-
-      var doc = document;
-      var text = doc.getElementById(element);
-
-      if (doc.body.createTextRange) { // ms
-        var range = doc.body.createTextRange();
-        range.moveToElementText(text);
-        range.select();
-      } else if (window.getSelection) { // moz, opera, webkit
-        var selection = window.getSelection();
-        var range = doc.createRange();
-        range.selectNodeContents(text);
-        selection.removeAllRanges();
-        selection.addRange(range);
-      }
-
-    }
-  </script>
-
 </head>
 
 <body>
@@ -137,6 +116,25 @@
     </footer>
 
   </div>
+
+  <script type="text/javascript">
+    function selectText(element) {
+      var doc = document,
+          text = doc.getElementById(element);
+
+      if (doc.body.createTextRange) { // ms
+        var range = doc.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+      } else if (window.getSelection) { // moz, opera, webkit
+        var selection = window.getSelection(),
+            range = doc.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+  </script>
 
 </body>
 </html>
