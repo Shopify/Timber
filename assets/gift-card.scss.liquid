@@ -17,8 +17,7 @@
 $colorBody: {{ settings.color_body_bg }};
 $colorBorder: {{ settings.color_borders }};
 
-$colorGiftBorder: #34aadc;
-$colorGiftBackground: #fff;
+$colorGiftBorder: {{ settings.color_primary }};
 $colorGiftTag: #bfbfbf;
 
 // Sizes
@@ -99,7 +98,7 @@ $gutter: 24px;
 
 .giftcard__content {
   @include clearfix;
-  background-color: $colorGiftBackground;
+  background-color: $colorBody;
   border: 1px solid darken($colorGiftBorder, 5%);
   border-radius: 3px;
   -webkit-animation: cardslide 0.8s ease-in-out;
