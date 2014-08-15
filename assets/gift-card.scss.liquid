@@ -135,7 +135,7 @@ $gutter: 24px;
 
 .giftcard-wrap {
   position: relative;
-  margin: $gutter $gutter/2;
+  margin: $gutter/2 $gutter/2 $gutter;
   padding-bottom: 5px;
 
   &:before {
@@ -257,7 +257,7 @@ $gutter: 24px;
   position: absolute;
   top: -50%;
   right: 50%;
-  margin-top: $gutter/3;
+  margin-top: 16px;
   z-index: 3;
   color: #fff;
   text-align: center;
@@ -380,8 +380,8 @@ $gutter: 24px;
 
 /*================ Medium-down width ================*/
 @media screen and (max-width: 580px) {
-  .tooltip {
-    top: -65%
+  .giftcard__border {
+    padding: $gutter/2;
   }
 
   .giftcard__actions .btn {
@@ -403,10 +403,6 @@ $gutter: 24px;
 
   .giftcard__amount strong {
     text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
-  }
-
-  .tooltip {
-    top: -75%;
   }
 }
 
