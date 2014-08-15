@@ -131,7 +131,7 @@ $headerFontWeight: 700;
 
 // Body Font
 $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
+$baseFontSize: 14px; // Henseforth known as 1em
 
 // Icons
 @font-face {
@@ -157,6 +157,7 @@ $socialIconFontStack: 'icons';
     clear: both; }
   *zoom: 1;
 }
+
 @mixin clearfix() {
   &:after {
     content: "";
@@ -195,6 +196,13 @@ $socialIconFontStack: 'icons';
   -webkit-box-sizing: #{$box-sizing};
   -moz-box-sizing: #{$box-sizing};
   box-sizing: #{$box-sizing};
+}
+
+@function em($target, $context: $baseFontSize) {
+  @if $target == 0 {
+    @return 0;
+  }
+  @return $target / $context + 0em;
 }
 
 @function color-control($color) {
@@ -746,13 +754,31 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/*================ Pixel to EM conversion tool - http://pxtoem.com/ ================*/
-h1 { font-size: 3em; }       // 42px
-h2 { font-size: 2em; }       // 28px
-h3 { font-size: 1.571em; }   // 21px
-h4 { font-size: 1.429em; }   // 20px
-h5 { font-size: 1.143em; }   // 16px
-h6 { font-size: 1em; }       // 14px
+/*================ Use em() Sass function to declare font-size ================*/
+h1 {
+  font-size: em(36px);
+}
+
+h2 {
+  font-size: em(28px);
+}
+
+h3 {
+  font-size: em(22px);
+}
+
+h4 {
+  font-size: em(20px);
+}
+
+h5 {
+  font-size: em(16px);
+}
+
+h6 {
+  font-size: em(14px);
+}
+
 
 .h1 { @extend h1; }
 .h2 { @extend h2; }
@@ -1233,7 +1259,7 @@ textarea {
 
 fieldset {
   border: 1px solid $colorBorder;
-  padding: $gutter/2 0;
+  padding: $gutter/2;
 }
 
 legend {
@@ -1713,6 +1739,7 @@ label.error {
 
 .header-logo {
   text-align: center;
+  font-size: em(40px);
   margin: 0 auto $gutter/2;
   max-width: {{ settings.logo_max_width }}px;
 
