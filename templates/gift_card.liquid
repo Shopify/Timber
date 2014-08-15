@@ -85,9 +85,9 @@
             </div>
 
             {% assign code_size = gift_card.code | format_code | size %}
-            <div class="giftcard-code{% if code_size <= 25 %} giftcard-code--large{% elsif code_size > 25 and code_size <= 30 %} giftcard-code--medium{% else %} giftcard-code--small{% endif %}" onclick="selectText('GiftCardDigits');">
-              <div class="giftcard-code__inner">
-                <strong class="giftcard-code__text" id="GiftCardDigits">{{ gift_card.code | format_code }}</strong>
+            <div class="giftcard__code{% if code_size <= 25 %} giftcard__code--large{% elsif code_size > 25 and code_size <= 30 %} giftcard__code--medium{% else %} giftcard__code--small{% endif %}" onclick="selectText('GiftCardDigits');">
+              <div class="giftcard__code__inner">
+                <strong class="giftcard__code__text" id="GiftCardDigits">{{ gift_card.code | format_code }}</strong>
               </div>
             </div>
           </div>
