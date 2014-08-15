@@ -1,12 +1,3 @@
-{% comment %}
-
-  Loop through a defined number of articles with the 'paginate' tag.
-  Don't forget to close the tag after your loop.
-
-{% endcomment %}
-
-{% paginate blog.articles by 5 %}
-
 {% include 'breadcrumb' %}
 
 {% comment %}
@@ -29,11 +20,17 @@
     {% endif %}
 
     {% comment %}
-      Loop through each article in your blog. This is limited to what you set for pagination above.
+    
+      Loop through a defined number of articles with the 'paginate' tag.
+      Don't forget to close the tag after your loop.
+      Then, loop through each article in your blog limited to what you set for pagination.
 
       For more info on article liquid tags:
         - http://docs.shopify.com/themes/liquid-variables/article
+    
     {% endcomment %}
+    
+    {% paginate blog.articles by 5 %}
 
     {% for article in blog.articles %}
 
@@ -89,8 +86,8 @@
     </div>
     {% endif %}
 
+    {% endpaginate %}
+
   </div>
 
 </div>
-
-{% endpaginate %}
