@@ -58,7 +58,7 @@
         <div class="giftcard__content">
 
           <div class="giftcard__header">
-            <h3 class="giftcard__title">{{ 'gift_cards.issued.subtext' | t }}</h3>
+            <h2 class="h4 giftcard__title">{{ 'gift_cards.issued.subtext' | t }}</h2>
             {% unless gift_card.enabled %}
               <span class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</span>
             {% endunless %}
@@ -85,7 +85,7 @@
             </div>
 
             {% assign code_size = gift_card.code | format_code | size %}
-            <div class="giftcard-code{% if code_size > 25 and code_size <= 30 %} giftcard-code--medium{% else %} giftcard-code--small{% endif %}" onclick="selectText('GiftCardDigits');">
+            <div class="giftcard-code{% if code_size <= 25 %} giftcard-code--large{% elsif code_size > 25 and code_size <= 30 %} giftcard-code--medium{% else %} giftcard-code--small{% endif %}" onclick="selectText('GiftCardDigits');">
               <div class="giftcard-code__inner">
                 <strong class="giftcard-code__text" id="GiftCardDigits">{{ gift_card.code | format_code }}</strong>
               </div>
