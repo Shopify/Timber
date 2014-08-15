@@ -859,8 +859,8 @@ code, pre {
 
 pre {
   overflow: auto;
-  padding: 0.5em;
-  margin: 0 0 1em;
+  padding: $gutter/2;
+  margin: 0 0 $gutter;
 }
 
 /*================ Horizontal Rules ================*/
@@ -1051,7 +1051,7 @@ html input[disabled] {
 
   &.btn--small {
     padding: 4px 5px;
-    font-size: 0.75em; //12px
+    font-size: em(12px);
   }
 
   &.btn--full {
@@ -1678,7 +1678,7 @@ label.error {
 .pagination-custom-lg > li > a,
 .pagination-custom-lg > li > span {
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: em(18px);
 }
 
 .pagination-custom-lg > li:first-child > a,
@@ -1696,7 +1696,7 @@ label.error {
 .pagination-custom-sm > li > a,
 .pagination-custom-sm > li > span {
   padding: 5px 10px;
-  font-size: 0.75em;
+  font-size: em(12px);
 }
 
 .pagination-custom-sm > li:first-child > a,
@@ -1800,7 +1800,7 @@ label.error {
 }
 
 .site-nav {
-  font-size: 1.2em;
+  font-size: em(16px);
   cursor: default;
 
   li {
@@ -2085,6 +2085,6 @@ label.error {
   text-align: center;
   padding: 100px 0;
   color: #aaa;
-  font-size: 0.875em;
+  font-size: em(12px);
   text-decoration: none;
 }
