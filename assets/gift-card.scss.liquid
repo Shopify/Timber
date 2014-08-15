@@ -19,7 +19,6 @@ $colorBorder: {{ settings.color_borders }};
 // Gift Card Colors
 $colorGiftText: #999; // note, this is always on a white background
 $colorGiftBorder: {{ settings.color_primary }};
-$colorGiftTag: #bfbfbf;
 
 // Sizes
 $gutter: 24px;
@@ -122,20 +121,21 @@ $gutter: 24px;
 .giftcard__tag {
   display: block;
   float: right;
-  background-color: $colorGiftTag;
+  background-color: lighten($colorGiftText, 10%);
+  border: 1px solid transparent;
+  color: #fff;
   padding: $gutter/3;
   border-radius: 4px;
   font-size: 0.75em;
   text-transform: uppercase;
   letter-spacing: .05em;
-  color: #fff;
   line-height: 1;
 }
 
 .giftcard__tag--active {
   background: transparent;
-  color: $colorGiftTag;
-  border: 1px solid lighten($colorGiftTag, 10%);
+  color: $colorGiftText;
+  border: 1px solid lighten($colorGiftText, 20%);
 }
 
 .giftcard-wrap {
