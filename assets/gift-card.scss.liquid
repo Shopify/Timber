@@ -11,12 +11,13 @@
 
 /*============================================================================
   #General Variables
-    - Some copied from timber.scss.liquid
 ==============================================================================*/
-// Colors
+// Timber Colors
 $colorBody: {{ settings.color_body_bg }};
 $colorBorder: {{ settings.color_borders }};
 
+// Gift Card Colors
+$colorGiftText: #999; // note, this is always on a white background
 $colorGiftBorder: {{ settings.color_primary }};
 $colorGiftTag: #bfbfbf;
 
@@ -73,6 +74,7 @@ $gutter: 24px;
 
 .giftcard-header {
   padding: $gutter*2 0;
+  font-size: 1em;
   -webkit-animation: fadein 0.5s ease-in-out both 0.4s;
   animation: fadein 0.5s ease-in-out both 0.4s;
 }
@@ -98,24 +100,28 @@ $gutter: 24px;
 
 .giftcard__content {
   @include clearfix;
-  background-color: $colorBody;
+  background-color: #fff;
+  color: $colorGiftText;
   border: 1px solid darken($colorGiftBorder, 5%);
   border-radius: 3px;
   -webkit-animation: cardslide 0.8s ease-in-out;
-  animation: cardslide 0.8s ease-in-out
+  animation: cardslide 0.8s ease-in-out;
 }
 
 .giftcard__header {
+  @include clearfix;
   border-bottom: 1px solid $colorBorder;
   padding: $gutter/2;
 }
 
 .giftcard__title {
+  float: left;
   margin-bottom: 0;
 }
 
 .giftcard__tag {
-  display: inline-block;
+  display: block;
+  float: right;
   background-color: $colorGiftTag;
   padding: $gutter/3;
   border-radius: 4px;
@@ -124,7 +130,6 @@ $gutter: 24px;
   letter-spacing: .05em;
   color: #fff;
   line-height: 1;
-  margin-top: $gutter/2;
 }
 
 .giftcard__tag--active {
@@ -237,7 +242,7 @@ $gutter: 24px;
 }
 
 .giftcard__amount--medium {
-  font-size: 2.25em;
+  font-size: 2em;
 }
 
 .tooltip {
@@ -317,12 +322,12 @@ $gutter: 24px;
   display: block;
   text-transform: uppercase;
   letter-spacing: .2em;
-  color: #bfbfbf;
+  color: lighten($colorGiftText, 10%);
   margin-top: -10px;
 
   &:hover,
   &:focus {
-    color: #999;
+    color: $colorGiftText;
   }
 }
 
@@ -370,7 +375,23 @@ $gutter: 24px;
 
 /*================ Medium-down width ================*/
 @media screen and (max-width: 580px) {
+  .giftcard {
+    font-size: 12px;
+  }
+
+  .giftcard-header {
+    padding: $gutter 0;
+  }
+
+  .header-logo {
+    font-size: 2em;
+  }
+
   .giftcard__border {
+    padding: $gutter/2;
+  }
+
+  .giftcard__actions {
     padding: $gutter/2;
   }
 
@@ -387,19 +408,20 @@ $gutter: 24px;
 
 /*================ Small width ================*/
 @media screen and (max-width: 400px) {
-  .giftcard {
-    font-size: 12px;
-  }
-
   .giftcard__amount strong {
     text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+  }
+
+  .giftcard-wrap:before,
+  .giftcard-wrap:after {
+    display: none;
   }
 }
 
 
 /*================ Small height ================*/
 @media screen and (max-height: 800px) {
-  .logo {
+  .header-logo img {
     max-height: 90px;
   }
 }
