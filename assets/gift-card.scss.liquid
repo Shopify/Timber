@@ -54,7 +54,8 @@ $gutter: 24px;
 /*============================================================================
   #Base Styles
 ==============================================================================*/
-.template-giftcard {
+.template-giftcard,
+.template-giftcard body {
   background: $colorBody;
 
   a {
@@ -63,7 +64,7 @@ $gutter: 24px;
 }
 
 .template-giftcard .wrapper {
-  max-width: 540px;
+  max-width: 588px;
 
   img, object, iframe {
     max-width: 100%;
@@ -79,7 +80,6 @@ $gutter: 24px;
 .shop-url {
   display: none;
   text-align: center;
-  color: #7c8f97;
 }
 
 .giftcard {
@@ -91,7 +91,7 @@ $gutter: 24px;
   background-color: $colorGiftBorder;
   border-radius: 4px;
   border: 1px solid darken($colorGiftBorder, 5%);
-  padding: $gutter;
+  padding: 1em;
   -webkit-animation: container-slide 0.8s ease-in-out;
   animation: container-slide 0.8s ease-in-out
 }
@@ -136,22 +136,6 @@ $gutter: 24px;
 .giftcard-wrap {
   position: relative;
   margin: $gutter/2 $gutter/2 $gutter;
-  padding-bottom: 5px;
-
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    border: 1px solid $colorBorder;
-    border-radius: 10px;
-    z-index: 1;
-    pointer-events: none;
-    @include prefix('user-select', 'none');
-    z-index: 1;
-  }
 
   img {
     position: relative;
@@ -159,28 +143,31 @@ $gutter: 24px;
     border-radius: 10px;
     z-index: 2;
   }
-}
 
-.borderradius .gifcard-wrap__corner {
-  position: absolute;
-  width: 47px;
-  height: 47px;
-  z-index: 3;
-
-  .lt-ie9 & {
-    display: none;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 47px;
+    height: 47px;
+    z-index: 3;
   }
 
-  &.top-left {
+  &:before {
     background: url('//cdn.shopify.com/s/assets/gift-card/corner-top-left-2ba3edcd9e97ba146cd01a8161365c5e.svg') 0 0 no-repeat;
     top: -1px;
     left: -1px;
   }
 
-  &.bottom-right {
+  &:after {
     background: url('//cdn.shopify.com/s/assets/gift-card/corner-bottom-right-1fb9bf49ff9564325e6b7c0fb0a7ff45.svg') 0 0 no-repeat;
     bottom: -1px;
     right: -1px;
+  }
+
+  .lt-ie9 &:before,
+  .lt-ie9 &:after {
+    display: none;
   }
 }
 
@@ -239,6 +226,7 @@ $gutter: 24px;
   right: 0;
   color: #fff;
   font-size: 2.75em;
+  line-height: 1.2;
   padding: $gutter/2;
   z-index: 50;
 
@@ -308,9 +296,7 @@ $gutter: 24px;
 }
 
 .giftcard__instructions {
-  font-size: .875em;
   text-align: center;
-  color: #999;
   margin: 0 $gutter/2 $gutter;
 }
 
@@ -323,12 +309,16 @@ $gutter: 24px;
 }
 
 .action-link {
+  position: absolute;
+  left: $gutter/2;
+  top: 50%;
+  font-size: 0.875em;
+  font-weight: bold;
   display: block;
-  font-size: .875em;
   text-transform: uppercase;
   letter-spacing: .2em;
   color: #bfbfbf;
-  margin-top: $gutter;
+  margin-top: -10px;
 
   &:hover,
   &:focus {
@@ -432,7 +422,7 @@ $gutter: 24px;
     page-break-after: avoid;
   }
 
-  body {
+  html, body {
     background-color: #fff;
   }
 
@@ -442,9 +432,9 @@ $gutter: 24px;
   }
 
   .giftcard__actions,
-  .gifcard-wrap__corner,
-  .tooltip,
-  .giftcard-wrap:before {
+  .giftcard-wrap:before,
+  .giftcard-wrap:after,
+  .tooltip {
     display: none;
   }
 
