@@ -12,7 +12,7 @@
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
 
-    <h1 class="h2">{{ 'cart.general.title' | t }}</h1>
+    <h1>{{ 'cart.general.title' | t }}</h1>
 
     {% comment %}
       Loop through products in the cart

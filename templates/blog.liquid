@@ -23,9 +23,9 @@
   <div class="grid-item large--three-quarters">
 
     {% if current_tags %}
-      <h2>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h2>
+      <h1>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h1>
     {% else %}
-      <h2>{{ blog.title }}</h2>
+      <h1>{{ blog.title }}</h1>
     {% endif %}
 
     {% comment %}
