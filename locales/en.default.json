@@ -5,10 +5,7 @@
       "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
     },
     "counts": {
-      "comments_with_count": {
-        "one": "{{ count }} comment",
-        "other": "{{ count }} comments"
-      },
+
       "items": {
         "one": "item",
         "other": "items"
@@ -51,9 +48,6 @@
     }
   },
   "blogs": {
-    "general": {
-      "read_more_html": "Read more &rarr;"
-    },
     "sidebar": {
       "recent_articles": "Recent Articles",
       "categories": "Categories"
@@ -63,7 +57,8 @@
       "older_post": "Older Post",
       "newer_post": "Newer Post",
       "tags": "Tags",
-      "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>"
+      "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>",
+      "read_more": "Read more"
     },
     "comments": {
       "title": "Leave a comment",
@@ -73,7 +68,11 @@
       "post": "Post comment",
       "moderated": "Please note, comments must be approved before they are published",
       "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
-      "success": "Your comment was posted successfully! Thank you!"
+      "success": "Your comment was posted successfully! Thank you!",
+      "comments_with_count": {
+        "one": "{{ count }} comment",
+        "other": "{{ count }} comments"
+      }
     }
   },
   "collections": {

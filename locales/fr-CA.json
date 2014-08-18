@@ -5,7 +5,8 @@
       "older_post": "Article précédent",
       "newer_post": "Article suivant",
       "tags": "Tags",
-      "comment_meta_html": "<strong>{{ author }}</strong> le <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>"
+      "comment_meta_html": "<strong>{{ author }}</strong> le <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>",
+      "read_more": "Plus"
     },
     "comments": {
       "title": "Laissez un commentaire",
@@ -15,10 +16,11 @@
       "post": "Publier le commentaire",
       "moderated": "Veuillez noter que les commentaires doivent être approvés avant d'être affichés",
       "success_moderated": "Votre commentaire a été soumis avec succès. Nous le publierons sous peu, suite à notre processus de modération.",
-      "success": "Votre commentaire a été publié avec succès!"
-    },
-    "general": {
-      "read_more_html": "Plus &rarr;"
+      "success": "Votre commentaire a été publié avec succès!",
+      "comments_with_count": {
+        "one": "{{ count }} commentaire",
+        "other": "{{ count }} commentaires"
+      }
     },
     "sidebar": {
       "recent_articles": "Articles récents",
@@ -159,10 +161,6 @@
       "home": "Accueil"
     },
     "counts": {
-      "comments_with_count": {
-        "one": "{{ count }} commentaire",
-        "other": "{{ count }} commentaires"
-      },
       "items": {
         "one": "item",
         "other": "items"
