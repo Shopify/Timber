@@ -106,7 +106,7 @@
           <a href="/cart" id="cartToggle">
             {{ 'layout.cart.title' | t }}
             (<span id="cartCount">{{ cart.item_count }}</span>
-            {{ 'general.counts.items' | t: count: cart.item_count }}
+            {{ 'layout.cart.items' | t: count: cart.item_count }}
             <span id="cartCost">{{ cart.total_price | money }}</span>)
           </a>
 

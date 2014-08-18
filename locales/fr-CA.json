@@ -43,7 +43,15 @@
   "collections": {
     "general": {
       "no_matches": "Aucun produit ne correspond à votre recherche.",
-      "link_title": "Consultez la collection {{ title }}"
+      "link_title": "Consultez la collection {{ title }}",
+      "items": {
+        "one": "item",
+        "other": "items"
+      },
+      "items_with_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      }
     },
     "sidebar": {
       "types": "Types de produits",
@@ -160,16 +168,6 @@
     "breadcrumbs": {
       "home": "Accueil"
     },
-    "counts": {
-      "items": {
-        "one": "item",
-        "other": "items"
-      },
-      "items_with_count": {
-        "one": "{{ count }} item",
-        "other": "{{ count }} items"
-      }
-    },
     "forms": {
       "name": "Nom",
       "first_name": "Prénom",
@@ -212,7 +210,11 @@
   },
   "layout": {
     "cart": {
-      "title": "Panier"
+      "title": "Panier",
+      "items": {
+        "one": "item",
+        "other": "items"
+      }
     },
     "customer": {
       "logged_in_as": "Connecté en tant que",
