@@ -185,13 +185,13 @@
         <li>
           <a href="{{ article.url }}#comments">
             {{ article.comments_count }}
-            {{ 'comments_with_count' | t: count: article.comments_count }}
+            {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
           </a>
         </li>
         {% endif %}
       </ul>
 
-      <p><a href="{{ article.url }}">{{ 'blogs.general.read_more_html' | t }}</a></p>
+      <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
 
     </div>
 
