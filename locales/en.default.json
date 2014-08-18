@@ -4,29 +4,15 @@
       "title": "404 Page Not Found",
       "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
     },
-    "forms": {
-      "name": "Name",
-      "first_name": "First Name",
-      "last_name": "Last Name",
-      "email": "Email",
-      "phone": "Phone Number",
-      "message": "Message",
-      "password": "Password",
-      "password_confirm": "Confirm Password",
-      "send": "Send",
-      "submit": "Submit",
-      "cancel": "Cancel",
-      "continue": "Continue",
-      "edit": "Edit",
-      "delete": "Delete",
-      "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:",
-      "newsletter_email": "your-email@example.com"
-    },
-    "newsletter_form": {
-      "submit": "Subscribe"
-    },
     "breadcrumbs": {
       "home": "Home"
+    },
+    "forms": {
+      "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:"
+    },
+    "newsletter_form": {
+      "newsletter_email": "your-email@example.com",
+      "submit": "Subscribe"
     },
     "search": {
       "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
@@ -37,10 +23,6 @@
     }
   },
   "blogs": {
-    "sidebar": {
-      "recent_articles": "Recent Articles",
-      "categories": "Categories"
-    },
     "article": {
       "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime=\"{{ date }}\">{{ date }}</time>",
       "older_post": "Older Post",
@@ -62,6 +44,10 @@
         "one": "{{ count }} comment",
         "other": "{{ count }} comments"
       }
+    },
+    "sidebar": {
+      "recent_articles": "Recent Articles",
+      "categories": "Categories"
     }
   },
   "cart": {
@@ -111,7 +97,14 @@
     }
   },
   "contact": {
-    "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "message": "Message",
+      "send": "Send",
+      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+    }
   },
   "customer": {
     "account": {
@@ -120,18 +113,11 @@
       "view_addresses": "View Addresses",
       "return": "Return to Account Details"
     },
-    "orders": {
-      "title": "Order History",
-      "order_number": "Order",
-      "date": "Date",
-      "payment_status": "Payment Status",
-      "fulfillment_status": "Fulfillment Status",
-      "total": "Total",
-      "none": "You haven't placed any orders yet."
-    },
     "activate_account": {
       "title": "Activate Account",
       "subtext": "Create your password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
       "submit": "Activate Account",
       "cancel": "Decline Invitation"
     },
@@ -140,6 +126,8 @@
       "default": "Default",
       "add_new": "Add a New Address",
       "edit_address": "Edit address",
+      "first_name": "First Name",
+      "last_name": "Last Name",
       "company": "Company",
       "address1": "Address1",
       "address2": "Address2",
@@ -150,24 +138,29 @@
       "phone": "Phone",
       "set_default": "Set as default address",
       "add": "Add Address",
-      "update": "Update Address"
+      "update": "Update Address",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete"
     },
     "login": {
       "title": "Login",
+      "email": "Email",
+      "password": "Password",
       "forgot_password": "Forgot your password?",
       "sign_in": "Sign In",
       "cancel": "Return to Store",
-      "guest_title": "Continue as a guest"
+      "guest_title": "Continue as a guest",
+      "guest_continue": "Continue"
     },
-    "recover_password": {
-      "title": "Reset your password",
-      "subtext": "We will send you an email to reset your password.",
-      "success": "We've sent you an email with a link to update your password."
-    },
-    "reset_password": {
-      "title": "Reset account password",
-      "subtext": "Enter a new password for {{ email }}",
-      "submit": "Reset Password"
+    "orders": {
+      "title": "Order History",
+      "order_number": "Order",
+      "date": "Date",
+      "payment_status": "Payment Status",
+      "fulfillment_status": "Fulfillment Status",
+      "total": "Total",
+      "none": "You haven't placed any orders yet."
     },
     "order": {
       "title": "Order {{ name }}",
@@ -191,8 +184,27 @@
         "subtotal": "Subtotal"
       }
     },
+    "recover_password": {
+      "title": "Reset your password",
+      "email": "Email",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "subtext": "We will send you an email to reset your password.",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "subtext": "Enter a new password for {{ email }}",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Reset Password"
+    },
     "register": {
       "title": "Create Account",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
       "submit": "Create",
       "cancel": "Return to Store"
     }

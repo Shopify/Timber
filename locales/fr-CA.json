@@ -8,24 +8,10 @@
       "home": "Accueil"
     },
     "forms": {
-      "name": "Nom",
-      "first_name": "Prénom",
-      "last_name": "Nom",
-      "email": "Courriel",
-      "phone": "Téléphone",
-      "message": "Message",
-      "password": "Mot de passe",
-      "password_confirm": "Confirmer le mot de passe",
-      "send": "Envoyer",
-      "submit": "Soumettre",
-      "cancel": "Annuler",
-      "continue": "Continuer",
-      "edit": "Éditer",
-      "delete": "Supprimer",
-      "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:",
-      "newsletter_email": "votre-courriel@exemple.com"
+      "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:"
     },
     "newsletter_form": {
+      "newsletter_email": "votre-courriel@exemple.com",
       "submit": "S'inscrire"
     },
     "search": {
@@ -111,7 +97,14 @@
     }
   },
   "contact": {
-    "post_success": "Merci de nous avoir avoir contacté. Nous vous reviendrons le plus rapidement possible."
+    "form": {
+      "name": "Nom",
+      "email": "Courriel",
+      "phone": "Téléphone",
+      "message": "Message",
+      "send": "Envoyer",
+      "post_success": "Merci de nous avoir avoir contacté. Nous vous reviendrons le plus rapidement possible."
+    }
   },
   "customer": {
     "account": {
@@ -131,6 +124,8 @@
       "default": "Par défaut",
       "add_new": "Ajouter une nouvelle adresse",
       "edit_address": "Éditer l'adresse",
+      "first_name": "Prénom",
+      "last_name": "Nom",
       "company": "Compagnie",
       "address1": "Adresse 1",
       "address2": "Adresse 2",
@@ -141,14 +136,29 @@
       "phone": "Téléphone",
       "set_default": "Définir comme adresse par défaut",
       "add": "Ajouter l'adresse",
-      "update": "Mettre à jour l'adresse"
+      "update": "Mettre à jour l'adresse",
+      "cancel": "Annuler",
+      "edit": "Éditer",
+      "delete": "Supprimer"
     },
     "login": {
       "title": "Connexion",
+      "email": "Courriel",
+      "password": "Mot de passe",
       "forgot_password": "Mot de passe oublié?",
       "sign_in": "Se connecter",
       "cancel": "Retourner à la boutique",
-      "guest_title": "Continuer en tant qu'invité"
+      "guest_title": "Continuer en tant qu'invité",
+      "guest_continue": "Continuer"
+    },
+    "orders": {
+      "title": "Historique des commandes",
+      "order_number": "Commande",
+      "date": "Date",
+      "payment_status": "Statut du paiement",
+      "fulfillment_status": "Statut du traitement de la commande",
+      "total": "Total",
+      "none": "Vous n'avez pas placé de commande à ce jour."
     },
     "order": {
       "title": "Commande {{ name }}",
@@ -172,29 +182,26 @@
         "subtotal": "Sous-total"
       }
     },
-    "orders": {
-      "title": "Historique des commandes",
-      "order_number": "Commande",
-      "date": "Date",
-      "payment_status": "Statut du paiement",
-      "fulfillment_status": "Statut du traitement de la commande",
-      "total": "Total",
-      "none": "Vous n'avez pas placé de commande à ce jour."
-    },
     "recover_password": {
       "title": "Réinitialiser votre mot de passe",
+      "email": "Courriel",
+      "submit": "Soumettre",
+      "cancel": "Annuler",
       "subtext": "Nous vous ferons parvenir un courriel pour réinitialiser votre mot de passe.",
       "success": "Nous vous avons fait parvenir un courriel pour réinitialiser votre mot de passe."
-    },
-    "register": {
-      "title": "Créer un compte",
-      "submit": "Créer",
-      "cancel": "Retour à la boutique"
     },
     "reset_password": {
       "title": "Réinitialiser le mot de passe du compte",
       "subtext": "Entrez un nouveau mot de passe pour {{ email }}",
       "submit": "Réinitialiser le mot de passe"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Courriel",
+      "submit": "Créer",
+      "cancel": "Retour à la boutique"
     }
   },
   "home_page": {
