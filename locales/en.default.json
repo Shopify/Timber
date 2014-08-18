@@ -4,17 +4,6 @@
       "title": "404 Page Not Found",
       "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
     },
-    "counts": {
-
-      "items": {
-        "one": "item",
-        "other": "items"
-      },
-      "items_with_count": {
-        "one": "{{ count }} item",
-        "other": "{{ count }} items"
-      }
-    },
     "forms": {
       "name": "Name",
       "first_name": "First Name",
@@ -78,7 +67,15 @@
   "collections": {
     "general": {
       "no_matches": "Sorry, there are no products matching your search.",
-      "link_title": "Browse our {{ title }} collection"
+      "link_title": "Browse our {{ title }} collection",
+      "items": {
+        "one": "item",
+        "other": "items"
+      },
+      "items_with_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      }
     },
     "sidebar": {
       "types": "Product Types",
@@ -240,7 +237,11 @@
   },
   "layout": {
     "cart": {
-      "title": "Cart"
+      "title": "Cart",
+      "items": {
+        "one": "item",
+        "other": "items"
+      }
     },
     "customer": {
       "logged_in_as": "Logged in as",
