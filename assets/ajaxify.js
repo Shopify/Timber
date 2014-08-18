@@ -8,7 +8,7 @@
 
   This file includes:
     - Basic Shopify Ajax API calls
-    - Ajaxify plugin
+    - Ajaxify cart plugin
 
   This requires:
     - jQuery 1.8+
@@ -20,6 +20,16 @@
   Includes slight modifications to addItemFromForm.
 ==============================================================================*/
 if ((typeof Shopify) === 'undefined') { Shopify = {}; }
+
+/*============================================================================
+  Basic JS Helper FUnctions
+==============================================================================*/
+function urlParams (name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 /*============================================================================
   API Helper Functions
@@ -37,7 +47,7 @@ function attributeToString(attribute) {
     }
   }
   return jQuery.trim(attribute);
-}
+};
 function getCookie(c_name) {
   var c_value = document.cookie;
   var c_start = c_value.indexOf(" " + c_name + "=");
@@ -56,7 +66,7 @@ function getCookie(c_name) {
     c_value = unescape(c_value.substring(c_start,c_end));
   }
   return c_value;
-}
+};
 
 /*============================================================================
   API Functions
@@ -273,6 +283,11 @@ var ajaxifyShopify = (function(module, $) {
 
     // Override defaults with arguments
     $.extend(settings, options);
+
+    // If method parameter is set, override the defined method (used for demos)
+    if ( urlParams('method') ) {
+      settings.method = urlParams('method');
+    }
 
     // Make sure method is lower case
     settings.method = settings.method.toLowerCase();
