@@ -205,15 +205,19 @@
     }
   },
   "home_page": {
-    "frontpage_title": "Collection Frontpage",
-    "frontpage_no_products_html": "Vous n'avez pas de produit dans votre collection Frontpage. Ce message apparaitra jusqu'à ce qu'un produit soit <a href=\"/admin/custom_collections\">ajouté à cette collection</a>.",
-    "frontpage_faux_add": "Ajouter un produit",
-    "frontpage_faux_product": "Titre du produit",
-    "featured_title": "Collections en vedette",
-    "frontpage_no_collections_html": "Vous n'avez pas de collection à afficher ici. <a href=\"/admin/custom_collections\">Ajoutez une ou plusieurs collections</a> pour compléter la page d'accueil par défaut.",
-    "collection_faux_image": "Image de la collection",
-    "frontpage_faux_collection": "Titre de la collection",
-    "news_title": "Nouvelles récentes"
+    "sections": {
+      "frontpage_title": "Collection Frontpage",
+      "featured_title": "Collections en vedette",
+      "news_title": "Nouvelles récentes"
+    },
+    "onboarding": {
+      "no_products_html": "Vous n'avez pas de produit dans votre collection Frontpage. Ce message apparaitra jusqu'à ce qu'un produit soit <a href=\"/admin/custom_collections\">ajouté à cette collection</a>.",
+      "add_product": "Ajouter un produit",
+      "product_title": "Titre du produit",
+      "no_collections_html": "Vous n'avez pas de collection à afficher ici. <a href=\"/admin/custom_collections\">Ajoutez une ou plusieurs collections</a> pour compléter la page d'accueil par défaut.",
+      "collection_image": "Image de la collection",
+      "collection_title": "Titre de la collection"
+    }
   },
   "layout": {
     "cart": {
