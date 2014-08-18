@@ -1,4 +1,41 @@
 {
+  "general": {
+    "404": {
+      "title": "404 - Page non trouvée",
+      "subtext_html": "Cette page n'est pas disponible. <a href=\"/collections/all\">Retourner au magasinage</a>"
+    },
+    "breadcrumbs": {
+      "home": "Accueil"
+    },
+    "forms": {
+      "name": "Nom",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Courriel",
+      "phone": "Téléphone",
+      "message": "Message",
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer le mot de passe",
+      "send": "Envoyer",
+      "submit": "Soumettre",
+      "cancel": "Annuler",
+      "continue": "Continuer",
+      "edit": "Éditer",
+      "delete": "Supprimer",
+      "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:",
+      "newsletter_email": "votre-courriel@exemple.com"
+    },
+    "newsletter_form": {
+      "submit": "S'inscrire"
+    },
+    "search": {
+      "no_results_html": "Votre recherche pour \"{{ terms }}\" n'a pas généré de résultats.",
+      "results_for_html": "Votre recherche pour \"{{ terms }}\" a généré les résultats suivants:",
+      "title": "Effectuez une recherche",
+      "placeholder": "Rechercher dans la boutique",
+      "submit": "Recherche"
+    }
+  },
   "blogs": {
     "article": {
       "author_on_date_html": "Publié par <strong>{{ author }}</strong> le <time datetime=\"{{ date }}\">{{ date }}</time>",
@@ -158,43 +195,6 @@
       "title": "Réinitialiser le mot de passe du compte",
       "subtext": "Entrez un nouveau mot de passe pour {{ email }}",
       "submit": "Réinitialiser le mot de passe"
-    }
-  },
-  "general": {
-    "404": {
-      "title": "404 - Page non trouvée",
-      "subtext_html": "Cette page n'est pas disponible. <a href=\"/collections/all\">Retourner au magasinage</a>"
-    },
-    "breadcrumbs": {
-      "home": "Accueil"
-    },
-    "forms": {
-      "name": "Nom",
-      "first_name": "Prénom",
-      "last_name": "Nom",
-      "email": "Courriel",
-      "phone": "Téléphone",
-      "message": "Message",
-      "password": "Mot de passe",
-      "password_confirm": "Confirmer le mot de passe",
-      "send": "Envoyer",
-      "submit": "Soumettre",
-      "cancel": "Annuler",
-      "continue": "Continuer",
-      "edit": "Éditer",
-      "delete": "Supprimer",
-      "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:",
-      "newsletter_email": "votre-courriel@exemple.com"
-    },
-    "newsletter_form": {
-      "submit": "S'inscrire"
-    },
-    "search": {
-      "no_results_html": "Votre recherche pour \"{{ terms }}\" n'a pas généré de résultats.",
-      "results_for_html": "Votre recherche pour \"{{ terms }}\" a généré les résultats suivants:",
-      "title": "Effectuez une recherche",
-      "placeholder": "Rechercher dans la boutique",
-      "submit": "Recherche"
     }
   },
   "home_page": {
