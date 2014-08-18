@@ -64,6 +64,19 @@
       }
     }
   },
+  "cart": {
+    "general": {
+      "title": "Shopping Cart",
+      "vendor": "Vendor",
+      "remove": "Remove",
+      "note": "Special instructions for seller",
+      "subtotal": "Subtotal",
+      "update": "Update Cart",
+      "checkout": "Check Out",
+      "empty": "Your cart is currently empty.",
+      "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
+    }
+  },
   "collections": {
     "general": {
       "no_matches": "Sorry, there are no products matching your search.",
@@ -95,21 +108,6 @@
       "price_descending": "Price, high to low",
       "date_descending": "Date, new to old",
       "date_ascending": "Date, old to new"
-    }
-  },
-  "products": {
-    "general": {
-      "previous_product_html": "&larr; Previous Product",
-      "next_product_html": "Next Product &rarr;",
-      "from": "From"
-    },
-    "product": {
-      "sold_out": "Sold Out",
-      "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
-      "unavailable": "Unavailable",
-      "compare_at": "Compare at",
-      "quantity": "Quantity",
-      "add_to_cart": "Add to Cart"
     }
   },
   "contact": {
@@ -199,18 +197,6 @@
       "cancel": "Return to Store"
     }
   },
-  "gift_cards": {
-    "issued": {
-      "title": "Here's your {{ value }} gift card for {{ shop }}!",
-      "subtext": "Here's your gift card!",
-      "disabled": "Disabled",
-      "expired": "Expired on {{ expiry }}",
-      "active": "Expires on {{ expiry }}",
-      "redeem": "Use this code at checkout to redeem your gift card",
-      "shop_link": "Start shopping",
-      "print": "Print"
-    }
-  },
   "home_page": {
     "frontpage_title": "Frontpage Collection",
     "frontpage_no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"/admin/custom_collections\">add a product to this collection</a>.",
@@ -221,19 +207,6 @@
     "collection_faux_image": "Collection Image",
     "frontpage_faux_collection": "Example Collection Title",
     "news_title": "Latest News"
-  },
-  "cart": {
-    "general": {
-      "title": "Shopping Cart",
-      "vendor": "Vendor",
-      "remove": "Remove",
-      "note": "Special instructions for seller",
-      "subtotal": "Subtotal",
-      "update": "Update Cart",
-      "checkout": "Check Out",
-      "empty": "Your cart is currently empty.",
-      "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
-    }
   },
   "layout": {
     "cart": {
@@ -255,6 +228,33 @@
       "newsletter_title": "Newsletter",
       "accepted_payments": "Accepted Payments",
       "theme_title": "by"
+    }
+  },
+  "products": {
+    "general": {
+      "previous_product_html": "&larr; Previous Product",
+      "next_product_html": "Next Product &rarr;",
+      "from": "From"
+    },
+    "product": {
+      "sold_out": "Sold Out",
+      "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
+      "unavailable": "Unavailable",
+      "compare_at": "Compare at",
+      "quantity": "Quantity",
+      "add_to_cart": "Add to Cart"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Here's your {{ value }} gift card for {{ shop }}!",
+      "subtext": "Here's your gift card!",
+      "disabled": "Disabled",
+      "expired": "Expired on {{ expiry }}",
+      "active": "Expires on {{ expiry }}",
+      "redeem": "Use this code at checkout to redeem your gift card",
+      "shop_link": "Start shopping",
+      "print": "Print"
     }
   }
 }
