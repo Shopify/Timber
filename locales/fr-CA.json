@@ -117,7 +117,9 @@
       "title": "Activer le compte",
       "subtext": "Créez votre mot de passe pour activer le compte.",
       "submit": "Activer le compte",
-      "cancel": "Refuser l'invitation"
+      "cancel": "Refuser l'invitation",
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer le mot de passe"
     },
     "addresses": {
       "title": "Votre adresse",
@@ -193,7 +195,9 @@
     "reset_password": {
       "title": "Réinitialiser le mot de passe du compte",
       "subtext": "Entrez un nouveau mot de passe pour {{ email }}",
-      "submit": "Réinitialiser le mot de passe"
+      "submit": "Réinitialiser le mot de passe",
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer le mot de passe"
     },
     "register": {
       "title": "Créer un compte",
@@ -201,7 +205,8 @@
       "last_name": "Nom",
       "email": "Courriel",
       "submit": "Créer",
-      "cancel": "Retour à la boutique"
+      "cancel": "Retour à la boutique",
+      "password": "Mot de passe"
     }
   },
   "home_page": {
