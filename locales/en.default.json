@@ -210,15 +210,19 @@
     }
   },
   "home_page": {
-    "frontpage_title": "Frontpage Collection",
-    "frontpage_no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"/admin/custom_collections\">add a product to this collection</a>.",
-    "frontpage_faux_add": "Add Product",
-    "frontpage_faux_product": "Example Product Title",
-    "featured_title": "Featured Collections",
-    "frontpage_no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default Frontpage.",
-    "collection_faux_image": "Collection Image",
-    "frontpage_faux_collection": "Example Collection Title",
-    "news_title": "Latest News"
+    "sections": {
+      "frontpage_title": "Frontpage Collection",
+      "featured_title": "Featured Collections",
+      "news_title": "Latest News"
+    },
+    "onboarding": {
+      "no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"/admin/custom_collections\">add a product to this collection</a>.",
+      "add_product": "Add Product",
+      "product_title": "Example Product Title",
+      "no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default Frontpage.",
+      "collection_image": "Collection Image",
+      "collection_title": "Example Collection Title"
+    }
   },
   "layout": {
     "cart": {
