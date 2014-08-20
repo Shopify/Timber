@@ -21,7 +21,8 @@
           </li>
         {% else %}
           <li>
-            The <strong>{{ field | replace: 'body', 'Message' }}</strong> field {{ form.errors.messages[field] }}
+            {% assign field_name = field | replace: 'body', 'message' %}
+            {{ 'general.forms.post_field_error_html' | t: field: field_name, error: form.errors.messages[field] }}
           </li>
         {% endif %}
 
