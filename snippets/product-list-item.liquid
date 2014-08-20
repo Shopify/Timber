@@ -7,9 +7,9 @@
 
 {% endcomment %}
 
-{% if current_collection == blank %}
+{% unless current_collection == blank %}
   {% assign current_collection = collection %}
-{% endif %}
+{% endunless %}
 
 {% comment %}
   Check if the product is on sale and set a variable to be used below.
