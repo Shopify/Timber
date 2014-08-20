@@ -8,9 +8,9 @@
 {% comment %}
   Set the default collection_item_width if no variable is set
 {% endcomment %}
-{% unless collection_item_width == blank %}
+{% if collection_item_width == blank %}
   {% assign collection_item_width = 'medium--one-half large--one-third' %}
-{% endunless %}
+{% endif %}
 
 <div class="grid-item {{collection_item_width}} text-center">
 

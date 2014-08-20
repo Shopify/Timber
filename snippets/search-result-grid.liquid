@@ -13,9 +13,9 @@
 {% comment %}
   Set the default grid_item_width if no variable is set
 {% endcomment %}
-{% unless grid_item_width == blank %}
+{% if grid_item_width == blank %}
   {% assign grid_item_width = 'large--one-third medium--one-half' %}
-{% endunless %}
+{% endif %}
 
 <div class="grid-item search-result {{ grid_item_width }}">
 
