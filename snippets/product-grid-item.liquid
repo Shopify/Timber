@@ -16,16 +16,16 @@
 {% comment %}
   Set the default grid_item_width if no variable is set
 {% endcomment %}
-{% unless grid_item_width == blank %}
+{% if grid_item_width == blank %}
   {% assign grid_item_width = 'large--one-third medium--one-half' %}
-{% endunless %}
+{% endif %}
 
 {% comment %}
   Set the default within collection filter if not set
 {% endcomment %}
-{% unless current_collection == blank %}
+{% if current_collection == blank %}
   {% assign current_collection = collection %}
-{% endunless %}
+{% endif %}
 
 {% comment %}
   Check if the product is on sale and set a variable to be used below.
