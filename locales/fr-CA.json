@@ -62,6 +62,12 @@
       "checkout": "Procéder au paiement",
       "empty": "Votre panier est vide.",
       "continue_browsing_html": "<a href=\"/collections/all\">Retourner au magasinage</a>."
+    },
+    "label": {
+      "product": "Produit",
+      "price": "Prix",
+      "quantity": "Quantité",
+      "total": "Total"
     }
   },
   "collections": {

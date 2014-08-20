@@ -62,6 +62,12 @@
       "checkout": "Check Out",
       "empty": "Your cart is currently empty.",
       "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>."
+    },
+    "label": {
+      "product": "Product",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total"
     }
   },
   "collections": {
