@@ -8,7 +8,8 @@
       "home": "Accueil"
     },
     "forms": {
-      "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:"
+      "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:",
+      "post_field_error_html": "<strong>{{ field }}</strong> {{ error }}"
     },
     "newsletter_form": {
       "newsletter_email": "votre-courriel@exemple.com",
