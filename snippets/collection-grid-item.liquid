@@ -8,7 +8,7 @@
 {% comment %}
   Set the default collection_item_width if no variable is set
 {% endcomment %}
-{% unless collection_item_width %}
+{% unless collection_item_width == blank %}
   {% assign collection_item_width = 'medium--one-half large--one-third' %}
 {% endunless %}
 
