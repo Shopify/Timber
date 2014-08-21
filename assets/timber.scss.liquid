@@ -1135,6 +1135,7 @@ ol.alpha { list-style: lower-alpha outside; }
   #Tables
 ==============================================================================*/
 table {
+  width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -2051,34 +2052,99 @@ label.error {
 /*============================================================================
   #Cart Page
 ==============================================================================*/
+.cart-table {
+  border: 0 none;
+
+  th,
+  td {
+    border: 0 none;
+    padding: $gutter/2;
+  }
+}
+
+.cart-table--labels {
+  border-bottom: 1px solid $colorBorder;
+}
+
+.cart-table--mobile-cell {
+  position: relative;
+}
+
+@include at-query ($max, $medium) {
+  .cart-table td {
+    display: block;
+    text-align: center;
+  }
+
+  .cart-table--mobile-cell {
+    float: left;
+    width: 50%;
+  }
+}
+
+@include at-query ($min, $large) {
+  .cart-table {
+    th:first-child,
+    td:first-child {
+      padding-left: 0;
+    }
+  }
+}
+
 .cart-row {
+  position: relative;
   margin-top: $gutter;
   padding-top: $gutter;
   border-top: 1px solid $colorBorder;
 
   &:first-child {
     margin-top: 0;
-  }
-
-  &:first-child {
     padding-top: 0;
     border-top: 0 none;
   }
 
-  a {
-    color: $colorTextBody;
+  .js-qty,
+  .ajaxifyCart--qty {
+    margin: 0;
 
-    &:hover {
-      color: $colorPrimary;
+    @include at-query ($max, $medium) {
+      margin: 0 auto;
     }
   }
 }
 
-.cart-subtotal {
-  margin-bottom: $gutter;
+@include at-query ($min, $large) {
+  .cart-row--table-large {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    .grid-item {
+      display: table-cell;
+      vertical-align: middle;
+      float: none;
+    }
+  }
 }
 
-.cart-subtotal--price {
+.cart-image {
+  display: block;
+
+  img {
+    display: block;
+  }
+}
+
+.cart-mini-labels {
+  display: block;
+  margin: 0 0 $gutter/3;
+
+  @include at-query ($min, $large) {
+    display: none;
+  }
+}
+
+.cart-subtotal {
   margin: 0 0 0 $gutter/3;
   display: inline;
 }
