@@ -2064,15 +2064,11 @@ label.error {
   td {
     border: 0 none;
     padding: $gutter/2;
+
+    @include at-query ($max, $medium) {
+      padding: $gutter/2 0;
+    }
   }
-}
-
-.cart-table--labels {
-  border-bottom: 1px solid $colorBorder;
-}
-
-.cart-table--mobile-cell {
-  position: relative;
 }
 
 @include at-query ($max, $medium) {
@@ -2097,15 +2093,18 @@ label.error {
 }
 
 .cart-row {
-  position: relative;
   margin-top: $gutter;
   padding-top: $gutter;
   border-top: 1px solid $colorBorder;
 
+  &.is-removed {
+    border-top: 1px solid transparent;
+    @include transition (border-color 450ms);
+  }
+
   &:first-child {
     margin-top: 0;
     padding-top: 0;
-    border-top: 0 none;
   }
 
   .js-qty,
@@ -2115,22 +2114,6 @@ label.error {
     @include at-query ($max, $medium) {
       margin: 0 auto;
     }
-  }
-}
-
-.cart-image {
-  display: block;
-
-  img {
-    display: block;
-  }
-}
-
-.cart-image {
-  display: block;
-
-  img {
-    display: block;
   }
 }
 
