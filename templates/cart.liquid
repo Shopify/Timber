@@ -81,6 +81,7 @@
               {% endfor %}
             </p>
             {% endif %}
+            <p><small><a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">{{ 'cart.general.remove' | t }}</a></small></p>
           </td>
           <td>
             <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
