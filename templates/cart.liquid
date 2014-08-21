@@ -18,9 +18,15 @@
     <table class="cart-table">
       <tr class="cart-row medium-down--hide">
         <th colspan="2">{{ 'cart.label.product' | t }}</th>
-        <th>{{ 'cart.label.price' | t }}</th>
-        <th>{{ 'cart.label.quantity' | t }}</th>
-        <th>{{ 'cart.label.total' | t }}</th>
+        <td>
+          <table>
+            <tr>
+              <th>{{ 'cart.label.price' | t }}</th>
+              <th>{{ 'cart.label.quantity' | t }}</th>
+              <th>{{ 'cart.label.total' | t }}</th>
+            </tr>
+          </table>
+        </td>
       </tr>
 
 
@@ -83,19 +89,25 @@
             {% endif %}
           </td>
           <td>
-            <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
-            <span class="h3">{{ item.price | money }}</span>
-          </td>
-          <td>
-            <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
-            {% comment %}
-              Added data-id for the ajax cart implementation only.
-            {% endcomment %}
-            <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
-          </td>
-          <td>
-            <span class="cart-mini-labels">{{ 'cart.label.total' | t }}</span>
-            <span class="h3">{{ item.line_price | money }}</span>
+            <table>
+              <tr>
+                <td>
+                  <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
+                  <span class="h3">{{ item.price | money }}</span>
+                </td>
+                <td>
+                  <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
+                  {% comment %}
+                    Added data-id for the ajax cart implementation only.
+                  {% endcomment %}
+                  <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
+                </td>
+                <td>
+                  <span class="cart-mini-labels">{{ 'cart.label.total' | t }}</span>
+                  <span class="h3">{{ item.line_price | money }}</span>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
       {% endfor %}
