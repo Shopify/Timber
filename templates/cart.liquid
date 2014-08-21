@@ -16,18 +16,14 @@
     <h1>{{ 'cart.general.title' | t }}</h1>
 
     <table class="cart-table">
-      <tr class="cart-row medium-down--hide">
-        <th colspan="2">{{ 'cart.label.product' | t }}</th>
-        <th>{{ 'cart.label.price' | t }}</th>
-        <td>
-          <table class="cart-table--sub-table">
-            <tr>
-              <th>{{ 'cart.label.quantity' | t }}</th>
-              <th>{{ 'cart.label.total' | t }}</th>
-            </tr>
-          </table>
-        </td>
-      </tr>
+      <thead class="cart-table--labels medium-down--hide">
+        <tr>
+          <th colspan="2">{{ 'cart.label.product' | t }}</th>
+          <th>{{ 'cart.label.price' | t }}</th>
+          <th class="cart-table--mobile-cell">{{ 'cart.label.quantity' | t }}</th>
+          <th class="cart-table--mobile-cell">{{ 'cart.label.total' | t }}</th>
+        </tr>
+      </thead>
 
       {% comment %}
         Loop through products in the cart
@@ -90,22 +86,16 @@
             <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
             <span class="h3">{{ item.price | money }}</span>
           </td>
-          <td>
-            <table class="cart-table--sub-table">
-              <tr>
-                <td>
-                  <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
-                  {% comment %}
-                    Added data-id for the ajax cart implementation only.
-                  {% endcomment %}
-                  <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
-                </td>
-                <td>
-                  <span class="cart-mini-labels">{{ 'cart.label.total' | t }}</span>
-                  <span class="h3">{{ item.line_price | money }}</span>
-                </td>
-              </tr>
-            </table>
+          <td class="cart-table--mobile-cell">
+            <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
+            {% comment %}
+              Added data-id for the ajax cart implementation only.
+            {% endcomment %}
+            <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
+          </td>
+          <td class="cart-table--mobile-cell">
+            <span class="cart-mini-labels">{{ 'cart.label.total' | t }}</span>
+            <span class="h3">{{ item.line_price | money }}</span>
           </td>
         </tr>
       {% endfor %}
@@ -162,4 +152,3 @@
   <p>{{ 'cart.general.empty' | t }}</p>
   <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
 {% endif %}
-
