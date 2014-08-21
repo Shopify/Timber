@@ -2071,6 +2071,10 @@ label.error {
   border-bottom: 1px solid $colorBorder;
 }
 
+.cart-table--mobile-cell {
+  position: relative;
+}
+
 @include at-query ($max, $medium) {
   .cart-table td {
     display: block;
@@ -2133,24 +2137,6 @@ label.error {
 
   img {
     display: block;
-  }
-}
-
-.cart-remove {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  line-height: 1;
-  text-align: center;
-  width: 12px;
-  height: 12px;
-  color: $colorTextBody;
-  text-decoration: none;
-
-  @include at-query ($min, $large) {
-    right: -24px;
-    margin-top: $gutter/2 - 6px; // half .cart-row top padding and half element height
   }
 }
 
