@@ -117,8 +117,8 @@ $successGreen: #0a942a;
 
 // Width variables
 $siteWidth: 1180px;
-$gutter: 24px;
-$gridGutter: 24px; // can be a %, but nested grids will have smaller margins because of it
+$gutter: 30px;
+$gridGutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 
 // Radius
 $radius: 3px;
@@ -2057,78 +2057,86 @@ label.error {
 /*============================================================================
   #Cart Page
 ==============================================================================*/
-.cart-table {
-  border: 0 none;
-
-  th,
-  td {
-    border: 0 none;
-    padding: $gutter/2;
-
-    @include at-query ($max, $medium) {
-      padding: $gutter/2 0;
-    }
-  }
-}
-
-@include at-query ($max, $medium) {
-  .cart-table td {
-    display: block;
-    text-align: center;
-  }
-
-  .cart-table--mobile-cell {
-    float: left;
-    width: 50%;
-  }
-}
-
 @include at-query ($min, $large) {
-  .cart-table {
-    th:first-child,
-    td:first-child {
-      padding-left: 0;
-    }
+  .template-cart .cart-wrapper {
+    max-width: 75%;
+    margin: 0 auto;
   }
 }
 
 .cart-row {
+  position: relative;
   margin-top: $gutter;
   padding-top: $gutter;
   border-top: 1px solid $colorBorder;
 
-  &.is-removed {
-    border-top: 1px solid transparent;
-    @include transition (border-color 450ms);
+  &:first-child {
+    margin-top: 0;
   }
 
   &:first-child {
-    margin-top: 0;
     padding-top: 0;
+    border-top: 0 none;
   }
 
-  .js-qty,
-  .ajaxifyCart--qty {
+  .js-qty {
     margin: 0;
+  }
+}
 
-    @include at-query ($max, $medium) {
-      margin: 0 auto;
+@include at-query ($min, $large) {
+  .cart-row--table-large {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    .grid-item {
+      display: table-cell;
+      vertical-align: middle;
+      float: none;
     }
   }
 }
 
-.cart-mini-labels {
+.cart-image {
   display: block;
-  margin: 0 0 $gutter/3;
+
+  img {
+    display: block;
+  }
+}
+
+.cart-remove {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  line-height: 1;
+  text-align: center;
+  width: 12px;
+  height: 12px;
+  color: $colorTextBody;
+  text-decoration: none;
 
   @include at-query ($min, $large) {
-    display: none;
+    right: -24px;
+    margin-top: $gutter/2 - 6px; // half .cart-row top padding and half element height
   }
 }
 
 .cart-subtotal {
   margin: 0 0 0 $gutter/3;
   display: inline;
+}
+
+.cart-mini-labels {
+  display: block;
+  margin: $gutter/3 0;
+  font-size: em(12px);
+
+  @include at-query ($min, $large) {
+    display: none;
+  }
 }
 
 /*============================================================================
