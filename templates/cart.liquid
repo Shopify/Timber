@@ -11,9 +11,9 @@
 
 {% if cart.item_count > 0 %}
 
-  <h1>{{ 'cart.general.title' | t }}</h1>
-
   <form action="/cart" method="post" novalidate>
+
+    <h1>{{ 'cart.general.title' | t }}</h1>
 
     <table class="cart-table">
       <tr class="cart-row medium-down--hide">
