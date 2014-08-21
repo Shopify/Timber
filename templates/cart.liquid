@@ -8,110 +8,129 @@
     - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
 
 {% endcomment %}
-
 {% if cart.item_count > 0 %}
 
-  <form action="/cart" method="post" novalidate class="cart-wrap">
+  <form action="/cart" method="post" novalidate class="cart-wrapper">
 
     <h1>{{ 'cart.general.title' | t }}</h1>
 
-    <table class="cart-table">
-      <thead class="medium-down--hide">
-        <tr>
-          <th colspan="2">{{ 'cart.label.product' | t }}</th>
-          <th>{{ 'cart.label.price' | t }}</th>
-          <th class="cart-table--mobile-cell">{{ 'cart.label.quantity' | t }}</th>
-          <th class="cart-table--mobile-cell">{{ 'cart.label.total' | t }}</th>
-        </tr>
-      </thead>
-
-      {% comment %}
-        Loop through products in the cart
-      {% endcomment %}
-      {% for item in cart.items %}
-        <tr class="cart-row" data-id="{{ item.id }}">
-          <td>
-            <div class="cart-row--animate">
-              <a href="{{ item.url | within: collections.all }}">
-
-                {% comment %}
-                  More image size options at:
-                    - http://docs.shopify.com/themes/filters/product-img-url
-                {% endcomment %}
-                <img src="{{ item | img_url: 'medium' }}"  alt="{{ item.title | escape }}">
-              </a>
+    <div class="cart-row medium-down--hide">
+      <div class="grid--full">
+        <div class="grid-item large--one-half">
+          <div class="grid">
+            <div class="grid-item two-thirds push--one-third">
+              {{ 'cart.label.product' | t }}
             </div>
-          </td>
-          <td>
-            <div class="cart-row--animate">
-              <span class="h4">
-                <a href="{{ item.url }}">
+          </div>
+        </div>
+        <div class="grid-item large--one-half">
+          <div class="grid--full">
+            <div class="grid-item one-third medium-down--one-third">
+              {{ 'cart.label.price' | t }}
+            </div>
+            <div class="grid-item one-third medium-down--one-third">
+              {{ 'cart.label.quantity' | t }}
+            </div>
+            <div class="grid-item one-third medium-down--one-third text-right">
+              {{ 'cart.label.total' | t }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %}
+      Loop through products in the cart
+    {% endcomment %}
+    {% for item in cart.items %}
+      <div class="cart-row" data-id="{{ item.id }}">
+        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}" class="cart-remove">&times;</a>
+        <div class="grid--full cart-row--table-large">
+
+          <div class="grid-item large--one-half">
+            <div class="grid">
+
+              <div class="grid-item one-third">
+                <a href="{{ item.product.url | within: collections.all }}" class="cart-image">
+
+                  {% comment %}
+                    More image size options at:
+                      - http://docs.shopify.com/themes/filters/product-img-url
+                  {% endcomment %}
+                  <img src="{{ item.product.featured_image.src | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                </a>
+              </div>
+
+              <div class="grid-item two-thirds">
+                <a href="{{ item.product.url }}" class="h4">
                   {{ item.product.title }}
                 </a>
                 {% unless item.variant.title contains 'Default' %}
                   <br>
-                   <small>{{ item.variant.title }}</small>
+                  <small>{{ item.variant.title }}</small>
                 {% endunless %}
-              </span>
-              {% comment %}
-                Optional, add the vendor
-              {% endcomment %}
-              <p>{{ 'cart.general.vendor' | t }}: {{ item.vendor }}</p>
 
-              {% comment %}
-                Optional, loop through custom product line items if available
+                {% comment %}
+                  Optional, add the vendor
+                {% endcomment %}
+                <p>{{ 'cart.general.vendor' | t }}: {{ item.vendor }}</p>
 
-                For more info on line item properties, visit:
-                  - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
-              {% endcomment %}
-              {% if item.properties.size > 0 %}
-              <p>
-                {% for p in item.properties %}
-                  {% unless p.last == blank %}
-                    {{ p.first }}:
+                {% comment %}
+                  Optional, loop through custom product line items if available
 
-                    {% comment %}
-                      Check if there was an uploaded file associated
-                    {% endcomment %}
-                    {% if p.last contains '/uploads/' %}
-                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
-                    {% else %}
-                      {{ p.last }}
-                    {% endif %}
+                  For more info on line item properties, visit:
+                    - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+                {% endcomment %}
+                {% if item.properties.size > 0 %}
+                  {% for p in item.properties %}
+                    {% unless p.last == blank %}
+                      {{ p.first }}:
 
-                    <br>
-                  {% endunless %}
-                {% endfor %}
-              </p>
-              {% endif %}
-              <p><small><a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}">{{ 'cart.general.remove' | t }}</a></small></p>
+                      {% comment %}
+                        Check if there was an uploaded file associated
+                      {% endcomment %}
+                      {% if p.last contains '/uploads/' %}
+                        <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                      {% else %}
+                        {{ p.last }}
+                      {% endif %}
+
+                      <br>
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+
             </div>
-          </td>
-          <td>
-            <div class="cart-row--animate">
-              <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
-              <span class="h3">{{ item.price | money }}</span>
-            </div>
-          </td>
-          <td class="cart-table--mobile-cell">
-            <div class="cart-row--animate">
-              <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
-              {% comment %}
-                Added data-id for the ajax cart implementation only.
-              {% endcomment %}
-              <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
-            </div>
-          </td>
-          <td class="cart-table--mobile-cell">
-            <div class="cart-row--animate">
-              <span class="cart-mini-labels">{{ 'cart.label.total' | t }}</span>
-              <span class="h3">{{ item.line_price | money }}</span>
-            </div>
-          </td>
-        </tr>
-      {% endfor %}
+          </div>
 
-    </table>
+          <div class="grid-item large--one-half">
+            <div class="grid--full cart-row--table-large">
+
+              <div class="grid-item one-third">
+                <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
+                <span class="h3">{{ item.price | money }}</span>
+              </div>
+
+              <div class="grid-item one-third">
+                <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
+                {% comment %}
+                  Added data-id for the ajax cart implementation only.
+                {% endcomment %}
+                <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
+              </div>
+
+              <div class="grid-item one-third text-right">
+                <span class="cart-mini-labels">{{ 'cart.label.total' | t }}</span>
+                <span class="h3">{{ item.line_price | money }}</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
 
     <div class="cart-row text-right">
       {{ 'cart.general.subtotal' | t }}
@@ -133,17 +152,11 @@
           </div>
         {% endif %}
 
-        {% comment %}
-          If notes are used, adjust the column width
-        {% endcomment %}
         <div class="grid-item text-right {% if settings.cart_notes_enable %}large--one-half{% endif %}">
 
           <input type="submit" name="update" class="btn-secondary update-cart" value="{{ 'cart.general.update' | t }}">
           <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
 
-          {% comment %}
-            Paypal, Google, etc. checkout buttons
-          {% endcomment %}
           {% if additional_checkout_buttons %}
             <p>{{ content_for_additional_checkout_buttons }}</p>
           {% endif %}
