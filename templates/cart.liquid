@@ -18,10 +18,10 @@
     <table class="cart-table">
       <tr class="cart-row medium-down--hide">
         <th colspan="2">{{ 'cart.label.product' | t }}</th>
+        <th>{{ 'cart.label.price' | t }}</th>
         <td>
           <table>
             <tr>
-              <th>{{ 'cart.label.price' | t }}</th>
               <th>{{ 'cart.label.quantity' | t }}</th>
               <th>{{ 'cart.label.total' | t }}</th>
             </tr>
@@ -46,6 +46,10 @@
             </a>
           </td>
           <td>
+            {% comment %}
+              Optional, add the vendor
+            {% endcomment %}
+            <span>{{ 'cart.general.vendor' | t }}: <em>{{ item.vendor }}</em></span><br>
             <span class="h4">
               <a href="{{ item.url }}">
                 {{ item.product.title }}
@@ -55,11 +59,6 @@
                  <small>{{ item.variant.title }}</small>
               {% endunless %}
             </span>
-
-            {% comment %}
-              Optional, add the vendor
-            {% endcomment %}
-            <p>{{ 'cart.general.vendor' | t }}: <em>{{ item.vendor }}</em></p>
 
             {% comment %}
               Optional, loop through custom product line items if available
@@ -89,12 +88,12 @@
             {% endif %}
           </td>
           <td>
+            <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
+            <span class="h3">{{ item.price | money }}</span>
+          </td>
+          <td>
             <table>
               <tr>
-                <td>
-                  <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
-                  <span class="h3">{{ item.price | money }}</span>
-                </td>
                 <td>
                   <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
                   {% comment %}
