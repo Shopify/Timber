@@ -1140,6 +1140,7 @@ ol.alpha { list-style: lower-alpha outside; }
   #Tables
 ==============================================================================*/
 table {
+  width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -2058,6 +2059,26 @@ label.error {
 ==============================================================================*/
 .cart-table {
   width: 100%;
+}
+
+.template-cart table {
+  border: 0 none;
+
+  th,
+  td {
+    border: 0 none;
+    padding: $gutter/2;
+  }
+}
+
+@include at-query ($max, $medium) {
+  .template-cart table td {
+    display: block;
+
+    td {
+      display: table-cell;
+    }
+  }
 }
 
 .cart-row {
