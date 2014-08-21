@@ -2074,6 +2074,7 @@ label.error {
 @include at-query ($max, $medium) {
   .template-cart table td {
     display: block;
+    text-align: center;
 
     td {
       display: table-cell;
@@ -2098,6 +2099,10 @@ label.error {
 
   .js-qty {
     margin: 0;
+
+    @include at-query ($max, $medium) {
+      margin: 0 auto;
+    }
   }
 }
 
@@ -2143,7 +2148,7 @@ label.error {
 
 .cart-mini-labels {
   display: block;
-  margin: $gutter/3 0;
+  margin: 0 0 $gutter/3;
 
   @include at-query ($min, $large) {
     display: none;
