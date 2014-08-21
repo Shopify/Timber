@@ -2059,9 +2059,6 @@ label.error {
 ==============================================================================*/
 .cart-table {
   width: 100%;
-}
-
-.template-cart table {
   border: 0 none;
 
   th,
@@ -2071,18 +2068,22 @@ label.error {
   }
 }
 
-.cart-row td:first-child,
-.cart-row th:first-child {
-  padding-left: 0;
-}
-
 @include at-query ($max, $medium) {
-  .template-cart table td {
+  .cart-table td {
     display: block;
     text-align: center;
+  }
 
-    td {
-      display: table-cell;
+  .cart-table--sub-table td {
+    display: table-cell;
+  }
+}
+
+@include at-query ($min, $large) {
+  .cart-table {
+    th:first-child,
+    td:first-child {
+      padding-left: 0;
     }
   }
 }
