@@ -485,6 +485,9 @@ h1#tagline {
 #buttons #commit-button,
 #buttons #complete-purchase,
 #create-account-btn,
+#create-account input[type="submit"],
+#discounts-body input[type="submit"],
+#gift-cards input[type="submit"],
 input[type="submit"] {
   display: inline-block;
   padding: 8px 20px;
@@ -505,19 +508,30 @@ input[type="submit"] {
   user-select:         none;
   -webkit-appearance:  none;
   border-radius: 2px;
-  background-color: {{ settings.color_primary }};
+
   color: #fff;
+  background-color: {{ settings.color_primary }};
 }
 
 #buttons #commit-button:hover,
-#buttons #complete-purchase:hover {
+#buttons #complete-purchase:hover,
+#create-account-btn:hover,
+#create-account input[type="submit"]:hover,
+#discounts-body input[type="submit"]:hover,
+#gift-cards input[type="submit"]:hover,
+input[type="submit"]:hover {
   background-color: {{ settings.color_primary }};
   color: #fff;
   opacity: 0.8;
 }
 
 #buttons #commit-button:active,
-#buttons #complete-purchase:active {
+#buttons #complete-purchase:active,
+#create-account-btn:active,
+#create-account input[type="submit"]:active,
+#discounts-body input[type="submit"]:active,
+#gift-cards input[type="submit"]:active,
+input[type="submit"]:active {
  opacity: 1;
 }
 
