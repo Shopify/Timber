@@ -2067,14 +2067,19 @@ label.error {
   }
 }
 
+.cart-table--labels {
+  border-bottom: 1px solid $colorBorder;
+}
+
 @include at-query ($max, $medium) {
   .cart-table td {
     display: block;
     text-align: center;
   }
 
-  .cart-table--sub-table td {
-    display: table-cell;
+  .cart-table--mobile-cell {
+    float: left;
+    width: 50%;
   }
 }
 
@@ -2095,9 +2100,6 @@ label.error {
 
   &:first-child {
     margin-top: 0;
-  }
-
-  &:first-child {
     padding-top: 0;
     border-top: 0 none;
   }
