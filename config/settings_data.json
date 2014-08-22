@@ -12,7 +12,7 @@
       "color_footer_social_link": "#bbbbbb",
       "color_footer_text": "#636363",
       "color_primary": "#747474",
-      "color_secondary": "#464646",
+      "color_secondary": "#bbb",
       "customer_layout": "theme",
       "favicon_enable": false,
       "footer_newsletter_enable": true,
@@ -20,7 +20,9 @@
       "footer_quicklinks_linklist": "footer",
       "footer_social_enable": true,
       "logo_max_width": "450",
-      "logo_use_image": false
+      "logo_use_image": false,
+      "social_facebook_link": "https://www.facebook.com/shopify",
+      "social_twitter_link": "https://twitter.com/shopify"
     }
   }
 }

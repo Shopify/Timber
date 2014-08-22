@@ -1,14 +1,14 @@
 <div class="form-horizontal">
-  <label for="sortBy">Sort by</label>
+  <label for="sortBy">{{ 'collections.sorting.title' | t }}</label>
   <select name="sortBy" id="sortBy">
-    <option value="manual">Featured</option>
-    <option value="best-selling">Best Selling</option>
-    <option value="title-ascending">Alphabetically, A-Z</option>
-    <option value="title-descending">Alphabetically, Z-A</option>
-    <option value="price-ascending">Price, low to high</option>
-    <option value="price-descending">Price, high to low</option>
-    <option value="created-descending">Date, new to old</option>
-    <option value="created-ascending">Date, old to new</option>
+    <option value="manual">{{ 'collections.sorting.featured' | t }}</option>
+    <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
+    <option value="title-ascending">{{ 'collections.sorting.az' | t }}</option>
+    <option value="title-descending">{{ 'collections.sorting.za' | t }}</option>
+    <option value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</option>
+    <option value="price-descending">{{ 'collections.sorting.price_descending' | t }}</option>
+    <option value="created-descending">{{ 'collections.sorting.date_descending' | t }}</option>
+    <option value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</option>
   </select>
 </div>
 

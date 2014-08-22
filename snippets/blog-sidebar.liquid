@@ -1,13 +1,13 @@
 {% comment %}
   Recent blog posts
 {% endcomment %}
-<h4>Recent Articles</h4>
+<h4>{{ 'blogs.sidebar.recent_articles' | t }}</h4>
 {% for article in blog.articles limit:6 %}
   <p>
     <a href="{{ article.url }}">{{ article.title }}</a>
     <br>
-    <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-      <em>{{ article.published_at | date: '%b %d, %Y' }}</em>
+    <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+      <em>{{ article.published_at | date: '%Y-%m-%d' }}</em>
     </time>
   </p>
 {% endfor %}
@@ -16,7 +16,7 @@
   Blog tags
 {% endcomment %}
 {% if blog.all_tags.size > 0 %}
-  <h4>Categories</h4>
+  <h4>{{ 'blogs.sidebar.categories' | t }}</h4>
   <ul>
     {% for tag in blog.all_tags %}
       {% if current_tags contains tag %}
@@ -27,3 +27,4 @@
     {% endfor %}
   </ul>
 {% endif %}
+
