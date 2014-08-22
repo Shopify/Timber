@@ -8,7 +8,9 @@
 {% if form.errors %}
   <div class="note form-error">
     <p>{{ 'general.forms.post_error' | t }}</p>
-
+    
+    {% assign message = 'contact.form.message' | t %}
+    
     <ul class="disc">
       {% for field in form.errors %}
 
@@ -20,8 +22,9 @@
             {{ form.errors.messages[field] }}
           </li>
         {% else %}
+          
           <li>
-            {% assign field_name = field | replace: 'body', 'message' %}
+            {% assign field_name = field | replace: 'body', message %}
             {{ 'general.forms.post_field_error_html' | t: field: field_name, error: form.errors.messages[field] }}
           </li>
         {% endif %}
