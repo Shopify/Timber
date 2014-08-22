@@ -31,13 +31,13 @@
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- CSS ================================================== -->
-  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
-
   {% if settings.ajax_cart_enable %}
   <!-- Ajaxify Cart Plugin ================================================== -->
   {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
   {% endif %}
+
+  <!-- CSS ================================================== -->
+  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
