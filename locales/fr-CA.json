@@ -233,7 +233,7 @@
   "layout": {
     "cart": {
       "title": "Panier",
-      "items": {
+      "items_count": {
         "one": "item",
         "other": "items"
       }
