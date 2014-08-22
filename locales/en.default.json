@@ -74,7 +74,7 @@
     "general": {
       "no_matches": "Sorry, there are no products matching your search.",
       "link_title": "Browse our {{ title }} collection",
-      "items": {
+      "items_count": {
         "one": "item",
         "other": "items"
       },
