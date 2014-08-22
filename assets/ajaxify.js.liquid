@@ -396,7 +396,7 @@ var ajaxifyShopify = (function(module, $) {
     // Write a (hidden) Checkout button, a loader, and the extra view cart button
     var checkoutBtn = $('<a href="/cart" class="flip-back" style="background-color: #C00; color: #fff;" id="flip-checkout">Checkout</a>').addClass($btnClass),
         flipLoader = $('<span class="ajaxifyCart-loader"></span>'),
-        flipExtra = $('<div class="flip-extra">or <a href="#" class="flip-cart">View Cart (<span></span>)</a></div>');
+        flipExtra = $('<div class="flip-extra"><a href="#" class="flip-cart">View Cart (<span></span>)</a></div>');
 
     // Append checkout button and loader
     checkoutBtn.insertAfter($addToCart);
