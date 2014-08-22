@@ -181,15 +181,13 @@
       "discount": "Discount",
       "shipping": "Shipping",
       "tax": "Tax",
-      "details": {
-        "product": "Product",
-        "sku": "SKU",
-        "price": "Price",
-        "quantity": "Quantity",
-        "total": "Total",
-        "fulfilled_at": "Fulfilled {{ date }}",
-        "subtotal": "Subtotal"
-      }
+      "product": "Product",
+      "sku": "SKU",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "fulfilled_at": "Fulfilled {{ date }}",
+      "subtotal": "Subtotal"
     },
     "recover_password": {
       "title": "Reset your password",
