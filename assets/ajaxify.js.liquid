@@ -756,7 +756,7 @@ var ajaxifyShopify = (function(module, $) {
     if (cart.item_count === 0) {
       $cartContainer
         .append('<h2>{{ "cart.general.empty" | t }}</h2>')
-        .append('<h2>{{ "cart.general.continue_browsing_html" | t }}</h2>');
+        .append('<p>{{ "cart.general.continue_browsing_html" | t }}</p>');
 
       switch (settings.method) {
         case 'modal':
