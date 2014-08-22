@@ -44,7 +44,6 @@
     {% endcomment %}
     {% for item in cart.items %}
       <div class="cart-row" data-id="{{ item.id }}">
-        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}" class="cart-remove">&times;</a>
         <div class="grid--full cart-row--table-large">
 
           <div class="grid-item large--one-half">
@@ -99,6 +98,8 @@
                     {% endunless %}
                   {% endfor %}
                 {% endif %}
+
+                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}"><small>{{ 'cart.general.remove' | t }}</small></a>
               </div>
 
             </div>
