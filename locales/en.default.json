@@ -5,7 +5,8 @@
       "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
     },
     "breadcrumbs": {
-      "home": "Home"
+      "home": "Home",
+      "home_link_title": "Back to the frontpage"
     },
     "forms": {
       "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:",

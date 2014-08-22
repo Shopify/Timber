@@ -5,7 +5,8 @@
       "subtext_html": "Cette page n'est pas disponible. <a href=\"/collections/all\">Retourner au magasinage</a>"
     },
     "breadcrumbs": {
-      "home": "Accueil"
+      "home": "Accueil",
+      "home_link_title": "Retour à la page d'accueil"
     },
     "forms": {
       "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:",
