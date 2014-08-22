@@ -14,8 +14,8 @@
     {{ comment.content }}
   </div>
 
-  <em>
+  <span>
     {% assign comment_date = comment.created_at | date: '%Y-%m-%d' %}
     {{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: comment_date }}
-  </em>
+  </span>
 </div>
