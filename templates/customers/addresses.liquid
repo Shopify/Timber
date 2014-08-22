@@ -123,7 +123,7 @@
           {{ address.phone }}
         </p>
         <p>
-          {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }}
+          {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }} |
           {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}
         </p>
 
@@ -133,7 +133,6 @@
             <h4>{{ 'customer.addresses.edit_address' | t }}</h4>
 
             <div class="grid">
-
               <div class="grid-item one-half small--one-whole">
                 <label for="address_first_name_{{form.id}}">{{ 'customer.addresses.first_name' | t }}</label>
                 <input type="text" id="address_first_name_{{form.id}}" class="address_form" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
@@ -143,7 +142,6 @@
                 <label for="address_last_name_{{form.id}}">{{ 'customer.addresses.last_name' | t }}</label>
                 <input type="text" id="address_last_name_{{form.id}}" class="address_form" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
               </div>
-
             </div>
 
             <label for="address_company_{{form.id}}">{{ 'customer.addresses.company' | t }}</label>
