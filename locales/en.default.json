@@ -111,11 +111,8 @@
   "contact": {
     "form": {
       "name": "Name",
-      "name_placeholder": "Your Name",
       "email": "Email",
-      "email_placeholder": "your-email@example.com",
       "phone": "Phone Number",
-      "phone_placeholder": "555-555-1234",
       "message": "Message",
       "send": "Send",
       "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."

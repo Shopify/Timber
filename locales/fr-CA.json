@@ -107,11 +107,8 @@
   "contact": {
     "form": {
       "name": "Nom",
-      "name_placeholder": "Votre Nom",
       "email": "Courriel",
-      "email_placeholder": "votre-courriel@exemple.com",
       "phone": "Téléphone",
-      "phone_placeholder": "555-555-1234",
       "message": "Message",
       "send": "Envoyer",
       "post_success": "Merci de nous avoir avoir contacté. Nous vous reviendrons le plus rapidement possible."
