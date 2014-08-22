@@ -181,15 +181,13 @@
       "discount": "Rabais appliqué",
       "shipping": "Livraison",
       "tax": "Taxes",
-      "details": {
-        "product": "Produit",
-        "sku": "SKU",
-        "price": "Prix",
-        "quantity": "Quantité",
-        "total": "Total",
-        "fulfilled_at": "Traitée le {{ date }}",
-        "subtotal": "Sous-total"
-      }
+      "product": "Produit",
+      "sku": "SKU",
+      "price": "Prix",
+      "quantity": "Quantité",
+      "total": "Total",
+      "fulfilled_at": "Traitée le {{ date }}",
+      "subtotal": "Sous-total"
     },
     "recover_password": {
       "title": "Réinitialiser votre mot de passe",
