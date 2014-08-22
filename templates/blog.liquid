@@ -73,7 +73,7 @@
 
       <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
 
-      <hr>
+      {% unless forloop.last %}<hr>{% endunless %}
 
     {% endfor %}
 
