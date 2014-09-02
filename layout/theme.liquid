@@ -116,7 +116,11 @@
           {% if shop.customer_accounts_enabled %}
           <p class="site-header--text-links">
             {% if customer %}
-              {{ 'layout.customer.logged_in_as' | t }} <a href="/account">{{ customer.first_name }}</a>
+              {% if customer.first_name != blank %}
+                {{ 'layout.customer.logged_in_as' | t }} <a href="/account">{{ customer.first_name }}</a>
+              {% else %}
+                <a href="/account">{{ 'layout.customer.account' | t }}</a>
+              {% endif %}
               | {{ 'layout.customer.log_out' | t | customer_logout_link }}
             {% else %}
               {{ 'layout.customer.log_in' | t | customer_login_link }}

@@ -239,6 +239,7 @@
       }
     },
     "customer": {
+      "account": "Compte",
       "logged_in_as": "Connecté en tant que",
       "log_out": "Se déconnecter",
       "log_in": "Se connecter",
