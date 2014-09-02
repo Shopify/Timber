@@ -150,12 +150,13 @@
 
 {% comment %}
   To take advantage of a callback on the select dropdown, add option_selection.js
-  and customize the JS in timber.productJs as needed.
+  and customize the JS in timber.productPage as needed.
 
-  Currently, timber.productJs does the following:
+  Currently, timber.productPage does the following:
     - Hides your <select> tag from above
     - Breaks out the product variants into separate product options, if more than one exists
     - Generates a <select> tag for each product option
+    - Enables/disables elements based on variant availability
 
   Callback notes:
     - Keep the callback available to the global scope (window.selectCallback) so that advanced
