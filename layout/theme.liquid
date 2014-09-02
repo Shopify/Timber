@@ -165,6 +165,54 @@
   {{ 'shop.js' | asset_url | script_tag }}
 
   {% comment %}
+    Product page specific JS
+  {% endcomment %}
+  {% if template contains 'product' %}
+    {% comment %}
+      To take advantage of a callback on the select dropdown, add option_selection.js
+      and customize the JS below as you need.
+
+      Currently, the code below does:
+        - Hides your <select> tag from above
+        - Breaks out the product variants into separate product options, if more than one exists
+        - Generates a <select> tag for each product option
+
+      Callback notes:
+        - Keep the callback available to the global scope (window.selectCallback) so that advanced
+          addons can override it.
+          * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
+    {% endcomment %}
+    {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+    <script>
+      var selectCallback = function(variant, selector) {
+        timber.productJs({
+          money_format: "{{ shop.money_format }}",
+          variant: variant,
+          selector: selector
+        });
+      };
+
+      jQuery(function($) {
+        new Shopify.OptionSelectors('productSelect', {
+          product: {{ product | json }},
+          onVariantSelected: selectCallback,
+          enableHistoryState: true
+        });
+
+        // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+        {% if product.options.size == 1 and product.options.first != 'Title' %}
+          $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first | escape }}</label>');
+        {% endif %}
+
+        // Hide selectors if we only have 1 variant and its title contains 'Default'.
+        {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+          $('.selector-wrapper').hide();
+        {% endif %}
+      });
+    </script>
+  {% endif %}
+
+  {% comment %}
     Ajaxify your cart with this plugin. Adding a product will reveal a drawer, modal, or confirmation button. Enabled by default in theme settings.
 
     Ajaxify Cart Documentation:
