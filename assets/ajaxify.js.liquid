@@ -899,7 +899,6 @@ var ajaxifyShopify = (function(module, $) {
           qty = parseInt( qtySelector.val().replace(/\D/g, '') );
 
       var qty = validateQty(qty);
-      console.log('1: ' + qty);
 
       // Add or subtract from the current quantity
       if (el.hasClass('ajaxifyCart--add')) {
@@ -928,7 +927,6 @@ var ajaxifyShopify = (function(module, $) {
           qty = parseInt( el.val().replace(/\D/g, '') );
 
       var qty = validateQty(qty);
-      console.log('2: ' + qty);
 
       // Only update the cart via ajax if we have a variant ID to work with
       if (id) {
@@ -1084,7 +1082,6 @@ var ajaxifyShopify = (function(module, $) {
             qty = parseInt( qtySelector.val().replace(/\D/g, '') );
 
         var qty = validateQty(qty);
-        console.log('3: ' + qty);
 
         // Add or subtract from the current quantity
         if (el.hasClass('js--add')) {
