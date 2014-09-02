@@ -50,18 +50,18 @@
             <div class="grid">
 
               <div class="grid-item one-third">
-                <a href="{{ item.product.url | within: collections.all }}" class="cart-image">
+                <a href="{{ item.url | within: collections.all }}" class="cart-image">
 
                   {% comment %}
                     More image size options at:
                       - http://docs.shopify.com/themes/filters/product-img-url
                   {% endcomment %}
-                  <img src="{{ item.product.featured_image.src | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                  <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
                 </a>
               </div>
 
               <div class="grid-item two-thirds">
-                <a href="{{ item.product.url }}" class="h4">
+                <a href="{{ item.url }}" class="h4">
                   {{ item.product.title }}
                 </a>
                 {% unless item.variant.title contains 'Default' %}
