@@ -16,8 +16,7 @@ timber.cacheSelectors = function () {
     $productPrice: $('#productPrice'),
     $comparePrice: $('#comparePrice'),
     $quantityElements: $('.quantity-selector, label + .js-qty'),
-    $addToCartText: $('#addToCartText'),
-    $featuredImage: $('#productPhotoImg')
+    $addToCartText: $('#addToCartText')
   }
 };
 
@@ -107,10 +106,10 @@ timber.accessibleNav = function () {
   }
 };
 
-timber.productJs = function (args) {
-  var money_format = args.money_format,
-      variant = args.variant,
-      selector = args.selector;
+timber.productJs = function (options) {
+  var money_format = options.money_format,
+      variant = options.variant,
+      selector = options.selector;
 
   // Selectors (for easier access)
   var $addToCart = timber.cache.$addToCart,
@@ -118,14 +117,14 @@ timber.productJs = function (args) {
       $comparePrice = timber.cache.$comparePrice,
       $quantityElements = timber.cache.$quantityElements,
       $addToCartText = timber.cache.$addToCartText,
-      $featuredImage = timber.cache.$featuredImage;
+      $productImage = timber.cache.$productImage;
 
   if (variant) {
 
     // Update variant image, if one is set
     if (variant.featured_image) {
       var newImg = variant.featured_image,
-          el = $featuredImage[0];
+          el = $productImage[0];
       Shopify.Image.switchImage(newImg, el, timber.switchImage);
     }
 
