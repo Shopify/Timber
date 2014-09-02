@@ -11,7 +11,13 @@ timber.cacheSelectors = function () {
 
     // Product Page
     $productImage: $('#productPhotoImg'),
-    $thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
+    $thumbImages: $('#productThumbs').find('a.product-photo-thumb')
+  }
+};
+
+timber.cacheProductSelectors = function() {
+  timber.productCache = {
+    $productImage: $('#productPhotoImg'),
     $addToCart: $('#addToCart'),
     $productPrice: $('#productPrice'),
     $comparePrice: $('#comparePrice'),
@@ -107,6 +113,8 @@ timber.accessibleNav = function () {
 };
 
 timber.productJs = function (options) {
+  timber.cacheProductSelectors();
+
   var money_format = options.money_format,
       variant = options.variant,
       selector = options.selector;
@@ -116,33 +124,33 @@ timber.productJs = function (options) {
     // Update variant image, if one is set
     if (variant.featured_image) {
       var newImg = variant.featured_image,
-          el = timber.cache.$productImage[0];
+          el = timber.productCache.$productImage[0];
       Shopify.Image.switchImage(newImg, el, timber.switchImage);
     }
 
     // Select a valid variant if available
     if (variant.available) {
       // Available, enable the submit button, change text, show quantity elements
-      timber.cache.$addToCart.removeClass('disabled').prop('disabled', false);
-      timber.cache.$addToCartText.text('{{ "products.product.add_to_cart" | t }}');
-      timber.cache.$quantityElements.show();
+      timber.productCache.$addToCart.removeClass('disabled').prop('disabled', false);
+      timber.productCache.$addToCartText.text('{{ "products.product.add_to_cart" | t }}');
+      timber.productCache.$quantityElements.show();
     } else {
       // Sold out, disable the submit button, change text, hide quantity elements
-      timber.cache.$addToCart.addClass('disabled').prop('disabled', true);
-      timber.cache.$addToCartText.text('{{ "products.product.sold_out" | t }}');
-      timber.cache.$quantityElements.hide();
+      timber.productCache.$addToCart.addClass('disabled').prop('disabled', true);
+      timber.productCache.$addToCartText.text('{{ "products.product.sold_out" | t }}');
+      timber.productCache.$quantityElements.hide();
     }
 
     // Regardless of stock, update the product price
-    timber.cache.$productPrice.html( Shopify.formatMoney(variant.price, money_format) );
+    timber.productCache.$productPrice.html( Shopify.formatMoney(variant.price, money_format) );
 
     // Also update and show the product's compare price if necessary
     if ( variant.compare_at_price > variant.price ) {
-      timber.cache.$comparePrice
+      timber.productCache.$comparePrice
         .html('{{ "products.product.compare_at" | t }}: ' + Shopify.formatMoney(variant.compare_at_price, money_format))
         .show();
     } else {
-      timber.cache.$comparePrice.hide();
+      timber.productCache.$comparePrice.hide();
     }
 
   } else {
@@ -150,9 +158,9 @@ timber.productJs = function (options) {
     // This may be an error or notice that a specific variant is not available.
     // To only show available variants, implement linked product options:
     //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
-    timber.cache.$addToCart.addClass('disabled').prop('disabled', true);
-    timber.cache.$addToCartText.text('{{ "products.product.unavailable" | t }}');
-    timber.cache.$quantityElements.hide();
+    timber.productCache.$addToCart.addClass('disabled').prop('disabled', true);
+    timber.productCache.$addToCartText.text('{{ "products.product.unavailable" | t }}');
+    timber.productCache.$quantityElements.hide();
   }
 };
 
