@@ -239,6 +239,7 @@
       }
     },
     "customer": {
+      "account": "Account",
       "logged_in_as": "Logged in as",
       "log_out": "Log out",
       "log_in": "Log in",
