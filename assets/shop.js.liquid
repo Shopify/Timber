@@ -62,7 +62,7 @@ timber.accessibleNav = function () {
 
   // accessibleNav private methods
   function handleFocus ($el) {
-    var $subMenu = $el.next('ul');
+    var $subMenu = $el.next('ul'),
         hasSubMenu = $subMenu.hasClass('sub-nav') ? true : false,
         isSubItem = $('.site-nav--dropdown').has($el).length,
         $newFocus = null;
