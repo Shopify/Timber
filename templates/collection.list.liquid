@@ -47,13 +47,13 @@
         </div>
       </div>
     {% else %}
-    <header class="section-header">
-      <h1 class="section-header--title section-header--left">{{ collection.title }}</h1>
-      <div class="section-header--right">
-        {% include 'collection-sorting' %}
-        {% include 'collection-views' %}
-      </div>
-    </header>
+      <header class="section-header">
+        <h1 class="section-header--title section-header--left">{{ collection.title }}</h1>
+        <div class="section-header--right">
+          {% include 'collection-sorting' %}
+          {% include 'collection-views' %}
+        </div>
+      </header>
     {% endif %}
 
     {% comment %}
