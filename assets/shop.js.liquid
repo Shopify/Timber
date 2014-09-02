@@ -11,7 +11,13 @@ timber.cacheSelectors = function () {
 
     // Product Page
     $productImage: $('#productPhotoImg'),
-    $thumbImages: $('#productThumbs').find('a.product-photo-thumb')
+    $thumbImages: $('#productThumbs').find('a.product-photo-thumb'),
+    $addToCart: $('#addToCart'),
+    $productPrice: $('#productPrice'),
+    $comparePrice: $('#comparePrice'),
+    $quantityElements: $('.quantity-selector, label + .js-qty'),
+    $addToCartText: $('#addToCartText'),
+    $featuredImage: $('#productPhotoImg')
   }
 };
 
@@ -98,6 +104,64 @@ timber.accessibleNav = function () {
 
   function removeFocus ($el) {
     $el.removeClass(focusClass);
+  }
+};
+
+timber.productJs = function (args) {
+  var money_format = args.money_format,
+      variant = args.variant,
+      selector = args.selector;
+
+  // Selectors (for easier access)
+  var $addToCart = timber.cache.$addToCart,
+      $productPrice = timber.cache.$productPrice,
+      $comparePrice = timber.cache.$comparePrice,
+      $quantityElements = timber.cache.$quantityElements,
+      $addToCartText = timber.cache.$addToCartText,
+      $featuredImage = timber.cache.$featuredImage;
+
+  if (variant) {
+
+    // Update variant image, if one is set
+    if (variant.featured_image) {
+      var newImg = variant.featured_image,
+          el = $featuredImage[0];
+      Shopify.Image.switchImage(newImg, el, timber.switchImage);
+    }
+
+    // Select a valid variant if available
+    if (variant.available) {
+      // Available, enable the submit button, change text, show quantity elements
+      $addToCart.removeClass('disabled').prop('disabled', false);
+      $addToCartText.text('{{ "products.product.add_to_cart" | t }}');
+      $quantityElements.show();
+    } else {
+      // Sold out, disable the submit button, change text, hide quantity elements
+      $addToCart.addClass('disabled').prop('disabled', true);
+      $addToCartText.text('{{ "products.product.sold_out" | t }}');
+      $quantityElements.hide();
+    }
+
+    // Regardless of stock, update the product price
+    $productPrice.html( Shopify.formatMoney(variant.price, money_format) );
+
+    // Also update and show the product's compare price if necessary
+    if ( variant.compare_at_price > variant.price ) {
+      $comparePrice
+        .html('{{ "products.product.compare_at" | t }}: ' + Shopify.formatMoney(variant.compare_at_price, money_format))
+        .show();
+    } else {
+      $comparePrice.hide();
+    }
+
+  } else {
+    // The variant doesn't exist, disable submit button.
+    // This may be an error or notice that a specific variant is not available.
+    // To only show available variants, implement linked product options:
+    //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
+    $addToCart.addClass('disabled').prop('disabled', true);
+    $addToCartText.text('{{ "products.product.unavailable" | t }}');
+    $quantityElements.hide();
   }
 };
 
