@@ -87,6 +87,7 @@ $colorBtnPrimaryText: #fff;
 $colorBtnSecondary: $colorSecondary;
 $colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
 $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
+$colorBtnSecondaryText: #fff;
 
 // Text link colors
 $colorLink: $colorPrimary;
@@ -1091,16 +1092,17 @@ html input[disabled] {
 input.btn-secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
+  color: $colorBtnSecondaryText;
 
   &:hover {
     background-color: $colorBtnSecondaryHover;
-    color: #fff;
+    color: $colorBtnSecondaryText;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnSecondaryActive;
-   color: #fff;
+   color: $colorBtnSecondaryText;
   }
 }
 
