@@ -1,0 +1,370 @@
+/*============================================================================
+  Table of Contents
+
+  #Theme Setting Variables
+  #Sass Mixins
+  #Colors
+  #General Layout
+  #Element Overrides
+==============================================================================*/
+
+/*============================================================================
+  #Theme Setting Variables (from timber.scss.liquid)
+==============================================================================*/
+$colorPrimary: {{ settings.color_primary }};
+$colorSecondary: {{ settings.color_secondary }};
+
+// Button colors
+$colorBtnPrimary: $colorPrimary;
+$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
+$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
+$colorBtnPrimaryText: #fff;
+
+$colorBtnSecondary: $colorSecondary;
+$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
+$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
+
+// Text link colors
+$colorLink: $colorPrimary;
+$colorLinkHover: lighten($colorPrimary, 15%);
+
+// Text colors
+$colorTextBody: {{ settings.color_body_text }};
+$colorHeaderPrimary: $colorPrimary;
+
+// Backgrounds
+$colorBody: {{ settings.color_body_bg }};
+
+// Border colors
+$colorBorder: {{ settings.color_borders }};
+
+// Nav and dropdown link background
+$colorNavText: {{ settings.color_body_text }};
+
+// Width variables
+$siteWidth: 1180px;
+$gutter: 24px;
+
+// Radius
+$radius: 3px;
+
+/*============================================================================
+  #Sass Mixins
+==============================================================================*/
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin transition($transition: 0.1s all) {
+  @include prefix('transition', #{$transition});
+}
+
+@mixin box-sizing($box-sizing: border-box) {
+  -webkit-box-sizing: #{$box-sizing};
+  -moz-box-sizing: #{$box-sizing};
+  box-sizing: #{$box-sizing};
+}
+
+/*============================================================================
+  #Colors
+==============================================================================*/
+
+/*================ Backgrounds ================*/
+html,
+body,
+.footer {
+  background-color: $colorBody;
+}
+
+{% if settings.color_bg_image != blank %}
+body {
+  content: "{{ settings.color_bg_repeat }}";
+  background: {
+    image: url('{{ settings.color_bg_image }}');
+    {% if settings.color_bg_repeat == "tiled" %}
+      repeat: repeat;
+      position: 0 0;
+    {% else %}
+      repeat: no-repeat;
+      position: center top;
+    {% endif %}
+  }
+}
+{% endif %}
+
+.header {
+  background: none;
+}
+
+.fieldset,
+.field-group--has-subfields,
+.field--error,
+.section__blank-slate {
+  background-color: transparent;
+}
+
+/*================ Borders ================*/
+.section,
+.fieldset,
+.field + .field,
+.field-group,
+.field-group--has-subfields .field,
+.field-group--has-subfields .field-group,
+.field-group--has-subfields,
+.product-list .product,
+.section__blank-slate {
+  border-color: $colorBorder;
+}
+
+.field--focus {
+  .boxshadow & {
+    box-shadow: 0 0 0 2px $colorPrimary;
+  }
+
+  .no-boxshadow & {
+    border-color: $colorPrimary;
+  }
+}
+
+.footer {
+  .boxshadow & {
+    box-shadow: none;
+    border: 0 none;
+  }
+
+  .no-boxshadow & {
+    border: 0 none;
+  }
+}
+
+/*================ Links and Buttons ================*/
+a,
+a:visited {
+  color: $colorLink;
+
+  &:hover,
+  &:focus {
+    color: $colorLinkHover;
+  }
+}
+
+.btn,
+.btn.btn--primary {
+  background-color: $colorBtnPrimary;
+  color: $colorBtnPrimaryText;
+
+  &:hover,
+  &:visited:hover {
+    background-color: $colorBtnPrimaryHover;
+    color: $colorBtnPrimaryText;
+  }
+
+  &:active,
+  &:focus {
+   background-color: $colorBtnPrimaryActive;
+  }
+}
+
+/*================ Typography ================*/
+p,
+label,
+p strong,
+.newsletter label,
+.section--thank-you p,
+.order-number,
+.payment-method-name,
+.payment-method-additional-info {
+  color: $colorTextBody;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $colorHeaderPrimary;
+}
+
+.multi-step .step--blank .section__header h3 {
+  color: $colorTextBody;
+}
+
+.footer__copyright {
+  color: $colorTextBody;
+}
+
+.footer a,
+.footer a:visited {
+  color: $colorTextBody;
+
+  &:hover,
+  &:focus {
+    color: $colorPrimary;
+  }
+}
+
+.shop__name {
+  color: $colorTextBody;
+}
+
+.payment-method-total {
+  color: $colorPrimary;
+}
+
+/*================ Form Elements ================*/
+.field {
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="password"],
+  select {
+    color: $colorTextBody;
+  }
+}
+
+:-webkit-input-placeholder {
+  color: rgba($colorTextBody, .5)!important;
+}
+
+::-webkit-input-placeholder {
+  color: rgba($colorTextBody, .5)!important;
+}
+
+:-moz-placeholder {
+  color: rgba($colorTextBody, .5)!important;
+}
+
+::-moz-placeholder {
+  color: rgba($colorTextBody, .5)!important;
+}
+
+:-ms-input-placeholder {
+  color: rgba($colorTextBody, .5)!important;
+}
+
+::-ms-input-placeholder {
+  color: rgba($colorTextBody, .5)!important;
+}
+
+.chrome input[type="radio"],
+.safari input[type="radio"] {
+  border-color: $colorBorder;
+}
+
+.chrome .toggle,
+.safari .toggle {
+  background: $colorBody;
+  border-color: $colorBorder;
+}
+
+.chrome input[type="radio"]:checked,
+.safari input[type="radio"]:checked,
+.chrome .toggle:checked,
+.safari .toggle:checked {
+  background-color: $colorPrimary;
+  border-color: $colorPrimary;
+
+  &:hover {
+    border-color: $colorPrimary;
+  }
+}
+
+.chrome .toggle:checked:after,
+.safari .toggle:checked:after {
+  border-color: $colorPrimary;
+}
+
+/*================ Step Counters ================*/
+.step--blank .section__header:before,
+.step--current .section__header:before {
+  color: $colorTextBody;
+  border-color: $colorTextBody;
+}
+
+.step--current .section__header:before {
+  color: $colorPrimary;
+  border-color: $colorPrimary;
+}
+
+.icon--order-success g {
+  stroke: $colorPrimary;
+}
+
+/*================ Order Summary ================*/
+.order-summary {
+  background: none;
+  color: $colorTextBody;
+}
+
+.order-summary,
+.order-summary__section,
+.summary-body,
+.total-line--total {
+  border-color: $colorBorder;
+}
+
+.product__info__name strong,
+.order-summary strong {
+  color: $colorTextBody;
+}
+
+.payment-due__currency {
+  border-color: $colorBorder;
+  color: $colorTextBody;
+}
+
+.payment-due__price {
+  color: $colorPrimary;
+}
+
+/*============================================================================
+  #General Layout
+==============================================================================*/
+.header,
+.footer {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media screen and (min-width: 1000px) {
+  .header {
+    margin-top: 80px;
+  }
+}
+
+.wrap {
+  @include box-sizing;
+  max-width: $siteWidth;
+
+  .header & {
+    padding-top: 2em;
+  }
+
+  .footer & {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
+}
+
+/*============================================================================
+  Element Overrides
+==============================================================================*/
+.btn,
+.btn.btn--primary {
+  padding: 8px 10px;
+  line-height: 1.42;
+  font-weight: bold;
+  border: 1px solid transparent;
+  @include prefix('user-select', 'none');
+  border-radius: $radius;
+}
+
+// Hide blue printer button
+.icon--print {
+  display: none;
+}
