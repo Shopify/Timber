@@ -1,5 +1,9 @@
 {
   "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
     "404": {
       "title": "404 Page Not Found",
       "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
