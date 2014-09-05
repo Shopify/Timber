@@ -100,6 +100,11 @@ body {
   background-color: transparent;
 }
 
+.modal,
+.has-modal .footer {
+  background-color: $colorBody;
+}
+
 /*================ Borders ================*/
 .section,
 .fieldset,
@@ -132,6 +137,10 @@ body {
   .no-boxshadow & {
     border: 0 none;
   }
+}
+
+.footer__nav__link.is-active {
+  border-color: $colorPrimary;
 }
 
 /*================ Links and Buttons ================*/
