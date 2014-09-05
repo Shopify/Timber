@@ -1106,6 +1106,9 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   toggleCallback = function (data) {
+    // General data to send
+    data.method = settings.method;
+
     // Run the callback if it's a function
     if (typeof settings.onToggleCallback == 'function') {
       settings.onToggleCallback.call(this, data);
