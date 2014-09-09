@@ -102,7 +102,7 @@ timber.accessibleNav = function () {
 };
 
 timber.productPage = function (options) {
-  var money_format = options.money_format,
+  var moneyFormat = options.money_format,
       variant = options.variant,
       selector = options.selector;
 
@@ -137,12 +137,12 @@ timber.productPage = function (options) {
     }
 
     // Regardless of stock, update the product price
-    $productPrice.html( Shopify.formatMoney(variant.price, money_format) );
+    $productPrice.html( Shopify.formatMoney(variant.price, moneyFormat) );
 
     // Also update and show the product's compare price if necessary
     if ( variant.compare_at_price > variant.price ) {
       $comparePrice
-        .html('{{ "products.product.compare_at" | t }}: ' + Shopify.formatMoney(variant.compare_at_price, money_format))
+        .html('{{ "products.product.compare_at" | t }}: ' + Shopify.formatMoney(variant.compare_at_price, moneyFormat))
         .show();
     } else {
       $comparePrice.hide();
