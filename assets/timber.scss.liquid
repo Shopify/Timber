@@ -82,10 +82,12 @@ $colorSecondary: {{ settings.color_secondary }};
 $colorBtnPrimary: $colorPrimary;
 $colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
 $colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
+$colorBtnPrimaryText: #fff;
 
 $colorBtnSecondary: $colorSecondary;
 $colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
 $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
+$colorBtnSecondaryText: #fff;
 
 // Text link colors
 $colorLink: $colorPrimary;
@@ -1053,17 +1055,17 @@ html input[disabled] {
 
   /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
-  color: #fff;
+  color: $colorBtnPrimaryText;
 
   &:hover {
     background-color: $colorBtnPrimaryHover;
-    color: #fff;
+    color: $colorBtnPrimaryText;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnPrimaryActive;
-   color: #fff;
+   color: $colorBtnPrimaryText;
   }
 
   &[disabled],
@@ -1081,13 +1083,13 @@ input.btn-secondary {
 
   &:hover {
     background-color: $colorBtnSecondaryHover;
-    color: #fff;
+    color: $colorBtnSecondaryText;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnSecondaryActive;
-   color: #fff;
+   color: $colorBtnSecondaryText;
   }
 }
 
