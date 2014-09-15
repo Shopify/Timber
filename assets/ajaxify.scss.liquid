@@ -30,7 +30,7 @@ $postSmall: $small + $viewportIncrement;
 $preMedium: $medium - $viewportIncrement;
 $preLarge: $large - $viewportIncrement;
 
-$gutter: 24px;
+$gutter: 30px;
 
 /*============================================================================
   Ajaxify Colours
@@ -39,7 +39,7 @@ $gutter: 24px;
 ==============================================================================*/
 $colorBody: {{ settings.color_body_bg }};
 $colorTextBody: {{ settings.color_body_text }};
-$colorBorder: #e5e5e5;
+$colorBorder: {{ settings.color_borders }};
 
 /*============================================================================
   Dependency-free breakpoint mixin
@@ -210,7 +210,7 @@ form[action^="/cart/add"] {
     overflow: hidden;
     opacity: 0;
     padding: 0;
-    margin: -15px 0 0;
+    margin: -1px 0 0 0;
     visibility: hidden;
     @include transform('rotateX(-92deg)');
     @include backface(hidden);

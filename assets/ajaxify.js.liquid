@@ -256,7 +256,7 @@ var ajaxifyShopify = (function(module, $) {
   var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, scrollTop, toggleCallback;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -273,7 +273,7 @@ var ajaxifyShopify = (function(module, $) {
       toggleCartButton: null,
       btnClass: null,
       wrapperClass: null,
-      useCartTemplate: false,
+      useCartTemplate: true,
       moneyFormat: '${{amount}}',
       disableAjaxCart: false,
       enableQtySelectors: true,
@@ -395,7 +395,7 @@ var ajaxifyShopify = (function(module, $) {
     // Write a (hidden) Checkout button, a loader, and the extra view cart button
     var checkoutBtn = $('<a href="/cart" class="flip-back" style="background-color: #C00; color: #fff;" id="flip-checkout">Checkout</a>').addClass($btnClass),
         flipLoader = $('<span class="ajaxifyCart-loader"></span>'),
-        flipExtra = $('<div class="flip-extra">or <a href="#" class="flip-cart">View Cart (<span></span>)</a></div>');
+        flipExtra = $('<div class="flip-extra"><a href="#" class="flip-cart">View Cart (<span></span>)</a></div>');
 
     // Append checkout button and loader
     checkoutBtn.insertAfter($addToCart);
@@ -753,7 +753,9 @@ var ajaxifyShopify = (function(module, $) {
 
     // Show empty cart
     if (cart.item_count === 0) {
-      $cartContainer.append('<h2>Your cart is empty</h2>');
+      $cartContainer
+        .append('<h2>{{ "cart.general.empty" | t }}</h2>')
+        .append('<p>{{ "cart.general.continue_browsing_html" | t }}</p>');
 
       switch (settings.method) {
         case 'modal':
@@ -893,7 +895,9 @@ var ajaxifyShopify = (function(module, $) {
       var el = $(this),
           id = el.data('id'),
           qtySelector = el.siblings('.ajaxifyCart--num'),
-          qty = parseInt( qtySelector.val() );
+          qty = parseInt( qtySelector.val().replace(/\D/g, '') );
+
+      var qty = validateQty(qty);
 
       // Add or subtract from the current quantity
       if (el.hasClass('ajaxifyCart--add')) {
@@ -919,16 +923,9 @@ var ajaxifyShopify = (function(module, $) {
     qtyInput.on('change', function() {
       var el = $(this),
           id = el.data('id'),
-          qty = el.val();
+          qty = parseInt( el.val().replace(/\D/g, '') );
 
-      // Make sure we have a valid integer
-      if( (parseFloat(qty) == parseInt(qty)) && !isNaN(qty) ) {
-        // We have a number!
-      } else {
-        // Not a number. Default to 1.
-        el.val(1);
-        return;
-      }
+      var qty = validateQty(qty);
 
       // Only update the cart via ajax if we have a variant ID to work with
       if (id) {
@@ -1081,7 +1078,9 @@ var ajaxifyShopify = (function(module, $) {
         var el = $(this),
             id = el.data('id'),
             qtySelector = el.siblings('.js--num'),
-            qty = parseInt( qtySelector.val() );
+            qty = parseInt( qtySelector.val().replace(/\D/g, '') );
+
+        var qty = validateQty(qty);
 
         // Add or subtract from the current quantity
         if (el.hasClass('js--add')) {
@@ -1095,6 +1094,17 @@ var ajaxifyShopify = (function(module, $) {
         qtySelector.val(qty);
       });
     }
+  };
+
+  validateQty = function (qty) {
+    // Make sure we have a valid integer
+    if( (parseFloat(qty) == parseInt(qty)) && !isNaN(qty) ) {
+      // We have a number!
+    } else {
+      // Not a number. Default to 1.
+      qty = 1;
+    }
+    return qty;
   };
 
   scrollTop = function () {

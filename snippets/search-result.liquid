@@ -41,7 +41,7 @@
         {{ item.price | money }}
       </span>
       <small>
-        Compare at:
+        {{ 'products.product.compare_at' | t }}
         {{ item.compare_at_price_max | money }}
       </small>
     {% else %}
@@ -58,4 +58,4 @@
 
 </div>
 
-<hr>
+{% unless forloop.last %}<hr>{% endunless %}
