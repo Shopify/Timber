@@ -42,7 +42,7 @@
       "name_label": "Name",
       "email_label": "Email",
       "message_label": "Message",
-      "post_label": "Post comment",
+      "post_button_text": "Post comment",
       "moderated_warning": "Please note, comments must be approved before they are published",
       "success_message_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
       "success_message": "Your comment was posted successfully! Thank you!",
@@ -128,7 +128,7 @@
       "title": "Activate Account",
       "subtext": "Create your password to activate your account.",
       "password_label": "Password",
-      "password_confirm_lbael": "Confirm Password",
+      "password_confirm_label": "Confirm Password",
       "submit_button_text": "Activate Account",
       "cancel_link_text": "Decline Invitation"
     },
@@ -175,7 +175,7 @@
     },
     "order": {
       "title": "Order {{ name }}",
-      "date": "Placed on {{ date }}",
+      "date_text": "Placed on {{ date }}",
       "cancelled_text": "Order Cancelled on {{ date }}",
       "cancelled_reason_text": "Reason: {{ reason }}",
       "billing_address_header": "Billing Address",
@@ -263,9 +263,9 @@
       "price_variance_text": "From"
     },
     "product": {
-      "sold_out_label_text": "Sold Out",
+      "sold_out_label": "Sold Out",
       "on_sale_from_html": "<strong>On Sale</strong> from {{ price }}",
-      "unavailable_label_text": "Unavailable",
+      "unavailable_label": "Unavailable",
       "compare_at_text": "Compare at",
       "quantity_label": "Quantity",
       "add_to_cart_button_text": "Add to Cart"

@@ -1,8 +1,8 @@
 {
   "general": {
     "meta": {
-      "tags": "Mots clés \"{{ tags }}\"",
-      "page": "Page {{ page }}"
+      "tags_text": "Mots clés \"{{ tags }}\"",
+      "page_text": "Page {{ page }}"
     },
     "404": {
       "title": "404 - Page non trouvée",
@@ -10,7 +10,7 @@
     },
     "breadcrumbs": {
       "home": "Accueil",
-      "home_link_title": "Retour à la page d'accueil"
+      "home_link_text": "Retour à la page d'accueil"
     },
     "forms": {
       "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:",
@@ -18,66 +18,66 @@
     },
     "newsletter_form": {
       "newsletter_email": "votre-courriel@exemple.com",
-      "submit": "S'inscrire"
+      "submit_button_textt": "S'inscrire"
     },
     "search": {
-      "no_results_html": "Votre recherche pour \"{{ terms }}\" n'a pas généré de résultats.",
-      "results_for_html": "Votre recherche pour \"{{ terms }}\" a généré les résultats suivants:",
+      "no_results_message": "Votre recherche pour \"{{ terms }}\" n'a pas généré de résultats.",
+      "results_for_text": "Votre recherche pour \"{{ terms }}\" a généré les résultats suivants:",
       "title": "Effectuez une recherche",
       "placeholder": "Rechercher dans la boutique",
-      "submit": "Recherche"
+      "submit_button_text": "Recherche"
     }
   },
   "blogs": {
     "article": {
       "author_on_date_html": "Publié par <strong>{{ author }}</strong> le <time datetime=\"{{ date }}\">{{ date }}</time>",
-      "older_post": "Article précédent",
-      "newer_post": "Article suivant",
-      "tags": "Tags",
+      "older_post_link_textt": "Article précédent",
+      "newer_post_link_textt": "Article suivant",
+      "tags_header": "Tags",
       "comment_meta_html": "<strong>{{ author }}</strong> le <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>",
-      "read_more": "Plus"
+      "read_more_link_text": "Plus"
     },
     "comments": {
       "title": "Laissez un commentaire",
-      "name": "Nom",
-      "email": "Courriel",
-      "message": "Message",
-      "post": "Publier le commentaire",
-      "moderated": "Veuillez noter que les commentaires doivent être approvés avant d'être affichés",
-      "success_moderated": "Votre commentaire a été soumis avec succès. Nous le publierons sous peu, suite à notre processus de modération.",
-      "success": "Votre commentaire a été publié avec succès!",
+      "name_label": "Nom",
+      "emai_labell": "Courriel",
+      "message_label": "Message",
+      "post_button_text": "Publier le commentaire",
+      "moderated_warning": "Veuillez noter que les commentaires doivent être approvés avant d'être affichés",
+      "success_message_moderated": "Votre commentaire a été soumis avec succès. Nous le publierons sous peu, suite à notre processus de modération.",
+      "success_message": "Votre commentaire a été publié avec succès!",
       "comments_with_count": {
         "one": "{{ count }} commentaire",
         "other": "{{ count }} commentaires"
       }
     },
     "sidebar": {
-      "recent_articles": "Articles récents",
-      "categories": "Catégories"
+      "recent_articles_header": "Articles récents",
+      "categories_header": "Catégories"
     }
   },
   "cart": {
     "general": {
       "title": "Panier",
-      "remove": "Retirer",
-      "note": "Instructions spéciales pour la commande",
-      "subtotal": "Sous-total",
-      "update": "Mettre à jour",
-      "checkout": "Procéder au paiement",
-      "empty": "Votre panier est vide.",
+      "remove_button_text": "Retirer",
+      "note_header": "Instructions spéciales pour la commande",
+      "subtotal_header": "Sous-total",
+      "update_button_text": "Mettre à jour",
+      "checkout_button_text": "Procéder au paiement",
+      "empty_cart_message": "Votre panier est vide.",
       "continue_browsing_html": "<a href=\"/collections/all\">Retourner au magasinage</a>."
     },
     "label": {
-      "product": "Produit",
-      "price": "Prix",
-      "quantity": "Quantité",
-      "total": "Total"
+      "product_column_header": "Produit",
+      "price_column_header": "Prix",
+      "quantity_column_header": "Quantité",
+      "total_column_header": "Total"
     }
   },
   "collections": {
     "general": {
-      "no_matches": "Aucun produit ne correspond à votre recherche.",
-      "link_title": "Consultez la collection {{ title }}",
+      "no_search_matches_message": "Aucun produit ne correspond à votre recherche.",
+      "link_text": "Consultez la collection {{ title }}",
       "items_count": {
         "one": "item",
         "other": "items"
@@ -88,134 +88,134 @@
       }
     },
     "sidebar": {
-      "types": "Types de produits",
-      "no_types_html": "Ajoutez un type à vos produits pour que cette liste soit automatiquement générée. Toutes les listes sont créées dans <strong>collection-sidebar.liquid</strong>.",
-      "vendors": "Fournisseurs",
-      "no_vendors": "Ajoutez un fournisseur à vos produits pour que cette liste soit automatiquement générée.",
-      "tags": "Filtres",
-      "no_tags": "Ajoutez un tag à vos produits pour que cette liste soit automatiquement générée."
+      "product_types_header": "Types de produits",
+      "no_product_types_message_html": "Ajoutez un type à vos produits pour que cette liste soit automatiquement générée. Toutes les listes sont créées dans <strong>collection-sidebar.liquid</strong>.",
+      "vendors_header": "Fournisseurs",
+      "no_vendors_message": "Ajoutez un fournisseur à vos produits pour que cette liste soit automatiquement générée.",
+      "tags_header": "Filtres",
+      "no_tags_message": "Ajoutez un tag à vos produits pour que cette liste soit automatiquement générée."
     },
     "sorting": {
-      "title": "Trier par",
-      "featured": "En vedette",
-      "best_selling": "Meilleurs vendeurs",
-      "az": "A-Z",
-      "za": "Z-A",
-      "price_ascending": "Prix: faible à élevé",
-      "price_descending": "Prix: élevé à faible",
-      "date_descending": "Date: récent à ancien",
-      "date_ascending": "Date: ancien à récent"
+      "label": "Trier par",
+      "featured_option_text": "En vedette",
+      "best_selling_option_text": "Meilleurs vendeurs",
+      "az_option_text": "A-Z",
+      "za_option_text": "Z-A",
+      "price_ascending_option_text": "Prix: faible à élevé",
+      "price_descending_option_text": "Prix: élevé à faible",
+      "date_descending_option_text": "Date: récent à ancien",
+      "date_ascending_option_text": "Date: ancien à récent"
     }
   },
   "contact": {
     "form": {
-      "name": "Nom",
-      "email": "Courriel",
-      "phone": "Téléphone",
-      "message": "Message",
-      "send": "Envoyer",
-      "post_success": "Merci de nous avoir avoir contacté. Nous vous reviendrons le plus rapidement possible."
+      "name_labl": "Nom",
+      "email_labl": "Courriel",
+      "phone_labl": "Téléphone",
+      "message_labl": "Message",
+      "send_button_text": "Envoyer",
+      "success_message": "Merci de nous avoir avoir contacté. Nous vous reviendrons le plus rapidement possible."
     }
   },
   "customer": {
     "account": {
       "title": "Mon compte",
-      "details": "Détails du compte",
-      "view_addresses": "Voir les adresses",
-      "return": "Retour au détails du compte"
+      "details_header": "Détails du compte",
+      "view_addresses_link_text": "Voir les adresses",
+      "return_link_text": "Retour au détails du compte"
     },
     "activate_account": {
       "title": "Activer le compte",
       "subtext": "Créez votre mot de passe pour activer le compte.",
-      "submit": "Activer le compte",
-      "cancel": "Refuser l'invitation",
-      "password": "Mot de passe",
-      "password_confirm": "Confirmer le mot de passe"
+      "password_label": "Mot de passe",
+      "password_confirm_label": "Confirmer le mot de passe",
+      "submit_button_text": "Activer le compte",
+      "cancel_link_text": "Refuser l'invitation"
     },
     "addresses": {
       "title": "Votre adresse",
-      "default": "Par défaut",
-      "add_new": "Ajouter une nouvelle adresse",
-      "edit_address": "Éditer l'adresse",
-      "first_name": "Prénom",
-      "last_name": "Nom",
-      "company": "Compagnie",
-      "address1": "Adresse 1",
-      "address2": "Adresse 2",
-      "city": "Ville",
-      "country": "Pays",
-      "province": "Province",
-      "zip": "Code postal",
-      "phone": "Téléphone",
-      "set_default": "Définir comme adresse par défaut",
-      "add": "Ajouter l'adresse",
-      "update": "Mettre à jour l'adresse",
-      "cancel": "Annuler",
-      "edit": "Éditer",
-      "delete": "Supprimer"
+      "default_address_label": "Par défaut",
+      "add_new_button_text": "Ajouter une nouvelle adresse",
+      "edit_address_header": "Éditer l'adresse",
+      "first_name_label": "Prénom",
+      "last_name_label": "Nom",
+      "company_label": "Compagnie",
+      "address1_label": "Adresse 1",
+      "address2_label": "Adresse 2",
+      "city_label": "Ville",
+      "country_label": "Pays",
+      "province_label": "Province",
+      "zip_label": "Code postal",
+      "phone_label": "Téléphone",
+      "set_default_label": "Définir comme adresse par défaut",
+      "add_button_text": "Ajouter l'adresse",
+      "update_button_text": "Mettre à jour l'adresse",
+      "cancel_link_text": "Annuler",
+      "edit_link_text": "Éditer",
+      "delete_link_text": "Supprimer"
     },
     "login": {
       "title": "Connexion",
-      "email": "Courriel",
-      "password": "Mot de passe",
-      "forgot_password": "Mot de passe oublié?",
-      "sign_in": "Se connecter",
-      "cancel": "Retourner à la boutique",
+      "email_label": "Courriel",
+      "password_label": "Mot de passe",
+      "forgot_password_link_text": "Mot de passe oublié?",
+      "sign_in_button_text": "Se connecter",
+      "cancel_link_text": "Retourner à la boutique",
       "guest_title": "Continuer en tant qu'invité",
-      "guest_continue": "Continuer"
+      "guest_continue_link_text": "Continuer"
     },
     "orders": {
       "title": "Historique des commandes",
-      "order_number": "Commande",
-      "date": "Date",
-      "payment_status": "Statut du paiement",
-      "fulfillment_status": "Statut du traitement de la commande",
-      "total": "Total",
-      "none": "Vous n'avez pas placé de commande à ce jour."
+      "order_column_header": "Commande",
+      "date_column_header": "Date",
+      "payment_status_column_header": "Statut du paiement",
+      "fulfillment_status_column_header": "Statut du traitement de la commande",
+      "total_column_header": "Total",
+      "no_orders_message": "Vous n'avez pas placé de commande à ce jour."
     },
     "order": {
       "title": "Commande {{ name }}",
-      "date": "Placée le {{ date }}",
-      "cancelled": "Commande annulée le {{ date }}",
-      "cancelled_reason": "Motif: {{ reason }}",
-      "billing_address": "Adresse de facturation",
-      "payment_status": "Statut du paiement",
-      "shipping_address": "Adresse de livraison",
-      "fulfillment_status": "Statut du traitement de la commande",
-      "discount": "Rabais appliqué",
-      "shipping": "Livraison",
-      "tax": "Taxes",
-      "product": "Produit",
-      "sku": "SKU",
-      "price": "Prix",
-      "quantity": "Quantité",
-      "total": "Total",
-      "fulfilled_at": "Traitée le {{ date }}",
-      "subtotal": "Sous-total"
+      "date_text": "Placée le {{ date }}",
+      "cancelled_text": "Commande annulée le {{ date }}",
+      "cancelled_reason_text": "Motif: {{ reason }}",
+      "billing_address_header": "Adresse de facturation",
+      "payment_status_label": "Statut du paiement",
+      "shipping_address_header": "Adresse de livraison",
+      "fulfillment_status_label": "Statut du traitement de la commande",
+      "discount_label": "Rabais appliqué",
+      "shipping_label": "Livraison",
+      "tax_label": "Taxes",
+      "product_column_header": "Produit",
+      "sku_column_header": "SKU",
+      "price_column_header": "Prix",
+      "quantity_column_header": "Quantité",
+      "total_column_header": "Total",
+      "fulfilled_at_text": "Traitée le {{ date }}",
+      "subtotal_label": "Sous-total"
     },
     "recover_password": {
       "title": "Réinitialiser votre mot de passe",
-      "email": "Courriel",
-      "submit": "Soumettre",
-      "cancel": "Annuler",
+      "email_placeholder": "Courriel",
+      "submit_button_text": "Soumettre",
+      "cancel_link_text": "Annuler",
       "subtext": "Nous vous ferons parvenir un courriel pour réinitialiser votre mot de passe.",
-      "success": "Nous vous avons fait parvenir un courriel pour réinitialiser votre mot de passe."
+      "success_message": "Nous vous avons fait parvenir un courriel pour réinitialiser votre mot de passe."
     },
     "reset_password": {
       "title": "Réinitialiser le mot de passe du compte",
       "subtext": "Entrez un nouveau mot de passe pour {{ email }}",
-      "submit": "Réinitialiser le mot de passe",
-      "password": "Mot de passe",
-      "password_confirm": "Confirmer le mot de passe"
+      "password_label": "Mot de passe",
+      "password_confirm_label": "Confirmer le mot de passe",
+      "submit_button_text": "Réinitialiser le mot de passe"
     },
     "register": {
       "title": "Créer un compte",
-      "first_name": "Prénom",
-      "last_name": "Nom",
-      "email": "Courriel",
-      "submit": "Créer",
-      "cancel": "Retour à la boutique",
-      "password": "Mot de passe"
+      "first_name_label": "Prénom",
+      "last_name_label": "Nom",
+      "email_label": "Courriel",
+      "password_label": "Mot de passe",
+      "submit_button_text": "Créer",
+      "cancel_link_text": "Retour à la boutique"
     }
   },
   "home_page": {
@@ -225,62 +225,62 @@
       "news_title": "Nouvelles récentes"
     },
     "onboarding": {
-      "no_products_html": "Vous n'avez pas de produit dans votre collection Frontpage. Ce message apparaitra jusqu'à ce qu'un produit soit <a href=\"/admin/custom_collections\">ajouté à cette collection</a>.",
-      "add_product": "Ajouter un produit",
+      "no_products_message_html": "Vous n'avez pas de produit dans votre collection Frontpage. Ce message apparaitra jusqu'à ce qu'un produit soit <a href=\"/admin/custom_collections\">ajouté à cette collection</a>.",
+      "add_product_link_text": "Ajouter un produit",
       "product_title": "Titre du produit",
-      "no_collections_html": "Vous n'avez pas de collection à afficher ici. <a href=\"/admin/custom_collections\">Ajoutez une ou plusieurs collections</a> pour compléter la page d'accueil par défaut.",
-      "collection_image": "Image de la collection",
+      "no_collections_message_html": "Vous n'avez pas de collection à afficher ici. <a href=\"/admin/custom_collections\">Ajoutez une ou plusieurs collections</a> pour compléter la page d'accueil par défaut.",
+      "collection_image_text": "Image de la collection",
       "collection_title": "Titre de la collection"
     }
   },
   "layout": {
     "cart": {
-      "title": "Panier",
+      "cart_link_text": "Panier",
       "items_count": {
         "one": "item",
         "other": "items"
       }
     },
     "customer": {
-      "account": "Compte",
-      "logged_in_as": "Connecté en tant que",
-      "log_out": "Se déconnecter",
-      "log_in": "Se connecter",
-      "create_account": "Créer un compte"
+      "account_link_text": "Compte",
+      "logged_in_as_link_text": "Connecté en tant que",
+      "log_out_link_text": "Se déconnecter",
+      "log_in_link_text": "Se connecter",
+      "create_account_link_text": "Créer un compte"
     },
     "footer": {
-      "linklist_title": "Liens rapides",
-      "social_title": "Restez en contact",
-      "newsletter_title": "Infolettre",
-      "accepted_payments": "Méthodes de paiement acceptées",
-      "theme_title": "par"
+      "linklist_header": "Liens rapides",
+      "social_header": "Restez en contact",
+      "newsletter_header": "Infolettre",
+      "accepted_payments_header": "Méthodes de paiement acceptées",
+      "theme_attribution_text": "par"
     }
   },
   "products": {
     "general": {
-      "previous_product_html": "&larr; Produit précédent",
-      "next_product_html": "Produit suivant &rarr;",
-      "from": "À partir de"
+      "previous_product_link_text": "&larr; Produit précédent",
+      "next_product_link_text": "Produit suivant &rarr;",
+      "price_variance_text": "À partir de"
     },
     "product": {
-      "sold_out": "Épuisé",
+      "sold_out_label": "Épuisé",
       "on_sale_from_html": "<strong>En solde</strong> {{ price }}",
-      "unavailable": "Non disponible",
-      "compare_at": "Était:",
-      "quantity": "Quantité",
-      "add_to_cart": "Ajouter au panier"
+      "unavailable_label": "Non disponible",
+      "compare_at_text": "Était:",
+      "quantity_label": "Quantité",
+      "add_to_cart_button_text": "Ajouter au panier"
     }
   },
   "gift_cards": {
     "issued": {
       "title": "Votre carte-cadeau {{ shop }} d'une valeur de {{ value }}!",
       "subtext": "Voici votre carte-cadeau!",
-      "disabled": "Désactivée",
-      "expired": "Expirée le {{ expiry }}",
-      "active": "Expire le {{ expiry }}",
-      "redeem": "Entrez ce code lors du paiement pour utiliser votre carte-cadeau",
-      "shop_link": "Boutique",
-      "print": "Imprimer"
+      "disabled_text": "Désactivée",
+      "expired_text": "Expirée le {{ expiry }}",
+      "active_text": "Expire le {{ expiry }}",
+      "redeem_message": "Entrez ce code lors du paiement pour utiliser votre carte-cadeau",
+      "shop_link_text": "Boutique",
+      "print_button_text": "Imprimer"
     }
   }
 }
