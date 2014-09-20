@@ -30,11 +30,11 @@
   },
   "blogs": {
     "article": {
-      "author_on_date_html": "Posted by <strong>{{ author }}</strong> on <time datetime=\"{{ date }}\">{{ date }}</time>",
+      "author_on_date_html": "Posted by {{ author }} on {{ date }}",
       "older_post": "Older Post",
       "newer_post": "Newer Post",
       "tags": "Tags",
-      "comment_meta_html": "<strong>{{ author }}</strong> on <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>",
+      "comment_meta_html": "{{ author }} on {{ date }}",
       "read_more": "Read more"
     },
     "comments": {

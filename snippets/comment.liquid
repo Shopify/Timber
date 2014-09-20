@@ -16,6 +16,8 @@
 
   <span>
     {% assign comment_date = comment.created_at | date: '%Y-%m-%d' %}
-    {{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: comment_date }}
+    {% capture author %}<strong>{{ comment.author }}</strong>{% endcapture %}
+    {% capture date %}<strong><time datetime="{{ comment_date }}">{{ comment_date }}</time></strong>{% endcapture %}
+    {{ 'blogs.article.comment_meta_html' | t: author: author, date: date }}
   </span>
 </div>

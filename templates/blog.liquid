@@ -39,7 +39,9 @@
 
       <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
       {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
-      <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: published_at }}</p>
+      {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
+      {% capture date %}<time datetime="{{ published_at }}">{{ published_at }}</time>{% endcapture %}
+      <p>{{ 'blogs.article.author_on_date_html' | t: author: author, date: date }}</p>
 
       {% comment %}
         Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
