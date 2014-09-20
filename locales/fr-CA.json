@@ -266,7 +266,7 @@
       "sold_out": "Épuisé",
       "on_sale_from_html": "<strong>En solde</strong> {{ price }}",
       "unavailable": "Non disponible",
-      "compare_at": "Était:",
+      "compare_at": "Était",
       "quantity": "Quantité",
       "add_to_cart": "Ajouter au panier"
     }
