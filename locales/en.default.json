@@ -243,7 +243,7 @@
     },
     "customer": {
       "account": "Account",
-      "logged_in_as": "Logged in as",
+      "logged_in_as_html": "Logged in as {{ first_name }}",
       "log_out": "Log out",
       "log_in": "Log in",
       "create_account": "Create account"
