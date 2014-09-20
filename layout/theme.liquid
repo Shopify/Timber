@@ -117,7 +117,8 @@
           <p class="site-header--text-links">
             {% if customer %}
               {% if customer.first_name != blank %}
-                {{ 'layout.customer.logged_in_as' | t }} <a href="/account">{{ customer.first_name }}</a>
+                {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
               {% else %}
                 <a href="/account">{{ 'layout.customer.account' | t }}</a>
               {% endif %}
