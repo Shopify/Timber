@@ -22,7 +22,7 @@
 if ((typeof Shopify) === 'undefined') { Shopify = {}; }
 
 /*============================================================================
-  Basic JS Helper FUnctions
+  Basic JS Helper Functions
 ==============================================================================*/
 function urlParams (name) {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -142,8 +142,8 @@ Shopify.onError = function(XMLHttpRequest, textStatus) {
   POST to cart/add.js returns the JSON of the line item associated with the added item
 ==============================================================================*/
 Shopify.addItem = function(variant_id, quantity, callback) {
-  var quantity = quantity || 1;
-  var params = {
+  var quantity = quantity || 1,
+      params = {
     type: 'POST',
     url: '/cart/add.js',
     data: 'quantity=' + quantity + '&id=' + variant_id,
@@ -671,13 +671,14 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   itemErrorCallback = function (XMLHttpRequest, textStatus) {
+    var data = eval('(' + XMLHttpRequest.responseText + ')');
+
     switch (settings.method) {
       case 'flip':
         $flipContainer.removeClass('flip--is-loading');
         break;
     }
 
-    var data = eval('(' + XMLHttpRequest.responseText + ')');
     if (!!data.message) {
       if (data.status == 422) {
         $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
@@ -783,14 +784,12 @@ var ajaxifyShopify = (function(module, $) {
     // Handlebars.js cart layout
     var items = [],
         item = {},
-        data = {};
-
-    var source   = $("#cartTemplate").html(),
+        data = {}
+        source = $("#cartTemplate").html(),
         template = Handlebars.compile(source);
 
     // Add each item to our handlebars.js data
     $.each(cart.items, function(index, cartItem) {
-
       var itemAdd = cartItem.quantity + 1,
           itemMinus = cartItem.quantity - 1,
           itemQty = cartItem.quantity + ' x';
@@ -799,9 +798,9 @@ var ajaxifyShopify = (function(module, $) {
        *   - Remove file extension, add _small, and re-add extension
        *   - Create server relative link
       */
-      var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', '');
-      var prodName = cartItem.title.replace(/(\-[^-]*)$/, "");
-      var prodVariation = cartItem.title.replace(/^[^\-]*/, "").replace(/-/, "");
+      var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', ''),
+          prodName = cartItem.title.replace(/(\-[^-]*)$/, ""),
+          prodVariation = cartItem.title.replace(/^[^\-]*/, "").replace(/-/, "");
 
       // Create item's data object and add to 'items' array
       item = {
