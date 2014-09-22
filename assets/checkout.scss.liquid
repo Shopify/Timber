@@ -114,8 +114,14 @@ body {
 .field-group--has-subfields .field-group,
 .field-group--has-subfields,
 .product-list .product,
-.section__blank-slate {
+.section__blank-slate,
+.policy-header,
+.order-summary .product-list .product {
   border-color: $colorBorder;
+}
+
+.select-group:after {
+  background-color: $colorBorder;
 }
 
 .field--focus {
@@ -144,8 +150,7 @@ body {
 }
 
 /*================ Links and Buttons ================*/
-a,
-a:visited {
+a {
   color: $colorLink;
 
   &:hover,
@@ -159,8 +164,7 @@ a:visited {
   background-color: $colorBtnPrimary;
   color: $colorBtnPrimaryText;
 
-  &:hover,
-  &:visited:hover {
+  &:hover {
     background-color: $colorBtnPrimaryHover;
     color: $colorBtnPrimaryText;
   }
@@ -199,8 +203,7 @@ h1, h2, h3, h4, h5, h6 {
   color: $colorTextBody;
 }
 
-.footer a,
-.footer a:visited {
+.footer a {
   color: $colorTextBody;
 
   &:hover,
@@ -260,6 +263,10 @@ h1, h2, h3, h4, h5, h6 {
 .chrome input[type="radio"],
 .safari input[type="radio"] {
   border-color: $colorBorder;
+
+  &:hover {
+    border-color: lighten($colorBorder, 15%);
+  }
 }
 
 .chrome .toggle,
