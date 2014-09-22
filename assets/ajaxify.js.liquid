@@ -34,11 +34,6 @@ function urlParams (name) {
 /*============================================================================
   API Helper Functions
 ==============================================================================*/
-function floatToString(numeric, decimals) {
-  var amount = numeric.toFixed(decimals).toString();
-  if(amount.match(/^\.\d+/)) {return "0"+amount; }
-  else { return amount; }
-};
 function attributeToString(attribute) {
   if ((typeof attribute) !== 'string') {
     attribute += '';
@@ -47,25 +42,6 @@ function attributeToString(attribute) {
     }
   }
   return jQuery.trim(attribute);
-};
-function getCookie(c_name) {
-  var c_value = document.cookie;
-  var c_start = c_value.indexOf(" " + c_name + "=");
-  if (c_start == -1) {
-    c_start = c_value.indexOf(c_name + "=");
-  }
-  if (c_start == -1) {
-    c_value = null;
-  }
-  else {
-    c_start = c_value.indexOf("=", c_start) + 1;
-    var c_end = c_value.indexOf(";", c_start);
-    if (c_end == -1) {
-      c_end = c_value.length;
-    }
-    c_value = unescape(c_value.substring(c_start,c_end));
-  }
-  return c_value;
 };
 
 /*============================================================================
@@ -123,12 +99,6 @@ if ( !Shopify.formatMoney ) {
     return formatString.replace(placeholderRegex, value);
   };
 }
-
-function floatToString(numeric, decimals) {
-  var amount = numeric.toFixed(decimals).toString();
-  if(amount.match(/^\.\d+/)) {return "0"+amount; }
-  else { return amount; }
-};
 
 Shopify.onProduct = function(product) {
   // alert('Received everything we ever wanted to know about ' + product.title);
