@@ -30,11 +30,11 @@
   },
   "blogs": {
     "article": {
-      "author_on_date_html": "Publié par <strong>{{ author }}</strong> le <time datetime=\"{{ date }}\">{{ date }}</time>",
+      "author_on_date_html": "Publié par {{ author }} le {{ date }}",
       "older_post": "Article précédent",
       "newer_post": "Article suivant",
       "tags": "Tags",
-      "comment_meta_html": "<strong>{{ author }}</strong> le <strong><time datetime=\"{{ date }}\">{{ date }}</time></strong>",
+      "comment_meta_html": "{{ author }} le {{ date }}",
       "read_more": "Plus"
     },
     "comments": {
@@ -243,7 +243,7 @@
     },
     "customer": {
       "account": "Compte",
-      "logged_in_as": "Connecté en tant que",
+      "logged_in_as_html": "Connecté en tant que {{ first_name }}",
       "log_out": "Se déconnecter",
       "log_in": "Se connecter",
       "create_account": "Créer un compte"
@@ -266,7 +266,7 @@
       "sold_out": "Épuisé",
       "on_sale_from_html": "<strong>En solde</strong> {{ price }}",
       "unavailable": "Non disponible",
-      "compare_at": "Était:",
+      "compare_at": "Était",
       "quantity": "Quantité",
       "add_to_cart": "Ajouter au panier"
     }
