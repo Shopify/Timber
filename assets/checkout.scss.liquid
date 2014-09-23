@@ -68,29 +68,18 @@ $radius: 3px;
 
 /*================ Backgrounds ================*/
 html,
-body,
-.footer {
+body {
+  min-height: 100%;
   background-color: $colorBody;
 }
 
-{% if settings.color_bg_image != blank %}
-body {
-  content: "{{ settings.color_bg_repeat }}";
-  background: {
-    image: url('{{ settings.color_bg_image }}');
-    {% if settings.color_bg_repeat == "tiled" %}
-      repeat: repeat;
-      position: 0 0;
-    {% else %}
-      repeat: no-repeat;
-      position: center top;
-    {% endif %}
-  }
-}
-{% endif %}
-
 .header {
   background: none;
+}
+
+.footer,
+.rgba .footer {
+  background-color: transparent;
 }
 
 .fieldset,
@@ -106,6 +95,9 @@ body {
 }
 
 /*================ Borders ================*/
+table,
+tr,
+td,
 .section,
 .fieldset,
 .field + .field,
@@ -150,7 +142,8 @@ body {
 }
 
 /*================ Links and Buttons ================*/
-a {
+a,
+.modal__close {
   color: $colorLink;
 
   &:hover,
