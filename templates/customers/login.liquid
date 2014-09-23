@@ -19,7 +19,7 @@
 
 <div class="grid">
 
-  <div class="grid-item large--one-third push--large--one-third">
+  <div class="grid-item large--one-third push--large--one-third text-center">
 
     {% comment %}
       If a user has successfully requested a new password, the form.posted_successfully? variable
@@ -53,15 +53,12 @@
 
       {% endif %}
 
-      <div class="text-center">
-        <p>
-          <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
-        </p>
-        <a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
-      </div>
+      <p>
+        <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
+      </p>
+      <a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
 
     {% endform %}
-
 
     {% comment %}
       This page uses JavaScript to show/hide the recover password form
@@ -90,30 +87,27 @@
         <label for="recover-email" class="hidden-label">{{ 'customer.recover_password.email' | t }}</label>
         <input type="email" value="" name="email" id="recover-email" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
 
-        <div class="text-center">
-          <p>
-            <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
-          </p>
-          <a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'customer.recover_password.cancel' | t }}</a>
-        </div>
+        <p>
+          <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+        </p>
+        <a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'customer.recover_password.cancel' | t }}</a>
       {% endform %}
 
-
-      {% comment %}
-        If accounts are set as optional, the following will be shown as an option
-        during checkout, not on the default /login page.
-      {% endcomment %}
-      {% if shop.checkout.guest_login %}
-        <hr>
-
-        <h2>{{ 'customer.login.guest_title' | t }}</h2>
-
-        {% form 'guest_login' %}
-          <input  type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
-        {% endform %}
-      {% endif %}
-
     </div>
+
+    {% comment %}
+      If accounts are set as optional, the following will be shown as an option
+      during checkout, not on the default /login page.
+    {% endcomment %}
+    {% if shop.checkout.guest_login %}
+      <hr>
+
+      <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+      {% form 'guest_login' %}
+        <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+      {% endform %}
+    {% endif %}
 
   </div>
 
