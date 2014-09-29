@@ -34,11 +34,6 @@ function urlParams (name) {
 /*============================================================================
   API Helper Functions
 ==============================================================================*/
-function floatToString(numeric, decimals) {
-  var amount = numeric.toFixed(decimals).toString();
-  if(amount.match(/^\.\d+/)) {return "0"+amount; }
-  else { return amount; }
-};
 function attributeToString(attribute) {
   if ((typeof attribute) !== 'string') {
     attribute += '';
@@ -48,56 +43,62 @@ function attributeToString(attribute) {
   }
   return jQuery.trim(attribute);
 };
-function getCookie(c_name) {
-  var c_value = document.cookie;
-  var c_start = c_value.indexOf(" " + c_name + "=");
-  if (c_start == -1) {
-    c_start = c_value.indexOf(c_name + "=");
-  }
-  if (c_start == -1) {
-    c_value = null;
-  }
-  else {
-    c_start = c_value.indexOf("=", c_start) + 1;
-    var c_end = c_value.indexOf(";", c_start);
-    if (c_end == -1) {
-      c_end = c_value.length;
-    }
-    c_value = unescape(c_value.substring(c_start,c_end));
-  }
-  return c_value;
-};
 
 /*============================================================================
   API Functions
+  - Shopify.format money is defined in option_selection.js.
+    If that file is not included, it is redefined here.
 ==============================================================================*/
-Shopify.formatMoney = function(cents, format) {
+if ( !Shopify.formatMoney ) {
+  Shopify.formatMoney = function(cents, format) {
+    var value = '',
+        placeholderRegex = /\{\{\s*(\w+)\s*\}\}/,
+        formatString = (format || this.money_format);
 
-  if (typeof cents == 'string') cents = cents.replace('.','');
-  var value = '';
-  var patt = /\{\{\s*(\w+)\s*\}\}/;
-  var formatString = (format || this.money_format);
+    if (typeof cents == 'string') {
+      cents = cents.replace('.','');
+    }
 
-  function addCommas(moneyString) {
-    return moneyString.replace(/(\d+)(\d{3}[\.,]?)/,'$1,$2');
-  }
+    function defaultOption(opt, def) {
+      return (typeof opt == 'undefined' ? def : opt);
+    }
 
-  switch(formatString.match(patt)[1]) {
-    case 'amount':
-      value = addCommas(floatToString(cents/100.0, 2));
-      break;
-    case 'amount_no_decimals':
-      value = addCommas(floatToString(cents/100.0, 0));
-      break;
-    case 'amount_with_comma_separator':
-      value = floatToString(cents/100.0, 2).replace(/\./, ',');
-      break;
-    case 'amount_no_decimals_with_comma_separator':
-      value = addCommas(floatToString(cents/100.0, 0)).replace(/\./, ',');
-      break;
-  }
-  return formatString.replace(patt, value);
-};
+    function formatWithDelimiters(number, precision, thousands, decimal) {
+      precision = defaultOption(precision, 2);
+      thousands = defaultOption(thousands, ',');
+      decimal   = defaultOption(decimal, '.');
+
+      if (isNaN(number) || number == null) {
+        return 0;
+      }
+
+      number = (number/100.0).toFixed(precision);
+
+      var parts   = number.split('.'),
+          dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + thousands),
+          cents   = parts[1] ? (decimal + parts[1]) : '';
+
+      return dollars + cents;
+    }
+
+    switch(formatString.match(placeholderRegex)[1]) {
+      case 'amount':
+        value = formatWithDelimiters(cents, 2);
+        break;
+      case 'amount_no_decimals':
+        value = formatWithDelimiters(cents, 0);
+        break;
+      case 'amount_with_comma_separator':
+        value = formatWithDelimiters(cents, 2, '.', ',');
+        break;
+      case 'amount_no_decimals_with_comma_separator':
+        value = formatWithDelimiters(cents, 0, '.', ',');
+        break;
+    }
+
+    return formatString.replace(placeholderRegex, value);
+  };
+}
 
 Shopify.onProduct = function(product) {
   // alert('Received everything we ever wanted to know about ' + product.title);
