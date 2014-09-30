@@ -395,7 +395,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Write a (hidden) Checkout button, a loader, and the extra view cart button
     var checkoutBtn = $('<a href="/cart" class="flip-back" style="background-color: #C00; color: #fff;" id="flip-checkout">Checkout</a>').addClass($btnClass),
-        flipLoader = $('<span class="ajaxifyCart-loader"></span>'),
+        flipLoader = $('<span class="ajaxcart__flip-loader"></span>'),
         flipExtra = $('<div class="flip-extra"><a href="#" class="flip-cart">View Cart (<span></span>)</a></div>');
 
     // Append checkout button and loader
@@ -434,19 +434,19 @@ var ajaxifyShopify = (function(module, $) {
         template = Handlebars.compile(source);
 
     // Append modal and overlay to body
-    $body.append(template).append('<div id="ajaxifyCart-overlay"></div>');
+    $body.append(template).append('<div class="ajaxcart__overlay"></div>');
 
     // Modal selectors
     $modalContainer = $('#ajaxifyModal');
-    $modalOverlay   = $('#ajaxifyCart-overlay');
+    $modalOverlay   = $('.ajaxcart__overlay');
     $cartContainer  = $('#ajaxifyCart');
 
     // Close modal when clicking the overlay
     $modalOverlay.on('click', hideModal);
 
     // Create a close modal button
-    $modalContainer.prepend('<button class="ajaxifyCart--close" title="Close Cart">Close Cart</button>');
-    $closeCart = $('.ajaxifyCart--close');
+    $modalContainer.prepend('<button class="ajaxcart__close" title="Close Cart">Close Cart</button>');
+    $closeCart = $('.ajaxcart__close');
     $closeCart.on('click', hideModal);
 
     // Add a class if CSS translate isn't available
@@ -473,7 +473,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   showModal = function (toggle) {
-    $body.addClass('ajaxify-modal--visible');
+    $body.addClass('ajaxcart--is-visible');
     // Build the cart if it isn't already there
     if ( !cartInit && toggle ) {
       Shopify.getCart(cartUpdateCallback);
@@ -508,7 +508,7 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   hideModal = function (e) {
-    $body.removeClass('ajaxify-modal--visible');
+    $body.removeClass('ajaxcart--is-visible');
     if (e) {
       e.preventDefault();
     }
@@ -537,7 +537,7 @@ var ajaxifyShopify = (function(module, $) {
     // Drawer selectors
     $drawerContainer = $('#ajaxifyDrawer');
     $cartContainer   = $('#ajaxifyCart');
-    $drawerCaret     = $('.ajaxifyDrawer-caret > span');
+    $drawerCaret     = $('.ajaxcart__caret > span');
 
     // Toggle drawer with cart button
     setToggleButtons();
@@ -560,7 +560,7 @@ var ajaxifyShopify = (function(module, $) {
     // Position the caret
     function positionCaret() {
       if ($toggleCartButton.offset()) {
-        // Get the position of the toggle button to align the carat with
+        // Get the position of the toggle button to align the caret with
         var togglePos = $toggleCartButton.offset(),
             toggleWidth = $toggleCartButton.outerWidth(),
             toggleMiddle = togglePos.left + toggleWidth/2;
@@ -887,20 +887,20 @@ var ajaxifyShopify = (function(module, $) {
     }
 
     // Update quantify selectors
-    var qtyAdjust = $('.ajaxifyCart--qty-adjuster');
+    var qtyAdjust = $('.ajaxcart__qty-adjust');
 
     // Add or remove from the quantity
     qtyAdjust.off('click');
     qtyAdjust.on('click', function() {
       var el = $(this),
           id = el.data('id'),
-          qtySelector = el.siblings('.ajaxifyCart--num'),
+          qtySelector = el.siblings('.ajaxcart__qty-num'),
           qty = parseInt( qtySelector.val().replace(/\D/g, '') );
 
       var qty = validateQty(qty);
 
       // Add or subtract from the current quantity
-      if (el.hasClass('ajaxifyCart--add')) {
+      if (el.hasClass('ajaxcart__qty--plus')) {
         qty = qty + 1;
       } else {
         qty = qty - 1;
@@ -918,7 +918,7 @@ var ajaxifyShopify = (function(module, $) {
     });
 
     // Update quantity based on input on change
-    var qtyInput = $('.ajaxifyCart--num');
+    var qtyInput = $('.ajaxcart__qty-num');
     qtyInput.off('change');
     qtyInput.on('change', function() {
       var el = $(this),
@@ -943,7 +943,7 @@ var ajaxifyShopify = (function(module, $) {
     });
 
     // Completely remove product
-    $('.ajaxifyCart--remove').on('click', function(e) {
+    $('.ajaxcart__remove').on('click', function(e) {
       var el = $(this),
           id = el.data('id') || null,
           qty = 0;
@@ -960,9 +960,9 @@ var ajaxifyShopify = (function(module, $) {
     function updateQuantity(id, qty) {
       // Add activity classes when changing cart quantities
       if (!settings.useCartTemplate) {
-        var row = $('.ajaxifyCart--row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
+        var row = $('.ajaxcart__row[data-id="' + id + '"]').addClass('is-loading');
       } else {
-        var row = $('.cart-row[data-id="' + id + '"]').addClass('ajaxifyCart--is-loading');
+        var row = $('.cart-row[data-id="' + id + '"]').addClass('is-loading');
       }
 
       if ( qty === 0 ) {
@@ -1037,7 +1037,7 @@ var ajaxifyShopify = (function(module, $) {
     // If there is a regular link to remove an item, add attributes needed to ajaxify it
     if ($('a[href^="/cart/change"]', $cartContainer).length) {
       $('a[href^="/cart/change"]', $cartContainer).each(function() {
-        var el = $(this).addClass('ajaxifyCart--remove');
+        var el = $(this).addClass('ajaxcart__remove');
       });
     }
   };
@@ -1074,16 +1074,16 @@ var ajaxifyShopify = (function(module, $) {
       });
 
       // Setup listeners to add/subtract from the input
-      $('.js--qty-adjuster').on('click', function() {
+      $('.js-qty__adjust').on('click', function() {
         var el = $(this),
             id = el.data('id'),
-            qtySelector = el.siblings('.js--num'),
+            qtySelector = el.siblings('.js-qty__num'),
             qty = parseInt( qtySelector.val().replace(/\D/g, '') );
 
         var qty = validateQty(qty);
 
         // Add or subtract from the current quantity
-        if (el.hasClass('js--add')) {
+        if (el.hasClass('js-qty__adjust--plus')) {
           qty = qty + 1;
         } else {
           qty = qty - 1;
