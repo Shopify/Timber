@@ -792,7 +792,7 @@ var ajaxifyShopify = (function(module, $) {
     $.each(cart.items, function(index, cartItem) {
       var itemAdd = cartItem.quantity + 1,
           itemMinus = cartItem.quantity - 1,
-          itemQty = cartItem.quantity + ' x';
+          itemQty = cartItem.quantity;
 
       /* Hack to get product image thumbnail
        *   - Remove file extension, add _small, and re-add extension
@@ -1018,7 +1018,7 @@ var ajaxifyShopify = (function(module, $) {
 
         var itemAdd = currentQty + 1,
             itemMinus = currentQty - 1,
-            itemQty = currentQty + ' x';
+            itemQty = currentQty;
 
         var source   = $("#ajaxifyQty").html(),
             template = Handlebars.compile(source),

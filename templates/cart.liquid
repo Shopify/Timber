@@ -28,7 +28,7 @@
             <div class="grid-item one-third medium-down--one-third">
               {{ 'cart.label.price' | t }}
             </div>
-            <div class="grid-item one-third medium-down--one-third">
+            <div class="grid-item one-third medium-down--one-third text-center">
               {{ 'cart.label.quantity' | t }}
             </div>
             <div class="grid-item one-third medium-down--one-third text-right">
@@ -113,7 +113,7 @@
                 <span class="h3">{{ item.price | money }}</span>
               </div>
 
-              <div class="grid-item one-third">
+              <div class="grid-item one-third text-center">
                 <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
                 {% comment %}
                   Added data-id for the ajax cart implementation only.
