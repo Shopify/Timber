@@ -673,7 +673,7 @@ body {
   @include clearfix();
   max-width: $siteWidth;
   margin: 0 auto;
-  padding: 0 $gutter/2;
+  padding: 0 ($gutter / 2);
 
   @include at-query ($min, $small) {
     padding: 0 $gutter;
@@ -683,7 +683,7 @@ body {
 .main-content {
   display: block;
   margin-top: $gutter;
-  padding-bottom: $gutter*2;
+  padding-bottom: $gutter * 2;
 }
 
 /*============================================================================
@@ -1885,7 +1885,7 @@ label.error {
   color: $colorFooterText;
 
   @include at-query ($min, $large) {
-    padding: $gutter*2 0;
+    padding: ($gutter * 2) 0;
   }
 }
 
@@ -1907,7 +1907,7 @@ label.error {
 
 .product-grid-image {
   display: block;
-  margin: 0 auto $gutter/2;
+  margin: 0 auto ($gutter / 2);
 
   img {
     display: block;
@@ -1931,7 +1931,7 @@ label.error {
   a,
   span {
     display: inline-block;
-    padding: $gutter/2 7px $gutter/2 0;
+    padding: ($gutter / 2) 7px ($gutter / 2) 0;
     margin-right: 7px;
 
     &:first-child {
@@ -1996,8 +1996,8 @@ label.error {
 .note,
 .errors {
   border-radius: $radius;
-  padding: $gutter/2;
-  margin-bottom: $gutter/2;
+  padding: $gutter / 2;
+  margin-bottom: $gutter / 2;
   border: 1px solid transparent;
 
   ul,
@@ -2093,13 +2093,13 @@ label.error {
 }
 
 .cart-subtotal {
-  margin: 0 0 0 $gutter/3;
+  margin: 0 0 0 ($gutter / 3);
   display: inline;
 }
 
 .cart-mini-labels {
   display: block;
-  margin: $gutter/3 0;
+  margin: ($gutter / 3) 0;
   font-size: em(12px);
 
   @include at-query ($min, $large) {
