@@ -28,9 +28,9 @@
                 <div class="grid">
                   <div class="grid-item one-third">
                     <div class="ajaxifyCart--qty">
+                      <button type="button" class="ajaxifyCart--qty-adjuster ajaxifyCart--minus" data-id="{{id}}" data-qty="{{itemMinus}}">&minus;</button>
                       <input type="text" class="ajaxifyCart--num" value="{{itemQty}}" min="0" data-id="{{id}}" aria-label="quantity" pattern="[0-9]*">
-                      <span class="ajaxifyCart--qty-adjuster ajaxifyCart--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
-                      <span class="ajaxifyCart--qty-adjuster ajaxifyCart--minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
+                      <button type="button" class="ajaxifyCart--qty-adjuster ajaxifyCart--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</button>
                     </div>
                   </div>
                   <div class="grid-item one-third text-center">
@@ -60,7 +60,6 @@
     <div id="ajaxifyDrawer" class="ajaxify-drawer">
       <div id="ajaxifyCart" class="ajaxifyCart--content {{wrapperClass}}"></div>
     </div>
-    <div class="ajaxifyDrawer-caret"><span></span></div>
   {% endraw %}
   </script>
   <script id="modalTemplate" type="text/template">
@@ -73,18 +72,18 @@
   <script id="ajaxifyQty" type="text/template">
   {% raw %}
     <div class="ajaxifyCart--qty">
+      <button type="button" class="ajaxifyCart--qty-adjuster ajaxifyCart--minus" data-id="{{id}}" data-qty="{{itemMinus}}">&minus;</button>
       <input type="text" class="ajaxifyCart--num" value="{{itemQty}}" min="0" data-id="{{id}}" aria-label="quantity" pattern="[0-9]*">
-      <span class="ajaxifyCart--qty-adjuster ajaxifyCart--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
-      <span class="ajaxifyCart--qty-adjuster ajaxifyCart--minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
+      <button type="button" class="ajaxifyCart--qty-adjuster ajaxifyCart--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</button>
     </div>
   {% endraw %}
   </script>
   <script id="jsQty" type="text/template">
   {% raw %}
     <div class="js-qty">
+      <button type="button" class="js--qty-adjuster js--minus" data-id="{{id}}" data-qty="{{itemMinus}}">&minus;</button>
       <input type="text" class="js--num" value="{{itemQty}}" min="1" data-id="{{id}}" aria-label="quantity" pattern="[0-9]*" name="{{inputName}}" id="{{inputId}}">
-      <span class="js--qty-adjuster js--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</span>
-      <span class="js--qty-adjuster js--minus" data-id="{{id}}" data-qty="{{itemMinus}}">-</span>
+      <button type="button" class="js--qty-adjuster js--add" data-id="{{id}}" data-qty="{{itemAdd}}">+</button>
     </div>
   {% endraw %}
   </script>
