@@ -249,18 +249,22 @@
     </tr>
     <tr class="horizontal">
       <th>
-        <label for="checkout_use_logo_image">Use a logo?</label>
+        <label for="checkout_logo">Use a logo?</label>
       </th>
       <td>
-        <input id="checkout_use_logo_image" name="checkout_use_logo_image" type="checkbox"/>
+        <select name="checkout_logo">
+          <option value="">No logo</option>
+          <option value="logo.png">Storefront logo</option>
+          <option value="checkout_logo.png">Custom logo</option>
+        </select>
       </td>
     </tr>
     <tr class="horizontal">
       <th>
-        <label for="checkout_logo_image.png">Logo image</label>
+        <label for="checkout_logo.png">Logo image</label>
       </th>
       <td>
-        <input id="checkout_logo_image.png" name="checkout_logo_image.png" type="file"/>
+        <input id="checkout_logo.png" name="checkout_logo.png" type="file"/>
       </td>
     </tr>
     <tr class="horizontal">

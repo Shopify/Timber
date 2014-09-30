@@ -285,6 +285,15 @@ h1, h2, h3, h4, h5, h6 {
   border-color: $colorPrimary;
 }
 
+.chrome select,
+.safari select {
+  background-image: url({{ "ico-select.svg" | asset_url }});
+
+  &:focus {
+    background-image: url({{ "ico-select-focus.svg" | asset_url }});
+  }
+}
+
 /*================ Step Counters ================*/
 .step--blank .section__header:before,
 .step--current .section__header:before {
@@ -321,6 +330,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .payment-due__currency {
   border-color: $colorBorder;
+  background-color: transparent;
   color: $colorTextBody;
 }
 
@@ -374,6 +384,10 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid transparent;
   @include prefix('user-select', 'none');
   border-radius: $radius;
+}
+
+.btn.btn--delete:hover {
+  background-color: transparent;
 }
 
 // Hide blue printer button
