@@ -41,12 +41,12 @@
           {% endcomment %}
           {% if search.results_count == 0 %}
 
-            <h2 class="text-center">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h2>
+            <h1 class="h2 text-center">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
             {% include 'search-bar' %}
 
           {% else %}
 
-            <h2 class="text-center">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h2>
+            <h1 class="h2 text-center">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
             {% include 'search-bar' %}
 
             {% comment %}
@@ -86,7 +86,7 @@
           the q parameter, or it was blank.
           Be sure to show a search form here, along with anything else you want to showcase.
         {% endcomment %}
-        <h2 class="text-center">{{ 'general.search.title' | t }}</h2>
+        <h1 class="h2 text-center">{{ 'general.search.title' | t }}</h1>
         {% include 'search-bar' %}
 
       {% endif %}
