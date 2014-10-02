@@ -60,7 +60,7 @@
       - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
 
   {% endcomment %}
-  <a href="{{ product.url | within: collection }}" class="product-grid-image">
+  <a href="{{ product.url | within: collection }}" class="grid-image">
     <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
   </a>
 
