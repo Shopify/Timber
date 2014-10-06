@@ -68,7 +68,7 @@ timber.accessibleNav = function () {
         $newFocus = null;
 
     // Add focus class for top level items, or keep menu shown
-    if ( !isSubItem ) {
+    if (!isSubItem) {
       removeFocus($topLevel);
       addFocus($el);
     } else {
@@ -140,7 +140,7 @@ timber.productPage = function (options) {
     $productPrice.html( Shopify.formatMoney(variant.price, moneyFormat) );
 
     // Also update and show the product's compare price if necessary
-    if ( variant.compare_at_price > variant.price ) {
+    if (variant.compare_at_price > variant.price) {
       $comparePrice
         .html({{ 'products.product.compare_at' | t | json }} + ': ' + Shopify.formatMoney(variant.compare_at_price, moneyFormat))
         .show();
@@ -160,7 +160,7 @@ timber.productPage = function (options) {
 };
 
 timber.productImageSwitch = function () {
-  if ( timber.cache.$thumbImages.length ) {
+  if (timber.cache.$thumbImages.length) {
     // Switch the main image with one of the thumbnails
     // Note: this does not change the variant selected, just the image
     timber.cache.$thumbImages.on('click', function(evt) {
