@@ -125,12 +125,12 @@ $max: max-width;
   General Styles
 ==============================================================================*/
 @include at-query ($max, $small) {
-  body.ajaxify-modal--visible {
+  body.ajaxcart--is-visible {
     overflow: hidden;
   }
 }
 
-.ajaxifyCart-loader {
+.ajaxcart__flip-loader {
   display: none;
   opacity: 0;
   position: absolute;
@@ -159,7 +159,7 @@ form[action^="/cart/add"] {
 /*============================================================================
   Ajaxify Cart - General
 ==============================================================================*/
-.ajaxifyCart--content {
+.ajaxcart__content {
   position: relative;
   background-color: $colorBody;
   @include perspective(1000px);
@@ -184,12 +184,12 @@ form[action^="/cart/add"] {
 }
 
 // Row and column spacing
-.ajaxifyCart--products {
+.ajaxcart__inner {
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
 
-.ajaxifyCart--product {
+.ajaxcart__product {
   position: relative;
   padding: 10px 0;
 
@@ -198,7 +198,7 @@ form[action^="/cart/add"] {
   }
 }
 
-.ajaxifyCart--product,
+.ajaxcart__product,
 .cart-row {
   @include transform-origin(top);
   @include transition(all 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
@@ -219,12 +219,12 @@ form[action^="/cart/add"] {
   }
 }
 
-.ajaxifyCart--row {
+.ajaxcart__row {
   clear: both;
   @include clearfix;
 }
 
-.ajaxCart--product-image {
+.ajaxcart__product-image {
   display: block;
   overflow: hidden;
   margin-bottom: 15px;
@@ -258,14 +258,14 @@ form[action^="/cart/add"] {
   }
 }
 
-.js--qty-adjuster {
+.js-qty__adjust {
   cursor: pointer;
   position: absolute;
   display: block;
-  top: 0;
-  bottom: 0;
-  padding: 5px 0;
-  width: 20px;
+  top: -1px;
+  bottom: -1px;
+  border: 0 none;
+  background: none;
   text-align: center;
   overflow: hidden;
   -webkit-user-select: none;
@@ -275,7 +275,8 @@ form[action^="/cart/add"] {
   user-select:         none;
   @include transition(all 0.2s ease-out);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $colorBorder;
   }
 
@@ -284,12 +285,12 @@ form[action^="/cart/add"] {
   }
 }
 
-.js--add {
+.js-qty__adjust--plus {
   right: 0;
   border-left: 1px solid $colorBorder;
 }
 
-.js--minus {
+.js-qty__adjust--minus {
   left: 0;
   border-right: 1px solid $colorBorder;
 }
@@ -297,17 +298,18 @@ form[action^="/cart/add"] {
 /*============================================================================
   #Quantity Selectors in the Ajax Cart
 ==============================================================================*/
-.ajaxifyCart--qty {
+.ajaxcart__qty {
   @extend .js-qty;
+  display: inline-block;
   margin: 0;
 
-  .ajaxifyCart--is-loading & {
+  .is-loading & {
     opacity: 0.5;
     @include transition(none);
   }
 }
 
-.ajaxifyCart--num {
+.ajaxcart__qty-num {
   @include transition(all 0.1s ease-out);
 
   .supports-no-touch & {
@@ -315,35 +317,35 @@ form[action^="/cart/add"] {
   }
 
   .cart-row:hover &,
-  .ajaxifyCart--product:hover &,
+  .ajaxcart__product:hover &,
   .supports-touch & {
     border-color: $colorBorder;
   }
 }
 
-.ajaxifyCart--qty-adjuster {
-  @extend .js--qty-adjuster;
+.ajaxcart__qty-adjust {
+  @extend .js-qty__adjust;
   opacity: 0;
 
   .cart-row:hover &,
-  .ajaxifyCart--product:hover &,
+  .ajaxcart__product:hover &,
   .supports-touch & {
     opacity: 1;
     @include transition(background-color 0.2s ease-out);
   }
 
   // Turn off animation on initial hover
-  .ajaxifyCart--product:hover &:hover {
+  .ajaxcart__product:hover &:hover {
     @include transition(none);
   }
 }
 
-.ajaxifyCart--add {
-  @extend .js--add;
+.ajaxcart__qty--plus {
+  @extend .js-qty__adjust--plus;
 }
 
-.ajaxifyCart--minus {
-  @extend .js--minus;
+.ajaxcart__qty--minus {
+  @extend .js-qty__adjust--minus;
 }
 
 
@@ -445,7 +447,7 @@ form[action^="/cart/add"] {
 /*============================================================================
   Ajaxify Modal
 ==============================================================================*/
-.ajaxify-modal {
+.ajaxcart--modal {
   position: absolute;
   top: 170px;
   left: -200%;
@@ -479,7 +481,7 @@ form[action^="/cart/add"] {
     max-width: none;
   }
 
-  .ajaxifyCart--content {
+  .ajaxcart__content {
     padding-left: $gutter;
     padding-right: $gutter;
 
@@ -512,7 +514,7 @@ form[action^="/cart/add"] {
     }
   }
 
-  .ajaxifyCart--row {
+  .ajaxcart__row {
 
     & > div {
       padding-left: 20px;
@@ -523,7 +525,7 @@ form[action^="/cart/add"] {
     }
   }
 
-  .ajaxifyCart--product {
+  .ajaxcart__product {
     @include transform(none);
   }
 
@@ -538,7 +540,7 @@ form[action^="/cart/add"] {
 
 }
 
-#ajaxifyCart-overlay {
+.ajaxcart__overlay {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -558,7 +560,7 @@ form[action^="/cart/add"] {
 }
 
 @include at-query ($min, $postSmall) {
-  .is-visible ~ #ajaxifyCart-overlay {
+  .is-visible ~ .ajaxcart__overlay {
     visibility: visible;
     @include transition(all 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
     @if (lightness( $colorBody ) > 40) {
@@ -575,19 +577,18 @@ form[action^="/cart/add"] {
 }
 
 // Modal content transition
-.ajaxify-modal .ajaxifyCart--content {
+.ajaxcart--modal .ajaxcart__content {
   @include transform(scale(0.9));
   opacity: 0;
 }
 
-.ajaxify-modal.is-visible .ajaxifyCart--content {
+.ajaxcart--modal.is-visible .ajaxcart__content {
   @include transform(scale(1));
   opacity: 1;
 }
 
 // Quantity selector colors in the modal
-// TO DO
-.ajaxify-modal {
+.ajaxcart--modal {
 
   // Small screen quantity appearance
   @include at-query ($max, $medium) {
@@ -595,7 +596,7 @@ form[action^="/cart/add"] {
       border-color: $colorBorder;
     }
 
-    .ajaxifyCart--qty-adjuster {
+    .ajaxcart__qty-adjust {
       opacity: 1;
     }
   }
@@ -604,7 +605,7 @@ form[action^="/cart/add"] {
 /*============================================================================
   Ajaxify Drawer
 ==============================================================================*/
-.ajaxify-drawer {
+.ajaxcart--drawer {
   height: 0px;
   overflow: hidden;
   border-bottom: 0px solid transparent;
@@ -621,7 +622,7 @@ form[action^="/cart/add"] {
     display: none!important;
   }
 
-  .ajaxifyCart--content {
+  .ajaxcart__content {
     margin: 0 auto;
     opacity: 0;
     overflow: hidden;
@@ -631,13 +632,13 @@ form[action^="/cart/add"] {
     @include transform('rotateX(-90deg)');
   }
 
-  &.is-visible .ajaxifyCart--content {
+  &.is-visible .ajaxcart__content {
     opacity: 1;
     @include transform('rotateX(0deg)');
   }
 }
 
-.ajaxifyDrawer-caret {
+.ajaxcart__caret {
   position: relative;
   display: block;
   height: 0;
@@ -684,19 +685,7 @@ form[action^="/cart/add"] {
   background-position: 0 0;
 }
 
-.ajaxifyCart--add {
-  @extend .sprite;
-  background-position: center center;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjIxNTJBNEY1NDY1OTExRTM4ODdCODU0OEQ4MDA1MjgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjIxNTJBNEY2NDY1OTExRTM4ODdCODU0OEQ4MDA1MjgwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUU4MjYyOEE0NjU3MTFFMzg4N0I4NTQ4RDgwMDUyODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjE1MkE0RjQ0NjU5MTFFMzg4N0I4NTQ4RDgwMDUyODAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6VbCy4AAAAWklEQVR42mJsampigAIeIH4GZUsB8RcQg4UBAUACvEhsBpgCkE5GKA0DklBF/0EKXgExJwMqgFn1nYmBAACZIIZkBbojwVbAHPQZSeNzZBOQvfkZiQ3WCBBgALZlEm83dptmAAAAAElFTkSuQmCC);
-}
-
-.ajaxifyCart--minus {
-  @extend .sprite;
-  background-position: center center;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjIxNTJBNEZENDY1OTExRTM4ODdCODU0OEQ4MDA1MjgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjIxNTJBNEZFNDY1OTExRTM4ODdCODU0OEQ4MDA1MjgwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjE1MkE0RkI0NjU5MTFFMzg4N0I4NTQ4RDgwMDUyODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjE1MkE0RkM0NjU5MTFFMzg4N0I4NTQ4RDgwMDUyODAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6MzbYiAAAALElEQVR42mL6//8/Az7MxEAAEFTA2NTU9A1Ic+KQ/07YBJBDKHIDQQUAAQYAbksecMSS2doAAAAASUVORK5CYII=);
-}
-
-.ajaxifyCart--close {
+.ajaxcart__close {
   @extend .sprite;
   position: absolute;
   top: 20px;
@@ -724,21 +713,4 @@ form[action^="/cart/add"] {
   &:hover {
     opacity: 1;
   }
-}
-
-
-@media
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-
-  .ajaxifyCart--add {
-    background-size: 8px;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFFODI2Mjg4NDY1NzExRTM4ODdCODU0OEQ4MDA1MjgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFFODI2Mjg5NDY1NzExRTM4ODdCODU0OEQ4MDA1MjgwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUU4MjYyODY0NjU3MTFFMzg4N0I4NTQ4RDgwMDUyODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUU4MjYyODc0NjU3MTFFMzg4N0I4NTQ4RDgwMDUyODAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7Q1IXcAAAAL0lEQVR42mJsampiwAH+o/EZsSliYqAQjBrAwMCCJbSJjZXhFAaMoylxgA0ACDAAufIFqTR3duwAAAAASUVORK5CYII=);
-  }
-
-  .ajaxifyCart--minus {
-    background-size: 8px;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjIxNTJBNEY5NDY1OTExRTM4ODdCODU0OEQ4MDA1MjgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjIxNTJBNEZBNDY1OTExRTM4ODdCODU0OEQ4MDA1MjgwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjE1MkE0Rjc0NjU5MTFFMzg4N0I4NTQ4RDgwMDUyODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjE1MkE0Rjg0NjU5MTFFMzg4N0I4NTQ4RDgwMDUyODAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz54TqQaAAAAKElEQVR42mL8//8/AyWAiYFCMGoAAwNLc3Pz/xEeBoyjKXEQGAAQYABVgwijPO94YQAAAABJRU5ErkJggg==);
-  }
-
 }
