@@ -103,11 +103,11 @@
               - #cartCost updates the total cost of the cart
               - Documentation:  http://shopify.com/timber#ajax-cart
           {% endcomment %}
-          <a href="/cart" id="cartToggle">
+          <a href="/cart" id="CartToggle">
             {{ 'layout.cart.title' | t }}
-            (<span id="cartCount">{{ cart.item_count }}</span>
+            (<span id="CartCount">{{ cart.item_count }}</span>
             {{ 'layout.cart.items_count' | t: count: cart.item_count }}
-            <span id="cartCost">{{ cart.total_price | money }}</span>)
+            <span id="CartCost">{{ cart.total_price | money }}</span>)
           </a>
 
           {% comment %}
@@ -178,13 +178,13 @@
   <script>
   jQuery(function($) {
     ajaxifyShopify.init({
-      method: '{{ settings.ajax_cart_method }}',
+      method: 'modal',
       wrapperClass: 'wrapper',
-      formSelector: '#addToCartForm',
-      addToCartSelector: '#addToCart',
-      cartCountSelector: '#cartCount',
-      cartCostSelector: '#cartCost',
-      toggleCartButton: '#cartToggle',
+      formSelector: '#AddToCartForm',
+      addToCartSelector: '#AddToCart',
+      cartCountSelector: '#CartCount',
+      cartCostSelector: '#CartCost',
+      toggleCartButton: '#CartToggle',
       useCartTemplate: true,
       btnClass: 'btn',
       moneyFormat: {{ shop.money_format | json }},

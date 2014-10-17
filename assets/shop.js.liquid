@@ -7,11 +7,11 @@ timber.cacheSelectors = function () {
     $body: $('body'),
 
     // Navigation
-    $navigation: $('#accessibleNav'),
+    $navigation: $('#AccessibleNav'),
 
     // Product Page
-    $productImage: $('#productPhotoImg'),
-    $thumbImages: $('#productThumbs').find('a.product-photo-thumb')
+    $productImage: $('#ProductPhotoImg'),
+    $thumbImages: $('#ProductThumbs').find('a.product-photo-thumb')
   }
 };
 
@@ -107,12 +107,12 @@ timber.productPage = function (options) {
       selector = options.selector;
 
   // Selectors
-  var $productImage = $('#productPhotoImg'),
-      $addToCart = $('#addToCart'),
-      $productPrice = $('#productPrice'),
-      $comparePrice = $('#comparePrice'),
+  var $productImage = $('#ProductPhotoImg'),
+      $addToCart = $('#AddToCart'),
+      $productPrice = $('#ProductPrice'),
+      $comparePrice = $('#ComparePrice'),
       $quantityElements = $('.quantity-selector, label + .js-qty'),
-      $addToCartText = $('#addToCartText');
+      $addToCartText = $('#AddToCartText');
 
   if (variant) {
 

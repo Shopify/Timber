@@ -1,6 +1,6 @@
 <div class="form-horizontal">
-  <label for="sortBy">{{ 'collections.sorting.title' | t }}</label>
-  <select name="sortBy" id="sortBy">
+  <label for="SortBy">{{ 'collections.sorting.title' | t }}</label>
+  <select name="SortBy" id="SortBy">
     <option value="manual">{{ 'collections.sorting.featured' | t }}</option>
     <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
     <option value="title-ascending">{{ 'collections.sorting.az' | t }}</option>
@@ -28,7 +28,7 @@
   }
 
   $(function() {
-    $('#sortBy')
+    $('#SortBy')
       .val('{{ collection.sort_by | default: collection.default_sort_by }}')
       .bind('change', function() {
         Shopify.queryParams.sort_by = jQuery(this).val();
