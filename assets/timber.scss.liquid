@@ -240,6 +240,11 @@ $max: max-width;
   @include box-sizing();
 }
 
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
   display: block;
 }
@@ -656,11 +661,6 @@ $class-type: unquote(".");
 /*============================================================================
   #Basic Styles
 ==============================================================================*/
-html, body {
-  padding: 0;
-  margin: 0;
-}
-
 html {
   background-color: $colorFooterBg;
 }
@@ -778,7 +778,7 @@ h6 {
 .h6 { @extend h6; }
 
 p {
-  margin: 0 0 $gutter/2 0;
+  margin: 0 0 ($gutter / 2) 0;
 
   img {
     margin: 0;
@@ -816,14 +816,14 @@ blockquote {
   line-height: 1.45;
   font-style: italic;
   margin: 0 0 $gutter;
-  padding: $gutter/2 $gutter;
+  padding: ($gutter / 2) $gutter;
   border-left: 1px solid $colorBorder;
 
   p {
     margin-bottom: 0;
 
     & + cite {
-      margin-top: $gutter/2;
+      margin-top: $gutter / 2;
     }
   }
 
@@ -849,7 +849,7 @@ code, pre {
 
 pre {
   overflow: auto;
-  padding: $gutter/2;
+  padding: $gutter / 2;
   margin: 0 0 $gutter;
 }
 
@@ -862,7 +862,7 @@ hr {
   height: 0;
 
   &.hr--small {
-    margin: $gutter/2 0;
+    margin: ($gutter / 2) 0;
   }
 
   &.hr--clear {
@@ -872,7 +872,7 @@ hr {
 
 /*================ Section Headers ================*/
 .section-header {
-  margin-bottom: $gutter/1.5;
+  margin-bottom: $gutter / 1.5;
 }
 
 @include at-query ($min, $large) {
@@ -882,7 +882,7 @@ hr {
   }
 
   .section-header--title {
-    margin-bottom: $gutter/2.5;
+    margin-bottom: $gutter / 2.5;
   }
 
   .section-header--left {
@@ -919,7 +919,7 @@ hr {
   @include at-query ($min, $postSmall) {
     label + select,
     .collection-view {
-      margin-left: $gutter/2;
+      margin-left: $gutter / 2;
     }
   }
 }
@@ -967,7 +967,7 @@ hr {
   #Rich Text Editor
 ==============================================================================*/
 .rte {
-  margin-bottom: $gutter/2;
+  margin-bottom: $gutter / 2;
 
   // Add some top margin to headers from the rich text editor
   h1, h2, h3, h4, h5, h6 {
@@ -979,7 +979,7 @@ hr {
   }
 
   & > div {
-    margin-bottom: $gutter/2;
+    margin-bottom: $gutter / 2;
   }
 
   ul, ol {
@@ -1152,7 +1152,7 @@ th {
 
 th, td {
   text-align: left;
-  padding: $gutter/2;
+  padding: $gutter / 2;
   border: 1px solid $colorBorder;
 }
 
@@ -1268,7 +1268,7 @@ textarea {
 
 fieldset {
   border: 1px solid $colorBorder;
-  padding: $gutter/2;
+  padding: $gutter / 2;
 }
 
 legend {
@@ -1574,7 +1574,7 @@ label.error {
   cursor: default;
 
   li {
-    margin: 0 $gutter/4 $gutter/4;
+    margin: 0 ($gutter / 4) ($gutter / 4);
     color: {{ settings.color_footer_social_link }};
     cursor: default;
   }
@@ -1590,7 +1590,7 @@ label.error {
 }
 
 .social-icons li {
-  margin: 0 $gutter/2 $gutter/2;
+  margin: 0 ($gutter / 2) ($gutter / 2);
   vertical-align: middle;
 
   @include at-query ($min, $postSmall) {
@@ -1721,7 +1721,7 @@ label.error {
   #Site Header
 ==============================================================================*/
 .site-header {
-  padding: $gutter/2 0;
+  padding: ($gutter / 2) 0;
 
   @include at-query ($min, $large) {
     padding: $gutter 0;
@@ -1745,7 +1745,7 @@ label.error {
 .header-logo {
   text-align: center;
   font-size: em(40px);
-  margin: 0 auto $gutter/2;
+  margin: 0 auto ($gutter / 2);
   max-width: {{ settings.logo_max_width }}px;
 
   @include at-query ($min, $large) {
@@ -1825,7 +1825,7 @@ label.error {
   a {
     display: block;
     text-decoration: none;
-    padding: $gutter/2;
+    padding: $gutter / 2;
     white-space: nowrap;
   }
 
@@ -1869,7 +1869,7 @@ label.error {
   padding: 7px 0;
 
   @include at-query ($max, $medium) {
-    padding: 0 0 $gutter/2;
+    padding: 0 0 ($gutter / 2);
     margin: 0 auto;
     text-align: center;
   }
