@@ -359,13 +359,12 @@ form[action^="/cart/add"] {
   @include perspective(600px);
 }
 
-.flip-front,
-.flip-back {
+.flip__front,
+.flip__back {
   @include transform-style(preserve-3d);
   @include transition(all 0.3s);
   @include backface(hidden);
   overflow: hidden;
-
   position: relative;
   z-index: 10;
 
@@ -374,7 +373,7 @@ form[action^="/cart/add"] {
   }
 }
 
-.flip-front {
+.flip__front {
   @include transform-origin(100% 0);
 
   .is-flipped & {
@@ -382,7 +381,7 @@ form[action^="/cart/add"] {
   }
 }
 
-.flip-back {
+.flip__back {
   display: block;
   position: absolute;
   top: 0;
@@ -403,18 +402,18 @@ form[action^="/cart/add"] {
 
 // Backup for no transforms
 .flip.no-transforms {
-  .flip-back {
+  .flip__back {
     display: none;
   }
 
   &.is-flipped {
-    .flip-back {
+    .flip__back {
       display: block;
     }
   }
 }
 
-.flip-extra {
+.flip__extra {
   display: inline;
   position: relative;
   padding: 2px 10px;
@@ -434,12 +433,12 @@ form[action^="/cart/add"] {
   }
 }
 
-.flip-cart {
+.flip__cart {
   display: inline-block;
   padding: 0 8px;
 }
 
-.flip-checkout {
+.flip__checkout {
   margin: 0;
 }
 

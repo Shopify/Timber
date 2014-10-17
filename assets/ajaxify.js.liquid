@@ -391,12 +391,12 @@ var ajaxifyShopify = (function(module, $) {
     }
 
     // Wrap the add to cart button in a div
-    $addToCart.addClass('flip-front').wrap('<div class="flip"></div>');
+    $addToCart.addClass('flip__front').wrap('<div class="flip"></div>');
 
     // Write a (hidden) Checkout button, a loader, and the extra view cart button
-    var checkoutBtn = $('<a href="/cart" class="flip-back" style="background-color: #C00; color: #fff;" id="flip-checkout">Checkout</a>').addClass($btnClass),
+    var checkoutBtn = $('<a href="/cart" class="flip__back" style="background-color: #C00; color: #fff;" class="flip__checkout">Checkout</a>').addClass($btnClass),
         flipLoader = $('<span class="ajaxcart__flip-loader"></span>'),
-        flipExtra = $('<div class="flip-extra"><a href="#" class="flip-cart">View Cart (<span></span>)</a></div>');
+        flipExtra = $('<div class="flip__extra"><a href="#" class="flip__cart">View Cart (<span></span>)</a></div>');
 
     // Append checkout button and loader
     checkoutBtn.insertAfter($addToCart);
@@ -411,7 +411,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Setup extra selectors once appended
     flipExtra.insertAfter($flipContainer);
-    $flipCart = $('.flip-cart');
+    $flipCart = $('.flip__cart');
 
     $flipCart.on('click', function(e) {
       e.preventDefault();
@@ -430,16 +430,16 @@ var ajaxifyShopify = (function(module, $) {
 
   modalSetup = function () {
     // Create modal DOM elements with handlebars.js template
-    var source   = $("#modalTemplate").html(),
+    var source   = $("#ModalTemplate").html(),
         template = Handlebars.compile(source);
 
     // Append modal and overlay to body
     $body.append(template).append('<div class="ajaxcart__overlay"></div>');
 
     // Modal selectors
-    $modalContainer = $('#ajaxifyModal');
+    $modalContainer = $('#AjaxifyModal');
     $modalOverlay   = $('.ajaxcart__overlay');
-    $cartContainer  = $('#ajaxifyCart');
+    $cartContainer  = $('#AjaxifyCart');
 
     // Close modal when clicking the overlay
     $modalOverlay.on('click', hideModal);
@@ -525,7 +525,7 @@ var ajaxifyShopify = (function(module, $) {
 
   drawerSetup = function () {
     // Create drawer DOM elements with handlebars.js template
-    var source   = $("#drawerTemplate").html(),
+    var source   = $("#DrawerTemplate").html(),
         template = Handlebars.compile(source),
         data = {
           wrapperClass: $wrapperClass
@@ -535,8 +535,8 @@ var ajaxifyShopify = (function(module, $) {
     $prependDrawerTo.prepend(template(data));
 
     // Drawer selectors
-    $drawerContainer = $('#ajaxifyDrawer');
-    $cartContainer   = $('#ajaxifyCart');
+    $drawerContainer = $('#AjaxifyDrawer');
+    $cartContainer   = $('#AjaxifyCart');
     $drawerCaret     = $('.ajaxcart__caret > span');
 
     // Toggle drawer with cart button
@@ -692,7 +692,7 @@ var ajaxifyShopify = (function(module, $) {
 
     switch (settings.method) {
       case 'flip':
-        $('.flip-cart span').html(cart.item_count);
+        $('.flip__cart span').html(cart.item_count);
         break;
       case 'modal':
         buildCart(cart);
@@ -785,7 +785,7 @@ var ajaxifyShopify = (function(module, $) {
     var items = [],
         item = {},
         data = {}
-        source = $("#cartTemplate").html(),
+        source = $("#CartTemplate").html(),
         template = Handlebars.compile(source);
 
     // Add each item to our handlebars.js data
@@ -1021,7 +1021,7 @@ var ajaxifyShopify = (function(module, $) {
             itemMinus = currentQty - 1,
             itemQty = currentQty;
 
-        var source   = $("#ajaxifyQty").html(),
+        var source   = $("#AjaxifyQty").html(),
             template = Handlebars.compile(source),
             data = {
               id: el.data('id'),
@@ -1059,7 +1059,7 @@ var ajaxifyShopify = (function(module, $) {
             itemMinus = currentQty - 1,
             itemQty = currentQty;
 
-        var source   = $("#jsQty").html(),
+        var source   = $("#JsQty").html(),
             template = Handlebars.compile(source),
             data = {
               id: el.data('id'),
