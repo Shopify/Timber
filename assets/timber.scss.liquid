@@ -1785,16 +1785,6 @@ label.error {
 .nav-bar {
   background-color: $colorNav;
 
-  a {
-    color: $colorNavText;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: darken($colorNavText, 15%);
-    }
-  }
-
   ul {
     margin: 0;
   }
@@ -1822,25 +1812,32 @@ label.error {
     }
   }
 
-  a {
-    display: block;
-    text-decoration: none;
-    padding: $gutter / 2;
-    white-space: nowrap;
-  }
-
   @include at-query ($max, $medium) {
     margin: 0 auto;
     text-align: center;
   }
 }
 
-.site-nav--active > a {
-  font-weight: bold;
+.site-nav__link {
+  display: block;
+  text-decoration: none;
+  padding: $gutter / 2;
+  white-space: nowrap;
+  color: $colorNavText;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: darken($colorNavText, 15%);
+  }
+
+  .site-nav--active & {
+    font-weight: bold;
+  }
 }
 
 /*================ Dropdowns ================*/
-.site-nav--dropdown {
+.site-nav__dropdown {
   display: none;
   position: absolute;
   left: 0;

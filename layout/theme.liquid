@@ -178,7 +178,7 @@
   <script>
   jQuery(function($) {
     ajaxifyShopify.init({
-      method: 'modal',
+      method: '{{ settings.ajax_cart_method }}',
       wrapperClass: 'wrapper',
       formSelector: '#AddToCartForm',
       addToCartSelector: '#AddToCart',
