@@ -27,7 +27,7 @@ timber.accessibleNav = function () {
       $allLinks = $nav.find('a'),
       $topLevel = $nav.children('li').find('a'),
       $parents = $nav.find('.site-nav--has-dropdown'),
-      $subMenuLinks = $nav.find('.site-nav--dropdown').find('a'),
+      $subMenuLinks = $nav.find('.site-nav__dropdown').find('a'),
       activeClass = 'nav-hover',
       focusClass = 'nav-focus';
 
@@ -64,7 +64,7 @@ timber.accessibleNav = function () {
   function handleFocus ($el) {
     var $subMenu = $el.next('ul'),
         hasSubMenu = $subMenu.hasClass('sub-nav') ? true : false,
-        isSubItem = $('.site-nav--dropdown').has($el).length,
+        isSubItem = $('.site-nav__dropdown').has($el).length,
         $newFocus = null;
 
     // Add focus class for top level items, or keep menu shown
