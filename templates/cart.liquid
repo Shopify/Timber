@@ -10,11 +10,11 @@
 {% endcomment %}
 {% if cart.item_count > 0 %}
 
-  <form action="/cart" method="post" novalidate class="cart-wrapper">
+  <form action="/cart" method="post" novalidate class="cart">
 
     <h1>{{ 'cart.general.title' | t }}</h1>
 
-    <div class="cart-row medium-down--hide">
+    <div class="cart__row medium-down--hide">
       <div class="grid--full">
         <div class="grid-item large--one-half">
           <div class="grid">
@@ -43,14 +43,14 @@
       Loop through products in the cart
     {% endcomment %}
     {% for item in cart.items %}
-      <div class="cart-row" data-id="{{ item.id }}">
-        <div class="grid--full cart-row--table-large">
+      <div class="cart__row" data-id="{{ item.id }}">
+        <div class="grid--full cart__row--table-large">
 
           <div class="grid-item large--one-half">
             <div class="grid">
 
               <div class="grid-item one-third">
-                <a href="{{ item.url | within: collections.all }}" class="cart-image">
+                <a href="{{ item.url | within: collections.all }}" class="cart__image">
 
                   {% comment %}
                     More image size options at:
@@ -106,15 +106,15 @@
           </div>
 
           <div class="grid-item large--one-half">
-            <div class="grid--full cart-row--table-large">
+            <div class="grid--full cart__row--table-large">
 
               <div class="grid-item one-third">
-                <span class="cart-mini-labels">{{ 'cart.label.price' | t }}</span>
+                <span class="cart__mini-labels">{{ 'cart.label.price' | t }}</span>
                 <span class="h3">{{ item.price | money }}</span>
               </div>
 
               <div class="grid-item one-third text-center">
-                <span class="cart-mini-labels">{{ 'cart.label.quantity' | t }}</span>
+                <span class="cart__mini-labels">{{ 'cart.label.quantity' | t }}</span>
                 {% comment %}
                   Added data-id for the ajax cart implementation only.
                 {% endcomment %}
@@ -122,7 +122,7 @@
               </div>
 
               <div class="grid-item one-third text-right">
-                <span class="cart-mini-labels">{{ 'cart.label.total' | t }}</span>
+                <span class="cart__mini-labels">{{ 'cart.label.total' | t }}</span>
                 <span class="h3">{{ item.line_price | money }}</span>
               </div>
 
@@ -133,12 +133,12 @@
       </div>
     {% endfor %}
 
-    <div class="cart-row text-right">
+    <div class="cart__row text-right">
       {{ 'cart.general.subtotal' | t }}
-      <span class="h3 cart-subtotal">{{ cart.total_price | money }}</span>
+      <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>
     </div>
 
-    <div class="cart-row">
+    <div class="cart__row">
       <div class="grid">
 
         {% comment %}

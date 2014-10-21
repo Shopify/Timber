@@ -199,7 +199,7 @@ form[action^="/cart/add"] {
 }
 
 .ajaxcart__product,
-.cart-row {
+.cart__row {
   @include transform-origin(top);
   @include transition(all 650ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
   @include transform('rotateX(0deg)');
@@ -316,7 +316,7 @@ form[action^="/cart/add"] {
     border: 1px solid rgba(0,0,0,0);
   }
 
-  .cart-row:hover &,
+  .cart__row:hover &,
   .ajaxcart__product:hover &,
   .supports-touch & {
     border-color: $colorBorder;
@@ -327,7 +327,7 @@ form[action^="/cart/add"] {
   @extend .js-qty__adjust;
   opacity: 0;
 
-  .cart-row:hover &,
+  .cart__row:hover &,
   .ajaxcart__product:hover &,
   .supports-touch & {
     opacity: 1;
