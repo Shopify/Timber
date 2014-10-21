@@ -2042,13 +2042,13 @@ label.error {
   #Cart Page
 ==============================================================================*/
 @include at-query ($min, $large) {
-  .template-cart .cart-wrapper {
+  .template-cart .cart {
     max-width: 75%;
     margin: 0 auto;
   }
 }
 
-.cart-row {
+.cart__row {
   position: relative;
   margin-top: $gutter;
   padding-top: $gutter;
@@ -2069,7 +2069,7 @@ label.error {
 }
 
 @include at-query ($min, $large) {
-  .cart-row--table-large {
+  .cart__row--table-large {
     display: table;
     table-layout: fixed;
     width: 100%;
@@ -2082,7 +2082,7 @@ label.error {
   }
 }
 
-.cart-image {
+.cart__image {
   display: block;
 
   img {
@@ -2090,12 +2090,12 @@ label.error {
   }
 }
 
-.cart-subtotal {
+.cart__subtotal {
   margin: 0 0 0 ($gutter / 3);
   display: inline;
 }
 
-.cart-mini-labels {
+.cart__mini-labels {
   display: block;
   margin: ($gutter / 3) 0;
   font-size: em(12px);

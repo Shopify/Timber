@@ -607,7 +607,7 @@ var ajaxifyShopify = (function(module, $) {
       $drawerContainer.css('height', '0px');
     } else {
       $drawerHeight = $cartContainer.outerHeight();
-      $('.cart-row img').css('width', 'auto'); // fix Chrome image size bug
+      $('.cart__row img').css('width', 'auto'); // fix Chrome image size bug
       $drawerContainer.css('height',  $drawerHeight + 'px');
     }
   };
@@ -963,7 +963,7 @@ var ajaxifyShopify = (function(module, $) {
       if (!settings.useCartTemplate) {
         var row = $('.ajaxcart__row[data-id="' + id + '"]').addClass('is-loading');
       } else {
-        var row = $('.cart-row[data-id="' + id + '"]').addClass('is-loading');
+        var row = $('.cart__row[data-id="' + id + '"]').addClass('is-loading');
       }
 
       if ( qty === 0 ) {
