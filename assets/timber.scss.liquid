@@ -1942,7 +1942,7 @@ label.error {
 /*============================================================================
   #Product Page
 ==============================================================================*/
-.product__variants {
+.product-single__variants {
   display: none;
 
   .no-js & {
@@ -1952,19 +1952,19 @@ label.error {
 
 @include at-query($min, $large) {
   .selector-wrapper,
-  .product__variants {
+  .product-single__variants {
     select {
       max-width: 40%;
     }
   }
 }
 
-.product__photos {
+.product-single__photos {
   margin-bottom: $gutter;
 }
 
-.product__photos,
-.product__thumbnails {
+.product-single__photos,
+.product-single__thumbnails {
   a, img {
     display: block;
     margin: 0 auto;
