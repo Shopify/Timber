@@ -5,7 +5,7 @@
   handlebar.js template tags as available hooks.
 
 {% endcomment %}
-  <script id="cartTemplate" type="text/template">
+  <script id="CartTemplate" type="text/template">
   {% raw %}
     <form action="/cart" method="post" novalidate>
       <div class="ajaxcart__inner">
@@ -55,21 +55,21 @@
     </form>
   {% endraw %}
   </script>
-  <script id="drawerTemplate" type="text/template">
+  <script id="DrawerTemplate" type="text/template">
   {% raw %}
-    <div id="ajaxifyDrawer" class="ajaxcart ajaxcart--drawer">
-      <div id="ajaxifyCart" class="ajaxcart__content {{wrapperClass}}"></div>
+    <div id="AjaxifyDrawer" class="ajaxcart ajaxcart--drawer">
+      <div id="AjaxifyCart" class="ajaxcart__content {{wrapperClass}}"></div>
     </div>
   {% endraw %}
   </script>
-  <script id="modalTemplate" type="text/template">
+  <script id="ModalTemplate" type="text/template">
   {% raw %}
-    <div id="ajaxifyModal" class="ajaxcart ajaxcart--modal">
-      <div id="ajaxifyCart" class="ajaxcart__content"></div>
+    <div id="AjaxifyModal" class="ajaxcart ajaxcart--modal">
+      <div id="AjaxifyCart" class="ajaxcart__content"></div>
     </div>
   {% endraw %}
   </script>
-  <script id="ajaxifyQty" type="text/template">
+  <script id="AjaxifyQty" type="text/template">
   {% raw %}
     <div class="ajaxcart__qty">
       <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--minus" data-id="{{id}}" data-qty="{{itemMinus}}">&minus;</button>
@@ -78,7 +78,7 @@
     </div>
   {% endraw %}
   </script>
-  <script id="jsQty" type="text/template">
+  <script id="JsQty" type="text/template">
   {% raw %}
     <div class="js-qty">
       <button type="button" class="js-qty__adjust js-qty__adjust--minus" data-id="{{id}}" data-qty="{{itemMinus}}">&minus;</button>
