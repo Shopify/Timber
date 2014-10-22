@@ -159,7 +159,9 @@ a,
 }
 
 .btn,
-.btn.btn--primary {
+.btn.btn--primary,
+.boxshadow .btn,
+.boxshadow .btn.btn--primary  {
   background-color: $colorBtnPrimary;
   color: $colorBtnPrimaryText;
 
@@ -169,8 +171,10 @@ a,
   }
 
   &:active,
-  &:focus {
+  &:focus,
+  &:focus:hover {
    background-color: $colorBtnPrimaryActive;
+   box-shadow: none;
   }
 }
 
