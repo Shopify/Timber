@@ -82,6 +82,11 @@ body {
   background-color: transparent;
 }
 
+.wrap,
+.field-group {
+  background-color: $colorContent;
+}
+
 .fieldset,
 .field-group--has-subfields,
 .field--error,
@@ -104,6 +109,7 @@ td,
 .field-group,
 .field-group--has-subfields .field,
 .field-group--has-subfields .field-group,
+.field-group--has-subfields .field + .field,
 .field-group--has-subfields,
 .product-list .product,
 .section__blank-slate,
@@ -393,4 +399,8 @@ h1, h2, h3, h4, h5, h6 {
 // Hide blue printer button
 .icon--print {
   display: none;
+}
+
+.call-to-action--final label {
+  margin-top: 0.6em;
 }
