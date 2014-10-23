@@ -1,12 +1,12 @@
 module.exports = (grunt) ->
 
+  # Global vars
+  gulp = require 'gulp'
+  cssimport = require 'gulp-cssimport'
   paths =
     css: 'stylesheets/**/*.*'
     images: 'assets/*.{png,jpg,gif,svg}'
     dest: 'assets/'
-
-  gulp = require 'gulp'
-  cssimport = require 'gulp-cssimport'
 
   grunt.initConfig
 
@@ -17,6 +17,9 @@ module.exports = (grunt) ->
       build:
         options:
           message: 'Build complete'
+      zip:
+        options:
+          message: 'Zip ready'
 
     # Shopify theme_gem methods
     exec:
@@ -53,12 +56,30 @@ module.exports = (grunt) ->
       watch:
         tasks: ['watch', 'exec']
 
+    clean: ['*.zip']
+
+    compress:
+      main:
+        options:
+          mode: 'zip'
+          archive: '<%= pkg.name %>.zip'
+        files: [
+          src: [
+            'assets/*'
+            'config/*'
+            'layout/*'
+            'locales/*'
+            'snippets/*'
+            'templates/*'
+            'templates/customers/*'
+          ]
+        ]
+
 
   # Load NPM task plugins
-  # ---------------------------
   require('load-grunt-tasks')(grunt)
 
   # Register tasks
-  # ---------------------------
   grunt.registerTask 'default', ['concurrent:watch']
   grunt.registerTask 'build', ['gulp', 'imagemin', 'notify:build']
+  grunt.registerTask 'zip', ['gulp', 'imagemin', 'clean', 'compress', 'notify:zip']
