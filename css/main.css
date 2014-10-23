@@ -2607,20 +2607,17 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
 .home-title {
   color: #fff;
-  font-size: 7.143em;
+  font-size: 5em;
   font-weight: 600;
   margin-bottom: 0em;
   font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  @media (max-width: 1023px) {
-    .home-title {
-      font-size: 6em; } }
   @media (max-width: 768px) {
     .home-title {
       font-size: 4.286em; } }
 
 .home-subtitle {
   color: #ffefb7;
-  font-size: 3.425em;
+  font-size: 3em;
   line-height: 1.125;
   margin-bottom: 0.9em;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
@@ -2636,7 +2633,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
   text-align: center;
   background-color: #e04500;
   background-color: rgba(224, 69, 0, 0.4);
-  padding: 72px 0;
+  padding: 72px 0 48px;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   @media (max-width: 768px) {
     .home-buckets {
@@ -2759,14 +2756,8 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
 .docs-text {
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #6c6661;
+  color: #847C76;
   line-height: 2em; }
-
-.docs-note {
-  font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #6f6f6f;
-  font-size: 1.25em;
-  line-height: 1.5em; }
 
 .docs-strong {
   font-weight: bold; }
@@ -2896,6 +2887,9 @@ ul.tabs li.current a {
   text-align: center;
   background-color: #f1eae6; }
 
+.docs-body pre,
+.docs-body code {
+  margin-bottom: 24px; }
 .docs-body hr {
   border-top: 1px solid #efefef;
   margin: 48px 0; }

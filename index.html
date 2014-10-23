@@ -115,13 +115,12 @@ git clone https://github.com/Shopify/Timber.git
         <h2 class="doc-title gettingstarted-title" id="demos"><strong>1.4 </strong>Demo Store</h2>
         <div class="grid">
           <div class="grid-item large--two-thirds">
-            <p class="docs-note">Enough jibber-jabber. Check out <a href="https://timber-demo.myshopify.com?utm_source=Timber&utm_medium=os" title="View Timber Theme" class="docs-link" data-track="Demo">Timber's Demo Store</a> for the full experience of what you'll download.</p>
+            <p class="docs-text">Enough jibber-jabber. Check out <a href="https://timber-demo.myshopify.com?utm_source=Timber&utm_medium=os" title="View Timber Theme" class="docs-link" data-track="Demo">Timber's Demo Store</a> for the full experience of what you'll download. The demo has fake products inserted so you can see what a populated site would look like. To see what your brand new site will look like when you install the theme, check out our <a href="http://timber-demo-empty.myshopify.com?utm_source=Timber&utm_medium=os" class="docs-link" data-track="Demo Empty">empty store demo</a>.</p>
           </div>
           <div class="grid-item large--one-third">
             <a href="https://timber-demo.myshopify.com?utm_source=Timber&utm_medium=os" title="View Demo Store" class="btn-timber-small full" data-track="Demo">View Demo Store</a>
           </div>
         </div>
-        <p class="docs-text">The demo has fake products inserted so you can see what a populated site would look like. To see what your brand new site will look like when you install the theme, check out our <a href="http://timber-demo-empty.myshopify.com?utm_source=Timber&utm_medium=os" class="docs-link" data-track="Demo Empty">empty store demo</a>.</p>
 
         <hr>
 
@@ -129,7 +128,6 @@ git clone https://github.com/Shopify/Timber.git
           THEME EDITING
         ===================================== -->
         <h2 class="doc-title gettingstarted-title" id="theme-editing"><strong>1.5 </strong>Theme Editing</h2>
-        <p class="docs-note">Edit your files locally and watch the changes happen on your live site. Use the <a href="https://github.com/Shopify/shopify_theme" class="docs-link">Theme Gem</a> or <a href="https://apps.shopify.com/desktop-theme-editor?utm_source=Timber&utm_medium=os" class="docs-link">Desktop Theme Editor</a> for easy theme management.</p>
         <p class="docs-text">Once you've downloaded your theme it's time to get it onto your store. Either upload the zip to <code>your-url.com/admin/themes</code> or use one of the programs below. Either way, you can use your text editor of choice.</p>
 
         <div class="grid">
@@ -150,12 +148,10 @@ git clone https://github.com/Shopify/Timber.git
         ===================================== -->
         <h2 class="doc-title grid-title" id="sass"><strong>2.1 </strong>Sass</h2>
 
-        <p class="docs-note">Timber is built with <a href="http://sass-lang.com/">Sass</a>, but <strong class="docs-strong">you don't have to know it to use it</strong>.</p>
-        <p class="docs-text">The compiling is all done on the Shopify server, so edit the <strong class="docs-strong">.scss.liquid</strong> file just as you would CSS and watch the magic happen on your site.</p>
+        <p class="docs-text">Timber is built with <a href="http://sass-lang.com/">Sass</a>, but <strong class="docs-strong">you don't have to know it to use it</strong>. The compiling is all done on the Shopify server, so edit the <strong class="docs-strong">.scss.liquid</strong> file just as you would CSS and watch the magic happen on your site.</p>
 
         <h4 class="docs-h4">Imports and Mixins</h4>
-        <p class="docs-text">You cannot use <code>@imports</code> in a Sass liquid file. That means no dependence on Compass, Bourbon or similar Sass frameworks.</p>
-        <p class="docs-text">A section labeled <strong>Sass Mixins</strong> has been included in <strong class="docs-strong">timber.scss.liquid</strong> with a few <a href="#sass-mixins" title="Sass mixins" class="docs-link">helpers</a> to start you off.</p>
+        <p class="docs-text">You cannot use <code>@imports</code> in a Sass liquid file. That means no dependence on Compass, Bourbon or similar Sass frameworks. A section labeled <strong>Sass Mixins</strong> has been included in <strong class="docs-strong">timber.scss.liquid</strong> with a few <a href="#sass-mixins" title="Sass mixins" class="docs-link">helpers</a> to start you off.</p>
 
         <hr>
 
@@ -170,8 +166,7 @@ git clone https://github.com/Shopify/Timber.git
         </ul>
 
         <div id="breakpoints-example" class="tab-content">
-          <p class="docs-note">Define your breakpoints once, and Sass handles the rest.</p>
-          <p class="docs-text">All breakpoints are defined in the <strong>Breakpoint and Grid Variables</strong> section of <strong class="docs-strong">timber.scss.liquid</strong>. Easily change, add, or remove the breakpoints and names to suit your needs.</p>
+          <p class="docs-text">Define your breakpoints once, and Sass handles the rest. All breakpoints are defined in the <strong>Breakpoint and Grid Variables</strong> section of <strong class="docs-strong">timber.scss.liquid</strong>. Easily change, add, or remove the breakpoints and names to suit your needs.</p>
           <p class="docs-text"><strong class="docs-strong">Default breakpoints:</strong></p>
           <ul class="disc docs-text">
             <li>Small: 480px</li>
@@ -505,8 +500,7 @@ $breakpoints: (
         </ul>
 
         <h4 class="docs-h4">Silent Classes</h4>
-        <p class="docs-note">If you don't know what silent classes are, you can ignore this section.</p>
-        <p class="docs-text">The biggest point of contention for many grid systems is how many classes are required in your markup. With Sass, you can use <a href="http://blog.teamtreehouse.com/extending-placeholder-selectors-with-sass" class="docs-link">silent classes</a> to handle all <code>.grid-item</code> widths in your stylesheet.</p>
+        <p class="docs-text">If you don't know what silent classes are, you can ignore this section. The biggest point of contention for many grid systems is how many classes are required in your markup. With Sass, you can use <a href="http://blog.teamtreehouse.com/extending-placeholder-selectors-with-sass" class="docs-link">silent classes</a> to handle all <code>.grid-item</code> widths in your stylesheet.</p>
         <p class="docs-text">Set <code>$use-silent-classes</code> to <strong class="docs-strong">true</strong> in <strong class="docs-strong">timber.scss.liquid</strong>, and use the following code to set the widths:</p>
 
 <pre>
@@ -1120,8 +1114,7 @@ Output:
           AJAXIFY CART
         ===================================== -->
         <h2 class="doc-title js-title" id="ajax-cart"><strong>4.1 </strong>Ajaxify Cart</h2>
-        <p class="docs-note">Being teleported to the cash register in a grocery store after picking up a can of soup doesn't make a ton of sense, so why should your customer end up on a <strong class="docs-strong">/cart</strong> page online?</p>
-        <p class="docs-text">Using the Ajaxify Cart plugin allows a user to add a product to their cart without leaving the current page. The cart will appear as a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=drawer" class="docs-link">drawer</a> from the top of the page, a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=modal" class="docs-link">modal</a>, or an <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=flip" class="docs-link">inline confirmation</a>.</p>
+        <p class="docs-text">Being teleported to the cash register in a grocery store after picking up a can of soup doesn't make a ton of sense, so why should your customer end up on a <strong class="docs-strong">/cart</strong> page online? Using the Ajaxify Cart plugin allows a user to add a product to their cart without leaving the current page. The cart will appear as a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=drawer" class="docs-link">drawer</a> from the top of the page, a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=modal" class="docs-link">modal</a>, or an <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=flip" class="docs-link">inline confirmation</a>.</p>
         <p class="docs-text"><strong class="docs-strong">Note:</strong> cart.liquid is still a required template and its markup structures the cart in the drawer/modal.</p>
 
         <ul class="tabs">

@@ -42,15 +42,11 @@
 
 .home-title {
   color: #fff;
-  font-size: 7.143em;
+  font-size: 5em;
   font-weight: 600;
   margin-bottom: 0em;
 
   @include docsFontHeadings();
-
-  @include responsify( $portable_down ) {
-    font-size: 6em;
-  }
 
   @include responsify( $lap_down ) {
     font-size: 4.286em;
@@ -59,7 +55,7 @@
 
 .home-subtitle {
   color: $textOnOrange;
-  font-size: 3.425em;
+  font-size: 3em;
   line-height: 1.125;
   margin-bottom: 0.9em;
 
@@ -83,7 +79,7 @@
   text-align: center;
   background-color: #e04500;
   background-color: rgba(224,69,0,.4);
-  padding: $margin*3 0;
+  padding: ($margin * 3) 0 ($margin * 2);
 
   @include docsFont();
 
@@ -254,13 +250,6 @@
   @include docsFont();
   color: $colorText;
   line-height: 2em;
-}
-
-.docs-note {
-  @include docsFont();
-  color: #6f6f6f;
-  font-size: 1.25em;
-  line-height: 1.5em;
 }
 
 .docs-strong {
@@ -445,6 +434,11 @@ ul.tabs li.current a {
 }
 
 .docs-body {
+  pre,
+  code {
+    margin-bottom: $margin;
+  }
+
   hr {
     border-top: 1px solid $colorBorder;
     margin: ($margin * 2) 0;
