@@ -10,35 +10,33 @@
     - This file merges your stylesheets into one master at assets/timber.scss.liquid
 ==============================================================================*/
 
-@import url('variables/_layout.scss.liquid');
-@import url('variables/_colors.scss.liquid');
+@import url('global/_layout.scss.liquid');
+@import url('global/_colors.scss.liquid');
 
+@import url('partials/_normalize.scss');
+@import url('partials/_base.scss');
+@import url('partials/_grid.scss');
+@import url('partials/_helpers.scss');
+@import url('partials/_typography.scss');
+@import url('partials/_buttons.scss');
+@import url('partials/_lists.scss');
+@import url('partials/_tables.scss');
+@import url('partials/_media.scss');
+@import url('partials/_forms.scss');
+@import url('partials/_icons.scss');
 
-// #General Variables
-// #Sass Mixins
-// #Normalize
-// #Grid Setup
-// #Basic Styles
-// #Helper Classes
-// #Typography
-// #Rich Text Editor
-// #Links and Buttons
-// #Lists
-// #Tables
-// #OOCSS Media Object
-// #Images and Iframes
-// #Forms
-// #Icons
-// #Pagination
-// #Site Header
-// #Site Nav and Dropdowns
-// #Site Footer
-// #Product and Collection Grids
-// #Collection Filters
-// #Breadcrumbs
-// #Product Page
-// #Blogs and Comments
-// #Notes and Form Feedback
-// #Cart Page
-// #Demo Styles - for empty store state
+@import url('modules/_section-header.scss');
+@import url('modules/_rte.scss');
+@import url('modules/_pagination.scss');
+@import url('modules/_site-header.scss.liquid');
+@import url('modules/_site-nav.scss');
+@import url('modules/_footer.scss');
+@import url('modules/_breadcrumb.scss');
+@import url('modules/_notes.scss');
 
+@import url('templates/_collection.scss');
+@import url('templates/_product.scss');
+@import url('templates/_blog.scss');
+@import url('templates/_cart.scss');
+
+@import url('partials/_misc.scss');
