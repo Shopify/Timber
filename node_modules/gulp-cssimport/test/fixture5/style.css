@@ -1,0 +1,5 @@
+@import "a.css";
+@import url("b.css");
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,400italic&subset=cyrillic);
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:600,600italic&subset=cyrillic");
+@import "http://fonts.googleapis.com/css?family=Open+Sans:700,700italic&subset=cyrillic";

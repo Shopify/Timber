@@ -1,0 +1,99 @@
+body {
+	background: #e7e7de;
+	font-family: 'segoe ui', arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	font-size: small;
+}
+
+#Frame {
+	width: 80%;
+	max-width: 1200px;
+	text-align: left;
+	margin: 0 auto;
+}
+
+#Content {
+	background: #fff;
+	padding: 0 20px 20px 20px;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+code {
+	display: block;
+	padding: 5px 0 0 5px;
+	color: #ff0084;
+	overflow: auto;
+	white-space: pre;
+}
+
+.PreContainer {
+	overflow: auto;
+}
+
+pre {
+	margin: 0;
+	padding: 2px;
+	background: #ffffd3;
+	line-height: 18px;
+	border-radius: 2px;
+}
+
+pre span {
+	display: block;
+}
+
+pre span:nth-child(even) {
+	background: #ffffb9;
+}
+
+pre span.Highlight {
+	color: #ff0000;
+	background: #ffff7f;
+}
+
+a, a:link, a:active{
+	color: #0063dc;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #ff0084;
+}
+
+a:hover {
+	color: #ffffff !important;
+	background: #0063dc !important;
+}
+
+p {
+	margin: 5px 0;
+	padding: 0;
+}
+
+h2 {
+	margin: 0;
+	padding: 20px 0 0 0;
+}
+
+h3 {
+	margin: 0;
+	padding: 20px 0 5px 0;
+	font-weight: normal;
+}
+
+h4 {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+
+ul {
+	margin: 0;
+	padding: 10px 20px 0 20px;
+}
+
+ul li {
+	line-height: 160%;
+}
