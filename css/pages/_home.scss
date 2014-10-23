@@ -9,6 +9,13 @@
   color: $textOnOrange;
 }
 
+::selection {
+  background: $colorHighlight; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: $colorHighlight; /* Gecko Browsers */
+}
+
 // ==============================================================================
 // #Hero area
 //  - Could use JS to vertically center the cta, but it's not really necessary
@@ -266,7 +273,7 @@
   @include docsFont();
   color: $colorText;
   line-height: 2em;
-  margin-bottom: $margin;
+  margin-bottom: ($margin * 0.75);
 
   .home-cta & {
     color: $textOnOrange;
@@ -279,11 +286,13 @@
 
 .docs-link,
 .docs-link:visited {
+  color: $colorLink;
+  text-decoration: none;
   @include transition(all 0.1s ease-in-out);
 
   &:hover {
-    color: #000;
-    border-bottom-color: transparent;
+    border-bottom: 1px solid $colorText;
+    color: $colorText;
   }
 }
 
@@ -320,8 +329,9 @@ h2.doc-title {
 
 .docs-example {
   @extend .docs-h4;
+  
   font-size: 1em;
-  margin-bottom: 0.45em;
+  margin-bottom: ($margin / 2);
 }
 
 
@@ -329,8 +339,9 @@ h2.doc-title {
 // Doc Tables
 // ==============================================================================
 .docs-table {
+  margin: $margin 0 ($margin * 2);
   width: 100%;
-  margin-bottom: 1em;
+
   @include docsFont();
 
   th, td {
@@ -343,7 +354,7 @@ h2.doc-title {
 
   th {
     font-weight: bold;
-    background-color: $beige;
+    background-color: $colorBGMeta;
   }
 
   td {
@@ -364,8 +375,7 @@ h2.doc-title {
   }
 
   td.is-hidden {
-    color: #ccc;
-    background-color: #f6f6f6;
+    background-color: $colorBGMetaLight;
   }
 
   ul {
@@ -387,7 +397,7 @@ ul.tabs {
   margin: $margin/2 0 -1px 0;
   padding: 0;
   width: 100%;
-  border-bottom: 1px solid $beige;
+  border-bottom: 1px solid $colorBGMeta;
   float: left;
   font-family: $docsFont;
 }
@@ -416,8 +426,8 @@ ul.tabs li a {
   top: 0;
   left: 0;
   line-height: 100%;
-  background: $beige;
-  border: 1px solid $beige;
+  background: $colorBGMeta;
+  border: 1px solid $colorBGMeta;
   border-bottom: 0;
   border-radius: 5px 5px 0 0;
 
@@ -437,7 +447,7 @@ ul.tabs li.current a {
 }
 
 .tab-content {
-  border: 1px solid $beige;
+  border: 1px solid $colorBGMeta;
   clear: both;
   padding: 15px;
   margin: 0 0 $margin 0;
@@ -449,15 +459,18 @@ ul.tabs li.current a {
 // General demo styles
 // ==============================================================================
 .grid-demo {
-  padding: 10px;
+  background-color: $colorBGMeta;
   font-size: 0.75em;
+  margin-bottom: $margin;
+  padding: 10px;
   text-align: center;
-  background-color: $beige;
 }
 
 .docs-body {
   pre,
   code {
+    background-color: $colorBGMeta;
+    border: 1px solid $colorBGMetaDark;
     font-size: 12px;
     margin: $margin 0;
   }

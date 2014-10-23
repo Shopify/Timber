@@ -83,7 +83,7 @@ version: v1.3.2
           </div>
         </div>
         <h4 class="docs-h4">Other Ecommerce Features</h4>
-        <p class="docs-text"><a href="http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/add-a-reorder-drop-down-menu-to-a-collection-page">Collection sorting</a>, <a href="https://dev.twitter.com/docs/cards/types/product-card">Twitter Cards</a>, <a href="http://www.shopify.com/blog/14862781-pinterest-rich-pins-now-automatically-enabled-for-shopify-merchants">Pinterest Rich Pins</a>, and <a href="https://schema.org/Product">SEO-friendly Scheme.org tags</a>.</p>
+        <p class="docs-text"><a href="http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/add-a-reorder-drop-down-menu-to-a-collection-page" class="docs-link">Collection sorting</a>, <a href="https://dev.twitter.com/docs/cards/types/product-card" class="docs-link">Twitter Cards</a>, <a href="http://www.shopify.com/blog/14862781-pinterest-rich-pins-now-automatically-enabled-for-shopify-merchants" class="docs-link">Pinterest Rich Pins</a>, and <a href="https://schema.org/Product" class="docs-link">SEO-friendly Scheme.org tags</a>.</p>
 
         <hr>
 
@@ -91,7 +91,7 @@ version: v1.3.2
           DOWNLOAD TIMBER
         ===================================== -->
         <h2 class="doc-title gettingstarted-title" id="get-started"><strong>1.3 </strong>Download Timber</h2>
-        <p class="docs-text"><a href="https://github.com/Shopify/Timber/archive/{{ page.version }}.zip" class="docs-link" data-track="Download" data-version="{{ page.version }}">Download timber.zip <strong class="docs-strong">{{ page.version }}</strong></a> or clone the latest master branch from <a href="https://github.com/Shopify/Timber" class="docs-link">GitHub</a>:</p>
+        <p class="docs-text"><a href="https://github.com/Shopify/Timber/archive/{{ page.version }}.zip" class="docs-link" data-track="Download" data-version="{{ page.version }}">Download Timber.zip <strong class="docs-strong">{{ page.version }}</strong></a> or clone the latest master branch from <a href="https://github.com/Shopify/Timber" class="docs-link">GitHub</a>:</p>
 <pre>
 git clone https://github.com/Shopify/Timber.git
 </pre>
@@ -160,8 +160,7 @@ git clone https://github.com/Shopify/Timber.git
         ===================================== -->
         <h2 class="doc-title grid-title" id="breakpoints"><strong>2.2 </strong>Breakpoints</h2>
 
-        <p class="docs-text">Define your breakpoints once, and Sass handles the rest. All breakpoints are defined in the <strong>Breakpoint and Grid Variables</strong> section of <strong class="docs-strong">timber.scss.liquid</strong>. Easily change, add, or remove the breakpoints and names to suit your needs.</p>
-        <p class="docs-text"><strong class="docs-strong">Default breakpoints:</strong></p>
+        <p class="docs-text">Define your breakpoints once, and Sass handles the rest. All breakpoints are defined in the <strong>Breakpoint and Grid Variables</strong> section of <strong class="docs-strong">timber.scss.liquid</strong>. Easily change, add, or remove the breakpoints and names to suit your needs. These are the default breakpoints:</p>
         <ul class="disc docs-text">
           <li>Small: 480px</li>
           <li>Medium: 768px</li>
@@ -171,25 +170,25 @@ git clone https://github.com/Shopify/Timber.git
         <h4 class="docs-h4">Code</h4>
         
         <p class="docs-text"><code>$breakpoints</code> is broken down into four lines, each a breakpoint: <strong>'small'</strong>, <strong>'medium'</strong>, <strong>'medium-down'</strong>, and <strong>'large'</strong>. These are the names used in your classes to define each column width. A <code>.grid-item</code> div with a class of <code>large--one-half</code> will span 50% of its parent above 769px. Any screen size below that breakpoint will default to (mobile-first) 100%.</p>
-        <pre>
-          $viewportIncrement: 1px;
+<pre>
+$viewportIncrement: 1px;
 
-          $small: 480px;
-          $medium: 768px;
-          $large: 769px;
+$small: 480px;
+$medium: 768px;
+$large: 769px;
 
-          $postSmall: $small + $viewportIncrement;
-          $preMedium: $medium - $viewportIncrement;
-          $preLarge: $large - $viewportIncrement;
+$postSmall: $small + $viewportIncrement;
+$preMedium: $medium - $viewportIncrement;
+$preLarge: $large - $viewportIncrement;
 
-          /* The following are dependencies of csswizardry grid */
-          $breakpoints: (
-            'small' '(max-width: #{$small})',
-            'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
-            'medium-down' '(max-width: #{$medium})',
-            'large' '(min-width: #{$large})'
-          );
-        </pre>
+/* The following are dependencies of csswizardry grid */
+$breakpoints: (
+  'small' '(max-width: #{$small})',
+  'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
+  'medium-down' '(max-width: #{$medium})',
+  'large' '(min-width: #{$large})'
+);
+</pre>
 
         <hr>
 
@@ -403,10 +402,9 @@ git clone https://github.com/Shopify/Timber.git
         <h4 class="docs-h4">Columns and Sub Grids</h4>
 
         <div id="columns-example">
-          <p class="docs-text">Each column — or <code>.grid-item</code> — should be a direct child of a <code>.grid</code> container.</p>
-          <p class="docs-text">This grid is easily nestable. A <code>.grid-item</code> column can contain another <code>.grid</code>, which would consist of its own children. View the sub grid in <strong class="docs-strong">Example 2</strong> below.</p>
+          <p class="docs-text">Each column — or <code>.grid-item</code> — should be a direct child of a <code>.grid</code> container. This grid is easily nestable. A <code>.grid-item</code> column can contain another <code>.grid</code>, which would consist of its own children. View the sub grid in <strong class="docs-strong">Example 2</strong> below.</p>
 
-          <h4 class="docs-example">Example 1: Two column grid:</h4>
+          <h4 class="docs-example">Example 1: Two column grid</h4>
           <div class="grid">
             <div class="grid-item one-half">
               <p class="grid-demo">1.1</p>
@@ -416,7 +414,7 @@ git clone https://github.com/Shopify/Timber.git
             </div>
           </div>
 
-          <h4 class="docs-example">Example 2: Two column with sub grid:</h4>
+          <h4 class="docs-example">Example 2: Two column with sub grid</h4>
           <div class="grid">
             <div class="grid-item large--one-half">
               <p class="grid-demo">1.1</p>
