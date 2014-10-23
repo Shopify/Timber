@@ -23,7 +23,8 @@ $margin: 24px;
 $layout_max_width: 1200px;
 $border_radius: 3px;
 
-$docsFont: "Cabin", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$docsFont: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$docsFontHeadings: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 
 // ==============================================================================
@@ -46,3 +47,6 @@ $beigeBorder: #d3c8bf;
 $buttonColor: #8cad32;
 
 $bgOrange: #ff7e00;
+
+$colorBorder: #efefef;
+$colorText: #6c6661;

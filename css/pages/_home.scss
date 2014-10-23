@@ -41,11 +41,12 @@
 }
 
 .home-title {
-  font-size: 7.143em;
-  line-height: 1;
-  margin-bottom: 0;
   color: #fff;
-  @include docsFont();
+  font-size: 7.143em;
+  font-weight: 600;
+  margin-bottom: 0em;
+
+  @include docsFontHeadings();
 
   @include responsify( $portable_down ) {
     font-size: 6em;
@@ -58,9 +59,10 @@
 
 .home-subtitle {
   color: $textOnOrange;
-  font-size: 3.429em;
+  font-size: 3.425em;
   line-height: 1.125;
   margin-bottom: 0.9em;
+
   @include docsFont();
 
   @include responsify( $portable_down ) {
@@ -81,12 +83,9 @@
   text-align: center;
   background-color: #e04500;
   background-color: rgba(224,69,0,.4);
-  padding: $margin*1.5 0;
-  @include docsFont();
+  padding: $margin*3 0;
 
-  @include responsify($lap_up) {
-    padding-bottom: $margin/2;
-  }
+  @include docsFont();
 
   @include responsify($lap_down) {
     padding: 36px 0 24px;
@@ -122,15 +121,11 @@
 
 
 %bucket-icons {
-  height: 152px;
+  height: 120px;
   background-repeat: no-repeat;
   background-position: center top;
+  background-size: auto 120px;
   margin-bottom: $margin;
-
-  @include responsify($portable_down) {
-    height: 120px;
-    background-size: auto 120px;
-  }
 
   @include responsify($palm_down) {
     height: 80px;
@@ -257,6 +252,8 @@
 // ==============================================================================
 .docs-text {
   @include docsFont();
+  color: $colorText;
+  line-height: 2em;
 }
 
 .docs-note {
@@ -268,14 +265,10 @@
 
 .docs-strong {
   font-weight: bold;
-  color: $orange;
 }
 
 .docs-link,
 .docs-link:visited {
-  border-bottom: 1px solid rgba($orangeLight,0.5);
-  color: inherit;
-  text-decoration: none;
   @include transition(all 0.1s ease-in-out);
 
   &:hover {
@@ -285,11 +278,9 @@
 }
 
 h2.doc-title {
-  color: $docGreen;
   font-size: 1.714em;
+  margin: 0 0 $margin;
   @include docsFont();
-  margin: 0;
-  padding: 0 0 0.5em;
 
   strong {
     display: inline-block;
@@ -298,9 +289,8 @@ h2.doc-title {
 }
 
 .docs-h4 {
-  color: $orange;
   font-size: 1.286em;
-  margin-bottom: 0.125em;
+
   @include docsFont();
 
   .docs-nav & {
@@ -443,11 +433,6 @@ ul.tabs li.current a {
 }
 
 
-// ==============================================================================
-// Prettyprint
-// ==============================================================================
-.pln{color:#000}@media screen{.str{color:#51ab62}.kwd{color:#008}.com{color:#999988;font-style:italic;}.typ{color:#606}.lit{color:#066}.pun,.opn,.clo{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#51ab62}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun,.opn,.clo{color:#440}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}pre.prettyprint{font-size:0.875em;padding:0.5em 1em;}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}
-
 
 // ==============================================================================
 // General demo styles
@@ -456,13 +441,13 @@ ul.tabs li.current a {
   padding: 10px;
   font-size: 0.75em;
   text-align: center;
-  border: 1px dashed $beigeBorder;
   background-color: $beige;
 }
 
-.page-documentation {
+.docs-body {
   hr {
-    border-top: 1px solid #f1e8e2;
+    border-top: 1px solid $colorBorder;
+    margin: ($margin * 2) 0;
   }
 }
 

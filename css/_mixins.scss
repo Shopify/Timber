@@ -81,5 +81,8 @@ $old-ie: false !default;
  */
 @mixin docsFont() {
   font-family: $docsFont;
-  font-weight: 400;
+}
+
+@mixin docsFontHeadings() {
+  font-family: $docsFontHeadings;
 }
