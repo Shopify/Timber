@@ -1,6 +1,14 @@
 /*============================================================================
   #Helper Classes
 ==============================================================================*/
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both; }
+  *zoom: 1;
+}
+
 .display-table {
   display: table;
   table-layout: fixed;
