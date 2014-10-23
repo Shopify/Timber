@@ -2686,8 +2686,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 .docs-body {
   position: relative;
   background-color: #fff;
-  padding: 48px;
-  padding-left: 0; }
+  padding: 72px 48px; }
   .docs-body:after {
     content: "";
     display: block;
@@ -2699,11 +2698,19 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     background-color: #2d2722;
     margin-left: 24px;
     z-index: 1; }
+  @media (min-width: 1024px) {
+    .docs-body {
+      padding-left: 0; } }
+  @media (max-width: 1023px) {
+    .docs-body {
+      padding: 36px 0 36px 24px; } }
+
+.docs-nav ul {
+  margin-top: -12px; }
 
 .docs-nav-wrapper {
   color: #fff;
-  padding-top: 48px;
-  padding-left: 48px;
+  padding: 72px 0 0 48px;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   @media (max-width: 768px) {
     .docs-nav-wrapper {
@@ -2722,7 +2729,8 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     .docs-nav-wrapper a:visited.current-docs {
       color: #ffea00; }
   .docs-nav-wrapper .docs-h5 {
-    font-size: 1em; }
+    font-size: 1em;
+    margin-bottom: 12px; }
   .docs-nav-wrapper .docs-h5 a,
   .docs-nav-wrapper .docs-h5 a:visited {
     color: #ffc290;
@@ -2733,15 +2741,15 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     margin-bottom: 0.15em; }
 
 .docs-nav {
+  min-width: 220px;
+  padding-left: 36px;
   position: relative;
   z-index: 2;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
-  transform: translateZ(0);
-  padding-left: 24px;
-  min-width: 220px; }
+  transform: translateZ(0); }
   .docs-nav ul {
     margin: 0 0 1em;
     padding: 0; }
@@ -2758,7 +2766,10 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 .docs-text {
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #847C76;
-  line-height: 2em; }
+  line-height: 2em;
+  margin-bottom: 24px; }
+  .home-cta .docs-text {
+    color: #ffefb7; }
 
 .docs-strong {
   font-weight: bold; }
@@ -2774,7 +2785,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     border-bottom-color: transparent; }
 
 h2.doc-title {
-  font-size: 1.714em;
+  font-size: 2em;
   margin: 0 0 24px;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   h2.doc-title strong {
@@ -2782,6 +2793,7 @@ h2.doc-title {
     width: 60px; }
 
 .docs-h4, .docs-example {
+  color: #69635e;
   font-size: 1.286em;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   .docs-nav .docs-h4, .docs-nav .docs-example {
@@ -2894,7 +2906,7 @@ ul.tabs li.current a {
   margin: 24px 0; }
 .docs-body hr {
   border-top: 1px solid #efefef;
-  margin: 48px 0; }
+  margin: 72px 0; }
 
 .overflow-auto {
   overflow: auto; }

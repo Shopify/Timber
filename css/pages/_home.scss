@@ -153,8 +153,7 @@
 .docs-body {
   position: relative;
   background-color: #fff;
-  padding: ($margin * 2);
-  padding-left: 0;
+  padding: ($margin * 3) ($margin * 2);
 
   &:after {
     content: "";
@@ -168,12 +167,25 @@
     margin-left: $margin;
     z-index: 1;
   }
+
+  @include responsify($desk_up) {
+    padding-left: 0;
+  }
+
+  @include responsify( $portable_down ) {
+    padding: ($margin * 1.5) 0 ($margin * 1.5) $margin;
+  } 
+}
+
+.docs-nav {
+  ul {
+    margin-top: (-$margin / 2);
+  }
 }
 
 .docs-nav-wrapper {
   color: #fff;
-  padding-top: $margin * 2;
-  padding-left: $margin * 2;
+  padding: ($margin * 3) 0 0 ($margin * 2);
 
   @include docsFont();
 
@@ -199,6 +211,7 @@
 
   .docs-h5 {
     font-size: 1em;
+    margin-bottom: ($margin / 2);
   }
 
   .docs-h5 a,
@@ -216,11 +229,12 @@
 // Docs Nav
 // ==============================================================================
 .docs-nav {
+  min-width: 220px;
+  padding-left: ($margin * 1.5);
   position: relative;
   z-index: 2;
+
   @include transform(translateZ(0));
-  padding-left: $margin;
-  min-width: 220px;
 
   ul {
     margin: 0 0 1em;
@@ -252,6 +266,11 @@
   @include docsFont();
   color: $colorText;
   line-height: 2em;
+  margin-bottom: $margin;
+
+  .home-cta & {
+    color: $textOnOrange;
+  }
 }
 
 .docs-strong {
@@ -269,7 +288,7 @@
 }
 
 h2.doc-title {
-  font-size: 1.714em;
+  font-size: 2em;
   margin: 0 0 $margin;
   @include docsFont();
 
@@ -280,6 +299,7 @@ h2.doc-title {
 }
 
 .docs-h4 {
+  color: $colorTextHeader;  
   font-size: 1.286em;
 
   @include docsFont();
@@ -444,7 +464,7 @@ ul.tabs li.current a {
 
   hr {
     border-top: 1px solid $colorBorder;
-    margin: ($margin * 2) 0;
+    margin: ($margin * 3) 0;
   }
 }
 
