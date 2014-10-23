@@ -2678,8 +2678,8 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 .docs-body {
   position: relative;
   background-color: #fff;
-  padding-top: 48px;
-  padding-bottom: 48px; }
+  padding: 48px;
+  padding-left: 0; }
   .docs-body:after {
     content: "";
     display: block;
@@ -2695,6 +2695,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 .docs-nav-wrapper {
   color: #fff;
   padding-top: 48px;
+  padding-left: 48px;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   @media (max-width: 768px) {
     .docs-nav-wrapper {
@@ -2741,7 +2742,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     .docs-nav > ul.current-section {
       display: block; }
   .docs-nav li {
-    margin: 0; }
+    margin: 0 0 6px; }
   .docs-nav a strong {
     display: inline-block;
     width: 40px; }
@@ -2881,7 +2882,8 @@ ul.tabs li.current a {
 
 .docs-body pre,
 .docs-body code {
-  margin-bottom: 24px; }
+  font-size: 12px;
+  margin: 24px 0; }
 .docs-body hr {
   border-top: 1px solid #efefef;
   margin: 48px 0; }

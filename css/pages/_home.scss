@@ -153,8 +153,8 @@
 .docs-body {
   position: relative;
   background-color: #fff;
-  padding-top: $margin*2;
-  padding-bottom: $margin*2;
+  padding: ($margin * 2);
+  padding-left: 0;
 
   &:after {
     content: "";
@@ -172,7 +172,9 @@
 
 .docs-nav-wrapper {
   color: #fff;
-  padding-top: $margin*2;
+  padding-top: $margin * 2;
+  padding-left: $margin * 2;
+
   @include docsFont();
 
   @include responsify( $lap_down ) {
@@ -234,7 +236,7 @@
   }
 
   li {
-    margin: 0;
+    margin: 0 0 ($margin / 4);
   }
 
   a strong {
@@ -436,7 +438,8 @@ ul.tabs li.current a {
 .docs-body {
   pre,
   code {
-    margin-bottom: $margin;
+    font-size: 12px;
+    margin: $margin 0;
   }
 
   hr {
