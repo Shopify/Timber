@@ -5,8 +5,8 @@ module.exports = (grunt) ->
   cssimport = require 'gulp-cssimport'
   paths =
     css: 'stylesheets/**/*.*'
-    images: 'assets/*.{png,jpg,gif,svg}'
-    dest: 'assets/'
+    images: 'theme/assets/*.{png,jpg,gif,svg}'
+    dest: 'theme/assets/'
 
   grunt.initConfig
 
@@ -24,6 +24,7 @@ module.exports = (grunt) ->
     # Shopify theme_gem methods
     exec:
       theme_watch:
+        cwd: paths.dest
         command: 'bundle exec theme watch'
 
     # File manipulation
@@ -31,7 +32,7 @@ module.exports = (grunt) ->
       concat: ->
         return gulp.src(paths.css)
           .pipe(cssimport())
-          .pipe(gulp.dest('assets/'))
+          .pipe(gulp.dest(paths.dest))
 
     imagemin:
       dynamic:
@@ -65,13 +66,13 @@ module.exports = (grunt) ->
           archive: '<%= pkg.name %>.zip'
         files: [
           src: [
-            'assets/*'
-            'config/*'
-            'layout/*'
-            'locales/*'
-            'snippets/*'
-            'templates/*'
-            'templates/customers/*'
+            'theme/assets/*'
+            'theme/config/*'
+            'theme/layout/*'
+            'theme/locales/*'
+            'theme/snippets/*'
+            'theme/templates/*'
+            'theme/templates/customers/*'
           ]
         ]
 
