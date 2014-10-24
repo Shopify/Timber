@@ -40,6 +40,7 @@ Thumbs.db
 # Custom #
 ######################
 *.sass-cache*
+/node_modules
 config.yml
 /_site
 assets/logo.png
