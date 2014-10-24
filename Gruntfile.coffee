@@ -6,6 +6,7 @@ module.exports = (grunt) ->
   paths =
     css: 'stylesheets/**/*.*'
     images: 'theme/assets/*.{png,jpg,gif,svg}'
+    theme: 'theme/'
     dest: 'theme/assets/'
 
   grunt.initConfig
@@ -24,7 +25,7 @@ module.exports = (grunt) ->
     # Shopify theme_gem methods
     exec:
       theme_watch:
-        cwd: paths.dest
+        cwd: paths.theme
         command: 'bundle exec theme watch'
 
     # File manipulation
