@@ -1039,20 +1039,6 @@ html input[disabled] {
   -moz-appearance: none;
   border-radius: $radius;
 
-  &.btn--small {
-    padding: 4px 5px;
-    font-size: em(12px);
-  }
-
-  &.btn--large {
-    padding: 12px 15px;
-    font-size: em(16px);
-  }
-
-  &.btn--full {
-    width: 100%;
-  }
-
   /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
   color: $colorBtnPrimaryText;
@@ -1076,8 +1062,8 @@ html input[disabled] {
   }
 }
 
-.btn-secondary,
-input.btn-secondary {
+.btn--secondary,
+input.btn--secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
 
@@ -1091,6 +1077,20 @@ input.btn-secondary {
    background-color: $colorBtnSecondaryActive;
    color: $colorBtnSecondaryText;
   }
+}
+
+.btn--small {
+  padding: 4px 5px;
+  font-size: em(12px);
+}
+
+.btn--large {
+  padding: 12px 15px;
+  font-size: em(16px);
+}
+
+.btn--full {
+  width: 100%;
 }
 
 /*================ Force an input/button to look like a text link ================*/
