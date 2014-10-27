@@ -285,6 +285,15 @@
   }
 }
 
+.docs-text--note {
+  @extend .docs-text;
+
+  background-color: $yellowLight;
+  border: 1px solid $yellowLightBorder;
+  font-size: 0.875em;
+  padding: ($margin / 4) ($margin / 2);
+}
+
 .docs-text--source {
   @extend .docs-text;
 

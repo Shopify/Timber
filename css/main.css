@@ -2784,13 +2784,19 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     display: inline-block;
     width: 30px; }
 
-.docs-text, .docs-text--source {
+.docs-text, .docs-text--note, .docs-text--source {
   color: #847C76;
   line-height: 2em;
   margin-bottom: 18px;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  .home-cta .docs-text, .home-cta .docs-text--source {
+  .home-cta .docs-text, .home-cta .docs-text--note, .home-cta .docs-text--source {
     color: #ffefb7; }
+
+.docs-text--note {
+  background-color: #faefce;
+  border: 1px solid #f5e0a0;
+  font-size: 0.875em;
+  padding: 6px 12px; }
 
 .docs-text--source {
   background-color: #eef6e3;

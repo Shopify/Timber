@@ -485,8 +485,8 @@ $breakpoints: (
           HELPER CLASSES
         ===================================== -->
         <h2 class="doc-title grid-title" id="helper-classes"><strong>2.4 </strong>Helper Classes</h2>
+        <p class="docs-text--note"><strong class="docs-strong">Note:</strong> These helper classes use <code>!important</code> to override any previous styling.</p>
         <p class="docs-text">Each breakpoint you define as part of <code>$breakpoints</code> in <strong class="docs-strong">timber.scss</strong> will have helper classes with the same names generated. Let's work with our default breakpoints:</p>
-        <p class="docs-text"><strong class="docs-strong">Note:</strong> These helper classes use <code>!important</code> to override any previous styling.</p>
 
         <div id="helper-classes-visibility" class="overflow-auto">
           <table class="docs-table">
@@ -636,8 +636,8 @@ $breakpoints: (
 
         <h4 class="docs-h4">Breakpoint Mixin</h4>
         <p class="docs-text--source">Mixin source: <a href="http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/" class="docs-link">http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/</a></p>
+        <p class="docs-text--note"><strong class="docs-strong">Note:</strong> Standard media queries will obviously work as well if you'd rather not use the <code>at-query</code> mixin.</p>
         <p class="docs-text">Use this simple mixin to create media queries. Breakpoints are defined under <strong>Breakpoint and Grid Variables</strong> in <strong class="docs-strong">timber.scss.liquid</strong>. This mixin can wrap class declarations (<strong class="docs-strong">Example 1</strong> in Code tab), or be placed within them (<strong class="docs-strong">Example 2</strong> in Code tab).</p>
-        <p class="docs-text"><strong class="docs-strong">Note:</strong> Standard media queries will obviously work as well if you'd rather not use the <code>at-query</code> mixin.</p>
 
 <pre>
 @mixin at-query($constraint, $viewport1, $viewport2: null) { ... }
@@ -805,10 +805,12 @@ Output:
         ===================================== -->
         <h2 class="doc-title module-title" id="pagination"><strong>3.1 </strong>Pagination</h2>
         <p class="docs-text--source">Documentation - <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/themes/liquid-variables/paginate</a></p>
+        <p class="docs-text--note"><strong>Note:</strong> The <code>paginate</code> liquid tag can limit how many articles are shown per page by wrapping the <strong>article loop</strong> with it.</p>
         <p class="docs-text">Pagination will only work when you're trying to access an available object. The snippets below paginates through the <strong class="docs-strong">blogs.news.articles</strong> object, so would only function properly on <strong class="docs-strong">blog.liquid</strong>. The code lives in <strong class="docs-strong">snippet/pagination-custom</strong>. View the documentation for <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">other areas that can be paginated</a>.</p>
-        <p class="docs-text"><strong>Note:</strong> The <code>paginate</code> liquid tag can limit how many articles are shown per page by wrapping the <strong>article loop</strong> with it.</p>
 
         <div id="pagination-examples">
+          <hr class="hr--docsclear">
+
           <h4 class="docs-h4">Default</h4>
           <div class="pagination">
             <p><span class="page current">1</span>
@@ -1044,7 +1046,7 @@ Output:
           AJAXIFY CART
         ===================================== -->
         <h2 class="doc-title js-title" id="ajax-cart"><strong>4.1 </strong>Ajaxify Cart</h2>
-        <p class="docs-text"><strong class="docs-strong">Note:</strong> cart.liquid is still a required template and its markup structures the cart in the drawer/modal.</p>
+        <p class="docs-text--note"><strong class="docs-strong">Note:</strong> cart.liquid is still a required template and its markup structures the cart in the drawer/modal.</p>
 
         <p class="docs-text">Using the Ajaxify Cart plugin allows a user to add a product to their cart without leaving the current page. The cart will appear as a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=drawer" class="docs-link">drawer</a> from the top of the page, a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=modal" class="docs-link">modal</a>, or an <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=flip" class="docs-link">inline confirmation</a>.</p>
 
@@ -1452,8 +1454,8 @@ jQuery(function($) {
         <hr class="hr--docsclear">
 
         <h4 class="docs-h4">Invisible Labels</h4>
+        <p class="docs-text--note"><strong class="docs-strong">Note:</strong> The placeholder attribute only works in IE10+, so invisible labels are disabled in IE9 and below.</p>
         <p class="docs-text">Add a class of <code>hidden-label</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
-        <p class="docs-text"><strong class="docs-strong">Note:</strong> The placeholder attribute only works in IE10+, so invisible labels are disabled in IE9 and below.</p>
 
         <div id="invisiblelabels-example">
           <form class="form-horizontal">
