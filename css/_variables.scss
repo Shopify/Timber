@@ -40,6 +40,7 @@ $yellow: #ffea00;
 
 $docGreen: #86bf19;
 $docGreenLight: #eef6e3;
+$docGreenLightBorder: darken($docGreenLight,10%);
 
 $colorBGMeta: #efefef;
 $colorBGMetaBorder: #d3c8bf;
@@ -52,7 +53,8 @@ $bgOrange: #ff7e00;
 
 $colorBorder: #efefef;
 $colorText: #847C76;
-$colorTextHeader: darken($colorText,10%);
+$colorTextHeader: #8e340b;
+$colorTextHeaderLight: lighten(#2d2722,10%);
 
 $colorLink: #2d96ac;
 $colorHighlight: #d2e8bc;

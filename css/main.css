@@ -2376,7 +2376,10 @@ label.error {
 
 .pagewidth {
   max-width: 1200px;
-  padding: 0 24px; }
+  padding: 0 72px; }
+  @media (max-width: 1023px) {
+    .pagewidth {
+      padding: 0 24px; } }
 
 .pagemargin {
   padding-left: 24px;
@@ -2565,7 +2568,7 @@ html, body {
   .atv {
     color: #060; } }
 pre.prettyprint {
-  padding: 48px; }
+  padding: 24px 36px; }
 
 ol.linenums {
   margin-top: 0;
@@ -2692,9 +2695,9 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
   overflow: hidden; }
 
 .docs-body {
-  position: relative;
   background-color: #fff;
-  padding: 72px 48px; }
+  padding: 72px 48px 72px 0;
+  position: relative; }
   .docs-body:after {
     content: "";
     display: block;
@@ -2706,12 +2709,12 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     background-color: #2d2722;
     margin-left: 24px;
     z-index: 1; }
-  @media (min-width: 1024px) {
-    .docs-body {
-      padding-left: 0; } }
   @media (max-width: 1023px) {
     .docs-body {
-      padding: 36px 0 36px 24px; } }
+      padding: 48px 24px 48px 48px; } }
+  @media (max-width: 480px) {
+    .docs-body {
+      padding: 24px; } }
 
 .docs-nav ul {
   margin-top: -12px; }
@@ -2720,6 +2723,9 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
   color: #fff;
   padding: 72px 0 0 48px;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  @media (max-width: 1023px) {
+    .docs-nav-wrapper {
+      padding: 48px 0 0 24px; } }
   @media (max-width: 768px) {
     .docs-nav-wrapper {
       display: none; } }
@@ -2769,15 +2775,21 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     margin: 0 0 6px; }
   .docs-nav a strong {
     display: inline-block;
-    width: 40px; }
+    width: 30px; }
 
-.docs-text {
-  font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+.docs-text, .docs-text--source {
   color: #847C76;
   line-height: 2em;
-  margin-bottom: 18px; }
-  .home-cta .docs-text {
+  margin-bottom: 18px;
+  font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .home-cta .docs-text, .home-cta .docs-text--source {
     color: #ffefb7; }
+
+.docs-text--source {
+  background-color: #eef6e3;
+  border: 1px solid #d7eabc;
+  font-size: 0.875em;
+  padding: 6px 12px; }
 
 .docs-strong {
   font-weight: bold; }
@@ -2795,15 +2807,17 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     color: #847C76; }
 
 h2.doc-title {
+  color: #e36f10;
   font-size: 2em;
   margin: 0 0 24px;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   h2.doc-title strong {
+    color: #ef5e1d;
     display: inline-block;
     width: 60px; }
 
 .docs-h4, .docs-example {
-  color: #69635e;
+  color: #4a4038;
   font-size: 1.286em;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   .docs-nav .docs-h4, .docs-nav .docs-example {
@@ -2813,8 +2827,10 @@ h2.doc-title {
     margin-top: 1.25em; }
 
 .docs-example {
-  font-size: 1em;
-  margin-bottom: 12px; }
+  color: #67594e;
+  font-size: 0.875em;
+  text-transform: uppercase;
+  margin: 12px 0; }
 
 .docs-table {
   margin: 24px 0 48px;
@@ -2823,7 +2839,7 @@ h2.doc-title {
   .docs-table th, .docs-table td {
     padding: 8px; }
   .docs-table tr:nth-child(2n) {
-    background-color: #fcf5f0; }
+    background-color: #fcfcfc; }
   .docs-table th {
     font-weight: bold;
     background-color: #efefef; }
@@ -2903,22 +2919,50 @@ ul.tabs li.current a {
   padding: 15px;
   margin: 0 0 24px 0; }
 
-.grid-demo {
+.grid-demo, .grid-demo--aftercode {
   background-color: #efefef;
   font-size: 0.75em;
-  margin-bottom: 24px;
   padding: 10px;
   text-align: center; }
 
-.docs-body pre,
+.grid-demo--aftercode {
+  margin: -12px 0 24px; }
+  @media (min-width: 1024px) {
+    .grid-demo--aftercode {
+      margin: -36px 0 48px; } }
+
+.grid-example {
+  margin: 24px 0; }
+  @media (min-width: 1024px) {
+    .grid-example {
+      margin: 48px 0; } }
+
 .docs-body code {
+  padding: 4px 6px; }
+.docs-body code,
+.docs-body pre {
   background-color: #efefef;
   border: 1px solid #e2e2e2;
   font-size: 12px;
   margin: 24px 0; }
-.docs-body hr {
+  @media (min-width: 1024px) {
+    .docs-body code,
+    .docs-body pre {
+      margin: 48px 0; } }
+.docs-body .hr--docshr {
   border-top: 1px solid #efefef;
   margin: 72px 0; }
+  @media (max-width: 1023px) {
+    .docs-body .hr--docshr {
+      margin: 48px 0; } }
+.docs-body .hr--docsclear {
+  margin: 24px 0;
+  border: 0; }
+  @media (min-width: 1024px) {
+    .docs-body .hr--docsclear {
+      margin: 48px 0; } }
+.docs-body ul.disc {
+  margin-left: 40px; }
 
 .overflow-auto {
   overflow: auto; }

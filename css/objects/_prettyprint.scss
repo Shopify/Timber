@@ -91,7 +91,7 @@
 }
 
 pre.prettyprint {
-  padding: $margin * 2;
+  padding: $margin ($margin * 1.5);
 }
 
 ol.linenums {

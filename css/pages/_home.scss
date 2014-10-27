@@ -158,9 +158,9 @@
 }
 
 .docs-body {
-  position: relative;
   background-color: #fff;
-  padding: ($margin * 3) ($margin * 2);
+  padding: ($margin * 3) ($margin * 2) ($margin * 3) 0;
+  position: relative;
 
   &:after {
     content: "";
@@ -175,12 +175,12 @@
     z-index: 1;
   }
 
-  @include responsify($desk_up) {
-    padding-left: 0;
-  }
-
   @include responsify( $portable_down ) {
-    padding: ($margin * 1.5) 0 ($margin * 1.5) $margin;
+    padding: ($margin * 2) $margin ($margin * 2) ($margin * 2);
+  } 
+
+  @include responsify( $palm_down ) {
+    padding: $margin;
   } 
 }
 
@@ -195,6 +195,10 @@
   padding: ($margin * 3) 0 0 ($margin * 2);
 
   @include docsFont();
+
+  @include responsify( $portable_down ) {
+    padding: ($margin * 2) 0 0 $margin;
+  }
 
   @include responsify( $lap_down ) {
     display: none;
@@ -262,7 +266,7 @@
 
   a strong {
     display: inline-block;
-    width: 40px;
+    width: 30px;
   }
 }
 
@@ -270,14 +274,24 @@
 // Docs Typography
 // ==============================================================================
 .docs-text {
-  @include docsFont();
   color: $colorText;
   line-height: 2em;
   margin-bottom: ($margin * 0.75);
 
+  @include docsFont();
+
   .home-cta & {
     color: $textOnOrange;
   }
+}
+
+.docs-text--source {
+  @extend .docs-text;
+
+  background-color: $docGreenLight;
+  border: 1px solid $docGreenLightBorder;
+  font-size: 0.875em;
+  padding: ($margin / 4) ($margin / 2);
 }
 
 .docs-strong {
@@ -297,18 +311,21 @@
 }
 
 h2.doc-title {
+  color: $orangeDark;
   font-size: 2em;
   margin: 0 0 $margin;
+
   @include docsFont();
 
   strong {
+    color: $orange;
     display: inline-block;
     width: 60px;
   }
 }
 
 .docs-h4 {
-  color: $colorTextHeader;  
+  color: $colorTextHeaderLight;
   font-size: 1.286em;
 
   @include docsFont();
@@ -330,8 +347,10 @@ h2.doc-title {
 .docs-example {
   @extend .docs-h4;
   
-  font-size: 1em;
-  margin-bottom: ($margin / 2);
+  color: lighten($colorTextHeaderLight,10%);
+  font-size: 0.875em;
+  text-transform: uppercase;
+  margin: ($margin / 2) 0;
 }
 
 
@@ -349,7 +368,7 @@ h2.doc-title {
   }
 
   tr:nth-child(2n) {
-    background-color: #fcf5f0;
+    background-color: lighten($colorBGMeta,5%);
   }
 
   th {
@@ -461,23 +480,65 @@ ul.tabs li.current a {
 .grid-demo {
   background-color: $colorBGMeta;
   font-size: 0.75em;
-  margin-bottom: $margin;
   padding: 10px;
   text-align: center;
 }
 
+.grid-demo--aftercode {
+  @extend .grid-demo;
+
+  margin: -($margin / 2) 0 $margin;
+
+  @include responsify( $desk_up ) {
+    margin: -($margin * 1.5) 0 ($margin * 2);
+  }
+}
+
+.grid-example {
+  margin: $margin 0;
+
+  @include responsify( $desk_up ) {
+    margin: ($margin * 2) 0;
+  }  
+}
+
 .docs-body {
-  pre,
   code {
+    padding: ($margin / 6) ($margin / 4);
+  }
+
+  code,
+  pre {
     background-color: $colorBGMeta;
     border: 1px solid $colorBGMetaDark;
     font-size: 12px;
     margin: $margin 0;
+
+    @include responsify( $desk_up ) {
+      margin: ($margin * 2) 0;
+    }
   }
 
-  hr {
+  .hr--docshr {
     border-top: 1px solid $colorBorder;
     margin: ($margin * 3) 0;
+
+    @include responsify( $portable_down ) {
+      margin: ($margin * 2) 0;
+    }
+  }
+
+  .hr--docsclear {
+    margin: $margin 0;
+    border: 0;
+
+    @include responsify( $desk_up ) {
+      margin: ($margin * 2) 0;
+    }
+  }
+
+  ul.disc {
+    margin-left: 40px;
   }
 }
 

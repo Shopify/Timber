@@ -62,7 +62,7 @@ version: v1.3.2
         <h2 class="doc-title gettingstarted-title" id="who-for"><strong>1.1 </strong>Who Is This For</h2>
         <p class="docs-text">Timber is a front-end framework which makes building Shopify themes quick and easy. It can be used by theme creators of any skill level for themes of any scope. Seasoned pros and newbies alike can benefit from the starter templates, liquid markup, modules, and CSS frameworks provided in Timber.</p>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           WHAT COMES WITH TIMBER
@@ -85,13 +85,13 @@ version: v1.3.2
         <h4 class="docs-h4">Other Ecommerce Features</h4>
         <p class="docs-text"><a href="http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/add-a-reorder-drop-down-menu-to-a-collection-page" class="docs-link">Collection sorting</a>, <a href="https://dev.twitter.com/docs/cards/types/product-card" class="docs-link">Twitter Cards</a>, <a href="http://www.shopify.com/blog/14862781-pinterest-rich-pins-now-automatically-enabled-for-shopify-merchants" class="docs-link">Pinterest Rich Pins</a>, and <a href="https://schema.org/Product" class="docs-link">SEO-friendly Scheme.org tags</a>.</p>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           DOWNLOAD TIMBER
         ===================================== -->
         <h2 class="doc-title gettingstarted-title" id="get-started"><strong>1.3 </strong>Download Timber</h2>
-        <p class="docs-text"><a href="https://github.com/Shopify/Timber/archive/{{ page.version }}.zip" class="docs-link" data-track="Download" data-version="{{ page.version }}">Download Timber.zip <strong class="docs-strong">{{ page.version }}</strong></a> or clone the latest master branch from <a href="https://github.com/Shopify/Timber" class="docs-link">GitHub</a>:</p>
+        <p class="docs-text">Download <a href="https://github.com/Shopify/Timber/archive/{{ page.version }}.zip" class="docs-link" data-track="Download" data-version="{{ page.version }}">Timber.zip <strong class="docs-strong">{{ page.version }}</strong></a> or clone the latest master branch from the <a href="https://github.com/Shopify/Timber" class="docs-link">GitHub</a> repo:</p>
 <pre>
 git clone https://github.com/Shopify/Timber.git
 </pre>
@@ -102,38 +102,22 @@ git clone https://github.com/Shopify/Timber.git
             <p class="docs-text">Shopify Timber tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android.</p>
           </div>
           <div class="grid-item one-half small--one-whole">
-            <h4 class="docs-h4">Selling Shopify Themes</h4>
-            <p class="docs-text">You can sell your theme in <a href="https://themes.shopify.com?utm_source=Timber&utm_medium=os" class="docs-link">Shopify's Theme Store</a> by following our <a href="https://themes.shopify.com/services/themes/guidelines?utm_source=Timber&utm_medium=os" class="docs-link">Guideline Checklist</a>. You can also earn 20% of each customer’s bill that you refer to Shopify by enrolling in the <a href="http://www.shopify.com/partners?utm_source=Timber&utm_medium=os" class="docs-link">Shopify Partner Program</a>.</p>
+            <h4 class="docs-h4">Demo Store</h4>
+            <p class="docs-text">The demo has fake products inserted so you can see what a populated site would look like. To see what your brand new site will look like when you install the theme, check out our <a href="http://timber-demo-empty.myshopify.com?utm_source=Timber&utm_medium=os" class="docs-link" data-track="Demo Empty">empty store demo</a>.</p>
           </div>
         </div>
 
-        <hr>
-
-        <!-- =====================================
-          DEMO STORE
-        ===================================== -->
-        <h2 class="doc-title gettingstarted-title" id="demos"><strong>1.4 </strong>Demo Store</h2>
-        <div class="grid">
-          <div class="grid-item large--two-thirds">
-            <p class="docs-text">Enough jibber-jabber. Check out <a href="https://timber-demo.myshopify.com?utm_source=Timber&utm_medium=os" title="View Timber Theme" class="docs-link" data-track="Demo">Timber's Demo Store</a> for the full experience of what you'll download. The demo has fake products inserted so you can see what a populated site would look like. To see what your brand new site will look like when you install the theme, check out our <a href="http://timber-demo-empty.myshopify.com?utm_source=Timber&utm_medium=os" class="docs-link" data-track="Demo Empty">empty store demo</a>.</p>
-          </div>
-          <div class="grid-item large--one-third">
-            <a href="https://timber-demo.myshopify.com?utm_source=Timber&utm_medium=os" title="View Demo Store" class="btn-timber-small full" data-track="Demo">View Demo Store</a>
-          </div>
-        </div>
-
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           THEME EDITING
         ===================================== -->
-        <h2 class="doc-title gettingstarted-title" id="theme-editing"><strong>1.5 </strong>Theme Editing</h2>
+        <h2 class="doc-title gettingstarted-title" id="theme-editing"><strong>1.4 </strong>Theme Editing</h2>
         <p class="docs-text">Once you've downloaded your theme it's time to get it onto your store. Either upload the zip to <code>your-url.com/admin/themes</code> or use one of the programs below. Either way, you can use your text editor of choice.</p>
-
         <div class="grid">
           <div class="grid-item one-half small--one-whole">
             <h4 class="docs-h4">Theme Gem</h4>
-            <p class="docs-text">If you're comfortable with the command line, use the <a href="https://github.com/Shopify/shopify_theme" class="docs-link">Shopify Theme Gem</a> on OSX or Windows to make live changes to your theme with ease.</p>
+            <p class="docs-text">If you're comfortable with the command line, use the <a href="https://github.com/Shopify/shopify_theme" class="docs-link">Shopify Theme Gem</a> on OSX or Windows to upload changes to your theme with ease.</p>
           </div>
           <div class="grid-item one-half small--one-whole">
             <h4 class="docs-h4">Desktop Theme Editor</h4>
@@ -141,7 +125,15 @@ git clone https://github.com/Shopify/Timber.git
           </div>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
+
+        <!-- =====================================
+          SELL YOUR THEME
+        ===================================== -->
+        <h2 class="doc-title gettingstarted-title" id="demos"><strong>1.5 </strong>Sell Your Theme</h2>
+        <p class="docs-text">You can sell your theme in <a href="https://themes.shopify.com?utm_source=Timber&utm_medium=os" class="docs-link">Shopify's Theme Store</a> by following our <a href="https://themes.shopify.com/services/themes/guidelines?utm_source=Timber&utm_medium=os" class="docs-link">Guideline Checklist</a>. You can also earn 20% of each customer’s bill that you refer to Shopify by enrolling in the <a href="http://www.shopify.com/partners?utm_source=Timber&utm_medium=os" class="docs-link">Shopify Partner Program</a>.</p>
+
+        <hr class="hr--docshr">
 
         <!-- =====================================
           SASS
@@ -153,7 +145,7 @@ git clone https://github.com/Shopify/Timber.git
         <h4 class="docs-h4">Imports and Mixins</h4>
         <p class="docs-text">You cannot use <code>@imports</code> in a Sass liquid file. That means no dependence on Compass, Bourbon or similar Sass frameworks. A section labeled <strong>Sass Mixins</strong> has been included in <strong class="docs-strong">timber.scss.liquid</strong> with a few <a href="#sass-mixins" title="Sass mixins" class="docs-link">helpers</a> to start you off.</p>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           Media Queries
@@ -167,8 +159,6 @@ git clone https://github.com/Shopify/Timber.git
           <li>Large: 769px</li>
         </ul>
 
-        <h4 class="docs-h4">Code</h4>
-        
         <p class="docs-text"><code>$breakpoints</code> is broken down into four lines, each a breakpoint: <strong>'small'</strong>, <strong>'medium'</strong>, <strong>'medium-down'</strong>, and <strong>'large'</strong>. These are the names used in your classes to define each column width. A <code>.grid-item</code> div with a class of <code>large--one-half</code> will span 50% of its parent above 769px. Any screen size below that breakpoint will default to (mobile-first) 100%.</p>
 <pre>
 $viewportIncrement: 1px;
@@ -190,7 +180,7 @@ $breakpoints: (
 );
 </pre>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           GRID
@@ -199,7 +189,7 @@ $breakpoints: (
 
         <p class="docs-text">This grid is based on <a href="https://github.com/csswizardry/csswizardry-grids" class="docs-link">csswizardry grids</a>, though with some slight modifications. Built with Sass, the grid is fully integrated into your <strong class="docs-strong">timber.scss.liquid</strong> stylesheet and has no external dependencies. <a href="#helper-classes" class="docs-link">Helper classes</a> are generated by custom functions added to default grid Sass. Class names are created based on the <code>$breakpoints</code> variable in <strong class="docs-strong">timber.scss.liquid</strong>.</p>
 
-        <div id="grid-example">
+        <div class="grid-example">
           <div class="grid">
 
             <div class="grid-item">
@@ -298,7 +288,7 @@ $breakpoints: (
           </div>
         </div>
 
-        <div id="grid-code">
+        <div class="grid-code">
 <pre>
 &lt;div class="grid"&gt;
 
@@ -489,7 +479,7 @@ $breakpoints: (
 }
 </pre>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           HELPER CLASSES
@@ -587,57 +577,56 @@ $breakpoints: (
         <div id="helper-classes-alignment">
           <h4 class="docs-h4">Basic Text Alignment</h4>
           <p class="docs-text">Basic helper classes to align an elements text.</p>
-          <p>
-            <code>.text-left</code><br>
-            <code>.text-right</code><br>
-            <code>.text-center</code>
-          </p>
+          <ul class="disc docs-text">
+            <li><code>.text-left</code></li>
+            <li><code>.text-right</code></li>
+            <li><code>.text-center</code></li>
+          </ul>
+
           <h4 class="docs-h4">Breakpoint-specific Text Alignment</h4>
           <p class="docs-text">Change text alignment at any breakpoint with the following class format:</p>
-          <p>
-            <code>.breakpoint</code> + <code>--text-left</code><br>
-            <code>.breakpoint</code> + <code>--text-right</code><br>
-            <code>.breakpoint</code> + <code>--text-center</code>
-          </p>
+          <ul class="disc docs-text">
+            <li><code>.breakpoint</code> + <code>--text-left</code></li>
+            <li><code>.breakpoint</code> + <code>--text-right</code></li>
+            <li><code>.breakpoint</code> + <code>--text-center</code></li>
+          </ul>
 
-          <h5 class="docs-h4">Example</h5>
 <pre>
 &lt;div class="large--text-center medium--text-right small--text-center"&gt;
   This will be center aligned on large devices, right aligned on medium-sized devices, and center aligned on small ones.
 &lt;/div&gt;
 </pre>
 
-          <div class="grid-demo large--text-center medium--text-right small--text-center">
+          <div class="grid-demo--aftercode large--text-center medium--text-right small--text-center">
             This will be center aligned on large devices, right aligned on medium-sized devices, and center aligned on small ones.
           </div>
         </div>
 
         <div id="helper-classes-floats" class="clearfix">
           <h4 class="docs-h4">Basic Floats</h4>
-          <p>
-            <code>.left</code><br>
-            <code>.right</code>
-          </p>
+          <ul class="disc docs-text">
+            <li><code>.left</code></li>
+            <li><code>.right</code></li>
+          </ul>
 
           <h4 class="docs-h4">Breakpoint-specific Floats</h4>
-          <p>
-            <code>.breakpoint</code> + <code>--left</code><br>
-            <code>.breakpoint</code> + <code>--right</code>
-          </p>
+          <ul class="disc docs-text">
+            <li><code>.breakpoint</code> + <code>--left</code></li>
+            <li><code>.breakpoint</code> + <code>--right</code></li>
+          </ul>
 
-          <h5>Example</h5>
 <pre>
 &lt;div class="large--right"&gt;
   This will float right on large screens, and not at all at other breakpoints.
 &lt;/div&gt;
 </pre>
 
-          <div class="grid-demo large--right medium--left" style="width: 50%;">
+          <div class="grid-demo--aftercode large--right medium--left" style="width: 50%;">
             This will float right on large screens, and not at all at other breakpoints.
           </div>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           SASS MIXINS
@@ -646,8 +635,8 @@ $breakpoints: (
         <p class="docs-text">Shopify liquid files don't support <code>@import</code>. This means you can't rely on helpers like Compass or Bourbon. Instead, there is a section called <strong>Sass Mixins</strong> in <strong class="docs-strong">timber.scss.liquid</strong> that provides a few of these helpers that you may be looking for.</p>
 
         <h4 class="docs-h4">Breakpoint Mixin</h4>
+        <p class="docs-text--source">Mixin source: <a href="http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/" class="docs-link">http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/</a></p>
         <p class="docs-text">Use this simple mixin to create media queries. Breakpoints are defined under <strong>Breakpoint and Grid Variables</strong> in <strong class="docs-strong">timber.scss.liquid</strong>. This mixin can wrap class declarations (<strong class="docs-strong">Example 1</strong> in Code tab), or be placed within them (<strong class="docs-strong">Example 2</strong> in Code tab).</p>
-        <p class="docs-text">Mixin source: <a href="http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/" class="docs-link">http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/</a></p>
         <p class="docs-text"><strong class="docs-strong">Note:</strong> Standard media queries will obviously work as well if you'd rather not use the <code>at-query</code> mixin.</p>
 
 <pre>
@@ -746,7 +735,6 @@ Output:
         </div>
 
         <div id="mixins-examples-code">
-          <p><strong class="docs-strong">Usage:</strong></p>
 <pre>
 Clearfix Input:
 .foo {
@@ -810,37 +798,36 @@ Output:
 </pre>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           PAGINATION
         ===================================== -->
         <h2 class="doc-title module-title" id="pagination"><strong>3.1 </strong>Pagination</h2>
-        <p class="docs-text">Documentation - <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/themes/liquid-variables/paginate</a></p>
-        <p class="docs-text">Pagination will only work when you're trying to access an available object. The snippets below paginates through the <strong class="docs-strong">blogs.news.articles</strong> object, so would only function properly on <strong class="docs-strong">blog.liquid</strong>. View the documentation for <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">other areas that can be paginated</a>.</p>
-        <p class="docs-text">The <code>paginate</code> liquid tag can limit how many articles are shown per page by wrapping the <strong>article loop</strong> with it.</p>
-        <p class="docs-text">The code lives in <strong class="docs-strong">snippet/pagination-custom</strong>.</p>
+        <p class="docs-text--source">Documentation - <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/themes/liquid-variables/paginate</a></p>
+        <p class="docs-text">Pagination will only work when you're trying to access an available object. The snippets below paginates through the <strong class="docs-strong">blogs.news.articles</strong> object, so would only function properly on <strong class="docs-strong">blog.liquid</strong>. The code lives in <strong class="docs-strong">snippet/pagination-custom</strong>. View the documentation for <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">other areas that can be paginated</a>.</p>
+        <p class="docs-text"><strong>Note:</strong> The <code>paginate</code> liquid tag can limit how many articles are shown per page by wrapping the <strong>article loop</strong> with it.</p>
 
         <div id="pagination-examples">
-          <h4 class="docs-example">Example 1 - Default</h4>
+          <h4 class="docs-h4">Default</h4>
           <div class="pagination">
-            <span class="page current">1</span>
+            <p><span class="page current">1</span>
             <span class="page"><a href="#" title="">2</a></span>
-            <span class="next"><a href="#" title="">Next »</a></span>
+            <span class="next"><a href="#" title="">Next »</a></span></p>
           </div>
 
-          <hr class="hr--small">
+          <hr class="hr--docsclear">
 
-          <h4 class="docs-example">Example 2 - Replace default text</h4>
+          <h4 class="docs-h4">Replace default text</h4>
           <div class="pagination">
-            <span class="page current">1</span>
+            <p><span class="page current">1</span>
             <span class="page"><a href="#" title="">2</a></span>
-            <span class="next"><a href="#" title="">Older articles »</a></span>
+            <span class="next"><a href="#" title="">Older articles »</a></span></p>
           </div>
 
-          <hr class="hr--small">
+          <hr class="hr--docsclear">
 
-          <h4 class="docs-example">Example 3 - Custom</h4>
+          <h4 class="docs-h4">Custom</h4>
           <p class="docs-text">Place any template's pagination on any other template. Usually, pagination is defined to the current <code>&#123;%paginate%&#125;</code> context, so by adding in the <code>currentUrl</code> variable we make sure the links are pointing to the right pages.</p>
           <p class="docs-text">This example shows pagination for your blog articles, defined by <code>blog.news.articles</code>.</p>
           <p class="docs-text">Set a variable named <code>currentUrl</code> to <code>blogs.news.url</code> and all links will be relative to that template.</p>
@@ -918,15 +905,14 @@ Output:
 </pre>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           TAGS
         ===================================== -->
         <h2 class="doc-title module-title" id="tags"><strong>3.2 </strong>Tags</h2>
-        <p class="docs-text">Documentation - <a href="http://docs.shopify.com/themes/liquid-variables/article?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/themes/liquid-variables/article</a></p>
-        <p class="docs-text">Get an article's tags with a simple <code>for</code> loop. The example below also adds a comma after each tag, unless it's the last one.</p>
-        <p class="docs-text">The code lives in <strong class="docs-strong">snippet/tags-article</strong>.</p>
+        <p class="docs-text--source">Documentation - <a href="http://docs.shopify.com/themes/liquid-variables/article?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/themes/liquid-variables/article</a></p>
+        <p class="docs-text">Get an article's tags with a simple <code>for</code> loop. The example below also adds a comma after each tag, unless it's the last one. The code lives in <strong class="docs-strong">snippet/tags-article</strong>.</p>
 
         <div id="tags-example">
           <p>
@@ -947,13 +933,14 @@ Output:
 </pre>
         </div>
 
-            <hr>
+            <hr class="hr--docshr">
 
         <!-- =====================================
           BREADCRUMBS
         ===================================== -->
         <h2 class="doc-title module-title" id="breadcrumbs"><strong>3.3 </strong>Breadcrumbs</h2>
-        <p class="docs-text">Documentation - <a href="http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation</a></p>
+        <p class="docs-text--source">Documentation - <a href="http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation</a></p>
+
         <p class="docs-text">The code lives in <strong class="docs-strong">snippet/breadcrumb</strong>.</p>
 
         <div id="breadcrumbs-example">
@@ -1021,13 +1008,14 @@ Output:
 </pre>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           NEWSLETTER FIELD
         ===================================== -->
         <h2 class="doc-title module-title" id="newsletter"><strong>3.4 </strong>Newsletter Form</h2>
-        <p class="docs-text">Documentation - <a href="http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action</a></p>
+        <p class="docs-text--source">Documentation - <a href="http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action</a></p>
+
         <p class="docs-text"><a href="http://mailchimp.com/" title="Visit MailChimp.com"></a>MailChimp is the go-to newsletter service for Shopify. Use the link below to find your <strong class="docs-strong">MailChimp form action</strong> and insert it in your site settings.</p>
 
         <div id="newsletter-example">
@@ -1050,18 +1038,19 @@ Output:
 </pre>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           AJAXIFY CART
         ===================================== -->
         <h2 class="doc-title js-title" id="ajax-cart"><strong>4.1 </strong>Ajaxify Cart</h2>
-        <p class="docs-text">Using the Ajaxify Cart plugin allows a user to add a product to their cart without leaving the current page. The cart will appear as a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=drawer" class="docs-link">drawer</a> from the top of the page, a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=modal" class="docs-link">modal</a>, or an <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=flip" class="docs-link">inline confirmation</a>.</p>
         <p class="docs-text"><strong class="docs-strong">Note:</strong> cart.liquid is still a required template and its markup structures the cart in the drawer/modal.</p>
 
-        <div id="ajax-cart-parameters" class="overflow-auto">
-          <p class="docs-text">The cart plugin is enabled by simply calling <code>ajaxifyShopify.init({})</code> after jQuery is loaded. Pass in the parameters below to customize it.</p>
+        <p class="docs-text">Using the Ajaxify Cart plugin allows a user to add a product to their cart without leaving the current page. The cart will appear as a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=drawer" class="docs-link">drawer</a> from the top of the page, a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=modal" class="docs-link">modal</a>, or an <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=flip" class="docs-link">inline confirmation</a>.</p>
 
+          <p class="docs-text">The cart plugin is enabled by calling <code>ajaxifyShopify.init({})</code> after jQuery is loaded. Pass in the parameters below to customize it.</p>
+
+        <div id="ajax-cart-parameters" class="overflow-auto">
           <h4 class="docs-h4">Plugin Format</h4>
 <pre>
 ajaxifyShopify.init({ [options] })
@@ -1235,7 +1224,7 @@ jQuery(function($) {
 </pre>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           Start of Style Guide
@@ -1245,43 +1234,37 @@ jQuery(function($) {
           Typography
         ===================================== -->
         <h2 class="doc-title styleguide-title" id="typography"><strong>5.1 </strong>Typography</h2>
-        <div class="grid">
-          <div class="grid-item large--seven-twelfths">
+        
+        <h4 class="docs-h4">Headers and Body Text</h4>
+        <h1>Heading One</h1>
+        <h2>Heading Two</h2>
+        <h3>Heading Three</h3>
+        <h4>Heading Four</h4>
+        <h5>Heading Five</h5>
+        <h6>Heading Six</h6>
 
-            <h4 class="docs-h4">Paragraphs</h4>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
-            <p>Suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
+        <hr class="hr--docsclear">
 
-            <hr class="hr--small">
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
+        <p>Suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
 
-            <h4 class="docs-h4">Inline Styles</h4>
-            <ul class="disc">
-              <li><strong>Strong</strong></li>
-              <li><em>Emphasis</em></li>
-              <li><a href="#">Inline link</a></li>
-              <li><strike>Strike</strike></li>
-              <li><sup>Sup</sup></li>
-            </ul>
+        <ul class="disc">
+          <li><strong>Strong</strong></li>
+          <li><em>Emphasis</em></li>
+          <li><a href="#">Inline link</a></li>
+          <li><strike>Strike</strike></li>
+          <li><sup>Sup</sup></li>
+        </ul>
 
-          </div>
+        <hr class="hr--docsclear">
 
-          <div class="grid-item large--five-twelfths">
-
-            <h1>Heading One</h1>
-            <h2>Heading Two</h2>
-            <h3>Heading Three</h3>
-            <h4>Heading Four</h4>
-            <h5>Heading Five</h5>
-            <h6>Heading Six</h6>
-
-          </div>
-        </div>
-
-        <h4 class="docs-h4">Blockquote - Regular</h4>
+        <h4 class="docs-h4">Blockquotes</h4>
         <blockquote>
           <p>Eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
           <cite>The author of the quote</cite>
         </blockquote>
+
+        <hr class="hr--docsclear">
 
         <h4 class="docs-h4">List Types</h4>
         <table class="full">
@@ -1369,7 +1352,7 @@ jQuery(function($) {
             </tr>
         </table>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           Forms
@@ -1428,7 +1411,7 @@ jQuery(function($) {
 
         </div>
 
-        <hr class="hr--small">
+        <hr class="hr--docsclear">
 
         <h4 class="docs-h4">Horizontal</h4>
         <p class="docs-text">To make form elements flow inline, add a class of <code>.form-horizontal</code> to the parent.</p>
@@ -1466,7 +1449,7 @@ jQuery(function($) {
 </pre>
         </div>
 
-        <hr class="hr--small">
+        <hr class="hr--docsclear">
 
         <h4 class="docs-h4">Invisible Labels</h4>
         <p class="docs-text">Add a class of <code>hidden-label</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
@@ -1496,7 +1479,7 @@ jQuery(function($) {
 </pre>
         </div>
 
-        <hr class="hr--small">
+        <hr class="hr--docsclear">
 
         <h4 class="docs-h4">Input Groups</h4>
 
@@ -1512,7 +1495,7 @@ jQuery(function($) {
               </div>
             </div>
             <div class="grid-item large--one-half">
-              <h4 class="docs-example">Example 2 | Mailchimp Integration</h4>
+              <h4 class="docs-example">Example 2 - Mailchimp Integration</h4>
               <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
                 <input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field">
                 <span class="input-group-btn">
@@ -1532,7 +1515,7 @@ jQuery(function($) {
   &lt;input type="text" name="q" value="" placeholder="Placeholder" class="input-group-field"&gt;
 &lt;/div&gt;
 </pre>
-          <h4 class="docs-example">Example 2 | Mailchimp Integration</h4>
+          <h4 class="docs-example">Example 2 - Mailchimp Integration</h4>
 <pre>
 &lt;form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group"&gt;
   &lt;input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field"&gt;
@@ -1543,7 +1526,7 @@ jQuery(function($) {
 </pre>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           Buttons
@@ -1585,7 +1568,7 @@ jQuery(function($) {
 </pre>
         </div>
 
-        <hr>
+        <hr class="hr--docshr">
 
         <!-- =====================================
           Notes
@@ -1630,16 +1613,19 @@ jQuery(function($) {
         ===================================== -->
         <h2 class="doc-title styleguide-title" id="misc"><strong>5.5 </strong>Misc. Elements</h2>
         <h4 class="docs-h4">Horizontal Rules</h4>
-        <h6>Default <code>hr</code></h6>
+        <h4 class="docs-example">Default</h4>
+        <p><code>hr</code></p>
         <hr>
 
-        <h6>Invisible <code>hr.hr--clear</code></h6>
+        <h4 class="docs-example">Invisible</h4>
+        <p><code>hr.hr--clear</code></p>
         <hr class="hr--clear">
 
-        <h6>Small <code>hr.hr--small</code></h6>
+        <h4 class="docs-example">Small</h4>
+        <p><code>hr.hr--small</code></p>
         <hr class="hr--small">
 
-        <hr class="hr--clear">
+        <hr class="hr--docshr">
 
         <!-- =====================================
           Icon Font
@@ -1648,7 +1634,7 @@ jQuery(function($) {
         <p class="docs-text">Timber offers a basic icon font for social and payment icons. Import <strong class="docs-strong">assets/icons.json</strong> into <a href="http://icomoon.io/app">IcoMoon</a> to make any changes to the set. These icons are <a href="http://filamentgroup.com/lab/bulletproof_icon_fonts.html">bulletproof</a>, meaning they can have text fallbacks when <code>@font-face</code> isn't supported.</p>
 
         <div id="icons-example">
-          <p>Payment Icons</p>
+          <h4 class="docs-example">Payment Icons</h4>
           <ul class="inline-list icon-font-demo">
             <li>
               <div class="icon-fallback-text">
@@ -1736,7 +1722,7 @@ jQuery(function($) {
             </li>
           </ul>
 
-          <p>Social Icons</p>
+          <h4 class="docs-example">Social Icons</h4>
           <ul class="inline-list icon-font-demo">
             <li>
               <div class="icon-fallback-text">
@@ -1800,7 +1786,7 @@ jQuery(function($) {
             </li>
           </ul>
 
-          <p>General Icons</p>
+          <h4 class="docs-example">General Icons</h4>
           <ul class="inline-list icon-font-demo">
             <li>
               <div class="icon-fallback-text">
