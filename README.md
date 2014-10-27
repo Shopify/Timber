@@ -1,9 +1,9 @@
 Shopify Timber
 =====================
 
-Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
+Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and basic styles and modules for you to extend.
 
-Styling and customization is left up to you. Some base styles and helpers are included, but there is **no need to remove any code before you start**. Simply download and get designing.
+Styling and customization is left up to you. Some base styles and helpers are included, but there is **no need to remove any code before you start**. Simply download and begin designing.
 
 Designing a store for a client? Earn 20% revenue through our <a href="http://www.shopify.com/partners">Partner program<a/>.
 
@@ -12,6 +12,41 @@ Ways to Get Started
 - Download the [latest release](https://github.com/Shopify/Timber/releases)
 - Clone the repo `git clone https://github.com/Shopify/Timber.git`
 - Or install with [Bower](http://bower.io/) `bower install timber`
+
+Setup with Grunt
+---------------------
+Grunt is an optional layer for developing with Timber. To setup Grunt for Timber development, follow these steps:
+
+##### 1. Navigate to your local Timber files in Terminal
+##### 2. Install Grunt globally
+<small>You may need to preface the command below with `sudo` to use proper permissions
+```
+$ npm install -g grunt-cli
+```
+##### 3. Install required packages
+```
+$ npm install
+```
+##### 4. Bundle dependencies
+```
+$ npm install
+```
+##### 5. Insert private app keys
+Add your private app keys to `grunt-config-sample.json` and rename file to `grunt-config.json`. [Learn to make a private app](http://docs.shopify.com/api/authentication/creating-a-private-app).
+
+----------
+
+### Grunt Tasks
+`$ grunt`
+- Default task
+- Watches `stylesheets/` folder and concatenates styles into `theme/assets/timber.scss.liquid`
+- Automatically compresses image files in `assets/`
+- Uploads files in `theme/` to your store
+
+`$ grunt zip`
+- Concatenates stylesheets, compresses images, and creates a zip file with only the valid theme files
+
+If you don't want to use Grunt, simply use the contents of `/theme` for your development needs.
 
 Documentation
 ---------------------
