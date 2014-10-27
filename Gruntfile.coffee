@@ -6,34 +6,36 @@ module.exports = (grunt) ->
   paths =
     css: 'stylesheets/**/*.*'
     images: 'theme/assets/*.{png,jpg,gif,svg}'
-    theme: 'theme/'
-    dest: 'theme/assets/'
+    assets: 'assets/'
 
   grunt.initConfig
 
+    config: grunt.file.readJSON 'grunt-config.json'
     pkg: grunt.file.readJSON 'package.json'
+
+    shopify:
+      options:
+        api_key: '<%= config.private_api %>'
+        password: '<%= config.private_password %>'
+        url: '<%= config.shop_url %>'
+        theme: '<%= config.theme_id %>'
 
     # Helper methods
     notify:
-      build:
+      shopify:
         options:
-          message: 'Build complete'
+          title: 'Shopify'
+          message: 'Files finished uploading'
       zip:
         options:
-          message: 'Zip ready'
-
-    # Shopify theme_gem methods
-    exec:
-      theme_watch:
-        cwd: paths.theme
-        command: 'bundle exec theme watch'
+          message: 'Zip file created'
 
     # File manipulation
     gulp:
       concat: ->
         return gulp.src(paths.css)
           .pipe(cssimport())
-          .pipe(gulp.dest(paths.dest))
+          .pipe(gulp.dest(paths.assets))
 
     imagemin:
       dynamic:
@@ -41,9 +43,8 @@ module.exports = (grunt) ->
           optimizationLevel: 3
         files: [{
           expand: true
-          cwd: paths.dest
           src: ['*.{png,jpg,gif,svg}']
-          dest: paths.dest
+          dest: paths.assets
         }]
 
     # Action methods
@@ -51,12 +52,20 @@ module.exports = (grunt) ->
       styles:
         files: paths.css
         tasks: ['gulp']
-
-    concurrent:
-      options:
-        logConcurrentOutput: true
-      watch:
-        tasks: ['watch', 'exec']
+      images:
+        files: ['assets/*.{png,jpg,gif,svg}']
+        tasks: ['imagemin']
+      shopify:
+        files: [
+          'assets/*',
+          'config/*',
+          'layout/*',
+          'locales/*',
+          'snippets/*',
+          'templates/*',
+          'templates/customers/*'
+        ],
+        tasks: ['shopify', 'notify:shopify']
 
     clean: ['*.zip']
 
@@ -67,21 +76,19 @@ module.exports = (grunt) ->
           archive: '<%= pkg.name %>.zip'
         files: [
           src: [
-            'theme/assets/*'
-            'theme/config/*'
-            'theme/layout/*'
-            'theme/locales/*'
-            'theme/snippets/*'
-            'theme/templates/*'
-            'theme/templates/customers/*'
+            'assets/*'
+            'config/*'
+            'layout/*'
+            'locales/*'
+            'snippets/*'
+            'templates/*'
+            'templates/customers/*'
           ]
         ]
-
 
   # Load NPM task plugins
   require('load-grunt-tasks')(grunt)
 
   # Register tasks
-  grunt.registerTask 'default', ['concurrent:watch']
-  grunt.registerTask 'build', ['gulp', 'imagemin', 'notify:build']
+  grunt.registerTask 'default', ['watch']
   grunt.registerTask 'zip', ['gulp', 'imagemin', 'clean', 'compress', 'notify:zip']
