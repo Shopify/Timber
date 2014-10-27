@@ -21,15 +21,15 @@ Grunt is an optional layer for developing with Timber. To setup Grunt for Timber
 2. Install Grunt globally
 <small>You may need to preface the command below with `sudo` to use proper permissions</small>
 
-    $ npm install -g grunt-cli
+        $ npm install -g grunt-cli
 
 3. Install required packages
 
-    $ npm install
+        $ npm install
 
 4. Bundle dependencies
 
-      $ npm install
+        $ npm install
 
 5. Insert private app keys
 
