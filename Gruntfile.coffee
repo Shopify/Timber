@@ -64,7 +64,7 @@ module.exports = (grunt) ->
         files: paths.css
         tasks: ['gulp']
       images:
-        files: ['theme/assets/*.{png,jpg,gif,svg}']
+        files: [paths.images]
         tasks: ['imagemin']
       shopify:
         files: paths.allAssets,
