@@ -86,3 +86,7 @@ $old-ie: false !default;
 @mixin docsFontHeadings() {
   font-family: $docsFontHeadings;
 }
+
+@mixin docsFontHeadingsSpe() {
+  font-family: $docsFontHeadingsSpe;
+}

@@ -25,38 +25,45 @@ $border_radius: 3px;
 
 $docsFont: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $docsFontHeadings: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$docsFontHeadingsSpe: "Cabin","HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 
 // ==============================================================================
 // Colours
 // ==============================================================================
 
+// Text colours
+$textOnOrange: #ffefb7;
+
 $orange: #ef5e1d;
 $orangeLight: #e58b1a;
 $orangeDark: #e36f10;
-$textOnOrange: #ffefb7;
 
-$yellow: #ffea00;
-$yellowLight: #faefce;
-$yellowLightBorder: darken($yellowLight,10%);
+$text: #847C76;
+$textHeader: #8e340b;
+$textHeaderLight: lighten(#2d2722,10%);
 
-$docGreen: #86bf19;
-$docGreenLight: #eef6e3;
-$docGreenLightBorder: darken($docGreenLight,10%);
+// Links and highlights
+$link: #2d96ac;
+$highlight: #d2e8bc;
 
-$colorBGMeta: #efefef;
-$colorBGMetaBorder: #d3c8bf;
-$colorBGMetaLight: lighten($colorBGMeta,20%);
-$colorBGMetaDark: darken($colorBGMeta,5%);
+// Accent colours for backgrounds
+$yellow: #faefce;
+$yellowBorder: darken($yellow,10%);
 
-$buttonColor: #8cad32;
+$green: #86bf19;
+$greenLight: #eef6e3;
+$greenLightBorder: darken($greenLight,10%);
 
+// Background and meta colours
+$bgMeta: #f8f8f8;
+$bgMetaBorder: #d3c8bf;
+$bgMetaLight: lighten($bgMeta,20%);
+$bgMetaDark: darken($bgMeta,5%);
 $bgOrange: #ff7e00;
 
-$colorBorder: #efefef;
-$colorText: #847C76;
-$colorTextHeader: #8e340b;
-$colorTextHeaderLight: lighten(#2d2722,10%);
+// Buttons
+$button: #8cad32;
 
-$colorLink: #2d96ac;
-$colorHighlight: #d2e8bc;
+// Layout
+$border: #efefef;

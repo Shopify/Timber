@@ -2628,7 +2628,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
   font-size: 5em;
   font-weight: 600;
   margin-bottom: 0em;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  font-family: "Cabin", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   @media (max-width: 768px) {
     .home-title {
       font-size: 4.286em; } }
@@ -2748,7 +2748,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
       color: #fff; }
     .docs-nav-wrapper a.current-docs,
     .docs-nav-wrapper a:visited.current-docs {
-      color: #ffea00; }
+      color: #faefce; }
   .docs-nav-wrapper .docs-h5 {
     font-size: 1em;
     margin-bottom: 12px; }
@@ -2820,10 +2820,11 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     color: #847C76; }
 
 h2.doc-title {
+  font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #e36f10;
   font-size: 2em;
-  margin: 0 0 24px;
-  font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  font-weight: 300;
+  margin: 0 0 24px; }
   h2.doc-title strong {
     color: #ef5e1d;
     display: inline-block;
@@ -2852,10 +2853,10 @@ h2.doc-title {
   .docs-table th, .docs-table td {
     padding: 8px; }
   .docs-table tr:nth-child(2n) {
-    background-color: #fcfcfc; }
+    background-color: white; }
   .docs-table th {
     font-weight: bold;
-    background-color: #efefef; }
+    background-color: #f8f8f8; }
   .docs-table td {
     text-align: center; }
   .docs-table.text-left td {
@@ -2877,7 +2878,7 @@ ul.tabs {
   margin: 12px 0 -1px 0;
   padding: 0;
   width: 100%;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid #f8f8f8;
   float: left;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
@@ -2911,8 +2912,8 @@ ul.tabs li a {
   top: 0;
   left: 0;
   line-height: 100%;
-  background: #efefef;
-  border: 1px solid #efefef;
+  background: #f8f8f8;
+  border: 1px solid #f8f8f8;
   border-bottom: 0;
   border-radius: 5px 5px 0 0; }
   ul.tabs li a:hover {
@@ -2927,13 +2928,13 @@ ul.tabs li.current a {
   color: #ef5e1d; }
 
 .tab-content {
-  border: 1px solid #efefef;
+  border: 1px solid #f8f8f8;
   clear: both;
   padding: 15px;
   margin: 0 0 24px 0; }
 
 .grid-demo, .grid-demo--aftercode {
-  background-color: #efefef;
+  background-color: #f8f8f8;
   font-size: 0.75em;
   padding: 10px;
   text-align: center; }
@@ -2954,8 +2955,8 @@ ul.tabs li.current a {
   padding: 4px 6px; }
 .docs-body code,
 .docs-body pre {
-  background-color: #efefef;
-  border: 1px solid #e2e2e2;
+  background-color: #f8f8f8;
+  border: 1px solid #ebebeb;
   font-size: 12px;
   margin: 24px 0; }
   @media (min-width: 1024px) {

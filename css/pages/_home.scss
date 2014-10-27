@@ -10,10 +10,10 @@
 }
 
 ::selection {
-  background: $colorHighlight; /* WebKit/Blink Browsers */
+  background: $highlight; /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-  background: $colorHighlight; /* Gecko Browsers */
+  background: $highlight; /* Gecko Browsers */
 }
 
 // ==============================================================================
@@ -53,7 +53,7 @@
   font-weight: 600;
   margin-bottom: 0em;
 
-  @include docsFontHeadings();
+  @include docsFontHeadingsSpe();
 
   @include responsify( $lap_down ) {
     font-size: 4.286em;
@@ -274,7 +274,7 @@
 // Docs Typography
 // ==============================================================================
 .docs-text {
-  color: $colorText;
+  color: $text;
   line-height: 2em;
   margin-bottom: ($margin * 0.75);
 
@@ -288,8 +288,8 @@
 .docs-text--note {
   @extend .docs-text;
 
-  background-color: $yellowLight;
-  border: 1px solid $yellowLightBorder;
+  background-color: $yellow;
+  border: 1px solid $yellowBorder;
   font-size: 0.875em;
   padding: ($margin / 4) ($margin / 2);
 }
@@ -297,8 +297,8 @@
 .docs-text--source {
   @extend .docs-text;
 
-  background-color: $docGreenLight;
-  border: 1px solid $docGreenLightBorder;
+  background-color: $greenLight;
+  border: 1px solid $greenLightBorder;
   font-size: 0.875em;
   padding: ($margin / 4) ($margin / 2);
 }
@@ -309,22 +309,23 @@
 
 .docs-link,
 .docs-link:visited {
-  color: $colorLink;
+  color: $link;
   text-decoration: none;
   @include transition(all 0.1s ease-in-out);
 
   &:hover {
-    border-bottom: 1px solid $colorText;
-    color: $colorText;
+    border-bottom: 1px solid $text;
+    color: $text;
   }
 }
 
 h2.doc-title {
+  @include docsFont();
+
   color: $orangeDark;
   font-size: 2em;
+  font-weight: 300;
   margin: 0 0 $margin;
-
-  @include docsFont();
 
   strong {
     color: $orange;
@@ -334,7 +335,7 @@ h2.doc-title {
 }
 
 .docs-h4 {
-  color: $colorTextHeaderLight;
+  color: $textHeaderLight;
   font-size: 1.286em;
 
   @include docsFont();
@@ -356,7 +357,7 @@ h2.doc-title {
 .docs-example {
   @extend .docs-h4;
   
-  color: lighten($colorTextHeaderLight,10%);
+  color: lighten($textHeaderLight,10%);
   font-size: 0.875em;
   text-transform: uppercase;
   margin: ($margin / 2) 0;
@@ -377,12 +378,12 @@ h2.doc-title {
   }
 
   tr:nth-child(2n) {
-    background-color: lighten($colorBGMeta,5%);
+    background-color: lighten($bgMeta,5%);
   }
 
   th {
     font-weight: bold;
-    background-color: $colorBGMeta;
+    background-color: $bgMeta;
   }
 
   td {
@@ -398,12 +399,12 @@ h2.doc-title {
   }
 
   td.is-visible {
-    color: $docGreen;
-    background: $docGreenLight;
+    color: $green;
+    background: $greenLight;
   }
 
   td.is-hidden {
-    background-color: $colorBGMetaLight;
+    background-color: $bgMetaLight;
   }
 
   ul {
@@ -425,7 +426,7 @@ ul.tabs {
   margin: $margin/2 0 -1px 0;
   padding: 0;
   width: 100%;
-  border-bottom: 1px solid $colorBGMeta;
+  border-bottom: 1px solid $bgMeta;
   float: left;
   font-family: $docsFont;
 }
@@ -454,8 +455,8 @@ ul.tabs li a {
   top: 0;
   left: 0;
   line-height: 100%;
-  background: $colorBGMeta;
-  border: 1px solid $colorBGMeta;
+  background: $bgMeta;
+  border: 1px solid $bgMeta;
   border-bottom: 0;
   border-radius: 5px 5px 0 0;
 
@@ -475,7 +476,7 @@ ul.tabs li.current a {
 }
 
 .tab-content {
-  border: 1px solid $colorBGMeta;
+  border: 1px solid $bgMeta;
   clear: both;
   padding: 15px;
   margin: 0 0 $margin 0;
@@ -487,7 +488,7 @@ ul.tabs li.current a {
 // General demo styles
 // ==============================================================================
 .grid-demo {
-  background-color: $colorBGMeta;
+  background-color: $bgMeta;
   font-size: 0.75em;
   padding: 10px;
   text-align: center;
@@ -518,8 +519,8 @@ ul.tabs li.current a {
 
   code,
   pre {
-    background-color: $colorBGMeta;
-    border: 1px solid $colorBGMetaDark;
+    background-color: $bgMeta;
+    border: 1px solid $bgMetaDark;
     font-size: 12px;
     margin: $margin 0;
 
@@ -529,7 +530,7 @@ ul.tabs li.current a {
   }
 
   .hr--docshr {
-    border-top: 1px solid $colorBorder;
+    border-top: 1px solid $border;
     margin: ($margin * 3) 0;
 
     @include responsify( $portable_down ) {
