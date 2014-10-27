@@ -7,11 +7,11 @@ timber.cacheSelectors = function () {
     $body: $('body'),
 
     // Navigation
-    $navigation: $('#accessibleNav'),
+    $navigation: $('#AccessibleNav'),
 
     // Product Page
-    $productImage: $('#productPhotoImg'),
-    $thumbImages: $('#productThumbs').find('a.product-photo-thumb')
+    $productImage: $('#ProductPhotoImg'),
+    $thumbImages: $('#ProductThumbs').find('a.product-single__thumbnail')
   }
 };
 
@@ -27,7 +27,7 @@ timber.accessibleNav = function () {
       $allLinks = $nav.find('a'),
       $topLevel = $nav.children('li').find('a'),
       $parents = $nav.find('.site-nav--has-dropdown'),
-      $subMenuLinks = $nav.find('.site-nav--dropdown').find('a'),
+      $subMenuLinks = $nav.find('.site-nav__dropdown').find('a'),
       activeClass = 'nav-hover',
       focusClass = 'nav-focus';
 
@@ -62,13 +62,13 @@ timber.accessibleNav = function () {
 
   // accessibleNav private methods
   function handleFocus ($el) {
-    var $subMenu = $el.next('ul');
+    var $subMenu = $el.next('ul'),
         hasSubMenu = $subMenu.hasClass('sub-nav') ? true : false,
-        isSubItem = $('.site-nav--dropdown').has($el).length,
+        isSubItem = $('.site-nav__dropdown').has($el).length,
         $newFocus = null;
 
     // Add focus class for top level items, or keep menu shown
-    if ( !isSubItem ) {
+    if (!isSubItem) {
       removeFocus($topLevel);
       addFocus($el);
     } else {
@@ -101,8 +101,66 @@ timber.accessibleNav = function () {
   }
 };
 
+timber.productPage = function (options) {
+  var moneyFormat = options.money_format,
+      variant = options.variant,
+      selector = options.selector;
+
+  // Selectors
+  var $productImage = $('#ProductPhotoImg'),
+      $addToCart = $('#AddToCart'),
+      $productPrice = $('#ProductPrice'),
+      $comparePrice = $('#ComparePrice'),
+      $quantityElements = $('.quantity-selector, label + .js-qty'),
+      $addToCartText = $('#AddToCartText');
+
+  if (variant) {
+
+    // Update variant image, if one is set
+    if (variant.featured_image) {
+      var newImg = variant.featured_image,
+          el = $productImage[0];
+      Shopify.Image.switchImage(newImg, el, timber.switchImage);
+    }
+
+    // Select a valid variant if available
+    if (variant.available) {
+      // Available, enable the submit button, change text, show quantity elements
+      $addToCart.removeClass('disabled').prop('disabled', false);
+      $addToCartText.text({{ 'products.product.add_to_cart' | t | json }});
+      $quantityElements.show();
+    } else {
+      // Sold out, disable the submit button, change text, hide quantity elements
+      $addToCart.addClass('disabled').prop('disabled', true);
+      $addToCartText.text({{ 'products.product.sold_out' | t | json }});
+      $quantityElements.hide();
+    }
+
+    // Regardless of stock, update the product price
+    $productPrice.html( Shopify.formatMoney(variant.price, moneyFormat) );
+
+    // Also update and show the product's compare price if necessary
+    if (variant.compare_at_price > variant.price) {
+      $comparePrice
+        .html({{ 'products.product.compare_at' | t | json }} + ': ' + Shopify.formatMoney(variant.compare_at_price, moneyFormat))
+        .show();
+    } else {
+      $comparePrice.hide();
+    }
+
+  } else {
+    // The variant doesn't exist, disable submit button.
+    // This may be an error or notice that a specific variant is not available.
+    // To only show available variants, implement linked product options:
+    //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
+    $addToCart.addClass('disabled').prop('disabled', true);
+    $addToCartText.text({{ 'products.product.unavailable' | t | json }});
+    $quantityElements.hide();
+  }
+};
+
 timber.productImageSwitch = function () {
-  if ( timber.cache.$thumbImages.length ) {
+  if (timber.cache.$thumbImages.length) {
     // Switch the main image with one of the thumbnails
     // Note: this does not change the variant selected, just the image
     timber.cache.$thumbImages.on('click', function(evt) {

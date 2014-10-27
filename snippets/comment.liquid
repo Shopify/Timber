@@ -14,12 +14,10 @@
     {{ comment.content }}
   </div>
 
-  <em>
-    <strong>{{ comment.author }}</strong> on
-    <strong>
-      <time datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">
-        {{ comment.created_at | date: '%b %d, %Y' }}
-      </time>
-    </strong>
-  </em>
+  <span>
+    {% assign comment_date = comment.created_at | date: '%Y-%m-%d' %}
+    {% capture author %}<strong>{{ comment.author }}</strong>{% endcapture %}
+    {% capture date %}<strong><time datetime="{{ comment_date }}">{{ comment_date }}</time></strong>{% endcapture %}
+    {{ 'blogs.article.comment_meta_html' | t: author: author, date: date }}
+  </span>
 </div>
