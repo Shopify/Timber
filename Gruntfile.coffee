@@ -76,7 +76,7 @@ module.exports = (grunt) ->
       main:
         options:
           mode: 'zip'
-          archive: '<%= pkg.name %>.zip'
+          archive: 'timber-v<%= pkg.version %>.zip'
         files: [
           src: paths.allAssets
         ]
