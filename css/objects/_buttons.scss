@@ -4,7 +4,7 @@
 .btn-timber,
 .btn-timber:visited {
   display: inline-block;
-  background-color: $buttonColor;
+  background-color: $button;
   color: #fff;
   @include docsFont();
   font-size: 1.429em;
@@ -20,7 +20,7 @@
 
   &:hover {
     color: #fff;
-    background-color: lighten($buttonColor, 4%);
+    background-color: lighten($button, 4%);
   }
 
   &.full {

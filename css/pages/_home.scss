@@ -9,6 +9,13 @@
   color: $textOnOrange;
 }
 
+::selection {
+  background: $highlight; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: $highlight; /* Gecko Browsers */
+}
+
 // ==============================================================================
 // #Hero area
 //  - Could use JS to vertically center the cta, but it's not really necessary
@@ -41,15 +48,12 @@
 }
 
 .home-title {
-  font-size: 7.143em;
-  line-height: 1;
-  margin-bottom: 0;
   color: #fff;
-  @include docsFont();
+  font-size: 5em;
+  font-weight: 600;
+  margin-bottom: 0em;
 
-  @include responsify( $portable_down ) {
-    font-size: 6em;
-  }
+  @include docsFontHeadingsSpe();
 
   @include responsify( $lap_down ) {
     font-size: 4.286em;
@@ -58,9 +62,10 @@
 
 .home-subtitle {
   color: $textOnOrange;
-  font-size: 3.429em;
+  font-size: 3em;
   line-height: 1.125;
   margin-bottom: 0.9em;
+
   @include docsFont();
 
   @include responsify( $portable_down ) {
@@ -81,12 +86,9 @@
   text-align: center;
   background-color: #e04500;
   background-color: rgba(224,69,0,.4);
-  padding: $margin*1.5 0;
-  @include docsFont();
+  padding: ($margin * 3) 0 ($margin * 2);
 
-  @include responsify($lap_up) {
-    padding-bottom: $margin/2;
-  }
+  @include docsFont();
 
   @include responsify($lap_down) {
     padding: 36px 0 24px;
@@ -122,15 +124,11 @@
 
 
 %bucket-icons {
-  height: 152px;
+  height: 120px;
   background-repeat: no-repeat;
   background-position: center top;
+  background-size: auto 120px;
   margin-bottom: $margin;
-
-  @include responsify($portable_down) {
-    height: 120px;
-    background-size: auto 120px;
-  }
 
   @include responsify($palm_down) {
     height: 80px;
@@ -160,10 +158,9 @@
 }
 
 .docs-body {
-  position: relative;
   background-color: #fff;
-  padding-top: $margin*2;
-  padding-bottom: $margin*2;
+  padding: ($margin * 3) ($margin * 2) 0 0;
+  position: relative;
 
   &:after {
     content: "";
@@ -177,12 +174,31 @@
     margin-left: $margin;
     z-index: 1;
   }
+
+  @include responsify( $portable_down ) {
+    padding: ($margin * 2) $margin 0 ($margin * 2);
+  } 
+
+  @include responsify( $palm_down ) {
+    padding: $margin 0 $margin $margin;
+  } 
+}
+
+.docs-nav {
+  ul {
+    margin-top: (-$margin / 2);
+  }
 }
 
 .docs-nav-wrapper {
   color: #fff;
-  padding-top: $margin*2;
+  padding: ($margin * 3) 0 0 ($margin * 2);
+
   @include docsFont();
+
+  @include responsify( $portable_down ) {
+    padding: ($margin * 2) 0 0 $margin;
+  }
 
   @include responsify( $lap_down ) {
     display: none;
@@ -206,6 +222,7 @@
 
   .docs-h5 {
     font-size: 1em;
+    margin-bottom: ($margin / 2);
   }
 
   .docs-h5 a,
@@ -223,11 +240,12 @@
 // Docs Nav
 // ==============================================================================
 .docs-nav {
+  min-width: 220px;
+  padding-left: ($margin * 1.5);
   position: relative;
   z-index: 2;
+
   @include transform(translateZ(0));
-  padding-left: $margin;
-  min-width: 220px;
 
   ul {
     margin: 0 0 1em;
@@ -243,12 +261,12 @@
   }
 
   li {
-    margin: 0;
+    margin: 0 0 ($margin / 4);
   }
 
   a strong {
     display: inline-block;
-    width: 40px;
+    width: 30px;
   }
 }
 
@@ -256,51 +274,70 @@
 // Docs Typography
 // ==============================================================================
 .docs-text {
+  color: $text;
+  line-height: 2em;
+  margin-bottom: ($margin * 0.75);
+
   @include docsFont();
+
+  .home-cta & {
+    color: $textOnOrange;
+  }
 }
 
-.docs-note {
-  @include docsFont();
-  color: #6f6f6f;
-  font-size: 1.25em;
-  line-height: 1.5em;
+.docs-text--note {
+  @extend .docs-text;
+
+  background-color: $yellow;
+  border: 1px solid $yellowBorder;
+  font-size: 0.875em;
+  padding: ($margin / 4) ($margin / 2);
+}
+
+.docs-text--source {
+  @extend .docs-text;
+
+  background-color: $greenLight;
+  border: 1px solid $greenLightBorder;
+  font-size: 0.875em;
+  padding: ($margin / 4) ($margin / 2);
 }
 
 .docs-strong {
   font-weight: bold;
-  color: $orange;
 }
 
 .docs-link,
 .docs-link:visited {
-  border-bottom: 1px solid rgba($orangeLight,0.5);
-  color: inherit;
+  color: $link;
   text-decoration: none;
   @include transition(all 0.1s ease-in-out);
 
   &:hover {
-    color: #000;
-    border-bottom-color: transparent;
+    border-bottom: 1px solid $text;
+    color: $text;
   }
 }
 
 h2.doc-title {
-  color: $docGreen;
-  font-size: 1.714em;
   @include docsFont();
-  margin: 0;
-  padding: 0 0 0.5em;
+
+  color: $orangeDark;
+  font-size: 2em;
+  font-weight: 300;
+  margin: 0 0 $margin;
 
   strong {
+    color: $orange;
     display: inline-block;
     width: 60px;
   }
 }
 
 .docs-h4 {
-  color: $orange;
+  color: $textHeaderLight;
   font-size: 1.286em;
-  margin-bottom: 0.125em;
+
   @include docsFont();
 
   .docs-nav & {
@@ -319,8 +356,11 @@ h2.doc-title {
 
 .docs-example {
   @extend .docs-h4;
-  font-size: 1em;
-  margin-bottom: 0.45em;
+  
+  color: lighten($textHeaderLight,10%);
+  font-size: 0.875em;
+  text-transform: uppercase;
+  margin: ($margin / 2) 0;
 }
 
 
@@ -328,8 +368,9 @@ h2.doc-title {
 // Doc Tables
 // ==============================================================================
 .docs-table {
+  margin: $margin 0 ($margin * 2);
   width: 100%;
-  margin-bottom: 1em;
+
   @include docsFont();
 
   th, td {
@@ -337,12 +378,12 @@ h2.doc-title {
   }
 
   tr:nth-child(2n) {
-    background-color: #fcf5f0;
+    background-color: lighten($bgMeta,5%);
   }
 
   th {
     font-weight: bold;
-    background-color: $beige;
+    background-color: $bgMeta;
   }
 
   td {
@@ -358,13 +399,12 @@ h2.doc-title {
   }
 
   td.is-visible {
-    color: $docGreen;
-    background: $docGreenLight;
+    color: $green;
+    background: $greenLight;
   }
 
   td.is-hidden {
-    color: #ccc;
-    background-color: #f6f6f6;
+    background-color: $bgMetaLight;
   }
 
   ul {
@@ -386,7 +426,7 @@ ul.tabs {
   margin: $margin/2 0 -1px 0;
   padding: 0;
   width: 100%;
-  border-bottom: 1px solid $beige;
+  border-bottom: 1px solid $bgMeta;
   float: left;
   font-family: $docsFont;
 }
@@ -415,8 +455,8 @@ ul.tabs li a {
   top: 0;
   left: 0;
   line-height: 100%;
-  background: $beige;
-  border: 1px solid $beige;
+  background: $bgMeta;
+  border: 1px solid $bgMeta;
   border-bottom: 0;
   border-radius: 5px 5px 0 0;
 
@@ -436,33 +476,79 @@ ul.tabs li.current a {
 }
 
 .tab-content {
-  border: 1px solid $beige;
+  border: 1px solid $bgMeta;
   clear: both;
   padding: 15px;
   margin: 0 0 $margin 0;
 }
 
 
-// ==============================================================================
-// Prettyprint
-// ==============================================================================
-.pln{color:#000}@media screen{.str{color:#51ab62}.kwd{color:#008}.com{color:#999988;font-style:italic;}.typ{color:#606}.lit{color:#066}.pun,.opn,.clo{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#51ab62}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun,.opn,.clo{color:#440}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}pre.prettyprint{font-size:0.875em;padding:0.5em 1em;}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}
-
 
 // ==============================================================================
 // General demo styles
 // ==============================================================================
 .grid-demo {
-  padding: 10px;
+  background-color: $bgMeta;
   font-size: 0.75em;
+  padding: 10px;
   text-align: center;
-  border: 1px dashed $beigeBorder;
-  background-color: $beige;
 }
 
-.page-documentation {
-  hr {
-    border-top: 1px solid #f1e8e2;
+.grid-demo--aftercode {
+  @extend .grid-demo;
+
+  margin: -($margin / 2) 0 $margin;
+
+  @include responsify( $desk_up ) {
+    margin: -($margin * 1.5) 0 ($margin * 2);
+  }
+}
+
+.grid-example {
+  margin: $margin 0;
+
+  @include responsify( $desk_up ) {
+    margin: ($margin * 2) 0;
+  }  
+}
+
+.docs-body {
+  code {
+    padding: ($margin / 6) ($margin / 4);
+  }
+
+  code,
+  pre {
+    background-color: $bgMeta;
+    border: 1px solid $bgMetaDark;
+    font-size: 12px;
+    margin: $margin 0;
+
+    @include responsify( $desk_up ) {
+      margin: ($margin * 2) 0;
+    }
+  }
+
+  .hr--docshr {
+    border-top: 1px solid $border;
+    margin: ($margin * 3) 0;
+
+    @include responsify( $portable_down ) {
+      margin: ($margin * 2) 0;
+    }
+  }
+
+  .hr--docsclear {
+    margin: $margin 0;
+    border: 0;
+
+    @include responsify( $desk_up ) {
+      margin: ($margin * 2) 0;
+    }
+  }
+
+  ul.disc {
+    margin-left: 40px;
   }
 }
 

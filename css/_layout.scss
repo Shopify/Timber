@@ -10,7 +10,11 @@
 // ==============================================================================
 .pagewidth {
   max-width: $layout_max_width;
-  padding: 0 $margin;
+  padding: 0 $margin * 3;
+
+  @include responsify( $portable_down ) {
+    padding: 0 $margin;
+  }
 }
 
 .pagemargin {
