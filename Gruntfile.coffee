@@ -6,7 +6,16 @@ module.exports = (grunt) ->
   paths =
     css: 'stylesheets/**/*.*'
     images: 'theme/assets/*.{png,jpg,gif,svg}'
-    assets: 'assets/'
+    assets: 'assets/',
+    allAssets: [
+      'assets/*',
+      'config/*',
+      'layout/*',
+      'locales/*',
+      'snippets/*',
+      'templates/*',
+      'templates/customers/*'
+    ]
 
   grunt.initConfig
 
@@ -32,7 +41,7 @@ module.exports = (grunt) ->
 
     # File manipulation
     gulp:
-      concat: ->
+      concatat: ->
         return gulp.src(paths.css)
           .pipe(cssimport())
           .pipe(gulp.dest(paths.assets))
@@ -56,15 +65,7 @@ module.exports = (grunt) ->
         files: ['assets/*.{png,jpg,gif,svg}']
         tasks: ['imagemin']
       shopify:
-        files: [
-          'assets/*',
-          'config/*',
-          'layout/*',
-          'locales/*',
-          'snippets/*',
-          'templates/*',
-          'templates/customers/*'
-        ],
+        files: paths.allAssets,
         tasks: ['shopify', 'notify:shopify']
 
     clean: ['*.zip']
@@ -75,15 +76,7 @@ module.exports = (grunt) ->
           mode: 'zip'
           archive: '<%= pkg.name %>.zip'
         files: [
-          src: [
-            'assets/*'
-            'config/*'
-            'layout/*'
-            'locales/*'
-            'snippets/*'
-            'templates/*'
-            'templates/customers/*'
-          ]
+          src: paths.allAssets
         ]
 
   # Load NPM task plugins
