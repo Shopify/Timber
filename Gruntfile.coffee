@@ -9,7 +9,7 @@ module.exports = (grunt) ->
     theme: 'theme/'
     assets: 'theme/assets/',
     allAssets: [
-      'theme/assets/*',
+      'theme/assets/*.*',
       'theme/config/*',
       'theme/layout/*',
       'theme/locales/*',
@@ -70,7 +70,12 @@ module.exports = (grunt) ->
         files: paths.allAssets,
         tasks: ['shopify', 'notify:shopify']
 
-    clean: ['*.zip']
+    clean:
+      plugins: [
+        '*.zip',
+        'theme/assets/**/*',
+        '!theme/assets/*.*'
+      ]
 
     compress:
       main:
