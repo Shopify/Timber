@@ -14,6 +14,7 @@
 ==============================================================================*/
 
 /*============================================================================
+<<<<<<< HEAD:assets/timber.scss.liquid
   Table of Contents
 
   #Breakpoint and Grid Variables
@@ -50,11 +51,23 @@
   #Breakpoint and Grid Variables
 ==============================================================================*/
 $viewportIncrement: 1px;
+=======
+  #Layout and Breakpoint Variables
+==============================================================================*/
+$siteWidth: 1180px;
+$gutter: 30px;
+$gridGutter: 30px;
+$radius: 3px;
+>>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
 
 $small: 480px;
 $medium: 768px;
 $large: 769px;
 
+<<<<<<< HEAD:assets/timber.scss.liquid
+=======
+$viewportIncrement: 1px;
+>>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
 $postSmall: $small + $viewportIncrement;
 $preMedium: $medium - $viewportIncrement;
 $preLarge: $large - $viewportIncrement;
@@ -70,11 +83,18 @@ $breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
 $breakpoint-has-push:  ('medium', 'medium-down', 'large');
 $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 
+<<<<<<< HEAD:assets/timber.scss.liquid
 /*============================================================================
   #General Variables
 ==============================================================================*/
 
 // Timber Colors
+=======
+
+/*============================================================================
+  #Color variables
+==============================================================================*/
+>>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
 $colorPrimary: {{ settings.color_primary }};
 $colorSecondary: {{ settings.color_secondary }};
 
@@ -117,6 +137,7 @@ $errorRed: #dc0000;
 $errorRedBg: lighten($errorRed, 55%);
 $successGreen: #0a942a;
 
+<<<<<<< HEAD:assets/timber.scss.liquid
 // Sizing variables
 $siteWidth: 1180px;
 $gutter: 30px;
@@ -125,12 +146,18 @@ $radius: 3px;
 
 /*================ Typography ================*/
 
+=======
+/*============================================================================
+  #Typography variables
+==============================================================================*/
+>>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
 $headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $headerFontWeight: 700;
 
 $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $baseFontSize: 14px; // Henseforth known as 1em
 
+<<<<<<< HEAD:assets/timber.scss.liquid
 @font-face {
   font-family: "icons";
   src: url(' {{ "icons.eot" | asset_url }} ');
@@ -155,6 +182,11 @@ $socialIconFontStack: 'icons';
   *zoom: 1;
 }
 
+=======
+/*============================================================================
+  #Sass Mixins
+==============================================================================*/
+>>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
 @mixin clearfix() {
   &:after {
     content: "";
@@ -233,6 +265,10 @@ $max: max-width;
   }
 }
 
+<<<<<<< HEAD:assets/timber.scss.liquid
+=======
+
+>>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
 /*============================================================================
   #Normalize
 ==============================================================================*/

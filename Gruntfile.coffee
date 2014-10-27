@@ -6,15 +6,16 @@ module.exports = (grunt) ->
   paths =
     css: 'stylesheets/**/*.*'
     images: 'theme/assets/*.{png,jpg,gif,svg}'
-    assets: 'assets/',
+    theme: 'theme/'
+    assets: 'theme/assets/',
     allAssets: [
-      'assets/*',
-      'config/*',
-      'layout/*',
-      'locales/*',
-      'snippets/*',
-      'templates/*',
-      'templates/customers/*'
+      'theme/assets/*',
+      'theme/config/*',
+      'theme/layout/*',
+      'theme/locales/*',
+      'theme/snippets/*',
+      'theme/templates/*',
+      'theme/templates/customers/*'
     ]
 
   grunt.initConfig
@@ -27,7 +28,8 @@ module.exports = (grunt) ->
         api_key: '<%= config.private_api %>'
         password: '<%= config.private_password %>'
         url: '<%= config.shop_url %>'
-        theme: '<%= config.theme_id %>'
+        theme: '<%= config.theme_id %>',
+        base: paths.theme
 
     # Helper methods
     notify:
@@ -62,7 +64,7 @@ module.exports = (grunt) ->
         files: paths.css
         tasks: ['gulp']
       images:
-        files: ['assets/*.{png,jpg,gif,svg}']
+        files: ['theme/assets/*.{png,jpg,gif,svg}']
         tasks: ['imagemin']
       shopify:
         files: paths.allAssets,
