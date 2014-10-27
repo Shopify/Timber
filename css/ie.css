@@ -2617,8 +2617,8 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
 .home-title {
   color: #fff;
-  font-size: 5em;
-  font-weight: 600;
+  font-size: 7em;
+  font-weight: 300;
   margin-bottom: 0em;
   font-family: "Cabin", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
   @media (max-width: 768px) {
@@ -2628,6 +2628,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 .home-subtitle {
   color: #ffefb7;
   font-size: 3em;
+  font-weight: 300;
   line-height: 1.125;
   margin-bottom: 0.9em;
   font-family: "Arimo", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }

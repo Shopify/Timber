@@ -49,8 +49,8 @@
 
 .home-title {
   color: #fff;
-  font-size: 5em;
-  font-weight: 600;
+  font-size: 7em;
+  font-weight: 300;
   margin-bottom: 0em;
 
   @include docsFontHeadingsSpe();
@@ -63,6 +63,7 @@
 .home-subtitle {
   color: $textOnOrange;
   font-size: 3em;
+  font-weight: 300;
   line-height: 1.125;
   margin-bottom: 0.9em;
 
