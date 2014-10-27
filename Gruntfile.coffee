@@ -91,4 +91,5 @@ module.exports = (grunt) ->
 
   # Register tasks
   grunt.registerTask 'default', ['watch']
+  grunt.registerTask 'deploy', ['gulp', 'imagemin', 'shopify:upload']
   grunt.registerTask 'zip', ['gulp', 'imagemin', 'clean', 'compress', 'notify:zip']
