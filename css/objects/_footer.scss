@@ -31,17 +31,33 @@
 
 .footer-large {
   background-color: $orangeDark;
-  padding: $margin*2 0;
+  padding: ($margin * 1.5) 0;
 
-  @include responsify( $lap_down ) {
-    .pagewidth > .grid > .grid-item + .grid-item {
-      padding-top: $margin;
+  @include responsify( $lap_up ) {
+    .pagewidth {
+      padding:  0 ($margin * 2);
+    }
+  }
+
+  .grid-item {
+    margin-bottom: ($margin / 2);
+  }
+
+  @include responsify( $portable_up ) {
+    .grid-item {
+      margin: 0;
     }
   }
 }
 
 .footer-bar {
   padding: $margin 0;
+
+  @include responsify( $lap_up ) {
+    .pagewidth {
+      padding:  0 ($margin * 2);
+    }
+  }
 }
 
 .footer-title {
@@ -54,7 +70,7 @@
   text-indent: -999em;
   height: 28px;
   width: 99px;
-  margin: $margin/2 auto 0;
+  margin: ($margin / 2) 0;
   background: url('../images/shopify-logo-white.png') top left no-repeat;
 
   @include hidpi() {
@@ -63,7 +79,6 @@
   }
 
   @include responsify( $portable_up, true ) {
-    margin-top: -3px;
     margin: -3px 0 0;
   }
 }

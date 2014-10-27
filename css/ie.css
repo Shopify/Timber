@@ -2412,13 +2412,21 @@ html, body {
 
 .footer-large {
   background-color: #e36f10;
-  padding: 48px 0; }
-  @media (max-width: 768px) {
-    .footer-large .pagewidth > .grid > .grid-item + .grid-item {
-      padding-top: 24px; } }
+  padding: 36px 0; }
+  @media (min-width: 481px) {
+    .footer-large .pagewidth {
+      padding: 0 48px; } }
+  .footer-large .grid-item {
+    margin-bottom: 12px; }
+  @media (min-width: 769px) {
+    .footer-large .grid-item {
+      margin: 0; } }
 
 .footer-bar {
   padding: 24px 0; }
+  @media (min-width: 481px) {
+    .footer-bar .pagewidth {
+      padding: 0 48px; } }
 
 .footer-title {
   color: #fff;
@@ -2429,9 +2437,8 @@ html, body {
   text-indent: -999em;
   height: 28px;
   width: 99px;
-  margin: 12px auto 0;
+  margin: 12px 0;
   background: url("../images/shopify-logo-white.png") top left no-repeat;
-  margin-top: -3px;
   margin: -3px 0 0; }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) and (min-device-width: 1000px) {
     .shopify-logo {
@@ -2688,7 +2695,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
 .docs-body {
   background-color: #fff;
-  padding: 72px 48px 72px 0;
+  padding: 72px 48px 0 0;
   position: relative; }
   .docs-body:after {
     content: "";
@@ -2703,10 +2710,10 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     z-index: 1; }
   @media (max-width: 1023px) {
     .docs-body {
-      padding: 48px 24px 48px 48px; } }
+      padding: 48px 24px 0 48px; } }
   @media (max-width: 480px) {
     .docs-body {
-      padding: 24px; } }
+      padding: 24px 0 24px 24px; } }
 
 .docs-nav ul {
   margin-top: -12px; }

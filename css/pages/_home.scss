@@ -159,7 +159,7 @@
 
 .docs-body {
   background-color: #fff;
-  padding: ($margin * 3) ($margin * 2) ($margin * 3) 0;
+  padding: ($margin * 3) ($margin * 2) 0 0;
   position: relative;
 
   &:after {
@@ -176,11 +176,11 @@
   }
 
   @include responsify( $portable_down ) {
-    padding: ($margin * 2) $margin ($margin * 2) ($margin * 2);
+    padding: ($margin * 2) $margin 0 ($margin * 2);
   } 
 
   @include responsify( $palm_down ) {
-    padding: $margin;
+    padding: $margin 0 $margin $margin;
   } 
 }
 
