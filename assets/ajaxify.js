@@ -104,8 +104,16 @@ Shopify.onProduct = function(product) {
   // alert('Received everything we ever wanted to know about ' + product.title);
 };
 
+Shopify.onCartOpen = function(cart) {
+  // alert('Cart opened and there are currently ' + cart.item_count + ' items in it.');
+};
+
 Shopify.onCartUpdate = function(cart) {
   // alert('There are now ' + cart.item_count + ' items in the cart.');
+};
+
+Shopify.onItemAdded = function(line_item) {
+  // alert('There are now ' + line_item.quantity + ' of ' + line_item.title + ' in the cart.');
 };
 
 Shopify.updateCartNote = function(note, callback) {
@@ -115,12 +123,8 @@ Shopify.updateCartNote = function(note, callback) {
     data: 'note=' + attributeToString(note),
     dataType: 'json',
     success: function(cart) {
-      if ((typeof callback) === 'function') {
-        callback(cart);
-      }
-      else {
-        Shopify.onCartUpdate(cart);
-      }
+      if ((typeof callback) === 'function') callback(cart);
+      Shopify.onCartUpdate(cart);
     },
     error: function(XMLHttpRequest, textStatus) {
       Shopify.onError(XMLHttpRequest, textStatus);
@@ -149,12 +153,8 @@ Shopify.addItem = function(variant_id, quantity, callback) {
     data: 'quantity=' + quantity + '&id=' + variant_id,
     dataType: 'json',
     success: function(line_item) {
-      if ((typeof callback) === 'function') {
-        callback(line_item);
-      }
-      else {
-        Shopify.onItemAdded(line_item);
-      }
+      if ((typeof callback) === 'function') callback(line_item);
+      Shopify.onItemAdded(line_item);
     },
     error: function(XMLHttpRequest, textStatus) {
       Shopify.onError(XMLHttpRequest, textStatus);
@@ -175,12 +175,8 @@ Shopify.addItemFromForm = function(form, callback, errorCallback) {
     data: jQuery(form).serialize(),
     dataType: 'json',
     success: function(line_item) {
-      if ((typeof callback) === 'function') {
-        callback(line_item, form);
-      }
-      else {
-        Shopify.onItemAdded(line_item, form);
-      }
+      if ((typeof callback) === 'function') callback(line_item, form);
+      Shopify.onItemAdded(line_item);
     },
     error: function(XMLHttpRequest, textStatus) {
       if ((typeof errorCallback) === 'function') {
@@ -197,24 +193,16 @@ Shopify.addItemFromForm = function(form, callback, errorCallback) {
 // Get from cart.js returns the cart in JSON
 Shopify.getCart = function(callback) {
   jQuery.getJSON('/cart.js', function (cart, textStatus) {
-    if ((typeof callback) === 'function') {
-      callback(cart);
-    }
-    else {
-      Shopify.onCartUpdate(cart);
-    }
+    if ((typeof callback) === 'function') callback(cart);
+    Shopify.onCartOpen(cart);
   });
 };
 
 // GET products/<product-handle>.js returns the product in JSON
 Shopify.getProduct = function(handle, callback) {
   jQuery.getJSON('/products/' + handle + '.js', function (product, textStatus) {
-    if ((typeof callback) === 'function') {
-      callback(product);
-    }
-    else {
-      Shopify.onProduct(product);
-    }
+    if ((typeof callback) === 'function') callback(product);
+    Shopify.onProduct(product);
   });
 };
 
@@ -226,12 +214,8 @@ Shopify.changeItem = function(variant_id, quantity, callback) {
     data:  'quantity='+quantity+'&id='+variant_id,
     dataType: 'json',
     success: function(cart) {
-      if ((typeof callback) === 'function') {
-        callback(cart);
-      }
-      else {
-        Shopify.onCartUpdate(cart);
-      }
+      if ((typeof callback) === 'function') callback(cart);
+      Shopify.onCartUpdate(cart);
     },
     error: function(XMLHttpRequest, textStatus) {
       Shopify.onError(XMLHttpRequest, textStatus);
