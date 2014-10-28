@@ -1,21 +1,27 @@
 module.exports = (grunt) ->
 
   # Global vars
-  gulp = require 'gulp'
-  cssimport = require 'gulp-cssimport'
   paths =
-    css: 'stylesheets/**/*.*'
-    images: 'theme/assets/*.{png,jpg,gif,svg}'
-    theme: 'theme/'
-    assets: 'theme/assets/',
+    css: 'src/stylesheets/**/*.*'
+    images: 'assets/*.{png,jpg,gif,svg}'
+    assets: 'assets/',
     allAssets: [
-      'theme/assets/*.*',
-      'theme/config/*',
-      'theme/layout/*',
-      'theme/locales/*',
-      'theme/snippets/*',
-      'theme/templates/*',
-      'theme/templates/customers/*'
+      'assets/*.*',
+      'config/*',
+      'layout/*',
+      'locales/*',
+      'snippets/*',
+      'templates/*',
+      'templates/customers/*'
+    ],
+    srcStyles: [
+      'src/stylesheets/global/_info.scss'
+      'src/stylesheets/global/_helpers.scss'
+      'src/stylesheets/global/_variables.scss'
+      'src/stylesheets/global/*'
+      'src/stylesheets/partials/*'
+      'src/stylesheets/modules/*'
+      'src/stylesheets/templates/*'
     ]
 
   grunt.initConfig
@@ -28,8 +34,7 @@ module.exports = (grunt) ->
         api_key: '<%= config.private_api %>'
         password: '<%= config.private_password %>'
         url: '<%= config.shop_url %>'
-        theme: '<%= config.theme_id %>',
-        base: paths.theme
+        theme: '<%= config.theme_id %>'
 
     # Helper methods
     notify:
@@ -42,11 +47,10 @@ module.exports = (grunt) ->
           message: 'Zip file created'
 
     # File manipulation
-    gulp:
-      concatat: ->
-        return gulp.src(paths.css)
-          .pipe(cssimport())
-          .pipe(gulp.dest(paths.assets))
+    concat:
+      dist:
+        src: paths.srcStyles
+        dest: 'assets/timber.scss.liquid'
 
     imagemin:
       dynamic:
@@ -62,7 +66,7 @@ module.exports = (grunt) ->
     watch:
       styles:
         files: paths.css
-        tasks: ['gulp']
+        tasks: ['concat']
       images:
         files: [paths.images]
         tasks: ['imagemin']
@@ -91,5 +95,6 @@ module.exports = (grunt) ->
 
   # Register tasks
   grunt.registerTask 'default', ['watch']
-  grunt.registerTask 'deploy', ['gulp', 'imagemin', 'shopify:upload']
-  grunt.registerTask 'zip', ['gulp', 'imagemin', 'clean', 'compress', 'notify:zip']
+  grunt.registerTask 'build', ['concat', 'imagemin']
+  grunt.registerTask 'deploy', ['concat', 'imagemin', 'shopify:upload']
+  grunt.registerTask 'zip', ['concat', 'imagemin', 'clean', 'compress', 'notify:zip']

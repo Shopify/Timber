@@ -40,16 +40,22 @@ Grunt is an optional layer for developing with Timber. To setup Grunt for Timber
 ### Grunt Tasks
 `$ grunt`
 - Default task
-- Watches `stylesheets/` folder and concatenates styles into `theme/assets/timber.scss.liquid`
+- Watches `src/stylesheets/` folder and concatenates styles into `assets/timber.scss.liquid`
 - Automatically compresses image files in `assets/`
-- Uploads files in `theme/` to your store
+- Uploads valid theme from the root folder to your store
+
+----------
+
+`$ grunt build`
+- Concatenates stylesheets and compresses images
+- Files are not uploaded
 
 ----------
 
 `$ grunt upload`
 - Concatenates stylesheets, compresses images, and uploads all theme files to your shop
 - Note, this will overwrite all files (including active settings) so use sparingly
-  - To upload all files except your settings.json, use `grunt shopify:upload --no-json`
+  - To upload all files except your settings_data.json, use `grunt shopify:upload --no-json`
 
 ----------
 
@@ -71,9 +77,9 @@ Demo Stores
 - [Demo Store](https://timber-demo.myshopify.com/): A store setup with some products, blog posts, and customer accounts
 - [Empty Store](https://timber-demo-empty.myshopify.com/): A fresh store, just what you should expect when you install on your new store
 
-For a set of demo products to use during development, [download this CSV file](http://www.tetchi.ca/wp-content/uploads/2013/04/products1.csv) and import it on our products page.
+For a set of demo products to use during development, [download this CSV file](http://www.tetchi.ca/wp-content/uploads/2013/04/products1.csv) and import it on your products page.
 
-Basic structure
+Basic theme structure
 ---------------
 ```
 ├── assets
@@ -83,32 +89,19 @@ Basic structure
 │   └── optional alternate layouts
 ├── snippets
 │   └── custom code snippets
-├── templates
-│   ├── 404.liquid
-│   ├── article.liquid
-│   ├── blog.liquid
-│   ├── cart.liquid
-│   ├── collection.liquid
-│   ├── collection.list.liquid
-│   ├── index.liquid
-│   ├── list-collections.liquid
-│   ├── page.contact.liquid
-│   ├── page.liquid
-│   ├── product.liquid
-│   ├── search.liquid
-│   └── customers
-│         └── required templates if customer accounts are enabled
-├── config.yml
-│   └── if using the theme gem (see link under Additional Resources)
+└── templates
+    ├── various templates
+    └── customers
+          └── required templates if customer accounts are enabled
 ```
 
 Support
 ---------------------
 Get involved with Timber or follow along with updates and news.
 
-- Track all issues and feature requests here on GitHub.
-- Follow author [@cshold on Twitter](http://twitter.com/cshold).
-- Provide feedback at timber@shopify.com.
+- Track all issues and feature requests here on GitHub
+- Follow author [@cshold on Twitter](http://twitter.com/cshold)
+- Provide feedback at timber@shopify.com
 
 Additional resources
 ---------------------
