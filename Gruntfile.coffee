@@ -15,10 +15,9 @@ module.exports = (grunt) ->
       'templates/customers/*'
     ],
     srcStyles: [
-      'src/stylesheets/global/_info.scss'
+      'src/stylesheets/global/_version.scss'
       'src/stylesheets/global/_helpers.scss'
-      'src/stylesheets/global/_variables.scss'
-      'src/stylesheets/global/*'
+      'src/stylesheets/global/_variables.scss.liquid'
       'src/stylesheets/partials/*'
       'src/stylesheets/modules/*'
       'src/stylesheets/templates/*'

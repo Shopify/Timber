@@ -52,10 +52,10 @@ Grunt is an optional layer for developing with Timber. To setup Grunt for Timber
 
 ----------
 
-`$ grunt upload`
+`$ grunt deploy`
 - Concatenates stylesheets, compresses images, and uploads all theme files to your shop
 - Note, this will overwrite all files (including active settings) so use sparingly
-  - To upload all files except your settings_data.json, use `grunt shopify:upload --no-json`
+  - To upload all files except your settings_data.json, use `grunt shopify:upload --no-json` (TODO: not working. would be nice to have `grunt deploy --no-json`)
 
 ----------
 
