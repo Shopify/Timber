@@ -2,11 +2,12 @@
   #Sass Mixins
 ==============================================================================*/
 @mixin clearfix() {
-  &:after {
-    content: "";
-    display: table;
-    clear: both; }
   *zoom: 1;
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 }
 
 @mixin prefix($property, $value) {
@@ -63,7 +64,7 @@
 ==============================================================================*/
 $min: min-width;
 $max: max-width;
-@mixin at-query ($constraint, $viewport1, $viewport2:null) {
+@mixin at-query ($constraint, $viewport1, $viewport2: null) {
   @if $constraint == $min {
     @media screen and ($min: $viewport1) {
       @content;
