@@ -1464,7 +1464,7 @@ select {
 }
 
 select::-ms-expand {
-    display: none;
+  display: none;
 }
 
 /*================ Form labels ================*/
@@ -2143,6 +2143,15 @@ pre {
   color: $errorRed;
   background-color: $errorRedBg;
   border-color: $errorRed;
+
+  a {
+    color: $errorRed;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 /*============================================================================
