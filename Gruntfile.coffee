@@ -11,8 +11,7 @@ module.exports = (grunt) ->
       'layout/*',
       'locales/*',
       'snippets/*',
-      'templates/*',
-      'templates/customers/*'
+      'templates/**/*'
     ],
     srcStyles: [
       'src/stylesheets/global/_version.scss',
