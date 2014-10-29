@@ -238,6 +238,47 @@
   </table>
 </fieldset>
 
+<!-- Checkout Next Overrides -->
+<fieldset data-overrides-fieldset="checkout">
+  <legend>Checkout</legend>
+  <table>
+    <tr>
+      <td colspan="2">
+        <h3>Logo</h3>
+      </td>
+    </tr>
+    <tr class="horizontal">
+      <th>
+        <label for="checkout_logo">Use a logo?</label>
+      </th>
+      <td>
+        <select name="checkout_logo">
+          <option value="">No logo</option>
+          <option value="logo.png">Storefront logo</option>
+          <option value="checkout_logo.png">Custom logo</option>
+        </select>
+      </td>
+    </tr>
+    <tr class="horizontal">
+      <th>
+        <label for="checkout_logo.png">Logo image</label>
+      </th>
+      <td>
+        <input id="checkout_logo.png" name="checkout_logo.png" type="file"/>
+      </td>
+    </tr>
+    <tr class="horizontal">
+      <th>
+        <label for="checkout_headline">Tagline</label>
+        <small>Your shop description will be displayed next to your logo.</small>
+      </th>
+      <td>
+        <input id="checkout_headline" name="checkout_headline"/>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
 <!-- Social Sharing -->
 <fieldset>
   <legend>Social Sharing</legend>
