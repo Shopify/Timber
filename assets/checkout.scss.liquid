@@ -62,6 +62,12 @@ $radius: 3px;
   box-sizing: #{$box-sizing};
 }
 
+@mixin box-shadow($box-shadow) {
+  -webkit-box-shadow: #{$box-shadow};
+  -moz-box-shadow: #{$box-shadow};
+  box-shadow: #{$box-shadow};
+}
+
 /*============================================================================
   #Colors
 ==============================================================================*/
@@ -124,7 +130,7 @@ td,
 
 .field--focus {
   .boxshadow & {
-    box-shadow: 0 0 0 2px $colorPrimary;
+    @include box-shadow(0 0 0 2px $colorPrimary);
   }
 
   .no-boxshadow & {
@@ -134,7 +140,7 @@ td,
 
 .footer {
   .boxshadow & {
-    box-shadow: none;
+    @include box-shadow(none);
     border: 0 none;
   }
 
@@ -156,6 +162,10 @@ a,
   &:focus {
     color: $colorLinkHover;
   }
+
+  &:focus {
+    outline: 1px dotted;
+  }
 }
 
 .btn,
@@ -174,7 +184,7 @@ a,
   &:focus,
   &:focus:hover {
    background-color: $colorBtnPrimaryActive;
-   box-shadow: none;
+   @include box-shadow(none);
   }
 }
 
@@ -268,7 +278,24 @@ h1, h2, h3, h4, h5, h6 {
   border-color: $colorBorder;
 
   &:hover {
-    border-color: lighten($colorBorder, 15%);
+    border-color: darken($colorBorder, 15%);
+  }
+
+  &:focus {
+    border-color: $colorPrimary;
+  }
+}
+
+.chrome input[type="checkbox"],
+.safari input[type="checkbox"] {
+
+  &:focus {
+    border-color: $colorPrimary;
+    @include box-shadow(0 0 0 1px $colorPrimary);
+  }
+
+  &:after {
+    background-image: url({{ "ico-check.svg" | asset_url }});
   }
 }
 
@@ -284,9 +311,15 @@ h1, h2, h3, h4, h5, h6 {
 .safari .toggle:checked {
   background-color: $colorPrimary;
   border-color: $colorPrimary;
+  @include box-shadow(0 0 0 10px $colorPrimary inset);
 
   &:hover {
     border-color: $colorPrimary;
+  }
+
+  &:focus {
+    background-color: $colorBtnPrimaryHover;
+    @include box-shadow(none);
   }
 }
 
@@ -405,6 +438,9 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-.call-to-action--final label {
-  margin-top: 0.6em;
+.call-to-action--final,
+.call-to-action {
+  label {
+    margin-top: 0.6em;
+  }
 }
