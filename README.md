@@ -29,7 +29,7 @@ Grunt is an optional layer for developing with Timber. To setup Grunt for Timber
 
 4. Bundle dependencies
 
-        $ npm install
+        $ bundle install
 
 5. Insert private app keys
 
