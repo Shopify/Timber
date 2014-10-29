@@ -1,6 +1,8 @@
 module.exports = (grunt) ->
 
   # Global vars
+  gulp = require 'gulp'
+  cssimport = require 'gulp-cssimport'
   paths =
     css: 'src/stylesheets/**/*.*'
     images: 'assets/*.{png,jpg,gif,svg}'
@@ -45,10 +47,11 @@ module.exports = (grunt) ->
           message: 'Zip file created'
 
     # File manipulation
-    concat:
-      dist:
-        src: paths.srcStyles
-        dest: 'assets/timber.scss.liquid'
+    gulp:
+      concat: ->
+        return gulp.src(paths.css)
+          .pipe(cssimport())
+          .pipe(gulp.dest(paths.assets))
 
     imagemin:
       dynamic:
@@ -64,7 +67,7 @@ module.exports = (grunt) ->
     watch:
       styles:
         files: paths.css
-        tasks: ['concat']
+        tasks: ['gulp']
       images:
         files: [paths.images]
         tasks: ['imagemin']
@@ -75,8 +78,8 @@ module.exports = (grunt) ->
     clean:
       plugins: [
         '*.zip',
-        'theme/assets/**/*',
-        '!theme/assets/*.*'
+        'assets/**/*',
+        '!assets/*.*'
       ]
 
     compress:
@@ -93,6 +96,6 @@ module.exports = (grunt) ->
 
   # Register tasks
   grunt.registerTask 'default', ['watch']
-  grunt.registerTask 'build', ['concat', 'imagemin']
-  grunt.registerTask 'deploy', ['concat', 'imagemin', 'shopify:upload']
-  grunt.registerTask 'zip', ['concat', 'imagemin', 'clean', 'compress', 'notify:zip']
+  grunt.registerTask 'build', ['gulp', 'imagemin', 'clean']
+  grunt.registerTask 'deploy', ['gulp', 'imagemin', 'shopify:upload']
+  grunt.registerTask 'zip', ['gulp', 'imagemin', 'clean', 'compress', 'notify:zip']
