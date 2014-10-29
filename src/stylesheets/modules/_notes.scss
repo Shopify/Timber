@@ -4,9 +4,10 @@
 .note,
 .errors {
   border-radius: $radius;
-  padding: $gutter / 2;
+  padding: 6px 12px;
   margin-bottom: $gutter / 2;
   border: 1px solid transparent;
+  font-size: 0.9em;
 
   ul,
   ol {
@@ -36,7 +37,7 @@
 
 .form-success {
   color: $successGreen;
-  background-color: lighten($successGreen, 65%);
+  background-color: $successGreenBg;
   border-color: $successGreen;
 }
 
