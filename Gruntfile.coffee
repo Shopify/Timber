@@ -14,14 +14,6 @@ module.exports = (grunt) ->
       'locales/*',
       'snippets/*',
       'templates/**/*'
-    ],
-    srcStyles: [
-      'src/stylesheets/global/_version.scss',
-      'src/stylesheets/global/_helpers.scss',
-      'src/stylesheets/global/_variables.scss.liquid',
-      'src/stylesheets/partials/*',
-      'src/stylesheets/modules/*',
-      'src/stylesheets/templates/*'
     ]
 
   grunt.initConfig
