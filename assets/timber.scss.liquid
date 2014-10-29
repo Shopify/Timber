@@ -82,12 +82,10 @@ $colorSecondary: {{ settings.color_secondary }};
 $colorBtnPrimary: $colorPrimary;
 $colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
 $colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
-$colorBtnPrimaryText: #fff;
 
 $colorBtnSecondary: $colorSecondary;
 $colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
 $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
-$colorBtnSecondaryText: #fff;
 
 // Text link colors
 $colorLink: $colorPrimary;
@@ -1067,17 +1065,17 @@ html input[disabled] {
 
   /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
-  color: $colorBtnPrimaryText;
+  color: #fff;
 
   &:hover {
     background-color: $colorBtnPrimaryHover;
-    color: $colorBtnPrimaryText;
+    color: #fff;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnPrimaryActive;
-   color: $colorBtnPrimaryText;
+   color: #fff;
   }
 
   &[disabled],
@@ -1092,17 +1090,17 @@ html input[disabled] {
 input.btn-secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
-  color: $colorBtnSecondaryText;
+  color: #fff;
 
   &:hover {
     background-color: $colorBtnSecondaryHover;
-    color: $colorBtnSecondaryText;
+    color: #fff;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnSecondaryActive;
-   color: $colorBtnSecondaryText;
+   color: #fff;
   }
 }
 
@@ -1357,7 +1355,7 @@ select {
 }
 
 select::-ms-expand {
- display: none;
+   display: none;
 }
 
 /*================ Form labels ================*/
@@ -2046,15 +2044,6 @@ label.error {
   color: $errorRed;
   background-color: $errorRedBg;
   border-color: $errorRed;
-
-  a {
-    color: $errorRed;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
 }
 
 
