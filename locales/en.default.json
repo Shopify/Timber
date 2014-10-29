@@ -76,7 +76,7 @@
   },
   "collections": {
     "general": {
-      "no_matches": "Sorry, there are no products matching your search.",
+      "no_matches": "Sorry, there are no products in this collection",
       "link_title": "Browse our {{ title }} collection",
       "items_count": {
         "one": "item",
