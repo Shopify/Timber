@@ -27,17 +27,8 @@
   @include transition(padding 0.2s ease-in-out);
 
   @include responsify( $lap_up, true ) {
-    padding-top: 130px;
-    padding-bottom: 115px;
-  }
-
-  @include responsify ( $portable_up, true ) {
-    padding-top: 180px;
-    padding-bottom: 170px;
-  }
-
-  @include responsify ( $desk_up, true ) {
-    padding-top: 200px;
+    padding-top: 140px;
+    padding-bottom: 100px;
   }
 
   @include responsify( $lap_down ) {
@@ -87,7 +78,7 @@
   text-align: center;
   background-color: #e04500;
   background-color: rgba(224,69,0,.4);
-  padding: ($margin * 3) 0 ($margin * 2);
+  padding: ($margin * 2) 0 $margin;
 
   @include docsFont();
 
@@ -102,7 +93,7 @@
 
 .bucket-title {
   color: #fff;
-  font-size: 1.714em;
+  font-size: 1.5em;
   @include docsFont();
 
   @include responsify($lap_down) {
@@ -110,31 +101,24 @@
   }
 
   @include responsify($portable_down) {
-    font-size: 1.5em;
     margin-bottom: 0.125em;
   }
 }
 
 .bucket-description {
-  font-size: 1.425em;
-
-  @include responsify($portable_down) {
-    font-size: 1.125em;
-  }
+  font-size: 1.125em;
 }
 
 
 %bucket-icons {
-  height: 120px;
+  height: 80px;
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: auto 120px;
+  background-size: auto 80px;
   margin-bottom: $margin;
 
   @include responsify($palm_down) {
-    height: 80px;
     margin-bottom: $margin/2;
-    background-size: auto 80px;
   }
 }
 

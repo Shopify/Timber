@@ -30,7 +30,6 @@
 }
 
 .footer-large {
-  background-color: $orangeDark;
   padding: ($margin * 1.5) 0;
 
   @include responsify( $lap_up ) {
@@ -51,6 +50,7 @@
 }
 
 .footer-bar {
+  border-top: 1px solid rgba(255,255,255,0.2);
   padding: $margin 0;
 
   @include responsify( $lap_up ) {
