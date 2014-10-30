@@ -6,7 +6,7 @@ module.exports = (grunt) ->
   paths =
     css: 'src/stylesheets/**/*.*'
     images: 'assets/*.{png,jpg,gif,svg}'
-    assets: 'assets/',
+    assets: 'assets/'
     allAssets: [
       'assets/*.*',
       'config/*',

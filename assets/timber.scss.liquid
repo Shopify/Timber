@@ -1,5 +1,5 @@
 /*============================================================================
-  Shopify Timber v1.4.0
+  Shopify Timber v1.4.0 | github.com/shopify/timber
   Copyright 2014 Shopify Inc.
   Author Carson Shold @cshold
   Built with Sass - http://sass-lang.com/
@@ -7,10 +7,7 @@
   Some things to know about this file:
     - Sass is compiled on Shopify's server so you don't need to convert it to CSS yourself
     - The output CSS is compressed and comments are removed
-    - You cannot use @imports in this file
-        * Use grunt or gulp tasks to enable @imports - https://github.com/Shopify/shopify-css-import
-    - Helpers variables, mixins, and starter classes are provided. Change as needed.
-    - The file is prepped with a CSS reset
+    - This file merges your stylesheets into one master at assets/timber.scss.liquid
 ==============================================================================*/
 
 /*================ Variables, theme settings, and Sass mixins ================*/
@@ -99,225 +96,8 @@ $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $baseFontSize: 14px; // Henseforth known as 1em
 
 /*============================================================================
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-<<<<<<< HEAD:assets/timber.scss.liquid
-  Table of Contents
-
-  #Breakpoint and Grid Variables
-  #General Variables
-  #Sass Mixins
-  #Normalize
-  #Grid Setup
-  #Basic Styles
-  #Helper Classes
-  #Typography
-  #Rich Text Editor
-  #Links and Buttons
-  #Lists
-  #Tables
-  #OOCSS Media Object
-  #Images and Iframes
-  #Forms
-  #Icons
-  #Pagination
-  #Site Header
-  #Site Nav and Dropdowns
-  #Site Footer
-  #Product and Collection Grids
-  #Collection Filters
-  #Breadcrumbs
-  #Product Page
-  #Blogs and Comments
-  #Notes and Form Feedback
-  #Cart Page
-  #Demo Styles - for empty store state
-==============================================================================*/
-
-/*============================================================================
-  #Breakpoint and Grid Variables
-==============================================================================*/
-<<<<<<< HEAD
-$viewportIncrement: 1px;
-=======
-  #Layout and Breakpoint Variables
-==============================================================================*/
-$siteWidth: 1180px;
-$gutter: 30px;
-$gridGutter: 30px;
-$radius: 3px;
->>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
-
-$small: 480px;
-$medium: 768px;
-$large: 769px;
-
-<<<<<<< HEAD:assets/timber.scss.liquid
-=======
-$viewportIncrement: 1px;
->>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
-$postSmall: $small + $viewportIncrement;
-$preMedium: $medium - $viewportIncrement;
-$preLarge: $large - $viewportIncrement;
-
-/*================ The following are dependencies of csswizardry grid ================*/
-$breakpoints: (
-  'small' '(max-width: #{$small})',
-  'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
-  'medium-down' '(max-width: #{$medium})',
-  'large' '(min-width: #{$large})'
-);
-$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
-$breakpoint-has-push:  ('medium', 'medium-down', 'large');
-$breakpoint-has-pull:  ('medium', 'medium-down', 'large');
-
-<<<<<<< HEAD:assets/timber.scss.liquid
-/*============================================================================
-  #General Variables
-==============================================================================*/
-
-// Timber Colors
-=======
-=======
-$min: min-width;
-$max: max-width;
-@mixin at-query ($constraint, $viewport1, $viewport2: null) {
-  @if $constraint == $min {
-    @media screen and ($min: $viewport1) {
-      @content;
-    }
-  } @else if $constraint == $max {
-    @media screen and ($max: $viewport1) {
-      @content;
-    }
-  } @else {
-    @media screen and ($min: $viewport1) and ($max: $viewport2) {
-      @content;
-    }
-  }
-}
-
->>>>>>> Reverted to gulp for css concat
-
-/*================ Site-wide styles ================*/
-/*============================================================================
-  #Normalize
-==============================================================================*/
-<<<<<<< HEAD
->>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
-$colorPrimary: {{ settings.color_primary }};
-$colorSecondary: {{ settings.color_secondary }};
-
-// Button colors
-$colorBtnPrimary: $colorPrimary;
-$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
-$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
-$colorBtnPrimaryText: #fff;
-
-$colorBtnSecondary: $colorSecondary;
-$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
-$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
-$colorBtnSecondaryText: #fff;
-
-// Text link colors
-$colorLink: $colorPrimary;
-$colorLinkHover: lighten($colorPrimary, 15%);
-
-// Text colors
-$colorTextBody: {{ settings.color_body_text }};
-
-// Backgrounds
-$colorBody: {{ settings.color_body_bg }};
-
-// Border colors
-$colorBorder: {{ settings.color_borders }};
-=======
-*, input, :before, :after {
-  @include box-sizing();
-}
->>>>>>> Reverted to gulp for css concat
-
-html, body {
-  padding: 0;
-  margin: 0;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
-  display: block;
-}
-
-<<<<<<< HEAD
-// Helper colors
-$disabledGrey: #f6f6f6;
-$disabledBorder: darken($disabledGrey, 25%);
-$errorRed: #dc0000;
-$errorRedBg: lighten($errorRed, 55%);
-$successGreen: #0a942a;
-
-<<<<<<< HEAD:assets/timber.scss.liquid
-// Sizing variables
-$siteWidth: 1180px;
-$gutter: 30px;
-$gridGutter: 30px; // can be a %, but nested grids will have smaller margins because of it
-$radius: 3px;
-
-/*================ Typography ================*/
-
-=======
-/*============================================================================
-  #Typography variables
-==============================================================================*/
->>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
-$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$headerFontWeight: 700;
-=======
-audio, canvas, progress, video {
-  display: inline-block;
-  vertical-align: baseline;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
->>>>>>> Reverted to gulp for css concat
-
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-<<<<<<< HEAD:assets/timber.scss.liquid
-@font-face {
-  font-family: "icons";
-  src: url(' {{ "icons.eot" | asset_url }} ');
-  src: url(' {{ "icons.eot" | asset_url }} ?#iefix ') format("embedded-opentype"),
-       url(' {{ "icons.woff" | asset_url }} ') format("woff"),
-       url(' {{ "icons.ttf" | asset_url }} ') format("truetype"),
-       url(' {{ "icons.svg" | asset_url }} #timber-icons ') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-$socialIconFontStack: 'icons';
-
-
-/*============================================================================
   #Sass Mixins
 ==============================================================================*/
-.clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both; }
-  *zoom: 1;
-}
-
-=======
-/*============================================================================
-=======
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-  #Sass Mixins
-==============================================================================*/
->>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
 @mixin clearfix() {
   *zoom: 1;
   &:after {
@@ -376,7 +156,6 @@ $socialIconFontStack: 'icons';
 }
 
 /*============================================================================
-<<<<<<< HEAD
   Dependency-free breakpoint mixin
     - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
 ==============================================================================*/
@@ -398,11 +177,8 @@ $max: max-width;
   }
 }
 
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-<<<<<<< HEAD:assets/timber.scss.liquid
-=======
 
->>>>>>> Moved theme files back into theme folder:theme/assets/timber.scss.liquid
+/*================ Site-wide styles ================*/
 /*============================================================================
   #Normalize
 ==============================================================================*/
@@ -434,8 +210,51 @@ input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-=======
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
+/*============================================================================
+  #Base Styles
+==============================================================================*/
+html {
+  background-color: $colorFooterBg;
+}
+
+body {
+  background-color: $colorBody;
+}
+
+.wrapper {
+  @include clearfix();
+  max-width: $siteWidth;
+  margin: 0 auto;
+  padding: 0 ($gutter / 2);
+
+  @include at-query ($min, $small) {
+    padding: 0 $gutter;
+  }
+}
+
+.main-content {
+  display: block;
+  margin-top: $gutter;
+  padding-bottom: $gutter * 2;
+}
+
+/*================ Horizontal Rules ================*/
+hr {
+  clear: both;
+  border-top: solid $colorBorder;
+  border-width: 1px 0 0;
+  margin: $gutter 0;
+  height: 0;
+
+  &.hr--small {
+    margin: ($gutter / 2) 0;
+  }
+
+  &.hr--clear {
+    border-top-color: transparent;
+  }
+}
+
 /*============================================================================
   #Grid Setup
     - Based on csswizardry grid, but with floated columns and a fixed gutter size
@@ -465,36 +284,6 @@ $class-type: unquote(".");
   $class-type: unquote("%");
 }
 
-=======
-  #Grid Setup
-    - Based on csswizardry grid, but with floated columns and a fixed gutter size
-    - Breakpoints defined above, under #Breakpoint and Grid Variables
-    - Note the inclusion of .grid-uniform to take care of clearfixes on evenly sized grid-items
-==============================================================================*/
-$responsive:         true;
-$mobile-first:       true;
-$use-silent-classes: false;
-$push:               true;
-$pull:               false;
-
-/* Force clearfix on grids */
-.grid,
-.grid-uniform {
-  @include clearfix;
-}
-
-/* Manual grid-item clearfix */
-.grid-item.clear {
-  clear: both;
-}
-
-$class-type: unquote(".");
-
-@if $use-silent-classes == true {
-  $class-type: unquote("%");
-}
-
->>>>>>> Reverted to gulp for css concat
 @mixin grid-media-query($media-query) {
   $breakpoint-found: false;
 
@@ -514,7 +303,6 @@ $class-type: unquote(".");
   @if $breakpoint-found == false{
     @warn "Breakpoint '#{$media-query}' does not exist";
   }
-<<<<<<< HEAD
 }
 
 
@@ -862,914 +650,6 @@ $class-type: unquote(".");
 }
 
 /*============================================================================
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-  #Basic Styles
-==============================================================================*/
-html {
-  background-color: $colorFooterBg;
-}
-
-body {
-  background-color: $colorBody;
-}
-
-.wrapper {
-  @include clearfix();
-  max-width: $siteWidth;
-  margin: 0 auto;
-  padding: 0 ($gutter / 2);
-
-  @include at-query ($min, $small) {
-    padding: 0 $gutter;
-  }
-}
-
-.main-content {
-  display: block;
-  margin-top: $gutter;
-  padding-bottom: $gutter * 2;
-}
-
-/*============================================================================
-  #Helper Classes
-==============================================================================*/
-.display-table {
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-}
-=======
-  #Layout and Breakpoint Variables
-==============================================================================*/
-$siteWidth: 1180px;
-$gutter: 30px;
-$gridGutter: 30px;
-$radius: 3px;
-
-$small: 480px;
-$medium: 768px;
-$large: 769px;
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-
-$viewportIncrement: 1px;
-$postSmall: $small + $viewportIncrement;
-$preMedium: $medium - $viewportIncrement;
-$preLarge: $large - $viewportIncrement;
-
-/*================ The following are dependencies of csswizardry grid ================*/
-$breakpoints: (
-  'small' '(max-width: #{$small})',
-  'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
-  'medium-down' '(max-width: #{$medium})',
-  'large' '(min-width: #{$large})'
-);
-$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
-$breakpoint-has-push:  ('medium', 'medium-down', 'large');
-$breakpoint-has-pull:  ('medium', 'medium-down', 'large');
-
-
-/*============================================================================
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-  #Typography
-==============================================================================*/
-body,
-input,
-textarea,
-button,
-select {
-  font-size: $baseFontSize;
-  line-height: 1.6;
-  font-family: $bodyFontStack;
-  color: $colorTextBody;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: $headerFontStack;
-  font-weight: $headerFontWeight;
-  margin: 0 0 0.5em;
-  line-height: 1.4;
-
-  a {
-    text-decoration: none;
-    font-weight: inherit;
-  }
-}
-
-/*================ Use em() Sass function to declare font-size ================*/
-h1 {
-  font-size: em(36px);
-}
-
-h2 {
-  font-size: em(28px);
-}
-
-h3 {
-  font-size: em(22px);
-}
-=======
-  #Color variables
-==============================================================================*/
-$colorPrimary: {{ settings.color_primary }};
-$colorSecondary: {{ settings.color_secondary }};
-
-// Button colors
-$colorBtnPrimary: $colorPrimary;
-$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
-$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
-$colorBtnPrimaryText: #fff;
-
-$colorBtnSecondary: $colorSecondary;
-$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
-$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
-$colorBtnSecondaryText: #fff;
-
-// Text link colors
-$colorLink: $colorPrimary;
-$colorLinkHover: lighten($colorPrimary, 15%);
-
-// Text colors
-$colorTextBody: {{ settings.color_body_text }};
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-
-// Backgrounds
-$colorBody: {{ settings.color_body_bg }};
-
-// Border colors
-$colorBorder: {{ settings.color_borders }};
-
-// Nav and dropdown link background
-$colorNav: #f2f2f2;
-$colorNavText: #333;
-
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-
-.h1 { @extend h1; }
-.h2 { @extend h2; }
-.h3 { @extend h3; }
-.h4 { @extend h4; }
-.h5 { @extend h5; }
-.h6 { @extend h6; }
-=======
-// Site Footer
-$colorFooterBg: {{ settings.color_footer_bg }};
-$colorFooterText: {{ settings.color_footer_text }};
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-
-// Helper colors
-$disabledGrey: #f6f6f6;
-$disabledBorder: darken($disabledGrey, 25%);
-$errorRed: #d02e2e;
-$errorRedBg: #fff6f6;
-$successGreen: #37994d;
-$successGreenBg: #ecfef0;
-
-/*============================================================================
-  #Typography variables
-==============================================================================*/
-$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$headerFontWeight: 700;
-
-$bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$baseFontSize: 14px; // Henseforth known as 1em
-
-/*============================================================================
-  #Base Styles
-==============================================================================*/
-html {
-  background-color: $colorFooterBg;
-}
-
-body {
-  background-color: $colorBody;
-}
-
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-sup, sub {
-  position: relative;
-  font-size: 60%;
-  vertical-align: baseline;
-}
-sup {
-  top: -0.5em;
-=======
-.wrapper {
-  @include clearfix();
-  max-width: $siteWidth;
-  margin: 0 auto;
-  padding: 0 ($gutter / 2);
-
-  @include at-query ($min, $small) {
-    padding: 0 $gutter;
-  }
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-}
-
-.main-content {
-  display: block;
-  margin-top: $gutter;
-  padding-bottom: $gutter * 2;
-}
-
-/*================ Horizontal Rules ================*/
-hr {
-  clear: both;
-  border-top: solid $colorBorder;
-  border-width: 1px 0 0;
-  margin: $gutter 0;
-  height: 0;
-
-  &.hr--small {
-    margin: ($gutter / 2) 0;
-  }
-
-  &.hr--clear {
-    border-top-color: transparent;
-  }
-}
-
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-/*================ Code ================*/
-code, pre {
-  background-color: #faf7f5;
-  font-family: Consolas,monospace;
-  font-size: 1em;
-  border: 0 none;
-  padding: 0 2px;
-  color: #51ab62;
-}
-
-pre {
-  overflow: auto;
-  padding: $gutter / 2;
-  margin: 0 0 $gutter;
-}
-
-/*================ Horizontal Rules ================*/
-hr {
-  clear: both;
-  border-top: solid $colorBorder;
-  border-width: 1px 0 0;
-  margin: $gutter 0;
-  height: 0;
-=======
-/*============================================================================
-  #Links and Buttons
-==============================================================================*/
-a {
-  color: $colorLink;
-  text-decoration: underline;
-  background: transparent;
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-
-  &.hr--small {
-    margin: ($gutter / 2) 0;
-  }
-
-  &.hr--clear {
-    border-top-color: transparent;
-  }
-}
-
-/*================ Section Headers ================*/
-.section-header {
-  margin-bottom: $gutter / 1.5;
-}
-
-@include at-query ($min, $large) {
-  .section-header {
-    display: table;
-    width: 100%;
-  }
-
-  .section-header--title {
-    margin-bottom: $gutter / 2.5;
-  }
-
-  .section-header--left {
-    display: table-cell;
-    vertical-align: middle;
-    margin-bottom: 0;
-
-    h1, h2, h3, h4,
-    .h1, .h2, .h3, .h4 {
-      margin-bottom: 0;
-    }
-  }
-
-  .section-header--right {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: right;
-    width: 335px;
-
-    @include at-query ($max, $medium) {
-      margin-bottom: $gutter;
-    }
-  }
-}
-
-.section-header--right {
-
-  .form-horizontal,
-  .collection-view {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  @include at-query ($min, $postSmall) {
-    label + select,
-    .collection-view {
-      margin-left: $gutter / 2;
-    }
-  }
-}
-
-.collection-view {
-  display: inline-block;
-  border: 1px solid $colorBorder;
-  border-radius: $radius;
-  padding: 11px;
-  height: 37px; // same as form elements
-
-  /*================ We use SVG icons, so simply hide this in oldIE ================*/
-  .lt-ie9 & {
-    display: none;
-  }
-
-  /*================ Only show on larger screens ================*/
-  @include at-query ($min, $large) {
-    display: inline-block;
-  }
-
-  a {
-    display: block;
-    float: left;
-    opacity: 0.7;
-    cursor: pointer;
-
-    & + a {
-      margin-left: 10px;
-    }
-
-    &.collection-view--active {
-      opacity: 1;
-      cursor: default;
-    }
-  }
-
-  img {
-    display: block;
-    opacity: inherit;
-  }
-}
-
-/*============================================================================
-  #Rich Text Editor
-==============================================================================*/
-.rte {
-  margin-bottom: $gutter / 2;
-
-  // Add some top margin to headers from the rich text editor
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: 2em;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  & > div {
-    margin-bottom: $gutter / 2;
-  }
-
-  ul, ol {
-    margin-left: 35px;
-  }
-
-  ul {
-    @extend ul.disc;
-  }
-
-  li {
-    margin-bottom: 0.4em;
-  }
-}
-
-.rte-header {
-  margin-bottom: 0;
-}
-
-/*============================================================================
-  #Links and Buttons
-==============================================================================*/
-a {
-  color: $colorLink;
-  text-decoration: underline;
-  background: transparent;
-}
-
-a:hover,
-a:focus {
-  color: $colorLinkHover;
-}
-
-button {
-  overflow: visible;
-}
-
-button[disabled],
-html input[disabled] {
-  cursor: default;
-}
-
-.btn {
-  display: inline-block;
-  padding: 8px 10px;
-  margin: 0;
-  line-height: 1.42;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  cursor: pointer;
-  border: 1px solid transparent;
-  @include prefix('user-select', 'none');
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border-radius: $radius;
-
-  /*================ Set primary button colors - can override later ================*/
-  background-color: $colorBtnPrimary;
-  color: $colorBtnPrimaryText;
-
-  &:hover {
-    background-color: $colorBtnPrimaryHover;
-    color: $colorBtnPrimaryText;
-  }
-
-  &:active,
-  &:focus {
-   background-color: $colorBtnPrimaryActive;
-   color: $colorBtnPrimaryText;
-  }
-
-  &[disabled],
-  &.disabled {
-    cursor: default;
-    color: $disabledBorder;
-    background-color: $disabledGrey;
-  }
-}
-
-.btn--secondary,
-input.btn--secondary {
-  @extend .btn;
-  background-color: $colorBtnSecondary;
-
-  &:hover {
-    background-color: $colorBtnSecondaryHover;
-    color: $colorBtnSecondaryText;
-  }
-
-  &:active,
-  &:focus {
-   background-color: $colorBtnSecondaryActive;
-   color: $colorBtnSecondaryText;
-  }
-}
-
-.btn--small {
-  padding: 4px 5px;
-  font-size: em(12px);
-}
-
-.btn--large {
-  padding: 12px 15px;
-  font-size: em(16px);
-}
-
-.btn--full {
-  width: 100%;
-}
-
-/*================ Force an input/button to look like a text link ================*/
-.text-link {
-  display: inline;
-  border: 0 none;
-  background: none;
-  padding: 0;
-  margin: 0;
-}
-
-/*============================================================================
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-  #Lists
-==============================================================================*/
-ul, ol {
-  margin: 0 0 $gutter;
-  padding: 0;
-}
-
-ul { list-style: none outside; }
-ol { list-style: decimal; }
-ul ul, ul ol,
-ol ol, ol ul { margin: 4px 0 5px 20px; }
-li { margin-bottom: 0.25em; }
-
-ol, ul.square, ul.disc { margin-left: 20px; }
-ul.square { list-style: square outside; }
-ul.disc { list-style: disc outside; }
-ol.alpha { list-style: lower-alpha outside; }
-
-.inline-list li {
-  display: inline-block;
-  margin-bottom: 0;
-}
-
-/*============================================================================
-  #Tables
-==============================================================================*/
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-table.full {
-  width: 100%;
-  margin-bottom: 1em;
-}
-
-.table-wrap {
-  max-width: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-th {
-  font-weight: bold;
-}
-
-th, td {
-  text-align: left;
-  padding: $gutter / 2;
-  border: 1px solid $colorBorder;
-}
-
-
-/*============================================================================
-  #OOCSS Media Object
-    - http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
-==============================================================================*/
-.media,
-.media-flex {
-  overflow: hidden;
-  _overflow: visible;
-  zoom: 1;
-}
-
-.media-img {
-  float: left;
-  margin-right: $gutter;
-}
-
-.media-img-right {
-  float: right;
-  margin-left: $gutter;
-}
-
-.media-img img,
-.media-img-right img {
-  display: block;
-=======
->>>>>>> Reverted to gulp for css concat
-}
-
-
-/*============================================================================
-  #Images and Iframes
-==============================================================================*/
-img {
-  border: 0 none;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
-img.auto,
-.grid-item img,
-.grid-item iframe {
-  max-width: 100%;
-}
-
-.video-wrapper {
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-  height: auto;
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-
-/*============================================================================
-=======
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-  #Forms
-==============================================================================*/
-form {
-  margin-bottom: $gutter;
-}
-
-input,
-textarea,
-button,
-select {
-  font-size: 1em;
-}
-
-button,
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-input[type="submit"],
-textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-input,
-textarea,
-select,
-fieldset {
-  border-radius: $radius;
-  max-width: 100%;
-
-  &.input-full {
-    width: 100%;
-  }
-}
-
-input,
-select,
-textarea {
-  padding: 8px 10px;
-  line-height: 1.42;
-}
-
-fieldset {
-  border: 1px solid $colorBorder;
-  padding: $gutter / 2;
-}
-
-legend {
-  border: 0;
-  padding: 0;
-}
-
-optgroup {
-  font-weight: bold;
-}
-
-input {
-  display: inline-block;
-  width: auto;
-}
-
-button,
-input[type="submit"] {
-  cursor: pointer;
-}
-
-input[type="submit"] {
-  @extend .btn;
-}
-
-/*================ Input width and border ================*/
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-textarea,
-select {
-  border: 1px solid $colorBorder;
-  width: 100%;
-  max-width: 100%;
-  display: block;
-  margin: 0 0 1em;
-
-  &:focus {
-    border: 1px solid darken($colorBorder, 10%);
-  }
-
-  &[disabled],
-  &.disabled {
-    cursor: default;
-    background-color: $disabledGrey;
-    border-color: $disabledBorder;
-  }
-}
-
-textarea {
-  min-height: 100px;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-position: right center;
-  background: {
-    image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNy43cHgiIGhlaWdodD0iNC4zcHgiIHZpZXdCb3g9IjAgMCA3LjcgNC4zIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA3LjcgNC4zIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiM5OTk5OTkiIGQ9Ik03LjEsMC4xQzYuNywwLjUsMy45LDMuMiwzLjksMy4yUzEsMC41LDAuNiwwLjFTMCwwLjcsMCwwLjdsMy45LDMuNmwzLjgtMy42QzcuNywwLjcsNy41LTAuMyw3LjEsMC4xeiIvPg0KPC9zdmc+DQo="); // svg base64 encoded arrow
-    repeat: no-repeat;
-    position: right 10px center;
-    color: transparent;
-  }
-  padding-right: 28px;
-  text-indent: 0.01px;
-  text-overflow: '';
-  cursor: pointer;
-
-  /*================ Hide the svg arrow in IE9 and below ================*/
-  .ie9 &,
-  .lt-ie9 & {
-    padding-right: 10px;
-    background-image: none;
-  }
-}
-
-select::-ms-expand {
-  display: none;
-}
-
-/*================ Form labels ================*/
-label,
-legend {
-  display: block;
-  margin-bottom: 2px;
-  font-weight: bold;
-
-  &.inline {
-    display: inline;
-  }
-
-  .form-horizontal &.hidden-label,
-  &.hidden-label {
-    height: 0;
-    width: 0;
-    margin-bottom: 0;
-    overflow: hidden;
-
-    .ie9 &,
-    .lt-ie9 & {
-      height: auto;
-      margin-bottom: 2px;
-      overflow: visible;
-    }
-  }
-}
-
-/*================ We don't want the same label treatment for checkboxes/radios ================*/
-input[type="checkbox"] + label,
-input[type="radio"] + label {
-  font-weight: normal;
-}
-
-label[for] {
-  cursor: pointer;
-}
-
-.label-hint {
-  color: #999;
-}
-
-/*================ Horizontal Form ================*/
-form.form-horizontal,
-.form-horizontal {
-  margin-bottom: 0;
-
-  input[type="text"],
-  input[type="search"],
-  input[type="password"],
-  input[type="email"],
-  input[type="file"],
-  input[type="number"],
-  input[type="tel"],
-  textarea,
-  select,
-  label {
-    display: inline-block;
-    margin-bottom: 0;
-    width: auto;
-  }
-}
-
-/*================ Error styles ================*/
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-textarea {
-  &.error {
-    border-color: $errorRed;
-    background-color: $errorRedBg;
-    color: $errorRed;
-  }
-}
-
-label.error {
-  color: $errorRed;
-}
-
-
-/*================ Input Group ================*/
-.input-group {
-  position: relative;
-  display: table;
-  border-collapse: separate;
-
-  .input-group-field:first-child,
-  .input-group-btn:first-child,
-  .input-group-btn:first-child > .btn,
-  input[type="hidden"]:first-child + .input-group-field,
-  input[type="hidden"]:first-child + .input-group-btn > .btn {
-    border-radius: $radius 0 0 $radius;
-  }
-
-  .input-group-field:last-child,
-  .input-group-btn:last-child > .btn {
-   border-radius: 0 $radius $radius 0;
-  }
-
-  input {
-    // Nasty Firefox hack for inputs http://davidwalsh.name/firefox-buttons
-    &::-moz-focus-inner {
-      border: 0;
-      padding: 0;
-      margin-top: -1px;
-      margin-bottom: -1px;
-    }
-  }
-}
-
-.input-group-field,
-.input-group-btn {
-  display: table-cell;
-  vertical-align: middle;
-  margin: 0;
-}
-
-.input-group .btn,
-.input-group .input-group-field {
-  height: 37px;
-}
-
-.input-group .input-group-field {
-  width: 100%;
-  margin-bottom: 0;
-}
-
-.input-group-btn {
-  position: relative;
-  white-space: nowrap;
-  width: 1%;
-  padding: 0;
-}
-
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-=======
-/*============================================================================
   #Helper Classes
 ==============================================================================*/
 .clearfix {
@@ -1970,7 +850,6 @@ pre {
   margin: 0 0 $gutter;
 }
 
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
 /*============================================================================
   #Links and Buttons
 ==============================================================================*/
@@ -2074,8 +953,6 @@ input.btn--secondary {
   margin: 0;
 }
 
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-=======
 /*============================================================================
   #Lists
 ==============================================================================*/
@@ -2235,13 +1112,6 @@ input[type="submit"] {
   @extend .btn;
 }
 
-<<<<<<< HEAD
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-/*============================================================================
-  #Tables
-==============================================================================*/
-table {
-=======
 /*================ Input width and border ================*/
 input[type="text"],
 input[type="search"],
@@ -2253,7 +1123,6 @@ input[type="tel"],
 textarea,
 select {
   border: 1px solid $colorBorder;
->>>>>>> Reverted to gulp for css concat
   width: 100%;
   max-width: 100%;
   display: block;
@@ -2901,7 +1770,6 @@ $socialIconFontStack: 'icons';
   }
 }
 
-
 /*============================================================================
   #Site Header
 ==============================================================================*/
@@ -3063,10 +1931,7 @@ $socialIconFontStack: 'icons';
 }
 
 
-<<<<<<< HEAD
-=======
 /*================ View-specific styles ================*/
->>>>>>> Reverted to gulp for css concat
 /*============================================================================
   #Blogs and Comments
 ==============================================================================*/
@@ -3080,8 +1945,6 @@ $socialIconFontStack: 'icons';
 }
 
 /*============================================================================
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-=======
   #Cart Page
 ==============================================================================*/
 @include at-query ($min, $large) {
@@ -3149,7 +2012,6 @@ $socialIconFontStack: 'icons';
 }
 
 /*============================================================================
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
   #Product and Collection Grids
 ==============================================================================*/
 .sold-out {
@@ -3176,25 +2038,6 @@ $socialIconFontStack: 'icons';
 .active-filter {
   font-weight: bold;
 }
-
-/*============================================================================
-  #Breadcrumbs
-==============================================================================*/
-.breadcrumb {
-  margin-bottom: $gutter;
-
-  a,
-  span {
-    display: inline-block;
-    padding: ($gutter / 2) 7px ($gutter / 2) 0;
-    margin-right: 7px;
-
-    &:first-child {
-      padding-left: 0;
-    }
-  }
-}
-
 
 /*============================================================================
   #Product Page
@@ -3231,138 +2074,6 @@ $socialIconFontStack: 'icons';
     margin-bottom: $gutter;
   }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD:theme/assets/timber.scss.liquid
-
-/*============================================================================
-  #Blogs and Comments
-==============================================================================*/
-.comment {
-  margin-bottom: $gutter;
-
-  & + & {
-    border-top: 1px solid $colorBorder;
-    padding-top: $gutter;
-  }
-}
-
-
-/*============================================================================
-  #Notes and Form Feedback
-==============================================================================*/
-.note,
-.errors {
-  border-radius: $radius;
-  padding: $gutter / 2;
-  margin-bottom: $gutter / 2;
-  border: 1px solid transparent;
-
-  ul,
-  ol {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  li:last-child {
-    margin-bottom: 0;
-  }
-
-  p {
-    margin-bottom: 0;
-  }
-}
-
-.note {
-  border-color: $colorBorder;
-}
-
-.errors {
-  ul {
-    list-style: disc outside;
-    margin-left: 20px;
-  }
-}
-
-.form-success {
-  color: $successGreen;
-  background-color: lighten($successGreen, 65%);
-  border-color: $successGreen;
-}
-
-.form-error,
-.errors {
-  color: $errorRed;
-  background-color: $errorRedBg;
-  border-color: $errorRed;
-}
-
-
-/*============================================================================
-  #Cart Page
-==============================================================================*/
-@include at-query ($min, $large) {
-  .template-cart .cart {
-    max-width: 75%;
-    margin: 0 auto;
-  }
-}
-
-.cart__row {
-  position: relative;
-  margin-top: $gutter;
-  padding-top: $gutter;
-  border-top: 1px solid $colorBorder;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:first-child {
-    padding-top: 0;
-    border-top: 0 none;
-  }
-
-  .js-qty {
-    margin: 0;
-  }
-}
-
-@include at-query ($min, $large) {
-  .cart__row--table-large {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-
-    .grid-item {
-      display: table-cell;
-      vertical-align: middle;
-      float: none;
-    }
-  }
-}
-
-.cart__image {
-  display: block;
-
-  img {
-    display: block;
-  }
-}
-
-.cart__subtotal {
-  margin: 0 0 0 ($gutter / 3);
-  display: inline;
-}
-
-.cart__mini-labels {
-  display: block;
-  margin: ($gutter / 3) 0;
-  font-size: em(12px);
-
-  @include at-query ($min, $large) {
-    display: none;
-  }
-}
 
 /*============================================================================
   #Demo Styles - for empty store state
@@ -3376,8 +2087,4 @@ $socialIconFontStack: 'icons';
   font-size: em(12px);
   text-decoration: none;
 }
-=======
->>>>>>> Created src folder for working files. Removed gulp:assets/timber.scss.liquid
-=======
 
->>>>>>> Reverted to gulp for css concat
