@@ -2013,6 +2013,7 @@ $socialIconFontStack: 'icons';
 
 /*============================================================================
   #Product and Collection Grids
+<<<<<<< HEAD
 ==============================================================================*/
 .sold-out {
 
@@ -2077,14 +2078,41 @@ $socialIconFontStack: 'icons';
 
 /*============================================================================
   #Demo Styles - for empty store state
+=======
+>>>>>>> a3568e00455e236fa5338c44c07e01e5222b5c89
 ==============================================================================*/
-.demo-image {
-  background: url('//cdn.shopify.com/s/files/1/0383/9765/t/1/assets/blankslate-producticon.png?4') no-repeat center center #eee;
-  display: block;
-  text-align: center;
-  padding: 100px 0;
-  color: #aaa;
-  font-size: em(12px);
-  text-decoration: none;
+.sold-out {
+
 }
 
+.on-sale {
+
+}
+
+.grid__image {
+  display: block;
+  margin: 0 auto ($gutter / 2);
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/*============================================================================
+  #Collection Filters
+==============================================================================*/
+.active-filter {
+  font-weight: bold;
+}
+
+/*============================================================================
+  #Product Page
+==============================================================================*/
+.product-single__variants {
+  display: none;
+
+  .no-js & {
+    display: block;
+  }
+}
