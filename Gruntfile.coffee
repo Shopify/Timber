@@ -5,6 +5,9 @@ module.exports = (grunt) ->
   cssimport = require 'gulp-cssimport'
   paths =
     css: 'src/stylesheets/**/*.*'
+    concatFiles: [
+      'src/stylesheets/*.*'
+    ]
     images: 'assets/*.{png,jpg,gif,svg}'
     assets: 'assets/'
     allAssets: [
@@ -41,7 +44,7 @@ module.exports = (grunt) ->
     # File manipulation
     gulp:
       concat: ->
-        return gulp.src(paths.css)
+        return gulp.src(paths.concatFiles)
           .pipe(cssimport())
           .pipe(gulp.dest(paths.assets))
 
