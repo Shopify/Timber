@@ -15,7 +15,11 @@ Three Ways to Get Started
 
 Setup with Grunt
 ---------------------
-Grunt is an optional layer for developing with Timber. To setup Grunt for Timber development, follow these steps:
+Grunt is an optional layer for developing with Timber. To setup Grunt for Timber development, follow these steps.
+
+__Requirements__: [Node.js](http://nodejs.org/) (and Ruby 1.9+ on Windows).
+
+If you don't want to use Grunt, simply ignore the `src/` folder and edit the files founds in `assets/`.
 
 1. Navigate to your local Timber files in Terminal
 2. Install Grunt globally
@@ -61,8 +65,6 @@ Grunt is an optional layer for developing with Timber. To setup Grunt for Timber
 
 `$ grunt zip`
 - Concatenates stylesheets, compresses images, and creates a zip file with only the valid theme files
-
-If you don't want to use Grunt, simply use the contents of `/theme` for your development needs.
 
 ----------
 
