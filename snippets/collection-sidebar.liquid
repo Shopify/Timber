@@ -38,25 +38,20 @@
     - List all of the shop's vendors with collections.all.all_vendors
     - List the current collection's vendors with collection.all_vendors
 {% endcomment %}
-{% if collection.all_vendors.size > 0 %}
 <h3>{{ 'collections.sidebar.vendors' | t }}</h3>
-  <ul>
-    {% for vendor in collection.all_vendors %}
-      {% if collection.current_vendor == vendor %}
-        <li class="active-filter">
-          {{ vendor }}
-        </li>
-      {% else %}
-        <li>
-          {{ vendor | link_to_vendor }}
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-
-{% else %}
-  <p>{{ 'collections.sidebar.no_vendors' | t }}</p>
-{% endif %}
+<ul>
+  {% for vendor in collection.all_vendors %}
+    {% if collection.current_vendor == vendor %}
+      <li class="active-filter">
+        {{ vendor }}
+      </li>
+    {% else %}
+      <li>
+        {{ vendor | link_to_vendor }}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
 
 {% comment %}
   Product tags in the current collection
@@ -112,7 +107,4 @@
     {% endfor %}
 
   </ul>
-
-{% else %}
-  <p>{{ 'collections.sidebar.no_tags' | t }}</p>
 {% endif %}

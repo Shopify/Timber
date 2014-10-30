@@ -92,8 +92,7 @@
       "no_types_html": "Adicione um tipo aos seus produtos para que se crie esta lista. Todas as listas são criadas em <strong>collection-sidebar.liquid</strong>.",
       "vendors": "Fabricantes",
       "no_vendors": "Adicione um fabricante ao seu produto para que se crie esta lista.",
-      "tags": "Marcadores",
-      "no_tags": "Adicione marcadores aos seus produtos para que se crie esta lista."
+      "tags": "Marcadores"
     },
     "sorting": {
       "title": "Ordenar por",
