@@ -1,5 +1,5 @@
 /*============================================================================
-  Shopify Timber v1.4.0
+  Shopify Timber v2.0.0 | github.com/shopify/timber
   Copyright 2014 Shopify Inc.
   Author Carson Shold @cshold
   Built with Sass - http://sass-lang.com/
@@ -7,54 +7,23 @@
   Some things to know about this file:
     - Sass is compiled on Shopify's server so you don't need to convert it to CSS yourself
     - The output CSS is compressed and comments are removed
-    - You cannot use @imports in this file
-        * Use grunt or gulp tasks to enable @imports - https://github.com/Shopify/shopify-css-import
-    - Helpers variables, mixins, and starter classes are provided. Change as needed.
-    - The file is prepped with a CSS reset
+    - This file merges your stylesheets into one master at assets/timber.scss.liquid
 ==============================================================================*/
 
+/*================ Variables, theme settings, and Sass mixins ================*/
 /*============================================================================
-  Table of Contents
-
-  #Breakpoint and Grid Variables
-  #General Variables
-  #Sass Mixins
-  #Normalize
-  #Grid Setup
-  #Basic Styles
-  #Helper Classes
-  #Typography
-  #Rich Text Editor
-  #Links and Buttons
-  #Lists
-  #Tables
-  #OOCSS Media Object
-  #Images and Iframes
-  #Forms
-  #Icons
-  #Pagination
-  #Site Header
-  #Site Nav and Dropdowns
-  #Site Footer
-  #Product and Collection Grids
-  #Collection Filters
-  #Breadcrumbs
-  #Product Page
-  #Blogs and Comments
-  #Notes and Form Feedback
-  #Cart Page
-  #Demo Styles - for empty store state
+  #Layout and Breakpoint Variables
 ==============================================================================*/
-
-/*============================================================================
-  #Breakpoint and Grid Variables
-==============================================================================*/
-$viewportIncrement: 1px;
+$siteWidth: 1180px;
+$gutter: 30px;
+$gridGutter: 30px;
+$radius: 3px;
 
 $small: 480px;
 $medium: 768px;
 $large: 769px;
 
+$viewportIncrement: 1px;
 $postSmall: $small + $viewportIncrement;
 $preMedium: $medium - $viewportIncrement;
 $preLarge: $large - $viewportIncrement;
@@ -70,11 +39,10 @@ $breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
 $breakpoint-has-push:  ('medium', 'medium-down', 'large');
 $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 
-/*============================================================================
-  #General Variables
-==============================================================================*/
 
-// Timber Colors
+/*============================================================================
+  #Color variables
+==============================================================================*/
 $colorPrimary: {{ settings.color_primary }};
 $colorSecondary: {{ settings.color_secondary }};
 
@@ -113,54 +81,30 @@ $colorFooterText: {{ settings.color_footer_text }};
 // Helper colors
 $disabledGrey: #f6f6f6;
 $disabledBorder: darken($disabledGrey, 25%);
-$errorRed: #dc0000;
-$errorRedBg: lighten($errorRed, 55%);
-$successGreen: #0a942a;
+$errorRed: #d02e2e;
+$errorRedBg: #fff6f6;
+$successGreen: #37994d;
+$successGreenBg: #ecfef0;
 
-// Sizing variables
-$siteWidth: 1180px;
-$gutter: 30px;
-$gridGutter: 30px; // can be a %, but nested grids will have smaller margins because of it
-$radius: 3px;
-
-/*================ Typography ================*/
-
+/*============================================================================
+  #Typography variables
+==============================================================================*/
 $headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $headerFontWeight: 700;
 
 $bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $baseFontSize: 14px; // Henseforth known as 1em
 
-@font-face {
-  font-family: "icons";
-  src: url(' {{ "icons.eot" | asset_url }} ');
-  src: url(' {{ "icons.eot" | asset_url }} ?#iefix ') format("embedded-opentype"),
-       url(' {{ "icons.woff" | asset_url }} ') format("woff"),
-       url(' {{ "icons.ttf" | asset_url }} ') format("truetype"),
-       url(' {{ "icons.svg" | asset_url }} #timber-icons ') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-$socialIconFontStack: 'icons';
-
-
 /*============================================================================
   #Sass Mixins
 ==============================================================================*/
-.clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both; }
-  *zoom: 1;
-}
-
 @mixin clearfix() {
-  &:after {
-    content: "";
-    display: table;
-    clear: both; }
   *zoom: 1;
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 }
 
 @mixin prefix($property, $value) {
@@ -217,7 +161,7 @@ $socialIconFontStack: 'icons';
 ==============================================================================*/
 $min: min-width;
 $max: max-width;
-@mixin at-query ($constraint, $viewport1, $viewport2:null) {
+@mixin at-query ($constraint, $viewport1, $viewport2: null) {
   @if $constraint == $min {
     @media screen and ($min: $viewport1) {
       @content;
@@ -233,6 +177,8 @@ $max: max-width;
   }
 }
 
+
+/*================ Site-wide styles ================*/
 /*============================================================================
   #Normalize
 ==============================================================================*/
@@ -262,6 +208,51 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
+}
+
+/*============================================================================
+  #Base Styles
+==============================================================================*/
+html {
+  background-color: $colorFooterBg;
+}
+
+body {
+  background-color: $colorBody;
+}
+
+.wrapper {
+  @include clearfix();
+  max-width: $siteWidth;
+  margin: 0 auto;
+  padding: 0 ($gutter / 2);
+
+  @include at-query ($min, $small) {
+    padding: 0 $gutter;
+  }
+}
+
+.main-content {
+  display: block;
+  margin-top: $gutter;
+  padding-bottom: $gutter * 2;
+}
+
+/*================ Horizontal Rules ================*/
+hr {
+  clear: both;
+  border-top: solid $colorBorder;
+  border-width: 1px 0 0;
+  margin: $gutter 0;
+  height: 0;
+
+  &.hr--small {
+    margin: ($gutter / 2) 0;
+  }
+
+  &.hr--clear {
+    border-top-color: transparent;
+  }
 }
 
 /*============================================================================
@@ -659,36 +650,16 @@ $class-type: unquote(".");
 }
 
 /*============================================================================
-  #Basic Styles
-==============================================================================*/
-html {
-  background-color: $colorFooterBg;
-}
-
-body {
-  background-color: $colorBody;
-}
-
-.wrapper {
-  @include clearfix();
-  max-width: $siteWidth;
-  margin: 0 auto;
-  padding: 0 ($gutter / 2);
-
-  @include at-query ($min, $small) {
-    padding: 0 $gutter;
-  }
-}
-
-.main-content {
-  display: block;
-  margin-top: $gutter;
-  padding-bottom: $gutter * 2;
-}
-
-/*============================================================================
   #Helper Classes
 ==============================================================================*/
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both; }
+  *zoom: 1;
+}
+
 .display-table {
   display: table;
   table-layout: fixed;
@@ -713,6 +684,32 @@ body {
     vertical-align: middle;
     float: none;
   }
+}
+
+/*============================================================================
+  #OOCSS Media Object
+    - http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+==============================================================================*/
+.media,
+.media-flex {
+  overflow: hidden;
+  _overflow: visible;
+  zoom: 1;
+}
+
+.media-img {
+  float: left;
+  margin-right: $gutter;
+}
+
+.media-img-right {
+  float: right;
+  margin-left: $gutter;
+}
+
+.media-img img,
+.media-img-right img {
+  display: block;
 }
 
 /*============================================================================
@@ -769,7 +766,6 @@ h6 {
   font-size: em(14px);
 }
 
-
 .h1 { @extend h1; }
 .h2 { @extend h2; }
 .h3 { @extend h3; }
@@ -802,6 +798,7 @@ sup, sub {
   font-size: 60%;
   vertical-align: baseline;
 }
+
 sup {
   top: -0.5em;
 }
@@ -853,152 +850,6 @@ pre {
   margin: 0 0 $gutter;
 }
 
-/*================ Horizontal Rules ================*/
-hr {
-  clear: both;
-  border-top: solid $colorBorder;
-  border-width: 1px 0 0;
-  margin: $gutter 0;
-  height: 0;
-
-  &.hr--small {
-    margin: ($gutter / 2) 0;
-  }
-
-  &.hr--clear {
-    border-top-color: transparent;
-  }
-}
-
-/*================ Section Headers ================*/
-.section-header {
-  margin-bottom: $gutter / 1.5;
-}
-
-@include at-query ($min, $large) {
-  .section-header {
-    display: table;
-    width: 100%;
-  }
-
-  .section-header--title {
-    margin-bottom: $gutter / 2.5;
-  }
-
-  .section-header--left {
-    display: table-cell;
-    vertical-align: middle;
-    margin-bottom: 0;
-
-    h1, h2, h3, h4,
-    .h1, .h2, .h3, .h4 {
-      margin-bottom: 0;
-    }
-  }
-
-  .section-header--right {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: right;
-    width: 335px;
-
-    @include at-query ($max, $medium) {
-      margin-bottom: $gutter;
-    }
-  }
-}
-
-.section-header--right {
-
-  .form-horizontal,
-  .collection-view {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  @include at-query ($min, $postSmall) {
-    label + select,
-    .collection-view {
-      margin-left: $gutter / 2;
-    }
-  }
-}
-
-.collection-view {
-  display: inline-block;
-  border: 1px solid $colorBorder;
-  border-radius: $radius;
-  padding: 11px;
-  height: 37px; // same as form elements
-
-  /*================ We use SVG icons, so simply hide this in oldIE ================*/
-  .lt-ie9 & {
-    display: none;
-  }
-
-  /*================ Only show on larger screens ================*/
-  @include at-query ($min, $large) {
-    display: inline-block;
-  }
-
-  a {
-    display: block;
-    float: left;
-    opacity: 0.7;
-    cursor: pointer;
-
-    & + a {
-      margin-left: 10px;
-    }
-
-    &.collection-view--active {
-      opacity: 1;
-      cursor: default;
-    }
-  }
-
-  img {
-    display: block;
-    opacity: inherit;
-  }
-}
-
-/*============================================================================
-  #Rich Text Editor
-==============================================================================*/
-.rte {
-  margin-bottom: $gutter / 2;
-
-  // Add some top margin to headers from the rich text editor
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: 2em;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  & > div {
-    margin-bottom: $gutter / 2;
-  }
-
-  ul, ol {
-    margin-left: 35px;
-  }
-
-  ul {
-    @extend ul.disc;
-  }
-
-  li {
-    margin-bottom: 0.4em;
-  }
-}
-
-.rte-header {
-  margin-bottom: 0;
-}
-
 /*============================================================================
   #Links and Buttons
 ==============================================================================*/
@@ -1006,11 +857,11 @@ a {
   color: $colorLink;
   text-decoration: underline;
   background: transparent;
-}
 
-a:hover,
-a:focus {
-  color: $colorLinkHover;
+  &:hover,
+  &:focus {
+    color: $colorLinkHover;
+  }
 }
 
 button {
@@ -1131,13 +982,9 @@ ol.alpha { list-style: lower-alpha outside; }
 ==============================================================================*/
 table {
   width: 100%;
+  margin-bottom: 1em;
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-table.full {
-  width: 100%;
-  margin-bottom: 1em;
 }
 
 .table-wrap {
@@ -1156,36 +1003,8 @@ th, td {
   border: 1px solid $colorBorder;
 }
 
-
 /*============================================================================
-  #OOCSS Media Object
-    - http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
-==============================================================================*/
-.media,
-.media-flex {
-  overflow: hidden;
-  _overflow: visible;
-  zoom: 1;
-}
-
-.media-img {
-  float: left;
-  margin-right: $gutter;
-}
-
-.media-img-right {
-  float: right;
-  margin-left: $gutter;
-}
-
-.media-img img,
-.media-img-right img {
-  display: block;
-}
-
-
-/*============================================================================
-  #Images and Iframes
+  #Media
 ==============================================================================*/
 img {
   border: 0 none;
@@ -1217,7 +1036,6 @@ img.auto,
     height: 100%;
   }
 }
-
 
 /*============================================================================
   #Forms
@@ -1358,7 +1176,7 @@ select {
 }
 
 select::-ms-expand {
-    display: none;
+  display: none;
 }
 
 /*================ Form labels ================*/
@@ -1498,6 +1316,18 @@ label.error {
   padding: 0;
 }
 
+@font-face {
+  font-family: "icons";
+  src: url(' {{ "icons.eot" | asset_url }} ');
+  src: url(' {{ "icons.eot" | asset_url }} ?#iefix ') format("embedded-opentype"),
+       url(' {{ "icons.woff" | asset_url }} ') format("woff"),
+       url(' {{ "icons.ttf" | asset_url }} ') format("truetype"),
+       url(' {{ "icons.svg" | asset_url }} #timber-icons ') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+$socialIconFontStack: 'icons';
+
 /*============================================================================
   #Icons
 ==============================================================================*/
@@ -1611,6 +1441,99 @@ label.error {
   }
 }
 
+
+/*================ Module-specific styles ================*/
+/*============================================================================
+  #Breadcrumbs
+==============================================================================*/
+.breadcrumb {
+  margin-bottom: $gutter;
+
+  a,
+  span {
+    display: inline-block;
+    padding: ($gutter / 2) 7px ($gutter / 2) 0;
+    margin-right: 7px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+}
+
+/*============================================================================
+  #Site Footer
+==============================================================================*/
+.site-footer {
+  background-color: $colorFooterBg;
+  border-top: 1px solid $colorBorder;
+  padding: $gutter 0;
+  color: $colorFooterText;
+
+  @include at-query ($min, $large) {
+    padding: ($gutter * 2) 0;
+  }
+}
+
+/*============================================================================
+  #Notes and Form Feedback
+==============================================================================*/
+.note,
+.errors {
+  border-radius: $radius;
+  padding: 6px 12px;
+  margin-bottom: $gutter / 2;
+  border: 1px solid transparent;
+  font-size: 0.9em;
+
+  ul,
+  ol {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  li:last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.note {
+  border-color: $colorBorder;
+}
+
+.errors {
+  ul {
+    list-style: disc outside;
+    margin-left: 20px;
+  }
+}
+
+.form-success {
+  color: $successGreen;
+  background-color: $successGreenBg;
+  border-color: $successGreen;
+}
+
+.form-error,
+.errors {
+  color: $errorRed;
+  background-color: $errorRedBg;
+  border-color: $errorRed;
+
+  a {
+    color: $errorRed;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 /*============================================================================
   #Pagination
 ==============================================================================*/
@@ -1716,6 +1639,136 @@ label.error {
   border-bottom-right-radius: 3px;
 }
 
+/*============================================================================
+  #Rich Text Editor
+==============================================================================*/
+.rte {
+  margin-bottom: $gutter / 2;
+
+  // Add some top margin to headers from the rich text editor
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 2em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  & > div {
+    margin-bottom: $gutter / 2;
+  }
+
+  ul, ol {
+    margin-left: 35px;
+  }
+
+  ul {
+    @extend ul.disc;
+  }
+
+  li {
+    margin-bottom: 0.4em;
+  }
+}
+
+.rte-header {
+  margin-bottom: 0;
+}
+
+/*============================================================================
+  #Section Headers
+==============================================================================*/
+.section-header {
+  margin-bottom: $gutter / 1.5;
+}
+
+@include at-query ($min, $large) {
+  .section-header {
+    display: table;
+    width: 100%;
+  }
+
+  .section-header--title {
+    margin-bottom: $gutter / 2.5;
+  }
+
+  .section-header--left {
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 0;
+
+    h1, h2, h3, h4,
+    .h1, .h2, .h3, .h4 {
+      margin-bottom: 0;
+    }
+  }
+
+  .section-header--right {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    width: 335px;
+
+    @include at-query ($max, $medium) {
+      margin-bottom: $gutter;
+    }
+  }
+}
+
+.section-header--right {
+
+  .form-horizontal,
+  .collection-view {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @include at-query ($min, $postSmall) {
+    label + select,
+    .collection-view {
+      margin-left: $gutter / 2;
+    }
+  }
+}
+
+.collection-view {
+  display: inline-block;
+  border: 1px solid $colorBorder;
+  border-radius: $radius;
+  padding: 11px;
+  height: 37px; // same as form elements
+
+  /*================ Hide SVG icons in oldIE ================*/
+  .lt-ie9 & {
+    display: none;
+  }
+
+  /*================ Only show on larger screens ================*/
+  @include at-query ($min, $large) {
+    display: inline-block;
+  }
+
+  a {
+    display: block;
+    float: left;
+    opacity: 0.7;
+    cursor: pointer;
+
+    & + a {
+      margin-left: 10px;
+    }
+
+    &.collection-view--active {
+      opacity: 1;
+      cursor: default;
+    }
+  }
+
+  img {
+    display: block;
+    opacity: inherit;
+  }
+}
 
 /*============================================================================
   #Site Header
@@ -1878,103 +1931,7 @@ label.error {
 }
 
 
-/*============================================================================
-  #Site Footer
-==============================================================================*/
-.site-footer {
-  background-color: $colorFooterBg;
-  border-top: 1px solid $colorBorder;
-  padding: $gutter 0;
-  color: $colorFooterText;
-
-  @include at-query ($min, $large) {
-    padding: ($gutter * 2) 0;
-  }
-}
-
-/*============================================================================
-  #Product and Collection Grids
-==============================================================================*/
-.sold-out {
-
-}
-
-.on-sale {
-
-}
-
-.grid__image {
-  display: block;
-  margin: 0 auto ($gutter / 2);
-
-  img {
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-/*============================================================================
-  #Collection Filters
-==============================================================================*/
-.active-filter {
-  font-weight: bold;
-}
-
-/*============================================================================
-  #Breadcrumbs
-==============================================================================*/
-.breadcrumb {
-  margin-bottom: $gutter;
-
-  a,
-  span {
-    display: inline-block;
-    padding: ($gutter / 2) 7px ($gutter / 2) 0;
-    margin-right: 7px;
-
-    &:first-child {
-      padding-left: 0;
-    }
-  }
-}
-
-
-/*============================================================================
-  #Product Page
-==============================================================================*/
-.product-single__variants {
-  display: none;
-
-  .no-js & {
-    display: block;
-  }
-}
-
-@include at-query($min, $large) {
-  .selector-wrapper,
-  .product-single__variants {
-    select {
-      max-width: 40%;
-    }
-  }
-}
-
-.product-single__photos {
-  margin-bottom: $gutter;
-}
-
-.product-single__photos,
-.product-single__thumbnails {
-  a, img {
-    display: block;
-    margin: 0 auto;
-  }
-
-  li {
-    margin-bottom: $gutter;
-  }
-}
-
+/*================ View-specific styles ================*/
 /*============================================================================
   #Blogs and Comments
 ==============================================================================*/
@@ -1986,57 +1943,6 @@ label.error {
     padding-top: $gutter;
   }
 }
-
-
-/*============================================================================
-  #Notes and Form Feedback
-==============================================================================*/
-.note,
-.errors {
-  border-radius: $radius;
-  padding: $gutter / 2;
-  margin-bottom: $gutter / 2;
-  border: 1px solid transparent;
-
-  ul,
-  ol {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  li:last-child {
-    margin-bottom: 0;
-  }
-
-  p {
-    margin-bottom: 0;
-  }
-}
-
-.note {
-  border-color: $colorBorder;
-}
-
-.errors {
-  ul {
-    list-style: disc outside;
-    margin-left: 20px;
-  }
-}
-
-.form-success {
-  color: $successGreen;
-  background-color: lighten($successGreen, 65%);
-  border-color: $successGreen;
-}
-
-.form-error,
-.errors {
-  color: $errorRed;
-  background-color: $errorRedBg;
-  border-color: $errorRed;
-}
-
 
 /*============================================================================
   #Cart Page
@@ -2106,6 +2012,70 @@ label.error {
 }
 
 /*============================================================================
+  #Product and Collection Grids
+==============================================================================*/
+.sold-out {
+
+}
+
+.on-sale {
+
+}
+
+.grid__image {
+  display: block;
+  margin: 0 auto ($gutter / 2);
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/*============================================================================
+  #Collection Filters
+==============================================================================*/
+.active-filter {
+  font-weight: bold;
+}
+
+/*============================================================================
+  #Product Page
+==============================================================================*/
+.product-single__variants {
+  display: none;
+
+  .no-js & {
+    display: block;
+  }
+}
+
+@include at-query($min, $large) {
+  .selector-wrapper,
+  .product-single__variants {
+    select {
+      max-width: 40%;
+    }
+  }
+}
+
+.product-single__photos {
+  margin-bottom: $gutter;
+}
+
+.product-single__photos,
+.product-single__thumbnails {
+  a, img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  li {
+    margin-bottom: $gutter;
+  }
+}
+
+/*============================================================================
   #Demo Styles - for empty store state
 ==============================================================================*/
 .demo-image {
@@ -2117,3 +2087,4 @@ label.error {
   font-size: em(12px);
   text-decoration: none;
 }
+

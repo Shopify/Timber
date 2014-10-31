@@ -1,17 +1,72 @@
 Shopify Timber
 =====================
 
-Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
+Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and basic styles and modules for you to extend.
 
-Styling and customization is left up to you. Some base styles and helpers are included, but there is **no need to remove any code before you start**. Simply download and get designing.
+Styling and customization is left up to you. Some base styles and helpers are included, but there is **no need to remove any code before you start**. Simply download and begin designing.
 
 Designing a store for a client? Earn 20% revenue through our <a href="http://www.shopify.com/partners">Partner program<a/>.
 
-Ways to Get Started
+Three Ways to Get Started
 ---------------------
-- Download the [latest release](https://github.com/Shopify/Timber/releases)
-- Clone the repo `git clone https://github.com/Shopify/Timber.git`
-- Or install with [Bower](http://bower.io/) `bower install timber`
+1. Download the [latest release](https://github.com/Shopify/Timber/releases)
+2. Clone the repo `git clone https://github.com/Shopify/Timber.git`
+3. Or install with [Bower](http://bower.io/) `bower install timber`
+
+Setup with Grunt
+---------------------
+Grunt is an optional layer for developing with Timber. To setup Grunt for Timber development, follow these steps.
+
+__Requirements__: [Node.js](http://nodejs.org/) (and Ruby 1.9+ on Windows).
+
+If you don't want to use Grunt, simply ignore the `src/` folder and edit the files founds in `assets/`.
+
+1. Navigate to your local Timber files in Terminal
+2. Install Grunt globally
+<small>You may need to preface the command below with `sudo` to use proper permissions</small>
+
+        $ npm install -g grunt-cli
+
+3. Install required packages
+
+        $ npm install
+
+4. Bundle dependencies
+
+        $ bundle install
+
+5. Insert private app keys
+
+  Add your private app keys to `grunt-config-sample.json` and rename file to `grunt-config.json`. [Learn to make a private app](http://docs.shopify.com/api/authentication/creating-a-private-app).
+
+----------
+
+### Grunt Tasks
+`$ grunt`
+- Default task
+- Watches `src/stylesheets/` folder and concatenates styles into `assets/timber.scss.liquid`
+- Automatically compresses image files in `assets/`
+- Uploads valid theme from the root folder to your store
+
+----------
+
+`$ grunt build`
+- Concatenates stylesheets and compresses images
+- Files are not uploaded
+
+----------
+
+`$ grunt deploy`
+- Concatenates stylesheets, compresses images, and uploads all theme files to your shop
+- Note, this will overwrite all files (including active settings) so use sparingly
+  - To upload all files except your settings_data.json, use `grunt shopify:upload --no-json` (TODO: not working. would be nice to have `grunt deploy --no-json`)
+
+----------
+
+`$ grunt zip`
+- Concatenates stylesheets, compresses images, and creates a zip file with only the valid theme files
+
+----------
 
 Documentation
 ---------------------
@@ -24,9 +79,9 @@ Demo Stores
 - [Demo Store](https://timber-demo.myshopify.com/): A store setup with some products, blog posts, and customer accounts
 - [Empty Store](https://timber-demo-empty.myshopify.com/): A fresh store, just what you should expect when you install on your new store
 
-For a set of demo products to use during development, [download this CSV file](http://www.tetchi.ca/wp-content/uploads/2013/04/products1.csv) and import it on our products page.
+For a set of demo products to use during development, [download this CSV file](http://www.tetchi.ca/wp-content/uploads/2013/04/products1.csv) and import it on your products page.
 
-Basic structure
+Basic theme structure
 ---------------
 ```
 ├── assets
@@ -36,32 +91,19 @@ Basic structure
 │   └── optional alternate layouts
 ├── snippets
 │   └── custom code snippets
-├── templates
-│   ├── 404.liquid
-│   ├── article.liquid
-│   ├── blog.liquid
-│   ├── cart.liquid
-│   ├── collection.liquid
-│   ├── collection.list.liquid
-│   ├── index.liquid
-│   ├── list-collections.liquid
-│   ├── page.contact.liquid
-│   ├── page.liquid
-│   ├── product.liquid
-│   ├── search.liquid
-│   └── customers
-│         └── required templates if customer accounts are enabled
-├── config.yml
-│   └── if using the theme gem (see link under Additional Resources)
+└── templates
+    ├── various templates
+    └── customers
+          └── required templates if customer accounts are enabled
 ```
 
 Support
 ---------------------
 Get involved with Timber or follow along with updates and news.
 
-- Track all issues and feature requests here on GitHub.
-- Follow author [@cshold on Twitter](http://twitter.com/cshold).
-- Provide feedback at timber@shopify.com.
+- Track all issues and feature requests here on GitHub
+- Follow author [@cshold on Twitter](http://twitter.com/cshold)
+- Provide feedback at timber@shopify.com
 
 Additional resources
 ---------------------
