@@ -41,10 +41,9 @@ module.exports = (grunt) ->
 
     # File manipulation
     shopify_sass:
-      options:
-        base: 'src/stylesheets'
-      files:
-        'assets/timber.scss.liquid': 'timber.scss'
+      theme:
+        src: 'src/stylesheets/timber.scss'
+        dest: 'assets/timber.scss.liquid'
 
     imagemin:
       dynamic:
