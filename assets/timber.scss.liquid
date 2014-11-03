@@ -113,9 +113,10 @@ $colorFooterText: {{ settings.color_footer_text }};
 // Helper colors
 $disabledGrey: #f6f6f6;
 $disabledBorder: darken($disabledGrey, 25%);
-$errorRed: #dc0000;
-$errorRedBg: lighten($errorRed, 55%);
-$successGreen: #0a942a;
+$errorRed: #d02e2e;
+$errorRedBg: #fff6f6;
+$successGreen: #37994d;
+$successGreenBg: #ecfef0;
 
 // Sizing variables
 $siteWidth: 1180px;
@@ -1358,7 +1359,7 @@ select {
 }
 
 select::-ms-expand {
-    display: none;
+  display: none;
 }
 
 /*================ Form labels ================*/
@@ -1994,9 +1995,10 @@ label.error {
 .note,
 .errors {
   border-radius: $radius;
-  padding: $gutter / 2;
+  padding: 6px 12px;
   margin-bottom: $gutter / 2;
   border: 1px solid transparent;
+  font-size: 0.9em;
 
   ul,
   ol {
@@ -2026,7 +2028,7 @@ label.error {
 
 .form-success {
   color: $successGreen;
-  background-color: lighten($successGreen, 65%);
+  background-color: $successGreenBg;
   border-color: $successGreen;
 }
 
@@ -2035,6 +2037,15 @@ label.error {
   color: $errorRed;
   background-color: $errorRedBg;
   border-color: $errorRed;
+
+  a {
+    color: $errorRed;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 
