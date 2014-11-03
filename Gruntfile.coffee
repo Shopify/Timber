@@ -21,25 +21,20 @@ module.exports = (grunt) ->
 
   grunt.initConfig
 
-    config: grunt.file.readJSON 'grunt-config.json'
     pkg: grunt.file.readJSON 'package.json'
-
-    shopify:
-      options:
-        api_key: '<%= config.private_api %>'
-        password: '<%= config.private_password %>'
-        url: '<%= config.shop_url %>'
-        theme: '<%= config.theme_id %>'
 
     # Helper methods
     notify:
-      shopify:
-        options:
-          title: 'Shopify'
-          message: 'Files finished uploading'
       zip:
         options:
           message: 'Zip file created'
+
+    # Shopify theme_gem methods
+    exec:
+      theme_watch:
+        command: 'bundle exec theme watch'
+      deploy:
+        command: 'bundle exec theme upload'
 
     # File manipulation
     gulp:
@@ -66,9 +61,12 @@ module.exports = (grunt) ->
       images:
         files: [paths.images]
         tasks: ['imagemin']
-      shopify:
-        files: paths.allAssets,
-        tasks: ['shopify', 'notify:shopify']
+
+    concurrent:
+      options:
+        logConcurrentOutput: true
+      watch:
+        tasks: ['watch', 'exec']
 
     clean:
       plugins: [
@@ -90,7 +88,7 @@ module.exports = (grunt) ->
   require('load-grunt-tasks')(grunt)
 
   # Register tasks
-  grunt.registerTask 'default', ['watch']
+  grunt.registerTask 'default', ['concurrent:watch']
   grunt.registerTask 'build', ['gulp', 'imagemin', 'clean']
-  grunt.registerTask 'deploy', ['gulp', 'imagemin', 'shopify:upload']
+  grunt.registerTask 'deploy', ['gulp', 'imagemin', 'exec:deploy']
   grunt.registerTask 'zip', ['gulp', 'imagemin', 'clean', 'compress', 'notify:zip']
