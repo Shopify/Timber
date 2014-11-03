@@ -135,41 +135,29 @@
 
     <div class="cart__row">
       <div class="grid">
-        <div class="grid-item text-right">
+        {% comment %}
+          Optional, add a textarea for special notes
+            - Your theme settings can turn this on or off. Default is on.
+            - Make sure you have name="note" for the message to be submitted properly
+        {% endcomment %}
+        {% if settings.cart_notes_enable %}
+          <div class="grid-item large--one-half">
+            <label for="cartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
+          </div>
+        {% endif %}
+        <div class="grid-item text-right{% if settings.cart_notes_enable %} large--one-half{% endif %}">
           <p>
             <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
             <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>
           </p>
           <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
-          {% comment %}TODO: Add note that shipping will be added at checkout (i18n friendly){% endcomment %}
-        </div>
-        <div class="grid-item">
-          <div class="grid">
+          <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
+          <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
 
-            {% comment %}
-              Optional, add a textarea for special notes
-                - Your theme settings can turn this on or off. Default is on.
-                - Make sure you have name="note" for the message to be submitted properly
-            {% endcomment %}
-            {% if settings.cart_notes_enable %}
-              <div class="grid-item large--one-half">
-                <label for="cartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-                <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
-              </div>
-            {% endif %}
-
-            <div class="grid-item text-right {% if settings.cart_notes_enable %}large--one-half{% endif %}">
-
-              <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
-              <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
-
-              {% if additional_checkout_buttons %}
-                <p>{{ content_for_additional_checkout_buttons }}</p>
-              {% endif %}
-
-            </div>
-
-          </div>
+          {% if additional_checkout_buttons %}
+            <p>{{ content_for_additional_checkout_buttons }}</p>
+          {% endif %}
         </div>
       </div>
 
