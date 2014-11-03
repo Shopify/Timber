@@ -3,7 +3,7 @@ layout: default
 title: Shopify Theme Development Framework - Timber
 description: Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
 canonical: /timber
-version: v1.3.2
+version: v1.4.0
 ---
 
 <!-- gh-pages -->
@@ -256,28 +256,8 @@ $breakpoints: (
                   <p class="grid-demo">3.6</p>
                 </div>
 
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                <div class="grid-item large--one-half one-whole">
                   <p class="grid-demo">3.7</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.8</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.9</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.10</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.11</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.12</p>
                 </div>
 
 
@@ -355,28 +335,8 @@ $breakpoints: (
         &lt;p class="grid-demo"&gt;3.6&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+      &lt;div class="grid-item large--one-half one-whole"&gt;
         &lt;p class="grid-demo"&gt;3.7&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.8&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.9&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.10&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.11&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.12&lt;/p&gt;
       &lt;/div&gt;
 
     &lt;/div&gt;
@@ -462,7 +422,7 @@ $breakpoints: (
 
         <h4 class="docs-h4">Class Names</h4>
         <ul class="disc docs-text">
-          <li>A <code>grid-item</code> will default to a 100% width</li>
+          <li>A <code>grid-item</code> will default to a 100% width, a moblie-first approach</li>
           <li>Class names use an easy to read variation of the <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" class="docs-link">BEM naming convention</a></li>
           <li>Class name format: <code>breakpoint--column-width</code> - e.g. <code>large--one-half</code></li>
         </ul>
@@ -1236,7 +1196,7 @@ jQuery(function($) {
           Typography
         ===================================== -->
         <h2 class="doc-title styleguide-title" id="typography"><strong>5.1 </strong>Typography</h2>
-        
+
         <h4 class="docs-h4">Headers and Body Text</h4>
         <h1>Heading One</h1>
         <h2>Heading Two</h2>

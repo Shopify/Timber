@@ -162,11 +162,11 @@
 
   @include responsify( $portable_down ) {
     padding: ($margin * 2) $margin 0 ($margin * 2);
-  } 
+  }
 
   @include responsify( $palm_down ) {
     padding: $margin 0 $margin $margin;
-  } 
+  }
 }
 
 .docs-nav {
@@ -341,7 +341,7 @@ h2.doc-title {
 
 .docs-example {
   @extend .docs-h4;
-  
+
   color: lighten($textHeaderLight,10%);
   font-size: 0.875em;
   text-transform: uppercase;
@@ -494,14 +494,10 @@ ul.tabs li.current a {
 
   @include responsify( $desk_up ) {
     margin: ($margin * 2) 0;
-  }  
+  }
 }
 
 .docs-body {
-  code {
-    padding: ($margin / 6) ($margin / 4);
-  }
-
   code,
   pre {
     background-color: $bgMeta;
@@ -512,6 +508,12 @@ ul.tabs li.current a {
     @include responsify( $desk_up ) {
       margin: ($margin * 2) 0;
     }
+  }
+
+  code {
+    display: inline-block;
+    padding: 0 ($margin / 4);
+    margin: 0;
   }
 
   .hr--docshr {
