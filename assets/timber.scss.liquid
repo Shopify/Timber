@@ -115,7 +115,7 @@ $disabledGrey: #f6f6f6;
 $disabledBorder: darken($disabledGrey, 25%);
 $errorRed: #d02e2e;
 $errorRedBg: #fff6f6;
-$successGreen: #37994d;
+$successGreen: #56ad6a;
 $successGreenBg: #ecfef0;
 
 // Sizing variables
@@ -2031,6 +2031,15 @@ label.error {
   color: $successGreen;
   background-color: $successGreenBg;
   border-color: $successGreen;
+
+  a {
+    color: $successGreen;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .form-error,
