@@ -38,81 +38,70 @@
     - List all of the shop's vendors with collections.all.all_vendors
     - List the current collection's vendors with collection.all_vendors
 {% endcomment %}
-{% if collection.all_vendors.size > 0 %}
 <h3>{{ 'collections.sidebar.vendors' | t }}</h3>
-  <ul>
-    {% for vendor in collection.all_vendors %}
-      {% if collection.current_vendor == vendor %}
-        <li class="active-filter">
-          {{ vendor }}
-        </li>
-      {% else %}
-        <li>
-          {{ vendor | link_to_vendor }}
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-
-{% else %}
-  <p>{{ 'collections.sidebar.no_vendors' | t }}</p>
-{% endif %}
+<ul>
+  {% for vendor in collection.all_vendors %}
+    {% if collection.current_vendor == vendor %}
+      <li class="active-filter">
+        {{ vendor }}
+      </li>
+    {% else %}
+      <li>
+        {{ vendor | link_to_vendor }}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
 
 {% comment %}
   Product tags in the current collection
 {% endcomment %}
-{% if collection.all_tags.size > 0 %}
 <h3>{{ 'collections.sidebar.tags' | t }}</h3>
 
-  {% comment %}
-    To provide a 'catch-all' link at the top of the list,
-    check against the collection.handle, product type, and vendor.
-  {% endcomment %}
-  <ul>
-    <li{% unless current_tags %} class="active-filter"{% endunless %}>
-
-      {% comment %}
-        Good for /collections/all collection and regular collections
-      {% endcomment %}
-      {% if collection.handle %}
-        <a href="/collections/{{ collection.handle }}">All {{ collection.title }}</a>
-
-      {% comment %}
-        Good for automatic type collections
-      {% endcomment %}
-      {% elsif collection.current_type %}
-        <a href="{{ collection.current_type | url_for_type }}">All {{ collection.title }}</a>
-
-      {% comment %}
-        Good for automatic vendor collections
-      {% endcomment %}
-      {% elsif collection.current_vendor %}
-        <a href="{{ collection.current_vendor | url_for_vendor }}">All {{ collection.title }}</a>
-
-      {% endif %}
-    </li>
+{% comment %}
+  To provide a 'catch-all' link at the top of the list,
+  check against the collection.handle, product type, and vendor.
+{% endcomment %}
+<ul>
+  <li{% unless current_tags %} class="active-filter"{% endunless %}>
 
     {% comment %}
-      And for the good stuff, loop through the tags themselves.
+      Good for /collections/all collection and regular collections
     {% endcomment %}
-    {% for tag in collection.all_tags %}
-      {% if current_tags contains tag %}
-        <li class="active-filter">
-          {{ tag | link_to_remove_tag: tag }}
-        </li>
-      {% else %}
-        <li>
-          {% comment %}
-            Use link_to_add_tag if you want to allow filtering
-            by multiple tags
-          {% endcomment %}
-          {{ tag | link_to_tag: tag }}
-        </li>
-      {% endif %}
-    {% endfor %}
+    {% if collection.handle %}
+      <a href="/collections/{{ collection.handle }}">All {{ collection.title }}</a>
 
-  </ul>
+    {% comment %}
+      Good for automatic type collections
+    {% endcomment %}
+    {% elsif collection.current_type %}
+      <a href="{{ collection.current_type | url_for_type }}">All {{ collection.title }}</a>
 
-{% else %}
-  <p>{{ 'collections.sidebar.no_tags' | t }}</p>
-{% endif %}
+    {% comment %}
+      Good for automatic vendor collections
+    {% endcomment %}
+    {% elsif collection.current_vendor %}
+      <a href="{{ collection.current_vendor | url_for_vendor }}">All {{ collection.title }}</a>
+
+    {% endif %}
+  </li>
+
+  {% comment %}
+    And for the good stuff, loop through the tags themselves.
+  {% endcomment %}
+  {% for tag in collection.all_tags %}
+    {% if current_tags contains tag %}
+      <li class="active-filter">
+        {{ tag | link_to_remove_tag: tag }}
+      </li>
+    {% else %}
+      <li>
+        {% comment %}
+          Use link_to_add_tag if you want to allow filtering
+          by multiple tags
+        {% endcomment %}
+        {{ tag | link_to_tag: tag }}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

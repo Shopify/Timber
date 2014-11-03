@@ -94,9 +94,7 @@
       "types": "Tipos de producto",
       "no_types_html": "Agregue un tipo a sus productos para que se genere esta lista. Todas las listas son creadas en <strong>collection-sidebar.liquid</strong>.",
       "vendors": "Proveedores",
-      "no_vendors": "Agregar un proveedor a su producto para que genere esta lista.",
-      "tags": "Etiquetas",
-      "no_tags": "Agregar etiquetas a sus productos para que se genere esta lista."
+      "tags": "Etiquetas"
     },
     "sorting": {
       "title": "Ordenar por",

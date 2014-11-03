@@ -92,9 +92,7 @@
       "types": "Produktart",
       "no_types_html": "Fügen Sie zum Aufbau dieser Liste eine Produktart hinzu. Alle Listen werden in <strong>collection-sidebar.liquid</strong> erstellt.",
       "vendors": "Verkäufer",
-      "no_vendors": "Fügen Sie zum Aufbau dieser Liste einen Artikelverkäufer hinzu.",
-      "tags": "Tags",
-      "no_tags": "Fügen Sie Ihren Produkten zum Aufbau dieser Liste Tags hinzu."
+      "tags": "Tags"
     },
     "sorting": {
       "title": "Sortieren nach",
