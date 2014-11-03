@@ -62,6 +62,7 @@
       "remove": "Retirer",
       "note": "Instructions spéciales pour la commande",
       "subtotal": "Sous-total",
+      "taxes_extra": "Frais de port et les taxes sont calculées à la caisse",
       "update": "Mettre à jour",
       "checkout": "Procéder au paiement",
       "empty": "Votre panier est vide.",

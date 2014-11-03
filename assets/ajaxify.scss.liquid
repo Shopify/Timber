@@ -309,35 +309,8 @@ form[action^="/cart/add"] {
   }
 }
 
-.ajaxcart__qty-num {
-  @include transition(all 0.1s ease-out);
-
-  .supports-no-touch & {
-    border: 1px solid rgba(0,0,0,0);
-  }
-
-  .cart__row:hover &,
-  .ajaxcart__product:hover &,
-  .supports-touch & {
-    border-color: $colorBorder;
-  }
-}
-
 .ajaxcart__qty-adjust {
   @extend .js-qty__adjust;
-  opacity: 0;
-
-  .cart__row:hover &,
-  .ajaxcart__product:hover &,
-  .supports-touch & {
-    opacity: 1;
-    @include transition(background-color 0.2s ease-out);
-  }
-
-  // Turn off animation on initial hover
-  .ajaxcart__product:hover &:hover {
-    @include transition(none);
-  }
 }
 
 .ajaxcart__qty--plus {
