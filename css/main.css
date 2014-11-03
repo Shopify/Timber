@@ -510,8 +510,8 @@
 ========================================================== */
 @font-face {
   font-family: "icons";
-  src: url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.eot?38440 ");
-  src: url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.eot?38440 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.woff?38440 ") format("woff"), url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.ttf?38440 ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.svg?38440 #timber-icons ") format("svg");
+  src: url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.eot?38472 ");
+  src: url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.eot?38472 ?#iefix ") format("embedded-opentype"), url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.woff?38472 ") format("woff"), url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.ttf?38472 ") format("truetype"), url(" //cdn.shopify.com/s/files/1/0479/0585/t/17/assets/icons.svg?38472 #timber-icons ") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -2337,9 +2337,16 @@ label.error {
   margin-left: 20px; }
 
 .form-success {
-  color: #37994d;
+  color: #56ad6a;
   background-color: #ecfef0;
-  border-color: #37994d; }
+  border-color: #56ad6a; }
+
+.form-success a {
+  color: #56ad6a;
+  text-decoration: underline; }
+
+.form-success a:hover {
+  text-decoration: none; }
 
 .form-error, .errors {
   color: #d02e2e;
