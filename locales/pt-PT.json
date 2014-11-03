@@ -61,7 +61,7 @@
       "remove": "Eliminar",
       "note": "Instruções especiais para o vendedor",
       "subtotal": "Subtotal",
-      "taxes_extra": "Frete e impostos são calculados no checkout",
+      "shipping_at_checkout": "Frete e impostos são calculados no checkout",
       "update": "Atualizar Carrinho de Compras",
       "checkout": "Check-Out",
       "empty": "O seu carrinho de compras está neste momento vazio.",
