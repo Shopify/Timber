@@ -3031,8 +3031,6 @@ ul.tabs li.current a {
   @media (min-width: 1024px) {
     .docs-body .hr--docsclear {
       margin: 48px 0; } }
-.docs-body ul.disc {
-  margin-left: 40px; }
 
 .overflow-auto {
   overflow: auto; }
