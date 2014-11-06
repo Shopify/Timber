@@ -28,7 +28,7 @@
         - {% assign grid_item_width = 'large--one-third medium--one-half' %}
     {% endcomment %}
     {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
-    {% include 'product-grid__item' %}
+    {% include 'product-grid-item' %}
 
   {% else %}
 
@@ -93,7 +93,7 @@
       {% unless collection.handle == 'frontpage' %}
         {% assign isEmpty = false %}
         {% assign collection_item_width = 'large--one-fifth medium--one-third' %}
-        {% include 'collection-grid__item' %}
+        {% include 'collection-grid-item' %}
         {% comment %}Add 1 to the current index{% endcomment %}
         {% assign index = index | plus: 1 %}
       {% endunless %}
