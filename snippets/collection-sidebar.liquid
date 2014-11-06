@@ -19,7 +19,7 @@
   <ul>
     {% for type in collection.all_types %}
       {% if collection.current_type == type %}
-        <li class="active-filter">
+        <li class="filter--active">
           {{ type }}
         </li>
       {% else %}
@@ -42,7 +42,7 @@
 <ul>
   {% for vendor in collection.all_vendors %}
     {% if collection.current_vendor == vendor %}
-      <li class="active-filter">
+      <li class="filter--active">
         {{ vendor }}
       </li>
     {% else %}
@@ -63,7 +63,7 @@
   check against the collection.handle, product type, and vendor.
 {% endcomment %}
 <ul>
-  <li{% unless current_tags %} class="active-filter"{% endunless %}>
+  <li{% unless current_tags %} class="filter--active"{% endunless %}>
 
     {% comment %}
       Good for /collections/all collection and regular collections
@@ -91,7 +91,7 @@
   {% endcomment %}
   {% for tag in collection.all_tags %}
     {% if current_tags contains tag %}
-      <li class="active-filter">
+      <li class="filter--active">
         {{ tag | link_to_remove_tag: tag }}
       </li>
     {% else %}
