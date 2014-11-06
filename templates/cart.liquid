@@ -16,22 +16,22 @@
 
     <div class="cart__row medium-down--hide cart__header-labels">
       <div class="grid--full">
-        <div class="grid-item large--one-half">
+        <div class="grid__item large--one-half">
           <div class="grid">
-            <div class="grid-item two-thirds push--one-third">
+            <div class="grid__item two-thirds push--one-third">
               {{ 'cart.label.product' | t }}
             </div>
           </div>
         </div>
-        <div class="grid-item large--one-half">
+        <div class="grid__item large--one-half">
           <div class="grid--full">
-            <div class="grid-item one-third medium-down--one-third">
+            <div class="grid__item one-third medium-down--one-third">
               {{ 'cart.label.price' | t }}
             </div>
-            <div class="grid-item one-third medium-down--one-third text-center">
+            <div class="grid__item one-third medium-down--one-third text-center">
               {{ 'cart.label.quantity' | t }}
             </div>
-            <div class="grid-item one-third medium-down--one-third text-right">
+            <div class="grid__item one-third medium-down--one-third text-right">
               {{ 'cart.label.total' | t }}
             </div>
           </div>
@@ -46,10 +46,10 @@
       <div class="cart__row" data-id="{{ item.id }}">
         <div class="grid--full cart__row--table-large">
 
-          <div class="grid-item large--one-half">
+          <div class="grid__item large--one-half">
             <div class="grid">
 
-              <div class="grid-item one-third">
+              <div class="grid__item one-third">
                 <a href="{{ item.url | within: collections.all }}" class="cart__image">
 
                   {% comment %}
@@ -60,7 +60,7 @@
                 </a>
               </div>
 
-              <div class="grid-item two-thirds">
+              <div class="grid__item two-thirds">
                 <a href="{{ item.url }}" class="h4">
                   {{ item.product.title }}
                 </a>
@@ -105,15 +105,15 @@
             </div>
           </div>
 
-          <div class="grid-item large--one-half">
+          <div class="grid__item large--one-half">
             <div class="grid--full cart__row--table-large">
 
-              <div class="grid-item one-third">
+              <div class="grid__item one-third">
                 <span class="cart__mini-labels">{{ 'cart.label.price' | t }}</span>
                 <span class="h3">{{ item.price | money }}</span>
               </div>
 
-              <div class="grid-item one-third text-center">
+              <div class="grid__item one-third text-center">
                 <span class="cart__mini-labels">{{ 'cart.label.quantity' | t }}</span>
                 {% comment %}
                   Added data-id for the ajax cart implementation only.
@@ -121,7 +121,7 @@
                 <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
               </div>
 
-              <div class="grid-item one-third text-right">
+              <div class="grid__item one-third text-right">
                 <span class="cart__mini-labels">{{ 'cart.label.total' | t }}</span>
                 <span class="h3">{{ item.line_price | money }}</span>
               </div>
@@ -141,12 +141,12 @@
             - Make sure you have name="note" for the message to be submitted properly
         {% endcomment %}
         {% if settings.cart_notes_enable %}
-          <div class="grid-item large--one-half">
-            <label for="cartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-            <textarea name="note" class="input-full" id="cartSpecialInstructions">{{ cart.note }}</textarea>
+          <div class="grid__item large--one-half">
+            <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
           </div>
         {% endif %}
-        <div class="grid-item text-right{% if settings.cart_notes_enable %} large--one-half{% endif %}">
+        <div class="grid__item text-right{% if settings.cart_notes_enable %} large--one-half{% endif %}">
           <p>
             <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
             <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>

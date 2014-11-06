@@ -267,9 +267,9 @@ input[type="search"]::-webkit-search-decoration {
 
 /*============================================================================
   #Grid Setup
-    - Based on csswizardry grid, but with floated columns and a fixed gutter size
+    - Based on csswizardry grid, but with floated columns, a fixed gutter size, and BEM classes
     - Breakpoints defined above, under #Breakpoint and Grid Variables
-    - Note the inclusion of .grid-uniform to take care of clearfixes on evenly sized grid-items
+    - Note the inclusion of .grid-uniform to take care of clearfixes on evenly sized grid items
 ==============================================================================*/
 $responsive:         true;
 $mobile-first:       true;
@@ -283,8 +283,8 @@ $pull:               false;
   @include clearfix;
 }
 
-/* Manual grid-item clearfix */
-.grid-item.clear {
+/* Manual grid__item clearfix */
+.grid__item.clear {
   clear: both;
 }
 
@@ -340,7 +340,7 @@ $class-type: unquote(".");
   margin-left: -$gridGutter;
 }
 
-#{$class-type}grid-item {
+#{$class-type}grid__item {
   float: left;
   min-height: 1px;
   padding-left: $gridGutter;
@@ -360,7 +360,7 @@ $class-type: unquote(".");
   direction: rtl;
   text-align: left;
 
-  > #{$class-type}grid-item {
+  > #{$class-type}grid__item {
     direction: ltr;
     text-align: left;
     float: right;
@@ -372,7 +372,7 @@ $class-type: unquote(".");
   @extend #{$class-type}grid;
   margin-left: 0;
 
-  > #{$class-type}grid-item {
+  > #{$class-type}grid__item {
     padding-left: 0;
   }
 }
@@ -1197,8 +1197,8 @@ svg:not(:root) {
 }
 
 img.auto,
-.grid-item img,
-.grid-item iframe {
+.grid__item img,
+.grid__item iframe {
   max-width: 100%;
 }
 
@@ -1734,7 +1734,7 @@ label.error {
       table-layout: fixed;
       width: 100%;
 
-      > .grid-item {
+      > .grid__item {
         float: none;
         display: table-cell;
         vertical-align: middle;
@@ -2088,7 +2088,7 @@ label.error {
     table-layout: fixed;
     width: 100%;
 
-    .grid-item {
+    .grid__item {
       display: table-cell;
       vertical-align: middle;
       float: none;

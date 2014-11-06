@@ -5,7 +5,7 @@
     <div class="grid">
 
       {% if settings.footer_quicklinks_enable %}
-        <div class="grid-item medium--one-half large--three-twelfths">
+        <div class="grid__item medium--one-half large--three-twelfths">
           <h3>{{ 'layout.footer.linklist_title' | t }}</h3>
           <ul>
             {% for link in linklists[settings.footer_quicklinks_linklist].links %}
@@ -16,7 +16,7 @@
       {% endif %}
 
       {% if settings.footer_social_enable %}
-      <div class="grid-item medium--one-half large--five-twelfths">
+      <div class="grid__item medium--one-half large--five-twelfths">
         <h3>{{ 'layout.footer.social_title' | t }}</h3>
           {% comment %}
             Loop through the social network links
@@ -43,7 +43,7 @@
       {% endif %}
 
       {% if settings.footer_newsletter_enable %}
-      <div class="grid-item large--one-third">
+      <div class="grid__item large--one-third">
         <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
         {% include 'newsletter-form' %}
       </div>

@@ -28,35 +28,35 @@
         - {% assign grid_item_width = 'large--one-third medium--one-half' %}
     {% endcomment %}
     {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
-    {% include 'product-grid-item' %}
+    {% include 'product-grid__item' %}
 
   {% else %}
 
-    <div class="grid-item">
+    <div class="grid__item">
       <p>{{ 'home_page.onboarding.no_products_html' | t }}</p>
     </div>
 
-    <div class="grid-item">
+    <div class="grid__item">
       <div class="grid-uniform">
-        <div class="grid-item large--one-quarter medium--one-half text-center">
+        <div class="grid__item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
             {{ 'home_page.onboarding.add_product' | t }}
           </a>
           <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
         </div>
-        <div class="grid-item large--one-quarter medium--one-half text-center">
+        <div class="grid__item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
             {{ 'home_page.onboarding.add_product' | t }}
           </a>
           <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
         </div>
-        <div class="grid-item large--one-quarter medium--one-half text-center">
+        <div class="grid__item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
             {{ 'home_page.onboarding.add_product' | t }}
           </a>
           <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
         </div>
-        <div class="grid-item large--one-quarter medium--one-half text-center">
+        <div class="grid__item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
             {{ 'home_page.onboarding.add_product' | t }}
           </a>
@@ -93,7 +93,7 @@
       {% unless collection.handle == 'frontpage' %}
         {% assign isEmpty = false %}
         {% assign collection_item_width = 'large--one-fifth medium--one-third' %}
-        {% include 'collection-grid-item' %}
+        {% include 'collection-grid__item' %}
         {% comment %}Add 1 to the current index{% endcomment %}
         {% assign index = index | plus: 1 %}
       {% endunless %}
@@ -103,36 +103,36 @@
   {% endfor %}
 
   {% if isEmpty %}
-    <div class="grid-item">
+    <div class="grid__item">
       <p>{{ 'home_page.onboarding.no_collections_html' | t }}</p>
     </div>
-    <div class="grid-item">
+    <div class="grid__item">
       <div class="grid-uniform">
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
             {{ 'home_page.onboarding.collection_image' | t }}
           </div>
           <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(3 {{ 'collections.general.items_count' | t: count: 3 }})</small></p>
         </div>
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
             {{ 'home_page.onboarding.collection_image' | t }}
           </div>
           <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(13 {{ 'collections.general.items_count' | t: count: 13 }})</small></p>
         </div>
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
             {{ 'home_page.onboarding.collection_image' | t }}
           </div>
           <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(25 {{ 'collections.general.items_count' | t: count: 25 }})</small></p>
         </div>
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
             {{ 'home_page.onboarding.collection_image' | t }}
           </div>
           <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(1 {{ 'collections.general.items_count' | t: count: 1 }})</small></p>
         </div>
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
             {{ 'home_page.onboarding.collection_image' | t }}
           </div>
@@ -158,7 +158,7 @@
 <div class="grid">
   {% for article in blogs['news'].articles limit:3 %}
 
-    <div class="grid-item large--one-third">
+    <div class="grid__item large--one-third">
 
       <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
         {{ article.published_at | date: '%Y-%m-%d' }}

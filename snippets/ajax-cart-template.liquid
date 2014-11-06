@@ -13,30 +13,30 @@
         <div class="ajaxcart__product">
           <div class="ajaxcart__row" data-id="{{id}}">
             <div class="grid">
-              <div class="grid-item large--two-thirds">
+              <div class="grid__item large--two-thirds">
                 <div class="grid">
-                  <div class="grid-item one-quarter">
+                  <div class="grid__item one-quarter">
                     <a href="{{url}}" class="ajaxcart__product-image"><img src="{{img}}" alt=""></a>
                   </div>
-                  <div class="grid-item three-quarters">
+                  <div class="grid__item three-quarters">
                     <a href="{{url}}" class="h4">{{name}}</a>
                     <p>{{variation}}</p>
                   </div>
                 </div>
               </div>
-              <div class="grid-item large--one-third">
+              <div class="grid__item large--one-third">
                 <div class="grid">
-                  <div class="grid-item one-third">
+                  <div class="grid__item one-third">
                     <div class="ajaxcart__qty">
                       <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--minus" data-id="{{id}}" data-qty="{{itemMinus}}">&minus;</button>
                       <input type="text" class="ajaxcart__qty-num" value="{{itemQty}}" min="0" data-id="{{id}}" aria-label="quantity" pattern="[0-9]*">
                       <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus" data-id="{{id}}" data-qty="{{itemAdd}}">+</button>
                     </div>
                   </div>
-                  <div class="grid-item one-third text-center">
+                  <div class="grid__item one-third text-center">
                     <p>{{price}}</p>
                   </div>
-                  <div class="grid-item one-third text-right">
+                  <div class="grid__item one-third text-right">
                     <p>
                       <small><a href="/cart/change?id={{id}}&amp;quantity=0" class="ajaxcart__remove" data-id="{{id}}">Remove</a></small>
                     </p>
