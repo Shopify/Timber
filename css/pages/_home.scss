@@ -85,7 +85,7 @@
   @include responsify($lap_down) {
     padding: 36px 0 24px;
 
-    .grid-item + .grid-item {
+    .grid__item + .grid__item {
       padding-top: $margin;
     }
   }

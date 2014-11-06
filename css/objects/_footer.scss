@@ -38,12 +38,12 @@
     }
   }
 
-  .grid-item {
+  .grid__item {
     margin-bottom: ($margin / 2);
   }
 
   @include responsify( $portable_up ) {
-    .grid-item {
+    .grid__item {
       margin: 0;
     }
   }
