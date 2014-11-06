@@ -30,7 +30,7 @@
 {% comment %}
   Set a class for sold-out and on-sale items
 {% endcomment %}
-<div class="grid-item{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+<div class="grid__item{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
 
   {% comment %}
     Link to your product with the 'within: collection' filter for the link to be aware of the collection.
@@ -45,12 +45,12 @@
 
   {% endcomment %}
   <div class="grid large--display-table">
-    <div class="grid-item large--one-fifth large--display-table-cell medium--one-third">
+    <div class="grid__item large--one-fifth large--display-table-cell medium--one-third">
       <a href="{{ product.url | within: current_collection }}">
         <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="grid__image">
       </a>
     </div>
-    <div class="grid-item large--three-fifths large--display-table-cell medium--two-thirds">
+    <div class="grid__item large--three-fifths large--display-table-cell medium--two-thirds">
       <p class="h6">{{ product.title }}</p>
       <div class="rte">
         {% if product.excerpt.size > 0 %}
@@ -60,7 +60,7 @@
         {% endif %}
       </div>
     </div>
-    <div class="grid-item large--one-fifth large--display-table-cell medium--two-thirds">
+    <div class="grid__item large--one-fifth large--display-table-cell medium--two-thirds">
       {% comment %}
         You can show a leading 'from' or 'up to' by checking 'product.price_varies'
         if your variants have different prices.

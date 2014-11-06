@@ -19,7 +19,7 @@
 
 <div class="grid">
 
-  <div class="grid-item large--one-third push--large--one-third text-center">
+  <div class="grid__item large--one-third push--large--one-third text-center">
 
     {% comment %}
       If a user has successfully requested a new password, the form.posted_successfully? variable
@@ -39,13 +39,13 @@
 
       {% include 'form-errors-custom' %}
 
-      <label for="customer_email" class="label--hidden">{{ 'customer.login.email' | t }}</label>
-      <input type="email" name="customer[email]" id="customer_email" placeholder="{{ 'customer.login.email' | t }}"{% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
+      <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
+      <input type="email" name="customer[email]" id="CustomerEmail" placeholder="{{ 'customer.login.email' | t }}"{% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
 
       {% if form.password_needed %}
 
-        <label for="customer_password" class="label--hidden">{{ 'customer.login.password' | t }}</label>
-        <input type="password" value="" name="customer[password]" id="customer_password" placeholder="{{ 'customer.login.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+        <label for="CustomerPassword" class="label--hidden">{{ 'customer.login.password' | t }}</label>
+        <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="{{ 'customer.login.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
 
         <p>
           <a href="#" onclick="showRecoverPasswordForm();return false;">{{ 'customer.login.forgot_password' | t }}</a>
@@ -84,8 +84,8 @@
           {% assign reset_success = true %}
         {% endif %}
 
-        <label for="recover-email" class="label--hidden">{{ 'customer.recover_password.email' | t }}</label>
-        <input type="email" value="" name="email" id="recover-email" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+        <label for="RecoverEmail" class="label--hidden">{{ 'customer.recover_password.email' | t }}</label>
+        <input type="email" value="" name="email" id="RecoverEmail" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
 
         <p>
           <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
