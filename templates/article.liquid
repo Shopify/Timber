@@ -139,15 +139,15 @@
             <div class="grid">
 
               <div class="grid-item large--one-half">
-                <label for="comment-author" class="hidden-label">{{ 'blogs.comments.name' | t }}</label>
+                <label for="comment-author" class="label--hidden">{{ 'blogs.comments.name' | t }}</label>
                 <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{{ 'blogs.comments.name' | t }}" id="comment-author" value="{{ form.author }}" autocapitalize="words">
 
-                <label for="comment-email" class="hidden-label">{{ 'blogs.comments.email' | t }}</label>
+                <label for="comment-email" class="label--hidden">{{ 'blogs.comments.email' | t }}</label>
                 <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{{ 'blogs.comments.email' | t }}" id="comment-email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
               </div>
 
               <div class="grid-item">
-                <label for="comment-body" class="hidden-label">{{ 'blogs.comments.message' | t }}</label>
+                <label for="comment-body" class="label--hidden">{{ 'blogs.comments.message' | t }}</label>
                 <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="comment-body" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
               </div>
 
