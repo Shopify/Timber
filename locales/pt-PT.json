@@ -90,7 +90,6 @@
     },
     "sidebar": {
       "types": "Tipos de Produtos",
-      "no_types_html": "Adicione tipos aos seus produtos para que esta lista seja construída automaticamente. Todas as listas são criadas na <strong>collection-sidebar.liquid</strong>.",
       "vendors": "Fornecedores",
       "tags": "Etiquetas"
     },
