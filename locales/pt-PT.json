@@ -221,10 +221,12 @@
       "news_title": "Notícias mais recentes"
     },
     "onboarding": {
+      "modal_title": "Quase lá...",
       "no_products_html": "Não tem produtos na sua Coleção Frontpage. Esta imagem de preenchimento será exibida até <a href=\"/admin/products/new\">adicionar um produto a esta coleção</a>.",
-      "add_product": "Adicionar Produto",
+      "add_product": "A adição de um produto",
       "product_title": "Título do Produto Exemplo",
       "no_collections_html": "Ainda não tem coleções para exibir aqui. <a href=\"/admin/custom_collections\">Adicione algumas coleções</a> para continuar com a Frontpage predefinida.",
+      "add_collection": "Adicionando uma coleção",
       "collection_title": "Título da Coleção Exemplo"
     }
   },

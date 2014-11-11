@@ -222,10 +222,12 @@
       "news_title": "Últimas notícias"
     },
     "onboarding": {
+      "modal_title": "Quase lá...",
       "no_products_html": "Não há produtos na sua coleção \"Primeira Página\". Este espaço reservado aparecerá até que você <a href=\"/admin/products/new\">adicione um produto a esta coleção</a>.",
-      "add_product": "Adicionar produto",
+      "add_product": "A adição de um produto",
       "product_title": "Exemplo de título de produto",
       "no_collections_html": "Você não tem coleções para exibir aqui. <a href=\"/admin/custom_collections\">Adicione algumas coleções</a> para acompanhar a \"Primeira Página\" padrão.",
+      "add_collection": "Adicionando uma coleção",
       "collection_title": "Exemplo de título de coleção"
     }
   },

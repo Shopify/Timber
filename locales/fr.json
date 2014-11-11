@@ -221,10 +221,12 @@
       "news_title": "Nouvelles récentes"
     },
     "onboarding": {
+      "modal_title": "On y est presque...",
       "no_products_html": "Vous n'avez pas de produit dans votre collection Frontpage. Ce message apparaitra jusqu'à ce qu'un produit soit <a href=\"/admin/products/new\">ajouté à cette collection</a>.",
       "add_product": "Ajouter un produit",
       "product_title": "Titre du produit",
       "no_collections_html": "Vous n'avez pas de collection à afficher ici. <a href=\"/admin/custom_collections\">Ajoutez une ou plusieurs collections</a> pour compléter la page d'accueil par défaut.",
+      "add_collection": "Ajouter une collection",
       "collection_title": "Titre de la collection"
     }
   },
