@@ -3,7 +3,7 @@ layout: default
 title: Shopify Theme Development Framework - Timber
 description: Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
 canonical: /timber
-version: v1.3.2
+version: v2.0.0
 ---
 
 <!-- gh-pages -->
@@ -26,19 +26,19 @@ version: v1.3.2
     <div class="pagewidth">
       <div class="grid">
 
-        <div class="grid-item large--one-third">
+        <div class="grid__item large--one-third">
           <div class="bucket-devices"></div>
           <h3 class="bucket-title">Built for all devices</h3>
           <p class="bucket-description">Develop on top of a responsive, mobile-first and flexible foundation.</p>
         </div>
 
-        <div class="grid-item large--one-third">
+        <div class="grid__item large--one-third">
           <div class="bucket-documented"></div>
           <h3 class="bucket-title">Documented</h3>
           <p class="bucket-description">All the basic liquid and templating tags, well documented for you.</p>
         </div>
 
-        <div class="grid-item large--one-third">
+        <div class="grid__item large--one-third">
           <div class="bucket-customizable"></div>
           <h3 class="bucket-title">Customizable</h3>
           <p class="bucket-description">Add and remove components easily and build the store you want.</p>
@@ -54,7 +54,7 @@ version: v1.3.2
   <div class="pagewidth">
     <div class="grid">
 
-      <div class="grid-item large--three-quarters docs-body">
+      <div class="grid__item large--three-quarters docs-body">
 
         <!-- =====================================
           WHO IS THIS FOR
@@ -69,15 +69,15 @@ version: v1.3.2
         ===================================== -->
         <h2 class="doc-title gettingstarted-title" id="comes-with"><strong>1.2 </strong>What is Included</h2>
         <div class="grid">
-          <div class="grid-item one-third small--one-whole">
+          <div class="grid__item one-third small--one-whole">
             <h4 class="docs-h4">Required Templates</h4>
             <p class="docs-text">Every template your store needs is included in one handy place, so no more sticky notes with checklists on your desk.</p>
           </div>
-          <div class="grid-item one-third small--one-whole">
+          <div class="grid__item one-third small--one-whole">
             <h4 class="docs-h4">Basic Markup</h4>
             <p class="docs-text">Jump past the learning curve of <strong class="docs-strong">liquid template tags</strong> because we've provided you with the essentials.</p>
           </div>
-          <div class="grid-item one-third small--one-whole">
+          <div class="grid__item one-third small--one-whole">
             <h4 class="docs-h4">CSS Framework</h4>
             <p class="docs-text">Grounded in <a href="#sass" class="docs-link">Sass</a>, Timber provides you with a barebone set of styles that you can quickly put your designer touch on.</p>
           </div>
@@ -97,11 +97,11 @@ git clone https://github.com/Shopify/Timber.git
 </pre>
 
         <div class="grid">
-          <div class="grid-item one-half small--one-whole">
+          <div class="grid__item one-half small--one-whole">
             <h4 class="docs-h4">Dev Notes</h4>
             <p class="docs-text">Shopify Timber tested and working in IE 8+, Safari, Chrome, Firefox, Opera, Safari IOS, Browser and Chrome Android.</p>
           </div>
-          <div class="grid-item one-half small--one-whole">
+          <div class="grid__item one-half small--one-whole">
             <h4 class="docs-h4">Demo Store</h4>
             <p class="docs-text">The demo has fake products inserted so you can see what a populated site would look like. To see what your brand new site will look like when you install the theme, check out our <a href="http://timber-demo-empty.myshopify.com?utm_source=Timber&utm_medium=os" class="docs-link" data-track="Demo Empty">empty store demo</a>.</p>
           </div>
@@ -115,11 +115,11 @@ git clone https://github.com/Shopify/Timber.git
         <h2 class="doc-title gettingstarted-title" id="theme-editing"><strong>1.4 </strong>Theme Editing</h2>
         <p class="docs-text">Once you've downloaded your theme it's time to get it onto your store. Either upload the zip to <code>your-url.com/admin/themes</code> or use one of the programs below. Either way, you can use your text editor of choice.</p>
         <div class="grid">
-          <div class="grid-item one-half small--one-whole">
+          <div class="grid__item one-half small--one-whole">
             <h4 class="docs-h4">Theme Gem</h4>
             <p class="docs-text">If you're comfortable with the command line, use the <a href="https://github.com/Shopify/shopify_theme" class="docs-link">Shopify Theme Gem</a> on OSX or Windows to upload changes to your theme with ease.</p>
           </div>
-          <div class="grid-item one-half small--one-whole">
+          <div class="grid__item one-half small--one-whole">
             <h4 class="docs-h4">Desktop Theme Editor</h4>
             <p class="docs-text">If you prefer a beautiful interface, use the <a href="https://github.com/Shopify/shopify_theme" class="docs-link">Desktop Theme Editor</a> and start managing all of your theme assets.</p>
           </div>
@@ -159,7 +159,7 @@ git clone https://github.com/Shopify/Timber.git
           <li>Large: 769px</li>
         </ul>
 
-        <p class="docs-text"><code>$breakpoints</code> is broken down into four lines, each a breakpoint: <strong>'small'</strong>, <strong>'medium'</strong>, <strong>'medium-down'</strong>, and <strong>'large'</strong>. These are the names used in your classes to define each column width. A <code>.grid-item</code> div with a class of <code>large--one-half</code> will span 50% of its parent above 769px. Any screen size below that breakpoint will default to (mobile-first) 100%.</p>
+        <p class="docs-text"><code>$breakpoints</code> is broken down into four lines, each a breakpoint: <strong>'small'</strong>, <strong>'medium'</strong>, <strong>'medium-down'</strong>, and <strong>'large'</strong>. These are the names used in your classes to define each column width. A <code>.grid__item</code> div with a class of <code>large--one-half</code> will span 50% of its parent above 769px. Any screen size below that breakpoint will default to (mobile-first) 100%.</p>
 <pre>
 $viewportIncrement: 1px;
 
@@ -192,35 +192,35 @@ $breakpoints: (
         <div class="grid-example">
           <div class="grid">
 
-            <div class="grid-item">
+            <div class="grid__item">
               <p class="grid-demo">1</p>
             </div>
 
-            <div class="grid-item">
+            <div class="grid__item">
 
               <div class="grid">
 
-                <div class="grid-item large--one-half medium--one-third">
+                <div class="grid__item large--one-half medium--one-third">
                   <p class="grid-demo">2.1</p>
                 </div>
 
-                <div class="grid-item large--one-quarter medium--one-third">
+                <div class="grid__item large--one-quarter medium--one-third">
                   <p class="grid-demo">2.2</p>
                 </div>
 
-                <div class="grid-item large--one-quarter medium--one-third">
+                <div class="grid__item large--one-quarter medium--one-third">
                   <p class="grid-demo">2.3</p>
                 </div>
 
-                <div class="grid-item large--one-third medium--one-whole">
+                <div class="grid__item large--one-third medium--one-whole">
                   <p class="grid-demo">2.4</p>
                 </div>
 
-                <div class="grid-item large--one-third medium--one-half small--one-half">
+                <div class="grid__item large--one-third medium--one-half small--one-half">
                   <p class="grid-demo">2.5</p>
                 </div>
 
-                <div class="grid-item large--one-third medium--one-half small--one-half">
+                <div class="grid__item large--one-third medium--one-half small--one-half">
                   <p class="grid-demo">2.6</p>
                 </div>
 
@@ -228,56 +228,36 @@ $breakpoints: (
 
             </div>
 
-            <div class="grid-item">
+            <div class="grid__item">
 
               <div class="grid">
 
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                <div class="grid__item large--one-twelfth one-sixth small--one-third">
                   <p class="grid-demo">3.1</p>
                 </div>
 
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                <div class="grid__item large--one-twelfth one-sixth small--one-third">
                   <p class="grid-demo">3.2</p>
                 </div>
 
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                <div class="grid__item large--one-twelfth one-sixth small--one-third">
                   <p class="grid-demo">3.3</p>
                 </div>
 
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                <div class="grid__item large--one-twelfth one-sixth small--one-third">
                   <p class="grid-demo">3.4</p>
                 </div>
 
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                <div class="grid__item large--one-twelfth one-sixth small--one-third">
                   <p class="grid-demo">3.5</p>
                 </div>
 
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                <div class="grid__item large--one-twelfth one-sixth small--one-third">
                   <p class="grid-demo">3.6</p>
                 </div>
 
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
+                <div class="grid__item large--one-half one-whole">
                   <p class="grid-demo">3.7</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.8</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.9</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.10</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.11</p>
-                </div>
-
-                <div class="grid-item large--one-twelfth one-sixth small--one-third">
-                  <p class="grid-demo">3.12</p>
                 </div>
 
 
@@ -292,97 +272,77 @@ $breakpoints: (
 <pre>
 &lt;div class="grid"&gt;
 
-  &lt;div class="grid-item"&gt;
+  &lt;div class="grid__item"&gt;
     &lt;p class="grid-demo"&gt;1&lt;/p&gt;
   &lt;/div&gt;
 
-  &lt;div class="grid-item"&gt;
+  &lt;div class="grid__item"&gt;
     &lt;div class="grid"&gt;
 
-      &lt;div class="grid-item large--one-half medium--one-third"&gt;
+      &lt;div class="grid__item large--one-half medium--one-third"&gt;
         &lt;p class="grid-demo"&gt;2.1&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-quarter medium--one-third"&gt;
+      &lt;div class="grid__item large--one-quarter medium--one-third"&gt;
         &lt;p class="grid-demo"&gt;2.2&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-quarter medium--one-third"&gt;
+      &lt;div class="grid__item large--one-quarter medium--one-third"&gt;
         &lt;p class="grid-demo"&gt;2.3&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-third medium--one-whole"&gt;
+      &lt;div class="grid__item large--one-third medium--one-whole"&gt;
         &lt;p class="grid-demo"&gt;2.4&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-third medium--one-half small--one-half"&gt;
+      &lt;div class="grid__item large--one-third medium--one-half small--one-half"&gt;
         &lt;p class="grid-demo"&gt;2.5&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-third medium--one-half small--one-half"&gt;
+      &lt;div class="grid__item large--one-third medium--one-half small--one-half"&gt;
         &lt;p class="grid-demo"&gt;2.6&lt;/p&gt;
       &lt;/div&gt;
 
     &lt;/div&gt;
     // End sub grid
   &lt;/div&gt;
-  // End grid-item
+  // End grid__item
 
-  &lt;div class="grid-item"&gt;
+  &lt;div class="grid__item"&gt;
     &lt;div class="grid"&gt;
 
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+      &lt;div class="grid__item large--one-twelfth one-sixth small--one-third"&gt;
         &lt;p class="grid-demo"&gt;3.1&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+      &lt;div class="grid__item large--one-twelfth one-sixth small--one-third"&gt;
         &lt;p class="grid-demo"&gt;3.2&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+      &lt;div class="grid__item large--one-twelfth one-sixth small--one-third"&gt;
         &lt;p class="grid-demo"&gt;3.3&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+      &lt;div class="grid__item large--one-twelfth one-sixth small--one-third"&gt;
         &lt;p class="grid-demo"&gt;3.4&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+      &lt;div class="grid__item large--one-twelfth one-sixth small--one-third"&gt;
         &lt;p class="grid-demo"&gt;3.5&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+      &lt;div class="grid__item large--one-twelfth one-sixth small--one-third"&gt;
         &lt;p class="grid-demo"&gt;3.6&lt;/p&gt;
       &lt;/div&gt;
 
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
+      &lt;div class="grid__item large--one-half one-whole"&gt;
         &lt;p class="grid-demo"&gt;3.7&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.8&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.9&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.10&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.11&lt;/p&gt;
-      &lt;/div&gt;
-
-      &lt;div class="grid-item large--one-twelfth one-sixth small--one-third"&gt;
-        &lt;p class="grid-demo"&gt;3.12&lt;/p&gt;
       &lt;/div&gt;
 
     &lt;/div&gt;
     // End sub grid
   &lt;/div&gt;
-  // End grid-item
+  // End grid__item
 
 &lt;/div&gt;
 // End grid
@@ -392,32 +352,32 @@ $breakpoints: (
         <h4 class="docs-h4">Columns and Sub Grids</h4>
 
         <div id="columns-example">
-          <p class="docs-text">Each column — or <code>.grid-item</code> — should be a direct child of a <code>.grid</code> container. This grid is easily nestable. A <code>.grid-item</code> column can contain another <code>.grid</code>, which would consist of its own children. View the sub grid in <strong class="docs-strong">Example 2</strong> below.</p>
+          <p class="docs-text">Each column — or <code>.grid__item</code> — should be a direct child of a <code>.grid</code> container. This grid is easily nestable. A <code>.grid__item</code> column can contain another <code>.grid</code>, which would consist of its own children. View the sub grid in <strong class="docs-strong">Example 2</strong> below.</p>
 
           <h4 class="docs-example">Example 1: Two column grid</h4>
           <div class="grid">
-            <div class="grid-item one-half">
+            <div class="grid__item one-half">
               <p class="grid-demo">1.1</p>
             </div>
-            <div class="grid-item one-half">
+            <div class="grid__item one-half">
               <p class="grid-demo">1.2</p>
             </div>
           </div>
 
           <h4 class="docs-example">Example 2: Two column with sub grid</h4>
           <div class="grid">
-            <div class="grid-item large--one-half">
+            <div class="grid__item large--one-half">
               <p class="grid-demo">1.1</p>
             </div>
-            <div class="grid-item large--one-half">
+            <div class="grid__item large--one-half">
               <div class="grid">
-                <div class="grid-item large--one-third">
+                <div class="grid__item large--one-third">
                   <p class="grid-demo">1.2</p>
                 </div>
-                <div class="grid-item large--one-third">
+                <div class="grid__item large--one-third">
                   <p class="grid-demo">1.3</p>
                 </div>
-                <div class="grid-item large--one-third">
+                <div class="grid__item large--one-third">
                   <p class="grid-demo">1.4</p>
                 </div>
               </div>
@@ -430,28 +390,28 @@ $breakpoints: (
 <pre>
 // Two column grid
 &lt;div class="grid"&gt;
-  &lt;div class="grid-item one-half"&gt;
+  &lt;div class="grid__item one-half"&gt;
     &lt;p class="grid-demo"&gt;1.1&lt;/p&gt;
   &lt;/div&gt;
-  &lt;div class="grid-item one-half"&gt;
+  &lt;div class="grid__item one-half"&gt;
     &lt;p class="grid-demo"&gt;1.2&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
 // Two column with sub grid
 &lt;div class="grid"&gt;
-  &lt;div class="grid-item large--one-half"&gt;
+  &lt;div class="grid__item large--one-half"&gt;
     &lt;p class="grid-demo"&gt;1.1&lt;/p&gt;
   &lt;/div&gt;
-  &lt;div class="grid-item large--one-half"&gt;
+  &lt;div class="grid__item large--one-half"&gt;
     &lt;div class="grid"&gt;
-      &lt;div class="grid-item large--one-third"&gt;
+      &lt;div class="grid__item large--one-third"&gt;
         &lt;p class="grid-demo"&gt;1.2&lt;/p&gt;
       &lt;/div&gt;
-      &lt;div class="grid-item large--one-third"&gt;
+      &lt;div class="grid__item large--one-third"&gt;
         &lt;p class="grid-demo"&gt;1.3&lt;/p&gt;
       &lt;/div&gt;
-      &lt;div class="grid-item large--one-third"&gt;
+      &lt;div class="grid__item large--one-third"&gt;
         &lt;p class="grid-demo"&gt;1.4&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -462,18 +422,18 @@ $breakpoints: (
 
         <h4 class="docs-h4">Class Names</h4>
         <ul class="disc docs-text">
-          <li>A <code>grid-item</code> will default to a 100% width</li>
+          <li>A <code>grid__item</code> will default to a 100% width, a moblie-first approach</li>
           <li>Class names use an easy to read variation of the <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" class="docs-link">BEM naming convention</a></li>
           <li>Class name format: <code>breakpoint--column-width</code> - e.g. <code>large--one-half</code></li>
         </ul>
 
         <h4 class="docs-h4">Silent Classes</h4>
-        <p class="docs-text">If you don't know what silent classes are, you can ignore this section. The biggest point of contention for many grid systems is how many classes are required in your markup. With Sass, you can use <a href="http://blog.teamtreehouse.com/extending-placeholder-selectors-with-sass" class="docs-link">silent classes</a> to handle all <code>.grid-item</code> widths in your stylesheet.</p>
+        <p class="docs-text">If you don't know what silent classes are, you can ignore this section. The biggest point of contention for many grid systems is how many classes are required in your markup. With Sass, you can use <a href="http://blog.teamtreehouse.com/extending-placeholder-selectors-with-sass" class="docs-link">silent classes</a> to handle all <code>.grid__item</code> widths in your stylesheet.</p>
         <p class="docs-text">Set <code>$use-silent-classes</code> to <strong class="docs-strong">true</strong> in <strong class="docs-strong">timber.scss.liquid</strong>, and use the following code to set the widths:</p>
 
 <pre>
 .foo {
-  @extend %grid-item;
+  @extend %grid__item;
   @extend %small--one-half;
   @extend %large--one-quarter;
 }
@@ -1236,7 +1196,7 @@ jQuery(function($) {
           Typography
         ===================================== -->
         <h2 class="doc-title styleguide-title" id="typography"><strong>5.1 </strong>Typography</h2>
-        
+
         <h4 class="docs-h4">Headers and Body Text</h4>
         <h1>Heading One</h1>
         <h2>Heading Two</h2>
@@ -1363,7 +1323,7 @@ jQuery(function($) {
         <h4 class="docs-h4">Vertical (default)</h4>
         <p class="docs-text">By default, forms follow this pattern. Be sure to remove element bottom padding if you aren't using a large form.</p>
         <div class="grid">
-            <div class="grid-item large--one-third">
+            <div class="grid__item large--one-third">
               <label for="text1">Text Field</label>
               <input type="text" id="text1">
 
@@ -1380,7 +1340,7 @@ jQuery(function($) {
               <input type="text" id="text5" class="error" value="Invalid Entry">
             </div>
 
-            <div class="grid-item large--one-third">
+            <div class="grid__item large--one-third">
               <label for="select1">Select Field</label>
               <select id="select1">
                 <option value="0">-- Choose --</option>
@@ -1403,7 +1363,7 @@ jQuery(function($) {
                 <input type="radio" name="radio" id="radio3"> <label for="radio3" class="inline">Option1</label>
               </fieldset>
             </div>
-            <div class="grid-item large--one-third">
+            <div class="grid__item large--one-third">
               <label for="textarea1">Textarea</label>
               <textarea id="textarea1" placeholder="Placeholder text"></textarea>
 
@@ -1487,7 +1447,7 @@ jQuery(function($) {
 
         <div id="inputgroups-example">
           <div class="grid">
-            <div class="grid-item large--one-half">
+            <div class="grid__item large--one-half">
               <h4 class="docs-example">Example 1</h4>
               <div class="input-group">
                 <span class="input-group-btn">
@@ -1496,7 +1456,7 @@ jQuery(function($) {
                 <input type="text" name="q" value="" placeholder="Placeholder" class="input-group-field">
               </div>
             </div>
-            <div class="grid-item large--one-half">
+            <div class="grid__item large--one-half">
               <h4 class="docs-example">Example 2 - Mailchimp Integration</h4>
               <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
                 <input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field">
@@ -1983,7 +1943,7 @@ jQuery(function($) {
 
       </div>
 
-      <div class="grid-item large--one-quarter docs-nav-wrapper">
+      <div class="grid__item large--one-quarter docs-nav-wrapper">
         <nav class="docs-nav">
           <h4 class="docs-h4">Table of Contents</h4>
           <h5 class="docs-h5"><a href="#who-for">Getting Started</a></h5>
