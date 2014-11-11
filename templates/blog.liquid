@@ -16,11 +16,11 @@
 
 <div class="grid">
 
-  <div class="grid-item large--one-quarter">
+  <div class="grid__item large--one-quarter">
     {% include 'blog-sidebar' %}
   </div>
 
-  <div class="grid-item large--three-quarters">
+  <div class="grid__item large--three-quarters">
 
     {% if current_tags %}
       <h1>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h1>
@@ -38,12 +38,10 @@
     {% for article in blog.articles %}
 
       <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
-      <p>
-        Posted by <strong>{{ article.author }}</strong> at
-        <strong><time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-          {{ article.published_at | date: '%b %d, %Y' }}
-        </time></strong>
-      </p>
+      {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
+      {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
+      {% capture date %}<time datetime="{{ published_at }}">{{ published_at }}</time>{% endcapture %}
+      <p>{{ 'blogs.article.author_on_date_html' | t: author: author, date: date }}</p>
 
       {% comment %}
         Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
@@ -61,32 +59,30 @@
         Show off meta information like number of comments and tags.
       {% endcomment %}
       <ul>
-
         {% comment %}
-          Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
+          comments_enabled? and moderated? are the only instances of punctuation in liquid tags.
         {% endcomment %}
         {% if blog.comments_enabled? %}
         <li>
           <a href="{{ article.url }}#comments">
-            {{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}
+            {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
           </a>
         </li>
         {% endif %}
 
         {% include 'tags-article' %}
-
       </ul>
 
-      <p><a href="{{ article.url }}">Read more →</a></p>
+      <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
 
-      <hr>
+      {% unless forloop.last %}<hr>{% endunless %}
 
     {% endfor %}
 
     {% if paginate.pages > 1 %}
-    <div class="text-center">
-      {% include 'pagination-custom' %}
-    </div>
+      <div class="text-center">
+        {% include 'pagination-custom' %}
+      </div>
     {% endif %}
 
   </div>

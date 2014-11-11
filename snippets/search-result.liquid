@@ -19,7 +19,7 @@
     {% comment %}
       We have a featured_image, so it's likely a product
     {% endcomment %}
-    <div class="grid-item one-third">
+    <div class="grid__item one-third">
       <a href="{{ item.url }}" title="{{ item.title | escape }}">
         {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
       </a>
@@ -29,7 +29,7 @@
   {% comment %}
     If we don't have a featured_image, add a push-- class to keep the alignment the same
   {% endcomment %}
-  <div class="grid-item two-thirds {% unless item.featured_image %}push--one-third{% endunless %}">
+  <div class="grid__item two-thirds {% unless item.featured_image %}push--one-third{% endunless %}">
     <h3>{{ item.title | link_to: item.url }}</h3>
 
     {% comment %}
@@ -41,7 +41,7 @@
         {{ item.price | money }}
       </span>
       <small>
-        Compare at:
+        {{ 'products.product.compare_at' | t }}
         {{ item.compare_at_price_max | money }}
       </small>
     {% else %}
@@ -58,4 +58,4 @@
 
 </div>
 
-<hr>
+{% unless forloop.last %}<hr>{% endunless %}

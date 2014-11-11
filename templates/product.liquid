@@ -15,22 +15,22 @@
 
   {% include 'breadcrumb' %}
 
-  <div class="grid">
-    <div class="grid-item large--one-half text-center">
-      <div class="product-photo-container" id="productPhoto">
+  <div class="grid product-single">
+    <div class="grid__item large--one-half text-center">
+      <div class="product-single__photos" id="ProductPhoto">
         {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-        <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="productPhotoImg">
+        <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
       </div>
 
       {% comment %}
         Create thumbnails if we have more than one product image
       {% endcomment %}
       {% if product.images.size > 1 %}
-        <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
+        <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
 
           {% for image in product.images %}
-            <li class="grid-item one-quarter">
-              <a href="{{ image.src | img_url: 'large' }}" class="product-photo-thumb">
+            <li class="grid__item one-quarter">
+              <a href="{{ image.src | img_url: 'large' }}" class="product-single__thumbnail">
                 <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
               </a>
             </li>
@@ -40,7 +40,7 @@
       {% endif %}
     </div>
 
-    <div class="grid-item large--one-half">
+    <div class="grid__item large--one-half">
 
       <h1 itemprop="name">{{ product.title }}</h1>
 
@@ -58,7 +58,7 @@
         {% comment %}
           ID addToCartForm is a selector for the ajaxify cart plugin
         {% endcomment %}
-        <form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm">
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
 
           {% comment %}
             Add product variants as a dropdown.
@@ -72,9 +72,8 @@
 
             For more information on products with multiple options, visit:
               - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
-
           {% endcomment %}
-          <select name="id" id="productSelect" class="product-variants">
+          <select name="id" id="productSelect" class="product-single__variants">
             {% for variant in product.variants %}
               {% if variant.available %}
 
@@ -85,7 +84,7 @@
 
               {% else %}
                 <option disabled="disabled">
-                  {{ variant.title }} - Sold out
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
                 </option>
               {% endif %}
             {% endfor %}
@@ -94,21 +93,21 @@
           {% comment %}
             Optionally show the 'compare at' or original price of the product.
           {% endcomment %}
-          <span id="productPrice" class="h2{% if product.compare_at_price > product.price %} on-sale{% endif %}" itemprop="price">
+          <span id="ProductPrice" class="h2{% if product.compare_at_price > product.price %} on-sale{% endif %}" itemprop="price">
             {{ product.price | money }}
           </span>
 
           {% if product.compare_at_price > product.price %}
-            <p id="comparePrice" class="h5">
-              Compare at: {{ product.compare_at_price_max | money }}
+            <p id="ComparePrice">
+              {{ 'products.product.compare_at' | t }} {{ product.compare_at_price_max | money }}
             </p>
           {% endif %}
 
-          <label for="quantity" class="quantity-selector">Quantity</label>
-          <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+          <label for="Quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+          <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
 
-          <button type="submit" name="add" id="addToCart" class="btn">
-            <span id="addToCartText"></span>
+          <button type="submit" name="add" id="AddToCart" class="btn">
+            <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
           </button>
         </form>
 
@@ -129,14 +128,14 @@
           {% if collection.previous_product %}
             {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
             <span class="left">
-              {{ '&larr; Previous Product' | link_to: prev_url }}
+              {{ 'products.general.previous_product_html' | t | link_to: prev_url }}
             </span>
           {% endif %}
 
           {% if collection.next_product %}
             {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
             <span class="right">
-              {{ 'Next Product &rarr;' | link_to: next_url }}
+              {{ 'products.general.next_product_html' | t | link_to: next_url }}
             </span>
           {% endif %}
 
@@ -149,78 +148,29 @@
 
 </div>
 
-
 {% comment %}
   To take advantage of a callback on the select dropdown, add option_selection.js
-  and customize the JS below as you need. This is only needed on pages where
-  product variants are accessible, so doesn't need to live in theme.liquid.
+  and customize the JS in timber.productPage as needed.
 
-  Currently, the code below does:
+  Currently, timber.productPage does the following:
     - Hides your <select> tag from above
     - Breaks out the product variants into separate product options, if more than one exists
     - Generates a <select> tag for each product option
+    - Enables/disables elements based on variant availability
 
   Callback notes:
     - Keep the callback available to the global scope (window.selectCallback) so that advanced
       addons can override it.
       * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
 {% endcomment %}
-
 {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 <script>
   var selectCallback = function(variant, selector) {
-
-    var $addToCart = $('#addToCart'),
-        $productPrice = $('#productPrice'),
-        $comparePrice = $('#comparePrice'),
-        $quantityElements = $('.quantity-selector, label + .js-qty'),
-        $addToCartText = $('#addToCartText'),
-        $featuredImage = $('#productPhotoImg');
-
-    if (variant) {
-
-      // Update variant image, if one is set
-      // Call timber.switchImage function in shop.js
-      if (variant.featured_image) {
-        var newImg = variant.featured_image,
-            el = $featuredImage[0];
-        Shopify.Image.switchImage(newImg, el, timber.switchImage);
-      }
-
-      // Select a valid variant if available
-      if (variant.available) {
-        // We have a valid product variant, so enable the submit button
-        $addToCart.removeClass('disabled').prop('disabled', false);
-        $addToCartText.text('Add to Cart');
-        $quantityElements.show();
-      } else {
-        // Variant is sold out, disable the submit button
-        $addToCart.addClass('disabled').prop('disabled', true);
-        $addToCartText.text('Sold Out');
-        $quantityElements.hide();
-      }
-
-      // Regardless of stock, update the product price
-      $productPrice.html( Shopify.formatMoney(variant.price, "{{ shop.money_format }}") );
-
-      // Also update and show the product's compare price if necessary
-      if ( variant.compare_at_price > variant.price ) {
-        $comparePrice
-          .html('Compare at: ' + Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"))
-          .show();
-      } else {
-        $comparePrice.hide();
-      }
-
-    } else {
-      // The variant doesn't exist, disable submit button.
-      // This may be an error or notice that a specific variant is not available.
-      // To only show available variants, implement linked product options:
-      //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
-      $addToCart.addClass('disabled').prop('disabled', true);
-      $addToCartText.text('Unavailable');
-      $quantityElements.hide();
-    }
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector
+    });
   };
 
   jQuery(function($) {

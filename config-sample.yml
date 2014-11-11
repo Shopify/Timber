@@ -7,4 +7,6 @@
 :password: 177e715c47bf6529c2b877bd6c379198
 :store: your-url.myshopify.com
 :theme_id:
-
+:ignore_files:
+  # - settings_data.json
+  # - logo.png
