@@ -127,12 +127,12 @@ timber.productPage = function (options) {
     if (variant.available) {
       // Available, enable the submit button, change text, show quantity elements
       $addToCart.removeClass('disabled').prop('disabled', false);
-      $addToCartText.text({{ 'products.product.add_to_cart' | t | json }});
+      $addToCartText.html({{ 'products.product.add_to_cart' | t | json }});
       $quantityElements.show();
     } else {
       // Sold out, disable the submit button, change text, hide quantity elements
       $addToCart.addClass('disabled').prop('disabled', true);
-      $addToCartText.text({{ 'products.product.sold_out' | t | json }});
+      $addToCartText.html({{ 'products.product.sold_out' | t | json }});
       $quantityElements.hide();
     }
 
@@ -154,7 +154,7 @@ timber.productPage = function (options) {
     // To only show available variants, implement linked product options:
     //   - http://docs.shopify.com/manual/configuration/store-customization/advanced-navigation/linked-product-options
     $addToCart.addClass('disabled').prop('disabled', true);
-    $addToCartText.text({{ 'products.product.unavailable' | t | json }});
+    $addToCartText.html({{ 'products.product.unavailable' | t | json }});
     $quantityElements.hide();
   }
 };
