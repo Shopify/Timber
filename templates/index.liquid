@@ -44,8 +44,8 @@
             <span class="icon icon-cart" aria-hidden="true"></span>
           </span>
           <h3>Almost there...</h3>
-          <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/products/new">add a product to this collection</a>.</p>
-          <p><a class="admin-btn-primary" href="/admin/collections?tutorial=Frontpage">Add products</a></p>
+          <p>{{ 'home_page.onboarding.no_products_html' | t }}</p>
+          <p><a class="admin-btn-primary" href="/admin/collections?tutorial=Frontpage">{{ 'home_page.onboarding.add_product' | t }}</a></p>
         </div>
 
         <div class="grid-uniform">
@@ -111,8 +111,8 @@
             <span class="icon icon-cart" aria-hidden="true"></span>
           </span>
           <h3>Almost there...</h3>
-          <p>You don't have any collections to show here. <a href="/admin/custom_collections">Add some collections</a> to go along with the default Frontpage.</p>
-          <p><a class="admin-btn-primary" href="/admin/custom_collections">Add to collection</a></p>
+          <p>{{ 'home_page.onboarding.no_collections_html' | t }}</p>
+          <p><a class="admin-btn-primary" href="/admin/custom_collections">Add Collection</a></p>
         </div>
 
         <div class="grid-uniform text-center">

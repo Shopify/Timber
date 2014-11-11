@@ -221,10 +221,10 @@
       "news_title": "Neueste Nachrichten"
     },
     "onboarding": {
+      "no_products_html": "Sie haben keine Artikel in Ihrer Startseiten-Zusammenstellung. Dieser Platzhalter verschwindet, wenn Sie <a href=\"/admin/products/new\">dieser Zusammenstellung einen Artikel hinzufügen</a>.",
       "add_product": "Artikel hinzufügen",
       "product_title": "Beispielhafter Produkttitel",
       "no_collections_html": "Sie haben hier keine Zusammenstellungen zum Anzeigen. <a href=\"/admin/custom_collections\">Fügen Sie ein paar Zusammenstellungen</a> zur Standard-Startseite hinzu.",
-      "collection_image": "Bild der Zusammenstellung",
       "collection_title": "Beispielhafter Zusammenstellungstitel"
     }
   },
