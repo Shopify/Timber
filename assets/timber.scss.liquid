@@ -135,10 +135,10 @@ $baseFontSize: 14px; // Henseforth known as 1em
 @font-face {
   font-family: "icons";
   src: url(' {{ "icons.eot" | asset_url }} ');
-  src: url(' {{ "icons.eot" | asset_url }} ?#iefix ') format("embedded-opentype"),
+  src: url(' {{ "icons.eot" | asset_url }}#iefix ') format("embedded-opentype"),
        url(' {{ "icons.woff" | asset_url }} ') format("woff"),
        url(' {{ "icons.ttf" | asset_url }} ') format("truetype"),
-       url(' {{ "icons.svg" | asset_url }} #timber-icons ') format("svg");
+       url(' {{ "icons.svg" | asset_url }}#timber-icons ') format("svg");
   font-weight: normal;
   font-style: normal;
 }
