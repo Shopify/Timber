@@ -90,7 +90,6 @@
     },
     "sidebar": {
       "types": "Types de produits",
-      "no_types_html": "Ajoutez un type à vos produits pour que cette liste soit automatiquement générée. Toutes les listes sont créées dans <strong>collection-sidebar.liquid</strong>.",
       "vendors": "Fournisseurs",
       "tags": "Filtres"
     },

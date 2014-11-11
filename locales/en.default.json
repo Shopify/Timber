@@ -90,7 +90,6 @@
     },
     "sidebar": {
       "types": "Product Types",
-      "no_types_html": "Add a type to your products for this list to build itself. All lists are created in <strong>collection-sidebar.liquid</strong>.",
       "vendors": "Vendors",
       "tags": "Tags"
     },
