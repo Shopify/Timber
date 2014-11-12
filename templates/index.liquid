@@ -6,7 +6,7 @@
     - http://docs.shopify.com/themes/liquid-variables/global
 {% endcomment %}
 
-<h2>Frontpage Collection</h2>
+<h2>{{ 'home_page.sections.frontpage_title' | t }}</h2>
 
 {% comment %}
   Use class grid-uniform to have evenly sized columns clear
@@ -32,35 +32,35 @@
 
   {% else %}
 
-    <div class="grid-item">
-      <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/custom_collections">add a product to this collection</a>.</p>
+    <div class="grid__item">
+      <p>{{ 'home_page.onboarding.no_products_html' | t }}</p>
     </div>
 
-    <div class="grid-item">
+    <div class="grid__item">
       <div class="grid-uniform">
-        <div class="grid-item large--one-quarter medium--one-half text-center">
+        <div class="grid__item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
-            Add a Product
+            {{ 'home_page.onboarding.add_product' | t }}
           </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+          <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
         </div>
-        <div class="grid-item large--one-quarter medium--one-half text-center">
+        <div class="grid__item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
-            Add a Product
+            {{ 'home_page.onboarding.add_product' | t }}
           </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+          <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
         </div>
-        <div class="grid-item large--one-quarter medium--one-half text-center">
+        <div class="grid__item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
-            Add a Product
+            {{ 'home_page.onboarding.add_product' | t }}
           </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+          <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
         </div>
-        <div class="grid-item large--one-quarter medium--one-half text-center">
+        <div class="grid__item large--one-quarter medium--one-half text-center">
           <a href="/admin/products" class="demo-image">
-            Add a Product
+            {{ 'home_page.onboarding.add_product' | t }}
           </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
+          <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
 
 <hr>
 
-<h2>Featured Collections</h2>
+<h2>{{ 'home_page.sections.featured_title' | t }}</h2>
 
 <div class="grid-uniform">
 
@@ -103,40 +103,40 @@
   {% endfor %}
 
   {% if isEmpty %}
-    <div class="grid-item">
-      <p>You don't have any collections to show here. <a href="/admin/custom_collections">Add some collections</a> to go along with the default Frontpage.</p>
+    <div class="grid__item">
+      <p>{{ 'home_page.onboarding.no_collections_html' | t }}</p>
     </div>
-    <div class="grid-item">
+    <div class="grid__item">
       <div class="grid-uniform">
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'home_page.onboarding.collection_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(3 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(3 {{ 'collections.general.items_count' | t: count: 3 }})</small></p>
         </div>
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'home_page.onboarding.collection_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(13 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(13 {{ 'collections.general.items_count' | t: count: 13 }})</small></p>
         </div>
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'home_page.onboarding.collection_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(25 {{ 'collections.general.items_count' | t: count: 25 }})</small></p>
         </div>
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'home_page.onboarding.collection_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(1 {{ 'collections.general.items_count' | t: count: 1 }})</small></p>
         </div>
-        <div class="grid-item large--one-fifth medium--one-half text-center">
+        <div class="grid__item large--one-fifth medium--one-half text-center">
           <div class="demo-image">
-            Collection Image
+            {{ 'home_page.onboarding.collection_image' | t }}
           </div>
-          <p><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></p>
+          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(10 {{ 'collections.general.items_count' | t: count: 10 }})</small></p>
         </div>
       </div>
     </div>
@@ -153,15 +153,15 @@
   handle we want to focus on. For this example we'll use the default 'news',
   but you can create a blog page-specific content if you want.
 {% endcomment %}
-<h2>Latest News</h2>
+<h2>{{ 'home_page.sections.news_title' | t }}</h2>
 
 <div class="grid">
   {% for article in blogs['news'].articles limit:3 %}
 
-    <div class="grid-item large--one-third">
+    <div class="grid__item large--one-third">
 
-      <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-        {{ article.published_at | date: '%b %d, %Y' }}
+      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+        {{ article.published_at | date: '%Y-%m-%d' }}
       </time>
       <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
 
@@ -181,21 +181,17 @@
         Show off meta information like number of comments and tags.
       {% endcomment %}
       <ul>
-
-        {% comment %}
-          Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
-        {% endcomment %}
         {% if blog.comments_enabled? %}
         <li>
           <a href="{{ article.url }}#comments">
-            {{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}
+            {{ article.comments_count }}
+            {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
           </a>
         </li>
         {% endif %}
-
       </ul>
 
-      <p><a href="{{ article.url }}">Read more &rarr;</a></p>
+      <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
 
     </div>
 

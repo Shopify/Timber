@@ -17,7 +17,7 @@
   {% assign grid_item_width = 'large--one-third medium--one-half' %}
 {% endunless %}
 
-<div class="grid-item search-result {{ grid_item_width }}">
+<div class="grid__item search-result {{ grid_item_width }}">
 
   {% if item.featured_image %}
 
@@ -35,7 +35,7 @@
           {{ item.price | money }}
         </span>
         <small>
-          Compare at:
+          {{ 'products.product.compare_at' | t }}
           {{ item.compare_at_price_max | money }}
         </small>
       {% else %}

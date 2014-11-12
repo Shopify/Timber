@@ -19,7 +19,7 @@
 
 <div class="grid">
 
-  <div class="grid-item large--one-third push--large--one-third">
+  <div class="grid__item large--one-third push--large--one-third text-center">
 
     {% comment %}
       If a user has successfully requested a new password, the form.posted_successfully? variable
@@ -27,7 +27,7 @@
       us assign a variable 'reset_success' to true, which is used in JS to show our success message.
     {% endcomment %}
     <div class="note form-success" id="resetSuccess" style="display:none;">
-      We've sent you an email with a link to update your password.
+      {{ 'customer.recover_password.success' | t }}
     </div>
 
     {% comment %}
@@ -35,41 +35,38 @@
     {% endcomment %}
     {% form 'customer_login' %}
 
-      <h1>Login</h1>
+      <h1>{{ 'customer.login.title' | t }}</h1>
 
       {% include 'form-errors-custom' %}
 
-      <label for="customer_email" class="hidden-label">Email Address</label>
-      <input type="email" value="" name="customer[email]" id="customer_email" placeholder="Email" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
+      <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
+      <input type="email" name="customer[email]" id="CustomerEmail" placeholder="{{ 'customer.login.email' | t }}"{% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
 
       {% if form.password_needed %}
 
-        <label for="customer_password" class="hidden-label">Password</label>
-        <input type="password" value="" name="customer[password]" id="customer_password" placeholder="Password" {% if form.errors contains "password" %} class="error"{% endif %}>
+        <label for="CustomerPassword" class="label--hidden">{{ 'customer.login.password' | t }}</label>
+        <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="{{ 'customer.login.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
 
         <p>
-          <a href="#" onclick="showRecoverPasswordForm();return false;">Forgot your password?</a>
+          <a href="#" onclick="showRecoverPasswordForm();return false;">{{ 'customer.login.forgot_password' | t }}</a>
         </p>
 
       {% endif %}
 
-      <div class="text-center">
-        <p>
-          <input type="submit" class="btn" value="Sign In">
-        </p>
-        or <a href="{{ shop.url }}">Return to Store</a>
-      </div>
+      <p>
+        <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
+      </p>
+      <a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
 
     {% endform %}
-
 
     {% comment %}
       This page uses JavaScript to show/hide the recover password form
     {% endcomment %}
     <div id="recover_password" style="display: none;">
 
-      <h2>Reset your password</h2>
-      <p>We will send you an email to reset your password.</p>
+      <h2>{{ 'customer.recover_password.title' | t }}</h2>
+      <p>{{ 'customer.recover_password.subtext' | t }}</p>
 
       {% comment %}
         This form must use 'recover_customer_password'
@@ -87,46 +84,38 @@
           {% assign reset_success = true %}
         {% endif %}
 
-        <label for="recover-email" class="hidden-label">Email</label>
-        <input type="email" value="" name="email" id="recover-email" placeholder="Email" autocorrect="off" autocapitalize="off">
+        <label for="RecoverEmail" class="label--hidden">{{ 'customer.recover_password.email' | t }}</label>
+        <input type="email" value="" name="email" id="RecoverEmail" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
 
-        <div class="text-center">
-          <p>
-            <input type="submit" class="btn" value="Submit">
-          </p>
-          or <a href="#" onclick="hideRecoverPasswordForm();return false;">Cancel</a>
-        </div>
+        <p>
+          <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+        </p>
+        <a href="#" onclick="hideRecoverPasswordForm();return false;">{{ 'customer.recover_password.cancel' | t }}</a>
       {% endform %}
 
-
-      {% comment %}
-        If accounts are set as optional, the following will be shown as an option
-        during checkout, not on the default /login page.
-      {% endcomment %}
-      {% if shop.checkout.guest_login %}
-
-        <hr>
-
-        <h2>Continue as a guest</h2>
-
-        {% form 'guest_login' %}
-          <input  type="submit" class="btn" value="Let's go">
-        {% endform %}
-      {% endif %}
-
     </div>
+
+    {% comment %}
+      If accounts are set as optional, the following will be shown as an option
+      during checkout, not on the default /login page.
+    {% endcomment %}
+    {% if shop.checkout.guest_login %}
+      <hr>
+
+      <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+      {% form 'guest_login' %}
+        <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+      {% endform %}
+    {% endif %}
 
   </div>
 
 </div>
 
-
-
 <script>
   /*
     Show/hide the recover password form when requested.
-    I'd suggest using some CSS3 transitions to make this change look cool,
-    but this gets the job done for now.
   */
   function showRecoverPasswordForm() {
     document.getElementById('recover_password').style.display = 'block';

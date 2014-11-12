@@ -23,7 +23,7 @@
 {% comment %}
   Set the default within collection filter if not set
 {% endcomment %}
-{% unless current_collection %}
+{% unless current_collection == blank %}
   {% assign current_collection = collection %}
 {% endunless %}
 
@@ -46,7 +46,7 @@
 {% comment %}
   Set a class for sold-out and on-sale items
 {% endcomment %}
-<div class="grid-item {{grid_item_width}}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+<div class="grid__item {{grid_item_width}}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
 
   {% comment %}
     Link to your product with the 'within: collection' filter for the link to be aware of the collection.
@@ -60,7 +60,7 @@
       - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
 
   {% endcomment %}
-  <a href="{{ product.url | within: collection }}" class="product-grid-image">
+  <a href="{{ product.url | within: collection }}" class="grid__image">
     <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
   </a>
 
@@ -72,13 +72,14 @@
       You can show a leading 'from' or 'up to' by checking 'product.price_varies'
       if your variants have different prices.
     {% endcomment %}
-    {% if product.price_varies %}From{% endif %}
+    {% if product.price_varies %}{{ 'products.general.from' | t }}{% endif %}
     {{ product.price | money }}
     {% if sold_out %}
-      <br><strong>Sold Out</strong>
+      <br><strong>{{ 'products.product.sold_out' | t }}</strong>
     {% endif %}
     {% if on_sale %}
-      <br><strong>On Sale</strong> from {{ product.compare_at_price | money }}
+      {% assign sale_price =  product.compare_at_price | money %}
+      <br>{{ 'products.product.on_sale_from_html' | t: price: sale_price }}
     {% endif %}
   </p>
 

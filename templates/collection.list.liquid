@@ -23,11 +23,11 @@
 {% endcomment %}
 <div class="grid">
 
-  <div class="grid-item large--one-quarter">
+  <div class="grid__item large--one-quarter">
     {% include 'collection-sidebar' %}
   </div>
 
-  <div class="grid-item large--three-quarters">
+  <div class="grid__item large--three-quarters">
 
     {% comment %}
       Different markup if a collection description exists
@@ -72,8 +72,8 @@
 
       {% else %}
 
-        <div class="grid-item">
-          <p>Sorry, there are no products matching your search.</p>
+        <div class="grid__item">
+          <p>{{ 'collections.general.no_matches' | t }}</p>
         </div>
 
       {% endfor %}

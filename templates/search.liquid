@@ -25,7 +25,7 @@
 {% unless search.terms == respond_js_secret_key %}
 
   <div class="grid">
-    <div class="grid-item large--two-thirds push--large--one-sixth">
+    <div class="grid__item large--two-thirds push--large--one-sixth">
 
       {% if search.performed %}
 
@@ -41,12 +41,12 @@
           {% endcomment %}
           {% if search.results_count == 0 %}
 
-            <h1 class="h2 text-center">Your search for "{{ search.terms }}" did not yield any results.</h1>
+            <h1 class="h2 text-center">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
             {% include 'search-bar' %}
 
           {% else %}
 
-            <h1 class="h2 text-center">Your search for "{{ search.terms }}" revealed the following:</h1>
+            <h1 class="h2 text-center">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
             {% include 'search-bar' %}
 
             {% comment %}
@@ -86,7 +86,7 @@
           the q parameter, or it was blank.
           Be sure to show a search form here, along with anything else you want to showcase.
         {% endcomment %}
-        <h1 class="h2 text-center">Search for products on our site</h1>
+        <h1 class="h2 text-center">{{ 'general.search.title' | t }}</h1>
         {% include 'search-bar' %}
 
       {% endif %}

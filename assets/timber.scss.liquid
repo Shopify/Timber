@@ -1,5 +1,5 @@
 /*============================================================================
-  Shopify Timber v1.3.2
+  Shopify Timber v2.0.0
   Copyright 2014 Shopify Inc.
   Author Carson Shold @cshold
   Built with Sass - http://sass-lang.com/
@@ -36,7 +36,7 @@
   #Site Header
   #Site Nav and Dropdowns
   #Site Footer
-  #Product Grid and List Views
+  #Product and Collection Grids
   #Collection Filters
   #Breadcrumbs
   #Product Page
@@ -82,10 +82,12 @@ $colorSecondary: {{ settings.color_secondary }};
 $colorBtnPrimary: $colorPrimary;
 $colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
 $colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
+$colorBtnPrimaryText: #fff;
 
 $colorBtnSecondary: $colorSecondary;
 $colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
 $colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
+$colorBtnSecondaryText: #fff;
 
 // Text link colors
 $colorLink: $colorPrimary;
@@ -111,36 +113,32 @@ $colorFooterText: {{ settings.color_footer_text }};
 // Helper colors
 $disabledGrey: #f6f6f6;
 $disabledBorder: darken($disabledGrey, 25%);
-$errorRed: #dc0000;
-$errorRedBg: lighten($errorRed, 55%);
-$successGreen: #0a942a;
+$errorRed: #d02e2e;
+$errorRedBg: #fff6f6;
+$successGreen: #56ad6a;
+$successGreenBg: #ecfef0;
 
-// Width variables
+// Sizing variables
 $siteWidth: 1180px;
-$gutter: 24px;
-$gridGutter: 24px; // can be a %, but nested grids will have smaller margins because of it
-
-// Radius
+$gutter: 30px;
+$gridGutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 $radius: 3px;
 
 /*================ Typography ================*/
 
-// Header Font
-$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headerFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $headerFontWeight: 700;
 
-// Body Font
-$bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$bodyFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $baseFontSize: 14px; // Henseforth known as 1em
 
-// Icons
 @font-face {
-  font-family: "icons";
-  src: url(' {{ "icons.eot" | asset_url }} ');
-  src: url(' {{ "icons.eot" | asset_url }} ?#iefix ') format("embedded-opentype"),
-       url(' {{ "icons.woff" | asset_url }} ') format("woff"),
-       url(' {{ "icons.ttf" | asset_url }} ') format("truetype"),
-       url(' {{ "icons.svg" | asset_url }} #timber-icons ') format("svg");
+  font-family: 'icons';
+  src: url('{{ "icons.eot" | asset_url }}');
+  src: url('{{ "icons.eot" | asset_url }}#iefix') format("embedded-opentype"),
+       url('{{ "icons.woff" | asset_url }}') format("woff"),
+       url('{{ "icons.ttf" | asset_url }}') format("truetype"),
+       url('{{ "icons.svg" | asset_url }}#timber-icons') format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -152,7 +150,7 @@ $socialIconFontStack: 'icons';
 ==============================================================================*/
 .clearfix {
   &:after {
-    content: "";
+    content: '';
     display: table;
     clear: both; }
   *zoom: 1;
@@ -160,7 +158,7 @@ $socialIconFontStack: 'icons';
 
 @mixin clearfix() {
   &:after {
-    content: "";
+    content: '';
     display: table;
     clear: both; }
   *zoom: 1;
@@ -243,6 +241,11 @@ $max: max-width;
   @include box-sizing();
 }
 
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
   display: block;
 }
@@ -264,9 +267,9 @@ input[type="search"]::-webkit-search-decoration {
 
 /*============================================================================
   #Grid Setup
-    - Based on csswizardry grid, but with floated columns and a fixed gutter size
+    - Based on csswizardry grid, but with floated columns, a fixed gutter size, and BEM classes
     - Breakpoints defined above, under #Breakpoint and Grid Variables
-    - Note the inclusion of .grid-uniform to take care of clearfixes on evenly sized grid-items
+    - Note the inclusion of .grid-uniform to take care of clearfixes on evenly sized grid items
 ==============================================================================*/
 $responsive:         true;
 $mobile-first:       true;
@@ -280,8 +283,8 @@ $pull:               false;
   @include clearfix;
 }
 
-/* Manual grid-item clearfix */
-.grid-item.clear {
+/* Manual grid__item clearfix */
+.grid__item.clear {
   clear: both;
 }
 
@@ -318,7 +321,7 @@ $class-type: unquote(".");
   the `[class*="push--"]` and `[class*="pull--"]` selectors.
 ==============================================================================*/
 @mixin silent-relative() {
-  @if $use-silent-classes == true{
+  @if $use-silent-classes == true {
     position:relative;
   }
 }
@@ -331,19 +334,19 @@ $class-type: unquote(".");
 ==============================================================================*/
 #{$class-type}grid,
 #{$class-type}grid-uniform {
-  list-style:none;
-  margin:0;
-  padding:0;
-  margin-left:-$gridGutter;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: -$gridGutter;
 }
 
-#{$class-type}grid-item {
+#{$class-type}grid__item {
   float: left;
   min-height: 1px;
-  padding-left:$gridGutter;
-  vertical-align:top;
+  padding-left: $gridGutter;
+  vertical-align: top;
   @if $mobile-first == true {
-    width:100%;
+    width: 100%;
   }
   @include box-sizing();
 }
@@ -354,12 +357,12 @@ $class-type: unquote(".");
 ==============================================================================*/
 #{$class-type}grid--rev {
   @extend #{$class-type}grid;
-  direction:rtl;
-  text-align:left;
+  direction: rtl;
+  text-align: left;
 
-  > #{$class-type}grid-item {
-    direction:ltr;
-    text-align:left;
+  > #{$class-type}grid__item {
+    direction: ltr;
+    text-align: left;
     float: right;
   }
 }
@@ -367,10 +370,10 @@ $class-type: unquote(".");
 /* Gutterless grids have all the properties of regular grids, minus any spacing. */
 #{$class-type}grid--full {
   @extend #{$class-type}grid;
-  margin-left:0;
+  margin-left: 0;
 
-  > #{$class-type}grid-item {
-    padding-left:0;
+  > #{$class-type}grid__item {
+    padding-left: 0;
   }
 }
 
@@ -380,65 +383,65 @@ $class-type: unquote(".");
 ==============================================================================*/
 @mixin device-type($namespace:"") {
   /** Whole */
-  #{$class-type}#{$namespace}one-whole       { width:100%; }
+  #{$class-type}#{$namespace}one-whole       { width: 100%; }
 
   /* Halves */
-  #{$class-type}#{$namespace}one-half        { width:50%; }
+  #{$class-type}#{$namespace}one-half        { width: 50%; }
 
   /* Thirds */
-  #{$class-type}#{$namespace}one-third       { width:33.333%; }
-  #{$class-type}#{$namespace}two-thirds      { width:66.666%; }
+  #{$class-type}#{$namespace}one-third       { width: 33.333%; }
+  #{$class-type}#{$namespace}two-thirds      { width: 66.666%; }
 
   /* Quarters */
-  #{$class-type}#{$namespace}one-quarter     { width:25%; }
+  #{$class-type}#{$namespace}one-quarter     { width: 25%; }
   #{$class-type}#{$namespace}two-quarters    { @extend #{$class-type}#{$namespace}one-half; }
-  #{$class-type}#{$namespace}three-quarters  { width:75%; }
+  #{$class-type}#{$namespace}three-quarters  { width: 75%; }
 
   /* Fifths */
-  #{$class-type}#{$namespace}one-fifth       { width:20%; }
-  #{$class-type}#{$namespace}two-fifths      { width:40%; }
-  #{$class-type}#{$namespace}three-fifths    { width:60%; }
-  #{$class-type}#{$namespace}four-fifths     { width:80%; }
+  #{$class-type}#{$namespace}one-fifth       { width: 20%; }
+  #{$class-type}#{$namespace}two-fifths      { width: 40%; }
+  #{$class-type}#{$namespace}three-fifths    { width: 60%; }
+  #{$class-type}#{$namespace}four-fifths     { width: 80%; }
 
   /* Sixths */
-  #{$class-type}#{$namespace}one-sixth       { width:16.666%; }
+  #{$class-type}#{$namespace}one-sixth       { width: 16.666%; }
   #{$class-type}#{$namespace}two-sixths      { @extend #{$class-type}#{$namespace}one-third; }
   #{$class-type}#{$namespace}three-sixths    { @extend #{$class-type}#{$namespace}one-half; }
   #{$class-type}#{$namespace}four-sixths     { @extend #{$class-type}#{$namespace}two-thirds; }
-  #{$class-type}#{$namespace}five-sixths     { width:83.333%; }
+  #{$class-type}#{$namespace}five-sixths     { width: 83.333%; }
 
   /* Eighths */
-  #{$class-type}#{$namespace}one-eighth      { width:12.5%; }
+  #{$class-type}#{$namespace}one-eighth      { width: 12.5%; }
   #{$class-type}#{$namespace}two-eighths     { @extend #{$class-type}#{$namespace}one-quarter; }
-  #{$class-type}#{$namespace}three-eighths   { width:37.5%; }
+  #{$class-type}#{$namespace}three-eighths   { width: 37.5%; }
   #{$class-type}#{$namespace}four-eighths    { @extend #{$class-type}#{$namespace}one-half; }
-  #{$class-type}#{$namespace}five-eighths    { width:62.5%; }
+  #{$class-type}#{$namespace}five-eighths    { width: 62.5%; }
   #{$class-type}#{$namespace}six-eighths     { @extend #{$class-type}#{$namespace}three-quarters; }
-  #{$class-type}#{$namespace}seven-eighths   { width:87.5%; }
+  #{$class-type}#{$namespace}seven-eighths   { width: 87.5%; }
 
   /* Tenths */
-  #{$class-type}#{$namespace}one-tenth       { width:10%; }
+  #{$class-type}#{$namespace}one-tenth       { width: 10%; }
   #{$class-type}#{$namespace}two-tenths      { @extend #{$class-type}#{$namespace}one-fifth; }
-  #{$class-type}#{$namespace}three-tenths    { width:30%; }
+  #{$class-type}#{$namespace}three-tenths    { width: 30%; }
   #{$class-type}#{$namespace}four-tenths     { @extend #{$class-type}#{$namespace}two-fifths; }
   #{$class-type}#{$namespace}five-tenths     { @extend #{$class-type}#{$namespace}one-half; }
   #{$class-type}#{$namespace}six-tenths      { @extend #{$class-type}#{$namespace}three-fifths; }
-  #{$class-type}#{$namespace}seven-tenths    { width:70%; }
+  #{$class-type}#{$namespace}seven-tenths    { width: 70%; }
   #{$class-type}#{$namespace}eight-tenths    { @extend #{$class-type}#{$namespace}four-fifths; }
-  #{$class-type}#{$namespace}nine-tenths     { width:90%; }
+  #{$class-type}#{$namespace}nine-tenths     { width: 90%; }
 
   /* Twelfths */
-  #{$class-type}#{$namespace}one-twelfth     { width:8.333%; }
+  #{$class-type}#{$namespace}one-twelfth     { width: 8.333%; }
   #{$class-type}#{$namespace}two-twelfths    { @extend #{$class-type}#{$namespace}one-sixth; }
   #{$class-type}#{$namespace}three-twelfths  { @extend #{$class-type}#{$namespace}one-quarter; }
   #{$class-type}#{$namespace}four-twelfths   { @extend #{$class-type}#{$namespace}one-third; }
-  #{$class-type}#{$namespace}five-twelfths   { width:41.666% }
+  #{$class-type}#{$namespace}five-twelfths   { width: 41.666% }
   #{$class-type}#{$namespace}six-twelfths    { @extend #{$class-type}#{$namespace}one-half; }
-  #{$class-type}#{$namespace}seven-twelfths  { width:58.333%; }
+  #{$class-type}#{$namespace}seven-twelfths  { width: 58.333%; }
   #{$class-type}#{$namespace}eight-twelfths  { @extend #{$class-type}#{$namespace}two-thirds; }
   #{$class-type}#{$namespace}nine-twelfths   { @extend #{$class-type}#{$namespace}three-quarters; }
   #{$class-type}#{$namespace}ten-twelfths    { @extend #{$class-type}#{$namespace}five-sixths; }
-  #{$class-type}#{$namespace}eleven-twelfths { width:91.666%; }
+  #{$class-type}#{$namespace}eleven-twelfths { width: 91.666%; }
 }
 
 /*================ Clearfix helper on uniform grids ================*/
@@ -458,7 +461,7 @@ $class-type: unquote(".");
     #{$class-type}#{$namespace}two-twelfths:nth-child(6n+1),
     #{$class-type}#{$namespace}three-twelfths:nth-child(4n+1),
     #{$class-type}#{$namespace}four-twelfths:nth-child(3n+1),
-    #{$class-type}#{$namespace}six-twelfths:nth-child(2n+1)    { clear:both; }
+    #{$class-type}#{$namespace}six-twelfths:nth-child(2n+1)    { clear: both; }
   }
 }
 
@@ -468,15 +471,15 @@ $class-type: unquote(".");
 
 /*================ Helper show/hide classes around our breakpoints ================*/
 @mixin device-helper($namespace:"") {
-  #{$class-type}#{$namespace}show        { display:block!important; }
-  #{$class-type}#{$namespace}hide        { display:none!important; }
+  #{$class-type}#{$namespace}show        { display: block!important; }
+  #{$class-type}#{$namespace}hide        { display: none!important; }
 
-  #{$class-type}#{$namespace}text-left   { text-align:left!important; }
-  #{$class-type}#{$namespace}text-right  { text-align:right!important; }
-  #{$class-type}#{$namespace}text-center { text-align:center!important; }
+  #{$class-type}#{$namespace}text-left   { text-align: left!important; }
+  #{$class-type}#{$namespace}text-right  { text-align: right!important; }
+  #{$class-type}#{$namespace}text-center { text-align: center!important; }
 
-  #{$class-type}#{$namespace}left        { float:left!important; }
-  #{$class-type}#{$namespace}right       { float:right!important; }
+  #{$class-type}#{$namespace}left        { float: left!important; }
+  #{$class-type}#{$namespace}right       { float: right!important; }
 }
 
 /*================ Our regular, non-responsive width and helper classes ================*/
@@ -500,65 +503,65 @@ $class-type: unquote(".");
 ==============================================================================*/
 @mixin push-setup($namespace: "") {
   /* Whole */
-  #{$class-type}push--#{$namespace}one-whole       { left:100%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-whole       { left: 100%; @include silent-relative(); }
 
   /* Halves */
-  #{$class-type}push--#{$namespace}one-half        { left:50%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-half        { left: 50%; @include silent-relative(); }
 
   /* Thirds */
-  #{$class-type}push--#{$namespace}one-third       { left:33.333%; @include silent-relative(); }
-  #{$class-type}push--#{$namespace}two-thirds      { left:66.666%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-third       { left: 33.333%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}two-thirds      { left: 66.666%; @include silent-relative(); }
 
   /* Quarters */
-  #{$class-type}push--#{$namespace}one-quarter     { left:25%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-quarter     { left: 25%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}two-quarters    { @extend #{$class-type}push--#{$namespace}one-half; }
-  #{$class-type}push--#{$namespace}three-quarters  { left:75%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}three-quarters  { left: 75%; @include silent-relative(); }
 
   /* Fifths */
-  #{$class-type}push--#{$namespace}one-fifth       { left:20%; @include silent-relative(); }
-  #{$class-type}push--#{$namespace}two-fifths      { left:40%; @include silent-relative(); }
-  #{$class-type}push--#{$namespace}three-fifths    { left:60%; @include silent-relative(); }
-  #{$class-type}push--#{$namespace}four-fifths     { left:80%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-fifth       { left: 20%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}two-fifths      { left: 40%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}three-fifths    { left: 60%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}four-fifths     { left: 80%; @include silent-relative(); }
 
   /* Sixths */
-  #{$class-type}push--#{$namespace}one-sixth       { left:16.666%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-sixth       { left: 16.666%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}two-sixths      { @extend #{$class-type}push--#{$namespace}one-third; }
   #{$class-type}push--#{$namespace}three-sixths    { @extend #{$class-type}push--#{$namespace}one-half; }
   #{$class-type}push--#{$namespace}four-sixths     { @extend #{$class-type}push--#{$namespace}two-thirds; }
-  #{$class-type}push--#{$namespace}five-sixths     { left:83.333%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}five-sixths     { left: 83.333%; @include silent-relative(); }
 
   /* Eighths */
-  #{$class-type}push--#{$namespace}one-eighth      { left:12.5%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-eighth      { left: 12.5%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}two-eighths     { @extend #{$class-type}push--#{$namespace}one-quarter; }
-  #{$class-type}push--#{$namespace}three-eighths   { left:37.5%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}three-eighths   { left: 37.5%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}four-eighths    { @extend #{$class-type}push--#{$namespace}one-half; }
-  #{$class-type}push--#{$namespace}five-eighths    { left:62.5%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}five-eighths    { left: 62.5%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}six-eighths     { @extend #{$class-type}push--#{$namespace}three-quarters; }
-  #{$class-type}push--#{$namespace}seven-eighths   { left:87.5%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}seven-eighths   { left: 87.5%; @include silent-relative(); }
 
   /* Tenths */
-  #{$class-type}push--#{$namespace}one-tenth       { left:10%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-tenth       { left: 10%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}two-tenths      { @extend #{$class-type}push--#{$namespace}one-fifth; }
-  #{$class-type}push--#{$namespace}three-tenths    { left:30%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}three-tenths    { left: 30%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}four-tenths     { @extend #{$class-type}push--#{$namespace}two-fifths; }
   #{$class-type}push--#{$namespace}five-tenths     { @extend #{$class-type}push--#{$namespace}one-half; }
   #{$class-type}push--#{$namespace}six-tenths      { @extend #{$class-type}push--#{$namespace}three-fifths; }
-  #{$class-type}push--#{$namespace}seven-tenths    { left:70%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}seven-tenths    { left: 70%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}eight-tenths    { @extend #{$class-type}push--#{$namespace}four-fifths; }
-  #{$class-type}push--#{$namespace}nine-tenths     { left:90%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}nine-tenths     { left: 90%; @include silent-relative(); }
 
   /* Twelfths */
-  #{$class-type}push--#{$namespace}one-twelfth     { left:8.333%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}one-twelfth     { left: 8.333%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}two-twelfths    { @extend #{$class-type}push--#{$namespace}one-sixth; }
   #{$class-type}push--#{$namespace}three-twelfths  { @extend #{$class-type}push--#{$namespace}one-quarter; }
   #{$class-type}push--#{$namespace}four-twelfths   { @extend #{$class-type}push--#{$namespace}one-third; }
-  #{$class-type}push--#{$namespace}five-twelfths   { left:41.666%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}five-twelfths   { left: 41.666%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}six-twelfths    { @extend #{$class-type}push--#{$namespace}one-half; }
-  #{$class-type}push--#{$namespace}seven-twelfths  { left:58.333%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}seven-twelfths  { left: 58.333%; @include silent-relative(); }
   #{$class-type}push--#{$namespace}eight-twelfths  { @extend #{$class-type}push--#{$namespace}two-thirds; }
   #{$class-type}push--#{$namespace}nine-twelfths   { @extend #{$class-type}push--#{$namespace}three-quarters; }
   #{$class-type}push--#{$namespace}ten-twelfths    { @extend #{$class-type}push--#{$namespace}five-sixths; }
-  #{$class-type}push--#{$namespace}eleven-twelfths { left:91.666%; @include silent-relative(); }
+  #{$class-type}push--#{$namespace}eleven-twelfths { left: 91.666%; @include silent-relative(); }
 }
 
 @if $push == true {
@@ -581,65 +584,65 @@ $class-type: unquote(".");
 ==============================================================================*/
 @mixin pull-setup($namespace: "") {
   /* Whole */
-  #{$class-type}pull--#{$namespace}one-whole       { right:100%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-whole       { right: 100%; @include silent-relative(); }
 
   /* Halves */
-  #{$class-type}pull--#{$namespace}one-half        { right:50%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-half        { right: 50%; @include silent-relative(); }
 
   /* Thirds */
-  #{$class-type}pull--#{$namespace}one-third       { right:33.333%; @include silent-relative(); }
-  #{$class-type}pull--#{$namespace}two-thirds      { right:66.666%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-third       { right: 33.333%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}two-thirds      { right: 66.666%; @include silent-relative(); }
 
   /* Quarters */
-  #{$class-type}pull--#{$namespace}one-quarter     { right:25%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-quarter     { right: 25%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}two-quarters    { @extend #{$class-type}pull--#{$namespace}one-half; }
-  #{$class-type}pull--#{$namespace}three-quarters  { right:75%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}three-quarters  { right: 75%; @include silent-relative(); }
 
   /* Fifths */
-  #{$class-type}pull--#{$namespace}one-fifth       { right:20%; @include silent-relative(); }
-  #{$class-type}pull--#{$namespace}two-fifths      { right:40%; @include silent-relative(); }
-  #{$class-type}pull--#{$namespace}three-fifths    { right:60%; @include silent-relative(); }
-  #{$class-type}pull--#{$namespace}four-fifths     { right:80%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-fifth       { right: 20%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}two-fifths      { right: 40%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}three-fifths    { right: 60%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}four-fifths     { right: 80%; @include silent-relative(); }
 
   /* Sixths */
-  #{$class-type}pull--#{$namespace}one-sixth       { right:16.666%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-sixth       { right: 16.666%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}two-sixths      { @extend #{$class-type}pull--#{$namespace}one-third; }
   #{$class-type}pull--#{$namespace}three-sixths    { @extend #{$class-type}pull--#{$namespace}one-half; }
   #{$class-type}pull--#{$namespace}four-sixths     { @extend #{$class-type}pull--#{$namespace}two-thirds; }
-  #{$class-type}pull--#{$namespace}five-sixths     { right:83.333%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}five-sixths     { right: 83.333%; @include silent-relative(); }
 
   /* Eighths */
-  #{$class-type}pull--#{$namespace}one-eighth      { right:12.5%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-eighth      { right: 12.5%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}two-eighths     { @extend #{$class-type}pull--#{$namespace}one-quarter; }
-  #{$class-type}pull--#{$namespace}three-eighths   { right:37.5%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}three-eighths   { right: 37.5%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}four-eighths    { @extend #{$class-type}pull--#{$namespace}one-half; }
-  #{$class-type}pull--#{$namespace}five-eighths    { right:62.5%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}five-eighths    { right: 62.5%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}six-eighths     { @extend #{$class-type}pull--#{$namespace}three-quarters; }
-  #{$class-type}pull--#{$namespace}seven-eighths   { right:87.5%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}seven-eighths   { right: 87.5%; @include silent-relative(); }
 
   /* Tenths */
-  #{$class-type}pull--#{$namespace}one-tenth       { right:10%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-tenth       { right: 10%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}two-tenths      { @extend #{$class-type}pull--#{$namespace}one-fifth; }
-  #{$class-type}pull--#{$namespace}three-tenths    { right:30%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}three-tenths    { right: 30%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}four-tenths     { @extend #{$class-type}pull--#{$namespace}two-fifths; }
   #{$class-type}pull--#{$namespace}five-tenths     { @extend #{$class-type}pull--#{$namespace}one-half; }
   #{$class-type}pull--#{$namespace}six-tenths      { @extend #{$class-type}pull--#{$namespace}three-fifths; }
-  #{$class-type}pull--#{$namespace}seven-tenths    { right:70%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}seven-tenths    { right: 70%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}eight-tenths    { @extend #{$class-type}pull--#{$namespace}four-fifths; }
-  #{$class-type}pull--#{$namespace}nine-tenths     { right:90%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}nine-tenths     { right: 90%; @include silent-relative(); }
 
   /* Twelfths */
-  #{$class-type}pull--#{$namespace}one-twelfth     { right:8.333%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}one-twelfth     { right: 8.333%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}two-twelfths    { @extend #{$class-type}pull--#{$namespace}one-sixth; }
   #{$class-type}pull--#{$namespace}three-twelfths  { @extend #{$class-type}pull--#{$namespace}one-quarter; }
   #{$class-type}pull--#{$namespace}four-twelfths   { @extend #{$class-type}pull--#{$namespace}one-third; }
-  #{$class-type}pull--#{$namespace}five-twelfths   { right:41.666%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}five-twelfths   { right: 41.666%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}six-twelfths    { @extend #{$class-type}pull--#{$namespace}one-half; }
-  #{$class-type}pull--#{$namespace}seven-twelfths  { right:58.333%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}seven-twelfths  { right: 58.333%; @include silent-relative(); }
   #{$class-type}pull--#{$namespace}eight-twelfths  { @extend #{$class-type}pull--#{$namespace}two-thirds; }
   #{$class-type}pull--#{$namespace}nine-twelfths   { @extend #{$class-type}pull--#{$namespace}three-quarters; }
   #{$class-type}pull--#{$namespace}ten-twelfths    { @extend #{$class-type}pull--#{$namespace}five-sixths; }
-  #{$class-type}pull--#{$namespace}eleven-twelfths { right:91.666%; @include silent-relative(); }
+  #{$class-type}pull--#{$namespace}eleven-twelfths { right: 91.666%; @include silent-relative(); }
 }
 
 @if $pull == true {
@@ -659,11 +662,6 @@ $class-type: unquote(".");
 /*============================================================================
   #Basic Styles
 ==============================================================================*/
-html, body {
-  padding: 0;
-  margin: 0;
-}
-
 html {
   background-color: $colorFooterBg;
 }
@@ -676,7 +674,7 @@ body {
   @include clearfix();
   max-width: $siteWidth;
   margin: 0 auto;
-  padding: 0 $gutter/2;
+  padding: 0 ($gutter / 2);
 
   @include at-query ($min, $small) {
     padding: 0 $gutter;
@@ -686,18 +684,12 @@ body {
 .main-content {
   display: block;
   margin-top: $gutter;
-  padding-bottom: $gutter*2;
+  padding-bottom: $gutter * 2;
 }
 
 /*============================================================================
   #Helper Classes
 ==============================================================================*/
-.left { float: left; }
-.right { float: right; }
-.text-center { text-align: center; }
-.text-right { text-align: right; }
-.hidden { display: none; }
-
 .display-table {
   display: table;
   table-layout: fixed;
@@ -723,7 +715,6 @@ body {
     float: none;
   }
 }
-
 
 /*============================================================================
   #Typography
@@ -788,7 +779,7 @@ h6 {
 .h6 { @extend h6; }
 
 p {
-  margin: 0 0 $gutter/2 0;
+  margin: 0 0 ($gutter / 2) 0;
 
   img {
     margin: 0;
@@ -804,7 +795,7 @@ b, strong {
 }
 
 small {
-  font-size: 80%;
+  font-size: 0.9em;
 }
 
 sup, sub {
@@ -826,14 +817,14 @@ blockquote {
   line-height: 1.45;
   font-style: italic;
   margin: 0 0 $gutter;
-  padding: $gutter/2 $gutter;
+  padding: ($gutter / 2) $gutter;
   border-left: 1px solid $colorBorder;
 
   p {
     margin-bottom: 0;
 
     & + cite {
-      margin-top: $gutter/2;
+      margin-top: $gutter / 2;
     }
   }
 
@@ -842,7 +833,7 @@ blockquote {
     font-size: 0.75em;
 
     &:before {
-      content: "\2014 \0020";
+      content: '\2014 \0020';
     }
   }
 }
@@ -859,7 +850,7 @@ code, pre {
 
 pre {
   overflow: auto;
-  padding: $gutter/2;
+  padding: $gutter / 2;
   margin: 0 0 $gutter;
 }
 
@@ -872,7 +863,7 @@ hr {
   height: 0;
 
   &.hr--small {
-    margin: $gutter/2 0;
+    margin: ($gutter / 2) 0;
   }
 
   &.hr--clear {
@@ -882,7 +873,7 @@ hr {
 
 /*================ Section Headers ================*/
 .section-header {
-  margin-bottom: $gutter/1.5;
+  margin-bottom: $gutter / 1.5;
 }
 
 @include at-query ($min, $large) {
@@ -892,7 +883,7 @@ hr {
   }
 
   .section-header--title {
-    margin-bottom: $gutter/2.5;
+    margin-bottom: $gutter / 2.5;
   }
 
   .section-header--left {
@@ -929,7 +920,7 @@ hr {
   @include at-query ($min, $postSmall) {
     label + select,
     .collection-view {
-      margin-left: $gutter/2;
+      margin-left: $gutter / 2;
     }
   }
 }
@@ -977,7 +968,7 @@ hr {
   #Rich Text Editor
 ==============================================================================*/
 .rte {
-  margin-bottom: $gutter/2;
+  margin-bottom: $gutter / 2;
 
   // Add some top margin to headers from the rich text editor
   h1, h2, h3, h4, h5, h6 {
@@ -988,8 +979,8 @@ hr {
     }
   }
 
-  & > div {
-    margin-bottom: $gutter/2;
+  > div {
+    margin-bottom: $gutter / 2;
   }
 
   ul, ol {
@@ -1049,33 +1040,19 @@ html input[disabled] {
   -moz-appearance: none;
   border-radius: $radius;
 
-  &.btn--small {
-    padding: 4px 5px;
-    font-size: em(12px);
-  }
-
-  &.btn--large {
-    padding: 12px 15px;
-    font-size: em(16px);
-  }
-
-  &.btn--full {
-    width: 100%;
-  }
-
   /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
-  color: #fff;
+  color: $colorBtnPrimaryText;
 
   &:hover {
     background-color: $colorBtnPrimaryHover;
-    color: #fff;
+    color: $colorBtnPrimaryText;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnPrimaryActive;
-   color: #fff;
+   color: $colorBtnPrimaryText;
   }
 
   &[disabled],
@@ -1086,21 +1063,35 @@ html input[disabled] {
   }
 }
 
-.btn-secondary,
-input.btn-secondary {
+.btn--secondary,
+input.btn--secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
 
   &:hover {
     background-color: $colorBtnSecondaryHover;
-    color: #fff;
+    color: $colorBtnSecondaryText;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnSecondaryActive;
-   color: #fff;
+   color: $colorBtnSecondaryText;
   }
+}
+
+.btn--small {
+  padding: 4px 5px;
+  font-size: em(12px);
+}
+
+.btn--large {
+  padding: 12px 15px;
+  font-size: em(16px);
+}
+
+.btn--full {
+  width: 100%;
 }
 
 /*================ Force an input/button to look like a text link ================*/
@@ -1140,6 +1131,7 @@ ol.alpha { list-style: lower-alpha outside; }
   #Tables
 ==============================================================================*/
 table {
+  width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -1149,20 +1141,26 @@ table.full {
   margin-bottom: 1em;
 }
 
+.table-wrap {
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 th {
   font-weight: bold;
 }
 
 th, td {
   text-align: left;
-  padding: $gutter/2;
+  padding: $gutter / 2;
   border: 1px solid $colorBorder;
 }
 
 
 /*============================================================================
   #OOCSS Media Object
-//  - http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+    - http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
 ==============================================================================*/
 .media,
 .media-flex {
@@ -1199,8 +1197,8 @@ svg:not(:root) {
 }
 
 img.auto,
-.grid-item img,
-.grid-item iframe {
+.grid__item img,
+.grid__item iframe {
   max-width: 100%;
 }
 
@@ -1227,6 +1225,13 @@ img.auto,
 ==============================================================================*/
 form {
   margin-bottom: $gutter;
+}
+
+input,
+textarea,
+button,
+select {
+  font-size: 1em;
 }
 
 button,
@@ -1264,7 +1269,7 @@ textarea {
 
 fieldset {
   border: 1px solid $colorBorder;
-  padding: $gutter/2;
+  padding: $gutter / 2;
 }
 
 legend {
@@ -1335,7 +1340,7 @@ select {
           appearance: none;
   background-position: right center;
   background: {
-    image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNy43cHgiIGhlaWdodD0iNC4zcHgiIHZpZXdCb3g9IjAgMCA3LjcgNC4zIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA3LjcgNC4zIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiM5OTk5OTkiIGQ9Ik03LjEsMC4xQzYuNywwLjUsMy45LDMuMiwzLjksMy4yUzEsMC41LDAuNiwwLjFTMCwwLjcsMCwwLjdsMy45LDMuNmwzLjgtMy42QzcuNywwLjcsNy41LTAuMyw3LjEsMC4xeiIvPg0KPC9zdmc+DQo="); // svg base64 encoded arrow
+    image: url('{{ "ico-select.svg" | asset_url }}');
     repeat: no-repeat;
     position: right 10px center;
     color: transparent;
@@ -1354,7 +1359,7 @@ select {
 }
 
 select::-ms-expand {
-    display: none;
+  display: none;
 }
 
 /*================ Form labels ================*/
@@ -1368,8 +1373,8 @@ legend {
     display: inline;
   }
 
-  .form-horizontal &.hidden-label,
-  &.hidden-label {
+  .form-horizontal &.label--hidden,
+  &.label--hidden {
     height: 0;
     width: 0;
     margin-bottom: 0;
@@ -1494,10 +1499,6 @@ label.error {
   padding: 0;
 }
 
-.form-spacer {
-  margin: 0 $gutter/2;
-}
-
 /*============================================================================
   #Icons
 ==============================================================================*/
@@ -1574,7 +1575,7 @@ label.error {
   cursor: default;
 
   li {
-    margin: 0 $gutter/4 $gutter/4;
+    margin: 0 ($gutter / 4) ($gutter / 4);
     color: {{ settings.color_footer_social_link }};
     cursor: default;
   }
@@ -1590,7 +1591,7 @@ label.error {
 }
 
 .social-icons li {
-  margin: 0 $gutter/2 $gutter/2;
+  margin: 0 ($gutter / 2) ($gutter / 2);
   vertical-align: middle;
 
   @include at-query ($min, $postSmall) {
@@ -1721,7 +1722,7 @@ label.error {
   #Site Header
 ==============================================================================*/
 .site-header {
-  padding: $gutter/2 0;
+  padding: ($gutter / 2) 0;
 
   @include at-query ($min, $large) {
     padding: $gutter 0;
@@ -1733,7 +1734,7 @@ label.error {
       table-layout: fixed;
       width: 100%;
 
-      & > .grid-item {
+      > .grid__item {
         float: none;
         display: table-cell;
         vertical-align: middle;
@@ -1745,7 +1746,7 @@ label.error {
 .header-logo {
   text-align: center;
   font-size: em(40px);
-  margin: 0 auto $gutter/2;
+  margin: 0 auto ($gutter / 2);
   max-width: {{ settings.logo_max_width }}px;
 
   @include at-query ($min, $large) {
@@ -1785,16 +1786,6 @@ label.error {
 .nav-bar {
   background-color: $colorNav;
 
-  a {
-    color: $colorNavText;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: darken($colorNavText, 15%);
-    }
-  }
-
   ul {
     margin: 0;
   }
@@ -1813,7 +1804,7 @@ label.error {
     display: block;
   }
 
-  & > li {
+  > li {
     position: relative;
     display: inline-block;
 
@@ -1822,25 +1813,32 @@ label.error {
     }
   }
 
-  a {
-    display: block;
-    text-decoration: none;
-    padding: $gutter/2;
-    white-space: nowrap;
-  }
-
   @include at-query ($max, $medium) {
     margin: 0 auto;
     text-align: center;
   }
 }
 
-.site-nav--active > a {
-  font-weight: bold;
+.site-nav__link {
+  display: block;
+  text-decoration: none;
+  padding: $gutter / 2;
+  white-space: nowrap;
+  color: $colorNavText;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: darken($colorNavText, 15%);
+  }
+
+  .site-nav--active & {
+    font-weight: bold;
+  }
 }
 
 /*================ Dropdowns ================*/
-.site-nav--dropdown {
+.site-nav__dropdown {
   display: none;
   position: absolute;
   left: 0;
@@ -1869,7 +1867,7 @@ label.error {
   padding: 7px 0;
 
   @include at-query ($max, $medium) {
-    padding: 0 0 $gutter/2;
+    padding: 0 0 ($gutter / 2);
     margin: 0 auto;
     text-align: center;
   }
@@ -1891,12 +1889,12 @@ label.error {
   color: $colorFooterText;
 
   @include at-query ($min, $large) {
-    padding: $gutter*2 0;
+    padding: ($gutter * 2) 0;
   }
 }
 
 /*============================================================================
-  #Product Grid and List Views
+  #Product and Collection Grids
 ==============================================================================*/
 .sold-out {
 
@@ -1906,14 +1904,9 @@ label.error {
 
 }
 
-.product-grid-item {
+.grid__image {
   display: block;
-  text-decoration: none;
-}
-
-.product-grid-image {
-  display: block;
-  margin: 0 auto $gutter/2;
+  margin: 0 auto ($gutter / 2);
 
   img {
     display: block;
@@ -1924,7 +1917,7 @@ label.error {
 /*============================================================================
   #Collection Filters
 ==============================================================================*/
-.active-filter {
+.filter--active {
   font-weight: bold;
 }
 
@@ -1937,7 +1930,7 @@ label.error {
   a,
   span {
     display: inline-block;
-    padding: $gutter/2 7px $gutter/2 0;
+    padding: ($gutter / 2) 7px ($gutter / 2) 0;
     margin-right: 7px;
 
     &:first-child {
@@ -1950,7 +1943,7 @@ label.error {
 /*============================================================================
   #Product Page
 ==============================================================================*/
-.product-variants {
+.product-single__variants {
   display: none;
 
   .no-js & {
@@ -1960,19 +1953,19 @@ label.error {
 
 @include at-query($min, $large) {
   .selector-wrapper,
-  .product-variants {
+  .product-single__variants {
     select {
       max-width: 40%;
     }
   }
 }
 
-.product-photo-container {
+.product-single__photos {
   margin-bottom: $gutter;
 }
 
-.product-photo-container,
-.product-photo-thumbs {
+.product-single__photos,
+.product-single__thumbnails {
   a, img {
     display: block;
     margin: 0 auto;
@@ -2002,9 +1995,11 @@ label.error {
 .note,
 .errors {
   border-radius: $radius;
-  padding: $gutter/2;
-  margin-bottom: $gutter/2;
+  padding: 6px 12px;
+  margin-bottom: $gutter / 2;
   border: 1px solid transparent;
+  font-size: 0.9em;
+  text-align: left;
 
   ul,
   ol {
@@ -2034,8 +2029,17 @@ label.error {
 
 .form-success {
   color: $successGreen;
-  background-color: lighten($successGreen, 65%);
+  background-color: $successGreenBg;
   border-color: $successGreen;
+
+  a {
+    color: $successGreen;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .form-error,
@@ -2043,13 +2047,23 @@ label.error {
   color: $errorRed;
   background-color: $errorRedBg;
   border-color: $errorRed;
+
+  a {
+    color: $errorRed;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 
 /*============================================================================
   #Cart Page
 ==============================================================================*/
-.cart-row {
+.cart__row {
+  position: relative;
   margin-top: $gutter;
   padding-top: $gutter;
   border-top: 1px solid $colorBorder;
@@ -2063,22 +2077,46 @@ label.error {
     border-top: 0 none;
   }
 
-  a {
-    color: $colorTextBody;
+  .js-qty {
+    margin: 0;
+  }
+}
 
-    &:hover {
-      color: $colorPrimary;
+@include at-query ($min, $large) {
+  .cart__row--table-large {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+
+    .grid__item {
+      display: table-cell;
+      vertical-align: middle;
+      float: none;
     }
   }
 }
 
-.cart-subtotal {
-  margin-bottom: $gutter;
+.cart__image {
+  display: block;
+
+  img {
+    display: block;
+  }
 }
 
-.cart-subtotal--price {
-  margin: 0 0 0 $gutter/3;
+.cart__subtotal {
+  margin: 0 0 0 ($gutter / 3);
   display: inline;
+}
+
+.cart__mini-labels {
+  display: block;
+  margin: ($gutter / 3) 0;
+  font-size: em(12px);
+
+  @include at-query ($min, $large) {
+    display: none;
+  }
 }
 
 /*============================================================================

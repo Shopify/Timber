@@ -1,18 +1,22 @@
 <div class="form-horizontal">
-  <label for="sortBy">Sort by</label>
-  <select name="sortBy" id="sortBy">
-    <option value="manual">Featured</option>
-    <option value="best-selling">Best Selling</option>
-    <option value="title-ascending">Alphabetically, A-Z</option>
-    <option value="title-descending">Alphabetically, Z-A</option>
-    <option value="price-ascending">Price, low to high</option>
-    <option value="price-descending">Price, high to low</option>
-    <option value="created-descending">Date, new to old</option>
-    <option value="created-ascending">Date, old to new</option>
+  <label for="SortBy">{{ 'collections.sorting.title' | t }}</label>
+  <select name="SortBy" id="SortBy">
+    <option value="manual">{{ 'collections.sorting.featured' | t }}</option>
+    <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
+    <option value="title-ascending">{{ 'collections.sorting.az' | t }}</option>
+    <option value="title-descending">{{ 'collections.sorting.za' | t }}</option>
+    <option value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</option>
+    <option value="price-descending">{{ 'collections.sorting.price_descending' | t }}</option>
+    <option value="created-descending">{{ 'collections.sorting.date_descending' | t }}</option>
+    <option value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</option>
   </select>
 </div>
 
 <script>
+  /*============================================================================
+    Inline JS because collection liquid object is only available
+    on collection pages, and not external JS files
+  ==============================================================================*/
   Shopify.queryParams = {};
   if (location.search.length) {
     for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
@@ -24,8 +28,7 @@
   }
 
   $(function() {
-    $('#sortBy')
-      // select the current sort order
+    $('#SortBy')
       .val('{{ collection.sort_by | default: collection.default_sort_by }}')
       .bind('change', function() {
         Shopify.queryParams.sort_by = jQuery(this).val();
