@@ -221,7 +221,7 @@
       "news_title": "Nouvelles récentes"
     },
     "onboarding": {
-      "modal_title": "On y est presque...",
+      "modal_title": "Nous y sommes presque...",
       "no_products_html": "Vous n'avez pas de produit dans votre collection Frontpage. Ce message apparaitra jusqu'à ce qu'un produit soit <a href=\"/admin/collections?tutorial=Frontpage\">ajouté à cette collection</a>.",
       "add_product": "Ajouter un produit",
       "product_title": "Titre du produit",
