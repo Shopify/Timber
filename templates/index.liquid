@@ -40,15 +40,13 @@
     <div class="grid__item">
       <div class="helper-section">
         <div class="helper-note">
-          <span class="icon-fallback-text helper-icon">
-            <span class="icon icon-cart" aria-hidden="true"></span>
-          </span>
+          <span class="helper-icon"></span>
           <h3>{{ 'home_page.onboarding.modal_title' | t }}</h3>
           <p>{{ 'home_page.onboarding.no_products_html' | t }}</p>
           <p><a class="admin-btn-primary" href="/admin/collections?tutorial=Frontpage">{{ 'home_page.onboarding.add_product' | t }}</a></p>
         </div>
 
-        <div class="grid-uniform">
+        <div class="grid-uniform helper-content">
           {% for i in (1..4) %}
             <div class="grid__item one-half large--one-quarter">
               <a href="/admin/products" class="grid__image">
@@ -107,15 +105,13 @@
     <div class="grid__item">
       <div class="helper-section">
         <div class="helper-note">
-          <span class="icon-fallback-text helper-icon">
-            <span class="icon icon-cart" aria-hidden="true"></span>
-          </span>
+          <span class="helper-icon"></span>
           <h3>{{ 'home_page.onboarding.modal_title' | t }}</h3>
           <p>{{ 'home_page.onboarding.no_collections_html' | t }}</p>
           <p><a class="admin-btn-primary" href="/admin/custom_collections">{{ 'home_page.onboarding.add_collection' | t }}</a></p>
         </div>
 
-        <div class="grid-uniform text-center">
+        <div class="grid-uniform text-center helper-content">
           {% for i in (1..5) %}
             <div class="grid__item large--one-fifth medium--one-half">
               <a href="#" class="grid__image">
