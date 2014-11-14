@@ -12,10 +12,6 @@
       "home": "Inicio",
       "home_link_title": "Volver a la portada"
     },
-    "forms": {
-      "post_error": "Lo sentimos, parece que algo no salió bien. Por favor corrija lo siguiente y envíe de nuevo:",
-      "post_field_error_html": "El <strong>{{ field }}</strong> {{ error }}"
-    },
     "newsletter_form": {
       "newsletter_email": "su-email@ejemplo.com",
       "submit": "Suscribir"

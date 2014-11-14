@@ -36,7 +36,7 @@
           </p>
         {% endif %}
 
-        {% include 'form-errors-custom' %}
+        {{ form.errors | default_errors }}
 
         {% assign name_attr = 'contact.form.name' | t | handle %}
         <label for="ContactFormName" class="label--hidden">{{ 'contact.form.name' | t }}</label>

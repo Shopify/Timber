@@ -12,10 +12,6 @@
       "home": "Startseite",
       "home_link_title": "Zurück zur Startseite"
     },
-    "forms": {
-      "post_error": "Tut uns leid, aber es ist ein Fehler aufgetreten. Folgendes müssten Sie bitte korrigieren und erneut übermitteln:",
-      "post_field_error_html": "<strong>{{ field }}</strong> {{ error }}"
-    },
     "newsletter_form": {
       "newsletter_email": "ihre-email@beispiel.com",
       "submit": "Abonnieren"

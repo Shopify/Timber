@@ -23,7 +23,7 @@
     {% endcomment %}
     {% form 'create_customer' %}
 
-      {% include 'form-errors-custom' %}
+      {{ form.errors | default_errors }}
 
       <label for="FirstName" class="label--hidden">{{ 'customer.register.first_name' | t }}</label>
       <input type="text" name="customer[first_name]" id="FirstName" placeholder="{{ 'customer.register.first_name' | t }}" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus>

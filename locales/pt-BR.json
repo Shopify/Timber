@@ -12,10 +12,6 @@
       "home": "Início",
       "home_link_title": "Voltar à \"Primeira Página\""
     },
-    "forms": {
-      "post_error": "Desculpe, mas parece que algo deu errado. Por favor, corrija os itens a seguir e envie novamente:",
-      "post_field_error_html": "O campo <strong>{{ field }}</strong> {{ error }}"
-    },
     "newsletter_form": {
       "newsletter_email": "seu_e-mail@exemplo.com",
       "submit": "Inscrever"

@@ -12,10 +12,6 @@
       "home": "Accueil",
       "home_link_title": "Retour à la page d'accueil"
     },
-    "forms": {
-      "post_error": "Désolé, il semble y avoir un problème. Tentez de corriger les éléments suivants et soumettez le formulaire à nouveau:",
-      "post_field_error_html": "<strong>{{ field }}</strong> {{ error }}"
-    },
     "newsletter_form": {
       "newsletter_email": "votre-courriel@exemple.com",
       "submit": "S'inscrire"
