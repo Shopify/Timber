@@ -12,10 +12,6 @@
       "home": "Início",
       "home_link_title": "Regressar à Frontpage"
     },
-    "forms": {
-      "post_error": "Lamentamos, mas parece que alguma coisa correu mal. Por favor, corrija os seguintes elementos e tente novamente:",
-      "post_field_error_html": "O campo <strong>{{ field }}</strong> {{ error }}"
-    },
     "newsletter_form": {
       "newsletter_email": "o-seu-email@exemplo.com",
       "submit": "Subscrever"

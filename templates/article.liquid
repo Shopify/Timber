@@ -134,7 +134,7 @@
             {% endcomment %}
             <h3 id="add-comment-title">{{ 'blogs.comments.title' | t }}</h3>
 
-            {% include 'form-errors-custom' %}
+            {{ form.errors | default_errors }}
 
             <div class="grid">
 

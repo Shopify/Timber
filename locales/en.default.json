@@ -12,10 +12,6 @@
       "home": "Home",
       "home_link_title": "Back to the frontpage"
     },
-    "forms": {
-      "post_error": "Sorry, looks like something went wrong. Please correct the following and submit again:",
-      "post_field_error_html": "The <strong>{{ field }}</strong> {{ error }}"
-    },
     "newsletter_form": {
       "newsletter_email": "your-email@example.com",
       "submit": "Subscribe"

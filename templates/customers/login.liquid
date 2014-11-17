@@ -37,7 +37,7 @@
 
       <h1>{{ 'customer.login.title' | t }}</h1>
 
-      {% include 'form-errors-custom' %}
+      {{ form.errors | default_errors }}
 
       <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
       <input type="email" name="customer[email]" id="CustomerEmail" placeholder="{{ 'customer.login.email' | t }}"{% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
@@ -73,7 +73,7 @@
       {% endcomment %}
       {% form 'recover_customer_password' %}
 
-        {% include 'form-errors-custom' %}
+        {{ form.errors | default_errors }}
 
         {% comment %}
           form.posted_successfully? is true only inside this form, but we want
