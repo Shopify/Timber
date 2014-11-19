@@ -275,5 +275,8 @@
       "shop_link": "Einkauf beginnen",
       "print": "Drucken"
     }
+  },
+  "date_formats":{
+    "month_day_year":"%B %d, %Y"
   }
 }

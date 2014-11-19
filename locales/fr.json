@@ -275,5 +275,8 @@
       "shop_link": "Boutique",
       "print": "Imprimer"
     }
+  },
+  "date_formats":{
+    "month_day_year":"%d %B, %Y"
   }
 }

@@ -36,11 +36,9 @@
     {% endcomment %}
 
     {% for article in blog.articles %}
-
       <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
-      {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
       {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
-      {% capture date %}<time datetime="{{ published_at }}">{{ published_at }}</time>{% endcapture %}
+      {% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
       <p>{{ 'blogs.article.author_on_date_html' | t: author: author, date: date }}</p>
 
       {% comment %}
