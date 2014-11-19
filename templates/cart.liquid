@@ -69,10 +69,9 @@
                   <small>{{ item.variant.title }}</small>
                 {% endunless %}
 
-                {% comment %}
-                  Optional, add the vendor
-                {% endcomment %}
-                <p>{{ item.vendor }}</p>
+                {% if settings.cart_vendor_enable %}
+                  <p>{{ item.vendor }}</p>
+                {% endif %}
 
                 {% comment %}
                   Optional, loop through custom product line items if available
@@ -99,7 +98,9 @@
                   {% endfor %}
                 {% endif %}
 
-                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" data-id="{{ item.id }}"><small>{{ 'cart.general.remove' | t }}</small></a>
+                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove" data-id="{{ item.id }}">
+                  <small>{{ 'cart.general.remove' | t }}</small>
+                </a>
               </div>
 
             </div>
