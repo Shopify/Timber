@@ -278,6 +278,6 @@
     }
   },
   "date_formats":{
-    "month_day_year":"%d de %B de %Y"
+    "month_day_year": "%d de %B de %Y"
   }
 }
