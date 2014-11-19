@@ -47,7 +47,7 @@
             {% for order in customer.orders %}
               <tr>
                 <td>{{ order.name | link_to: order.customer_url }}</td>
-                <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+                <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
                 <td>{{ order.financial_status_label }}</td>
                 <td>{{ order.fulfillment_status_label }}</td>
                 <td>{{ order.total_price | money }}</td>
