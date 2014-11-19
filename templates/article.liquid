@@ -29,7 +29,7 @@
   <article class="grid__item large--three-quarters" itemscope itemtype="http://schema.org/Article">
 
     <header class="section-header">
-      <div class="section-header--left">
+      <div class="section-header__left">
         <h1>{{ article.title }}</h1>
         {% assign published_at = article.published_at | date: '%Y-%m-%d' %}
         <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: published_at }}</p>
