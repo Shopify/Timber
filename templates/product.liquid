@@ -182,7 +182,7 @@
 
     // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
     {% if product.options.size == 1 and product.options.first != 'Title' %}
-      $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first | escape }}</label>');
+      $('.selector-wrapper:eq(0)').prepend('<label for="productSelect-option-0">{{ product.options.first | escape }}</label>');
     {% endif %}
 
     // Hide selectors if we only have 1 variant and its title contains 'Default'.
