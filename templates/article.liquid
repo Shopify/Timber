@@ -29,7 +29,7 @@
   <article class="grid__item large--three-quarters" itemscope itemtype="http://schema.org/Article">
 
     <header class="section-header">
-      <div class="section-header--left">
+      <div class="section-header__left">
         <h1>{{ article.title }}</h1>
         {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
         {% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
@@ -79,9 +79,9 @@
       {% endcomment %}
       {% paginate article.comments by 5 %}
         {% comment %}
-          #comments is required, it is used as an anchor link by Shopify.
+          #Comments is required, it is used as an anchor link by Shopify.
         {% endcomment %}
-        <div id="comments">
+        <div id="Comments">
 
           {% if comment and comment.created_at %}
             <p class="note form-success">
@@ -131,9 +131,9 @@
           {% form 'new_comment', article %}
 
             {% comment %}
-              #add-comment-title is used simply as an anchor link
+              #AddCommentTitle is used simply as an anchor link
             {% endcomment %}
-            <h3 id="add-comment-title">{{ 'blogs.comments.title' | t }}</h3>
+            <h3 id="AddCommentTitle">{{ 'blogs.comments.title' | t }}</h3>
 
             {{ form.errors | default_errors }}
 
@@ -162,13 +162,13 @@
 
             {% if form.errors %}
               <script>
-                window.location.hash = '#add-comment-title';
+                window.location.hash = '#AddCommentTitle';
               </script>
             {% endif %}
 
             {% if form.posted_successfully? %}
               <script>
-                window.location.hash = '#comments';
+                window.location.hash = '#Comments';
               </script>
             {% endif %}
 

@@ -7,8 +7,8 @@
 {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
 
 <div class="section-header">
-  <p class="h1 section-header--left">{{ collection_title }}</p>
-  <div class="section-header--right">
+  <p class="h1 section-header__left">{{ collection_title }}</p>
+  <div class="section-header__right">
     <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">More {{ collection_title }} &rsaquo;</a>
   </div>
 </div>

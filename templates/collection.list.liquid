@@ -34,22 +34,22 @@
     {% endcomment %}
     {% if collection.description != blank %}
       <header class="section-header">
-        <h1 class="section-header--title">{{ collection.title }}</h1>
+        <h1 class="section-header__title">{{ collection.title }}</h1>
         <div class="rte rte--header">
           {{ collection.description }}
         </div>
       </header>
       <hr>
       <div class="section-header">
-        <div class="section-header--right">
+        <div class="section-header__right">
           {% include 'collection-sorting' %}
           {% include 'collection-views' %}
         </div>
       </div>
     {% else %}
       <header class="section-header">
-        <h1 class="section-header--title section-header--left">{{ collection.title }}</h1>
-        <div class="section-header--right">
+        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+        <div class="section-header__right">
           {% include 'collection-sorting' %}
           {% include 'collection-views' %}
         </div>
