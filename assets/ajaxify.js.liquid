@@ -869,6 +869,10 @@ var ajaxifyShopify = (function(module, $) {
           } else {
             sizeDrawer(true);
           }
+          // Create a close drawer button
+          $cartContainer.prepend('<button class="ajaxcart__close" title="Close Cart">&times;</button>');
+          $closeCart = $('.ajaxcart__close');
+          $closeCart.on('click', hideDrawer);
           break;
         default:
           break;
