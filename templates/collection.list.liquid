@@ -21,12 +21,7 @@
 {% comment %}
   Use .grid--rev so that the collection tags appear below the products on mobile
 {% endcomment %}
-<div class="grid">
-
-  <div class="grid__item large--one-quarter">
-    {% include 'collection-sidebar' %}
-  </div>
-
+<div class="grid--rev">
   <div class="grid__item large--three-quarters">
 
     {% comment %}
@@ -90,6 +85,9 @@
 
   </div>
 
+  <div class="grid__item large--one-quarter">
+    {% include 'collection-sidebar' %}
+  </div>
 </div>
 
 {% endpaginate %}
