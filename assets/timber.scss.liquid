@@ -928,8 +928,9 @@ hr {
   display: inline-block;
   border: 1px solid $colorBorder;
   border-radius: $radius;
-  padding: 11px;
+  padding: 0 5px;
   height: 37px; // same as form elements
+  overflow: hidden;
 
   /*================ We use SVG icons, so simply hide this in oldIE ================*/
   .lt-ie9 & {
@@ -940,27 +941,25 @@ hr {
   @include at-query ($min, $large) {
     display: inline-block;
   }
+}
 
-  a {
-    display: block;
-    float: left;
-    opacity: 0.7;
-    cursor: pointer;
+.change-view {
+  display: block;
+  background: none;
+  border: 0 none;
+  float: left;
+  padding: 7px;
+  color: $colorBorder;
 
-    & + a {
-      margin-left: 10px;
-    }
-
-    &.collection-view--active {
-      opacity: 1;
-      cursor: default;
-    }
+  &:hover,
+  &:focus {
+    color: $colorPrimary;
   }
+}
 
-  img {
-    display: block;
-    opacity: inherit;
-  }
+.change-view--active {
+  cursor: default;
+  color: $colorPrimary;
 }
 
 /*============================================================================

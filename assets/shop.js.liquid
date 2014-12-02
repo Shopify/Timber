@@ -1,3 +1,14 @@
+// Helper functions
+function replaceUrlParam(url, paramName, paramValue) {
+  var pattern = new RegExp('('+paramName+'=).*?(&|$)'),
+      newUrl = url.replace(pattern,'$1' + paramValue + '$2');
+  if ( newUrl == url ) {
+    newUrl = newUrl + (newUrl.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
+  }
+  return newUrl;
+}
+
+// Timber functions
 window.timber = window.timber || {};
 
 timber.cacheSelectors = function () {
@@ -8,6 +19,9 @@ timber.cacheSelectors = function () {
 
     // Navigation
     $navigation: $('#AccessibleNav'),
+
+    // Collection Pages
+    $changeView: $('.change-view'),
 
     // Product Page
     $productImage: $('#ProductPhotoImg'),
@@ -20,6 +34,7 @@ timber.init = function () {
   timber.accessibleNav();
   timber.productImageSwitch();
   timber.responsiveVideos();
+  timber.collectionViews();
 };
 
 timber.accessibleNav = function () {
@@ -180,6 +195,22 @@ timber.switchImage = function (src, imgObject, el) {
 timber.responsiveVideos = function () {
   $('iframe[src*="youtube.com/embed"]').wrap('<div class="video-wrapper"></div>');
   $('iframe[src*="player.vimeo"]').wrap('<div class="video-wrapper"></div>');
+};
+
+timber.collectionViews = function () {
+  if (timber.cache.$changeView.length) {
+    timber.cache.$changeView.on('click', function() {
+      var view = $(this).data('view'),
+          url = document.URL,
+          hasParams = url.indexOf('?') > -1;
+
+      if (hasParams) {
+        window.location = replaceUrlParam(url, 'view', view);
+      } else {
+        window.location = url + '?view=' + view;
+      }
+    });
+  }
 };
 
 // Initialize Timber's JS on docready
