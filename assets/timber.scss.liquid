@@ -932,11 +932,6 @@ hr {
   height: 37px; // same as form elements
   overflow: hidden;
 
-  /*================ We use SVG icons, so simply hide this in oldIE ================*/
-  .lt-ie9 & {
-    display: none;
-  }
-
   /*================ Only show on larger screens ================*/
   @include at-query ($min, $large) {
     display: inline-block;
