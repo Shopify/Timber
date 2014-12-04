@@ -75,6 +75,8 @@
     "general": {
       "no_matches": "Es tut uns leid, aber Ihre Suche nach Produkten hat keine Treffer ergeben.",
       "link_title": "Durchsuchen Sie unsere {{ title }}-Zusammenstellung",
+      "grid_view": "Gitteransicht",
+      "list_view": "Listenansicht",
       "items_count": {
         "one": "Produkt",
         "other": "Produkte"
