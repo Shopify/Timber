@@ -75,6 +75,8 @@
     "general": {
       "no_matches": "Lo sentimos, no hay productos que coincidan con su búsqueda.",
       "link_title": "Navegue por nuestra colección {{ title }}",
+      "grid_view": "Tabla",
+      "list_view": "Lista",
       "items_count": {
         "one": "artículo"
       },

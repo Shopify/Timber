@@ -4,35 +4,16 @@
 {% endcomment %}
 
 <div class="collection-view">
-  <a title="Grid view" class="change-view{% unless template contains 'list' %} collection-view--active{% endunless %}" data-view="grid">
-    {{ 'collection-view-grid.svg' | asset_url | img_tag: "Grid View" }}
-  </a>
-  <a title="List view" class="change-view{% if template contains 'list' %} collection-view--active{% endif %}" data-view="list">
-    {{ 'collection-view-list.svg' | asset_url | img_tag: "List View" }}
-  </a>
+  <button type="button" title="{{ 'collections.general.grid_view' | t }}" class="change-view{% unless template contains 'list' %} change-view--active{% endunless %}" data-view="grid">
+    <span class="icon-fallback-text">
+      <span class="icon icon-grid-view" aria-hidden="true"></span>
+      <span class="fallback-text">{{ 'collections.general.grid_view' | t }}</span>
+    </span>
+  </button>
+  <button type="button" title="{{ 'collections.general.list_view' | t }}" class="change-view{% if template contains 'list' %} change-view--active{% endif %}" data-view="list">
+    <span class="icon-fallback-text">
+      <span class="icon icon-list-view" aria-hidden="true"></span>
+      <span class="fallback-text">{{ 'collections.general.list_view' | t }}</span>
+    </span>
+  </button>
 </div>
-
-<script>
-  function replaceUrlParam(url, paramName, paramValue) {
-    var pattern = new RegExp('('+paramName+'=).*?(&|$)'),
-        newUrl = url.replace(pattern,'$1' + paramValue + '$2');
-    if ( newUrl == url ) {
-      newUrl = newUrl + (newUrl.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
-    }
-    return newUrl;
-  }
-
-  $(function() {
-    $('.change-view').on('click', function() {
-      var view = $(this).data('view'),
-          url = document.URL,
-          hasParams = url.indexOf('?') > -1;
-
-      if (hasParams) {
-        window.location = replaceUrlParam(url, 'view', view);
-      } else {
-        window.location = url + '?view=' + view;
-      }
-    });
-  });
-</script>
