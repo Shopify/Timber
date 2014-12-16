@@ -310,7 +310,7 @@ $class-type: unquote(".");
     }
   }
 
-  @if $breakpoint-found == false{
+  @if $breakpoint-found == false {
     @warn "Breakpoint '#{$media-query}' does not exist";
   }
 }
@@ -464,10 +464,6 @@ $class-type: unquote(".");
     #{$class-type}#{$namespace}six-twelfths:nth-child(2n+1)    { clear: both; }
   }
 }
-
-/*============================================================================
-  HELPERS
-==============================================================================*/
 
 /*================ Helper show/hide classes around our breakpoints ================*/
 @mixin device-helper($namespace:"") {
@@ -650,7 +646,7 @@ $class-type: unquote(".");
 
   @include pull-setup();
 
-  @if $responsive == true{
+  @if $responsive == true {
     @each $name in $breakpoint-has-pull {
       @include grid-media-query($name) {
         @include pull-setup('#{$name}--');
