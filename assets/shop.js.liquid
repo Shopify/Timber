@@ -130,6 +130,7 @@ timber.getHash = function () {
 
 timber.updateHash = function (hash) {
   window.location.hash = '#' + hash;
+  $('#' + hash).attr('tabindex', 0);
 };
 
 timber.productPage = function (options) {

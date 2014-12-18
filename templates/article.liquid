@@ -163,13 +163,17 @@
 
             {% if form.errors %}
               <script>
-                timber.updateHash('AddCommentTitle');
+                $(function() {
+                  timber.updateHash('AddCommentTitle');
+                });
               </script>
             {% endif %}
 
             {% if form.posted_successfully? %}
               <script>
-                timber.updateHash('Comments');
+                $(function() {
+                  timber.updateHash('Comments');
+                });
               </script>
             {% endif %}
 
