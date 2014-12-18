@@ -78,9 +78,7 @@
       "grid_view": "Tabla",
       "list_view": "Lista",
       "items_count": {
-        "one": "artículo"
-      },
-      "items": {
+        "one": "artículo",
         "other": "artículos"
       },
       "items_with_count": {
@@ -223,11 +221,12 @@
       "news_title": "Últimas noticias"
     },
     "onboarding": {
-      "no_products_html": "No tiene productos en su colección de portada. Este indicador aparecerá hasta que <a href=\"/admin/custom_collections\">agregue un producto a esta colección</a>.",
-      "add_product": "Agregar producto",
+      "modal_title": "Casi allí...",
+      "no_products_html": "No tiene productos en su colección de portada. Este indicador aparecerá hasta que <a href=\"/admin/collections?tutorial=Frontpage\">agregue un producto a esta colección</a>.",
+      "add_product": "Añadir un producto",
       "product_title": "Ejemplo título de producto",
       "no_collections_html": "No tiene colecciones para mostrar aquí. <a href=\"/admin/custom_collections\">Agregue algunas colecciones</a> que acompañen a la Portada por defecto.",
-      "collection_image": "Imagen de la colección",
+      "add_collection": "Añadir una colección",
       "collection_title": "Ejemplo título de colección"
     }
   },

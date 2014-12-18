@@ -32,35 +32,31 @@
 
   {% else %}
 
-    <div class="grid__item">
-      <p>{{ 'home_page.onboarding.no_products_html' | t }}</p>
-    </div>
+    {% unless emptyState %}
+      {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
+      {% assign emptyState = true %}
+    {% endunless %}
 
     <div class="grid__item">
-      <div class="grid-uniform">
-        <div class="grid__item large--one-quarter medium--one-half text-center">
-          <a href="/admin/products" class="demo-image">
-            {{ 'home_page.onboarding.add_product' | t }}
-          </a>
-          <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
+      <div class="helper-section">
+        <div class="helper-note">
+          <span class="helper-icon"></span>
+          <h3>{{ 'home_page.onboarding.modal_title' | t }}</h3>
+          <p>{{ 'home_page.onboarding.no_products_html' | t }}</p>
+          <p><a class="admin-btn-primary" href="/admin/collections?tutorial=Frontpage">{{ 'home_page.onboarding.add_product' | t }}</a></p>
         </div>
-        <div class="grid__item large--one-quarter medium--one-half text-center">
-          <a href="/admin/products" class="demo-image">
-            {{ 'home_page.onboarding.add_product' | t }}
-          </a>
-          <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
-        </div>
-        <div class="grid__item large--one-quarter medium--one-half text-center">
-          <a href="/admin/products" class="demo-image">
-            {{ 'home_page.onboarding.add_product' | t }}
-          </a>
-          <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
-        </div>
-        <div class="grid__item large--one-quarter medium--one-half text-center">
-          <a href="/admin/products" class="demo-image">
-            {{ 'home_page.onboarding.add_product' | t }}
-          </a>
-          <p><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a> $19.99</p>
+
+        <div class="grid-uniform helper-content">
+          {% for i in (1..4) %}
+            <div class="grid__item one-half large--one-quarter">
+              <a href="/admin/products" class="grid__image">
+                {% capture imageUrl %}http://cdn.shopify.com/s/images/themes/product-{{ i }}.png{% endcapture %}
+                {{ imageUrl | img_tag }}
+              </a>
+              <p class="h6"><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a></p>
+              <p>$19.99</p>
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -94,49 +90,40 @@
         {% assign isEmpty = false %}
         {% assign collection_item_width = 'large--one-fifth medium--one-third' %}
         {% include 'collection-grid-item' %}
-        {% comment %}Add 1 to the current index{% endcomment %}
         {% assign index = index | plus: 1 %}
       {% endunless %}
 
     {% endunless %}
-
   {% endfor %}
 
   {% if isEmpty %}
+    {% unless emptyState %}
+      {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
+      {% assign emptyState = true %}
+    {% endunless %}
+
     <div class="grid__item">
-      <p>{{ 'home_page.onboarding.no_collections_html' | t }}</p>
-    </div>
-    <div class="grid__item">
-      <div class="grid-uniform">
-        <div class="grid__item large--one-fifth medium--one-half text-center">
-          <div class="demo-image">
-            {{ 'home_page.onboarding.collection_image' | t }}
-          </div>
-          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(3 {{ 'collections.general.items_count' | t: count: 3 }})</small></p>
+      <div class="helper-section">
+        <div class="helper-note">
+          <span class="helper-icon"></span>
+          <h3>{{ 'home_page.onboarding.modal_title' | t }}</h3>
+          <p>{{ 'home_page.onboarding.no_collections_html' | t }}</p>
+          <p><a class="admin-btn-primary" href="/admin/custom_collections">{{ 'home_page.onboarding.add_collection' | t }}</a></p>
         </div>
-        <div class="grid__item large--one-fifth medium--one-half text-center">
-          <div class="demo-image">
-            {{ 'home_page.onboarding.collection_image' | t }}
-          </div>
-          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(13 {{ 'collections.general.items_count' | t: count: 13 }})</small></p>
-        </div>
-        <div class="grid__item large--one-fifth medium--one-half text-center">
-          <div class="demo-image">
-            {{ 'home_page.onboarding.collection_image' | t }}
-          </div>
-          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(25 {{ 'collections.general.items_count' | t: count: 25 }})</small></p>
-        </div>
-        <div class="grid__item large--one-fifth medium--one-half text-center">
-          <div class="demo-image">
-            {{ 'home_page.onboarding.collection_image' | t }}
-          </div>
-          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(1 {{ 'collections.general.items_count' | t: count: 1 }})</small></p>
-        </div>
-        <div class="grid__item large--one-fifth medium--one-half text-center">
-          <div class="demo-image">
-            {{ 'home_page.onboarding.collection_image' | t }}
-          </div>
-          <p><a href="/admin/custom_collections">{{ 'home_page.onboarding.collection_title' | t }}</a> <small>(10 {{ 'collections.general.items_count' | t: count: 10 }})</small></p>
+
+        <div class="grid-uniform text-center helper-content">
+          {% for i in (1..5) %}
+            <div class="grid__item large--one-fifth medium--one-half">
+              <a href="#" class="grid__image">
+                {% capture imageUrl %}http://cdn.shopify.com/s/images/themes/product-{{ i }}.png{% endcapture %}
+                {{ imageUrl | img_tag }}
+              </a>
+              <p>
+                <a href="#">{{ 'home_page.onboarding.collection_title' | t }}</a><br>
+                {{ 'collections.general.items_with_count' | t: count: i }}
+              </p>
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>
