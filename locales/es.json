@@ -78,9 +78,7 @@
       "grid_view": "Tabla",
       "list_view": "Lista",
       "items_count": {
-        "one": "artículo"
-      },
-      "items": {
+        "one": "artículo",
         "other": "artículos"
       },
       "items_with_count": {
