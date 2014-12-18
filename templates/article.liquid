@@ -163,13 +163,13 @@
 
             {% if form.errors %}
               <script>
-                window.location.hash = '#AddCommentTitle';
+                timber.updateHash('AddCommentTitle');
               </script>
             {% endif %}
 
             {% if form.posted_successfully? %}
               <script>
-                window.location.hash = '#Comments';
+                timber.updateHash('Comments');
               </script>
             {% endif %}
 
