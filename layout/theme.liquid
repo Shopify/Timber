@@ -45,11 +45,8 @@
 
   {% include 'oldIE-js' %}
 
-  {% comment %}
-    Theme dependent JS is loaded at the very bottom of this file for performance reasons.
-    However, jQuery is included here so that it can be used inside the templates, e.g. in product.liquid.
-  {% endcomment %}
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
 
 </head>
 
@@ -155,50 +152,45 @@
 
   {% include 'footer' %}
 
-  {% comment %}
-    Helper scripts that you can extend as needed.
-  {% endcomment %}
   {{ 'shop.js' | asset_url | script_tag }}
 
   {% comment %}
-    Ajaxify your cart with this plugin. Adding a product will reveal a drawer, modal, or confirmation button. Enabled by default in theme settings.
-
-    Ajaxify Cart Documentation:
+    Ajaxify your cart with this plugin.
+    Documentation:
       - http://shopify.com/timber#ajax-cart
   {% endcomment %}
   {% if settings.ajax_cart_enable %}
-  {{ 'handlebars.min.js' | asset_url | script_tag }}
-  {% include 'ajax-cart-template' %}
-  {{ 'ajaxify.js' | asset_url | script_tag }}
-  <script>
-  jQuery(function($) {
-    ajaxifyShopify.init({
-      method: '{{ settings.ajax_cart_method }}',
-      wrapperClass: 'wrapper',
-      formSelector: '#AddToCartForm',
-      addToCartSelector: '#AddToCart',
-      cartCountSelector: '#CartCount',
-      cartCostSelector: '#CartCost',
-      toggleCartButton: '#CartToggle',
-      useCartTemplate: true,
-      btnClass: 'btn',
-      moneyFormat: {{ shop.money_format | json }},
-      disableAjaxCart: false,
-      enableQtySelectors: true,
-      prependDrawerTo: 'body'
-    });
-  });
-  </script>
+    {{ 'handlebars.min.js' | asset_url | script_tag }}
+    {% include 'ajax-cart-template' %}
+    {{ 'ajaxify.js' | asset_url | script_tag }}
+    <script>
+      jQuery(function($) {
+        ajaxifyShopify.init({
+          method: '{{ settings.ajax_cart_method }}',
+          wrapperClass: 'wrapper',
+          formSelector: '#AddToCartForm',
+          addToCartSelector: '#AddToCart',
+          cartCountSelector: '#CartCount',
+          cartCostSelector: '#CartCost',
+          toggleCartButton: '#CartToggle',
+          useCartTemplate: true,
+          btnClass: 'btn',
+          moneyFormat: {{ shop.money_format | json }},
+          disableAjaxCart: false,
+          enableQtySelectors: true,
+          prependDrawerTo: 'body'
+        });
+      });
+    </script>
   {% endif %}
 
   {% comment %}
-    If you store has customers disabled, you can remove the following JS file
+    If you store has customer accounts disabled, you can remove the following JS file
   {% endcomment %}
   {% if template contains 'customers' %}
     {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
   {% endif %}
 
-  {{ 'modernizr.min.js' | asset_url | script_tag }}
   {{ 'fastclick.min.js' | asset_url | script_tag }}
 
 </body>
