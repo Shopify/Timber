@@ -34,37 +34,39 @@
     {% comment %}
       This form must use 'customer_login'
     {% endcomment %}
-    {% form 'customer_login' %}
+    <div id="CustomerLoginForm">
+      {% form 'customer_login' %}
 
-      <h1>{{ 'customer.login.title' | t }}</h1>
+        <h1>{{ 'customer.login.title' | t }}</h1>
 
-      {{ form.errors | default_errors }}
+        {{ form.errors | default_errors }}
 
-      <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
-      <input type="email" name="customer[email]" id="CustomerEmail" placeholder="{{ 'customer.login.email' | t }}"{% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
+        <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
+        <input type="email" name="customer[email]" id="CustomerEmail" placeholder="{{ 'customer.login.email' | t }}"{% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
 
-      {% if form.password_needed %}
+        {% if form.password_needed %}
 
-        <label for="CustomerPassword" class="label--hidden">{{ 'customer.login.password' | t }}</label>
-        <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="{{ 'customer.login.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+          <label for="CustomerPassword" class="label--hidden">{{ 'customer.login.password' | t }}</label>
+          <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="{{ 'customer.login.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+
+          <p>
+            <a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
+          </p>
+
+        {% endif %}
 
         <p>
-          <a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
+          <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
         </p>
+        <a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
 
-      {% endif %}
-
-      <p>
-        <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
-      </p>
-      <a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
-
-    {% endform %}
+      {% endform %}
+    </div>
 
     {% comment %}
       This page uses JavaScript to show/hide the recover password form
     {% endcomment %}
-    <div id="recover_password" style="display: none;">
+    <div id="RecoverPasswordForm" style="display: none;">
 
       <h2>{{ 'customer.recover_password.title' | t }}</h2>
       <p>{{ 'customer.recover_password.subtext' | t }}</p>
