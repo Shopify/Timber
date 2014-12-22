@@ -63,6 +63,8 @@
       "checkout": "Procéder au paiement",
       "empty": "Votre panier est vide.",
       "continue_browsing_html": "<a href=\"/collections/all\">Retourner au magasinage</a>."
+      "view_cart": "View.Cart.fr",
+      "close_cart": "Close.Cart.fr"
     },
     "label": {
       "product": "Produit",
