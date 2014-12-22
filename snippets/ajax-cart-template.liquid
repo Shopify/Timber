@@ -39,7 +39,7 @@
                   </div>
                   <div class="grid__item one-third text-right">
                     <p>
-                      <small><a href="/cart/change?id={{id}}&amp;quantity=0" class="ajaxcart__remove" data-id="{{id}}">Remove</a></small>
+                      <small><a href="/cart/change?id={{id}}&amp;quantity=0" class="ajaxcart__remove" data-id="{{id}}">{% endraw %}{{ 'cart.general.remove' | t}}{% raw %}</a></small>
                     </p>
                   </div>
                 </div>
@@ -50,8 +50,8 @@
         {{/items}}
       </div>
       <div class="ajaxcart__row text-right medium-down--text-center">
-        <span class="h3">Subtotal {{totalPrice}}</span>
-        <input type="submit" class="{{btnClass}}" name="checkout" value="Checkout">
+        <span class="h3">{% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %} {{totalPrice}}</span>
+        <input type="submit" class="{{btnClass}}" name="checkout" value="{% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}">
       </div>
     </form>
   {% endraw %}
