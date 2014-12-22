@@ -795,11 +795,18 @@ var ajaxifyShopify = (function(module, $) {
           itemQty = cartItem.quantity;
 
       /* Hack to get product image thumbnail
-       *   - Remove file extension, add _small, and re-add extension
-       *   - Create server relative link
+       *   - If image is not null
+       *        - Remove file extension, add _small, and re-add extension
+       *        - Create server relative link
+       *   - A hard-coded url of no-image
       */
-      var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', ''),
-          prodName = cartItem.title.replace(/(\-[^-]*)$/, ""),
+  
+      if (!cartItem.image)
+        var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', '');
+      else 
+        prodImg = "http://cdn.shopify.com/s/assets/admin/no-image-medium-cc9732cb976dd349a0df1d39816fbcc7.gif";
+  
+      var prodName = cartItem.title.replace(/(\-[^-]*)$/, ""),
           prodVariation = cartItem.title.replace(/^[^\-]*/, "").replace(/-/, "");
 
       // Create item's data object and add to 'items' array
