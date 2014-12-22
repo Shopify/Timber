@@ -801,7 +801,7 @@ var ajaxifyShopify = (function(module, $) {
        *   - A hard-coded url of no-image
       */
   
-      if (!cartItem.image)
+      if (cartItem.image != null)
         var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', '');
       else 
         var prodImg = "http://cdn.shopify.com/s/assets/admin/no-image-medium-cc9732cb976dd349a0df1d39816fbcc7.gif";
