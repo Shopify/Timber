@@ -161,22 +161,15 @@
 
             <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
 
+            {% comment %}
+              Assign variable to be used after timber.init() is called in theme.liquid
+            {% endcomment %}
             {% if form.errors %}
-              <script>
-                window.timber = window.timber || {};
-                timber.global = {
-                  newHash: 'AddCommentTitle'
-                };
-              </script>
+              {% assign newHash = 'AddCommentTitle' %}
             {% endif %}
 
             {% if form.posted_successfully? %}
-              <script>
-                window.timber = window.timber || {};
-                timber.global = {
-                  newHash: 'Comments'
-                };
-              </script>
+              {% assign newHash = 'Comments' %}
             {% endif %}
 
           {% endform %}

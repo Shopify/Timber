@@ -155,6 +155,20 @@
   {{ 'shop.js' | asset_url | script_tag }}
 
   {% comment %}
+    Template-specific js
+  {% endcomment %}
+  <script>
+    $(function() {
+      {% if newHash %}
+        timber.updateHash('{{ newHash }}');
+      {% endif %}
+      {% if resetPassword %}
+        timber.resetPasswordSuccess();
+      {% endif %}
+    });
+  </script>
+
+  {% comment %}
     Ajaxify your cart with this plugin.
     Documentation:
       - http://shopify.com/timber#ajax-cart

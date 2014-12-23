@@ -11,46 +11,38 @@ function replaceUrlParam(url, paramName, paramValue) {
 // Timber functions
 window.timber = window.timber || {};
 
-timber.globalVars = {
-  bpLarge: 769
-}
-
-timber.global = timber.global ? jQuery.extend(timber.global, timber.globalVars) : timber.globalVars;
-
 timber.cacheSelectors = function () {
   timber.cache = {
     // General
-    $html: $('html'),
-    $body: $('body'),
+    $html                    : $('html'),
+    $body                    : $('body'),
 
     // Navigation
-    $navigation: $('#AccessibleNav'),
+    $navigation              : $('#AccessibleNav'),
 
     // Collection Pages
-    $changeView: $('.change-view'),
+    $changeView              : $('.change-view'),
 
     // Product Page
-    $productImage: $('#ProductPhotoImg'),
-    $thumbImages: $('#ProductThumbs').find('a.product-single__thumbnail'),
+    $productImage            : $('#ProductPhotoImg'),
+    $thumbImages             : $('#ProductThumbs').find('a.product-single__thumbnail'),
 
     // Customer Pages
-    $recoverPasswordLink: $('#RecoverPassword'),
-    $hideRecoverPasswordLink: $('#HideRecoverPasswordLink'),
-    $recoverPasswordForm: $('#RecoverPasswordForm'),
-    $customerLoginForm: $('#CustomerLoginForm'),
-    $passwordResetSuccess: $('#ResetSuccess')
+    $recoverPasswordLink     : $('#RecoverPassword'),
+    $hideRecoverPasswordLink : $('#HideRecoverPasswordLink'),
+    $recoverPasswordForm     : $('#RecoverPasswordForm'),
+    $customerLoginForm       : $('#CustomerLoginForm'),
+    $passwordResetSuccess    : $('#ResetSuccess')
   }
 };
 
-timber.init = function () {
+timber.init = function (options) {
   timber.cacheSelectors();
   timber.accessibleNav();
   timber.productImageSwitch();
   timber.responsiveVideos();
   timber.collectionViews();
   timber.loginForms();
-  timber.resetPasswordSuccess();
-  timber.updateHash();
 };
 
 timber.accessibleNav = function () {
@@ -136,14 +128,9 @@ timber.getHash = function () {
   return window.location.hash;
 };
 
-timber.updateHash = function () {
-  var hash = timber.global.newHash;
-  if (!hash) {
-    return;
-  }
-
+timber.updateHash = function (hash) {
   window.location.hash = '#' + hash;
-  $('#' + hash).attr('tabindex', 0);
+  $('#' + hash).attr('tabindex', -1).focus();
 };
 
 timber.productPage = function (options) {
@@ -271,10 +258,6 @@ timber.loginForms = function() {
 };
 
 timber.resetPasswordSuccess = function() {
-  if (!timber.global.resetPassword) {
-    return;
-  }
-
   timber.cache.$passwordResetSuccess.show();
 };
 

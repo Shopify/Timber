@@ -79,17 +79,10 @@
         {{ form.errors | default_errors }}
 
         {% comment %}
-          form.posted_successfully? is true only inside this form, but we want
-          to show a success message outside of it.
-          To do so, use JS to show our success message above.
+          Assign variable to be used after timber.init() is called in theme.liquid
         {% endcomment %}
         {% if form.posted_successfully? %}
-          <script>
-            window.timber = window.timber || {};
-            timber.global = {
-              resetPassword: true
-            };
-          </script>
+          {% assign resetPassword = true %}
         {% endif %}
 
         <label for="RecoverEmail" class="label--hidden">{{ 'customer.recover_password.email' | t }}</label>

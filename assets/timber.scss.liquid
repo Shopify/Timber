@@ -665,6 +665,10 @@ body {
   background-color: $colorBody;
 }
 
+[tabindex='-1']:focus {
+  outline: none;
+}
+
 .wrapper {
   @include clearfix();
   max-width: $siteWidth;
