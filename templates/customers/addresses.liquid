@@ -2,7 +2,7 @@
 {% comment %}
 
   Template note:
-    - There are two instances of inline JS below. Best practices advise separating this
+    - There are instances of inline JS below. Best practices advise separating this
       into an external JS file
     - There are separate 'add new' and 'edit' address forms
 
@@ -100,7 +100,7 @@
 
     {% comment %}
       List all customer addresses with a unique edit form.
-      Also add pagination in case they have a large number of address (unlikely)
+      Also add pagination in case they have a large number of addresses
     {% endcomment %}
     {% paginate customer.addresses by 5 %}
       {% for address in customer.addresses %}
