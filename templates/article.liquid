@@ -11,9 +11,6 @@
 
 {% endcomment %}
 
-{% comment %}
-  We're going to reference the number of comments below, so let's hold it in a variable.
-{% endcomment %}
 {% assign number_of_comments = article.comments_count %}
 
 {% comment %}
@@ -162,7 +159,7 @@
             <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
 
             {% comment %}
-              Assign variable to be used after timber.init() is called in theme.liquid
+              Assign variable to be used after timber.init() is run in theme.liquid
             {% endcomment %}
             {% if form.errors %}
               {% assign newHash = 'AddCommentTitle' %}

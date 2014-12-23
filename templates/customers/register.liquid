@@ -1,16 +1,4 @@
 <!-- /templates/customers/register.liquid -->
-{% comment %}
-
-  This template will be automatically generated for you if the file doesn't exist,
-  but where's the fun in having no control? Define your layout below.
-
-  The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
-  Your theme's settings determine to use the 'default' or 'theme' customer templates.
-  More info:
-    - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
-
-{% endcomment %}
-
 {% layout settings.customer_layout %}
 
 <div class="grid">
@@ -19,9 +7,6 @@
 
     <h1>{{ 'customer.register.title' | t }}</h1>
 
-    {% comment %}
-      This form must use 'create_customer'
-    {% endcomment %}
     {% form 'create_customer' %}
 
       {{ form.errors | default_errors }}

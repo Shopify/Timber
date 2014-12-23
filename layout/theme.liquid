@@ -158,14 +158,16 @@
     Template-specific js
   {% endcomment %}
   <script>
-    $(function() {
-      {% if newHash %}
+    {% if newHash %}
+      $(function() {
         timber.updateHash('{{ newHash }}');
-      {% endif %}
-      {% if resetPassword %}
+      });
+    {% endif %}
+    {% if resetPassword %}
+      $(function() {
         timber.resetPasswordSuccess();
-      {% endif %}
-    });
+      });
+    {% endif %}
   </script>
 
   {% comment %}

@@ -1,21 +1,4 @@
 <!-- /templates/customers/login.liquid -->
-{% comment %}
-
-  This template will be automatically generated for you if the file doesn't exist,
-  but where's the fun in having no control? Define your layout below.
-
-  The 'layout settings.customer_layout' line is inserted at the top of every customer account template.
-  Your theme's settings determine to use the 'default' or 'theme' customer templates.
-  More info:
-    - http://www.tetchi.ca/shopify-theme-from-scratch-part-11/
-
-  Template note:
-    - All IDs on this template are required to make the forms submit properly
-    - There are two instances of inline JS below. Best practices advise separating this
-      into an external JS file.
-
-{% endcomment %}
-
 {% layout settings.customer_layout %}
 
 <div class="grid">
@@ -25,15 +8,12 @@
     {% comment %}
       If a user has successfully requested a new password, the form.posted_successfully? variable
       is set to true within the 'recover_customer_password' form only. Within that form you'll see
-      a variable 'reset_success' set to true, which is used in JS to show our success message.
+      the variable 'resetPassword' set to true, which is used to initialize timber.resetPasswordSuccess().
     {% endcomment %}
     <div class="note form-success" id="ResetSuccess" style="display:none;">
       {{ 'customer.recover_password.success' | t }}
     </div>
 
-    {% comment %}
-      This form must use 'customer_login'
-    {% endcomment %}
     <div id="CustomerLoginForm">
       {% form 'customer_login' %}
 
@@ -64,22 +44,19 @@
     </div>
 
     {% comment %}
-      This page uses JavaScript to show/hide the recover password form
+      JS shows/hides this form in timber.loginForms()
     {% endcomment %}
     <div id="RecoverPasswordForm" style="display: none;">
 
       <h2>{{ 'customer.recover_password.title' | t }}</h2>
       <p>{{ 'customer.recover_password.subtext' | t }}</p>
 
-      {% comment %}
-        This form must use 'recover_customer_password'
-      {% endcomment %}
       {% form 'recover_customer_password' %}
 
         {{ form.errors | default_errors }}
 
         {% comment %}
-          Assign variable to be used after timber.init() is called in theme.liquid
+          Assign variable to be used after timber.init() is run in theme.liquid
         {% endcomment %}
         {% if form.posted_successfully? %}
           {% assign resetPassword = true %}
