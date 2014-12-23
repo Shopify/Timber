@@ -11,6 +11,14 @@ function replaceUrlParam(url, paramName, paramValue) {
 // Timber functions
 window.timber = window.timber || {};
 
+timber.globalVars = {
+  bpLarge: 769
+}
+
+timber.global = timber.global ? jQuery.extend(timber.global, timber.globalVars) : timber.globalVars;
+
+console.log(timber.global);
+
 timber.cacheSelectors = function () {
   timber.cache = {
     // General
@@ -43,6 +51,8 @@ timber.init = function () {
   timber.responsiveVideos();
   timber.collectionViews();
   timber.loginForms();
+  timber.resetPasswordSuccess();
+  timber.updateHash();
 };
 
 timber.accessibleNav = function () {
@@ -128,7 +138,12 @@ timber.getHash = function () {
   return window.location.hash;
 };
 
-timber.updateHash = function (hash) {
+timber.updateHash = function () {
+  var hash = timber.global.newHash;
+  if (!hash) {
+    return;
+  }
+
   window.location.hash = '#' + hash;
   $('#' + hash).attr('tabindex', 0);
 };
@@ -258,9 +273,10 @@ timber.loginForms = function() {
 };
 
 timber.resetPasswordSuccess = function() {
-  if (!timber.cache) {
-    timber.cacheSelectors();
+  if (!timber.global.resetPassword) {
+    return;
   }
+
   timber.cache.$passwordResetSuccess.show();
 };
 

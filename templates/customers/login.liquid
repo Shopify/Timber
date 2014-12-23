@@ -85,9 +85,10 @@
         {% endcomment %}
         {% if form.posted_successfully? %}
           <script>
-            $(function() {
-              timber.resetPasswordSuccess();
-            });
+            window.timber = window.timber || {};
+            timber.global = {
+              resetPassword: true
+            };
           </script>
         {% endif %}
 
