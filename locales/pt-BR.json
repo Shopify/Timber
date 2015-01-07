@@ -63,8 +63,8 @@
       "checkout": "Fechar pedido",
       "empty": "Seu carrinho está vazio no momento.",
       "continue_browsing_html": "Continue navegando <a href=\"/collections/all\">aqui</a>.",
-      "view_cart": "View.Cart.pt.BR",
-      "close_cart": "Close.Cart.pt.BR"
+      "view_cart": "Ver carrinho",
+      "close_cart": "Fechar carrinho"
     },
     "label": {
       "product": "Produto",
