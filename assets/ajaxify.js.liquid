@@ -387,7 +387,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Stop if there is no add to cart button
     if (!$addToCart.length) {
-      return
+      return;
     }
 
     // Wrap the add to cart button in a div
@@ -406,7 +406,7 @@ var ajaxifyShopify = (function(module, $) {
     $flipContainer = $('.flip');
 
     if (!$cssTransforms3d) {
-      $flipContainer.addClass('no-transforms')
+      $flipContainer.addClass('no-transforms');
     }
 
     // Setup extra selectors once appended
@@ -421,7 +421,7 @@ var ajaxifyShopify = (function(module, $) {
     // Reset the button if a user changes a variation
     $('input[type="checkbox"], input[type="radio"], select', $formContainer).on('click', function() {
       revertFlipButton();
-    })
+    });
   };
 
   revertFlipButton = function () {
@@ -451,7 +451,7 @@ var ajaxifyShopify = (function(module, $) {
 
     // Add a class if CSS translate isn't available
     if (!$cssTransforms) {
-      $modalContainer.addClass('no-transforms')
+      $modalContainer.addClass('no-transforms');
     }
 
     // Update modal position on screen changes
@@ -496,7 +496,7 @@ var ajaxifyShopify = (function(module, $) {
     // Position close button relative to title
     $closeCart.css({
       'top': 10 + ($cartContainer.find('h1').height() / 2)
-    })
+    });
 
     $modalContainer.addClass('is-visible');
 
