@@ -1,10 +1,8 @@
 <!-- /templates/customers/addressess.liquid -->
 {% comment %}
-  The 'layout settings.customer_layout' line is inserted at the top of every customer account template. Your theme's settings determine to use the 'default' or 'theme' customer templates.
 
   Template note:
-    - All IDs on this template are required to make the form(s) submit properly
-    - There are two instances of inline JS below. Best practices advise separating this
+    - There are instances of inline JS below. Best practices advise separating this
       into an external JS file
     - There are separate 'add new' and 'edit' address forms
 
@@ -102,7 +100,7 @@
 
     {% comment %}
       List all customer addresses with a unique edit form.
-      Also add pagination in case they have a large number of address (unlikely)
+      Also add pagination in case they have a large number of addresses
     {% endcomment %}
     {% paginate customer.addresses by 5 %}
       {% for address in customer.addresses %}
