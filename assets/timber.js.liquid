@@ -1,8 +1,10 @@
 // Helper functions
 function replaceUrlParam(url, paramName, paramValue) {
   var pattern = new RegExp('('+paramName+'=).*?(&|$)'),
-      newUrl = url.replace(pattern,'$1' + paramValue + '$2');
-  if ( newUrl == url ) {
+      newUrl = url;
+  if (url.search(pattern) >= 0) {
+    newUrl = url.replace(pattern,'$1' + paramValue + '$2');
+  } else {
     newUrl = newUrl + (newUrl.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
   }
   return newUrl;
