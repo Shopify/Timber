@@ -103,6 +103,12 @@
       "price_descending": "Preço, mais caros",
       "date_descending": "Data, mais recentes",
       "date_ascending": "Data, mais antigos"
+    },
+    "onboarding": {
+      "modal_title": "Esta página irá exibir todos os produtos da sua loja",
+      "no_products_html": "Ainda não há artigos, mas assim que começar a adicioná-los, eles vão surgir aqui, mesmo se não estiverem inseridos numa colecção.",
+      "add_product": "Adicionar Produto",
+      "sample_product": "Ver uma amostra de produto ›"
     }
   },
   "contact": {

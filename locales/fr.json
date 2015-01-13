@@ -103,6 +103,12 @@
       "price_descending": "Prix: élevé à faible",
       "date_descending": "Date: récent à ancien",
       "date_ascending": "Date: ancien à récent"
+    },
+    "onboarding": {
+      "modal_title": "Cette page affichera tous les produits de votre magasin",
+      "no_products_html": "Il n'y a aucun produit pour l'instant, mais dès que vous commencerez à les ajouter, ils s'afficheront ici, qu'ils soient dans une collection ou non.",
+      "add_product": "Ajouter un produit",
+      "sample_product": "Voir un exemple de produit ›"
     }
   },
   "contact": {
