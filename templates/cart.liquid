@@ -80,24 +80,22 @@
                   For more info on line item properties, visit:
                     - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
                 {% endcomment %}
-                {% if item.properties.size > 0 %}
-                  {% for p in item.properties %}
-                    {% unless p.last == blank %}
-                      {{ p.first }}:
+                {% for p in item.properties %}
+                  {% unless p.last == blank %}
+                    {{ p.first }}:
 
-                      {% comment %}
-                        Check if there was an uploaded file associated
-                      {% endcomment %}
-                      {% if p.last contains '/uploads/' %}
-                        <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
-                      {% else %}
-                        {{ p.last }}
-                      {% endif %}
+                    {% comment %}
+                      Check if there was an uploaded file associated
+                    {% endcomment %}
+                    {% if p.last contains '/uploads/' %}
+                      <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                    {% else %}
+                      {{ p.last }}
+                    {% endif %}
 
-                      <br>
-                    {% endunless %}
-                  {% endfor %}
-                {% endif %}
+                    <br>
+                  {% endunless %}
+                {% endfor %}
 
                 <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove" data-id="{{ item.id }}">
                   <small>{{ 'cart.general.remove' | t }}</small>
