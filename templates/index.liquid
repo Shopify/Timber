@@ -33,8 +33,7 @@
 
   {% else %}
     {% comment %}
-      For onboarding new users to your theme, we add some default products and onboarding tutorials to help
-      populate their store
+      For onboarding new users to your theme, we add some default products and onboarding tutorials to help populate their store
     {% endcomment %}
     {% unless emptyState %}
       {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
@@ -77,6 +76,10 @@
 
     {% endunless %}
   {% endfor %}
+
+  {% comment %}
+    For onboarding new users to your theme, we add some default collections and onboarding tutorials to help populate their store
+  {% endcomment %}
 
   {% if isEmpty %}
     {% unless emptyState %}
