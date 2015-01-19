@@ -80,8 +80,8 @@
                   For more info on line item properties, visit:
                     - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
                 {% endcomment %}
-                {% assign propertySize = item.properties | size %}
-                {% if propertySize > 0 %}
+                {% assign property_size = item.properties | size %}
+                {% if property_size > 0 %}
                   {% for p in item.properties %}
                     {% unless p.last == blank %}
                       {{ p.first }}:
