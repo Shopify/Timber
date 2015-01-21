@@ -107,8 +107,7 @@
     "onboarding": {
       "modal_title": "Esta página mostrará todos los productos de su tienda",
       "no_products_html": "Todavía no hay productos pero, una vez que comience a añadirlos, se mostrarán aquí sin importar si están en una colección.",
-      "add_product": "Agregar producto",
-      "sample_product": "Ver un producto de muestra ›"
+      "add_product": "Agregar producto"
     }
   },
   "contact": {
