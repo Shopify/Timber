@@ -12,7 +12,7 @@
       {% for i in (1..4) %}
         <div class="grid__item one-half large--one-quarter">
           <a href="/admin/products" class="grid__image">
-            {% capture imageUrl %}http://cdn.shopify.com/s/images/themes/product-{{ i }}.png{% endcapture %}
+            {% capture imageUrl %}//cdn.shopify.com/s/images/themes/product-{{ i }}.png{% endcapture %}
             {{ imageUrl | img_tag }}
           </a>
           <p class="h6"><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a></p>
