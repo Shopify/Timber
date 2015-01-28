@@ -807,8 +807,8 @@ var ajaxifyShopify = (function(module, $) {
         var prodImg = "//cdn.shopify.com/s/assets/admin/no-image-medium-cc9732cb976dd349a0df1d39816fbcc7.gif";
       }
 
-      var prodName = cartItem.title.replace(/(\-[^-]*)$/, ""),
-          prodVariation = cartItem.title.replace(/^[^\-]*/, "").replace(/-/, "");
+      var prodName = cartItem.product_title,
+          prodVariation = cartItem.variant_title;
 
       // Create item's data object and add to 'items' array
       item = {
