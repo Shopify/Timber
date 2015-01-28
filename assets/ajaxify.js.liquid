@@ -810,6 +810,10 @@ var ajaxifyShopify = (function(module, $) {
       var prodName = cartItem.product_title,
           prodVariation = cartItem.variant_title;
 
+      if (prodVariation == 'Default Title'){
+	      prodVariation = false;
+      }
+
       // Create item's data object and add to 'items' array
       item = {
         id: cartItem.variant_id,
