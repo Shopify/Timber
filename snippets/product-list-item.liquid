@@ -4,13 +4,7 @@
   This snippet is used to showcase each product during the loop,
   'for product in collection.products' in collection.liquid.
 
-  This example has each product on it's own line for all breakpoints.
-
 {% endcomment %}
-
-{% unless current_collection == blank %}
-  {% assign current_collection = collection %}
-{% endunless %}
 
 {% comment %}
   Check if the product is on sale and set a variable to be used below.
@@ -47,7 +41,7 @@
   {% endcomment %}
   <div class="grid large--display-table">
     <div class="grid__item large--one-fifth large--display-table-cell medium--one-third">
-      <a href="{{ product.url | within: current_collection }}">
+      <a href="{{ product.url | within: collection }}">
         <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="grid__image">
       </a>
     </div>

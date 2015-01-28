@@ -22,13 +22,6 @@
 {% endunless %}
 
 {% comment %}
-  Set the default within collection filter if not set
-{% endcomment %}
-{% unless current_collection == blank %}
-  {% assign current_collection = collection %}
-{% endunless %}
-
-{% comment %}
   Check if the product is on sale and set a variable to be used below.
 {% endcomment %}
 {% assign on_sale = false %}
