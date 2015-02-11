@@ -48,6 +48,13 @@
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
   {{ 'modernizr.min.js' | asset_url | script_tag }}
 
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+
 </head>
 
 {% comment %}
@@ -198,13 +205,6 @@
         });
       });
     </script>
-  {% endif %}
-
-  {% comment %}
-    If you store has customer accounts disabled, you can remove the following JS file
-  {% endcomment %}
-  {% if template contains 'customers' %}
-    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
   {% endif %}
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
