@@ -3,8 +3,7 @@
 
   Plugin Documentation - http://shopify.github.io/Timber/#ajax-cart
 
-  Ajaxify the add to cart experience and flip the button for inline confirmation,
-  show the cart in a modal, or a 3D drawer.
+  Ajaxify the add to cart experience by revealing it in a side drawer
 
   This file includes:
     - Basic Shopify Ajax API calls
@@ -254,10 +253,10 @@ var ajaxifyShopify = (function(module, $) {
   var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body, $html;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $modal, $cartContainer, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
+  var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $modal, $cartContainer, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
+  var updateCountPrice, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -266,13 +265,12 @@ var ajaxifyShopify = (function(module, $) {
 
     // Default settings
     settings = {
-      method: 'drawer', // Method options are drawer, modal, and flip. Default is drawer.
+      method: 'drawer', // Method options are drawer. Default is drawer.
       formSelector: 'form[action^="/cart/add"]',
       addToCartSelector: 'input[type="submit"]',
       cartCountSelector: null,
       cartCostSelector: null,
       btnClass: null,
-      wrapperClass: null,
       useCartTemplate: true,
       moneyFormat: '${{amount}}',
       disableAjaxCart: false,
@@ -295,10 +293,7 @@ var ajaxifyShopify = (function(module, $) {
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
     $btnClass          = settings.btnClass;
-    $wrapperClass      = settings.wrapperClass;
     $addToCart         = $formContainer.find(settings.addToCartSelector);
-    $flipContainer     = null;
-    $flipClose         = null;
     $cartCountSelector = $(settings.cartCountSelector);
     $cartCostSelector  = $(settings.cartCostSelector);
     $modal             = null;
@@ -328,10 +323,6 @@ var ajaxifyShopify = (function(module, $) {
     if (!settings.disableAjaxCart) {
       // Handle each case add to cart method
       switch (settings.method) {
-        case 'flip':
-          flipSetup();
-          break;
-
         case 'modal':
           modalSetup();
           break;
@@ -345,7 +336,6 @@ var ajaxifyShopify = (function(module, $) {
       $(document).keyup(function (evt) {
         if (evt.keyCode == 27) {
           switch (settings.method) {
-            case 'flip':
             case 'drawer':
               hideDrawer();
               break;
@@ -377,53 +367,6 @@ var ajaxifyShopify = (function(module, $) {
     if ($cartCostSelector) {
       $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
     }
-  };
-
-  flipSetup = function () {
-    // Build and append the drawer in the DOM
-    drawerSetup();
-
-    // Stop if there is no add to cart button
-    if (!$addToCart.length) {
-      return;
-    }
-
-    // Wrap the add to cart button in a div
-    $addToCart.addClass('flip__front').wrap('<div class="flip"></div>');
-
-    // Write a (hidden) Checkout button, a loader, and the extra view cart button
-    var checkoutBtn = $('<a href="/cart" class="flip__back" style="background-color: #C00; color: #fff;" class="flip__checkout">{{ 'cart.general.checkout' | t | json }} </a>').addClass($btnClass),
-        flipLoader = $('<span class="ajaxcart__flip-loader"></span>'),
-        flipExtra = $('<div class="flip__extra"><a href="#" class="flip__cart">{{ 'cart.general.view_cart' | t | json }} (<span></span>)</a></div>');
-
-    // Append checkout button and loader
-    checkoutBtn.insertAfter($addToCart);
-    flipLoader.insertAfter(checkoutBtn);
-
-    // Setup new selectors
-    $flipContainer = $('.flip');
-
-    if (!$cssTransforms3d) {
-      $flipContainer.addClass('no-transforms');
-    }
-
-    // Setup extra selectors once appended
-    flipExtra.insertAfter($flipContainer);
-    $flipCart = $('.flip__cart');
-
-    $flipCart.on('click', function(e) {
-      e.preventDefault();
-      showDrawer(true);
-    });
-
-    // Reset the button if a user changes a variation
-    $('input[type="checkbox"], input[type="radio"], select', $formContainer).on('click', function() {
-      revertFlipButton();
-    });
-  };
-
-  revertFlipButton = function () {
-    $flipContainer.removeClass('is-flipped');
   };
 
   modalSetup = function () {
@@ -522,9 +465,7 @@ var ajaxifyShopify = (function(module, $) {
     // Create drawer DOM elements with handlebars.js template
     var source   = $("#DrawerTemplate").html(),
         template = Handlebars.compile(source),
-        data = {
-          wrapperClass: $wrapperClass
-        };
+        data = {};
 
     // Append drawer (defaults to body)
     $prependDrawerTo.prepend(template(data));
@@ -546,12 +487,8 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   showDrawer = function (toggle) {
-    // If we're toggling with the flip method, use a special callback
-    if (settings.method == 'flip') {
-      Shopify.getCart(flipCartUpdateCallback);
-    }
     // opening the drawer for the first time
-    else if (!cartInit && toggle) {
+    if (!cartInit && toggle) {
       Shopify.getCart(cartUpdateCallback);
     }
     // simple toggle? just size it
@@ -601,7 +538,6 @@ var ajaxifyShopify = (function(module, $) {
           case 'modal':
             sizeModal();
             break;
-          case 'flip':
           case 'drawer':
             sizeDrawer();
             break;
@@ -621,38 +557,17 @@ var ajaxifyShopify = (function(module, $) {
       $('.qty-error').remove();
 
       Shopify.addItemFromForm(e.target, itemAddedCallback, itemErrorCallback);
-
-      // Set the flip button to a loading state
-      switch (settings.method) {
-        case 'flip':
-          $flipContainer.addClass('flip--is-loading');
-          break;
-      }
     });
   };
 
   itemAddedCallback = function (product) {
     $addToCart.removeClass('is-adding').addClass('is-added');
 
-    // Slight delay of flip to mimic a longer load
-    switch (settings.method) {
-      case 'flip':
-        setTimeout(function () {
-          $flipContainer.removeClass('flip--is-loading').addClass('is-flipped');
-        }, 600);
-        break;
-    }
     Shopify.getCart(cartUpdateCallback);
   };
 
   itemErrorCallback = function (XMLHttpRequest, textStatus) {
     var data = eval('(' + XMLHttpRequest.responseText + ')');
-
-    switch (settings.method) {
-      case 'flip':
-        $flipContainer.removeClass('flip--is-loading');
-        break;
-    }
 
     if (!!data.message) {
       if (data.status == 422) {
@@ -666,9 +581,6 @@ var ajaxifyShopify = (function(module, $) {
     updateCountPrice(cart);
 
     switch (settings.method) {
-      case 'flip':
-        $('.flip__cart span').html(cart.item_count);
-        break;
       case 'modal':
         buildCart(cart);
         break;
@@ -681,10 +593,6 @@ var ajaxifyShopify = (function(module, $) {
         }
         break;
     }
-  };
-
-  flipCartUpdateCallback = function (cart) {
-    buildCart(cart);
   };
 
   buildCart = function (cart) {
@@ -703,7 +611,6 @@ var ajaxifyShopify = (function(module, $) {
         case 'modal':
           sizeModal('resize');
           break;
-        case 'flip':
         case 'drawer':
           sizeDrawer();
 
@@ -786,7 +693,6 @@ var ajaxifyShopify = (function(module, $) {
       case 'modal':
         loadCartImages();
         break;
-      case 'flip':
       case 'drawer':
         if (cart.item_count > 0) {
           loadCartImages();
@@ -814,7 +720,6 @@ var ajaxifyShopify = (function(module, $) {
         case 'modal':
           loadCartImages();
           break;
-        case 'flip':
         case 'drawer':
           if (cart.item_count > 0) {
             loadCartImages();
@@ -953,7 +858,6 @@ var ajaxifyShopify = (function(module, $) {
       switch (settings.method) {
         case 'modal':
           break;
-        case 'flip':
         case 'drawer':
           hideDrawer();
           break;

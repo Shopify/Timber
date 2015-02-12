@@ -37,6 +37,7 @@ timber.init = function () {
   timber.cacheSelectors();
   timber.accessibleNav();
   timber.drawersInit();
+  timber.ajaxCart();
   timber.productImageSwitch();
   timber.responsiveVideos();
   timber.collectionViews();
@@ -125,6 +126,17 @@ timber.accessibleNav = function () {
 timber.drawersInit = function () {
   new timber.Drawers('NavDrawer', 'left');
   new timber.Drawers('CartDrawer', 'right');
+};
+
+timber.ajaxCart = function() {
+  {% unless settings.ajax_cart_enable %}
+    return;
+  {% endunless %}
+
+  // Initialize cart toggle
+  $('.js-drawer-open-right').on('click', function() {
+    console.log('load cart');
+  })
 };
 
 timber.getHash = function () {

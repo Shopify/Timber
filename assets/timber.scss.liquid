@@ -1777,19 +1777,13 @@ label.error {
 ==============================================================================*/
 .nav-bar {
   background-color: $colorNav;
-
-  ul {
-    margin: 0;
-  }
-
-  li {
-    margin: 0;
-  }
 }
 
 .site-nav {
   font-size: em(16px);
   cursor: default;
+  margin: 0;
+  margin-left: -$gutter / 2;
 
   li {
     margin: 0;
@@ -1799,10 +1793,6 @@ label.error {
   > li {
     position: relative;
     display: inline-block;
-
-    &:first-child a {
-      padding-left: 0;
-    }
   }
 
   @include at-query ($max, $medium) {
@@ -1868,6 +1858,13 @@ label.error {
 /*============================================================================
   #Drawers
 ==============================================================================*/
+@include at-query ($max, $medium) {
+  .js-drawer-open {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
 .drawer {
   display: none;
   position: fixed;
@@ -1875,6 +1872,7 @@ label.error {
   overflow-x: hidden;
   top: 0;
   bottom: 0;
+  max-width: 100%;
   z-index: 1000;
   background-color: $colorNav;
   @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
