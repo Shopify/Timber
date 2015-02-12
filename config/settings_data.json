@@ -3,7 +3,6 @@
   "presets": {
     "Default": {
       "ajax_cart_enable": true,
-      "ajax_cart_method": "Drawer",
       "cart_notes_enable": true,
       "color_body_bg": "#fff",
       "color_body_text": "#333333",

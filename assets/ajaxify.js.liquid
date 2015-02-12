@@ -265,7 +265,6 @@ var ajaxCart = (function(module, $) {
 
     // Default settings
     settings = {
-      method: 'drawer', // Method options are drawer. Default is drawer.
       formSelector: 'form[action^="/cart/add"]',
       cartContainer: '#CartContainer',
       addToCartSelector: 'input[type="submit"]',
@@ -281,14 +280,6 @@ var ajaxCart = (function(module, $) {
 
     // Override defaults with arguments
     $.extend(settings, options);
-
-    // If method parameter is set, override the defined method (used for demos)
-    if (urlParams('method')) {
-      settings.method = urlParams('method');
-    }
-
-    // Make sure method is lower case
-    settings.method = settings.method.toLowerCase();
 
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
@@ -737,9 +728,6 @@ var ajaxCart = (function(module, $) {
   };
 
   toggleCallback = function (data) {
-    // General data to send
-    data.method = settings.method;
-
     // Run the callback if it's a function
     if (typeof settings.onToggleCallback == 'function') {
       settings.onToggleCallback.call(this, data);
