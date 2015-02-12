@@ -80,19 +80,14 @@
         <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
       </button>
     </div>
+    <div id="CartContainer"></div>
   </div>
   <div id="PageContainer" class="is-moved-by-drawer">
     <header class="site-header" role="banner">
       <div class="wrapper">
 
         <div class="grid--full">
-          <div class="grid__item one-sixth large--hide medium-down--show">
-            <button type="button" class="js-drawer-open-left icon-fallback-text" aria-controls="NavDrawer" aria-expanded="false">
-              <span class="icon icon-hamburger" aria-hidden="true"></span>
-              <span class="fallback-text">Mobile Navigation</span>
-            </button>
-          </div>
-          <div class="grid__item large--one-half medium-down--two-thirds">
+          <div class="grid__item large--one-half">
             {% comment %}
               Use the uploaded logo from theme settings if enabled.
               Site name gets precedence with H1 tag on homepage, div on other pages.
@@ -115,7 +110,7 @@
               </div>
             {% endif %}
           </div>
-          <div class="grid__item large--one-half large--text-right medium-down--one-sixth medium-down--text-right">
+          <div class="grid__item large--one-half text-center large--text-right">
             {% comment %}
               Show number of items in the cart and total cost in the /cart link
 
@@ -166,10 +161,18 @@
     <nav class="nav-bar" role="navigation">
       <div class="wrapper">
         <div class="grid">
-          <div class="grid__item large--two-thirds">
-            {% include 'site-nav' %}
+          <div class="grid__item one-third large--two-thirds">
+            <div class="medium-down--hide">
+              {% include 'site-nav' %}
+            </div>
+            <div class="grid__item large--hide medium-down--show">
+              <button type="button" class="js-drawer-open-left icon-fallback-text" aria-controls="NavDrawer" aria-expanded="false">
+                <span class="icon icon-hamburger" aria-hidden="true"></span>
+                <span class="fallback-text">Mobile Navigation</span>
+              </button>
+            </div>
           </div>
-          <div class="grid__item large--one-third">
+          <div class="grid__item two-thirds large--one-third">
             <div class="nav-search">
               {% include 'search-bar' %}
             </div>
@@ -275,13 +278,12 @@
         ajaxCart.init({
           method: '{{ settings.ajax_cart_method }}',
           formSelector: '#AddToCartForm',
+          cartContainer: '#CartContainer',
           addToCartSelector: '#AddToCart',
           cartCountSelector: '#CartCount',
           cartCostSelector: '#CartCost',
-          useCartTemplate: true,
           btnClass: 'btn',
-          moneyFormat: {{ shop.money_format | json }},
-          prependDrawerTo: 'body'
+          moneyFormat: {{ shop.money_format | json }}
         });
       });
     </script>

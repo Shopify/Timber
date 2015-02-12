@@ -247,16 +247,16 @@ var ajaxCart = (function(module, $) {
   'use strict';
 
   // Public functions
-  var init, loadCart, refreshCart;
+  var init, loadCart;
 
   // Private general variables
-  var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body, $html;
+  var settings, cartInit, $nojQueryLoad, $body, $html;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer, $prependDrawerTo, $callbackData={};
+  var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer, $callbackData={};
 
   // Private functions
-  var updateCountPrice, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
+  var updateCountPrice, showDrawer, hideDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -267,6 +267,7 @@ var ajaxCart = (function(module, $) {
     settings = {
       method: 'drawer', // Method options are drawer. Default is drawer.
       formSelector: 'form[action^="/cart/add"]',
+      cartContainer: '#CartContainer',
       addToCartSelector: 'input[type="submit"]',
       cartCountSelector: null,
       cartCostSelector: null,
@@ -275,7 +276,6 @@ var ajaxCart = (function(module, $) {
       moneyFormat: '${{amount}}',
       disableAjaxCart: false,
       enableQtySelectors: true,
-      prependDrawerTo: 'body',
       onToggleCallback: null
     };
 
@@ -292,18 +292,13 @@ var ajaxCart = (function(module, $) {
 
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
+    $cartContainer     = $(settings.cartContainer);
     $btnClass          = settings.btnClass;
     $addToCart         = $formContainer.find(settings.addToCartSelector);
     $cartCountSelector = $(settings.cartCountSelector);
     $cartCostSelector  = $(settings.cartCostSelector);
-    $prependDrawerTo   = $(settings.prependDrawerTo);
-
-    // CSS Checks
-    $cssTransforms   = Modernizr.csstransforms;
-    $cssTransforms3d = Modernizr.csstransforms3d;
 
     // General Selectors
-    $w    = $(window);
     $body = $('body');
     $html = $('html');
 
@@ -320,7 +315,6 @@ var ajaxCart = (function(module, $) {
 
     // Enable the ajax cart
     if (!settings.disableAjaxCart) {
-      drawerSetup();
 
       // Escape key closes cart
       $(document).keyup(function (evt) {
@@ -341,10 +335,7 @@ var ajaxCart = (function(module, $) {
 
   loadCart = function () {
     console.log('ajax load cart');
-  };
-
-  refreshCart = function () {
-    console.log('ajax refresh cart');
+    Shopify.getCart(cartUpdateCallback);
   };
 
   updateCountPrice = function (cart) {
@@ -360,39 +351,10 @@ var ajaxCart = (function(module, $) {
     }
   };
 
-  drawerSetup = function () {
-    // Create drawer DOM elements with handlebars.js template
-    var source   = $("#DrawerTemplate").html(),
-        template = Handlebars.compile(source),
-        data = {};
-
-    // Append drawer (defaults to body)
-    $prependDrawerTo.prepend(template(data));
-
-    // Drawer selectors
-    $drawerContainer = $('#AjaxifyDrawer');
-    $cartContainer   = $('#AjaxifyCart');
-
-    // Size drawer on resize if drawer is visible
-    var timeout;
-    $(window).resize(function() {
-      clearTimeout(timeout);
-      timeout = setTimeout(function(){
-        if ($drawerContainer.hasClass('is-visible')) {
-          sizeDrawer();
-        }
-      }, 500);
-    });
-  };
-
   showDrawer = function (toggle) {
     // opening the drawer for the first time
     if (!cartInit && toggle) {
       Shopify.getCart(cartUpdateCallback);
-    }
-    // simple toggle? just size it
-    else if (cartInit && toggle) {
-      sizeDrawer();
     }
 
     // Show the drawer
@@ -410,31 +372,6 @@ var ajaxCart = (function(module, $) {
     scrollTop();
     toggleCallback({
       'is_visible': false
-    });
-  };
-
-  sizeDrawer = function ($empty) {
-    if ($empty) {
-      $drawerContainer.css('height', '0px');
-    } else {
-      $drawerHeight = $cartContainer.outerHeight();
-      $('.cart__row img').css('width', 'auto'); // fix Chrome image size bug
-      $drawerContainer.css('height',  $drawerHeight + 'px');
-    }
-  };
-
-  loadCartImages = function () {
-    // Size cart once all images are loaded
-    var cartImages = $('img', $cartContainer),
-        count = cartImages.length,
-        index = 0;
-
-    cartImages.on('load', function() {
-      index++;
-
-      if (index == count) {
-        sizeDrawer();
-      }
     });
   };
 
@@ -471,13 +408,7 @@ var ajaxCart = (function(module, $) {
   cartUpdateCallback = function (cart) {
     // Update quantity and price
     updateCountPrice(cart);
-
     buildCart(cart);
-    if (!$drawerContainer.hasClass('is-visible')) {
-      showDrawer();
-    } else {
-      scrollTop();
-    }
   };
 
   buildCart = function (cart) {
@@ -491,13 +422,6 @@ var ajaxCart = (function(module, $) {
       $cartContainer
         .append('<h2>' + {{ 'cart.general.empty' | t | json }} + '</h2>')
         .append('<p>' + {{ 'cart.general.continue_browsing_html' | t | json }} + '</p>');
-
-      sizeDrawer();
-
-      if (!$drawerContainer.hasClass('is-visible') && cartInit) {
-        sizeDrawer(true);
-      }
-
       return;
     }
 
@@ -567,13 +491,6 @@ var ajaxCart = (function(module, $) {
     // With new elements we need to relink the adjust cart functions
     adjustCart();
 
-    // Size drawer
-    if (cart.item_count > 0) {
-      loadCartImages();
-    } else {
-      sizeDrawer(true);
-    }
-
     // Mark the cart as built
     cartInit = true;
   };
@@ -584,13 +501,6 @@ var ajaxCart = (function(module, $) {
 
       // With new elements we need to relink the adjust cart functions
       adjustCart();
-
-      // Size drawer at this point
-      if (cart.item_count > 0) {
-        loadCartImages();
-      } else {
-        sizeDrawer(true);
-      }
 
       // Mark the cart as built
       cartInit = true;
@@ -838,8 +748,7 @@ var ajaxCart = (function(module, $) {
 
   module = {
     init: init,
-    load: loadCart,
-    refresh: refreshCart
+    load: loadCart
   };
 
   return module;

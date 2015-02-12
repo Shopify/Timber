@@ -1875,7 +1875,7 @@ label.error {
   max-width: 100%;
   z-index: 1000;
   background-color: $colorNav;
-  @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
+  @include transition('all 0.4s cubic-bezier(0.46, 0.01 , 0.32, 1)');
 }
 
 .drawer--left {
@@ -1913,17 +1913,17 @@ label.error {
 .is-moved-by-drawer {
   .js-drawer-open-left & {
     @include transform(translateX($drawerNavWidth));
-    @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
+    @include transition('all 0.4s cubic-bezier(0.46, 0.01 , 0.32, 1)');
   }
 
   .js-drawer-open-right & {
     @include transform(translateX(-$drawerCartWidth));
-    @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
+    @include transition('all 0.4s cubic-bezier(0.46, 0.01 , 0.32, 1)');
   }
 }
 
 .is-moved-by-drawer.is-transitioning {
-  @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
+  @include transition('all 0.4s cubic-bezier(0.46, 0.01 , 0.32, 1)');
 }
 
 .drawer__close button {
