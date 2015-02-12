@@ -123,12 +123,10 @@
               <span class="icon-fallback-text">
                 <span class="icon icon-cart" aria-hidden="true"></span>
               </span>
-              <span class="medium-down--hide">
-                {{ 'layout.cart.title' | t }}
-                (<span id="CartCount">{{ cart.item_count }}</span>
-                {{ 'layout.cart.items_count' | t: count: cart.item_count }}
-                <span id="CartCost">{{ cart.total_price | money }}</span>)
-              </span>
+              {{ 'layout.cart.title' | t }}
+              (<span id="CartCount">{{ cart.item_count }}</span>
+              {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+              <span id="CartCost">{{ cart.total_price | money }}</span>)
             </a>
 
             {% comment %}
