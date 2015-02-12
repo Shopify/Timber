@@ -36,6 +36,7 @@
   #Pagination
   #Site Header
   #Site Nav and Dropdowns
+  #Drawers
   #Site Footer
   #Product and Collection Grids
   #Collection Filters
@@ -72,6 +73,10 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 /*============================================================================
   #General Variables
 ==============================================================================*/
+
+// Drawer sizes
+$drawerNavWidth: 300px;
+$drawerCartWidth: 450px;
 
 // Timber Colors
 $colorPrimary: {{ settings.color_primary }};
@@ -173,6 +178,10 @@ $socialIconFontStack: 'icons';
 
 @mixin transition($transition: 0.1s all) {
   @include prefix('transition', #{$transition});
+}
+
+@mixin transform($transform: 0.1s all) {
+  @include prefix('transform', #{$transform});
 }
 
 @mixin gradient($from, $to, $fallback) {
@@ -689,6 +698,11 @@ body {
 /*============================================================================
   #Helper Classes
 ==============================================================================*/
+.is-transitioning {
+  display: block !important;
+  visibility: visible !important;
+}
+
 .display-table {
   display: table;
   table-layout: fixed;
@@ -1222,12 +1236,30 @@ form {
   margin-bottom: 0;
 }
 
+
 /*================ Prevent zoom on touch devices in active inputs ================*/
 @include at-query($max, $medium) {
   input,
   textarea {
     font-size: 16px;
   }
+}
+
+input,
+textarea,
+button,
+select {
+  font-size: 1em;
+  padding: 0;
+  margin: 0;
+  @include prefix('user-select', 'text');
+}
+
+button {
+  background: none;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
 }
 
 button,
@@ -1833,6 +1865,75 @@ label.error {
   }
 }
 
+/*============================================================================
+  #Drawers
+==============================================================================*/
+.drawer {
+  display: none;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: $colorNav;
+  @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
+}
+
+.drawer--left {
+  width: $drawerNavWidth;
+  left: -$drawerNavWidth;
+
+  .js-drawer-open-left & {
+    display: block;
+    @include transform(translateX($drawerNavWidth));
+
+    .lt-ie9 & {
+      left: 0;
+    }
+  }
+}
+
+.drawer--right {
+  width: $drawerCartWidth;
+  right: -$drawerCartWidth;
+
+  .js-drawer-open-right & {
+    display: block;
+    @include transform(translateX(-$drawerCartWidth));
+
+    .lt-ie9 & {
+      right: 0;
+    }
+  }
+}
+
+#PageContainer {
+  overflow: hidden;
+}
+
+.is-moved-by-drawer {
+  .js-drawer-open-left & {
+    @include transform(translateX($drawerNavWidth));
+    @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
+  }
+
+  .js-drawer-open-right & {
+    @include transform(translateX(-$drawerCartWidth));
+    @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
+  }
+}
+
+.is-moved-by-drawer.is-transitioning {
+  @include transition('all 0.4s cubic-bezier(0.66, 0 , 0.41, 1)');
+}
+
+.drawer__close button {
+  height: 60px;
+  width: 100%;
+  padding: 0 $gutter;
+  text-align: left;
+}
 
 /*============================================================================
   #Site Footer

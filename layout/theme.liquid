@@ -62,157 +62,194 @@
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  <header class="site-header" role="banner">
-    <div class="wrapper">
-
-      <div class="grid--full">
-        <div class="grid__item large--one-half">
-          {% comment %}
-            Use the uploaded logo from theme settings if enabled.
-            Site name gets precedence with H1 tag on homepage, div on other pages.
-          {% endcomment %}
-          {% if template == 'index' %}
-            <h1 class="site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-          {% else %}
-            <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-          {% endif %}
-            {% if settings.logo_use_image %}
-              <a href="/" itemprop="url">
-                <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
-              </a>
-            {% else %}
-              <a href="/" itemprop="url">{{ shop.name }}</a>
-            {% endif %}
-          {% if template == 'index' %}
-            </h1>
-          {% else %}
-            </div>
-          {% endif %}
+  <div id="SiteContainer">
+    <div id="NavDrawer" class="drawer drawer--left">
+      <div class="drawer__inner">
+        <div class="drawer__close js-drawer-close">
+          <button type="button" class="icon-fallback-text">
+            <span class="icon icon-x" aria-hidden="true"></span>
+            <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+          </button>
         </div>
-        <div class="grid__item large--one-half text-center large--text-right">
-          {% comment %}
-            Show number of items in the cart and total cost in the /cart link
+        {% include 'site-nav' %}
+      </div>
+    </div>
+    <div id="CartDrawer" class="drawer drawer--right">
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="icon icon-x" aria-hidden="true"></span>
+          <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+        </button>
+      </div>
+    </div>
+    <div id="PageContainer" class="is-moved-by-drawer">
+      <header class="site-header" role="banner">
+        <div class="wrapper">
 
-            Ajaxify Cart Notes:
-              - #cartToggle toggles cart visibility (drawer or modal)
-              - #cartCount updates the total number of items in the cart
-              - #cartCost updates the total cost of the cart
-              - Documentation:  http://shopify.com/timber#ajax-cart
-          {% endcomment %}
-          <a href="/cart" id="CartToggle">
-            <span class="icon-fallback-text">
-              <span class="icon icon-cart" aria-hidden="true"></span>
-            </span>
-            {{ 'layout.cart.title' | t }}
-            (<span id="CartCount">{{ cart.item_count }}</span>
-            {{ 'layout.cart.items_count' | t: count: cart.item_count }}
-            <span id="CartCost">{{ cart.total_price | money }}</span>)
-          </a>
-
-          {% comment %}
-            If customer accounts are enabled, provide login and create account links
-          {% endcomment %}
-          {% if shop.customer_accounts_enabled %}
-          <p class="site-header__text-links">
-            {% if customer %}
-              {% if customer.first_name != blank %}
-                {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+          <div class="grid--full">
+            <div class="grid__item large--one-half">
+              {% comment %}
+                Use the uploaded logo from theme settings if enabled.
+                Site name gets precedence with H1 tag on homepage, div on other pages.
+              {% endcomment %}
+              {% if template == 'index' %}
+                <h1 class="site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
               {% else %}
-                <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
               {% endif %}
-              | {{ 'layout.customer.log_out' | t | customer_logout_link }}
-            {% else %}
-              {{ 'layout.customer.log_in' | t | customer_login_link }}
-              {% if shop.customer_accounts_optional %}
-              | {{ 'layout.customer.create_account' | t | customer_register_link }}
+                {% if settings.logo_use_image %}
+                  <a href="/" itemprop="url">
+                    <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+                  </a>
+                {% else %}
+                  <a href="/" itemprop="url">{{ shop.name }}</a>
+                {% endif %}
+              {% if template == 'index' %}
+                </h1>
+              {% else %}
+                </div>
               {% endif %}
+            </div>
+            <div class="grid__item large--one-half text-center large--text-right">
+              {% comment %}
+                Show number of items in the cart and total cost in the /cart link
+
+                Ajaxify Cart Notes:
+                  - #cartToggle toggles cart visibility (drawer or modal)
+                  - #cartCount updates the total number of items in the cart
+                  - #cartCost updates the total cost of the cart
+                  - Documentation:  http://shopify.com/timber#ajax-cart
+              {% endcomment %}
+              <a href="/cart" id="CartToggle">
+                <span class="icon-fallback-text">
+                  <span class="icon icon-cart" aria-hidden="true"></span>
+                </span>
+                {{ 'layout.cart.title' | t }}
+                (<span id="CartCount">{{ cart.item_count }}</span>
+                {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+                <span id="CartCost">{{ cart.total_price | money }}</span>)
+              </a>
+
+              <a href="/cart" class="js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+                <span class="icon-fallback-text">
+                  <span class="icon icon-cart" aria-hidden="true"></span>
+                </span>
+                {{ 'layout.cart.title' | t }}
+                (<span id="CartCount">{{ cart.item_count }}</span>
+                {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+                <span id="CartCost">{{ cart.total_price | money }}</span>)
+              </a>
+
+              {% comment %}
+                If customer accounts are enabled, provide login and create account links
+              {% endcomment %}
+              {% if shop.customer_accounts_enabled %}
+              <p class="site-header__text-links">
+                {% if customer %}
+                  {% if customer.first_name != blank %}
+                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+                  {% else %}
+                    <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                  {% endif %}
+                  | {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                {% else %}
+                  {{ 'layout.customer.log_in' | t | customer_login_link }}
+                  {% if shop.customer_accounts_optional %}
+                  | {{ 'layout.customer.create_account' | t | customer_register_link }}
+                  {% endif %}
+                {% endif %}
+              </p>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      <nav class="nav-bar" role="navigation">
+        <div class="wrapper">
+          <div class="grid">
+            <div class="grid__item large--two-thirds">
+              <button type="button" class="js-drawer-open-left icon-fallback-text" aria-controls="NavDrawer" aria-expanded="false">
+                <span class="icon icon-hamburger" aria-hidden="true"></span>
+                <span class="fallback-text">Mobile Navigation</span>
+              </button>
+              {% include 'site-nav' %}
+            </div>
+            <div class="grid__item large--one-third">
+              <div class="nav-search">
+                {% include 'search-bar' %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main class="wrapper main-content" role="main">
+
+        {{ content_for_layout }}
+
+      </main>
+
+      <footer class="site-footer small--text-center" role="contentinfo">
+        <div class="wrapper">
+          <div class="grid">
+            {% if settings.footer_social_enable %}
+              <div class="grid__item large--one-quarter medium--one-half">
+                <h3>{{ 'layout.footer.social_title' | t }}</h3>
+                  <ul class="inline-list social-icons">
+                    {% if settings.social_twitter_link != blank %}
+                      <li>
+                        <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
+                          <span class="icon icon-twitter" aria-hidden="true"></span>
+                          <span class="fallback-text">Twitter</span>
+                        </a>
+                      </li>
+                    {% endif %}
+                    {% if settings.social_facebook_link != blank %}
+                      <li>
+                        <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
+                          <span class="icon icon-facebook" aria-hidden="true"></span>
+                          <span class="fallback-text">Facebook</span>
+                        </a>
+                      </li>
+                    {% endif %}
+                  </ul>
+              </div>
             {% endif %}
-          </p>
-          {% endif %}
-        </div>
-      </div>
-
-    </div>
-  </header>
-
-  <nav class="nav-bar" role="navigation">
-    <div class="wrapper">
-      <div class="grid">
-        <div class="grid__item large--two-thirds">
-          {% include 'site-nav' %}
-        </div>
-        <div class="grid__item large--one-third">
-          <div class="nav-search">
-            {% include 'search-bar' %}
+            {% if settings.footer_newsletter_enable %}
+              <div class="grid__item large--one-quarter medium--one-half">
+                <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
+                {% include 'newsletter-form' %}
+              </div>
+            {% endif %}
+            <div class="grid__item text-center">
+              <hr>
+              {% comment %}
+                Loop through available payment methods and show their icons.
+              {% endcomment %}
+              {% unless shop.enabled_payment_types == empty %}
+                <h4 class="text-center">{{ 'layout.footer.accepted_payments' | t }}</h4>
+                <ul class="inline-list payment-icons">
+                  {% for type in shop.enabled_payment_types %}
+                    <li>
+                      <span class="icon-fallback-text">
+                        <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                        <span class="fallback-text">{{type | replace: '_',' '}}</span>
+                      </span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endunless %}
+              <a href="http://shopify.com/timber">Timber Theme Framework</a> by <a href="http://www.shopify.com?ref=Timber" title="Shopify.com">Shopify</a><br>
+              <small>{{ powered_by_link }}</small>
+            </div>
           </div>
         </div>
-      </div>
+      </footer>
     </div>
-  </nav>
-
-  <main class="wrapper main-content" role="main">
-
-    {{ content_for_layout }}
-
-  </main>
-
-  <footer class="site-footer small--text-center" role="contentinfo">
-    <div class="wrapper">
-      <div class="grid">
-        {% if settings.footer_social_enable %}
-          <div class="grid__item large--one-quarter medium--one-half">
-            <h3>{{ 'layout.footer.social_title' | t }}</h3>
-              <ul class="inline-list social-icons">
-                {% if settings.social_twitter_link != blank %}
-                  <li>
-                    <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
-                      <span class="icon icon-twitter" aria-hidden="true"></span>
-                      <span class="fallback-text">Twitter</span>
-                    </a>
-                  </li>
-                {% endif %}
-                {% if settings.social_facebook_link != blank %}
-                  <li>
-                    <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
-                      <span class="icon icon-facebook" aria-hidden="true"></span>
-                      <span class="fallback-text">Facebook</span>
-                    </a>
-                  </li>
-                {% endif %}
-              </ul>
-          </div>
-        {% endif %}
-        {% if settings.footer_newsletter_enable %}
-          <div class="grid__item large--one-quarter medium--one-half">
-            <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
-            {% include 'newsletter-form' %}
-          </div>
-        {% endif %}
-        <div class="grid__item text-center">
-          <hr>
-          {% comment %}
-            Loop through available payment methods and show their icons.
-          {% endcomment %}
-          {% unless shop.enabled_payment_types == empty %}
-            <h4 class="text-center">{{ 'layout.footer.accepted_payments' | t }}</h4>
-            <ul class="inline-list payment-icons">
-              {% for type in shop.enabled_payment_types %}
-                <li>
-                  <span class="icon-fallback-text">
-                    <span class="icon icon-{{type}}" aria-hidden="true"></span>
-                    <span class="fallback-text">{{type | replace: '_',' '}}</span>
-                  </span>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endunless %}
-          <a href="http://shopify.com/timber">Timber Theme Framework</a> by <a href="http://www.shopify.com?ref=Timber" title="Shopify.com">Shopify</a><br>
-          <small>{{ powered_by_link }}</small>
-        </div>
-      </div>
-    </div>
-  </footer>
+  </div>
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'timber.js' | asset_url | script_tag }}

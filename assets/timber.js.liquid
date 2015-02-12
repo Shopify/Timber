@@ -1,14 +1,8 @@
-// Helper functions
-function replaceUrlParam(url, paramName, paramValue) {
-  var pattern = new RegExp('('+paramName+'=).*?(&|$)'),
-      newUrl = url;
-  if (url.search(pattern) >= 0) {
-    newUrl = url.replace(pattern,'$1' + paramValue + '$2');
-  } else {
-    newUrl = newUrl + (newUrl.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
-  }
-  return newUrl;
-}
+/* Jonathan Snook - MIT License - https://github.com/snookca/prepareTransition */
+(function(a){a.fn.prepareTransition=function(){return this.each(function(){var b=a(this);b.one("TransitionEnd webkitTransitionEnd transitionend oTransitionEnd",function(){b.removeClass("is-transitioning")});var c=["transition-duration","-moz-transition-duration","-webkit-transition-duration","-o-transition-duration"];var d=0;a.each(c,function(a,c){d=parseFloat(b.css(c))||d});if(d!=0){b.addClass("is-transitioning");b[0].offsetWidth}})}})(jQuery);
+
+/* replaceUrlParam - http://stackoverflow.com/questions/7171099/how-to-replace-url-parameter-with-javascript-jquery */
+function replaceUrlParam(e,r,a){var n=new RegExp("("+r+"=).*?(&|$)"),c=e;return c=e.search(n)>=0?e.replace(n,"$1"+a+"$2"):c+(c.indexOf("?")>0?"&":"?")+r+"="+a};
 
 // Timber functions
 window.timber = window.timber || {};
@@ -35,13 +29,14 @@ timber.cacheSelectors = function () {
     $recoverPasswordForm     : $('#RecoverPasswordForm'),
     $customerLoginForm       : $('#CustomerLoginForm'),
     $passwordResetSuccess    : $('#ResetSuccess')
-  }
+  };
 };
 
 timber.init = function () {
   FastClick.attach(document.body);
   timber.cacheSelectors();
   timber.accessibleNav();
+  timber.drawersInit();
   timber.productImageSwitch();
   timber.responsiveVideos();
   timber.collectionViews();
@@ -125,6 +120,11 @@ timber.accessibleNav = function () {
   function removeFocus ($el) {
     $el.removeClass(focusClass);
   }
+};
+
+timber.drawersInit = function () {
+  new timber.Drawers('NavDrawer', 'left');
+  new timber.Drawers('CartDrawer', 'right');
 };
 
 timber.getHash = function () {
@@ -263,6 +263,99 @@ timber.loginForms = function() {
 timber.resetPasswordSuccess = function() {
   timber.cache.$passwordResetSuccess.show();
 };
+
+// Timber Reusable Modules
+timber.Drawers = (function () {
+  var Drawer = function (id, position, options) {
+    var defaults = {
+      close: '.js-drawer-close',
+      open: '.js-drawer-open-' + position,
+      openClass: 'js-drawer-open',
+      dirOpenClass: 'js-drawer-open-' + position
+    };
+
+    this.$nodes = {
+      parent: $('body, html'),
+      page: $('#PageContainer'),
+      moved: $('.is-moved-by-drawer')
+    };
+
+    this.config = $.extend(defaults, options);
+    this.position = position;
+
+    this.$drawer = $('#' + id);
+
+    if (!this.$drawer.length) {
+      return false;
+    }
+
+    this.drawerIsOpen = false;
+    this.init();
+  };
+
+  Drawer.prototype.init = function () {
+    $(this.config.open).on('click', $.proxy(this.open, this));
+    this.$drawer.find(this.config.close).on('click', $.proxy(this.close, this));
+  };
+
+  Drawer.prototype.open = function (evt) {
+    evt.preventDefault();
+    // Without this, the drawer opens, the click event bubbles up to $nodes.page
+    // which closes the drawer.
+    if (evt && evt.stopPropagation) {
+      evt.stopPropagation();
+      // save the source of the click, we'll focus to this on close
+      this.$activeSource = $(evt.currentTarget);
+    }
+
+    if (this.drawerIsOpen) {
+      return this.close();
+    }
+
+    // Add is-transitioning class to moved elements on open so drawer can have
+    // transition for close animation
+    this.$nodes.moved.addClass('is-transitioning');
+    this.$drawer.prepareTransition();
+
+    this.$nodes.parent.addClass(this.config.openClass + ' ' + this.config.dirOpenClass);
+    this.drawerIsOpen = true;
+
+    if (this.$activeSource && this.$activeSource.attr('aria-expanded')) {
+      this.$activeSource.attr('aria-expanded', 'true');
+    }
+
+    // Lock scrolling on mobile
+    this.$nodes.page.on('touchmove.drawer', function () {
+      return false;
+    });
+
+    this.$nodes.page.on('click.drawer', $.proxy(function () {
+      this.close();
+      return false;
+    }, this));
+  };
+
+  Drawer.prototype.close = function () {
+    if (!this.drawerIsOpen) { // don't close a closed drawer
+      return;
+    }
+
+    // deselect any focused form elements
+    $(document.activeElement).trigger('blur');
+
+    // Ensure closing transition is applied to moved elements, like the nav
+    this.$nodes.moved.prepareTransition({ disableExisting: true });
+    this.$drawer.prepareTransition({ disableExisting: true });
+
+    this.$nodes.parent.removeClass(this.config.dirOpenClass + ' ' + this.config.openClass);
+
+    this.drawerIsOpen = false;
+
+    this.$nodes.page.off('.drawer');
+  };
+
+  return Drawer;
+})();
 
 // Initialize Timber's JS on docready
 $(timber.init);
