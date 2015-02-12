@@ -37,7 +37,6 @@ timber.init = function () {
   timber.cacheSelectors();
   timber.accessibleNav();
   timber.drawersInit();
-  timber.ajaxCart();
   timber.productImageSwitch();
   timber.responsiveVideos();
   timber.collectionViews();
@@ -125,18 +124,9 @@ timber.accessibleNav = function () {
 
 timber.drawersInit = function () {
   new timber.Drawers('NavDrawer', 'left');
-  new timber.Drawers('CartDrawer', 'right');
-};
-
-timber.ajaxCart = function() {
-  {% unless settings.ajax_cart_enable %}
-    return;
-  {% endunless %}
-
-  // Initialize cart toggle
-  $('.js-drawer-open-right').on('click', function() {
-    console.log('load cart');
-  })
+  new timber.Drawers('CartDrawer', 'right', {
+    'onDrawerOpen': ajaxCart.load
+  });
 };
 
 timber.getHash = function () {
@@ -276,7 +266,7 @@ timber.resetPasswordSuccess = function() {
   timber.cache.$passwordResetSuccess.show();
 };
 
-// Timber Reusable Modules
+// Reusable Modules
 timber.Drawers = (function () {
   var Drawer = function (id, position, options) {
     var defaults = {
@@ -331,6 +321,11 @@ timber.Drawers = (function () {
 
     this.$nodes.parent.addClass(this.config.openClass + ' ' + this.config.dirOpenClass);
     this.drawerIsOpen = true;
+
+    // Run function when draw opens if set
+    if (this.config.onDrawerOpen && typeof(this.config.onDrawerOpen) == 'function') {
+      this.config.onDrawerOpen();
+    }
 
     if (this.$activeSource && this.$activeSource.attr('aria-expanded')) {
       this.$activeSource.attr('aria-expanded', 'true');

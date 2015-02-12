@@ -242,21 +242,21 @@ Shopify.changeItem = function(variant_id, quantity, callback) {
 /*============================================================================
   Ajaxify Shopify Add To Cart
 ==============================================================================*/
-var ajaxifyShopify = (function(module, $) {
+var ajaxCart = (function(module, $) {
 
   'use strict';
 
   // Public functions
-  var init;
+  var init, loadCart, refreshCart;
 
   // Private general variables
   var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body, $html;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $modal, $cartContainer, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
+  var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer, $prependDrawerTo, $callbackData={};
 
   // Private functions
-  var updateCountPrice, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
+  var updateCountPrice, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -296,7 +296,6 @@ var ajaxifyShopify = (function(module, $) {
     $addToCart         = $formContainer.find(settings.addToCartSelector);
     $cartCountSelector = $(settings.cartCountSelector);
     $cartCostSelector  = $(settings.cartCostSelector);
-    $modal             = null;
     $prependDrawerTo   = $(settings.prependDrawerTo);
 
     // CSS Checks
@@ -321,28 +320,12 @@ var ajaxifyShopify = (function(module, $) {
 
     // Enable the ajax cart
     if (!settings.disableAjaxCart) {
-      // Handle each case add to cart method
-      switch (settings.method) {
-        case 'modal':
-          modalSetup();
-          break;
-
-        case 'drawer':
-          drawerSetup();
-          break;
-      }
+      drawerSetup();
 
       // Escape key closes cart
       $(document).keyup(function (evt) {
         if (evt.keyCode == 27) {
-          switch (settings.method) {
-            case 'drawer':
-              hideDrawer();
-              break;
-            case 'modal':
-              hideModal();
-              break;
-          }
+          hideDrawer();
         }
       });
 
@@ -356,6 +339,14 @@ var ajaxifyShopify = (function(module, $) {
     adjustCart();
   };
 
+  loadCart = function () {
+    console.log('ajax load cart');
+  };
+
+  refreshCart = function () {
+    console.log('ajax refresh cart');
+  };
+
   updateCountPrice = function (cart) {
     if ($cartCountSelector) {
       $cartCountSelector.html(cart.item_count).removeClass('hidden-count');
@@ -367,98 +358,6 @@ var ajaxifyShopify = (function(module, $) {
     if ($cartCostSelector) {
       $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
     }
-  };
-
-  modalSetup = function () {
-    // Create modal DOM elements with handlebars.js template
-    var source   = $("#ModalTemplate").html(),
-        template = Handlebars.compile(source);
-
-    // Append modal and overlay to body
-    $body.append(template).append('<div class="ajaxcart__overlay"></div>');
-
-    // Modal selectors
-    $modalContainer = $('#AjaxifyModal');
-    $modalOverlay   = $('.ajaxcart__overlay');
-    $cartContainer  = $('#AjaxifyCart');
-
-    // Close modal when clicking the overlay
-    $modalOverlay.on('click', hideModal);
-
-    // Create a close modal button
-    $modalContainer.prepend('<button type="button" class="ajaxcart__close" title="' + {{ 'cart.general.close_cart' | t | json }} + '">' + {{ 'cart.general.close_cart' | t | json }} + '</button>');
-    $closeCart = $('.ajaxcart__close');
-    $closeCart.on('click', hideModal);
-
-    // Add a class if CSS translate isn't available
-    if (!$cssTransforms) {
-      $modalContainer.addClass('no-transforms');
-    }
-
-    // Update modal position on screen changes
-    $(window).on({
-      orientationchange: function(e) {
-        if ($modalContainer.hasClass('is-visible')) {
-          sizeModal('resize');
-        }
-      }, resize: function(e) {
-        // IE8 fires this when overflow on body is changed. Ignore IE8.
-        if (!$nojQueryLoad && $modalContainer.hasClass('is-visible')) {
-          sizeModal('resize');
-        }
-      }
-    });
-  };
-
-  showModal = function (toggle) {
-    $body.addClass('ajaxcart--is-visible');
-    // Build the cart if it isn't already there
-    if (!cartInit && toggle) {
-      Shopify.getCart(cartUpdateCallback);
-    } else {
-      sizeModal();
-    }
-  };
-
-  sizeModal = function(isResizing) {
-    if (!isResizing) {
-      $modalContainer.css('opacity', 0);
-    }
-
-    // Position modal by negative margin
-    $modalContainer.css({
-      'margin-left': - ($modalContainer.outerWidth() / 2),
-      'opacity': 1
-    });
-
-    // Position close button relative to title
-    $closeCart.css({
-      'top': 10 + ($cartContainer.find('h1').height() / 2)
-    });
-
-    $modalContainer.addClass('is-visible');
-
-    scrollTop();
-
-    toggleCallback({
-      'is_visible': true
-    });
-  };
-
-  hideModal = function (e) {
-    $body.removeClass('ajaxcart--is-visible');
-    if (e) {
-      e.preventDefault();
-    }
-
-    if ($modalContainer) {
-      $modalContainer.removeClass('is-visible');
-      $body.removeClass('ajaxify-lock');
-    }
-
-    toggleCallback({
-      'is_visible': false
-    });
   };
 
   drawerSetup = function () {
@@ -533,15 +432,8 @@ var ajaxifyShopify = (function(module, $) {
     cartImages.on('load', function() {
       index++;
 
-      if (index==count) {
-        switch (settings.method) {
-          case 'modal':
-            sizeModal();
-            break;
-          case 'drawer':
-            sizeDrawer();
-            break;
-        }
+      if (index == count) {
+        sizeDrawer();
       }
     });
   };
@@ -580,18 +472,11 @@ var ajaxifyShopify = (function(module, $) {
     // Update quantity and price
     updateCountPrice(cart);
 
-    switch (settings.method) {
-      case 'modal':
-        buildCart(cart);
-        break;
-      case 'drawer':
-        buildCart(cart);
-        if (!$drawerContainer.hasClass('is-visible')) {
-          showDrawer();
-        } else {
-          scrollTop();
-        }
-        break;
+    buildCart(cart);
+    if (!$drawerContainer.hasClass('is-visible')) {
+      showDrawer();
+    } else {
+      scrollTop();
     }
   };
 
@@ -607,18 +492,12 @@ var ajaxifyShopify = (function(module, $) {
         .append('<h2>' + {{ 'cart.general.empty' | t | json }} + '</h2>')
         .append('<p>' + {{ 'cart.general.continue_browsing_html' | t | json }} + '</p>');
 
-      switch (settings.method) {
-        case 'modal':
-          sizeModal('resize');
-          break;
-        case 'drawer':
-          sizeDrawer();
+      sizeDrawer();
 
-          if (!$drawerContainer.hasClass('is-visible') && cartInit) {
-            sizeDrawer(true);
-          }
-          break;
+      if (!$drawerContainer.hasClass('is-visible') && cartInit) {
+        sizeDrawer(true);
       }
+
       return;
     }
 
@@ -688,20 +567,11 @@ var ajaxifyShopify = (function(module, $) {
     // With new elements we need to relink the adjust cart functions
     adjustCart();
 
-    // Setup close modal button and size drawer
-    switch (settings.method) {
-      case 'modal':
-        loadCartImages();
-        break;
-      case 'drawer':
-        if (cart.item_count > 0) {
-          loadCartImages();
-        } else {
-          sizeDrawer(true);
-        }
-        break;
-      default:
-        break;
+    // Size drawer
+    if (cart.item_count > 0) {
+      loadCartImages();
+    } else {
+      sizeDrawer(true);
     }
 
     // Mark the cart as built
@@ -716,23 +586,10 @@ var ajaxifyShopify = (function(module, $) {
       adjustCart();
 
       // Size drawer at this point
-      switch (settings.method) {
-        case 'modal':
-          loadCartImages();
-          break;
-        case 'drawer':
-          if (cart.item_count > 0) {
-            loadCartImages();
-          } else {
-            sizeDrawer(true);
-          }
-          // Create a close drawer button
-          $cartContainer.prepend('<button type="button" class="ajaxcart__close" title="' + {{ 'cart.general.close_cart' | t | json }} + '">' + {{ 'cart.general.close_cart' | t | json }} + '</button>');
-          $closeCart = $('.ajaxcart__close');
-          $closeCart.on('click', hideDrawer);
-          break;
-        default:
-          break;
+      if (cart.item_count > 0) {
+        loadCartImages();
+      } else {
+        sizeDrawer(true);
       }
 
       // Mark the cart as built
@@ -852,16 +709,9 @@ var ajaxifyShopify = (function(module, $) {
     // Update quantity and price
     updateCountPrice(cart);
 
-    // Hide the modal or drawer if we're at 0 items
+    // Hide the drawer if we're at 0 items
     if (cart.item_count === 0) {
-      // Handle each add to cart method
-      switch (settings.method) {
-        case 'modal':
-          break;
-        case 'drawer':
-          hideDrawer();
-          break;
-      }
+      hideDrawer();
     }
 
     // Reprint cart on short timeout so you don't see the content being removed
@@ -987,9 +837,11 @@ var ajaxifyShopify = (function(module, $) {
   };
 
   module = {
-    init: init
+    init: init,
+    load: loadCart,
+    refresh: refreshCart
   };
 
   return module;
 
-}(ajaxifyShopify || {}, jQuery));
+}(ajaxCart || {}, jQuery));

@@ -272,7 +272,7 @@
     {{ 'ajaxify.js' | asset_url | script_tag }}
     <script>
       jQuery(function($) {
-        ajaxifyShopify.init({
+        ajaxCart.init({
           method: '{{ settings.ajax_cart_method }}',
           formSelector: '#AddToCartForm',
           addToCartSelector: '#AddToCart',
