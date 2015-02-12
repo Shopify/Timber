@@ -254,10 +254,10 @@ var ajaxifyShopify = (function(module, $) {
   var settings, cartInit, $drawerHeight, $cssTransforms, $cssTransforms3d, $nojQueryLoad, $w, $body, $html;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $toggleCartButton, $modal, $cartContainer, $drawerCaret, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
+  var $formContainer, $btnClass, $wrapperClass, $addToCart, $flipClose, $flipCart, $flipContainer, $cartCountSelector, $cartCostSelector, $modal, $cartContainer, $modalContainer, $modalOverlay, $closeCart, $drawerContainer, $prependDrawerTo, $callbackData={};
 
   // Private functions
-  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, setToggleButtons, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
+  var updateCountPrice, flipSetup, revertFlipButton, modalSetup, showModal, sizeModal, hideModal, drawerSetup, showDrawer, hideDrawer, sizeDrawer, loadCartImages, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, flipCartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -271,7 +271,6 @@ var ajaxifyShopify = (function(module, $) {
       addToCartSelector: 'input[type="submit"]',
       cartCountSelector: null,
       cartCostSelector: null,
-      toggleCartButton: null,
       btnClass: null,
       wrapperClass: null,
       useCartTemplate: true,
@@ -302,7 +301,6 @@ var ajaxifyShopify = (function(module, $) {
     $flipClose         = null;
     $cartCountSelector = $(settings.cartCountSelector);
     $cartCostSelector  = $(settings.cartCostSelector);
-    $toggleCartButton  = $(settings.toggleCartButton);
     $modal             = null;
     $prependDrawerTo   = $(settings.prependDrawerTo);
 
@@ -467,9 +465,6 @@ var ajaxifyShopify = (function(module, $) {
         }
       }
     });
-
-    // Toggle modal with cart button
-    setToggleButtons();
   };
 
   showModal = function (toggle) {
@@ -537,37 +532,17 @@ var ajaxifyShopify = (function(module, $) {
     // Drawer selectors
     $drawerContainer = $('#AjaxifyDrawer');
     $cartContainer   = $('#AjaxifyCart');
-    $drawerCaret     = $('.ajaxcart__caret > span');
 
-    // Toggle drawer with cart button
-    setToggleButtons();
-
-    // Position caret and size drawer on resize if drawer is visible
+    // Size drawer on resize if drawer is visible
     var timeout;
     $(window).resize(function() {
       clearTimeout(timeout);
       timeout = setTimeout(function(){
         if ($drawerContainer.hasClass('is-visible')) {
-          positionCaret();
           sizeDrawer();
         }
       }, 500);
     });
-
-    // Position the caret the first time
-    positionCaret();
-
-    // Position the caret
-    function positionCaret() {
-      if ($toggleCartButton.offset()) {
-        // Get the position of the toggle button to align the caret with
-        var togglePos = $toggleCartButton.offset(),
-            toggleWidth = $toggleCartButton.outerWidth(),
-            toggleMiddle = togglePos.left + toggleWidth/2;
-
-        $drawerCaret.css('left', toggleMiddle + 'px');
-      }
-    }
   };
 
   showDrawer = function (toggle) {
@@ -705,41 +680,6 @@ var ajaxifyShopify = (function(module, $) {
           scrollTop();
         }
         break;
-    }
-  };
-
-  setToggleButtons = function () {
-    // Reselect the element in case it just loaded
-    $toggleCartButton  = $(settings.toggleCartButton);
-
-    if ($toggleCartButton) {
-      // Turn it off by default, in case it's initialized twice
-      $toggleCartButton.off('click');
-
-      // Toggle the cart, based on the method
-      $toggleCartButton.on('click', function(e) {
-        e.preventDefault();
-
-        switch (settings.method) {
-          case 'modal':
-            if ($modalContainer.hasClass('is-visible')) {
-              hideModal();
-            } else {
-              showModal(true);
-            }
-            break;
-          case 'drawer':
-          case 'flip':
-            if ($drawerContainer.hasClass('is-visible')) {
-              hideDrawer();
-            } else {
-              showDrawer(true);
-            }
-            break;
-        }
-
-      });
-
     }
   };
 
