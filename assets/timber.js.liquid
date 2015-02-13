@@ -15,6 +15,7 @@ timber.cacheSelectors = function () {
 
     // Navigation
     $navigation              : $('#AccessibleNav'),
+    $mobileSubNavToggle      : $('.mobile-nav__toggle'),
 
     // Collection Pages
     $changeView              : $('.change-view'),
@@ -37,6 +38,7 @@ timber.init = function () {
   timber.cacheSelectors();
   timber.accessibleNav();
   timber.drawersInit();
+  timber.mobileNavToggle();
   timber.productImageSwitch();
   timber.responsiveVideos();
   timber.collectionViews();
@@ -126,6 +128,12 @@ timber.drawersInit = function () {
   new timber.Drawers('NavDrawer', 'left');
   new timber.Drawers('CartDrawer', 'right', {
     'onDrawerOpen': ajaxCart.load
+  });
+};
+
+timber.mobileNavToggle = function () {
+  timber.cache.$mobileSubNavToggle.on('click', function() {
+    $(this).parent().toggleClass('mobile-nav--expanded');
   });
 };
 
