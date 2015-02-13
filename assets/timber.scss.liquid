@@ -1872,7 +1872,7 @@ label.error {
   overflow-x: hidden;
   top: 0;
   bottom: 0;
-  padding: ($gutter / 2);
+  padding: $gutter / 2;
   max-width: 100%;
   z-index: 1000;
   background-color: $colorNav;
@@ -1928,10 +1928,11 @@ label.error {
 }
 
 .drawer__header {
-  height: 60px;
   display: table;
+  height: 60px;
   width: 100%;
   border-bottom: 1px solid $colorBorder;
+  margin-bottom: $gutter / 2;
 }
 
 .drawer__title,
@@ -1947,13 +1948,13 @@ label.error {
 .drawer__close {
   position: relative;
   width: 1%;
-  right: -$gutter / 2;
+  right: -20px;
   text-align: center;
 }
 
 .drawer__close button {
   height: 100%;
-  padding: 0 ($gutter / 2);
+  padding: 0 20px;
 }
 
 /*============================================================================
