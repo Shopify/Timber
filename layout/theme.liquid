@@ -63,22 +63,26 @@
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
   <div id="NavDrawer" class="drawer drawer--left">
-    <div class="drawer__inner">
+    <div class="drawer__header">
+      <div class="drawer__title h3">Browse</div>
       <div class="drawer__close js-drawer-close">
         <button type="button" class="icon-fallback-text">
           <span class="icon icon-x" aria-hidden="true"></span>
           <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
         </button>
       </div>
-      {% include 'mobile-nav' %}
     </div>
+    {% include 'mobile-nav' %}
   </div>
   <div id="CartDrawer" class="drawer drawer--right">
-    <div class="drawer__close js-drawer-close">
-      <button type="button" class="icon-fallback-text">
-        <span class="icon icon-x" aria-hidden="true"></span>
-        <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
-      </button>
+    <div class="drawer__header">
+      <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="icon icon-x" aria-hidden="true"></span>
+          <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+        </button>
+      </div>
     </div>
     <div id="CartContainer"></div>
   </div>

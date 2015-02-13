@@ -1872,6 +1872,7 @@ label.error {
   overflow-x: hidden;
   top: 0;
   bottom: 0;
+  padding: ($gutter / 2);
   max-width: 100%;
   z-index: 1000;
   background-color: $colorNav;
@@ -1926,11 +1927,33 @@ label.error {
   @include transition('all 0.4s cubic-bezier(0.46, 0.01 , 0.32, 1)');
 }
 
-.drawer__close button {
+.drawer__header {
   height: 60px;
+  display: table;
   width: 100%;
-  padding: 0 $gutter;
-  text-align: left;
+  border-bottom: 1px solid $colorBorder;
+}
+
+.drawer__title,
+.drawer__close {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.drawer__title {
+  width: 100%;
+}
+
+.drawer__close {
+  position: relative;
+  width: 1%;
+  right: -$gutter / 2;
+  text-align: center;
+}
+
+.drawer__close button {
+  height: 100%;
+  padding: 0 ($gutter / 2);
 }
 
 /*============================================================================
