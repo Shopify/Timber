@@ -1856,7 +1856,7 @@ label.error {
   #Mobile Nav
 ==============================================================================*/
 .mobile-nav {
-  margin-top: -$gutter / 2;
+  margin: (-$gutter / 2) (-$gutter / 2) 0 (-$gutter / 2);
 
   li {
     margin-bottom: 0;
@@ -1865,7 +1865,7 @@ label.error {
 
 .mobile-nav__link {
   display: block;
-  padding: ($gutter / 2) ($gutter / 2) ($gutter / 2) 0;
+  padding: $gutter / 2;
   color: $colorNavText;
   text-decoration: none;
   border-bottom: 1px solid $colorBorder;
@@ -1906,7 +1906,6 @@ label.error {
 
   button {
     position: relative;
-    right: -15px;
     padding: 15px;
 
     &:active,
@@ -1939,7 +1938,7 @@ label.error {
   }
 
   .mobile-nav__link {
-    padding-left: $gutter / 2;
+    padding-left: $gutter;
   }
 }
 
