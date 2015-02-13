@@ -1795,11 +1795,6 @@ label.error {
     position: relative;
     display: inline-block;
   }
-
-  @include at-query ($max, $medium) {
-    margin: 0 auto;
-    text-align: center;
-  }
 }
 
 .site-nav__link {
@@ -1825,6 +1820,7 @@ label.error {
   display: none;
   position: absolute;
   left: 0;
+  margin: 0;
   z-index: 5;
 
   .supports-no-touch .site-nav--has-dropdown:hover &,
@@ -1860,6 +1856,8 @@ label.error {
   #Mobile Nav
 ==============================================================================*/
 .mobile-nav {
+  margin-top: -$gutter / 2;
+
   li {
     margin-bottom: 0;
   }
@@ -1881,6 +1879,11 @@ label.error {
   &:focus {
     color: darken($colorNavText, 15%);
   }
+
+  &:active,
+  &:focus {
+    background-color: darken($colorNav, 5%);
+  }
 }
 
 .mobile-nav__has-sublist {
@@ -1888,20 +1891,29 @@ label.error {
   width: 100%;
   border-bottom: 1px solid $colorBorder;
 
-  .mobile-nav__link,
-  .mobile-nav__toggle {
+  .mobile-nav__link {
     display: table-cell;
     vertical-align: middle;
-  }
-
-  .mobile-nav__link {
     width: 100%;
     border-bottom: none;
   }
 }
 
 .mobile-nav__toggle {
+  display: table-cell;
+  vertical-align: middle;
   width: 1%;
+
+  button {
+    position: relative;
+    right: -15px;
+    padding: 15px;
+
+    &:active,
+    &:focus {
+      background-color: darken($colorNav, 5%);
+    }
+  }
 }
 
 .mobile-nav__toggle-open {
@@ -1958,6 +1970,7 @@ label.error {
 .drawer--left {
   width: $drawerNavWidth;
   left: -$drawerNavWidth;
+  @include prefix('box-shadow', 'inset -2px 0 1px 0px rgba(0,0,0,0.1)');
 
   .js-drawer-open-left & {
     display: block;
@@ -1972,6 +1985,7 @@ label.error {
 .drawer--right {
   width: $drawerCartWidth;
   right: -$drawerCartWidth;
+  @include prefix('box-shadow', 'inset 2px 0 1px 0px rgba(0,0,0,0.1)');
 
   .js-drawer-open-right & {
     display: block;
@@ -2007,6 +2021,7 @@ label.error {
   display: table;
   height: 70px;
   width: 100%;
+  margin-bottom: $gutter / 2;
   border-bottom: 1px solid $colorBorder;
 }
 
@@ -2021,15 +2036,20 @@ label.error {
 }
 
 .drawer__close {
-  position: relative;
   width: 1%;
-  right: -20px;
   text-align: center;
 }
 
 .drawer__close button {
+  position: relative;
+  right: -20px;
   height: 100%;
   padding: 0 20px;
+
+  &:active,
+  &:focus {
+    background-color: darken($colorNav, 5%);
+  }
 }
 
 /*============================================================================
