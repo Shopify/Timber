@@ -250,13 +250,13 @@ var ajaxCart = (function(module, $) {
   var init, loadCart;
 
   // Private general variables
-  var settings, cartInit, $nojQueryLoad, $body, $html;
+  var settings, $body, $html;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer, $callbackData={};
+  var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, showDrawer, hideDrawer, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartTemplate, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, scrollTop, toggleCallback;
+  var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, ajaxCallback;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -271,11 +271,10 @@ var ajaxCart = (function(module, $) {
       cartCountSelector: null,
       cartCostSelector: null,
       btnClass: null,
-      useCartTemplate: true,
       moneyFormat: '${{amount}}',
       disableAjaxCart: false,
       enableQtySelectors: true,
-      onToggleCallback: null
+      afterCartLoad: null
     };
 
     // Override defaults with arguments
@@ -293,31 +292,14 @@ var ajaxCart = (function(module, $) {
     $body = $('body');
     $html = $('html');
 
-    // Check if we can use .load
-    $nojQueryLoad = $html.hasClass('lt-ie9');
-    if ($nojQueryLoad) {
-      settings.useCartTemplate = false;
-    }
-
     // Setup ajax quantity selectors on the any template if enableQtySelectors is true
     if (settings.enableQtySelectors) {
       qtySelectors();
     }
 
-    // Enable the ajax cart
-    if (!settings.disableAjaxCart) {
-
-      // Escape key closes cart
-      $(document).keyup(function (evt) {
-        if (evt.keyCode == 27) {
-          hideDrawer();
-        }
-      });
-
-      if ($addToCart.length) {
-        // Take over the add to cart form submit
-        formOverride();
-      }
+    // Take over the add to cart form submit action if ajax enabled
+    if (!settings.disableAjaxCart && $addToCart.length) {
+      formOverride();
     }
 
     // Run this function in case we're using the quantity selector outside of the cart
@@ -325,7 +307,6 @@ var ajaxCart = (function(module, $) {
   };
 
   loadCart = function () {
-    console.log('ajax load cart');
     Shopify.getCart(cartUpdateCallback);
   };
 
@@ -340,30 +321,6 @@ var ajaxCart = (function(module, $) {
     if ($cartCostSelector) {
       $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
     }
-  };
-
-  showDrawer = function (toggle) {
-    // opening the drawer for the first time
-    if (!cartInit && toggle) {
-      Shopify.getCart(cartUpdateCallback);
-    }
-
-    // Show the drawer
-    $drawerContainer.addClass('is-visible');
-
-    scrollTop();
-
-    toggleCallback({
-      'is_visible': true
-    });
-  };
-
-  hideDrawer = function () {
-    $drawerContainer.removeAttr('style').removeClass('is-visible');
-    scrollTop();
-    toggleCallback({
-      'is_visible': false
-    });
   };
 
   formOverride = function () {
@@ -403,22 +360,14 @@ var ajaxCart = (function(module, $) {
   };
 
   buildCart = function (cart) {
-    // Empty cart if using default layout or not using the .load method to get /cart
-    if (!settings.useCartTemplate || cart.item_count === 0) {
-      $cartContainer.empty();
-    }
+    // Start with a fresh cart div
+    $cartContainer.empty();
 
     // Show empty cart
     if (cart.item_count === 0) {
       $cartContainer
         .append('<h4>' + {{ 'cart.general.empty' | t | json }} + '</h4>')
         .append('<p>' + {{ 'cart.general.continue_browsing_html' | t | json }} + '</p>');
-      return;
-    }
-
-    // Use the /cart template, or Handlebars.js layout based on theme settings
-    if (settings.useCartTemplate) {
-      cartTemplate(cart);
       return;
     }
 
@@ -477,34 +426,20 @@ var ajaxCart = (function(module, $) {
       totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat),
       btnClass: $btnClass
     }
+
     $cartContainer.append(template(data));
 
     // With new elements we need to relink the adjust cart functions
     adjustCart();
 
-    // Mark the cart as built
-    cartInit = true;
-  };
-
-  cartTemplate = function (cart) {
-    var url = '/cart?' + Date.now() + ' form[action="/cart"]';
-    $cartContainer.load(url, function() {
-
-      // With new elements we need to relink the adjust cart functions
-      adjustCart();
-
-      // Mark the cart as built
-      cartInit = true;
+    // Send data to callback
+    ajaxCallback({
+      'cart': cart
     });
-  }
+  };
 
   adjustCart = function () {
     // This function runs on load, and when the cart is reprinted
-
-    // Create ajax friendly quantity fields and remove links in the ajax cart
-    if (settings.useCartTemplate) {
-      createQtySelectors();
-    }
 
     // Update quantify selectors
     var qtyAdjust = $('.ajaxcart__qty-adjust');
@@ -579,11 +514,7 @@ var ajaxCart = (function(module, $) {
 
     function updateQuantity(id, qty) {
       // Add activity classes when changing cart quantities
-      if (!settings.useCartTemplate) {
-        var row = $('.ajaxcart__row[data-id="' + id + '"]').addClass('is-loading');
-      } else {
-        var row = $('.cart__row[data-id="' + id + '"]').addClass('is-loading');
-      }
+      var row = $('.ajaxcart__row[data-id="' + id + '"]').addClass('is-loading');
 
       if (qty === 0) {
         row.addClass('is-removed');
@@ -597,11 +528,10 @@ var ajaxCart = (function(module, $) {
 
     // Save note anytime it's changed
     var noteArea = $('textarea[name="note"]');
-    noteArea.off('change');
-    noteArea.on('change', function() {
+    noteArea.off('change').on('change', function() {
       var newNote = $(this).val();
 
-      // Simply updating the cart note in case they don't click update/checkout
+      // Update the cart note in case they don't click update/checkout
       Shopify.updateCartNote(newNote, function(cart) {});
     });
   };
@@ -609,11 +539,6 @@ var ajaxCart = (function(module, $) {
   adjustCartCallback = function (cart) {
     // Update quantity and price
     updateCountPrice(cart);
-
-    // Hide the drawer if we're at 0 items
-    if (cart.item_count === 0) {
-      hideDrawer();
-    }
 
     // Reprint cart on short timeout so you don't see the content being removed
     setTimeout(function() {
@@ -709,9 +634,8 @@ var ajaxCart = (function(module, $) {
   };
 
   validateQty = function (qty) {
-    // Make sure we have a valid integer
     if((parseFloat(qty) == parseInt(qty)) && !isNaN(qty)) {
-      // We have a number!
+      // We have a valid number!
     } else {
       // Not a number. Default to 1.
       qty = 1;
@@ -719,18 +643,10 @@ var ajaxCart = (function(module, $) {
     return qty;
   };
 
-  scrollTop = function () {
-    if ($body.scrollTop() > 0 || $html.scrollTop() > 0) {
-      $('html, body').animate({
-        scrollTop: 0
-      }, 250, 'swing');
-    }
-  };
-
-  toggleCallback = function (data) {
+  ajaxCallback = function (data) {
     // Run the callback if it's a function
-    if (typeof settings.onToggleCallback == 'function') {
-      settings.onToggleCallback.call(this, data);
+    if (typeof settings.afterCartLoad == 'function') {
+      settings.afterCartLoad.call(this, data);
     }
   };
 

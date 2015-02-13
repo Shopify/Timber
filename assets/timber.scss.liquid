@@ -1946,13 +1946,6 @@ label.error {
 /*============================================================================
   #Drawers
 ==============================================================================*/
-@include at-query ($max, $medium) {
-  .js-drawer-open {
-    height: 100%;
-    overflow: hidden;
-  }
-}
-
 .drawer {
   display: none;
   position: fixed;
@@ -1961,7 +1954,7 @@ label.error {
   top: 0;
   bottom: 0;
   padding: 0 ($gutter / 2) ($gutter / 2);
-  max-width: 100%;
+  max-width: 95%;
   z-index: 1000;
   background-color: $colorNav;
   @include transition('all 0.4s cubic-bezier(0.46, 0.01 , 0.32, 1)');

@@ -286,9 +286,17 @@
           cartCountSelector: '#CartCount',
           cartCostSelector: '#CartCost',
           btnClass: 'btn',
-          moneyFormat: {{ shop.money_format | json }}
+          moneyFormat: {{ shop.money_format | json }},
+          afterCartLoad: afterCartLoad
         });
       });
+
+      afterCartLoad = function(cart) {
+        // The cart is now loaded and can be manipulated as needed
+
+        // Open cart drawer
+
+      }
     </script>
   {% endif %}
 

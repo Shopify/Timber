@@ -124,21 +124,21 @@ form[action^="/cart/add"] {
   Ajaxify Cart - General
 ==============================================================================*/
 .ajaxcart__inner {
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  margin-bottom: $gutter;
 }
 
 .ajaxcart__product {
   position: relative;
-  padding: 10px 0;
+  padding: ($gutter / 2) 0;
+  border-bottom: 1px solid $colorBorder;
+  @include perspective(1000px);
 
   &:first-child {
     padding-top: 0;
   }
 }
 
-.ajaxcart__product,
-.cart__row {
+.ajaxcart__row {
   max-height: 500px;
   visibility: visible;
 
@@ -171,6 +171,13 @@ form[action^="/cart/add"] {
     margin: 0 auto;
     max-width: 100%;
   }
+}
+
+.ajaxcart__product-name,
+.ajaxcart__product-variation {
+  display: block;
+  margin-bottom: $gutter / 4;
+  text-decoration: none;
 }
 
 
