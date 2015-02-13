@@ -36,6 +36,7 @@
   #Pagination
   #Site Header
   #Site Nav and Dropdowns
+  #Mobile Nav
   #Drawers
   #Site Footer
   #Product and Collection Grids
@@ -1856,6 +1857,81 @@ label.error {
 }
 
 /*============================================================================
+  #Mobile Nav
+==============================================================================*/
+.mobile-nav {
+  li {
+    margin-bottom: 0;
+  }
+}
+
+.mobile-nav__link {
+  display: block;
+  padding: ($gutter / 2) ($gutter / 2) ($gutter / 2) 0;
+  color: $colorNavText;
+  text-decoration: none;
+  border-bottom: 1px solid $colorBorder;
+
+  .mobile-nav > li:last-child & {
+    border-bottom: none;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: darken($colorNavText, 15%);
+  }
+}
+
+.mobile-nav__has-sublist {
+  display: table;
+  width: 100%;
+  border-bottom: 1px solid $colorBorder;
+
+  .mobile-nav__link,
+  .mobile-nav__toggle {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .mobile-nav__link {
+    width: 100%;
+    border-bottom: none;
+  }
+}
+
+.mobile-nav__toggle {
+  width: 1%;
+}
+
+.mobile-nav__toggle-open {
+  .mobile-nav--expanded & {
+    display: none;
+  }
+}
+
+.mobile-nav__toggle-close {
+  display: none;
+
+  .mobile-nav--expanded & {
+    display: block;
+  }
+}
+
+.mobile-nav__sublist {
+  margin: 0;
+  display: none;
+
+  .mobile-nav--expanded + & {
+    display: block; // TO DO: add animation instead of block/none?
+  }
+
+  .mobile-nav__link {
+    padding-left: $gutter / 2;
+  }
+}
+
+/*============================================================================
   #Drawers
 ==============================================================================*/
 @include at-query ($max, $medium) {
@@ -1872,7 +1948,7 @@ label.error {
   overflow-x: hidden;
   top: 0;
   bottom: 0;
-  padding: $gutter / 2;
+  padding: 0 ($gutter / 2) ($gutter / 2);
   max-width: 100%;
   z-index: 1000;
   background-color: $colorNav;
@@ -1929,10 +2005,9 @@ label.error {
 
 .drawer__header {
   display: table;
-  height: 60px;
+  height: 70px;
   width: 100%;
   border-bottom: 1px solid $colorBorder;
-  margin-bottom: $gutter / 2;
 }
 
 .drawer__title,
