@@ -154,6 +154,10 @@
               {% endif %}
             </p>
             {% endif %}
+
+            <div class="site-header__search">
+              {% include 'search-bar' %}
+            </div>
           </div>
         </div>
 
@@ -162,24 +166,15 @@
 
     <nav class="nav-bar" role="navigation">
       <div class="wrapper">
-        <div class="grid">
-          <div class="grid__item one-third large--two-thirds">
-            <div class="medium-down--hide">
-              {% include 'site-nav' %}
-            </div>
-            <div class="large--hide medium-down--show">
-              <div class="site-nav">
-                <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
-                  <span class="icon icon-hamburger" aria-hidden="true"></span>
-                  <span class="fallback-text">Mobile Navigation</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="grid__item two-thirds large--one-third">
-            <div class="nav-search">
-              {% include 'search-bar' %}
-            </div>
+        <div class="medium-down--hide">
+          {% include 'site-nav' %}
+        </div>
+        <div class="large--hide medium-down--show">
+          <div class="site-nav">
+            <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
+              <span class="icon icon-hamburger" aria-hidden="true"></span>
+              <span class="fallback-text">Mobile Navigation</span>
+            </button>
           </div>
         </div>
       </div>

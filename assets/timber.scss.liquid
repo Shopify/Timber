@@ -1765,6 +1765,20 @@ label.error {
   margin-bottom: 0;
 }
 
+.site-header__search {
+  display: inline-block;
+  max-width: 400px;
+
+  .site-header__text-links + & {
+    margin-top: $gutter / 2;
+  }
+
+  .input-group,
+  .input-group-field {
+    margin-bottom: 0;
+  }
+}
+
 .search-bar {
   max-width: 100%;
 
