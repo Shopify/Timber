@@ -21,7 +21,7 @@ $colorGiftText: #999; // note, this is always on a white background
 $colorGiftBorder: {{ settings.color_primary }};
 
 // Sizes
-$gutter: 24px;
+$gutter: 30px;
 
 /*============================================================================
   #Sass Mixins
@@ -74,13 +74,13 @@ $gutter: 24px;
 .giftcard-header {
   padding: ($gutter * 2) 0;
   font-size: 1em;
+  text-align: center;
   -webkit-animation: fadein 0.5s ease-in-out both 0.4s;
   animation: fadein 0.5s ease-in-out both 0.4s;
 }
 
 .shop-url {
   display: none;
-  text-align: center;
 }
 
 .giftcard {
@@ -368,6 +368,17 @@ $gutter: 24px;
   vertical-align: baseline;
 }
 
+#QrCode {
+  display: none;
+
+  img {
+    padding: $gutter;
+    border: 1px solid $colorBorder;
+    border-radius: 4px;
+    margin: 0 auto $gutter;
+  }
+}
+
 
 /*============================================================================
   #Media Queries
@@ -460,6 +471,10 @@ $gutter: 24px;
     background-color: #fff;
   }
 
+  .giftcard-header {
+    padding: 10px 0;
+  }
+
   .giftcard__content,
   .giftcard__border {
     border: 0 none;
@@ -472,6 +487,11 @@ $gutter: 24px;
     display: none;
   }
 
+  .giftcard__title {
+    float: none;
+    text-align: center;
+  }
+
   .giftcard__code__text {
     color: #555;
   }
@@ -482,6 +502,10 @@ $gutter: 24px;
 
   .logo {
     color: #58686F;
+  }
+
+  #QrCode {
+    display: block;
   }
 }
 
