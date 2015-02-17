@@ -291,11 +291,11 @@
         });
       });
 
-      afterCartLoad = function(cart) {
+      afterCartLoad = function(data) {
         // The cart is now loaded and can be manipulated as needed
 
         // Open cart drawer
-
+        timber.RightDrawer.open();
       }
     </script>
   {% endif %}
