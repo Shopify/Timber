@@ -77,7 +77,7 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 
 // Drawer sizes
 $drawerNavWidth: 300px;
-$drawerCartWidth: 450px;
+$drawerCartWidth: 300px;
 
 // Timber Colors
 $colorPrimary: {{ settings.color_primary }};
@@ -1254,6 +1254,10 @@ select {
   padding: 0;
   margin: 0;
   @include prefix('user-select', 'text');
+
+  @include at-query($max, $medium) {
+    font-size: 16px;
+  }
 }
 
 button {
@@ -1978,22 +1982,39 @@ label.error {
   }
 }
 
+.mobile-nav__sublist-wrap {
+  @include prefix('perspective', 1000px);
+  transform-style: preserve-3d;
+}
+
 .mobile-nav__sublist {
   margin: 0;
-  display: none;
+  max-height: 0;
+  visibility: hidden;
+  @include prefix('transform-origin', top);
+  @include transform('rotateX(-92deg)');
+  @include backface(hidden);
+  @include transition(all 350ms cubic-bezier(0.57,.06,.05,.95));
 
-  .mobile-nav--expanded + & {
-    display: block; // TO DO: add animation instead of block/none?
+  .mobile-nav--expanded + .mobile-nav__sublist-wrap & {
+    visibility: visible;
+    max-height: 700px;
+    @include transform('rotateX(0deg)');
   }
 
   .mobile-nav__link {
     padding-left: $gutter;
+    font-weight: normal;
   }
 }
 
 /*============================================================================
   #Drawers
 ==============================================================================*/
+.js-drawer-open {
+  overflow-x: hidden;
+}
+
 .drawer {
   display: none;
   position: fixed;

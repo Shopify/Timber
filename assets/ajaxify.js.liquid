@@ -517,7 +517,7 @@ var ajaxCart = (function(module, $) {
       var row = $('.ajaxcart__row[data-id="' + id + '"]').addClass('is-loading');
 
       if (qty === 0) {
-        row.addClass('is-removed');
+        row.parent().addClass('is-removed');
       }
 
       // Slight delay to make sure removed animation is done

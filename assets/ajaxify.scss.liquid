@@ -74,14 +74,6 @@ $max: max-width;
   #{$property}: #{$value};
 }
 
-@mixin transform-origin($origin) {
-  @include prefix('transform-origin', #{$origin});
-}
-
-@mixin transform-style($style: preserve-3d) {
-  @include prefix('transform-style', #{$style});
-}
-
 @mixin perspective($perspective) {
   @include prefix('perspective', #{$perspective});
 }
@@ -136,19 +128,26 @@ form[action^="/cart/add"] {
   &:first-child {
     padding-top: 0;
   }
+
+  &.is-removed {
+    padding: 0;
+    margin-top: -15px;
+    border-bottom: none;
+    @include transition('padding 250ms ease-out, margin-top 50ms ease-out 200ms');
+  }
 }
 
 .ajaxcart__row {
   max-height: 500px;
   visibility: visible;
 
-  &.is-removed {
+  .is-removed & {
     overflow: hidden;
     opacity: 0;
     padding: 0;
-    margin: -1px 0 0 0;
+    margin: 0;
     visibility: hidden;
-    @include transform-origin(top);
+    @include prefix('transform-origin', top);
     @include transform('rotateX(-92deg)');
     @include backface(hidden);
     @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
