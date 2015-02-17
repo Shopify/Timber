@@ -159,6 +159,7 @@
 
   {% include 'footer' %}
 
+  {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'timber.js' | asset_url | script_tag }}
 
   {% comment %}
@@ -206,8 +207,6 @@
       });
     </script>
   {% endif %}
-
-  {{ 'fastclick.min.js' | asset_url | script_tag }}
 
 </body>
 </html>

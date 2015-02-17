@@ -39,6 +39,7 @@ timber.cacheSelectors = function () {
 };
 
 timber.init = function () {
+  FastClick.attach(document.body);
   timber.cacheSelectors();
   timber.accessibleNav();
   timber.productImageSwitch();
