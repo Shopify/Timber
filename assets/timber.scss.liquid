@@ -1254,8 +1254,11 @@ select {
   padding: 0;
   margin: 0;
   @include prefix('user-select', 'text');
+}
 
-  @include at-query($max, $medium) {
+@include at-query($max, $medium) {
+  input,
+  textarea {
     font-size: 16px;
   }
 }
@@ -1537,17 +1540,17 @@ label.error {
 .icon-american_express:before { content: "\41"; }
 .icon-arrow-down:before { content: "\34"; }
 .icon-bitcoin:before { content: "\42"; }
-.icon-cart:before { content: "\5b"; }
+.icon-cart:before { content: "\e600"; }
 .icon-cirrus:before { content: "\43"; }
+.icon-dankort:before { content: "\64"; }
 .icon-diners_club:before { content: "\63"; }
 .icon-discover:before { content: "\44"; }
-.icon-dankort:before { content: "\64"; }
 .icon-facebook:before { content: "\66"; }
 .icon-fancy:before { content: "\46"; }
 .icon-google:before { content: "\67"; }
 .icon-google_wallet:before { content: "\47"; }
 .icon-grid-view:before { content: "\e603"; }
-.icon-hamburger:before { content: "\e600"; }
+.icon-hamburger:before { content: "\e601"; }
 .icon-instagram:before { content: "\69"; }
 .icon-interac:before { content: "\49"; }
 .icon-jcb:before { content: "\4a"; }
@@ -1565,7 +1568,7 @@ label.error {
 .icon-twitter:before { content: "\54"; }
 .icon-vimeo:before { content: "\76"; }
 .icon-visa:before { content: "\56"; }
-.icon-x:before { content: "\78"; }
+.icon-x:before { content: "\e606"; }
 .icon-youtube:before { content: "\79"; }
 
 .payment-icons {
