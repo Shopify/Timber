@@ -1783,7 +1783,8 @@ label.error {
   max-width: 100%;
 
   @include at-query ($max, $medium) {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -1811,6 +1812,14 @@ label.error {
   }
 }
 
+.site-nav--mobile {
+  @extend .site-nav;
+
+  .text-right & {
+    margin: 0 (-$gutter / 2) 0 0;
+  }
+}
+
 .site-nav__link {
   display: block;
   text-decoration: none;
@@ -1826,6 +1835,10 @@ label.error {
 
   .site-nav--active > & {
     font-weight: bold;
+  }
+
+  .site-nav--mobile & {
+    display: inline-block;
   }
 }
 
@@ -1877,6 +1890,15 @@ label.error {
   }
 }
 
+.mobile-nav__search {
+  padding: $gutter / 2;
+  border-bottom: 1px solid $colorBorder;
+
+  .search-bar {
+    margin-bottom: 0;
+  }
+}
+
 .mobile-nav__link {
   display: block;
   padding: $gutter / 2;
@@ -1888,6 +1910,10 @@ label.error {
     border-bottom: none;
   }
 
+  .mobile--active & {
+    font-weight: bold;
+  }
+
   &:hover,
   &:active,
   &:focus {
@@ -1897,6 +1923,15 @@ label.error {
   &:active,
   &:focus {
     background-color: darken($colorNav, 5%);
+  }
+}
+
+// Login/logout links can't have a class on them
+.mobile-nav a {
+  @extend .mobile-nav__link;
+
+  .mobile-nav > li:last-child & {
+    border-bottom: none;
   }
 }
 

@@ -68,7 +68,7 @@
       <div class="drawer__close js-drawer-close">
         <button type="button" class="icon-fallback-text">
           <span class="icon icon-x" aria-hidden="true"></span>
-          <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+          <span class="fallback-text">Close Menu</span>
         </button>
       </div>
     </div>
@@ -114,7 +114,7 @@
               </div>
             {% endif %}
           </div>
-          <div class="grid__item large--one-half text-center large--text-right">
+          <div class="grid__item large--one-half large--text-right medium-down--hide">
             {% comment %}
               Show number of items in the cart and total cost in the /cart link
 
@@ -170,11 +170,25 @@
           {% include 'site-nav' %}
         </div>
         <div class="large--hide medium-down--show">
-          <div class="site-nav">
-            <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
-              <span class="icon icon-hamburger" aria-hidden="true"></span>
-              <span class="fallback-text">Mobile Navigation</span>
-            </button>
+          <div class="grid">
+            <div class="grid__item one-half">
+              <div class="site-nav--mobile">
+                <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
+                  <span class="icon icon-hamburger" aria-hidden="true"></span>
+                  <span class="fallback-text">Mobile Navigation</span>
+                </button>
+              </div>
+            </div>
+            <div class="grid__item one-half text-right">
+              <div class="site-nav--mobile">
+                <a href="/cart" class="js-drawer-open-right site-nav__link" aria-controls="CartDrawer" aria-expanded="false">
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-cart" aria-hidden="true"></span>
+                    <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
