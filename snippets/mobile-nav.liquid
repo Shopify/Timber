@@ -6,7 +6,7 @@
     - http://docs.shopify.com/themes/liquid-variables/linklists
 {% endcomment %}
 <ul class="mobile-nav">
-  <li class="mobile-nav__search">
+  <li class="mobile-nav__item mobile-nav__search">
     {% include 'search-bar' %}
   </li>
   {% for link in linklists.main-menu.links %}
@@ -18,7 +18,7 @@
     {% endcomment %}
     {% assign child_list_handle = link.title | handleize %}
     {% if linklists[child_list_handle].links != blank %}
-      <li class="{% if link.active %} mobile--active{% endif %}" aria-haspopup="true">
+      <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
         <div class="mobile-nav__has-sublist">
           <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
           <div class="mobile-nav__toggle">
@@ -35,7 +35,7 @@
         <div class="mobile-nav__sublist-wrap">
           <ul class="mobile-nav__sublist">
             {% for childlink in linklists[child_list_handle].links %}
-              <li{% if childlink.active %} class="mobile--active"{% endif %}>
+              <li class="mobile-nav__item {% if childlink.active %} mobile-nav__item--active{% endif %}">
                 <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title | escape }}</a>
               </li>
             {% endfor %}
@@ -43,7 +43,7 @@
         </div>
       </li>
     {% else %}
-      <li {% if link.active %}class="mobile--active"{% endif %}>
+      <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}">
         <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
       </li>
     {% endif %}
@@ -54,7 +54,7 @@
   {% endcomment %}
   {% if shop.customer_accounts_enabled %}
     {% if customer %}
-      <li>
+      <li class="mobile-nav__item">
         {% if customer.first_name != blank %}
           {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
           {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
@@ -62,15 +62,15 @@
           <a href="/account">{{ 'layout.customer.account' | t }}</a>
         {% endif %}
       </li>
-      <li>
+      <li class="mobile-nav__item">
         {{ 'layout.customer.log_out' | t | customer_logout_link }}
       </li>
     {% else %}
-      <li>
+      <li class="mobile-nav__item">
         {{ 'layout.customer.log_in' | t | customer_login_link }}
       </li>
       {% if shop.customer_accounts_optional %}
-      <li>
+      <li class="mobile-nav__item">
         {{ 'layout.customer.create_account' | t | customer_register_link }}
       </li>
       {% endif %}

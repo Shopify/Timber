@@ -2,7 +2,7 @@
 {% comment %}
 
   This snippet provides the default handlebars.js templates for
-  the ajaxify cart plugin. Use the raw liquid tags to keep the
+  the ajax cart plugin. Use the raw liquid tags to keep the
   handlebar.js template tags as available hooks.
 
 {% endcomment %}
@@ -37,13 +37,16 @@
         {{/items}}
       </div>
       <div class="ajaxcart__footer text-right">
-        <span class="h3">{% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %} {{totalPrice}}</span>
+        <p>
+          {% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %}
+          <span class="h3"> {{totalPrice}}</span>
+        </p>
         <input type="submit" class="{{btnClass}}" name="checkout" value="{% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}">
       </div>
     </form>
   {% endraw %}
   </script>
-  <script id="AjaxifyQty" type="text/template">
+  <script id="AjaxQty" type="text/template">
   {% raw %}
     <div class="ajaxcart__qty">
       <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--minus" data-id="{{id}}" data-qty="{{itemMinus}}">&minus;</button>

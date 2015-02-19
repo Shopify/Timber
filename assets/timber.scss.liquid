@@ -45,6 +45,7 @@
   #Product Page
   #Notes and Form Feedback
   #Cart Page
+  #Ajax Cart Styles
 ==============================================================================*/
 
 /*============================================================================
@@ -74,10 +75,6 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 /*============================================================================
   #General Variables
 ==============================================================================*/
-
-// Drawer sizes
-$drawerNavWidth: 300px;
-$drawerCartWidth: 300px;
 
 // Timber Colors
 $colorPrimary: {{ settings.color_primary }};
@@ -122,6 +119,13 @@ $errorRed: #d02e2e;
 $errorRedBg: #fff6f6;
 $successGreen: #56ad6a;
 $successGreenBg: #ecfef0;
+
+// Drawers
+$drawerNavWidth: 300px;
+$drawerCartWidth: 300px;
+$colorDrawers: #f6f6f6;
+$colorDrawerBorder: darken($colorDrawers, 5%);
+$colorDrawerText: #333;
 
 // Sizing variables
 $siteWidth: 1180px;
@@ -1891,6 +1895,7 @@ label.error {
   #Mobile Nav
 ==============================================================================*/
 .mobile-nav {
+  // Negative of .drawer left/right padding for full-width link tap area
   margin: (-$gutter / 2) (-$gutter / 2) 0 (-$gutter / 2);
 
   li {
@@ -1900,59 +1905,64 @@ label.error {
 
 .mobile-nav__search {
   padding: $gutter / 2;
-  border-bottom: 1px solid $colorBorder;
 
   .search-bar {
     margin-bottom: 0;
   }
 }
 
-.mobile-nav__link {
+.mobile-nav__item {
+  position: relative;
   display: block;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: $gutter / 2;
+    right: $gutter / 2;
+    border-bottom: 1px solid $colorDrawerBorder;
+  }
+
+  .mobile-nav > &:last-child:after {
+    display: none;
+  }
+}
+
+// Login/logout links can't have a class on them, so style <a> element
+.mobile-nav__item a {
+  display: block;
+}
+.mobile-nav__item a,
+.mobile-nav__toggle button {
+  color: $colorDrawerText;
   padding: $gutter / 2;
-  color: $colorNavText;
   text-decoration: none;
-  border-bottom: 1px solid $colorBorder;
-
-  .mobile-nav > li:last-child & {
-    border-bottom: none;
-  }
-
-  .mobile--active & {
-    font-weight: bold;
-  }
 
   &:hover,
   &:active,
   &:focus {
-    color: darken($colorNavText, 15%);
+    color: darken($colorDrawerText, 15%);
   }
 
   &:active,
   &:focus {
-    background-color: darken($colorNav, 5%);
+    background-color: darken($colorDrawers, 5%);
   }
 }
 
-// Login/logout links can't have a class on them
-.mobile-nav a {
-  @extend .mobile-nav__link;
-
-  .mobile-nav > li:last-child & {
-    border-bottom: none;
-  }
+.mobile-nav__item--active {
+  font-weight: bold;
 }
 
 .mobile-nav__has-sublist {
   display: table;
   width: 100%;
-  border-bottom: 1px solid $colorBorder;
 
   .mobile-nav__link {
     display: table-cell;
     vertical-align: middle;
     width: 100%;
-    border-bottom: none;
   }
 }
 
@@ -1960,16 +1970,6 @@ label.error {
   display: table-cell;
   vertical-align: middle;
   width: 1%;
-
-  button {
-    position: relative;
-    padding: 15px;
-
-    &:active,
-    &:focus {
-      background-color: darken($colorNav, 5%);
-    }
-  }
 }
 
 .mobile-nav__toggle-open {
@@ -2006,6 +2006,11 @@ label.error {
     @include transform('rotateX(0deg)');
   }
 
+  .mobile-nav__item:after {
+    top: 0;
+    bottom: auto;
+  }
+
   .mobile-nav__link {
     padding-left: $gutter;
     font-weight: normal;
@@ -2016,7 +2021,8 @@ label.error {
   #Drawers
 ==============================================================================*/
 .js-drawer-open {
-  overflow-x: hidden;
+  // overflow-x: hidden;
+  overflow: hidden;
 }
 
 .drawer {
@@ -2029,8 +2035,13 @@ label.error {
   padding: 0 ($gutter / 2) ($gutter / 2);
   max-width: 95%;
   z-index: 1000;
-  background-color: $colorNav;
+  color: $colorDrawerText;
+  background-color: $colorDrawers;
   @include transition('all 0.4s cubic-bezier(0.46, 0.01 , 0.32, 1)');
+
+  a {
+    color: $colorDrawerText;
+  }
 }
 
 .drawer--left {
@@ -2088,7 +2099,7 @@ label.error {
   height: 70px;
   width: 100%;
   margin-bottom: $gutter / 2;
-  border-bottom: 1px solid $colorBorder;
+  border-bottom: 1px solid $colorDrawerBorder;
 }
 
 .drawer__title,
@@ -2111,10 +2122,11 @@ label.error {
   right: -20px;
   height: 100%;
   padding: 0 20px;
+  color: inherit;
 
   &:active,
   &:focus {
-    background-color: darken($colorNav, 5%);
+    background-color: darken($colorDrawers, 5%);
   }
 }
 
@@ -2347,4 +2359,183 @@ label.error {
 
 .cart__remove {
   display: block;
+}
+
+/*============================================================================
+  #Ajax Cart Styles
+==============================================================================*/
+form[action="/cart/add"],
+form[action^="/cart/add"] {
+  @include clearfix;
+}
+
+.ajaxcart__inner {
+  margin-bottom: $gutter;
+}
+
+.ajaxcart__inner {
+  .grid {
+    margin-left: -$gutter / 2;
+  }
+
+  .grid__item {
+    padding-left: $gutter / 2;
+  }
+}
+
+.ajaxcart__product {
+  position: relative;
+  padding: ($gutter / 2) 0;
+  border-bottom: 1px solid $colorDrawerBorder;
+  @include prefix('perspective', 1000px);
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &.is-removed {
+    padding: 0;
+    margin-top: -15px;
+    border-bottom: none;
+    @include transition('padding 250ms ease-out, margin-top 50ms ease-out 200ms');
+  }
+}
+
+.ajaxcart__row {
+  max-height: 500px;
+  visibility: visible;
+
+  .is-removed & {
+    overflow: hidden;
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+    @include prefix('transform-origin', top);
+    @include transform('rotateX(-92deg)');
+    @include backface(hidden);
+    @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
+    max-height: 0;
+  }
+}
+
+.ajaxcart__row {
+  clear: both;
+  @include clearfix;
+}
+
+.ajaxcart__product-image {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 15px;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}
+
+.ajaxcart__product-name,
+.ajaxcart__product-variation {
+  display: block;
+  margin-bottom: $gutter / 4;
+  text-decoration: none;
+}
+
+/*================ Quantity Selectors ================*/
+.js-qty {
+  position: relative;
+  margin-bottom: 1em;
+  max-width: 100px;
+  min-width: 75px;
+  overflow: visible;
+
+  input[type="text"] {
+    display: block;
+    background: none;
+    text-align: center;
+    width: 100%;
+    padding: 5px 25px;
+    margin: 0;
+  }
+}
+
+.js-qty__adjust {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: -1px;
+  bottom: -1px;
+  border: 0 none;
+  padding: 0 8px;
+  background: none;
+  text-align: center;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select:    none;
+  -ms-user-select:     none;
+  -o-user-select:      none;
+  user-select:         none;
+  @include backface(hidden);
+  @include transition(all 0.2s ease-out);
+
+  &:hover,
+  &:focus {
+    background-color: $colorBorder;
+  }
+
+  &:active {
+    background-color: darken($colorBorder, 10%);
+  }
+}
+
+.js-qty__adjust--plus {
+  right: 0;
+  border-left: 1px solid $colorBorder;
+}
+
+.js-qty__adjust--minus {
+  left: 0;
+  border-right: 1px solid $colorBorder;
+}
+
+/*================ Quantity Selectors in Ajax Cart ================*/
+.ajaxcart__qty {
+  @extend .js-qty;
+  margin: 0;
+
+  .is-loading & {
+    opacity: 0.5;
+    @include transition(none);
+  }
+}
+
+.ajaxcart__qty-num[type="text"] {
+  border-color: $colorDrawerBorder;
+  color: $colorDrawerText;
+}
+
+.ajaxcart__qty-adjust {
+  @extend .js-qty__adjust;
+  color: $colorDrawerText;
+
+  &:hover,
+  &:focus {
+    background-color: $colorDrawerBorder;
+  }
+
+  &:active {
+    background-color: darken($colorDrawerBorder, 10%);
+  }
+}
+
+.ajaxcart__qty--plus {
+  @extend .js-qty__adjust--plus;
+  border-color: $colorDrawerBorder;
+}
+
+.ajaxcart__qty--minus {
+  @extend .js-qty__adjust--minus;
+  border-color: $colorDrawerBorder;
 }

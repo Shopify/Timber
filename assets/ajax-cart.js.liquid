@@ -3,11 +3,11 @@
 
   Plugin Documentation - http://shopify.github.io/Timber/#ajax-cart
 
-  Ajaxify the add to cart experience by revealing it in a side drawer
+  Ajax the add to cart experience by revealing it in a side drawer
 
   This file includes:
     - Basic Shopify Ajax API calls
-    - Ajaxify cart plugin
+    - Ajax cart plugin
 
   This requires:
     - jQuery 1.8+
@@ -557,7 +557,7 @@ var ajaxCart = (function(module, $) {
             itemMinus = currentQty - 1,
             itemQty = currentQty;
 
-        var source   = $("#AjaxifyQty").html(),
+        var source   = $("#AjaxQty").html(),
             template = Handlebars.compile(source),
             data = {
               id: el.data('id'),
@@ -571,7 +571,7 @@ var ajaxCart = (function(module, $) {
       });
     }
 
-    // If there is a regular link to remove an item, add attributes needed to ajaxify it
+    // If there is a regular link to remove an item, add attributes needed for ajax
     if ($('a[href^="/cart/change"]', $cartContainer).length) {
       $('a[href^="/cart/change"]', $cartContainer).each(function() {
         var el = $(this).addClass('ajaxcart__remove');

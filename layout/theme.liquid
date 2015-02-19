@@ -32,11 +32,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
-  {% if settings.ajax_cart_enable %}
-  <!-- Ajaxify Cart Plugin ================================================== -->
-  {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
-  {% endif %}
-
   <!-- CSS ================================================== -->
   {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
 
@@ -118,7 +113,7 @@
             {% comment %}
               Show number of items in the cart and total cost in the /cart link
 
-              Ajaxify Cart Notes:
+              Ajax Cart Notes:
                 - #cartCount updates the total number of items in the cart
                 - #cartCost updates the total cost of the cart
                 - Documentation:  http://shopify.com/timber#ajax-cart
@@ -285,7 +280,7 @@
   {% if settings.ajax_cart_enable %}
     {{ 'handlebars.min.js' | asset_url | script_tag }}
     {% include 'ajax-cart-template' %}
-    {{ 'ajaxify.js' | asset_url | script_tag }}
+    {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
       jQuery(function($) {
         ajaxCart.init({
