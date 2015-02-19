@@ -345,6 +345,7 @@ var ajaxCart = (function(module, $) {
 
   itemErrorCallback = function (XMLHttpRequest, textStatus) {
     var data = eval('(' + XMLHttpRequest.responseText + ')');
+    $addToCart.removeClass('is-adding is-added');
 
     if (!!data.message) {
       if (data.status == 422) {
