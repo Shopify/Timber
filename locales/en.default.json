@@ -54,7 +54,7 @@
   },
   "cart": {
     "general": {
-      "title": "Your Cart",
+      "title": "Shopping Cart",
       "remove": "Remove",
       "note": "Special instructions for seller",
       "subtotal": "Subtotal",
@@ -67,6 +67,7 @@
       "close_cart": "Close Cart"
     },
     "label": {
+      "product": "Product",
       "price": "Price",
       "quantity": "Quantity",
       "total": "Total"

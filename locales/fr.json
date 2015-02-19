@@ -67,6 +67,7 @@
       "close_cart": "Fermer le panier"
     },
     "label": {
+      "product": "Produit",
       "price": "Prix",
       "quantity": "Quantité",
       "total": "Total"

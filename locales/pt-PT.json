@@ -67,6 +67,7 @@
       "close_cart": "Fechar Carrinho de Compras"
     },
     "label": {
+      "product": "Produto",
       "price": "Preço",
       "quantity": "Quantidade",
       "total": "Total"

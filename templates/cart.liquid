@@ -1,7 +1,7 @@
 <!-- /templates/cart.liquid -->
 {% comment %}
 
-  This is your /cart template. If you are using the Ajax Cart plugin,
+  This is your /cart template. If you are using the Ajaxify Cart plugin,
   your form (with action="/cart") layout will be used in the drawer/modal.
 
   For info on test orders:
@@ -17,7 +17,14 @@
 
     <div class="cart__row medium-down--hide cart__header-labels">
       <div class="grid--full">
-        <div class="grid__item large--one-half push--large--one-half">
+        <div class="grid__item large--one-half">
+          <div class="grid">
+            <div class="grid__item two-thirds push--one-third">
+              {{ 'cart.label.product' | t }}
+            </div>
+          </div>
+        </div>
+        <div class="grid__item large--one-half">
           <div class="grid--full">
             <div class="grid__item one-third medium-down--one-third">
               {{ 'cart.label.price' | t }}
@@ -55,10 +62,11 @@
               </div>
 
               <div class="grid__item two-thirds">
-                <a href="{{ item.url }}" class="h5">
+                <a href="{{ item.url }}" class="h4">
                   {{ item.product.title }}
                 </a>
                 {% unless item.variant.title contains 'Default' %}
+                  <br>
                   <small>{{ item.variant.title }}</small>
                 {% endunless %}
 
