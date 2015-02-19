@@ -983,12 +983,20 @@ hr {
 .rte {
   margin-bottom: $gutter / 2;
 
+  a {
+    text-decoration: underline;
+  }
+
   // Add some top margin to headers from the rich text editor
   h1, h2, h3, h4, h5, h6 {
     margin-top: 2em;
 
     &:first-child {
       margin-top: 0;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 
@@ -1011,7 +1019,7 @@ hr {
 a,
 .text-link {
   color: $colorLink;
-  text-decoration: underline;
+  text-decoration: none;
   background: transparent;
 }
 
@@ -2316,7 +2324,7 @@ label.error {
   }
 
   .js-qty {
-    margin: 0;
+    margin: 0 auto;
   }
 }
 
