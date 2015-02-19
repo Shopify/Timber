@@ -32,15 +32,13 @@
             </button>
           </div>
         </div>
-        <div class="mobile-nav__sublist-wrap">
-          <ul class="mobile-nav__sublist">
-            {% for childlink in linklists[child_list_handle].links %}
-              <li class="mobile-nav__item {% if childlink.active %} mobile-nav__item--active{% endif %}">
-                <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title | escape }}</a>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
+        <ul class="mobile-nav__sublist">
+          {% for childlink in linklists[child_list_handle].links %}
+            <li class="mobile-nav__item {% if childlink.active %} mobile-nav__item--active{% endif %}">
+              <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title | escape }}</a>
+            </li>
+          {% endfor %}
+        </ul>
       </li>
     {% else %}
       <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}">

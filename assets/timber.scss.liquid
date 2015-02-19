@@ -1923,6 +1923,12 @@ label.error {
   position: relative;
   display: block;
 
+  // Background color on top level items so there is no
+  // element overlap on subnav's CSS toggle animation
+  .mobile-nav > & {
+    background-color: $colorDrawers;
+  }
+
   &:after {
     content: '';
     position: absolute;
@@ -1994,24 +2000,18 @@ label.error {
   }
 }
 
-.mobile-nav__sublist-wrap {
-  @include prefix('perspective', 1000px);
-  transform-style: preserve-3d;
-}
-
 .mobile-nav__sublist {
   margin: 0;
   max-height: 0;
   visibility: hidden;
   @include prefix('transform-origin', top);
-  @include transform('rotateX(-92deg)');
   @include backface(hidden);
-  @include transition(all 350ms cubic-bezier(0.57,.06,.05,.95));
+  @include transition(all 300ms cubic-bezier(0.57,.06,.05,.95));
 
-  .mobile-nav--expanded + .mobile-nav__sublist-wrap & {
+  .mobile-nav--expanded + & {
     visibility: visible;
     max-height: 700px;
-    @include transform('rotateX(0deg)');
+    @include transition(all 700ms cubic-bezier(0.57,.06,.05,.95));
   }
 
   .mobile-nav__item:after {
@@ -2055,7 +2055,7 @@ label.error {
 .drawer--left {
   width: $drawerNavWidth;
   left: -$drawerNavWidth;
-  @include prefix('box-shadow', 'inset -2px 0 1px 0px rgba(0,0,0,0.1)');
+  border-right: 1px solid $colorDrawerBorder;
 
   .js-drawer-open-left & {
     display: block;
@@ -2070,7 +2070,7 @@ label.error {
 .drawer--right {
   width: $drawerCartWidth;
   right: -$drawerCartWidth;
-  @include prefix('box-shadow', 'inset 2px 0 1px 0px rgba(0,0,0,0.1)');
+  border-left: 1px solid $colorDrawerBorder;
 
   .js-drawer-open-right & {
     display: block;
@@ -2183,13 +2183,22 @@ label.error {
   #Breadcrumbs
 ==============================================================================*/
 .breadcrumb {
-  margin-bottom: $gutter;
+  margin-bottom: $gutter / 2;
+
+  @include at-query($min, $large) {
+    margin-bottom: $gutter;
+  }
 
   a,
   span {
     display: inline-block;
-    padding: ($gutter / 2) 7px ($gutter / 2) 0;
+    padding: 0 7px 0 0;
     margin-right: 7px;
+
+    @include at-query($min, $large) {
+      padding-top: $gutter / 2;
+      padding-bottom: $gutter / 2;
+    }
 
     &:first-child {
       padding-left: 0;
@@ -2386,10 +2395,10 @@ form[action^="/cart/add"] {
 .ajaxcart__inner {
   .grid {
     margin-left: -$gutter / 2;
-  }
 
-  .grid__item {
-    padding-left: $gutter / 2;
+    .grid__item {
+      padding-left: $gutter / 2;
+    }
   }
 }
 
@@ -2449,8 +2458,6 @@ form[action^="/cart/add"] {
 .ajaxcart__product-name,
 .ajaxcart__product-variation {
   display: block;
-  margin-bottom: $gutter / 4;
-  text-decoration: none;
 }
 
 /*================ Quantity Selectors ================*/
