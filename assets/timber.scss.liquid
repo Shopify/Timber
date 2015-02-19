@@ -2021,7 +2021,6 @@ label.error {
   #Drawers
 ==============================================================================*/
 .js-drawer-open {
-  // overflow-x: hidden;
   overflow: hidden;
 }
 
@@ -2030,6 +2029,7 @@ label.error {
   position: fixed;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   top: 0;
   bottom: 0;
   padding: 0 ($gutter / 2) ($gutter / 2);
@@ -2362,8 +2362,10 @@ label.error {
 }
 
 /*============================================================================
-  #Ajax Cart Styles
+  #Ajax Cart Styles (conditionally loaded)
 ==============================================================================*/
+{% if settings.ajax_cart_enable %}
+
 form[action="/cart/add"],
 form[action^="/cart/add"] {
   @include clearfix;
@@ -2539,3 +2541,5 @@ form[action^="/cart/add"] {
   @extend .js-qty__adjust--minus;
   border-color: $colorDrawerBorder;
 }
+
+{% endif %} // settings.ajax_cart_enable
