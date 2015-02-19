@@ -17,14 +17,7 @@
 
     <div class="cart__row medium-down--hide cart__header-labels">
       <div class="grid--full">
-        <div class="grid__item large--one-half">
-          <div class="grid">
-            <div class="grid__item two-thirds push--one-third">
-              {{ 'cart.label.product' | t }}
-            </div>
-          </div>
-        </div>
-        <div class="grid__item large--one-half">
+        <div class="grid__item large--one-half push--large--one-half">
           <div class="grid--full">
             <div class="grid__item one-third medium-down--one-third">
               {{ 'cart.label.price' | t }}
@@ -62,11 +55,10 @@
               </div>
 
               <div class="grid__item two-thirds">
-                <a href="{{ item.url }}" class="h4">
+                <a href="{{ item.url }}" class="h5">
                   {{ item.product.title }}
                 </a>
                 {% unless item.variant.title contains 'Default' %}
-                  <br>
                   <small>{{ item.variant.title }}</small>
                 {% endunless %}
 
