@@ -1,6 +1,4 @@
-require_relative 'spec_helper'
-require_relative 'i18n_helper'
-require_relative 'html_helper'
+require 'spec_helper'
 
 describe "Theme" do
   FILE_KEYS = Dir["./**/*.liquid"].map do |path|
