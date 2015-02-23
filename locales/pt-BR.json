@@ -78,10 +78,6 @@
       "link_title": "Explore a nossa coleção {{ title }}",
       "grid_view": "Grelha",
       "list_view": "Lista",
-      "items_count": {
-        "one": "item",
-        "other": "itens"
-      },
       "items_with_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} itens"
@@ -89,7 +85,6 @@
     },
     "sidebar": {
       "types": "Tipos de produtos",
-      "no_types_html": "Adicione um tipo aos seus produtos para que se crie esta lista. Todas as listas são criadas em <strong>collection-sidebar.liquid</strong>.",
       "vendors": "Fabricantes",
       "tags": "Marcadores"
     },

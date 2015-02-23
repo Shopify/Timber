@@ -78,10 +78,6 @@
       "link_title": "Durchsuchen Sie unsere {{ title }}-Zusammenstellung",
       "grid_view": "Gitteransicht",
       "list_view": "Listenansicht",
-      "items_count": {
-        "one": "Produkt",
-        "other": "Produkte"
-      },
       "items_with_count": {
         "one": "{{ count }} Produkt",
         "other": "{{ count }} Produkte"
