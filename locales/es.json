@@ -79,10 +79,6 @@
       "link_title": "Navegue por nuestra colección {{ title }}",
       "grid_view": "Tabla",
       "list_view": "Lista",
-      "items_count": {
-        "one": "artículo",
-        "other": "artículos"
-      },
       "items_with_count": {
         "one": "{{ count }} artículo",
         "other": "{{ count }} artículos"

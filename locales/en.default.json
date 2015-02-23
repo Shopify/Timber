@@ -79,10 +79,6 @@
       "link_title": "Browse our {{ title }} collection",
       "grid_view": "Grid view",
       "list_view": "List view",
-      "items_count": {
-        "one": "item",
-        "other": "items"
-      },
       "items_with_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
