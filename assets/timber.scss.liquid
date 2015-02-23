@@ -2050,6 +2050,17 @@ label.error {
   a {
     color: $colorDrawerText;
   }
+
+  input[type="text"],
+  input[type="search"],
+  input[type="password"],
+  input[type="email"],
+  input[type="file"],
+  input[type="number"],
+  input[type="tel"],
+  textarea {
+    border-color: $colorDrawerBorder;
+  }
 }
 
 .drawer--left {
@@ -2450,8 +2461,8 @@ label.error {
   cursor: pointer;
   position: absolute;
   display: block;
-  top: -1px;
-  bottom: -1px;
+  top: 0;
+  bottom: 0;
   border: 0 none;
   padding: 0 8px;
   background: none;

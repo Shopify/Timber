@@ -132,22 +132,22 @@
               If customer accounts are enabled, provide login and create account links
             {% endcomment %}
             {% if shop.customer_accounts_enabled %}
-            <p class="site-header__text-links">
-              {% if customer %}
-                {% if customer.first_name != blank %}
-                  {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                  {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+              <p class="site-header__text-links">
+                {% if customer %}
+                  {% if customer.first_name != blank %}
+                    {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                    {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+                  {% else %}
+                    <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                  {% endif %}
+                  | {{ 'layout.customer.log_out' | t | customer_logout_link }}
                 {% else %}
-                  <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                  {{ 'layout.customer.log_in' | t | customer_login_link }}
+                  {% if shop.customer_accounts_optional %}
+                  | {{ 'layout.customer.create_account' | t | customer_register_link }}
+                  {% endif %}
                 {% endif %}
-                | {{ 'layout.customer.log_out' | t | customer_logout_link }}
-              {% else %}
-                {{ 'layout.customer.log_in' | t | customer_login_link }}
-                {% if shop.customer_accounts_optional %}
-                | {{ 'layout.customer.create_account' | t | customer_register_link }}
-                {% endif %}
-              {% endif %}
-            </p>
+              </p>
             {% endif %}
 
             <div class="site-header__search">
@@ -300,7 +300,7 @@
 
         // Open cart drawer
         timber.RightDrawer.open();
-      }
+      };
     </script>
   {% endif %}
 
