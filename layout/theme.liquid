@@ -282,6 +282,13 @@
     {% include 'ajax-cart-template' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
+      var afterCartLoad = function(data) {
+        // This function runs when the cart is loaded and can be manipulated as needed
+
+        // Open cart drawer
+        timber.RightDrawer.open();
+      };
+
       jQuery(function($) {
         ajaxCart.init({
           formSelector: '#AddToCartForm',
@@ -294,13 +301,6 @@
           afterCartLoad: afterCartLoad
         });
       });
-
-      afterCartLoad = function(data) {
-        // The cart is now loaded and can be manipulated as needed
-
-        // Open cart drawer
-        timber.RightDrawer.open();
-      };
     </script>
   {% endif %}
 
