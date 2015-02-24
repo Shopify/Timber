@@ -133,6 +133,10 @@ $gutter: 30px;
 $gridGutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 $radius: 3px;
 
+// Z-index
+$zindexNavDropdowns: 5;
+$zindexDrawer: 10;
+
 /*================ Typography ================*/
 
 $headerFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -1681,7 +1685,6 @@ label.error {
 .pagination-custom > .active > span:hover,
 .pagination-custom > .active > a:focus,
 .pagination-custom > .active > span:focus {
-  z-index: 2;
   cursor: default;
   color: $colorTextBody;
 }
@@ -1868,7 +1871,7 @@ label.error {
   position: absolute;
   left: 0;
   margin: 0;
-  z-index: 5;
+  z-index: $zindexNavDropdowns;
 
   .supports-no-touch .site-nav--has-dropdown:hover &,
   .site-nav--has-dropdown.nav-hover &,
@@ -1947,6 +1950,7 @@ label.error {
 .mobile-nav__item a {
   display: block;
 }
+
 .mobile-nav__item a,
 .mobile-nav__toggle button {
   color: $colorDrawerText;
@@ -2042,7 +2046,7 @@ label.error {
   bottom: 0;
   padding: 0 ($gutter / 2) ($gutter / 2);
   max-width: 95%;
-  z-index: 1000;
+  z-index: $zindexDrawer;
   color: $colorDrawerText;
   background-color: $colorDrawers;
   @include transition('all 0.4s cubic-bezier(0.46, 0.01 , 0.32, 1)');
