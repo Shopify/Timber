@@ -256,7 +256,7 @@ var ajaxCart = (function(module, $) {
   var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, ajaxCallback;
+  var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -273,8 +273,7 @@ var ajaxCart = (function(module, $) {
       btnClass: null,
       moneyFormat: '${{amount}}',
       disableAjaxCart: false,
-      enableQtySelectors: true,
-      afterCartLoad: null
+      enableQtySelectors: true
     };
 
     // Override defaults with arguments
@@ -433,10 +432,7 @@ var ajaxCart = (function(module, $) {
     // With new elements we need to relink the adjust cart functions
     adjustCart();
 
-    // Send data to callback
-    ajaxCallback({
-      'cart': cart
-    });
+    $body.trigger('ajaxCart.afterCartLoad', cart);
   };
 
   adjustCart = function () {
@@ -642,13 +638,6 @@ var ajaxCart = (function(module, $) {
       qty = 1;
     }
     return qty;
-  };
-
-  ajaxCallback = function (data) {
-    // Run the callback if it's a function
-    if (typeof settings.afterCartLoad == 'function') {
-      settings.afterCartLoad.call(this, data);
-    }
   };
 
   module = {

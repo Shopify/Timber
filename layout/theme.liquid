@@ -282,13 +282,6 @@
     {% include 'ajax-cart-template' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
-      var afterCartLoad = function(data) {
-        // This function runs when the cart is loaded and can be manipulated as needed
-
-        // Open cart drawer
-        timber.RightDrawer.open();
-      };
-
       jQuery(function($) {
         ajaxCart.init({
           formSelector: '#AddToCartForm',
@@ -297,9 +290,13 @@
           cartCountSelector: '#CartCount',
           cartCostSelector: '#CartCost',
           btnClass: 'btn',
-          moneyFormat: {{ shop.money_format | json }},
-          afterCartLoad: afterCartLoad
+          moneyFormat: {{ shop.money_format | json }}
         });
+      });
+
+      jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+        // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+        timber.RightDrawer.open();
       });
     </script>
   {% endif %}
