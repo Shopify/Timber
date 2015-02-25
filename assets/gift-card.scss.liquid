@@ -363,8 +363,12 @@ $gutter: 30px;
 
 
 .giftcard__icon {
-  display: inline-block;
-  vertical-align: baseline;
+  display: none;
+
+  .svg & {
+    display: inline-block;
+    vertical-align: baseline;
+  }
 }
 
 #QrCode {
