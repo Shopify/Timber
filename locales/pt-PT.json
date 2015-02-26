@@ -22,6 +22,10 @@
       "title": "Pesquisar produtos no nosso site",
       "placeholder": "Pesquisar a nossa loja",
       "submit": "Pesquisar"
+    },
+    "drawers": {
+      "browse": "Navegar",
+      "close_menu": "Fechar menu"
     }
   },
   "blogs": {

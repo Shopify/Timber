@@ -22,6 +22,10 @@
       "title": "Search for products on our site",
       "placeholder": "Search our store",
       "submit": "Search"
+    },
+    "drawers": {
+      "browse": "Browse",
+      "close_menu": "Close menu"
     }
   },
   "blogs": {
