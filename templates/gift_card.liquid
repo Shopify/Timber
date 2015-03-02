@@ -41,11 +41,11 @@
     <header class="giftcard-header" role="banner">
       <div class="h1 header-logo" itemscope itemtype="http://schema.org/Organization">
         {% if settings.logo_use_image %}
-          <a href="/" itemprop="url">
+          <a href="{{ shop.url }}" itemprop="url">
             <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
           </a>
         {% else %}
-          <a href="/" itemprop="url">{{ shop.name }}</a>
+          <a href="{{ shop.url }}" itemprop="url">{{ shop.name }}</a>
         {% endif %}
       </div>
       <div class="shop-url">{{ shop.url }}</div>
@@ -115,7 +115,7 @@
     </main>
 
     <footer class="giftcard__footer" role="contentinfo">
-      <img src="{{ 'gift-card/icon-bug.png' | shopify_asset_url }}" class="giftcard__icon" alt="{{ 'gift_cards.issued.subtext' | t }}">
+      <img src="{{ 'ico-gift-card.svg' | asset_url }}" class="giftcard__icon" alt="{{ 'gift_cards.issued.subtext' | t }}">
     </footer>
 
   </div>

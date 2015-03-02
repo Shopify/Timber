@@ -54,6 +54,10 @@ $gutter: 30px;
 /*============================================================================
   #Base Styles
 ==============================================================================*/
+header, nav, section, article, aside, footer {
+  display:block;
+}
+
 .template-giftcard,
 .template-giftcard body {
   background: $colorBody;
@@ -363,9 +367,12 @@ $gutter: 30px;
 
 
 .giftcard__icon {
-  width: 45px;
-  display: inline-block;
-  vertical-align: baseline;
+  display: none;
+
+  .svg & {
+    display: inline-block;
+    vertical-align: baseline;
+  }
 }
 
 #QrCode {
