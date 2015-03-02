@@ -262,6 +262,7 @@
     },
     "product": {
       "sold_out": "Esgotado",
+      "on_sale": "Em Promoção",
       "on_sale_from_html": "<strong>Em Promoção</strong> desde {{ price }}",
       "unavailable": "Indisponível",
       "compare_at": "Comparar em",

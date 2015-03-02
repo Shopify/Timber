@@ -18,6 +18,22 @@
   {% assign grid_item_width = 'large--one-third medium--one-half' %}
 {% endunless %}
 
+{% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if item.compare_at_price > item.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if item.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
 <div class="grid__item search-result {{ grid_item_width }}">
 
   {% if item.featured_image %}
@@ -30,20 +46,31 @@
 
     <h5>{{ item.title | link_to: item.url }}</h5>
 
-    <h6>
-      {% if item.compare_at_price > item.price %}
-        <span class="on-sale" itemprop="price">
-          {{ item.price | money }}
-        </span>
-        <small>
-          {{ 'products.product.compare_at' | t }}
-          {{ item.compare_at_price_max | money }}
-        </small>
-      {% else %}
-        <span itemprop="price">
-          {{ item.price | money }}
-        </span>
-      {% endif %}
-    </h6>
+    {% if item.price %}
+      <p>
+        {% comment %}
+          You can show a leading 'from' or 'up to' by checking 'product.price_varies'
+          if your variants have different prices.
+        {% endcomment %}
+        {% if on_sale %}
+          {% if item.price_varies %}
+            {% assign sale_price = item.price | money %}
+            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+          {% else %}
+            <strong>{{ 'products.product.on_sale' | t }}</strong>
+            <span itemprop="price">{{ item.price | money }}</span>
+          {% endif %}
+        {% else %}
+          {% if item.price_varies %}{{ 'products.general.from' | t }}{% endif %}
+          <span itemprop="price">{{ item.price | money }}</span>
+        {% endif %}
+        {% if sold_out %}
+          <br><strong>{{ 'products.product.sold_out' | t }}</strong>
+        {% endif %}
+        {% if on_sale %}
+          <br><s>{{ item.compare_at_price | money }}</s>
+        {% endif %}
+      </p>
+    {% endif %}
 
 </div>
