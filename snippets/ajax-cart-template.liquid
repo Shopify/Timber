@@ -48,7 +48,12 @@
           {% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %}
           <span class="h3"> {{totalPrice}}</span>
         </p>
-        <input type="submit" class="{{btnClass}}" name="checkout" value="{% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}">
+        <button type="submit" class="btn btn--full" name="checkout">
+          {% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}
+        </button>
+        {% endraw %}{% if additional_checkout_buttons %}
+          <div>{{ content_for_additional_checkout_buttons }}</div>
+        {% endif %}{% raw %}
       </div>
     </form>
   {% endraw %}
