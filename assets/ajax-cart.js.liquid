@@ -250,13 +250,13 @@ var ajaxCart = (function(module, $) {
   var init, loadCart;
 
   // Private general variables
-  var settings, $body, $html;
+  var settings, $body;
 
   // Private plugin variables
-  var $formContainer, $btnClass, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer;
+  var $formContainer, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty;
+  var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartCallback, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -265,15 +265,14 @@ var ajaxCart = (function(module, $) {
 
     // Default settings
     settings = {
-      formSelector: 'form[action^="/cart/add"]',
-      cartContainer: '#CartContainer',
-      addToCartSelector: 'input[type="submit"]',
-      cartCountSelector: null,
-      cartCostSelector: null,
-      btnClass: null,
-      moneyFormat: '${{amount}}',
-      disableAjaxCart: false,
-      enableQtySelectors: true
+      formSelector       : 'form[action^="/cart/add"]',
+      cartContainer      : '#CartContainer',
+      addToCartSelector  : 'input[type="submit"]',
+      cartCountSelector  : null,
+      cartCostSelector   : null,
+      moneyFormat        : '${{amount}}',
+      disableAjaxCart    : false,
+      enableQtySelectors : true
     };
 
     // Override defaults with arguments
@@ -282,14 +281,12 @@ var ajaxCart = (function(module, $) {
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
     $cartContainer     = $(settings.cartContainer);
-    $btnClass          = settings.btnClass;
     $addToCart         = $formContainer.find(settings.addToCartSelector);
     $cartCountSelector = $(settings.cartCountSelector);
     $cartCostSelector  = $(settings.cartCostSelector);
 
     // General Selectors
     $body = $('body');
-    $html = $('html');
 
     // Setup ajax quantity selectors on the any template if enableQtySelectors is true
     if (settings.enableQtySelectors) {
@@ -366,8 +363,8 @@ var ajaxCart = (function(module, $) {
     // Show empty cart
     if (cart.item_count === 0) {
       $cartContainer
-        .append('<h4>' + {{ 'cart.general.empty' | t | json }} + '</h4>')
-        .append('<p>' + {{ 'cart.general.continue_browsing_html' | t | json }} + '</p>');
+        .append('<h4>' + {{ 'cart.general.empty' | t | json }} + '</h4>');
+      cartCallback(cart);
       return;
     }
 
@@ -390,7 +387,6 @@ var ajaxCart = (function(module, $) {
        *     - Create server relative link
        *   - A hard-coded url of no-image
       */
-
       if (cartItem.image != null){
         var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', '');
       } else {
@@ -401,7 +397,7 @@ var ajaxCart = (function(module, $) {
           prodVariation = cartItem.variant_title;
 
       if (prodVariation == 'Default Title') {
-	      prodVariation = false;
+        prodVariation = false;
       }
 
       // Create item's data object and add to 'items' array
@@ -423,27 +419,23 @@ var ajaxCart = (function(module, $) {
     // Gather all cart data and add to DOM
     data = {
       items: items,
-      totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat),
-      btnClass: $btnClass
+      totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat)
     }
 
     $cartContainer.append(template(data));
 
-    // With new elements we need to relink the adjust cart functions
-    adjustCart();
+    cartCallback(cart);
+  };
 
+  cartCallback = function(cart) {
     $body.trigger('ajaxCart.afterCartLoad', cart);
   };
 
   adjustCart = function () {
-    // This function runs on load, and when the cart is reprinted
-
-    // Update quantify selectors
-    var qtyAdjust = $('.ajaxcart__qty-adjust');
+    // Delegate all events because elements reload with the cart
 
     // Add or remove from the quantity
-    qtyAdjust.off('click');
-    qtyAdjust.on('click', function() {
+    $body.on('click', '.ajaxcart__qty-adjust', function() {
       var el = $(this),
           id = el.data('id'),
           qtySelector = el.siblings('.ajaxcart__qty-num'),
@@ -466,13 +458,10 @@ var ajaxCart = (function(module, $) {
       } else {
         qtySelector.val(qty);
       }
-
     });
 
     // Update quantity based on input on change
-    var qtyInput = $('.ajaxcart__qty-num');
-    qtyInput.off('change');
-    qtyInput.on('change', function() {
+    $body.on('change', '.ajaxcart__qty-num', function() {
       var el = $(this),
           id = el.data('id'),
           qty = parseInt(el.val().replace(/\D/g, ''));
@@ -486,27 +475,11 @@ var ajaxCart = (function(module, $) {
     });
 
     // Highlight the text when focused
-    qtyInput.off('focus');
-    qtyInput.on('focus', function() {
+    $body.on('focus', '.ajaxcart__qty-adjust', function() {
       var el = $(this);
       setTimeout(function() {
         el.select();
       }, 50);
-    });
-
-    // Completely remove product
-    $('.ajaxcart__remove').on('click', function(e) {
-      var el = $(this),
-          id = el.data('id') || null,
-          qty = 0;
-
-      // Without an id, let the default link action take over
-      if (!id) {
-        return;
-      }
-
-      e.preventDefault();
-      updateQuantity(id, qty);
     });
 
     function updateQuantity(id, qty) {
@@ -524,8 +497,7 @@ var ajaxCart = (function(module, $) {
     }
 
     // Save note anytime it's changed
-    var noteArea = $('textarea[name="note"]');
-    noteArea.off('change').on('change', function() {
+    $body.on('change', 'textarea[name="note"]', function() {
       var newNote = $(this).val();
 
       // Update the cart note in case they don't click update/checkout
