@@ -21,10 +21,10 @@
                 <p>
                   <a href="{{url}}" class="ajaxcart__product-name">{{name}}</a>
                   {{#if variation}}
-                    <span class="ajaxcart__product-variation">{{variation}}</span>
+                    <span class="ajaxcart__product-meta">{{variation}}</span>
                   {{/if}}
                   {% endraw %}{% if settings.cart_vendor_enable %}{% raw %}
-                    <span class="ajaxcart__product-variation">{{ vendor }}</span>
+                    <span class="ajaxcart__product-meta">{{ vendor }}</span>
                   {% endraw %}{% endif %}{% raw %}
                 </p>
 
