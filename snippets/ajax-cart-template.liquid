@@ -42,6 +42,13 @@
           </div>
         </div>
         {{/items}}
+
+        {% endraw %}{% if settings.cart_notes_enable %}{% raw %}
+          <div>
+            <label for="CartSpecialInstructions">{% endraw %}{{ 'cart.general.note' | t }}{% raw %}</label>
+            <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ note }}</textarea>
+          </div>
+        {% endraw %}{% endif %}{% raw %}
       </div>
       <div class="ajaxcart__footer text-right">
         <p>

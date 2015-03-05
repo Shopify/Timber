@@ -303,6 +303,7 @@ var ajaxCart = (function(module, $) {
   };
 
   loadCart = function () {
+    $body.addClass('drawer--is-loading');
     Shopify.getCart(cartUpdateCallback);
   };
 
@@ -387,6 +388,7 @@ var ajaxCart = (function(module, $) {
        *     - Create server relative link
        *   - A hard-coded url of no-image
       */
+
       if (cartItem.image != null){
         var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_small$1").replace('http:', '');
       } else {
@@ -419,6 +421,7 @@ var ajaxCart = (function(module, $) {
     // Gather all cart data and add to DOM
     data = {
       items: items,
+      note: cart.note,
       totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat)
     }
 
@@ -428,6 +431,7 @@ var ajaxCart = (function(module, $) {
   };
 
   cartCallback = function(cart) {
+    $body.removeClass('drawer--is-loading');
     $body.trigger('ajaxCart.afterCartLoad', cart);
   };
 
