@@ -8,8 +8,8 @@
 {% endcomment %}
   <script id="CartTemplate" type="text/template">
   {% raw %}
-    <form action="/cart" method="post" novalidate>
-      <div class="ajaxcart__inner">
+    <form action="/cart" method="post" novalidate class="cart">
+      <div class="ajaxcart__inner{% endraw %}{% unless additional_checkout_buttons %} ajaxcart__inner--has-fixed-footer{% endunless %}{% raw %}">
         {{#items}}
         <div class="ajaxcart__product">
           <div class="ajaxcart__row" data-id="{{id}}">
@@ -19,11 +19,14 @@
               </div>
               <div class="grid__item three-quarters">
                 <p>
-                  <a href="{{url}}" class="ajaxcart__product-name"><strong>{{name}}</strong></a>
+                  <a href="{{url}}" class="ajaxcart__product-name">{{name}}</a>
+                  {{#if variation}}
+                    <span class="ajaxcart__product-variation">{{variation}}</span>
+                  {{/if}}
+                  {% endraw %}{% if settings.cart_vendor_enable %}{% raw %}
+                    <span class="ajaxcart__product-variation">{{ vendor }}</span>
+                  {% endraw %}{% endif %}{% raw %}
                 </p>
-                {{#if variation }}
-                <p class="ajaxcart__product-variation">{{variation}}</p>
-                {{/if}}
 
                 <div class="grid--full display-table">
                   <div class="grid__item display-table-cell one-half">
@@ -50,12 +53,17 @@
           </div>
         {% endraw %}{% endif %}{% raw %}
       </div>
-      <div class="ajaxcart__footer text-right">
-        <p>
-          {% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %}
-          <span class="h3"> {{totalPrice}}</span>
-        </p>
-        <button type="submit" class="btn btn--full" name="checkout">
+      <div class="ajaxcart__footer{% endraw %}{% unless additional_checkout_buttons %} ajaxcart__footer--fixed{% endunless %}{% raw %}">
+        <div class="grid--full">
+          <div class="grid__item two-thirds">
+            <p>{% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %}</p>
+          </div>
+          <div class="grid__item one-third text-right">
+            <p>{{totalPrice}}</p>
+          </div>
+        </div>
+        <p class="text-center">{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</p>
+        <button type="submit" class="btn btn--full cart__checkout" name="checkout">
           {% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}
         </button>
         {% endraw %}{% if additional_checkout_buttons %}

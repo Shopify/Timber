@@ -412,7 +412,8 @@ var ajaxCart = (function(module, $) {
         itemAdd: itemAdd,
         itemMinus: itemMinus,
         itemQty: itemQty,
-        price: Shopify.formatMoney(cartItem.price, settings.moneyFormat)
+        price: Shopify.formatMoney(cartItem.price, settings.moneyFormat),
+        vendor: cartItem.vendor
       };
 
       items.push(item);
