@@ -97,7 +97,7 @@
               <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
             {% endif %}
               {% if settings.logo_use_image %}
-                <a href="/" itemprop="url">
+                <a href="/" itemprop="url" class="site-header__logo-link">
                   <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
                 </a>
               {% else %}

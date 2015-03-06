@@ -1744,17 +1744,15 @@ label.error {
     padding: $gutter 0;
   }
 
-  @include at-query ($min, $large) {
-    .grid {
-      display: table;
-      table-layout: fixed;
-      width: 100%;
+  .grid {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
 
-      > .grid__item {
-        float: none;
-        display: table-cell;
-        vertical-align: middle;
-      }
+    > .grid__item {
+      float: none;
+      display: table-cell;
+      vertical-align: middle;
     }
   }
 }
@@ -1768,8 +1766,9 @@ label.error {
     margin-bottom: 0;
   }
 
-  a {
+  a.site-header__logo-link {
     max-width: {{ settings.logo_max_width }}px;
+    margin: 0 auto;
   }
 
   a,
