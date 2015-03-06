@@ -1762,7 +1762,7 @@ label.error {
 .site-header__logo {
   text-align: center;
   margin: 0 auto ($gutter / 2);
-  max-width: {{ settings.logo_max_width }}px;
+  max-width: 100%;
 
   @include at-query ($min, $large) {
     margin-bottom: 0;
@@ -1780,6 +1780,7 @@ label.error {
 
   img {
     margin: 0 auto;
+    max-width: {{ settings.logo_max_width }}px;
   }
 }
 
