@@ -1018,7 +1018,7 @@ html input[disabled] {
   margin: 0;
   line-height: 1.42;
   font-weight: bold;
-  text-decoration: none;
+  text-decoration: none!important;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
@@ -1111,6 +1111,10 @@ li { margin-bottom: 0.25em; }
 ul.square { list-style: square outside; }
 ul.disc { list-style: disc outside; }
 ol.alpha { list-style: lower-alpha outside; }
+.no-bullets {
+  list-style: none outside;
+  margin-left: 0;
+}
 
 .inline-list li {
   display: inline-block;
