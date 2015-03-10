@@ -1217,11 +1217,25 @@ form {
   margin-bottom: $gutter;
 }
 
+@include at-query($max, $medium) {
+  input,
+  textarea {
+    font-size: 16px;
+  }
+}
+
 button,
 input,
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+button {
+  background: none;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
 }
 
 fieldset {
@@ -1234,21 +1248,11 @@ legend {
   padding: 0;
 }
 
-optgroup {
-  font-weight: bold;
-}
-
-input {
-  display: inline-block;
-  width: auto;
-}
-
 button,
 input[type="submit"] {
   cursor: pointer;
 }
 
-/*================ Input width and border ================*/
 input,
 textarea,
 select {
@@ -1280,6 +1284,7 @@ textarea {
   min-height: 100px;
 }
 
+/*================ Input element overrides ================*/
 input[type="checkbox"],
 input[type="radio"] {
   display: inline;
@@ -1296,6 +1301,11 @@ input[type="checkbox"] {
 input[type="radio"] {
   -webkit-appearance: radio;
   -moz-appearance: radio;
+}
+
+input[type="image"] {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 select {
@@ -1320,6 +1330,10 @@ select {
     padding-right: 10px;
     background-image: none;
   }
+}
+
+optgroup {
+  font-weight: bold;
 }
 
 // Force option color (affects IE only)
