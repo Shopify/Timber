@@ -2153,6 +2153,7 @@ label.error {
 .drawer__close {
   width: 1%;
   text-align: center;
+  font-size: em(18px);
 }
 
 .drawer__close button {
@@ -2491,11 +2492,7 @@ label.error {
   background: none;
   text-align: center;
   overflow: hidden;
-  -webkit-user-select: none;
-  -moz-user-select:    none;
-  -ms-user-select:     none;
-  -o-user-select:      none;
-  user-select:         none;
+  @include prefix('user-select', 'none');
   @include backface(hidden);
   @include transition(all 0.2s ease-out);
 
