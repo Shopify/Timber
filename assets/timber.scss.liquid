@@ -1022,6 +1022,7 @@ html input[disabled] {
 .btn {
   display: inline-block;
   padding: 8px 10px;
+  width: auto;
   margin: 0;
   line-height: 1.42;
   font-weight: bold;
@@ -1059,8 +1060,7 @@ html input[disabled] {
   }
 }
 
-.btn--secondary,
-input.btn--secondary {
+.btn--secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
 
@@ -1223,45 +1223,11 @@ form {
   margin-bottom: $gutter;
 }
 
+button,
 input,
-textarea,
-button,
-select {
-  font-size: 1em;
-}
-
-button,
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-input[type="submit"],
-input[type="url"],
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
-}
-
-input,
-textarea,
-select,
-fieldset {
-  border-radius: $radius;
-  max-width: 100%;
-
-  &.input-full {
-    width: 100%;
-  }
-}
-
-input,
-select,
-textarea {
-  padding: 8px 10px;
-  line-height: 1.42;
 }
 
 fieldset {
@@ -1288,19 +1254,8 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="submit"] {
-  @extend .btn;
-}
-
 /*================ Input width and border ================*/
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-input[type="url"],
+input,
 textarea,
 select {
   border: 1px solid $colorBorder;
@@ -1308,6 +1263,8 @@ select {
   max-width: 100%;
   display: block;
   margin: 0 0 1em;
+  padding: 8px 10px;
+  border-radius: $radius;
 
   &:focus {
     border: 1px solid darken($colorBorder, 10%);
@@ -1319,6 +1276,10 @@ select {
     background-color: $disabledGrey;
     border-color: $disabledBorder;
   }
+
+  &.input-full {
+    width: 100%;
+  }
 }
 
 textarea {
@@ -1328,8 +1289,19 @@ textarea {
 input[type="checkbox"],
 input[type="radio"] {
   display: inline;
-  margin: 0;
+  margin: 0 10px 0 0;
   padding: 0;
+  width: auto;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+}
+
+input[type="radio"] {
+  -webkit-appearance: radio;
+  -moz-appearance: radio;
 }
 
 select {
@@ -1394,18 +1366,8 @@ legend {
   }
 }
 
-/*================ We don't want the same label treatment for checkboxes/radios ================*/
-input[type="checkbox"] + label,
-input[type="radio"] + label {
-  font-weight: normal;
-}
-
 label[for] {
   cursor: pointer;
-}
-
-.label-hint {
-  color: #999;
 }
 
 /*================ Horizontal Form ================*/
@@ -1413,14 +1375,7 @@ form.form-horizontal,
 .form-horizontal {
   margin-bottom: 0;
 
-  input[type="text"],
-  input[type="search"],
-  input[type="password"],
-  input[type="email"],
-  input[type="file"],
-  input[type="number"],
-  input[type="tel"],
-  input[type="url"],
+  input,
   textarea,
   select,
   label {
@@ -1431,14 +1386,7 @@ form.form-horizontal,
 }
 
 /*================ Error styles ================*/
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-input[type="url"],
+input,
 textarea {
   &.error {
     border-color: $errorRed;
