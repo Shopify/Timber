@@ -1221,6 +1221,7 @@ form {
   margin-bottom: $gutter;
 }
 
+/*================ Prevent zoom on touch devices in active inputs ================*/
 @include at-query($max, $medium) {
   input,
   textarea {
@@ -1261,10 +1262,7 @@ input,
 textarea,
 select {
   border: 1px solid $colorBorder;
-  width: 100%;
   max-width: 100%;
-  display: block;
-  margin: 0 0 1em;
   padding: 8px 10px;
   border-radius: $radius;
 
@@ -1292,7 +1290,7 @@ textarea {
 input[type="checkbox"],
 input[type="radio"] {
   display: inline;
-  margin: 0 10px 0 0;
+  margin: 0 8px 0 0;
   padding: 0;
   width: auto;
 }
@@ -1351,30 +1349,20 @@ select::-ms-expand {
 }
 
 /*================ Form labels ================*/
-label,
-legend {
-  display: block;
-  margin-bottom: 2px;
-  font-weight: bold;
+.label-hidden {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  margin-bottom: 0;
+  overflow: hidden;
 
-  &.inline {
-    display: inline;
-  }
-
-  .form-horizontal &.label--hidden,
-  &.label--hidden {
-    height: 0;
-    width: 0;
-    margin-bottom: 0;
-    overflow: hidden;
-
-    .ie9 &,
-    .lt-ie9 & {
-      height: auto;
-      width: auto;
-      margin-bottom: 2px;
-      overflow: visible;
-    }
+  // No placeholders, so force show labels
+  .ie9 &,
+  .lt-ie9 & {
+    height: auto;
+    width: auto;
+    margin-bottom: 2px;
+    overflow: visible;
   }
 }
 
@@ -1383,22 +1371,18 @@ label[for] {
 }
 
 /*================ Horizontal Form ================*/
-form.form-horizontal,
-.form-horizontal {
-  margin-bottom: 0;
-
+.form-vertical {
   input,
-  textarea,
   select,
-  label {
-    display: inline-block;
-    margin-bottom: 0;
-    width: auto;
+  textarea {
+    display: block;
+    margin-bottom: 10px;
   }
 }
 
 /*================ Error styles ================*/
 input,
+select,
 textarea {
   &.error {
     border-color: $errorRed;
