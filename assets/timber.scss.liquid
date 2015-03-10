@@ -978,14 +978,6 @@ hr {
     margin-bottom: $gutter / 2;
   }
 
-  ul, ol {
-    margin-left: 35px;
-  }
-
-  ul {
-    @extend ul.disc;
-  }
-
   li {
     margin-bottom: 0.4em;
   }
@@ -1103,17 +1095,19 @@ html input[disabled] {
   #Lists
 ==============================================================================*/
 ul, ol {
-  margin: 0 0 $gutter;
+  margin: 0 0 $gutter 20px;
   padding: 0;
+
+  &.inline-list {
+    margin-left: 0;
+  }
 }
 
-ul { list-style: none outside; }
 ol { list-style: decimal; }
 ul ul, ul ol,
 ol ol, ol ul { margin: 4px 0 5px 20px; }
 li { margin-bottom: 0.25em; }
 
-ol, ul.square, ul.disc { margin-left: 20px; }
 ul.square { list-style: square outside; }
 ul.disc { list-style: disc outside; }
 ol.alpha { list-style: lower-alpha outside; }
