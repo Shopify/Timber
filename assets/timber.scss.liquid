@@ -1101,7 +1101,7 @@ ul, ol {
   padding: 0;
 
   &.inline-list {
-    margin: 0;
+    margin-left: 0;
   }
 }
 
@@ -1351,7 +1351,7 @@ select::-ms-expand {
 }
 
 /*================ Form labels ================*/
-.label-hidden {
+.label--hidden {
   display: inline-block;
   height: 0;
   width: 0;
@@ -1379,6 +1379,11 @@ label[for] {
   textarea {
     display: block;
     margin-bottom: 10px;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    display: inline-block;
   }
 }
 

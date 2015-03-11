@@ -52,10 +52,7 @@
       {% comment %}
         Show off meta information like number of comments and tags.
       {% endcomment %}
-      <ul>
-        {% comment %}
-          comments_enabled? and moderated? are the only instances of punctuation in liquid tags.
-        {% endcomment %}
+      <ul class="inline-list">
         {% if blog.comments_enabled? %}
         <li>
           <a href="{{ article.url }}#Comments">

@@ -3,7 +3,7 @@
   Recent blog posts
 {% endcomment %}
 <h4>{{ 'blogs.sidebar.recent_articles' | t }}</h4>
-<ul>
+<ul class="no-bullets">
   {% for article in blogs[blog.handle].articles limit:6 %}
     <li>
       <a href="{{ article.url }}">{{ article.title }}</a>
@@ -18,7 +18,7 @@
 {% endcomment %}
 {% if blog.all_tags.size > 0 %}
   <h4>{{ 'blogs.sidebar.categories' | t }}</h4>
-  <ul>
+  <ul class="no-bullets">
     {% for tag in blog.all_tags %}
       {% if current_tags contains tag %}
       <li>{{ tag }}</li>
