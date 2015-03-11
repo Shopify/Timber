@@ -109,6 +109,10 @@
                 <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
                   {% include 'comment' %}
                 </li>
+
+                {% unless forloop.last %}
+                  <li><hr></li>
+                {% endunless %}
               {% endfor %}
             </ul>
 
