@@ -433,6 +433,55 @@ $breakpoints: (
           <li>Class name format: <code>breakpoint--column-width</code> - e.g. <code>large--one-half</code></li>
         </ul>
 
+        <h4 class="docs-h4">Grid Variations</h4>
+        <p class="docs-text">You can make use of no-margin grids with <code>grid--full</code>.</p>
+        <p class="docs-text">Create custom alignments with push classes, <code>push--large--one-third</code>.</p>
+
+        <div class="grid--full">
+          <div class="grid__item large--one-third">
+            <p class="grid-demo">1.1</p>
+          </div>
+          <div class="grid__item large--one-third">
+            <p class="grid-demo">1.1</p>
+          </div>
+          <div class="grid__item large--one-third">
+            <p class="grid-demo">1.1</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="grid__item large--one-half push--large--one-quarter">
+            <p class="grid-demo">2.1</p>
+          </div>
+          <div class="grid__item large--one-quarter push--large--one-quarter">
+            <p class="grid-demo">2.2</p>
+          </div>
+        </div>
+
+        <pre>
+// No margin grid
+&lt;div class="grid--full"&gt;
+  &lt;div class="grid__item large--one-third"&gt;
+    &lt;p class="grid-demo"&gt;1.1&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid__item large--one-third"&gt;
+    &lt;p class="grid-demo"&gt;1.2&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid__item large--one-third"&gt;
+    &lt;p class="grid-demo"&gt;1.3&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+// Push classes
+&lt;div class="grid"&gt;
+  &lt;div class="grid__item large--one-half push--large--one-quarter"&gt;
+    &lt;p class="grid-demo"&gt;2.1&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid__item large--one-quarter push--large--one-quarter"&gt;
+    &lt;p class="grid-demo"&gt;2.2&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+
         <h4 class="docs-h4">Silent Classes</h4>
         <p class="docs-text">If you don't know what silent classes are, you can ignore this section. The biggest point of contention for many grid systems is how many classes are required in your markup. With Sass, you can use <a href="http://blog.teamtreehouse.com/extending-placeholder-selectors-with-sass" class="docs-link">silent classes</a> to handle all <code>.grid__item</code> widths in your stylesheet.</p>
         <p class="docs-text">Set <code>$use-silent-classes</code> to <strong class="docs-strong">true</strong> in <strong class="docs-strong">timber.scss.liquid</strong>, and use the following code to set the widths:</p>
@@ -1966,15 +2015,15 @@ jQuery(function($) {
         <nav class="docs-nav">
           <h4 class="docs-h4">Table of Contents</h4>
           <h5 class="docs-h5"><a href="#who-for">Getting Started</a></h5>
-          <ul id="gettingstartedNav" class="current-section"></ul>
+          <ul id="gettingstartedNav" class="current-section no-bullets"></ul>
           <h5 class="docs-h5"><a href="#sass">Grid and Sass</a></h5>
-          <ul id="basicNav"></ul>
+          <ul id="basicNav" class="no-bullets"></ul>
           <h5 class="docs-h5"><a href="#pagination">Shopify Components</a></h5>
-          <ul id="moduleNav"></ul>
+          <ul id="moduleNav" class="no-bullets"></ul>
           <h5 class="docs-h5"><a href="#ajax-cart">JavaScript Modules</a></h5>
-          <ul id="jsModuleNav"></ul>
+          <ul id="jsModuleNav" class="no-bullets"></ul>
           <h5 class="docs-h5"><a href="#typography">Style Guide</a></h5>
-          <ul id="styleguideNav"></ul>
+          <ul id="styleguideNav" class="no-bullets"></ul>
         </nav>
       </div>
 
