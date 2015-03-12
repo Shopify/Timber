@@ -157,7 +157,62 @@
 
   </main>
 
-  {% include 'footer' %}
+  <footer class="site-footer small--text-center" role="contentinfo">
+    <div class="wrapper">
+      <div class="grid">
+        {% if settings.footer_social_enable %}
+          <div class="grid__item large--one-quarter medium--one-half">
+            <h3>{{ 'layout.footer.social_title' | t }}</h3>
+              <ul class="inline-list social-icons">
+                {% if settings.social_twitter_link != blank %}
+                  <li>
+                    <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
+                      <span class="icon icon-twitter" aria-hidden="true"></span>
+                      <span class="fallback-text">Twitter</span>
+                    </a>
+                  </li>
+                {% endif %}
+                {% if settings.social_facebook_link != blank %}
+                  <li>
+                    <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
+                      <span class="icon icon-facebook" aria-hidden="true"></span>
+                      <span class="fallback-text">Facebook</span>
+                    </a>
+                  </li>
+                {% endif %}
+              </ul>
+          </div>
+        {% endif %}
+        {% if settings.footer_newsletter_enable %}
+          <div class="grid__item large--one-quarter medium--one-half">
+            <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
+            {% include 'newsletter-form' %}
+          </div>
+        {% endif %}
+        <div class="grid__item text-center">
+          <hr>
+          {% comment %}
+            Loop through available payment methods and show their icons.
+          {% endcomment %}
+          {% unless shop.enabled_payment_types == empty %}
+            <h4 class="text-center">{{ 'layout.footer.accepted_payments' | t }}</h4>
+            <ul class="inline-list payment-icons">
+              {% for type in shop.enabled_payment_types %}
+                <li>
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                    <span class="fallback-text">{{type | replace: '_',' '}}</span>
+                  </span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endunless %}
+          <a href="http://shopify.com/timber">Timber Theme Framework</a> by <a href="http://www.shopify.com?ref=Timber" title="Shopify.com">Shopify</a><br>
+          <small>{{ powered_by_link }}</small>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'timber.js' | asset_url | script_tag }}
