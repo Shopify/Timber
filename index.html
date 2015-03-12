@@ -1238,10 +1238,11 @@ jQuery(function($) {
         <table class="full">
             <tr>
               <td width="40%">
-                <h6>No bullet <code>ul</code> (default)</h6>
+                <h6>No bullet <code>ul</code></h6>
+                <code>.no-bullets</code>
               </td>
               <td>
-                <ul>
+                <ul class="no-bullets">
                   <li>One</li>
                   <li>Two</li>
                   <li>Three</li>
@@ -1251,7 +1252,7 @@ jQuery(function($) {
             </tr>
             <tr>
               <td>
-                <h6>Round bullet <code>ul</code></h6>
+                <h6>Round bullet <code>ul</code>  (default)</h6>
                 <code>.disc</code>
               </td>
               <td>
@@ -1326,64 +1327,66 @@ jQuery(function($) {
           Forms
         ===================================== -->
         <h2 class="doc-title styleguide-title" id="forms"><strong>5.2 </strong>Forms</h2>
-        <h4 class="docs-h4">Vertical (default)</h4>
-        <p class="docs-text">By default, forms follow this pattern. Be sure to remove element bottom padding if you aren't using a large form.</p>
-        <div class="grid">
-            <div class="grid__item large--one-third">
-              <label for="text1">Text Field</label>
-              <input type="text" id="text1">
+        <h4 class="docs-h4">Vertical</h4>
+        <p class="docs-text">To make long forms with block elements, add a class of <code>.form-vertical</code> to the parent.</p>
+        <p class="docs-text">You cannot add a class directly to most liquid form elements (e.g. <code>{%raw%}{% form 'contact' %}{%endraw%}</code>). Instead, wrap the form in a div with the class <code>.form-vertical</code> to achieve the same effect.</p>
+        <p class="docs-text">Use class <code>input-full</code></p>
+        <form class="form-vertical">
+          <div class="grid">
+              <div class="grid__item large--one-third">
+                <label for="text1">Text Field</label>
+                <input type="text" id="text1">
 
-              <label for="text2">Placeholder</label>
-              <input type="text" id="text2" placeholder="Placeholder text">
+                <label for="text2">Placeholder</label>
+                <input type="text" id="text2" placeholder="Placeholder text">
 
-              <label for="text3">Disabled Field</label>
-              <input type="text" id="text3" disabled>
+                <label for="text3">Disabled Field</label>
+                <input type="text" id="text3" disabled>
 
-              <label for="text4">Label with Hint <span class="label-hint">A-Z, 0-9</span></label>
-              <input type="text" id="text4">
+                <label for="text4">Label with Hint <span class="label-hint">A-Z, 0-9</span></label>
+                <input type="text" id="text4">
 
-              <label for="text5" class="error">Text Field (Error)</label>
-              <input type="text" id="text5" class="error" value="Invalid Entry">
-            </div>
+                <label for="text5" class="error">Text Field (Error)</label>
+                <input type="text" id="text5" class="error" value="Invalid Entry">
+              </div>
 
-            <div class="grid__item large--one-third">
-              <label for="select1">Select Field</label>
-              <select id="select1">
-                <option value="0">-- Choose --</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-              </select>
+              <div class="grid__item large--one-third">
+                <label for="select1">Select Field</label>
+                <select id="select1">
+                  <option value="0">-- Choose --</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
 
-              <fieldset>
-                <legend>Checkboxes</legend>
-                <input type="checkbox" id="check1"> <label for="check1" class="inline">Checkbox Field</label><br>
-                <input type="checkbox" id="check2"> <label for="check2" class="inline">Checkbox Field</label><br>
-                <input type="checkbox" id="check3"> <label for="check3" class="inline">Checkbox Field</label>
-              </fieldset>
+                <fieldset>
+                  <legend>Checkboxes</legend>
+                  <input type="checkbox" id="check1"> <label for="check1" class="inline">Checkbox Field</label><br>
+                  <input type="checkbox" id="check2"> <label for="check2" class="inline">Checkbox Field</label><br>
+                  <input type="checkbox" id="check3"> <label for="check3" class="inline">Checkbox Field</label>
+                </fieldset>
 
-              <fieldset>
-              <legend>Radios</legend>
-                <input type="radio" name="radio" id="radio1"> <label for="radio1" class="inline">Option1</label><br>
-                <input type="radio" name="radio" id="radio2"> <label for="radio2" class="inline">Option1</label><br>
-                <input type="radio" name="radio" id="radio3"> <label for="radio3" class="inline">Option1</label>
-              </fieldset>
-            </div>
-            <div class="grid__item large--one-third">
-              <label for="textarea1">Textarea</label>
-              <textarea id="textarea1" placeholder="Placeholder text"></textarea>
+                <fieldset>
+                <legend>Radios</legend>
+                  <input type="radio" name="radio" id="radio1"> <label for="radio1" class="inline">Option1</label><br>
+                  <input type="radio" name="radio" id="radio2"> <label for="radio2" class="inline">Option1</label><br>
+                  <input type="radio" name="radio" id="radio3"> <label for="radio3" class="inline">Option1</label>
+                </fieldset>
+              </div>
+              <div class="grid__item large--one-third">
+                <label for="textarea1">Textarea</label>
+                <textarea id="textarea1" placeholder="Placeholder text"></textarea>
 
-              <label for="file1">File Field</label>
-              <input id="file1" type="file">
-            </div>
+                <label for="file1">File Field</label>
+                <input id="file1" type="file">
+              </div>
 
-        </div>
+          </div>
+        </form>
 
         <hr class="hr--docsclear">
 
-        <h4 class="docs-h4">Horizontal</h4>
-        <p class="docs-text">To make form elements flow inline, add a class of <code>.form-horizontal</code> to the parent.</p>
-        <p class="docs-text">You cannot add a class directly to most liquid form elements (e.g. <code>{%raw%}{% form 'contact' %}{%endraw%}</code>). Instead, wrap the form in a div with the class <code>.form-horizontal</code> to achieve the same effect.</p>
+        <h4 class="docs-h4">Horizontal (default)</h4>
 
         <div id="horizontalform-example">
           <form class="form-horizontal">
@@ -1400,49 +1403,24 @@ jQuery(function($) {
           </form>
         </div>
 
-        <div id="horizontalform-code">
-<pre>
-&lt;form class="form-horizontal"&gt;
-  &lt;label for="textHorizontal1"&gt;Horizontal Label&lt;/label&gt;
-  &lt;input type="text" id="textHorizontal1" placeholder="First name"&gt;
-  &lt;input type="text" id="textHorizontal2" placeholder="Last name"&gt;
-  &lt;select id="selectHorizontal1"&gt;
-    &lt;option value="0"&gt;-- Choose --&lt;/option&gt;
-    &lt;option value="1"&gt;Option 1&lt;/option&gt;
-    &lt;option value="2"&gt;Option 2&lt;/option&gt;
-    &lt;option value="3"&gt;Option 3&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;input type="checkbox" id="checkInline"&gt; &lt;label for="checkInline" class="inline"&gt;Checkbox Label&lt;/label&gt;
-&lt;/form&gt;
-</pre>
-        </div>
-
         <hr class="hr--docsclear">
 
         <h4 class="docs-h4">Invisible Labels</h4>
         <p class="docs-text--note"><strong class="docs-strong">Note:</strong> The placeholder attribute only works in IE10+, so invisible labels are disabled in IE9 and below.</p>
-        <p class="docs-text">Add a class of <code>hidden-label</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
+        <p class="docs-text">Add a class of <code>label-hidden</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
 
         <div id="invisiblelabels-example">
-          <form class="form-horizontal">
-            <label for="testInvisibleLabel1" class="hidden-label">First Name</label>
+          <form>
+            <label for="testInvisibleLabel1" class="label-hidden">First Name</label>
             <input type="text" id="testInvisibleLabel1" name="testInvisibleLabel1" placeholder="First Name">
-            <label for="testInvisibleLabel2" class="hidden-label">Last Name</label>
-            <input type="text" id="testInvisibleLabel2" name="testInvisibleLabel2" placeholder="Last Name">
-            <label for="testInvisibleLabel3" class="hidden-label">Email</label>
-            <input type="text" id="testInvisibleLabel3" name="testInvisibleLabel3" placeholder="Email">
           </form>
         </div>
 
         <div id="invisiblelabels-code">
 <pre>
-&lt;form class="form-horizontal"&gt;
-  &lt;label for="testInvisibleLabel1" class="hidden-label"&gt;First Name&lt;/label&gt;
+&lt;form&gt;
+  &lt;label for="testInvisibleLabel1" class="label-hidden"&gt;First Name&lt;/label&gt;
   &lt;input type="text" id="testInvisibleLabel1" name="testInvisibleLabel1" placeholder="First Name"&gt;
-  &lt;label for="testInvisibleLabel2" class="hidden-label"&gt;Last Name&lt;/label&gt;
-  &lt;input type="text" id="testInvisibleLabel2" name="testInvisibleLabel2" placeholder="Last Name"&gt;
-  &lt;label for="testInvisibleLabel3" class="hidden-label"&gt;Email&lt;/label&gt;
-  &lt;input type="text" id="testInvisibleLabel3" name="testInvisibleLabel3" placeholder="Email"&gt;
 &lt;/form&gt;
 </pre>
         </div>
@@ -1464,31 +1442,30 @@ jQuery(function($) {
             </div>
             <div class="grid__item large--one-half">
               <h4 class="docs-example">Example 2 - Mailchimp Integration</h4>
-              <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
-                <input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field">
+              <form class="input-group">
+                <input type="email" value="" placeholder="Email address" class="input-group-field">
                 <span class="input-group-btn">
-                  <input type="submit" class="btn--secondary" value="Subscribe" name="subscribe" id="subscribe">
+                  <input type="submit" class="btn--secondary" value="Subscribe">
                 </span>
               </form>
             </div>
           </div>
         </div>
         <div id="inputgroups-code">
-          <h4 class="docs-example">Example 1</h4>
 <pre>
+// Button on left
 &lt;div class="input-group"&gt;
   &lt;span class="input-group-btn"&gt;
     &lt;input type="submit" class="btn" value="Go"&gt;
   &lt;/span&gt;
   &lt;input type="text" name="q" value="" placeholder="Placeholder" class="input-group-field"&gt;
 &lt;/div&gt;
-</pre>
-          <h4 class="docs-example">Example 2 - Mailchimp Integration</h4>
-<pre>
-&lt;form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group"&gt;
-  &lt;input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field"&gt;
+
+// Button on right
+&lt;form class="input-group"&gt;
+  &lt;input type="email" value="" placeholder="Email address" class="input-group-field"&gt;
   &lt;span class="input-group-btn"&gt;
-    &lt;input type="submit" class="btn--secondary" value="Subscribe" name="subscribe" id="subscribe"&gt;
+    &lt;input type="submit" class="btn--secondary" value="Subscribe"&gt;
   &lt;/span&gt;
 &lt;/form&gt;
 </pre>
