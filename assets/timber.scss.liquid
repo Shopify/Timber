@@ -1129,10 +1129,6 @@ html input[disabled] {
 ul, ol {
   margin: 0 0 ($gutter / 2) 20px;
   padding: 0;
-
-  &.inline-list {
-    margin-left: 0;
-  }
 }
 
 ol { list-style: decimal; }
@@ -1143,14 +1139,19 @@ li { margin-bottom: 0.25em; }
 ul.square { list-style: square outside; }
 ul.disc { list-style: disc outside; }
 ol.alpha { list-style: lower-alpha outside; }
+
 .no-bullets {
   list-style: none outside;
   margin-left: 0;
 }
 
-.inline-list li {
-  display: inline-block;
-  margin-bottom: 0;
+.inline-list {
+  margin-left: 0;
+
+  li {
+    display: inline-block;
+    margin-bottom: 0;
+  }
 }
 
 /*============================================================================
