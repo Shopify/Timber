@@ -1270,23 +1270,14 @@ input,
 textarea,
 button,
 select {
-  font-size: 1em;
   padding: 0;
   margin: 0;
   @include prefix('user-select', 'text');
 }
 
-@include at-query($max, $medium) {
-  input,
-  textarea {
-    font-size: 16px;
-  }
-}
-
 button {
   background: none;
   border: none;
-  display: inline-block;
   cursor: pointer;
 }
 
@@ -1749,10 +1740,6 @@ label.error {
 .site-header {
   padding: ($gutter / 2) 0;
 
-  @include at-query ($min, $large) {
-    padding: $gutter 0;
-  }
-
   .grid {
     display: table;
     table-layout: fixed;
@@ -1775,11 +1762,6 @@ label.error {
     text-align: left;
   }
 
-  a.site-header__logo-link {
-    max-width: {{ settings.logo_max_width }}px;
-    margin: 0 auto;
-  }
-
   a,
   a:hover,
   a:focus {
@@ -1795,6 +1777,11 @@ label.error {
   }
 }
 
+.site-header__logo-link {
+  max-width: {{ settings.logo_max_width }}px;
+  margin: 0 auto;
+}
+
 .site-header__text-links {
   margin-bottom: 0;
 }
@@ -1802,16 +1789,8 @@ label.error {
 .site-header__search {
   display: inline-block;
   max-width: 400px;
+  margin-top: $gutter / 2;
   width: 100%;
-
-  .site-header__text-links + & {
-    margin-top: $gutter / 2;
-  }
-
-  .input-group,
-  .input-group-field {
-    margin-bottom: 0;
-  }
 }
 
 .search-bar {
@@ -1833,8 +1812,7 @@ label.error {
 .site-nav {
   font-size: em(16px);
   cursor: default;
-  margin: 0;
-  margin-left: -$gutter / 2;
+  margin: 0 0 0 (-$gutter / 2);
 
   li {
     margin: 0;
@@ -2217,11 +2195,7 @@ label.error {
   #Breadcrumbs
 ==============================================================================*/
 .breadcrumb {
-  margin-bottom: $gutter / 2;
-
-  @include at-query($min, $large) {
-    margin-bottom: $gutter;
-  }
+  margin-bottom: $gutter;
 
   a,
   span {
