@@ -218,7 +218,6 @@ $socialIconFontStack: 'icons';
 $min: min-width;
 $max: max-width;
 @mixin at-query ($constraint, $viewport1, $viewport2:null) {
-  @if type-of($constraint) == number { $viewport1 : $constraint; $viewport2 : $viewport1; $constraint : null; }
   @if $constraint == $min {
     @media screen and ($min: $viewport1) {
       @content;
