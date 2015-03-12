@@ -42,7 +42,7 @@
     {% comment %}
       Show off meta information like comments and tags.
     {% endcomment %}
-    <ul>
+    <ul class="inline-list">
       {% include 'tags-article' %}
     </ul>
 
@@ -92,7 +92,7 @@
           {% endif %}
 
           {% if number_of_comments > 0 %}
-            <ul>
+            <ul class="no-bullets">
               {% comment %}
                 If a comment was just submitted with no blank field, show it.
               {% endcomment %}
@@ -109,6 +109,10 @@
                 <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
                   {% include 'comment' %}
                 </li>
+
+                {% unless forloop.last %}
+                  <li><hr></li>
+                {% endunless %}
               {% endfor %}
             </ul>
 
@@ -126,50 +130,52 @@
           {% comment %}
             Comment submission form
           {% endcomment %}
-          {% form 'new_comment', article %}
+          <div class="form-vertical">
+            {% form 'new_comment', article %}
 
-            {% comment %}
-              #AddCommentTitle is used simply as an anchor link
-            {% endcomment %}
-            <h3 id="AddCommentTitle">{{ 'blogs.comments.title' | t }}</h3>
+              {% comment %}
+                #AddCommentTitle is used simply as an anchor link
+              {% endcomment %}
+              <h3 id="AddCommentTitle">{{ 'blogs.comments.title' | t }}</h3>
 
-            {{ form.errors | default_errors }}
+              {{ form.errors | default_errors }}
 
-            <div class="grid">
+              <div class="grid">
 
-              <div class="grid__item large--one-half">
-                <label for="CommentAuthor" class="label--hidden">{{ 'blogs.comments.name' | t }}</label>
-                <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{{ 'blogs.comments.name' | t }}" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words">
+                <div class="grid__item large--one-half">
+                  <label for="CommentAuthor" class="label--hidden">{{ 'blogs.comments.name' | t }}</label>
+                  <input {% if form.errors contains "author" %} class="error"{% endif %} type="text" name="comment[author]" placeholder="{{ 'blogs.comments.name' | t }}" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words">
 
-                <label for="CommentEmail" class="label--hidden">{{ 'blogs.comments.email' | t }}</label>
-                <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{{ 'blogs.comments.email' | t }}" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                  <label for="CommentEmail" class="label--hidden">{{ 'blogs.comments.email' | t }}</label>
+                  <input {% if form.errors contains "email" %} class="error"{% endif %} type="email" name="comment[email]" placeholder="{{ 'blogs.comments.email' | t }}" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                </div>
+
+                <div class="grid__item">
+                  <label for="CommentBody" class="label--hidden">{{ 'blogs.comments.message' | t }}</label>
+                  <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="CommentBody" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
+                </div>
+
               </div>
 
-              <div class="grid__item">
-                <label for="CommentBody" class="label--hidden">{{ 'blogs.comments.message' | t }}</label>
-                <textarea {% if form.errors contains "body" %} class="error"{% endif %} name="comment[body]" id="CommentBody" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
-              </div>
+              {% if blog.moderated? %}
+                <p>{{ 'blogs.comments.moderated' | t }}</p>
+              {% endif %}
 
-            </div>
+              <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
 
-            {% if blog.moderated? %}
-              <p>{{ 'blogs.comments.moderated' | t }}</p>
-            {% endif %}
+              {% comment %}
+                Assign variable to be used after timber.init() is run in theme.liquid
+              {% endcomment %}
+              {% if form.errors %}
+                {% assign newHash = 'AddCommentTitle' %}
+              {% endif %}
 
-            <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
+              {% if form.posted_successfully? %}
+                {% assign newHash = 'Comments' %}
+              {% endif %}
 
-            {% comment %}
-              Assign variable to be used after timber.init() is run in theme.liquid
-            {% endcomment %}
-            {% if form.errors %}
-              {% assign newHash = 'AddCommentTitle' %}
-            {% endif %}
-
-            {% if form.posted_successfully? %}
-              {% assign newHash = 'Comments' %}
-            {% endif %}
-
-          {% endform %}
+            {% endform %}
+          </div>
 
         </div>
       {% endpaginate %}

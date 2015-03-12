@@ -32,7 +32,7 @@
       {% if settings.footer_quicklinks_enable %}
         <div class="grid__item {{ footer_column_width }}">
           <h3>{{ 'layout.footer.linklist_title' | t }}</h3>
-          <ul>
+          <ul class="no-bullets">
             {% for link in linklists[settings.footer_quicklinks_linklist].links %}
               <li><a href="{{ link.url }}">{{ link.title }}</a></li>
             {% endfor %}

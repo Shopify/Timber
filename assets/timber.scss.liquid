@@ -41,7 +41,6 @@
   #Collection Filters
   #Breadcrumbs
   #Product Page
-  #Blogs and Comments
   #Notes and Form Feedback
   #Cart Page
 ==============================================================================*/
@@ -978,14 +977,6 @@ hr {
     margin-bottom: $gutter / 2;
   }
 
-  ul, ol {
-    margin-left: 35px;
-  }
-
-  ul {
-    @extend ul.disc;
-  }
-
   li {
     margin-bottom: 0.4em;
   }
@@ -1019,9 +1010,11 @@ html input[disabled] {
   cursor: default;
 }
 
-.btn {
+.btn,
+.rte .btn {
   display: inline-block;
   padding: 8px 10px;
+  width: auto;
   margin: 0;
   line-height: 1.42;
   font-weight: bold;
@@ -1060,7 +1053,7 @@ html input[disabled] {
 }
 
 .btn--secondary,
-input.btn--secondary {
+.rte .btn--secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
 
@@ -1103,20 +1096,26 @@ input.btn--secondary {
   #Lists
 ==============================================================================*/
 ul, ol {
-  margin: 0 0 $gutter;
+  margin: 0 0 ($gutter / 2) 20px;
   padding: 0;
+
+  &.inline-list {
+    margin-left: 0;
+  }
 }
 
-ul { list-style: none outside; }
 ol { list-style: decimal; }
 ul ul, ul ol,
 ol ol, ol ul { margin: 4px 0 5px 20px; }
 li { margin-bottom: 0.25em; }
 
-ol, ul.square, ul.disc { margin-left: 20px; }
 ul.square { list-style: square outside; }
 ul.disc { list-style: disc outside; }
 ol.alpha { list-style: lower-alpha outside; }
+.no-bullets {
+  list-style: none outside;
+  margin-left: 0;
+}
 
 .inline-list li {
   display: inline-block;
@@ -1220,48 +1219,29 @@ img.auto,
   #Forms
 ==============================================================================*/
 form {
-  margin-bottom: $gutter;
+  margin-bottom: 0;
 }
 
+/*================ Prevent zoom on touch devices in active inputs ================*/
+@include at-query($max, $medium) {
+  input,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+button,
 input,
-textarea,
-button,
-select {
-  font-size: 1em;
-}
-
-button,
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-input[type="submit"],
-input[type="url"],
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-input,
-textarea,
-select,
-fieldset {
-  border-radius: $radius;
-  max-width: 100%;
-
-  &.input-full {
-    width: 100%;
-  }
-}
-
-input,
-select,
-textarea {
-  padding: 8px 10px;
-  line-height: 1.42;
+button {
+  background: none;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
 }
 
 fieldset {
@@ -1274,40 +1254,18 @@ legend {
   padding: 0;
 }
 
-optgroup {
-  font-weight: bold;
-}
-
-input {
-  display: inline-block;
-  width: auto;
-}
-
 button,
 input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="submit"] {
-  @extend .btn;
-}
-
-/*================ Input width and border ================*/
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-input[type="url"],
+input,
 textarea,
 select {
   border: 1px solid $colorBorder;
-  width: 100%;
   max-width: 100%;
-  display: block;
-  margin: 0 0 1em;
+  padding: 8px 10px;
+  border-radius: $radius;
 
   &:focus {
     border: 1px solid darken($colorBorder, 10%);
@@ -1319,17 +1277,38 @@ select {
     background-color: $disabledGrey;
     border-color: $disabledBorder;
   }
+
+  &.input-full {
+    width: 100%;
+  }
 }
 
 textarea {
   min-height: 100px;
 }
 
+/*================ Input element overrides ================*/
 input[type="checkbox"],
 input[type="radio"] {
   display: inline;
-  margin: 0;
+  margin: 0 8px 0 0;
   padding: 0;
+  width: auto;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+}
+
+input[type="radio"] {
+  -webkit-appearance: radio;
+  -moz-appearance: radio;
+}
+
+input[type="image"] {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 select {
@@ -1356,6 +1335,10 @@ select {
   }
 }
 
+optgroup {
+  font-weight: bold;
+}
+
 // Force option color (affects IE only)
 option {
   color: #000;
@@ -1367,78 +1350,45 @@ select::-ms-expand {
 }
 
 /*================ Form labels ================*/
-label,
-legend {
-  display: block;
-  margin-bottom: 2px;
-  font-weight: bold;
+.label--hidden {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  margin-bottom: 0;
+  overflow: hidden;
 
-  &.inline {
-    display: inline;
+  // No placeholders, so force show labels
+  .ie9 &,
+  .lt-ie9 & {
+    height: auto;
+    width: auto;
+    margin-bottom: 2px;
+    overflow: visible;
   }
-
-  .form-horizontal &.label--hidden,
-  &.label--hidden {
-    height: 0;
-    width: 0;
-    margin-bottom: 0;
-    overflow: hidden;
-
-    .ie9 &,
-    .lt-ie9 & {
-      height: auto;
-      width: auto;
-      margin-bottom: 2px;
-      overflow: visible;
-    }
-  }
-}
-
-/*================ We don't want the same label treatment for checkboxes/radios ================*/
-input[type="checkbox"] + label,
-input[type="radio"] + label {
-  font-weight: normal;
 }
 
 label[for] {
   cursor: pointer;
 }
 
-.label-hint {
-  color: #999;
-}
-
 /*================ Horizontal Form ================*/
-form.form-horizontal,
-.form-horizontal {
-  margin-bottom: 0;
-
-  input[type="text"],
-  input[type="search"],
-  input[type="password"],
-  input[type="email"],
-  input[type="file"],
-  input[type="number"],
-  input[type="tel"],
-  input[type="url"],
-  textarea,
+.form-vertical {
+  input,
   select,
-  label {
+  textarea {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
     display: inline-block;
-    margin-bottom: 0;
-    width: auto;
   }
 }
 
 /*================ Error styles ================*/
-input[type="text"],
-input[type="search"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-input[type="number"],
-input[type="tel"],
-input[type="url"],
+input,
+select,
 textarea {
   &.error {
     border-color: $errorRed;
@@ -1496,7 +1446,6 @@ label.error {
 
 .input-group .input-group-field {
   width: 100%;
-  margin-bottom: 0;
 }
 
 .input-group-btn {
@@ -1882,11 +1831,6 @@ label.error {
     margin: 0 auto;
     text-align: center;
   }
-
-  .input-group,
-  .input-group-field {
-    margin-bottom: 0;
-  }
 }
 
 
@@ -1895,7 +1839,6 @@ label.error {
 ==============================================================================*/
 .site-footer {
   background-color: $colorFooterBg;
-  border-top: 1px solid $colorBorder;
   padding: $gutter 0;
   color: $colorFooterText;
 
@@ -1984,18 +1927,6 @@ label.error {
 
   li {
     margin-bottom: $gutter;
-  }
-}
-
-/*============================================================================
-  #Blogs and Comments
-==============================================================================*/
-.comment {
-  margin-bottom: $gutter;
-
-  & + & {
-    border-top: 1px solid $colorBorder;
-    padding-top: $gutter;
   }
 }
 

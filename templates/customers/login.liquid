@@ -14,7 +14,7 @@
       {{ 'customer.recover_password.success' | t }}
     </div>
 
-    <div id="CustomerLoginForm">
+    <div id="CustomerLoginForm" class="form-vertical">
       {% form 'customer_login' %}
 
         <h1>{{ 'customer.login.title' | t }}</h1>
@@ -22,12 +22,12 @@
         {{ form.errors | default_errors }}
 
         <label for="CustomerEmail" class="label--hidden">{{ 'customer.login.email' | t }}</label>
-        <input type="email" name="customer[email]" id="CustomerEmail" placeholder="{{ 'customer.login.email' | t }}"{% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
+        <input type="email" name="customer[email]" id="CustomerEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customer.login.email' | t }}" autocorrect="off" autocapitalize="off" autofocus>
 
         {% if form.password_needed %}
 
           <label for="CustomerPassword" class="label--hidden">{{ 'customer.login.password' | t }}</label>
-          <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="{{ 'customer.login.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+          <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customer.login.password' | t }}">
 
           <p>
             <a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
@@ -36,7 +36,7 @@
         {% endif %}
 
         <p>
-          <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
+          <input type="submit" class="btn btn--full" value="{{ 'customer.login.sign_in' | t }}">
         </p>
         <a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
 

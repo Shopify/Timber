@@ -10,23 +10,25 @@
     {% comment %}
       This form must use 'activate_customer_password'
     {% endcomment %}
-    {% form 'activate_customer_password' %}
+    <div class="form-vertical">
+      {% form 'activate_customer_password' %}
 
-      {{ form.errors | default_errors }}
+        {{ form.errors | default_errors }}
 
-      <label for="CustomerPassword" class="label--hidden">{{ 'customer.activate_account.password' | t }}</label>
-      <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="{{ 'customer.activate_account.password' | t }}">
+        <label for="CustomerPassword" class="label--hidden">{{ 'customer.activate_account.password' | t }}</label>
+        <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full" placeholder="{{ 'customer.activate_account.password' | t }}">
 
-      <label for="CustomerPasswordConfirmation" class="label--hidden">{{ 'customer.activate_account.password_confirm' | t }}</label>
-      <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
+        <label for="CustomerPasswordConfirmation" class="label--hidden">{{ 'customer.activate_account.password_confirm' | t }}</label>
+        <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" class="input-full" placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
 
-      <div class="text-center">
-        <p>
-          <input type="submit" class="btn" value="{{ 'customer.activate_account.submit' | t }}">
-        </p>
-        <input type="submit" class="btn--secondary" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
-      </div>
-    {% endform %}
+        <div class="text-center">
+          <p>
+            <input type="submit" class="btn btn--full" value="{{ 'customer.activate_account.submit' | t }}">
+          </p>
+          <input type="submit" class="btn--secondary" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
+        </div>
+      {% endform %}
+    </div>
 
   </div>
 </div>
