@@ -15,10 +15,10 @@
 
         {{ form.errors | default_errors }}
 
-        <label for="CustomerPassword" class="label--hidden">{{ 'customer.activate_account.password' | t }}</label>
+        <label for="CustomerPassword" class="hidden-label">{{ 'customer.activate_account.password' | t }}</label>
         <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full" placeholder="{{ 'customer.activate_account.password' | t }}">
 
-        <label for="CustomerPasswordConfirmation" class="label--hidden">{{ 'customer.activate_account.password_confirm' | t }}</label>
+        <label for="CustomerPasswordConfirmation" class="hidden-label">{{ 'customer.activate_account.password_confirm' | t }}</label>
         <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" class="input-full" placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
 
         <div class="text-center">
