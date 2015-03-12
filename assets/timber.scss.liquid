@@ -1253,6 +1253,9 @@ form {
   margin-bottom: 0;
 }
 
+.form-vertical {
+  margin-bottom: $gutter / 2;
+}
 
 /*================ Prevent zoom on touch devices in active inputs ================*/
 @include at-query($max, $medium) {
@@ -2068,15 +2071,14 @@ label.error {
 
   a {
     color: $colorDrawerText;
+
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
   }
 
-  input[type="text"],
-  input[type="search"],
-  input[type="password"],
-  input[type="email"],
-  input[type="file"],
-  input[type="number"],
-  input[type="tel"],
+  input,
   textarea {
     border-color: $colorDrawerBorder;
   }
@@ -2471,7 +2473,7 @@ label.error {
   min-width: 75px;
   overflow: visible;
 
-  input[type="text"] {
+  input {
     display: block;
     background: none;
     text-align: center;
@@ -2493,16 +2495,10 @@ label.error {
   text-align: center;
   overflow: hidden;
   @include prefix('user-select', 'none');
-  @include backface(hidden);
-  @include transition(all 0.2s ease-out);
 
   &:hover,
   &:focus {
-    background-color: $colorBorder;
-  }
-
-  &:active {
-    background-color: darken($colorBorder, 10%);
+    color: $colorPrimary;
   }
 }
 
@@ -2527,7 +2523,7 @@ label.error {
   }
 }
 
-.ajaxcart__qty-num[type="text"] {
+.ajaxcart__qty-num {
   border-color: $colorDrawerBorder;
   color: $colorDrawerText;
 }
@@ -2535,15 +2531,6 @@ label.error {
 .ajaxcart__qty-adjust {
   @extend .js-qty__adjust;
   color: $colorDrawerText;
-
-  &:hover,
-  &:focus {
-    background-color: $colorDrawerBorder;
-  }
-
-  &:active {
-    background-color: darken($colorDrawerBorder, 10%);
-  }
 }
 
 .ajaxcart__qty--plus {

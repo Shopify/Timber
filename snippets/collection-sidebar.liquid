@@ -17,7 +17,7 @@
 {% endcomment %}
 {% if collection.all_types.size > 0 %}
 <h3>{{ 'collections.sidebar.types' | t }}</h3>
-  <ul>
+  <ul class="no-bullets">
     {% for type in collection.all_types %}
       {% if collection.current_type == type %}
         <li class="filter--active">
@@ -39,7 +39,7 @@
 {% endcomment %}
 {% if collection.all_vendors.size > 1 %}
   <h3>{{ 'collections.sidebar.vendors' | t }}</h3>
-  <ul>
+  <ul class="no-bullets">
     {% for vendor in collection.all_vendors %}
       {% if collection.current_vendor == vendor %}
         <li class="filter--active">
@@ -64,7 +64,7 @@
     To provide a 'catch-all' link at the top of the list,
     check against the collection.handle, product type, and vendor.
   {% endcomment %}
-  <ul>
+  <ul class="no-bullets">
     <li{% unless current_tags %} class="filter--active"{% endunless %}>
 
       {% comment %}
