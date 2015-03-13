@@ -21,16 +21,6 @@
 if ((typeof Shopify) === 'undefined') { Shopify = {}; }
 
 /*============================================================================
-  Basic JS Helper Functions
-==============================================================================*/
-function urlParams (name) {
-  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-/*============================================================================
   API Helper Functions
 ==============================================================================*/
 function attributeToString(attribute) {
@@ -138,31 +128,6 @@ Shopify.onError = function(XMLHttpRequest, textStatus) {
 };
 
 /*============================================================================
-  POST to cart/add.js returns the JSON of the line item associated with the added item
-==============================================================================*/
-Shopify.addItem = function(variant_id, quantity, callback) {
-  var quantity = quantity || 1,
-      params = {
-    type: 'POST',
-    url: '/cart/add.js',
-    data: 'quantity=' + quantity + '&id=' + variant_id,
-    dataType: 'json',
-    success: function(line_item) {
-      if ((typeof callback) === 'function') {
-        callback(line_item);
-      }
-      else {
-        Shopify.onItemAdded(line_item);
-      }
-    },
-    error: function(XMLHttpRequest, textStatus) {
-      Shopify.onError(XMLHttpRequest, textStatus);
-    }
-  };
-  jQuery.ajax(params);
-};
-
-/*============================================================================
   POST to cart/add.js returns the JSON of the line item
     - Allow use of form element instead of id
     - Allow custom error callback
@@ -201,18 +166,6 @@ Shopify.getCart = function(callback) {
     }
     else {
       Shopify.onCartUpdate(cart);
-    }
-  });
-};
-
-// GET products/<product-handle>.js returns the product in JSON
-Shopify.getProduct = function(handle, callback) {
-  jQuery.getJSON('/products/' + handle + '.js', function (product, textStatus) {
-    if ((typeof callback) === 'function') {
-      callback(product);
-    }
-    else {
-      Shopify.onProduct(product);
     }
   });
 };
