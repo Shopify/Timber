@@ -9,7 +9,7 @@
   <script id="CartTemplate" type="text/template">
   {% raw %}
     <form action="/cart" method="post" novalidate class="cart">
-      <div class="ajaxcart__inner{% endraw %}{% unless additional_checkout_buttons %} ajaxcart__inner--has-fixed-footer{% endunless %}{% raw %}">
+      <div class="ajaxcart__inner">
         {{#items}}
         <div class="ajaxcart__product">
           <div class="ajaxcart__row" data-id="{{id}}">
@@ -53,7 +53,7 @@
           </div>
         {% endraw %}{% endif %}{% raw %}
       </div>
-      <div class="ajaxcart__footer{% endraw %}{% unless additional_checkout_buttons %} ajaxcart__footer--fixed{% endunless %}{% raw %}">
+      <div class="ajaxcart__footer">
         <div class="grid--full">
           <div class="grid__item two-thirds">
             <p>{% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %}</p>
