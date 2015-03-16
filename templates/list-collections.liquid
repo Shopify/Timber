@@ -18,7 +18,21 @@
 
   {% unless collection.handle == 'frontpage' %}
 
-    {% include 'collection-list-item' %}
+    {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+
+    <div class="section-header">
+      <p class="h1 section-header__left">{{ collection_title }}</p>
+      <div class="section-header__right">
+        <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">More {{ collection_title }} &rsaquo;</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      {% for product in collection.products limit:5 %}
+        {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
+        {% include 'product-grid-item' %}
+      {% endfor %}
+    </div>
 
     {% unless forloop.last %}<hr>{% endunless %}
 
