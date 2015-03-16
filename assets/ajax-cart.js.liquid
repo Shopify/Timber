@@ -120,8 +120,8 @@ ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
 };
 
 /*============================================================================
-  POST to cart/add.js returns the JSON of the line item
-    - Allow use of form element instead of id
+  POST to cart/add.js returns the JSON of the cart
+    - Allow use of form element instead of just id
     - Allow custom error callback
 ==============================================================================*/
 ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
