@@ -23,9 +23,78 @@
   <meta name="description" content="{{ page_description | escape }}">
   {% endif %}
 
-  <!-- Product meta ================================================== -->
-  {% include 'open-graph-tags' %}
-  {% include 'twitter-card' %}
+  <!-- Product meta and open graph tags ================================================== -->
+  {% if template contains 'product' %}
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="{{ product.title | strip_html | escape }}">
+    {% for image in product.images limit:3 %}
+    <meta property="og:image" content="http:{{ image.src | img_url: 'grande' }}">
+    <meta property="og:image:secure_url" content="https:{{ image.src | img_url: 'grande' }}">
+    {% endfor %}
+    <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html | escape }}">
+    <meta property="og:price:currency" content="{{ shop.currency }}">
+  {% elsif template contains 'article' %}
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ article.title | strip_html | escape }}">
+    {% assign img_tag = '<' | append: 'img' %}
+    {% if article.content contains img_tag %}
+      {% assign src = article.content | split: 'src="' %}
+      {% assign src = src[1] | split: '"' | first | remove: 'https:' | remove: 'http:' %}
+      {% if src %}
+    <meta property="og:image" content="http:{{ src }}">
+    <meta property="og:image:secure_url" content="https:{{ src }}">
+      {% endif %}
+    {% endif %}
+  {% else %}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page_title | escape }}">
+    {% if settings.logo_use_image %}
+    <meta property="og:image" content="http:{{ 'logo.png' | asset_url }}">
+    <meta property="og:image:secure_url" content="https:{{ 'logo.png' | asset_url }}">
+    {% endif %}
+  {% endif %}
+  {% if page_description %}
+    <meta property="og:description" content="{{ page_description | escape }}">
+  {% endif %}
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:site_name" content="{{ shop.name }}">
+
+  <!-- Twitter card meta ================================================== -->
+  {% if settings.twittercard_handle != blank %}
+    <meta name="twitter:site" content="{{settings.twittercard_handle}}">
+  {% endif %}
+  {% if template contains 'product' %}
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:title" content="{{ product.title }}">
+    <meta name="twitter:description" content="{{ product.description | strip_html | truncatewords: 140, '' | escape }}">
+    <meta name="twitter:image" content="https:{{ product.featured_image.src | img_url: 'medium' }}">
+    <meta name="twitter:image:width" content="240">
+    <meta name="twitter:image:height" content="240">
+    <meta name="twitter:label1" content="Price">
+    <meta name="twitter:data1" content="{% if product.price_varies %}From {% endif %}{{ product.price | money_with_currency | strip_html | escape }}">
+    {% if product.vendor != blank %}
+    <meta name="twitter:label2" content="Brand">
+    <meta name="twitter:data2" content="{{ product.vendor | escape }}">
+    {% else %}
+    <meta name="twitter:label2" content="Availability">
+    <meta name="twitter:data2" content="In stock">
+    {% endif %}
+  {% elsif template contains 'article' %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ article.title }}">
+    <meta name="twitter:description" content="{{ article.excerpt_or_content | strip_html | truncatewords: 140, '' | escape }}">
+    {% comment %}
+      Check if content contains an image to add to the card
+        - Source: http://blog.viralica.com/2013/09/twitter-product-cards-on-shopify/
+    {% endcomment %}
+    {% if article.content contains "<img" %}
+      {% assign src = article.content | split: 'src="' %}
+      {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
+      {% if src %}
+    <meta property="twitter:image" content="{{ src }}">
+      {% endif %}
+    {% endif %}
+  {% endif %}
 
   <!-- Helpers ================================================== -->
   <link rel="canonical" href="{{ canonical_url }}">
@@ -43,7 +112,20 @@
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
 
-  {% include 'oldIE-js' %}
+  {% comment %}
+    Old IE fixes/shivs
+      - HTML5 shiv, Selectivizer
+      - respond.js Gavin Ballard
+      - http://gavinballard.com/using-respond.js-with-shopify-redux/
+  {% endcomment %}
+  {% assign respond_js_secret_key = shop.domain | md5 %}
+  <!--[if lt IE 9]>
+  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+  {{ 'respond.min.js' | asset_url | script_tag }}
+  <link href="{{ 'respond-proxy.html' | asset_url | split: '?' | first }}" id="respond-proxy" rel="respond-proxy" />
+  <link href="//{{shop.domain}}/search?q={{ respond_js_secret_key }}" id="respond-redirect" rel="respond-redirect" />
+  <script src="//{{shop.domain}}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
+  <![endif]-->
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
   {{ 'modernizr.min.js' | asset_url | script_tag }}
