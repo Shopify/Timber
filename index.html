@@ -3,7 +3,7 @@ layout: default
 title: Shopify Theme Development Framework - Timber
 description: Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
 canonical: /timber
-version: v2.0.2
+version: v2.1.0
 ---
 
 <!-- gh-pages -->
@@ -432,6 +432,55 @@ $breakpoints: (
           <li>Class names use an easy to read variation of the <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" class="docs-link">BEM naming convention</a></li>
           <li>Class name format: <code>breakpoint--column-width</code> - e.g. <code>large--one-half</code></li>
         </ul>
+
+        <h4 class="docs-h4">Grid Variations</h4>
+        <p class="docs-text">You can make use of no-margin grids with <code>grid--full</code>.</p>
+        <p class="docs-text">Create custom alignments with push classes, <code>push--large--one-third</code>.</p>
+
+        <div class="grid--full">
+          <div class="grid__item large--one-third">
+            <p class="grid-demo">1.1</p>
+          </div>
+          <div class="grid__item large--one-third">
+            <p class="grid-demo">1.1</p>
+          </div>
+          <div class="grid__item large--one-third">
+            <p class="grid-demo">1.1</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="grid__item large--one-half push--large--one-quarter">
+            <p class="grid-demo">2.1</p>
+          </div>
+          <div class="grid__item large--one-quarter push--large--one-quarter">
+            <p class="grid-demo">2.2</p>
+          </div>
+        </div>
+
+        <pre>
+// No margin grid
+&lt;div class="grid--full"&gt;
+  &lt;div class="grid__item large--one-third"&gt;
+    &lt;p class="grid-demo"&gt;1.1&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid__item large--one-third"&gt;
+    &lt;p class="grid-demo"&gt;1.2&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid__item large--one-third"&gt;
+    &lt;p class="grid-demo"&gt;1.3&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+// Push classes
+&lt;div class="grid"&gt;
+  &lt;div class="grid__item large--one-half push--large--one-quarter"&gt;
+    &lt;p class="grid-demo"&gt;2.1&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid__item large--one-quarter push--large--one-quarter"&gt;
+    &lt;p class="grid-demo"&gt;2.2&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </pre>
 
         <h4 class="docs-h4">Silent Classes</h4>
         <p class="docs-text">If you don't know what silent classes are, you can ignore this section. The biggest point of contention for many grid systems is how many classes are required in your markup. With Sass, you can use <a href="http://blog.teamtreehouse.com/extending-placeholder-selectors-with-sass" class="docs-link">silent classes</a> to handle all <code>.grid__item</code> widths in your stylesheet.</p>
@@ -1012,16 +1061,15 @@ Output:
           AJAXIFY CART
         ===================================== -->
         <h2 class="doc-title js-title" id="ajax-cart"><strong>4.1 </strong>Ajaxify Cart</h2>
-        <p class="docs-text--note"><strong class="docs-strong">Note:</strong> cart.liquid is still a required template and its markup structures the cart in the drawer/modal.</p>
 
-        <p class="docs-text">Using the Ajaxify Cart plugin allows a user to add a product to their cart without leaving the current page. The cart will appear as a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=drawer" class="docs-link">drawer</a> from the top of the page, a <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=modal" class="docs-link">modal</a>, or an <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=flip" class="docs-link">inline confirmation</a>.</p>
+        <p class="docs-text">Using the Ajax Cart plugin allows a user to add a product to their cart without leaving the current page. The cart will appear as a drawer on the right side of the page.</p>
 
-          <p class="docs-text">The cart plugin is enabled by calling <code>ajaxifyShopify.init({})</code> after jQuery is loaded. Pass in the parameters below to customize it.</p>
+        <p class="docs-text">The cart plugin is enabled by calling <code>ajaxCart.init({})</code> after jQuery is loaded. Pass in the parameters below to customize it.</p>
 
         <div id="ajax-cart-parameters" class="overflow-auto">
           <h4 class="docs-h4">Plugin Format</h4>
 <pre>
-ajaxifyShopify.init({ [options] })
+ajaxCart.init({ [options] })
 </pre>
 
           <h4 class="docs-h4">Parameters</h4>
@@ -1035,24 +1083,6 @@ ajaxifyShopify.init({ [options] })
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><code>method</code></td>
-                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
-                <td>drawer</td>
-                <td>
-                  <p>The type of cart you want to enable.</p>
-                  <p>Options: <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=drawer" class="docs-link">drawer</a>, <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=modal" class="docs-link">modal</a>, and <a href="https://timber-demo.myshopify.com/products/ricky-straight-super-t-mens-jean?method=flip" class="docs-link">flip</a></p>
-                </td>
-              </tr>
-              <tr>
-                <td><code>wrapperClass</code></td>
-                <td><a href="http://api.jquery.com/Types/#String" title="JS Strings" class="docs-link">String</a></td>
-                <td>null</td>
-                <td>
-                  <p>The class name that defines your site width, without the leading period.</p>
-                  <p>E.g. <code>wrapperClass: 'site-width'</code></p>
-                </td>
-              </tr>
               <tr>
                 <td><code>formSelector</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
@@ -1074,11 +1104,13 @@ ajaxifyShopify.init({ [options] })
                 </td>
               </tr>
               <tr>
-                <td><code>toggleCartButton</code></td>
+                <td><code>cartContainer</code></td>
                 <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
-                <td>null</td>
                 <td>
-                  <p>Toggle the cart open and closed with this selector.</p>
+                  #CartContainer
+                </td>
+                <td>
+                  <p>The template for your cart will be appended to an existing element on the page. By default, this element is in an off-screen drawer.</p>
                 </td>
               </tr>
               <tr>
@@ -1097,24 +1129,6 @@ ajaxifyShopify.init({ [options] })
                 <td>
                   <p>Update the total cart cost when products are added or removed.</p>
                   <p>E.g. <code>cartCostSelector: '.cart-cost'</code></p>
-                </td>
-              </tr>
-              <tr>
-                <td><code>useCartTemplate</code></td>
-                <td><a href="http://api.jquery.com/Types/#Boolean" title="JS Boolean" class="docs-link">Boolean</a></td>
-                <td>false</td>
-                <td>
-                  <p>Set to <strong class="docs-strong">true</strong> to use the markup from your <strong class="docs-strong">cart.liquid</strong> template. We'll take care of the selector.<br>
-                  Set to <strong class="docs-strong">false</strong> to use the included cart layout, generated by <a href="http://handlebarsjs.com/" title="Handlebars.js Documentation">Handlebars.js</a>.</p>
-                  <p>IE8 and below will default to false as they cannot use jQuery's .load event.</p>
-                </td>
-              </tr>
-              <tr>
-                <td><code>btnClass</code></td>
-                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
-                <td>null</td>
-                <td>
-                  <p>If <strong>useCartTemplate</strong> is set to false, include your standard button class so we can style the Checkout link the same way.</p>
                 </td>
               </tr>
               <tr>
@@ -1141,56 +1155,61 @@ ajaxifyShopify.init({ [options] })
                   <p>Replace <code>&lt;input type="number"&gt;</code> elements with a JS quantity selector on your product and cart pages. Set to <strong class="docs-strong">false</strong> to disable this and use the native elements.</p>
                 </td>
               </tr>
-              <tr>
-                <td><code>prependDrawerTo</code></td>
-                <td><a href="http://api.jquery.com/Types/#Selector" title="JS Selector" class="docs-link">Selector</a></td>
-                <td>body</td>
-                <td>
-                  <p>The selector for which element the drawer cart is appended to.</p>
-                  <p>E.g. <code>prependDrawerTo: '#page'</code></p>
-                </td>
-              </tr>
-              <tr>
-                <td><code>onToggleCallback</code></td>
-                <td><a href="http://api.jquery.com/Types/#Function" title="JS Function" class="docs-link">Function</a></td>
-                <td>null</td>
-                <td>
-                  <p>Set a callback function to run each time the cart is toggled.</p>
-                  An object is returned with the values:
-                  <ul>
-                    <li><code>is_visible: true/false</code></li>
-                    <li><code>method: drawer/modal/flip</code></li>
-                  </ul>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
 
+        <div id="ajax-cart-callback">
+          <h4 class="docs-h4">Ajax Cart Callback</h4>
+          <p class="docs-text">A custom event is fired when the cart has loaded in the DOM. To access it, set up a listener on the body element for <code>ajaxCart.afterCartLoad</code>. Use this callback in external files or below the initialize JS. Multiple callback listeners is also valid.</p>
+<pre>
+jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+  // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+  // cart is the result of /GET cart.js (https://docs.shopify.com/support/your-website/themes/can-i-use-ajax-api#get-cart)
+
+  // Open Timber's drawer when cart is ready
+  timber.RightDrawer.open();
+});
+</pre>
+
+        </div>
+
         <div id="ajax-cart-code">
           <h4 class="docs-h4">Required Files</h4>
-          <p class="docs-text">Include the CSS in your document <code>head</code> and JavaScript file after the inclusion of jQuery in your <strong class="docs-strong">theme.liquid</strong> template.</p>
+          <p class="docs-text">Required CSS is conditionally loaded in <strong class="docs-strong">timber.scss.liquid</strong>, so you just have to include the JS. Place the following JS lines near the bottom of your <strong class="docs-strong">theme.liquid</strong> layout file, after jQuery.</p>
 <pre>
-&#123;&#123; &#39;ajaxify.scss.css&#39; | asset_url | stylesheet_tag &#125;&#125;
-&#123;&#123; &#39;ajaxify.js&#39; | asset_url | script_tag &#125;&#125;
+&#123;&#123; &#39;handlebars.min.js&#39; | asset_url | script_tag &#125;&#125;
+&#123;&#37; include &#39;ajax-cart-template&#39; &#37;&#125;
+&#123;&#123; &#39;ajax-cart.js&#39; | asset_url | script_tag &#125;&#125;
 </pre>
           <h4 class="docs-h4">Initialize</h4>
 <pre>
 &lt;script&gt;
 jQuery(function($) {
-  ajaxifyShopify.init({
-    method: 'flip',
-    wrapperClass: 'wrapper',
-    formSelector: '#addToCartForm',
-    addToCartSelector: '#addToCart',
-    toggleCartButton: '#cartToggle',
-    useCartTemplate: true,
-    btnClass: 'btn'
+  ajaxCart.init({
+    formSelector: '#AddToCartForm',
+    cartContainer: '#CartContainer',
+    addToCartSelector: '#AddToCart',
+    cartCountSelector: '#CartCount',
+    cartCostSelector: '#CartCost',
+    moneyFormat: {{ shop.money_format | json }}
   });
+});
+
+jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+  // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+  timber.RightDrawer.open();
 });
 &lt;/script&gt;
 </pre>
         </div>
+
+        <hr class="hr--docshr">
+
+        <h2 class="doc-title js-title" id="drawers"><strong>4.2 </strong>Drawers</h2>
+        <p class="docs-text">Mobile-friendly navigation and the ajax cart are displayed in drawers. All drawer JS is included in <strong class="docs-strong">timber.js.liquid</strong>.</p>
+        <p class="docs-text">Drawers can be opened by clicking on elements with class <code>js-drawer-open-left</code> or <code>js-drawer-open-right</code>.</p>
+        <p class="docs-text">Drawers are initialized in a global JS variable <code>timber.LeftDrawer</code> and <code>timber.RightDrawer</code>. You can use <code>timber.RightDrawer.open()</code> or <code>timber.RightDrawer.close()</code> from external JS to show and hide the drawers.</p>
 
         <hr class="hr--docshr">
 
@@ -1238,10 +1257,11 @@ jQuery(function($) {
         <table class="full">
             <tr>
               <td width="40%">
-                <h6>No bullet <code>ul</code> (default)</h6>
+                <h6>No bullet <code>ul</code></h6>
+                <code>.no-bullets</code>
               </td>
               <td>
-                <ul>
+                <ul class="no-bullets">
                   <li>One</li>
                   <li>Two</li>
                   <li>Three</li>
@@ -1251,7 +1271,7 @@ jQuery(function($) {
             </tr>
             <tr>
               <td>
-                <h6>Round bullet <code>ul</code></h6>
+                <h6>Round bullet <code>ul</code>  (default)</h6>
                 <code>.disc</code>
               </td>
               <td>
@@ -1326,64 +1346,66 @@ jQuery(function($) {
           Forms
         ===================================== -->
         <h2 class="doc-title styleguide-title" id="forms"><strong>5.2 </strong>Forms</h2>
-        <h4 class="docs-h4">Vertical (default)</h4>
-        <p class="docs-text">By default, forms follow this pattern. Be sure to remove element bottom padding if you aren't using a large form.</p>
-        <div class="grid">
-            <div class="grid__item large--one-third">
-              <label for="text1">Text Field</label>
-              <input type="text" id="text1">
+        <h4 class="docs-h4">Vertical</h4>
+        <p class="docs-text">To make long forms with block elements, add a class of <code>.form-vertical</code> to the parent.</p>
+        <p class="docs-text">You cannot add a class directly to most liquid form elements (e.g. <code>{%raw%}{% form 'contact' %}{%endraw%}</code>). Instead, wrap the form in a div with the class <code>.form-vertical</code> to achieve the same effect.</p>
+        <p class="docs-text">Use class <code>input-full</code></p>
+        <form class="form-vertical">
+          <div class="grid">
+              <div class="grid__item large--one-third">
+                <label for="text1">Text Field</label>
+                <input type="text" id="text1">
 
-              <label for="text2">Placeholder</label>
-              <input type="text" id="text2" placeholder="Placeholder text">
+                <label for="text2">Placeholder</label>
+                <input type="text" id="text2" placeholder="Placeholder text">
 
-              <label for="text3">Disabled Field</label>
-              <input type="text" id="text3" disabled>
+                <label for="text3">Disabled Field</label>
+                <input type="text" id="text3" disabled>
 
-              <label for="text4">Label with Hint <span class="label-hint">A-Z, 0-9</span></label>
-              <input type="text" id="text4">
+                <label for="text4">Label with Hint <span class="label-hint">A-Z, 0-9</span></label>
+                <input type="text" id="text4">
 
-              <label for="text5" class="error">Text Field (Error)</label>
-              <input type="text" id="text5" class="error" value="Invalid Entry">
-            </div>
+                <label for="text5" class="error">Text Field (Error)</label>
+                <input type="text" id="text5" class="error" value="Invalid Entry">
+              </div>
 
-            <div class="grid__item large--one-third">
-              <label for="select1">Select Field</label>
-              <select id="select1">
-                <option value="0">-- Choose --</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-              </select>
+              <div class="grid__item large--one-third">
+                <label for="select1">Select Field</label>
+                <select id="select1">
+                  <option value="0">-- Choose --</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
 
-              <fieldset>
-                <legend>Checkboxes</legend>
-                <input type="checkbox" id="check1"> <label for="check1" class="inline">Checkbox Field</label><br>
-                <input type="checkbox" id="check2"> <label for="check2" class="inline">Checkbox Field</label><br>
-                <input type="checkbox" id="check3"> <label for="check3" class="inline">Checkbox Field</label>
-              </fieldset>
+                <fieldset>
+                  <legend>Checkboxes</legend>
+                  <input type="checkbox" id="check1"> <label for="check1" class="inline">Checkbox Field</label><br>
+                  <input type="checkbox" id="check2"> <label for="check2" class="inline">Checkbox Field</label><br>
+                  <input type="checkbox" id="check3"> <label for="check3" class="inline">Checkbox Field</label>
+                </fieldset>
 
-              <fieldset>
-              <legend>Radios</legend>
-                <input type="radio" name="radio" id="radio1"> <label for="radio1" class="inline">Option1</label><br>
-                <input type="radio" name="radio" id="radio2"> <label for="radio2" class="inline">Option1</label><br>
-                <input type="radio" name="radio" id="radio3"> <label for="radio3" class="inline">Option1</label>
-              </fieldset>
-            </div>
-            <div class="grid__item large--one-third">
-              <label for="textarea1">Textarea</label>
-              <textarea id="textarea1" placeholder="Placeholder text"></textarea>
+                <fieldset>
+                <legend>Radios</legend>
+                  <input type="radio" name="radio" id="radio1"> <label for="radio1" class="inline">Option1</label><br>
+                  <input type="radio" name="radio" id="radio2"> <label for="radio2" class="inline">Option1</label><br>
+                  <input type="radio" name="radio" id="radio3"> <label for="radio3" class="inline">Option1</label>
+                </fieldset>
+              </div>
+              <div class="grid__item large--one-third">
+                <label for="textarea1">Textarea</label>
+                <textarea id="textarea1" placeholder="Placeholder text"></textarea>
 
-              <label for="file1">File Field</label>
-              <input id="file1" type="file">
-            </div>
+                <label for="file1">File Field</label>
+                <input id="file1" type="file">
+              </div>
 
-        </div>
+          </div>
+        </form>
 
         <hr class="hr--docsclear">
 
-        <h4 class="docs-h4">Horizontal</h4>
-        <p class="docs-text">To make form elements flow inline, add a class of <code>.form-horizontal</code> to the parent.</p>
-        <p class="docs-text">You cannot add a class directly to most liquid form elements (e.g. <code>{%raw%}{% form 'contact' %}{%endraw%}</code>). Instead, wrap the form in a div with the class <code>.form-horizontal</code> to achieve the same effect.</p>
+        <h4 class="docs-h4">Horizontal (default)</h4>
 
         <div id="horizontalform-example">
           <form class="form-horizontal">
@@ -1400,49 +1422,24 @@ jQuery(function($) {
           </form>
         </div>
 
-        <div id="horizontalform-code">
-<pre>
-&lt;form class="form-horizontal"&gt;
-  &lt;label for="textHorizontal1"&gt;Horizontal Label&lt;/label&gt;
-  &lt;input type="text" id="textHorizontal1" placeholder="First name"&gt;
-  &lt;input type="text" id="textHorizontal2" placeholder="Last name"&gt;
-  &lt;select id="selectHorizontal1"&gt;
-    &lt;option value="0"&gt;-- Choose --&lt;/option&gt;
-    &lt;option value="1"&gt;Option 1&lt;/option&gt;
-    &lt;option value="2"&gt;Option 2&lt;/option&gt;
-    &lt;option value="3"&gt;Option 3&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;input type="checkbox" id="checkInline"&gt; &lt;label for="checkInline" class="inline"&gt;Checkbox Label&lt;/label&gt;
-&lt;/form&gt;
-</pre>
-        </div>
-
         <hr class="hr--docsclear">
 
         <h4 class="docs-h4">Invisible Labels</h4>
         <p class="docs-text--note"><strong class="docs-strong">Note:</strong> The placeholder attribute only works in IE10+, so invisible labels are disabled in IE9 and below.</p>
-        <p class="docs-text">Add a class of <code>hidden-label</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
+        <p class="docs-text">Add a class of <code>label-hidden</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
 
         <div id="invisiblelabels-example">
-          <form class="form-horizontal">
-            <label for="testInvisibleLabel1" class="hidden-label">First Name</label>
+          <form>
+            <label for="testInvisibleLabel1" class="label-hidden">First Name</label>
             <input type="text" id="testInvisibleLabel1" name="testInvisibleLabel1" placeholder="First Name">
-            <label for="testInvisibleLabel2" class="hidden-label">Last Name</label>
-            <input type="text" id="testInvisibleLabel2" name="testInvisibleLabel2" placeholder="Last Name">
-            <label for="testInvisibleLabel3" class="hidden-label">Email</label>
-            <input type="text" id="testInvisibleLabel3" name="testInvisibleLabel3" placeholder="Email">
           </form>
         </div>
 
         <div id="invisiblelabels-code">
 <pre>
-&lt;form class="form-horizontal"&gt;
-  &lt;label for="testInvisibleLabel1" class="hidden-label"&gt;First Name&lt;/label&gt;
+&lt;form&gt;
+  &lt;label for="testInvisibleLabel1" class="label-hidden"&gt;First Name&lt;/label&gt;
   &lt;input type="text" id="testInvisibleLabel1" name="testInvisibleLabel1" placeholder="First Name"&gt;
-  &lt;label for="testInvisibleLabel2" class="hidden-label"&gt;Last Name&lt;/label&gt;
-  &lt;input type="text" id="testInvisibleLabel2" name="testInvisibleLabel2" placeholder="Last Name"&gt;
-  &lt;label for="testInvisibleLabel3" class="hidden-label"&gt;Email&lt;/label&gt;
-  &lt;input type="text" id="testInvisibleLabel3" name="testInvisibleLabel3" placeholder="Email"&gt;
 &lt;/form&gt;
 </pre>
         </div>
@@ -1464,31 +1461,30 @@ jQuery(function($) {
             </div>
             <div class="grid__item large--one-half">
               <h4 class="docs-example">Example 2 - Mailchimp Integration</h4>
-              <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
-                <input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field">
+              <form class="input-group">
+                <input type="email" value="" placeholder="Email address" class="input-group-field">
                 <span class="input-group-btn">
-                  <input type="submit" class="btn--secondary" value="Subscribe" name="subscribe" id="subscribe">
+                  <input type="submit" class="btn--secondary" value="Subscribe">
                 </span>
               </form>
             </div>
           </div>
         </div>
         <div id="inputgroups-code">
-          <h4 class="docs-example">Example 1</h4>
 <pre>
+// Button on left
 &lt;div class="input-group"&gt;
   &lt;span class="input-group-btn"&gt;
     &lt;input type="submit" class="btn" value="Go"&gt;
   &lt;/span&gt;
   &lt;input type="text" name="q" value="" placeholder="Placeholder" class="input-group-field"&gt;
 &lt;/div&gt;
-</pre>
-          <h4 class="docs-example">Example 2 - Mailchimp Integration</h4>
-<pre>
-&lt;form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group"&gt;
-  &lt;input type="email" value="" placeholder="Email address" name="EMAIL" id="mail" class="input-group-field"&gt;
+
+// Button on right
+&lt;form class="input-group"&gt;
+  &lt;input type="email" value="" placeholder="Email address" class="input-group-field"&gt;
   &lt;span class="input-group-btn"&gt;
-    &lt;input type="submit" class="btn--secondary" value="Subscribe" name="subscribe" id="subscribe"&gt;
+    &lt;input type="submit" class="btn--secondary" value="Subscribe"&gt;
   &lt;/span&gt;
 &lt;/form&gt;
 </pre>
@@ -1660,7 +1656,7 @@ jQuery(function($) {
             </li>
             <li>
               <div class="icon-fallback-text">
-                <span class="icon icon-dk"></span>
+                <span class="icon icon-dankort"></span>
                 <span class="fallback-text">DK</span>
               </div>
             </li>
@@ -1770,6 +1766,18 @@ jQuery(function($) {
             </li>
             <li>
               <div class="icon-fallback-text">
+                <span class="icon icon-grid-view"></span>
+                <span class="fallback-text">Grid View</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-list-view"></span>
+                <span class="fallback-text">List View</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
                 <span class="icon icon-x"></span>
                 <span class="fallback-text">X</span>
               </div>
@@ -1855,7 +1863,7 @@ jQuery(function($) {
   &lt;/li&gt;
   &lt;li&gt;
     &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-dk"&gt;&lt;/span&gt;
+      &lt;span class="icon icon-dankort"&gt;&lt;/span&gt;
       &lt;span class="fallback-text"&gt;DK&lt;/span&gt;
     &lt;/div&gt;
   &lt;/li&gt;
@@ -1957,6 +1965,18 @@ jQuery(function($) {
   &lt;/li&gt;
   &lt;li&gt;
     &lt;div class="icon-fallback-text"&gt;
+      &lt;span class="icon icon-grid-view"&gt;&lt;/span&gt;
+      &lt;span class="fallback-text"&gt;Grid View&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;div class="icon-fallback-text"&gt;
+      &lt;span class="icon icon-list-view"&gt;&lt;/span&gt;
+      &lt;span class="fallback-text"&gt;List View&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;div class="icon-fallback-text"&gt;
       &lt;span class="icon icon-x"&gt;&lt;/span&gt;
       &lt;span class="fallback-text"&gt;X&lt;/span&gt;
     &lt;/div&gt;
@@ -1989,15 +2009,15 @@ jQuery(function($) {
         <nav class="docs-nav">
           <h4 class="docs-h4">Table of Contents</h4>
           <h5 class="docs-h5"><a href="#who-for">Getting Started</a></h5>
-          <ul id="gettingstartedNav" class="current-section"></ul>
+          <ul id="gettingstartedNav" class="current-section no-bullets"></ul>
           <h5 class="docs-h5"><a href="#sass">Grid and Sass</a></h5>
-          <ul id="basicNav"></ul>
+          <ul id="basicNav" class="no-bullets"></ul>
           <h5 class="docs-h5"><a href="#pagination">Shopify Components</a></h5>
-          <ul id="moduleNav"></ul>
+          <ul id="moduleNav" class="no-bullets"></ul>
           <h5 class="docs-h5"><a href="#ajax-cart">JavaScript Modules</a></h5>
-          <ul id="jsModuleNav"></ul>
+          <ul id="jsModuleNav" class="no-bullets"></ul>
           <h5 class="docs-h5"><a href="#typography">Style Guide</a></h5>
-          <ul id="styleguideNav"></ul>
+          <ul id="styleguideNav" class="no-bullets"></ul>
         </nav>
       </div>
 
