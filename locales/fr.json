@@ -84,8 +84,6 @@
       }
     },
     "sidebar": {
-      "types": "Types de produits",
-      "vendors": "Fournisseurs",
       "tags": "Filtres"
     },
     "sorting": {

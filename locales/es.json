@@ -84,8 +84,6 @@
       }
     },
     "sidebar": {
-      "types": "Tipos de producto",
-      "vendors": "Proveedores",
       "tags": "Etiquetas"
     },
     "sorting": {
