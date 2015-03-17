@@ -9,6 +9,7 @@ function replaceUrlParam(e,r,a){var n=new RegExp("("+r+"=).*?(&|$)"),c=e;return 
   - Shopify.format money is defined in option_selection.js.
     If that file is not included, it is redefined here.
 ==============================================================================*/
+if ((typeof Shopify) === 'undefined') { Shopify = {}; }
 if (!Shopify.formatMoney) {
   Shopify.formatMoney = function(cents, format) {
     var value = '',
