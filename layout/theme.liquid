@@ -185,7 +185,7 @@
                 - #cartCost updates the total cost of the cart
                 - Documentation:  http://shopify.com/timber#ajax-cart
             {% endcomment %}
-            <a href="/cart" class="js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+            <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
               <span class="icon-fallback-text">
                 <span class="icon icon-cart" aria-hidden="true"></span>
               </span>
@@ -199,7 +199,7 @@
               If customer accounts are enabled, provide login and create account links
             {% endcomment %}
             {% if shop.customer_accounts_enabled %}
-              <p class="site-header__text-links">
+              <div>
                 {% if customer %}
                   {% if customer.first_name != blank %}
                     {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
@@ -214,7 +214,7 @@
                   | {{ 'layout.customer.create_account' | t | customer_register_link }}
                   {% endif %}
                 {% endif %}
-              </p>
+              </div>
             {% endif %}
 
             <div class="site-header__search">
