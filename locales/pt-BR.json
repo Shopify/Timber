@@ -84,8 +84,6 @@
       }
     },
     "sidebar": {
-      "types": "Tipos de produtos",
-      "vendors": "Fabricantes",
       "tags": "Marcadores"
     },
     "sorting": {

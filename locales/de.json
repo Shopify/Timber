@@ -84,8 +84,6 @@
       }
     },
     "sidebar": {
-      "types": "Produktart",
-      "vendors": "Verkäufer",
       "tags": "Tags"
     },
     "sorting": {

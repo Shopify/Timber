@@ -84,8 +84,6 @@
       }
     },
     "sidebar": {
-      "types": "Product Types",
-      "vendors": "Vendors",
       "tags": "Tags"
     },
     "sorting": {
