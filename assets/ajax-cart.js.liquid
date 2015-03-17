@@ -256,7 +256,7 @@ var ajaxCart = (function(module, $) {
     // Show empty cart
     if (cart.item_count === 0) {
       $cartContainer
-        .append('<h4>' + {{ 'cart.general.empty' | t | json }} + '</h4>');
+        .append('<p>' + {{ 'cart.general.empty' | t | json }} + '</p>');
       cartCallback(cart);
       return;
     }
