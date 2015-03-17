@@ -64,7 +64,7 @@
   Twitter user name of the site, based on theme settings
 {% endcomment %}
 {% if settings.twittercard_handle != blank %}
-  <meta name="twitter:site" content="{{settings.twittercard_handle}}">
+  <meta name="twitter:site" content="{{ settings.twittercard_handle }}">
 {% endif %}
 {% if template contains 'product' %}
   <meta name="twitter:card" content="product">
