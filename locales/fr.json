@@ -23,6 +23,9 @@
       "placeholder": "Rechercher dans la boutique",
       "submit": "Recherche"
     },
+    "navigation": {
+      "menu": "Menu"
+    },
     "drawers": {
       "browse": "Explorer",
       "close_menu": "Fermer le menu"

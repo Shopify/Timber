@@ -23,6 +23,9 @@
       "placeholder": "Durchsuchen Sie unseren Shop",
       "submit": "Suchen"
     },
+    "navigation": {
+      "menu": "Menü"
+    },
     "drawers": {
       "browse": "Durchsuchen",
       "close_menu": "Menü schließen"
