@@ -30,7 +30,6 @@
       <div class="section-header">
         <div class="section-header__right">
           {% include 'collection-sorting' %}
-          {% include 'collection-views' %}
         </div>
       </div>
     {% else %}
@@ -38,7 +37,6 @@
         <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
         <div class="section-header__right">
           {% include 'collection-sorting' %}
-          {% include 'collection-views' %}
         </div>
       </header>
     {% endif %}
@@ -64,12 +62,10 @@
           {% comment %}
             Add default products to help with onboarding for collections/all only
           {% endcomment %}
-
           {% unless emptyState %}
             {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
             {% assign emptyState = true %}
           {% endunless %}
-
           {% include 'onboarding-empty-collection' %}
 
         {% else %}

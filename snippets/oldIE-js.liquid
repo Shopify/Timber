@@ -10,7 +10,7 @@
 {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
 {{ 'respond.min.js' | asset_url | script_tag }}
 <link href="{{ 'respond-proxy.html' | asset_url | split: '?' | first }}" id="respond-proxy" rel="respond-proxy" />
-<link href="//{{shop.domain}}/search?q={{ respond_js_secret_key }}" id="respond-redirect" rel="respond-redirect" />
-<script src="//{{shop.domain}}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
+<link href="//{{ shop.domain }}/search?q={{ respond_js_secret_key }}" id="respond-redirect" rel="respond-redirect" />
+<script src="//{{ shop.domain }}/search?q={{ respond_js_secret_key }}" type="text/javascript"></script>
 <![endif]-->
 
