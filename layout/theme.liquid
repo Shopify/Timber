@@ -34,7 +34,6 @@
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
-
   {% include 'oldIE-js' %}
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
@@ -64,7 +63,76 @@
         </button>
       </div>
     </div>
-    {% include 'mobile-nav' %}
+    <ul class="mobile-nav">
+      <li class="mobile-nav__item mobile-nav__search">
+        {% include 'search-bar' %}
+      </li>
+      {% for link in linklists.main-menu.links %}
+        {% comment %}
+          Create a dropdown menu by naming a linklist the same as a link in the parent nav
+
+          More info on dropdowns:
+            - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
+        {% endcomment %}
+        {% assign child_list_handle = link.title | handleize %}
+        {% if linklists[child_list_handle].links != blank %}
+          <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}" aria-haspopup="true">
+            <div class="mobile-nav__has-sublist">
+              <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+              <div class="mobile-nav__toggle">
+                <button type="button" class="icon-fallback-text mobile-nav__toggle-open">
+                  <span class="icon icon-plus" aria-hidden="true"></span>
+                  <span class="fallback-text">See More</span>
+                </button>
+                <button type="button" class="icon-fallback-text mobile-nav__toggle-close">
+                  <span class="icon icon-minus" aria-hidden="true"></span>
+                  <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+                </button>
+              </div>
+            </div>
+            <ul class="mobile-nav__sublist">
+              {% for childlink in linklists[child_list_handle].links %}
+                <li class="mobile-nav__item {% if childlink.active %} mobile-nav__item--active{% endif %}">
+                  <a href="{{ childlink.url }}" class="mobile-nav__link">{{ childlink.title | escape }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li class="mobile-nav__item{% if link.active %} mobile-nav__item--active{% endif %}">
+            <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% comment %}
+        If customer accounts are enabled, provide login and create account links
+      {% endcomment %}
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          <li class="mobile-nav__item">
+            {% if customer.first_name != blank %}
+              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+            {% else %}
+              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+            {% endif %}
+          </li>
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.log_out' | t | customer_logout_link }}
+          </li>
+        {% else %}
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.log_in' | t | customer_login_link }}
+          </li>
+          {% if shop.customer_accounts_optional %}
+          <li class="mobile-nav__item">
+            {{ 'layout.customer.create_account' | t | customer_register_link }}
+          </li>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </ul>
   </div>
   <div id="CartDrawer" class="drawer drawer--right">
     <div class="drawer__header">
@@ -159,7 +227,42 @@
     <nav class="nav-bar" role="navigation">
       <div class="wrapper">
         <div class="medium-down--hide">
-          {% include 'site-nav' %}
+          {% comment %}
+            List out your main-menu linklist (default)
+
+            More info on linklists:
+              - http://docs.shopify.com/themes/liquid-variables/linklists
+          {% endcomment %}
+          <ul class="site-nav" id="AccessibleNav">
+            {% for link in linklists.main-menu.links %}
+              {% comment %}
+                Create a dropdown menu by naming a linklist the same as a link in the parent nav
+
+                More info on dropdowns:
+                  - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
+              {% endcomment %}
+              {% assign child_list_handle = link.title | handleize %}
+              {% if linklists[child_list_handle].links != blank %}
+                <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
+                  <a href="{{ link.url }}" class="site-nav__link">
+                    {{ link.title }}
+                    <span class="icon icon-arrow-down" aria-hidden="true"></span>
+                  </a>
+                  <ul class="site-nav__dropdown">
+                    {% for childlink in linklists[child_list_handle].links %}
+                      <li{% if childlink.active %} class="site-nav--active"{% endif %}>
+                        <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% else %}
+                <li {% if link.active %}class="site-nav--active"{% endif %}>
+                  <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
         </div>
         <div class="large--hide medium-down--show">
           <div class="grid">
@@ -220,8 +323,27 @@
           {% endif %}
           {% if settings.footer_newsletter_enable %}
             <div class="grid__item large--one-quarter medium--one-half">
+              {% comment %}
+                MailChimp is the go-to newsletter service for Shopify.
+                Use the link below to find your MailChimp form action
+                and insert it in your site settings.
+
+                MailChimp newsletter integration and requirement:
+                 - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
+              {% endcomment %}
               <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
-              {% include 'newsletter-form' %}
+              {% if settings.newsletter_form_action != blank %}
+                {% assign form_action = settings.newsletter_form_action %}
+              {% else %}
+                {% assign form_action = '#' %}
+              {% endif %}
+              <form action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+                <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+                <span class="input-group-btn">
+                  <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+                </span>
+              </form>
+
             </div>
           {% endif %}
           <div class="grid__item text-center">
