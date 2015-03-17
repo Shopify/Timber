@@ -37,10 +37,7 @@
   {% assign sold_out = false %}
 {% endif %}
 
-{% comment %}
-  Set a class for sold-out and on-sale items
-{% endcomment %}
-<div class="grid__item {{ grid_item_width }}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+<div class="grid__item {{ grid_item_width }}">
 
   {% comment %}
     Link to your product with the 'within: collection' filter for the link to be aware of the collection.
