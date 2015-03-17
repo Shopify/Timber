@@ -99,11 +99,7 @@
                 <div class="grid__item large--three-quarters medium--two-thirds">
                   <p class="h6">{{ product.title }}</p>
                   <div class="rte">
-                    {% if product.excerpt.size > 0 %}
-                      {{ product.excerpt }}
-                    {% else %}
-                      <p>{{ product.content | strip_html | truncatewords: 30 }}</p>
-                    {% endif %}
+                    <p>{{ product.content | strip_html | truncatewords: 30 }}</p>
                   </div>
                 </div>
                 <div class="grid__item large--one-quarter medium--one-third">
