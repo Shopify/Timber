@@ -299,11 +299,12 @@
 
     </main>
 
+    <!-- begin site-footer -->
     <footer class="site-footer small--text-center" role="contentinfo">
       <div class="wrapper">
         <div class="grid">
           {% if settings.footer_social_enable %}
-            <div class="grid__item large--one-quarter medium--one-half">
+            <div class="grid__item large--one-third medium--one-half">
               <h3>{{ 'layout.footer.social_title' | t }}</h3>
                 <ul class="inline-list social-icons">
                   {% if settings.social_twitter_link != blank %}
@@ -326,7 +327,7 @@
             </div>
           {% endif %}
           {% if settings.footer_newsletter_enable %}
-            <div class="grid__item large--one-quarter medium--one-half">
+            <div class="grid__item large--one-third push--large--one-third medium--one-half">
               {% comment %}
                 MailChimp is the go-to newsletter service for Shopify.
                 Use the link below to find your MailChimp form action
@@ -373,6 +374,7 @@
         </div>
       </div>
     </footer>
+    <!-- //site-footer -->
   </div>
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
