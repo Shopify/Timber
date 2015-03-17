@@ -62,12 +62,10 @@
           {% comment %}
             Add default products to help with onboarding for collections/all only
           {% endcomment %}
-
           {% unless emptyState %}
             {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
             {% assign emptyState = true %}
           {% endunless %}
-
           {% include 'onboarding-empty-collection' %}
 
         {% else %}
