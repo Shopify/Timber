@@ -3,9 +3,9 @@
   <div class="helper-section">
     <div class="helper-note">
       <span class="helper-icon"></span>
-      <h3>{{ 'home_page.onboarding.modal_title' | t }}</h3>
-      <p>{{ 'home_page.onboarding.no_products_html' | t }}</p>
-      <p><a class="admin-btn-primary" href="/admin/collections?tutorial=Frontpage">{{ 'home_page.onboarding.add_product' | t }}</a></p>
+      <h3>{{ 'homepage.onboarding.modal_title' | t }}</h3>
+      <p>{{ 'homepage.onboarding.no_products_html' | t }}</p>
+      <p><a class="admin-btn-primary" href="/admin/collections?tutorial=Frontpage">{{ 'homepage.onboarding.add_product' | t }}</a></p>
     </div>
 
     <div class="grid-uniform helper-content">
@@ -15,7 +15,7 @@
             {% capture imageUrl %}//cdn.shopify.com/s/images/themes/product-{{ i }}.png{% endcapture %}
             {{ imageUrl | img_tag }}
           </a>
-          <p class="h6"><a href="/admin/products">{{ 'home_page.onboarding.product_title' | t }}</a></p>
+          <p class="h6"><a href="/admin/products">{{ 'homepage.onboarding.product_title' | t }}</a></p>
           <p>$19.99</p>
         </div>
       {% endfor %}
