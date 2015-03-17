@@ -22,13 +22,6 @@
       "title": "Buscar productos en nuestro sitio",
       "placeholder": "buscar en nuestra tienda",
       "submit": "Buscar"
-    },
-    "navigation": {
-      "menu": "Menú"
-    },
-    "drawers": {
-      "browse": "Navegar",
-      "close_menu": "Cerrar menú"
     }
   },
   "blogs": {
@@ -240,6 +233,13 @@
     }
   },
   "layout": {
+    "navigation": {
+      "menu": "Menú"
+    },
+    "drawers": {
+      "browse": "Navegar",
+      "close_menu": "Cerrar menú"
+    },
     "cart": {
       "title": "Carrito",
       "items_count": {
