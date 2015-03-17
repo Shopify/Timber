@@ -1,5 +1,5 @@
 /*============================================================================
-  Shopify Timber v2.0.2
+  Shopify Timber v2.1.0
   Copyright 2015 Shopify Inc.
   Author Carson Shold @cshold
   Built with Sass - http://sass-lang.com/
@@ -36,6 +36,8 @@
   #Pagination
   #Site Header
   #Site Nav and Dropdowns
+  #Mobile Nav
+  #Drawers
   #Site Footer
   #Product and Collection Grids
   #Collection Filters
@@ -43,6 +45,7 @@
   #Product Page
   #Notes and Form Feedback
   #Cart Page
+  #Ajax Cart Styles
 ==============================================================================*/
 
 /*============================================================================
@@ -117,11 +120,23 @@ $errorRedBg: #fff6f6;
 $successGreen: #56ad6a;
 $successGreenBg: #ecfef0;
 
+// Drawers
+$drawerNavWidth: 300px;
+$drawerCartWidth: 300px;
+$colorDrawers: #f6f6f6;
+$colorDrawerBorder: darken($colorDrawers, 5%);
+$colorDrawerText: #333;
+$drawerTransition: 'all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1)';
+
 // Sizing variables
 $siteWidth: 1180px;
 $gutter: 30px;
 $gridGutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 $radius: 3px;
+
+// Z-index
+$zindexNavDropdowns: 5;
+$zindexDrawer: 10;
 
 /*================ Typography ================*/
 
@@ -173,6 +188,10 @@ $socialIconFontStack: 'icons';
 
 @mixin transition($transition: 0.1s all) {
   @include prefix('transition', #{$transition});
+}
+
+@mixin transform($transform: 0.1s all) {
+  @include prefix('transform', #{$transform});
 }
 
 @mixin gradient($from, $to, $fallback) {
@@ -689,6 +708,11 @@ body {
 /*============================================================================
   #Helper Classes
 ==============================================================================*/
+.is-transitioning {
+  display: block !important;
+  visibility: visible !important;
+}
+
 .display-table {
   display: table;
   table-layout: fixed;
@@ -964,12 +988,20 @@ hr {
 .rte {
   margin-bottom: $gutter / 2;
 
+  a {
+    text-decoration: underline;
+  }
+
   // Add some top margin to headers from the rich text editor
   h1, h2, h3, h4, h5, h6 {
     margin-top: 2em;
 
     &:first-child {
       margin-top: 0;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 
@@ -992,7 +1024,7 @@ hr {
 a,
 .text-link {
   color: $colorLink;
-  text-decoration: underline;
+  text-decoration: none;
   background: transparent;
 }
 
@@ -1098,10 +1130,6 @@ html input[disabled] {
 ul, ol {
   margin: 0 0 ($gutter / 2) 20px;
   padding: 0;
-
-  &.inline-list {
-    margin-left: 0;
-  }
 }
 
 ol { list-style: decimal; }
@@ -1112,14 +1140,19 @@ li { margin-bottom: 0.25em; }
 ul.square { list-style: square outside; }
 ul.disc { list-style: disc outside; }
 ol.alpha { list-style: lower-alpha outside; }
+
 .no-bullets {
   list-style: none outside;
   margin-left: 0;
 }
 
-.inline-list li {
-  display: inline-block;
-  margin-bottom: 0;
+.inline-list {
+  margin-left: 0;
+
+  li {
+    display: inline-block;
+    margin-bottom: 0;
+  }
 }
 
 /*============================================================================
@@ -1222,12 +1255,31 @@ form {
   margin-bottom: 0;
 }
 
+.form-vertical {
+  margin-bottom: $gutter / 2;
+}
+
 /*================ Prevent zoom on touch devices in active inputs ================*/
 @include at-query($max, $medium) {
   input,
   textarea {
     font-size: 16px;
   }
+}
+
+input,
+textarea,
+button,
+select {
+  padding: 0;
+  margin: 0;
+  @include prefix('user-select', 'text');
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 button,
@@ -1242,6 +1294,11 @@ button {
   border: none;
   display: inline-block;
   cursor: pointer;
+}
+
+input[type="image"] {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 fieldset {
@@ -1499,19 +1556,19 @@ label.error {
 
 /*================ Icon mapping ================*/
 .icon-american_express:before { content: "\41"; }
-.icon-arrow-down:before { content: "\34"; }
+.icon-arrow-down:before { content: "\e607"; }
 .icon-bitcoin:before { content: "\42"; }
-.icon-cart:before { content: "\5b"; }
+.icon-cart:before { content: "\e600"; }
 .icon-cirrus:before { content: "\43"; }
+.icon-dankort:before { content: "\64"; }
 .icon-diners_club:before { content: "\63"; }
 .icon-discover:before { content: "\44"; }
-.icon-dankort:before { content: "\64"; }
 .icon-facebook:before { content: "\66"; }
 .icon-fancy:before { content: "\46"; }
 .icon-google:before { content: "\67"; }
 .icon-google_wallet:before { content: "\47"; }
 .icon-grid-view:before { content: "\e603"; }
-.icon-hamburger:before { content: "\e600"; }
+.icon-hamburger:before { content: "\e601"; }
 .icon-instagram:before { content: "\69"; }
 .icon-interac:before { content: "\49"; }
 .icon-jcb:before { content: "\4a"; }
@@ -1529,7 +1586,7 @@ label.error {
 .icon-twitter:before { content: "\54"; }
 .icon-vimeo:before { content: "\76"; }
 .icon-visa:before { content: "\56"; }
-.icon-x:before { content: "\78"; }
+.icon-x:before { content: "\e606"; }
 .icon-youtube:before { content: "\79"; }
 
 .payment-icons {
@@ -1630,7 +1687,6 @@ label.error {
 .pagination-custom > .active > span:hover,
 .pagination-custom > .active > a:focus,
 .pagination-custom > .active > span:focus {
-  z-index: 2;
   cursor: default;
   color: $colorTextBody;
 }
@@ -1686,32 +1742,26 @@ label.error {
 .site-header {
   padding: ($gutter / 2) 0;
 
-  @include at-query ($min, $large) {
-    padding: $gutter 0;
-  }
+  .grid--table {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
 
-  @include at-query ($min, $large) {
-    .grid {
-      display: table;
-      table-layout: fixed;
-      width: 100%;
-
-      > .grid__item {
-        float: none;
-        display: table-cell;
-        vertical-align: middle;
-      }
+    > .grid__item {
+      float: none;
+      display: table-cell;
+      vertical-align: middle;
     }
   }
 }
 
 .site-header__logo {
   text-align: center;
-  margin: 0 auto ($gutter / 2);
-  max-width: {{ settings.logo_max_width }}px;
+  margin: 0 auto;
+  max-width: 100%;
 
   @include at-query ($min, $large) {
-    margin-bottom: 0;
+    text-align: left;
   }
 
   a,
@@ -1729,15 +1779,28 @@ label.error {
   }
 }
 
+.site-header__logo-link {
+  max-width: {{ settings.logo_max_width }}px;
+  margin: 0 auto;
+}
+
 .site-header__text-links {
   margin-bottom: 0;
+}
+
+.site-header__search {
+  display: inline-block;
+  max-width: 400px;
+  margin-top: $gutter / 2;
+  width: 100%;
 }
 
 .search-bar {
   max-width: 100%;
 
   @include at-query ($max, $medium) {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -1746,19 +1809,12 @@ label.error {
 ==============================================================================*/
 .nav-bar {
   background-color: $colorNav;
-
-  ul {
-    margin: 0;
-  }
-
-  li {
-    margin: 0;
-  }
 }
 
 .site-nav {
   font-size: em(16px);
   cursor: default;
+  margin: 0 0 0 (-$gutter / 2);
 
   li {
     margin: 0;
@@ -1768,15 +1824,15 @@ label.error {
   > li {
     position: relative;
     display: inline-block;
-
-    &:first-child a {
-      padding-left: 0;
-    }
   }
+}
 
-  @include at-query ($max, $medium) {
-    margin: 0 auto;
-    text-align: center;
+/*================ Home to hamburger and cart that toggle drawers ================*/
+.site-nav--mobile {
+  @extend .site-nav;
+
+  .text-right & {
+    margin: 0 (-$gutter / 2) 0 0;
   }
 }
 
@@ -1793,8 +1849,19 @@ label.error {
     color: darken($colorNavText, 15%);
   }
 
+  .icon-arrow-down {
+    position: relative;
+    top: -2px;
+    font-size: 10px;
+    padding-left: $gutter / 4;
+  }
+
   .site-nav--active > & {
     font-weight: bold;
+  }
+
+  .site-nav--mobile & {
+    display: inline-block;
   }
 }
 
@@ -1803,7 +1870,8 @@ label.error {
   display: none;
   position: absolute;
   left: 0;
-  z-index: 5;
+  margin: 0;
+  z-index: $zindexNavDropdowns;
 
   .supports-no-touch .site-nav--has-dropdown:hover &,
   .site-nav--has-dropdown.nav-hover &,
@@ -1834,6 +1902,257 @@ label.error {
   }
 }
 
+/*============================================================================
+  #Mobile Nav
+  - List of items inside the mobile drawer
+==============================================================================*/
+.mobile-nav {
+  // Negative of .drawer left/right padding for full-width link tap area
+  margin: (-$gutter / 2) (-$gutter / 2) 0 (-$gutter / 2);
+
+  li {
+    margin-bottom: 0;
+  }
+}
+
+.mobile-nav__search {
+  padding: $gutter / 2;
+
+  .search-bar {
+    margin-bottom: 0;
+  }
+}
+
+.mobile-nav__item {
+  position: relative;
+  display: block;
+
+  // Background color on top level items so there is no
+  // element overlap on subnav's CSS toggle animation
+  .mobile-nav > & {
+    background-color: $colorDrawers;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: $gutter / 2;
+    right: $gutter / 2;
+    border-bottom: 1px solid $colorDrawerBorder;
+  }
+
+  .mobile-nav > &:last-child:after {
+    display: none;
+  }
+}
+
+// Login/logout links can't have a class on them, so style <a> element
+.mobile-nav__item a {
+  display: block;
+}
+
+.mobile-nav__item a,
+.mobile-nav__toggle button {
+  color: $colorDrawerText;
+  padding: $gutter / 2;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: darken($colorDrawerText, 15%);
+  }
+
+  &:active,
+  &:focus {
+    background-color: darken($colorDrawers, 5%);
+  }
+}
+
+.mobile-nav__item--active {
+  font-weight: bold;
+}
+
+.mobile-nav__has-sublist {
+  display: table;
+  width: 100%;
+
+  .mobile-nav__link {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+  }
+}
+
+.mobile-nav__toggle {
+  display: table-cell;
+  vertical-align: middle;
+  width: 1%;
+}
+
+.mobile-nav__toggle-open {
+  .mobile-nav--expanded & {
+    display: none;
+  }
+}
+
+.mobile-nav__toggle-close {
+  display: none;
+
+  .mobile-nav--expanded & {
+    display: block;
+  }
+}
+
+.mobile-nav__sublist {
+  margin: 0;
+  max-height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  @include backface(hidden);
+  @include transition(all 300ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
+
+  .mobile-nav--expanded + & {
+    visibility: visible;
+    max-height: 700px;
+    @include transition(all 700ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
+  }
+
+  .mobile-nav__item:after {
+    top: 0;
+    bottom: auto;
+  }
+
+  .mobile-nav__link {
+    padding-left: $gutter;
+    font-weight: normal;
+  }
+}
+
+/*============================================================================
+  #Drawers
+==============================================================================*/
+.js-drawer-open {
+  overflow: hidden;
+}
+
+.drawer {
+  display: none;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  top: 0;
+  bottom: 0;
+  padding: 0 ($gutter / 2) ($gutter / 2);
+  max-width: 95%;
+  z-index: $zindexDrawer;
+  color: $colorDrawerText;
+  background-color: $colorDrawers;
+  @include transition($drawerTransition);
+
+  a {
+    color: $colorDrawerText;
+
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+  }
+
+  input,
+  textarea {
+    border-color: $colorDrawerBorder;
+  }
+}
+
+.drawer--left {
+  width: $drawerNavWidth;
+  left: -$drawerNavWidth;
+  border-right: 1px solid $colorDrawerBorder;
+
+  .js-drawer-open-left & {
+    display: block;
+    @include transform(translateX($drawerNavWidth));
+
+    .lt-ie9 & {
+      left: 0;
+    }
+  }
+}
+
+.drawer--right {
+  width: $drawerCartWidth;
+  right: -$drawerCartWidth;
+  border-left: 1px solid $colorDrawerBorder;
+
+  .js-drawer-open-right & {
+    display: block;
+    @include transform(translateX(-$drawerCartWidth));
+
+    .lt-ie9 & {
+      right: 0;
+    }
+  }
+}
+
+#PageContainer {
+  overflow: hidden;
+}
+
+.is-moved-by-drawer {
+  .js-drawer-open-left & {
+    @include transform(translateX($drawerNavWidth));
+    @include transition($drawerTransition);
+  }
+
+  .js-drawer-open-right & {
+    @include transform(translateX(-$drawerCartWidth));
+    @include transition($drawerTransition);
+  }
+}
+
+.is-moved-by-drawer.is-transitioning {
+  @include transition($drawerTransition);
+}
+
+.drawer__header {
+  display: table;
+  height: 70px;
+  width: 100%;
+  margin-bottom: $gutter / 2;
+  border-bottom: 1px solid $colorDrawerBorder;
+}
+
+.drawer__title,
+.drawer__close {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.drawer__title {
+  width: 100%;
+}
+
+.drawer__close {
+  width: 1%;
+  text-align: center;
+  font-size: em(18px);
+}
+
+.drawer__close button {
+  position: relative;
+  right: -20px;
+  height: 100%;
+  padding: 0 20px;
+  color: inherit;
+
+  &:active,
+  &:focus {
+    background-color: darken($colorDrawers, 5%);
+  }
+}
 
 /*============================================================================
   #Site Footer
@@ -1885,7 +2204,7 @@ label.error {
   a,
   span {
     display: inline-block;
-    padding: ($gutter / 2) 7px ($gutter / 2) 0;
+    padding: 0 7px 0 0;
     margin-right: 7px;
 
     &:first-child {
@@ -2021,7 +2340,7 @@ label.error {
   }
 
   .js-qty {
-    margin: 0;
+    margin: 0 auto;
   }
 }
 
@@ -2065,3 +2384,142 @@ label.error {
 .cart__remove {
   display: block;
 }
+
+/*============================================================================
+  #Ajax Cart Styles (conditionally loaded)
+==============================================================================*/
+{% if settings.ajax_cart_enable %}
+
+.ajaxcart__inner {
+  margin-bottom: $gutter;
+}
+
+.ajaxcart__row {
+  > .grid {
+    margin-left: -$gutter / 2;
+
+    > .grid__item {
+      padding-left: $gutter / 2;
+    }
+  }
+}
+
+.ajaxcart__product {
+  position: relative;
+  max-height: 500px;
+
+  &.is-removed {
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    @include backface(hidden);
+    @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
+  }
+}
+
+.ajaxcart__row {
+  padding-bottom: $gutter / 2;
+  margin-bottom: $gutter / 2;
+  border-bottom: 1px solid $colorDrawerBorder;
+}
+
+.ajaxcart__product-image {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 15px;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}
+
+.ajaxcart__product-name,
+.ajaxcart__product-meta {
+  display: block;
+}
+
+.ajaxcart__product-name + .ajaxcart__product-meta {
+  padding-top: $gutter / 5;
+}
+
+/*================ Quantity Selectors ================*/
+.js-qty {
+  position: relative;
+  margin-bottom: 1em;
+  max-width: 100px;
+  min-width: 75px;
+  overflow: visible;
+
+  input {
+    display: block;
+    background: none;
+    text-align: center;
+    width: 100%;
+    padding: 5px 25px;
+    margin: 0;
+  }
+}
+
+.js-qty__adjust {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  border: 0 none;
+  padding: 0 8px;
+  background: none;
+  text-align: center;
+  overflow: hidden;
+  @include prefix('user-select', 'none');
+
+  &:hover,
+  &:focus {
+    color: $colorPrimary;
+  }
+}
+
+.js-qty__adjust--plus {
+  right: 0;
+  border-left: 1px solid $colorBorder;
+}
+
+.js-qty__adjust--minus {
+  left: 0;
+  border-right: 1px solid $colorBorder;
+}
+
+/*================ Quantity Selectors in Ajax Cart ================*/
+.ajaxcart__qty {
+  @extend .js-qty;
+  margin: 0;
+
+  .is-loading & {
+    opacity: 0.5;
+    @include transition(none);
+  }
+}
+
+.ajaxcart__qty-num {
+  border-color: $colorDrawerBorder;
+  color: $colorDrawerText;
+}
+
+.ajaxcart__qty-adjust {
+  @extend .js-qty__adjust;
+  color: $colorDrawerText;
+}
+
+.ajaxcart__qty--plus {
+  @extend .js-qty__adjust--plus;
+  border-color: $colorDrawerBorder;
+}
+
+.ajaxcart__qty--minus {
+  @extend .js-qty__adjust--minus;
+  border-color: $colorDrawerBorder;
+}
+
+{% endif %} // settings.ajax_cart_enable

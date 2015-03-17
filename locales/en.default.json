@@ -22,6 +22,10 @@
       "title": "Search for products on our site",
       "placeholder": "Search our store",
       "submit": "Search"
+    },
+    "drawers": {
+      "browse": "Browse",
+      "close_menu": "Close menu"
     }
   },
   "blogs": {
@@ -54,7 +58,7 @@
   },
   "cart": {
     "general": {
-      "title": "Your Cart",
+      "title": "Shopping Cart",
       "remove": "Remove",
       "note": "Special instructions for seller",
       "subtotal": "Subtotal",
@@ -63,10 +67,10 @@
       "checkout": "Check Out",
       "empty": "Your cart is currently empty.",
       "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
-      "view_cart": "View Cart",
       "close_cart": "Close Cart"
     },
     "label": {
+      "product": "Product",
       "price": "Price",
       "quantity": "Quantity",
       "total": "Total"

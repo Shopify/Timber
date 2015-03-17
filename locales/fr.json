@@ -22,6 +22,10 @@
       "title": "Effectuez une recherche",
       "placeholder": "Rechercher dans la boutique",
       "submit": "Recherche"
+    },
+    "drawers": {
+      "browse": "Explorer",
+      "close_menu": "Fermer le menu"
     }
   },
   "blogs": {
@@ -63,10 +67,10 @@
       "checkout": "Procéder au paiement",
       "empty": "Votre panier est vide.",
       "continue_browsing_html": "<a href=\"/collections/all\">Retourner au magasinage</a>.",
-      "view_cart": "Voir le panier",
       "close_cart": "Fermer le panier"
     },
     "label": {
+      "product": "Produit",
       "price": "Prix",
       "quantity": "Quantité",
       "total": "Total"

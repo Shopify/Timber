@@ -1,9 +1,6 @@
 <!-- /templates/cart.liquid -->
 {% comment %}
 
-  This is your /cart template. If you are using the Ajaxify Cart plugin,
-  your form (with action="/cart") layout will be used in the drawer/modal.
-
   For info on test orders:
     - General http://docs.shopify.com/manual/your-store/orders/test-orders
     - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
@@ -17,7 +14,14 @@
 
     <div class="cart__row medium-down--hide cart__header-labels">
       <div class="grid--full">
-        <div class="grid__item large--one-half push--large--one-half">
+        <div class="grid__item large--one-half">
+          <div class="grid">
+            <div class="grid__item two-thirds push--one-third">
+              {{ 'cart.label.product' | t }}
+            </div>
+          </div>
+        </div>
+        <div class="grid__item large--one-half">
           <div class="grid--full">
             <div class="grid__item one-third medium-down--one-third">
               {{ 'cart.label.price' | t }}
@@ -37,7 +41,7 @@
       Loop through products in the cart
     {% endcomment %}
     {% for item in cart.items %}
-      <div class="cart__row" data-id="{{ item.id }}">
+      <div class="cart__row">
         <div class="grid--full cart__row--table-large">
 
           <div class="grid__item large--one-half">
@@ -55,10 +59,11 @@
               </div>
 
               <div class="grid__item two-thirds">
-                <a href="{{ item.url }}" class="h5">
+                <a href="{{ item.url }}" class="h4">
                   {{ item.product.title }}
                 </a>
                 {% unless item.variant.title contains 'Default' %}
+                  <br>
                   <small>{{ item.variant.title }}</small>
                 {% endunless %}
 
@@ -92,7 +97,7 @@
                   {% endfor %}
                 {% endif %}
 
-                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove" data-id="{{ item.id }}">
+                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove">
                   <small>{{ 'cart.general.remove' | t }}</small>
                 </a>
               </div>
@@ -110,10 +115,7 @@
 
               <div class="grid__item one-third text-center">
                 <span class="cart__mini-labels">{{ 'cart.label.quantity' | t }}</span>
-                {% comment %}
-                  Added data-id for the ajax cart implementation only.
-                {% endcomment %}
-                <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" data-id="{{ item.id }}">
+                <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0">
               </div>
 
               <div class="grid__item one-third text-right">
@@ -151,7 +153,7 @@
           <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
 
           {% if additional_checkout_buttons %}
-            <p>{{ content_for_additional_checkout_buttons }}</p>
+            <div>{{ content_for_additional_checkout_buttons }}</div>
           {% endif %}
         </div>
       </div>
