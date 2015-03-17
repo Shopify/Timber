@@ -216,7 +216,7 @@
       "password": "Mot de passe"
     }
   },
-  "home_page": {
+  "homepage": {
     "sections": {
       "frontpage_title": "Collection Frontpage",
       "featured_title": "Collections en vedette",
