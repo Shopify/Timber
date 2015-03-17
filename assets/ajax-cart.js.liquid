@@ -208,7 +208,7 @@ var ajaxCart = (function(module, $) {
       }
     }
     if ($cartCostSelector) {
-      $cartCostSelector.html(ShopifyAPI.formatMoney(cart.total_price, settings.moneyFormat));
+      $cartCostSelector.html(Shopify.formatMoney(cart.total_price, settings.moneyFormat));
     }
   };
 
