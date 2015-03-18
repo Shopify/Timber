@@ -650,12 +650,17 @@ $breakpoints: (
         <p class="docs-text">Shopify liquid files don't support <code>@import</code>. This means you can't rely on helpers like Compass or Bourbon. Instead, there is a section called <strong>Sass Mixins</strong> in <strong class="docs-strong">timber.scss.liquid</strong> that provides a few of these helpers that you may be looking for.</p>
 
         <h4 class="docs-h4">Breakpoint Mixin</h4>
-        <p class="docs-text--source">Mixin source: <a href="http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/" class="docs-link">http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/</a></p>
+        <p class="docs-text--source">Mixin based on: <a href="http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/" class="docs-link">http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/</a></p>
         <p class="docs-text--note"><strong class="docs-strong">Note:</strong> Standard media queries will obviously work as well if you'd rather not use the <code>at-query</code> mixin.</p>
-        <p class="docs-text">Use this simple mixin to create media queries. Breakpoints are defined under <strong>Breakpoint and Grid Variables</strong> in <strong class="docs-strong">timber.scss.liquid</strong>. This mixin can wrap class declarations (<strong class="docs-strong">Example 1</strong> in Code tab), or be placed within them (<strong class="docs-strong">Example 2</strong> in Code tab).</p>
+        <p class="docs-text">Use this simple mixin to create media queries. Breakpoints are defined under <strong>Breakpoint and Grid Variables</strong> in <strong class="docs-strong">timber.scss.liquid</strong>. This mixin can wrap class declarations (<strong class="docs-strong">Example 1</strong> below), or be placed within them (<strong class="docs-strong">Example 2</strong> below).</p>
+        <p>Make use of <code>$min</code> or <code>$max</code> variables for the constraint and the breakpoint variables defined under <strong class="docs-strong">#Breakpoint and Grid Variables</strong> for the viewports.</p>
 
 <pre>
-@mixin at-query($constraint, $viewport1, $viewport2: null) { ... }
+$min: min-width;
+$max: max-width;
+@mixin at-query($constraint_, $viewport1_, $viewport2_:null) {
+  ...
+}
 </pre>
 
         <div id="mixins-breakpoint-parameters" class="overflow-auto">
@@ -708,29 +713,36 @@ $breakpoints: (
         </div>
 
         <div id="mixins-breakpoint-code">
-          <h4 class="docs-example">Example 1</h4>
+          <h4 class="docs-example">Example 1 | Max-width query</h4>
 <pre>
-@include at-query('max-width', $small) {
+@include at-query($max, $small) {
   .foo {
     font-size: 0.8em;
   }
 }
 
 Output:
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
   .foo { font-size: 0.8em; }
 }
 </pre>
-        <h4 class="docs-example">Example 2</h4>
+        <h4 class="docs-example">Example 2 | Min and max-width query</h4>
+        <p class="docs-text">The first parameter is optional when creating in-between queries. The two following snippets generate the same output.</p>
 <pre>
 .foo {
-  @include at-query(null, 480px, 768px) {
+  @include at-query(null, $postSmall, $medium) {
+    font-size: 0.8em;
+  }
+}
+
+.foo {
+  @include at-query($postSmall, $medium) {
     font-size: 0.8em;
   }
 }
 
 Output:
-@media screen and (min-width: 480px) and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .foo { font-size: 0.8em; }
 }
 </pre>
