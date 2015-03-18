@@ -232,11 +232,16 @@ $socialIconFontStack: 'icons';
 
 /*============================================================================
   Dependency-free breakpoint mixin
-    - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+    - Based on http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+    - Usage docs: http://shopify.github.io/Timber/#sass-mixins
 ==============================================================================*/
 $min: min-width;
 $max: max-width;
-@mixin at-query ($constraint, $viewport1, $viewport2:null) {
+@mixin at-query ($constraint_, $viewport1_, $viewport2_:null) {
+ $constraint: $constraint_; $viewport1: $viewport1_; $viewport2: $viewport2_;
+  @if type-of($constraint_) == number {
+    $viewport1 : $constraint_; $viewport2 : $viewport1_; $constraint : null;
+  }
   @if $constraint == $min {
     @media screen and ($min: $viewport1) {
       @content;
