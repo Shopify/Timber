@@ -1438,11 +1438,11 @@ jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
 
         <h4 class="docs-h4">Invisible Labels</h4>
         <p class="docs-text--note"><strong class="docs-strong">Note:</strong> The placeholder attribute only works in IE10+, so invisible labels are disabled in IE9 and below.</p>
-        <p class="docs-text">Add a class of <code>label-hidden</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
+        <p class="docs-text">Add a class of <code>hidden-label</code> to a label to hide it, while keeping it accessible to screen readers. Use the <code>placeholder</code> attribute as your visible label.</p>
 
         <div id="invisiblelabels-example">
           <form>
-            <label for="testInvisibleLabel1" class="label-hidden">First Name</label>
+            <label for="testInvisibleLabel1" class="hidden-label">First Name</label>
             <input type="text" id="testInvisibleLabel1" name="testInvisibleLabel1" placeholder="First Name">
           </form>
         </div>
@@ -1450,7 +1450,7 @@ jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
         <div id="invisiblelabels-code">
 <pre>
 &lt;form&gt;
-  &lt;label for="testInvisibleLabel1" class="label-hidden"&gt;First Name&lt;/label&gt;
+  &lt;label for="testInvisibleLabel1" class="hidden-label"&gt;First Name&lt;/label&gt;
   &lt;input type="text" id="testInvisibleLabel1" name="testInvisibleLabel1" placeholder="First Name"&gt;
 &lt;/form&gt;
 </pre>
