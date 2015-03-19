@@ -1423,10 +1423,12 @@ select::-ms-expand {
   // No placeholders, so force show labels
   .ie9 &,
   .lt-ie9 & {
+    position: static;
     height: auto;
     width: auto;
     margin-bottom: 2px;
     overflow: visible;
+    clip: initial;
   }
 }
 
