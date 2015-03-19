@@ -833,48 +833,12 @@ Output:
         <h2 class="doc-title module-title" id="pagination"><strong>3.1 </strong>Pagination</h2>
         <p class="docs-text--source">Documentation - <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">http://docs.shopify.com/themes/liquid-variables/paginate</a></p>
         <p class="docs-text--note"><strong>Note:</strong> The <code>paginate</code> liquid tag can limit how many articles are shown per page by wrapping the <strong>article loop</strong> with it.</p>
-        <p class="docs-text">Pagination will only work when you're trying to access an available object. The snippets below paginates through the <strong class="docs-strong">blogs.news.articles</strong> object, so would only function properly on <strong class="docs-strong">blog.liquid</strong>. The code lives in <strong class="docs-strong">snippet/pagination-custom</strong>. View the documentation for <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">other areas that can be paginated</a>.</p>
+        <p class="docs-text">Pagination will only work when you're trying to access an available object. The snippets below paginates through the <strong class="docs-strong">blogs.news.articles</strong> object, so would only function properly on <strong class="docs-strong">blog.liquid</strong>. View the documentation for <a href="http://docs.shopify.com/themes/liquid-variables/paginate?utm_source=Timber&utm_medium=os" class="docs-link">other areas that can be paginated</a>.</p>
 
         <div id="pagination-examples">
           <hr class="hr--docsclear">
 
           <h4 class="docs-h4">Default</h4>
-          <div class="pagination">
-            <p><span class="page current">1</span>
-            <span class="page"><a href="#" title="">2</a></span>
-            <span class="next"><a href="#" title="">Next »</a></span></p>
-          </div>
-
-          <hr class="hr--docsclear">
-
-          <h4 class="docs-h4">Replace default text</h4>
-          <div class="pagination">
-            <p><span class="page current">1</span>
-            <span class="page"><a href="#" title="">2</a></span>
-            <span class="next"><a href="#" title="">Older articles »</a></span></p>
-          </div>
-
-          <hr class="hr--docsclear">
-
-          <h4 class="docs-h4">Custom</h4>
-          <p class="docs-text">Place any template's pagination on any other template. Usually, pagination is defined to the current <code>&#123;%paginate%&#125;</code> context, so by adding in the <code>currentUrl</code> variable we make sure the links are pointing to the right pages.</p>
-          <p class="docs-text">This example shows pagination for your blog articles, defined by <code>blog.news.articles</code>.</p>
-          <p class="docs-text">Set a variable named <code>currentUrl</code> to <code>blogs.news.url</code> and all links will be relative to that template.</p>
-
-          <ul class="pagination-custom">
-            <li class="disabled"><span>←</span></li>
-            <li class="active"><span>1</span></li>
-            <li>
-              <a href="#" title="">2</a>
-            </li>
-            <li>
-              <a href="#" title="Next »">→</a>
-            </li>
-          </ul>
-        </div>
-
-        <div id="pagination-code">
-
           <h4 class="docs-example">Example 1 - Default</h4>
 <pre>
 &#123;% paginate blogs.news.articles by 5 %&#125;
@@ -884,54 +848,31 @@ Output:
 &#123;% endpaginate %&#125;
 </pre>
 
-          <h4 class="docs-example">Example 2 - Replace default text</h4>
+          <p class="docs-strong">Output:</p>
+          <div class="pagination">
+            <span class="page current">1</span>
+            <span class="page"><a href="#" title="">2</a></span>
+            <span class="next"><a href="#" title="">Next »</a></span>
+          </div>
+
+          <hr class="hr--docsclear">
+
+          <h4 class="docs-example">Example 1 - Replace default text</h4>
 <pre>
 &#123;% paginate blogs.news.articles by 5 %&#125;
   &lt;div class="pagination"&gt;
-    &#123;&#123; paginate | default_pagination | replace: 'Previous', 'Newer articles' | replace: 'Next', 'Older articles' &#125;&#125;
+    &#123;&#123; paginate | default_pagination | replace: '&laquo; Previous', '&larr; Newer articles' | replace: 'Next &raquo;', 'Older articles &rarr;' &#125;&#125;
   &lt;/div&gt;
 &#123;% endpaginate %&#125;
 </pre>
 
-          <h4 class="docs-example">Example 3 - Custom</h4>
-<pre>
-&#123;% paginate blogs.news.articles by 5 %&#125;
-&#123;% assign currentUrl = blogs.news.url %&#125;
+          <p class="docs-strong">Output:</p>
+          <div class="pagination">
+            <span class="page current">1</span>
+            <span class="page"><a href="#" title="">2</a></span>
+            <span class="next"><a href="#" title="">Older articles &rarr;</a></span>
+          </div>
 
-&lt;ul class="pagination-custom"&gt;
-&#123;% if paginate.previous %&#125;
-    &lt;li&gt;
-      &lt;a href="&#123;&#123; currentUrl &#125;&#125;&#123;&#123; paginate.previous.url &#125;&#125;" title="&#123;&#123; paginate.previous.title &#125;&#125;"&gt;&larr;&lt;/a&gt;
-    &lt;/li&gt;
-&#123;% else %&#125;
-    &lt;li class="disabled"&gt;&lt;span&gt;&larr;&lt;/span&gt;&lt;/li&gt;
-&#123;% endif %&#125;
-
-&#123;% for part in paginate.parts %&#125;
-  &#123;% if part.is_link %&#125;
-    &lt;li&gt;
-      &lt;a href="&#123;&#123; currentUrl &#125;&#125;&#123;&#123; part.url &#125;&#125;" title=""&gt;&#123;&#123; part.title &#125;&#125;&lt;/a&gt;
-    &lt;/li&gt;
-  &#123;% else %&#125;
-    &#123;% if part.title == paginate.current_page %&#125;
-      &lt;li class="active"&gt;&lt;span&gt;&#123;&#123; part.title &#125;&#125;&lt;/span&gt;&lt;/li&gt;
-    &#123;% else %&#125;
-      &lt;li&gt;&lt;span&gt;&#123;&#123; part.title &#125;&#125;&lt;/span&gt;&lt;/li&gt;
-    &#123;% endif %&#125;
-  &#123;% endif %&#125;
-&#123;% endfor %&#125;
-
-&#123;% if paginate.next %&#125;
-  &lt;li&gt;
-    &lt;a href="&#123;&#123; currentUrl &#125;&#125;&#123;&#123; paginate.next.url &#125;&#125;" title="&#123;&#123; paginate.next.title &#125;&#125;"&gt;&rarr;&lt;/a&gt;
-  &lt;/li&gt;
-&#123;% else %&#125;
-  &lt;li class="disabled"&gt;&lt;span&gt;&rarr;&lt;/span&gt;&lt;/li&gt;
-&#123;% endif %&#125;
-&lt;/ul&gt;
-
-&#123;% endpaginate %&#125;
-</pre>
         </div>
 
         <hr class="hr--docshr">

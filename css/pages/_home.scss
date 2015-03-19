@@ -503,11 +503,7 @@ ul.tabs li.current a {
     background-color: $bgMeta;
     border: 1px solid $bgMetaDark;
     font-size: 12px;
-    margin: $margin 0;
-
-    @include responsify( $desk_up ) {
-      margin: ($margin * 2) 0;
-    }
+    margin: 0 0 $margin 0;
   }
 
   code {
