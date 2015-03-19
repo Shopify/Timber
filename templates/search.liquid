@@ -118,8 +118,8 @@
                         <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
                       </div>
                     </div>
+                    {% unless forloop.last %}<hr>{% endunless %}
                   </div>
-                  {% unless forloop.last %}<hr>{% endunless %}
                   <!-- //list search results-->
                 {% else %}
                   <!-- begin grid search results-->
@@ -164,8 +164,9 @@
           {% endif %}
 
           {% if paginate.pages > 1 %}
-            <div class="text-center">
-              {% include 'pagination-custom' %}
+            <hr>
+            <div class="pagination">
+              {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
             </div>
           {% endif %}
 
