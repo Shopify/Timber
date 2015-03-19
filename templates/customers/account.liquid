@@ -54,8 +54,9 @@
 
       {% endif %}
       {% if paginate.pages > 1 %}
-        <div class="text-center">
-          {% include 'pagination-custom' %}
+        <hr>
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
         </div>
       {% endif %}
     {% endpaginate %}
