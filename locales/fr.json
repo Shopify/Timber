@@ -74,7 +74,7 @@
   },
   "collections": {
     "general": {
-      "all_of_collection": "Tous les {{ collection }}",
+      "all_of_collection": "Tout",
       "no_matches": "Aucun produit ne correspond à votre recherche.",
       "link_title": "Consultez la collection {{ title }}",
       "grid_view": "Grille",
