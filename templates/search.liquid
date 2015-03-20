@@ -8,8 +8,8 @@
 {% endcomment %}
 
 {% comment %}
-  If you're only showing products with the method above, why not show them off in a grid instead?
-  Set grid_results to true and see your updated results page for the new layout.
+  Set grid_results to true and set search results as a grid instead of a list.
+  This works well when your search is only for products.
 {% endcomment %}
 {% assign grid_results = false %}
 
@@ -121,7 +121,7 @@
               <!-- //list search results-->
             {% else %}
               <!-- begin grid search results-->
-              <div class="grid__item search-result large--one-quarter medium--one-third small--one-half">
+              <div class="grid__item search-result large--one-third medium--one-third">
                 {% if item.featured_image %}
                   <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
                     {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
@@ -151,6 +151,8 @@
                       <br><s>{{ item.compare_at_price | money }}</s>
                     {% endif %}
                   </p>
+                {% else %}
+                  <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
                 {% endif %}
               </div>
               <!-- //grid search results-->
