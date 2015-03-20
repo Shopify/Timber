@@ -74,6 +74,7 @@
   },
   "collections": {
     "general": {
+      "all_of_collection": "Alle {{ collection }}",
       "no_matches": "Es tut uns leid, aber Ihre Suche nach Produkten hat keine Treffer ergeben.",
       "link_title": "Durchsuchen Sie unsere {{ title }}-Zusammenstellung",
       "grid_view": "Gitteransicht",
