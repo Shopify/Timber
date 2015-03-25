@@ -2030,12 +2030,10 @@ label.error {
 
   .js-drawer-open-left & {
     @include transform(translateX($drawerNavWidth));
-
   }
 
   .js-drawer-open-right & {
     @include transform(translateX(-$drawerCartWidth));
-    @include transition($drawerTransition);
   }
 }
 
