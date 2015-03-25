@@ -2026,19 +2026,17 @@ label.error {
 }
 
 .is-moved-by-drawer {
+  @include transition($drawerTransition);
+
   .js-drawer-open-left & {
     @include transform(translateX($drawerNavWidth));
-    @include transition($drawerTransition);
+
   }
 
   .js-drawer-open-right & {
     @include transform(translateX(-$drawerCartWidth));
     @include transition($drawerTransition);
   }
-}
-
-.is-moved-by-drawer.is-transitioning {
-  @include transition($drawerTransition);
 }
 
 .drawer__header {
