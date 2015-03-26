@@ -74,6 +74,7 @@
   },
   "collections": {
     "general": {
+      "all_of_collection": "All {{ collection }}",
       "no_matches": "Sorry, there are no products in this collection",
       "link_title": "Browse our {{ title }} collection",
       "grid_view": "Grid view",
