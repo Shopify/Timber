@@ -8,6 +8,8 @@
 
 {% endcomment %}
 
+{% paginate customer.addresses by 5 %}
+
 <header class="section-header">
   <h1 class="section-header__left">{{ 'customer.account.title' | t }}</h1>
   <div class="section-header__right">
@@ -100,7 +102,7 @@
       List all customer addresses with a unique edit form.
       Also add pagination in case they have a large number of addresses
     {% endcomment %}
-    {% paginate customer.addresses by 5 %}
+
       {% for address in customer.addresses %}
 
         <h3>
@@ -193,8 +195,6 @@
           {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
         </div>
       {% endif %}
-
-    {% endpaginate %}
   </div>
 
 </div>
@@ -232,4 +232,6 @@
       }
     }
   }
-</script>
+  </script>
+
+{% endpaginate %}
