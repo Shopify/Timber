@@ -24,20 +24,17 @@
         <input type="email" name="customer[email]" id="CustomerEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customer.login.email' | t }}" autocorrect="off" autocapitalize="off" autofocus>
 
         {% if form.password_needed %}
-
           <label for="CustomerPassword" class="hidden-label">{{ 'customer.login.password' | t }}</label>
           <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customer.login.password' | t }}">
-
-          <p>
-            <a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
-          </p>
-
         {% endif %}
 
         <p>
           <input type="submit" class="btn btn--full" value="{{ 'customer.login.sign_in' | t }}">
         </p>
-        <a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
+        <p><a href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a></p>
+        {% if form.password_needed %}
+          <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+        {% endif %}
 
       {% endform %}
     </div>
@@ -50,25 +47,27 @@
       <h2>{{ 'customer.recover_password.title' | t }}</h2>
       <p>{{ 'customer.recover_password.subtext' | t }}</p>
 
-      {% form 'recover_customer_password' %}
+      <div class="form-vertical">
+        {% form 'recover_customer_password' %}
 
-        {{ form.errors | default_errors }}
+          {{ form.errors | default_errors }}
 
-        {% comment %}
-          Assign variable to be used after timber.init() is run in theme.liquid
-        {% endcomment %}
-        {% if form.posted_successfully? %}
-          {% assign resetPassword = true %}
-        {% endif %}
+          {% comment %}
+            Assign variable to be used after timber.init() is run in theme.liquid
+          {% endcomment %}
+          {% if form.posted_successfully? %}
+            {% assign resetPassword = true %}
+          {% endif %}
 
-        <label for="RecoverEmail" class="hidden-label">{{ 'customer.recover_password.email' | t }}</label>
-        <input type="email" value="" name="email" id="RecoverEmail" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+          <label for="RecoverEmail" class="hidden-label">{{ 'customer.recover_password.email' | t }}</label>
+          <input type="email" value="" name="email" id="RecoverEmail" class="input-full" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
 
-        <p>
-          <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
-        </p>
-        <button type="button" id="HideRecoverPasswordLink" class="text-link">{{ 'customer.recover_password.cancel' | t }}</button>
-      {% endform %}
+          <p>
+            <input type="submit" class="btn btn--full" value="{{ 'customer.recover_password.submit' | t }}">
+          </p>
+          <button type="button" id="HideRecoverPasswordLink" class="text-link">{{ 'customer.recover_password.cancel' | t }}</button>
+        {% endform %}
+      </div>
 
     </div>
 

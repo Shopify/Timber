@@ -1,7 +1,7 @@
 <!-- /templates/customers/activate_account.liquid -->
 
 <div class="grid">
-  <div class="grid__item large--one-third push--large--one-third">
+  <div class="grid__item large--one-third push--large--one-third text-center">
 
     <h1>{{ 'customer.activate_account.title' | t }}</h1>
     <p>{{ 'customer.activate_account.subtext' | t }}</p>
@@ -20,12 +20,8 @@
         <label for="CustomerPasswordConfirmation" class="hidden-label">{{ 'customer.activate_account.password_confirm' | t }}</label>
         <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" class="input-full" placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
 
-        <div class="text-center">
-          <p>
-            <input type="submit" class="btn btn--full" value="{{ 'customer.activate_account.submit' | t }}">
-          </p>
-          <input type="submit" class="btn--secondary" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
-        </div>
+        <input type="submit" class="btn btn--full" value="{{ 'customer.activate_account.submit' | t }}">
+        <input type="submit" class="btn--secondary btn--full" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
       {% endform %}
     </div>
 
