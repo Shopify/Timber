@@ -263,7 +263,7 @@
     "general": {
       "previous_product_html": "&larr; Previous Product",
       "next_product_html": "Next Product &rarr;",
-      "from": "From"
+      "from_text_html": "From {{ price }}"
     },
     "product": {
       "sold_out": "Sold Out",

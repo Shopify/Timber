@@ -116,8 +116,12 @@
                       {{ product.price | money }}
                     {% endif %}
                   {% else %}
-                    {% if product.price_varies %}{{ 'products.general.from' | t }}{% endif %}
-                    {{ product.price | money }}
+                    {% if product.price_varies %}
+                      {% assign price = product.price | money %}
+                      {{ 'products.general.from_text_html' | t: price: price }}
+                    {% else %}
+                      {{ product.price | money }}
+                    {% endif %}
                   {% endif %}
                   {% if sold_out %}
                     <br><strong>{{ 'products.product.sold_out' | t }}</strong>

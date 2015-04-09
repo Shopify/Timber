@@ -98,8 +98,12 @@
                             <span itemprop="price">{{ item.price | money }}</span>
                           {% endif %}
                         {% else %}
-                          {% if item.price_varies %}{{ 'products.general.from' | t }}{% endif %}
-                          <span itemprop="price">{{ item.price | money }}</span>
+                          {% if item.price_varies %}
+                            {% assign price = item.price | money %}
+                            <span itemprop="price">{{ 'products.general.from_text_html' | t: price: price }}</span>
+                          {% else %}
+                            <span itemprop="price">{{ item.price | money }}</span>
+                          {% endif %}
                         {% endif %}
                         {% if sold_out %}
                           <br><strong>{{ 'products.product.sold_out' | t }}</strong>
@@ -141,8 +145,12 @@
                         <span itemprop="price">{{ item.price | money }}</span>
                       {% endif %}
                     {% else %}
-                      {% if item.price_varies %}{{ 'products.general.from' | t }}{% endif %}
-                      <span itemprop="price">{{ item.price | money }}</span>
+                      {% if item.price_varies %}
+                        {% assign price = item.price | money %}
+                        <span itemprop="price">{{ 'products.general.from_text_html' | t: price: price }}</span>
+                      {% else %}
+                        <span itemprop="price">{{ item.price | money }}</span>
+                      {% endif %}
                     {% endif %}
                     {% if sold_out %}
                       <br><strong>{{ 'products.product.sold_out' | t }}</strong>
