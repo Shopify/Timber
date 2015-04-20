@@ -1,10 +1,15 @@
 [
   {
-    "name": "Welcome",
+    "name": "theme_info",
+    "logo": "https:\/\/cdn.shopify.com\/s\/files\/1\/0070\/7032\/files\/2010_6_23_Shopify-Green_256x256.jpg",
     "settings": [
       {
         "type": "header",
-        "content": "Timber Theme Framework by [Shopify](http:\/\/www.shopify.com)"
+        "content": "Timber Framework"
+      },
+      {
+        "type": "paragraph",
+        "content": "v2.1.0"
       },
       {
         "type": "paragraph",
