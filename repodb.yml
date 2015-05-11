@@ -1,5 +1,5 @@
 # repodb metadata: see https://github.com/Shopify/repodb for help
-classification: beta
+classification: alpha
 oncall:
   - themes-team
 playbook_urls:
