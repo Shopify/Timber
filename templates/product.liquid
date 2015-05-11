@@ -123,14 +123,14 @@
           <p>
 
           {% if collection.previous_product %}
-            {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
+            {% capture prev_url %}{{ collection.previous_product}}{% endcapture %}
             <span class="left">
               {{ 'products.general.previous_product_html' | t | link_to: prev_url }}
             </span>
           {% endif %}
 
           {% if collection.next_product %}
-            {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
+            {% capture next_url %}{{ collection.next_product}}{% endcapture %}
             <span class="right">
               {{ 'products.general.next_product_html' | t | link_to: next_url }}
             </span>
