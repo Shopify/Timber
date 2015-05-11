@@ -121,21 +121,16 @@
       {% if collection %}
         {% if collection.previous_product or collection.next_product %}
           <p>
-
-          {% if collection.previous_product %}
-            {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
-            <span class="left">
-              {{ 'products.general.previous_product_html' | t | link_to: prev_url }}
-            </span>
-          {% endif %}
-
-          {% if collection.next_product %}
-            {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
-            <span class="right">
-              {{ 'products.general.next_product_html' | t | link_to: next_url }}
-            </span>
-          {% endif %}
-
+            {% if collection.previous_product %}
+              <span class="left">
+                {{ 'products.general.previous_product_html' | t | link_to: collection.previous_product }}
+              </span>
+            {% endif %}
+            {% if collection.next_product %}
+              <span class="right">
+                {{ 'products.general.next_product_html' | t | link_to: collection.next_product }}
+              </span>
+            {% endif %}
           </p>
         {% endif %}
       {% endif %}
