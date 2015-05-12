@@ -1963,6 +1963,7 @@ label.error {
 }
 
 .drawer {
+  will-change: transform;
   display: none;
   position: fixed;
   overflow-y: auto;
@@ -2027,6 +2028,7 @@ label.error {
 }
 
 .is-moved-by-drawer {
+  will-change: transform;
   @include transition($drawerTransition);
 
   .js-drawer-open-left & {
