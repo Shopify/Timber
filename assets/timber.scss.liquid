@@ -200,6 +200,10 @@ $socialIconFontStack: 'icons';
   @include prefixer(transform, $transform, webkit spec);
 }
 
+@mixin user-select($value) {
+  @include prefixer(user-select, $value, webkit moz ms spec);
+}
+
 @function em($target, $context: $baseFontSize) {
   @if $target == 0 {
     @return 0;
@@ -1047,7 +1051,7 @@ html input[disabled] {
   white-space: nowrap;
   cursor: pointer;
   border: 1px solid transparent;
-  @include prefix('user-select', 'none');
+  @include user-select(none);
   -webkit-appearance: none;
   -moz-appearance: none;
   border-radius: $radius;
@@ -1264,7 +1268,7 @@ button,
 select {
   padding: 0;
   margin: 0;
-  @include prefix('user-select', 'text');
+  @include user-select(text);
 }
 
 button {
@@ -1583,7 +1587,7 @@ label.error {
 .icon-youtube:before { content: "\79"; }
 
 .payment-icons {
-  @include prefix('user-select', 'none');
+  @include user-select(none);
   cursor: default;
 
   li {
@@ -2362,7 +2366,7 @@ label.error {
   background: none;
   text-align: center;
   overflow: hidden;
-  @include prefix('user-select', 'none');
+  @include user-select(none);
 
   &:hover,
   &:focus {
