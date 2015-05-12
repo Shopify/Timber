@@ -190,16 +190,6 @@ $socialIconFontStack: 'icons';
   @include prefix('transform', #{$transform});
 }
 
-@mixin gradient($from, $to, $fallback) {
-  background: $fallback;
-  background: -moz-linear-gradient(top, $from 0%, $to 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
-  background: -webkit-linear-gradient(top, $from 0%, $to 100%);
-  background: -o-linear-gradient(top, $from 0%, $to 100%);
-  background: -ms-linear-gradient(top, $from 0%, $to 100%);
-  background: linear-gradient(top bottom, $from 0%, $to 100%);
-}
-
 @mixin backface($visibility: hidden) {
   @include prefix('backface-visibility', #{$visibility});
 }
