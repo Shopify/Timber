@@ -126,7 +126,7 @@ $drawerCartWidth: 300px;
 $colorDrawers: #f6f6f6;
 $colorDrawerBorder: darken($colorDrawers, 5%);
 $colorDrawerText: #333;
-$drawerTransition: 'all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1)';
+$drawerTransition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
 
 // Sizing variables
 $siteWidth: 1180px;
@@ -1949,9 +1949,11 @@ label.error {
 ==============================================================================*/
 .js-drawer-open {
   overflow: hidden;
+  height: 100%;
 }
 
 .drawer {
+  will-change: transform;
   display: none;
   position: fixed;
   overflow-y: auto;
@@ -2016,6 +2018,7 @@ label.error {
 }
 
 .is-moved-by-drawer {
+  will-change: transform;
   transition: $drawerTransition;
 
   .js-drawer-open-left & {
