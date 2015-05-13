@@ -1190,6 +1190,79 @@ th, td {
   border: 1px solid $colorBorder;
 }
 
+/*============================================================================
+  Responsive tables, defined with .table--responsive on table element.
+  Only defined for IE9+
+==============================================================================*/
+html:not(.lt-ie9) {
+  .table--responsive {
+    @include at-query($max, $small) {
+      thead {
+        display: none;
+      }
+
+      tr {
+        display: block;
+      }
+
+      // IE9 table layout fixes
+      tr,
+      td {
+        float: left;
+        clear: both;
+        width: 100%;
+      }
+
+      th,
+      td {
+        display: block;
+        text-align: right;
+        padding: 15px;
+      }
+
+      td:before {
+        content: attr(data-label);
+        float: left;
+        text-align: center;
+        font-size: 12px;
+        padding-right: 10px;
+      }
+
+      &.cart-table {
+        img {
+          margin: 0 auto;
+        }
+
+        .js-qty {
+          float: right;
+        }
+      }
+    }
+  }
+
+  @include at-query($max, $small) {
+    .table--small-hide {
+      display: none !important;
+    }
+
+    .table__section + .table__section {
+      position: relative;
+      margin-top: 10px;
+      padding-top: 15px;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 15px;
+        right: 15px;
+        border-bottom: 1px solid $colorBorder;
+      }
+    }
+  }
+}
+
 
 /*============================================================================
   #OOCSS Media Object
