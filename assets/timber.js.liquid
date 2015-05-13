@@ -244,7 +244,7 @@ timber.productPage = function (options) {
     // Also update and show the product's compare price if necessary
     if (variant.compare_at_price > variant.price) {
       $comparePrice
-        .html({{ 'products.product.compare_at' | t | json }} + ': ' + Shopify.formatMoney(variant.compare_at_price, moneyFormat))
+        .html({{ 'products.product.compare_at' | t | json }} + ' ' + Shopify.formatMoney(variant.compare_at_price, moneyFormat))
         .show();
     } else {
       $comparePrice.hide();
