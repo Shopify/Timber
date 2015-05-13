@@ -178,6 +178,24 @@ $socialIconFontStack: 'icons';
   *zoom: 1;
 }
 
+/*
+  Bourbon-inspired prefixer mixin for generating vendor prefixes.
+
+  Usage:
+
+    .element {
+      @include prefixer(transform, scale(1), ms webkit spec);
+    }
+
+  Output:
+
+    .element {
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+*/
+
 @mixin prefixer($property, $value, $prefixes) {
   @each $prefix in $prefixes {
     @if $prefix == webkit {
@@ -202,6 +220,10 @@ $socialIconFontStack: 'icons';
 
 @mixin user-select($value) {
   @include prefixer(user-select, $value, webkit moz ms spec);
+}
+
+@mixin backface($visibility: hidden) {
+  @include prefixer(backface-visiblity, $visibility, webkit spec);
 }
 
 @function em($target, $context: $baseFontSize) {
@@ -1925,7 +1947,7 @@ label.error {
   visibility: hidden;
   overflow: hidden;
   transition: all 300ms cubic-bezier(0.57, 0.06, 0.05, 0.95);
-  @include prefixer(backface-visiblity, hidden, webkit spec);
+  @include backface();
 
   .mobile-nav--expanded + & {
     visibility: visible;
@@ -2306,7 +2328,7 @@ label.error {
     overflow: hidden;
     visibility: hidden;
     transition: all 450ms cubic-bezier(0.57,.06,.05,.95);
-    @include prefixer(backface-visiblity, hidden, webkit spec);
+    @include backface();
   }
 }
 
