@@ -89,28 +89,24 @@
           </tr>
         {% endfor %}
       </tbody>
-      <tfoot class="cart__row">
-        {% if settings.cart_notes_enable %}
-          <td colspan="2">
-            <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-            <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
-          </td>
-        {% endif %}
-        <td class="text-right" colspan="{% if settings.cart_notes_enable %}3{% else %}5{% endif %}">
-          <p>
-            <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
-            <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>
-          </p>
-          <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
-          <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
-          <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
-
-          {% if additional_checkout_buttons %}
-            <div>{{ content_for_additional_checkout_buttons }}</div>
-          {% endif %}
-        </td>
-      </tfoot>
     </table>
+    <div class="grid cart__row">
+      {% if settings.cart_notes_enable %}
+        <div class="grid__item two-thirds small--one-whole">
+          <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+          <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+        </div>
+      {% endif %}
+      <div class="grid__item text-right{% if settings.cart_notes_enable %} one-third small--one-whole{% endif %}">
+        <p>
+          <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
+          <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>
+        </p>
+        <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
+        <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
+        <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
+      </div>
+    </div>
   </form>
 {% else %}
   {% comment %}
