@@ -29,6 +29,7 @@
   #Links and Buttons
   #Lists
   #Tables
+  #Reponsive Tables
   #OOCSS Media Object
   #Images and Iframes
   #Forms
@@ -744,6 +745,14 @@ body {
   }
 }
 
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
 /*============================================================================
   #Typography
 ==============================================================================*/
@@ -1190,6 +1199,77 @@ th, td {
   border: 1px solid $colorBorder;
 }
 
+/*============================================================================
+  Responsive tables, defined with .table--responsive on table element.
+  Only defined for IE9+
+==============================================================================*/
+.table--responsive {
+  @include at-query($max, $small) {
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+    }
+
+    // IE9 table layout fixes
+    tr,
+    td {
+      float: left;
+      clear: both;
+      width: 100%;
+    }
+
+    th,
+    td {
+      display: block;
+      text-align: right;
+      padding: 15px;
+    }
+
+    td:before {
+      content: attr(data-label);
+      float: left;
+      text-align: center;
+      font-size: 12px;
+      padding-right: 10px;
+    }
+
+    &.cart-table {
+      img {
+        margin: 0 auto;
+      }
+
+      .js-qty {
+        float: right;
+      }
+    }
+  }
+}
+
+@include at-query($max, $small) {
+  .table--small-hide {
+    display: none !important;
+  }
+
+  .table__section + .table__section {
+    position: relative;
+    margin-top: 10px;
+    padding-top: 15px;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 15px;
+      right: 15px;
+      border-bottom: 1px solid $colorBorder;
+    }
+  }
+}
+
 
 /*============================================================================
   #OOCSS Media Object
@@ -1536,11 +1616,7 @@ label.error {
   remaining accessible to screen readers (h5bp.com)
 ==============================================================================*/
 .supports-fontface .icon-fallback-text .fallback-text {
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
-  position: absolute;
-  height: 1px;
-  width: 1px;
+  @extend .visually-hidden;
 }
 
 .icon:before {
@@ -2239,11 +2315,22 @@ label.error {
 
   &:first-child {
     padding-top: 0;
-    border-top: 0 none;
   }
 
   .js-qty {
     margin: 0 auto;
+  }
+}
+
+.cart-table {
+  th {
+    font-weight: normal;
+  }
+
+  td,
+  th {
+    padding: 30px 15px;
+    border: none;
   }
 }
 
@@ -2266,6 +2353,7 @@ label.error {
 
   img {
     display: block;
+    max-width: 100%;
   }
 }
 
