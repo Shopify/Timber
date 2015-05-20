@@ -263,7 +263,9 @@
     "general": {
       "previous_product_html": "&larr; Produto Anterior",
       "next_product_html": "Produto Seguinte &rarr;",
-      "from_text_html": "Desde {{ price }}"
+      "from_text_html": "Desde {{ price }}",
+      "sale_price": "Preço de saldo",
+      "regular_price": "Preço normal"
     },
     "product": {
       "sold_out": "Esgotado",
