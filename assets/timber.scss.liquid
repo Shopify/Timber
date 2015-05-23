@@ -178,23 +178,23 @@ $socialIconFontStack: 'icons';
   *zoom: 1;
 }
 
-/*
-  Bourbon-inspired prefixer mixin for generating vendor prefixes.
+/*============================================================================
+  Prefixer mixin for generating vendor prefixes:
+    - Based on https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/addons/_prefixer.scss
+    - Usage:
 
-  Usage:
+      // Input:
+      .element {
+        @include prefixer(transform, scale(1), ms webkit spec);
+      }
 
-    .element {
-      @include prefixer(transform, scale(1), ms webkit spec);
-    }
-
-  Output:
-
-    .element {
-      -ms-transform: scale(1);
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
-*/
+      // Output:
+      .element {
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+==============================================================================*/
 
 @mixin prefixer($property, $value, $prefixes) {
   @each $prefix in $prefixes {
