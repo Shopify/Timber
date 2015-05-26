@@ -127,7 +127,7 @@
                     <br><strong>{{ 'products.product.sold_out' | t }}</strong>
                   {% endif %}
                   {% if on_sale %}
-                    <br><s>{{ product.compare_at_price | money }}</s>
+                    <br><span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span><s>{{ product.compare_at_price | money }}</s>
                   {% endif %}
                 </div>
               </div>

@@ -29,6 +29,7 @@
   #Links and Buttons
   #Lists
   #Tables
+  #Reponsive Tables
   #OOCSS Media Object
   #Images and Iframes
   #Forms
@@ -126,7 +127,7 @@ $drawerCartWidth: 300px;
 $colorDrawers: #f6f6f6;
 $colorDrawerBorder: darken($colorDrawers, 5%);
 $colorDrawerText: #333;
-$drawerTransition: 'all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1)';
+$drawerTransition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
 
 // Sizing variables
 $siteWidth: 1180px;
@@ -178,40 +179,52 @@ $socialIconFontStack: 'icons';
   *zoom: 1;
 }
 
-@mixin prefix($property, $value) {
-  -webkit-#{$property}: #{$value};
-  -moz-#{$property}: #{$value};
-  -ms-#{$property}: #{$value};
-  -o-#{$property}: #{$value};
-  #{$property}: #{$value};
-}
+/*============================================================================
+  Prefixer mixin for generating vendor prefixes:
+    - Based on https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/addons/_prefixer.scss
+    - Usage:
 
-@mixin transition($transition: 0.1s all) {
-  @include prefix('transition', #{$transition});
+      // Input:
+      .element {
+        @include prefixer(transform, scale(1), ms webkit spec);
+      }
+
+      // Output:
+      .element {
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+==============================================================================*/
+
+@mixin prefixer($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      -webkit-#{$property}: $value;
+    } @else if $prefix == moz {
+      -moz-#{$property}: $value;
+    } @else if $prefix == ms {
+      -ms-#{$property}: $value;
+    } @else if $prefix == o {
+      -o-#{$property}: $value;
+    } @else if $prefix == spec {
+      #{$property}: $value;
+    } @else  {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
 }
 
 @mixin transform($transform: 0.1s all) {
-  @include prefix('transform', #{$transform});
+  @include prefixer(transform, $transform, ms webkit spec);
 }
 
-@mixin gradient($from, $to, $fallback) {
-  background: $fallback;
-  background: -moz-linear-gradient(top, $from 0%, $to 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
-  background: -webkit-linear-gradient(top, $from 0%, $to 100%);
-  background: -o-linear-gradient(top, $from 0%, $to 100%);
-  background: -ms-linear-gradient(top, $from 0%, $to 100%);
-  background: linear-gradient(top bottom, $from 0%, $to 100%);
+@mixin user-select($value) {
+  @include prefixer(user-select, $value, webkit moz ms spec);
 }
 
 @mixin backface($visibility: hidden) {
-  @include prefix('backface-visibility', #{$visibility});
-}
-
-@mixin box-sizing($box-sizing: border-box) {
-  -webkit-box-sizing: #{$box-sizing};
-  -moz-box-sizing: #{$box-sizing};
-  box-sizing: #{$box-sizing};
+  @include prefixer(backface-visiblity, $visibility, webkit spec);
 }
 
 @function em($target, $context: $baseFontSize) {
@@ -261,7 +274,7 @@ $max: max-width;
   #Normalize
 ==============================================================================*/
 *, input, :before, :after {
-  @include box-sizing();
+  box-sizing: border-box;
 }
 
 html, body {
@@ -364,6 +377,7 @@ $class-type: unquote(".");
 }
 
 #{$class-type}grid__item {
+  box-sizing: border-box;
   float: left;
   min-height: 1px;
   padding-left: $gridGutter;
@@ -371,7 +385,6 @@ $class-type: unquote(".");
   @if $mobile-first == true {
     width: 100%;
   }
-  @include box-sizing();
 }
 
 /*============================================================================
@@ -744,6 +757,14 @@ body {
   }
 }
 
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
 /*============================================================================
   #Typography
 ==============================================================================*/
@@ -1061,7 +1082,7 @@ html input[disabled] {
   white-space: nowrap;
   cursor: pointer;
   border: 1px solid transparent;
-  @include prefix('user-select', 'none');
+  @include user-select(none);
   -webkit-appearance: none;
   -moz-appearance: none;
   border-radius: $radius;
@@ -1190,6 +1211,77 @@ th, td {
   border: 1px solid $colorBorder;
 }
 
+/*============================================================================
+  Responsive tables, defined with .table--responsive on table element.
+  Only defined for IE9+
+==============================================================================*/
+.table--responsive {
+  @include at-query($max, $small) {
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+    }
+
+    // IE9 table layout fixes
+    tr,
+    td {
+      float: left;
+      clear: both;
+      width: 100%;
+    }
+
+    th,
+    td {
+      display: block;
+      text-align: right;
+      padding: 15px;
+    }
+
+    td:before {
+      content: attr(data-label);
+      float: left;
+      text-align: center;
+      font-size: 12px;
+      padding-right: 10px;
+    }
+
+    &.cart-table {
+      img {
+        margin: 0 auto;
+      }
+
+      .js-qty {
+        float: right;
+      }
+    }
+  }
+}
+
+@include at-query($max, $small) {
+  .table--small-hide {
+    display: none !important;
+  }
+
+  .table__section + .table__section {
+    position: relative;
+    margin-top: 10px;
+    padding-top: 15px;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 15px;
+      right: 15px;
+      border-bottom: 1px solid $colorBorder;
+    }
+  }
+}
+
 
 /*============================================================================
   #OOCSS Media Object
@@ -1278,7 +1370,7 @@ button,
 select {
   padding: 0;
   margin: 0;
-  @include prefix('user-select', 'text');
+  @include user-select(text);
 }
 
 button {
@@ -1536,11 +1628,7 @@ label.error {
   remaining accessible to screen readers (h5bp.com)
 ==============================================================================*/
 .supports-fontface .icon-fallback-text .fallback-text {
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
-  position: absolute;
-  height: 1px;
-  width: 1px;
+  @extend .visually-hidden;
 }
 
 .icon:before {
@@ -1597,7 +1685,7 @@ label.error {
 .icon-youtube:before { content: "\79"; }
 
 .payment-icons {
-  @include prefix('user-select', 'none');
+  @include user-select(none);
   cursor: default;
 
   li {
@@ -1934,13 +2022,13 @@ label.error {
   max-height: 0;
   visibility: hidden;
   overflow: hidden;
-  @include backface(hidden);
-  @include transition(all 300ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
+  transition: all 300ms cubic-bezier(0.57, 0.06, 0.05, 0.95);
+  @include backface();
 
   .mobile-nav--expanded + & {
     visibility: visible;
     max-height: 700px;
-    @include transition(all 700ms cubic-bezier(0.57, 0.06, 0.05, 0.95));
+    transition: all 700ms cubic-bezier(0.57, 0.06, 0.05, 0.95);
   }
 
   .mobile-nav__item:after {
@@ -1976,7 +2064,7 @@ label.error {
   z-index: $zindexDrawer;
   color: $colorDrawerText;
   background-color: $colorDrawers;
-  @include transition($drawerTransition);
+  transition: $drawerTransition;
 
   a {
     color: $colorDrawerText;
@@ -2029,7 +2117,7 @@ label.error {
 
 .is-moved-by-drawer {
   will-change: transform;
-  @include transition($drawerTransition);
+  transition: $drawerTransition;
 
   .js-drawer-open-left & {
     @include transform(translateX($drawerNavWidth));
@@ -2242,11 +2330,22 @@ label.error {
 
   &:first-child {
     padding-top: 0;
-    border-top: 0 none;
   }
 
   .js-qty {
     margin: 0 auto;
+  }
+}
+
+.cart-table {
+  th {
+    font-weight: normal;
+  }
+
+  td,
+  th {
+    padding: 30px 15px;
+    border: none;
   }
 }
 
@@ -2269,6 +2368,7 @@ label.error {
 
   img {
     display: block;
+    max-width: 100%;
   }
 }
 
@@ -2318,8 +2418,8 @@ label.error {
     max-height: 0;
     overflow: hidden;
     visibility: hidden;
-    @include backface(hidden);
-    @include transition(all 450ms cubic-bezier(0.57,.06,.05,.95));
+    transition: all 450ms cubic-bezier(0.57,.06,.05,.95);
+    @include backface();
   }
 }
 
@@ -2379,7 +2479,7 @@ label.error {
   background: none;
   text-align: center;
   overflow: hidden;
-  @include prefix('user-select', 'none');
+  @include user-select(none);
 
   &:hover,
   &:focus {
@@ -2404,7 +2504,7 @@ label.error {
 
   .is-loading & {
     opacity: 0.5;
-    @include transition(none);
+    transition: none;
   }
 }
 

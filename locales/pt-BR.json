@@ -263,7 +263,9 @@
     "general": {
       "previous_product_html": "&larr; Produto anterior",
       "next_product_html": "Próximo produto &rarr;",
-      "from_text_html": "A partir de {{ price }}"
+      "from_text_html": "A partir de {{ price }}",
+      "sale_price": "Preço promocional",
+      "regular_price": "Preço normal"
     },
     "product": {
       "sold_out": "Esgotado",
