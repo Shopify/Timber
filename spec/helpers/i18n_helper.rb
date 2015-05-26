@@ -2,6 +2,7 @@ EXCLUDED_KEYWORDS = ["date_formats"]
 
 def match_tags(path)
   File.open(path).read.scan(/\{\{\s*(?:'|")([a-z0-9._]+?)(?:'|")(?:\s*\|\s*t)/).flatten.map do |key|
+    next if include_excluded_keywords?(key)
     truncate_plural_key(key.split('.'))
   end.uniq
 end
@@ -19,7 +20,7 @@ def truncate_plural_key(key)
 end
 
 def include_excluded_keywords?(key)
-  key.include?(*EXCLUDED_KEYWORDS)
+  EXCLUDED_KEYWORDS.any? { |w| key.include?(w) }
 end
 
 def locale_name_from_path(path)
