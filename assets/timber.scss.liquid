@@ -215,7 +215,7 @@ $socialIconFontStack: 'icons';
   }
 }
 
-@mixin transform($transform: 0.1s all) {
+@mixin transform($transform) {
   @include prefixer(transform, $transform, ms webkit spec);
 }
 
@@ -224,7 +224,7 @@ $socialIconFontStack: 'icons';
 }
 
 @mixin backface($visibility: hidden) {
-  @include prefixer(backface-visiblity, $visibility, webkit spec);
+  @include prefixer(backface-visibility, $visibility, webkit spec);
 }
 
 @function em($target, $context: $baseFontSize) {
