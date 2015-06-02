@@ -3,7 +3,7 @@ layout: default
 title: Shopify Theme Development Framework - Timber
 description: Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
 canonical: /timber
-version: v2.1.1
+version: v2.1.2
 ---
 
 <!-- gh-pages -->
@@ -754,9 +754,9 @@ Output:
         <div id="mixins-provided">
           <ul class="disc docs-text">
             <li><code>clearfix</code></li>
-            <li><code>prefix($property, $value)</code> - no default</li>
-            <li><code>transition($transition)</code> - default <strong>0.1s all</strong></li>
-            <li><code>gradient($from, $to, $fallback)</code></li>
+            <li><code>prefixer($property, $value, $prefixes)</code> - no defaults</li>
+            <li><code>transform($transform)</code> - no default</li>
+            <li><code>user-select($value)</code> - default <strong>none</strong></li>
             <li><code>backface($visibility)</code> - default <strong>hidden</strong></li>
           </ul>
         </div>
@@ -780,47 +780,52 @@ Ouput:
 
 Prefix Input:
 .foo {
-  @include prefix('user-select', 'none');
+  @include prefixer(transform, scale(1), ms webkit spec);
 }
 
 Output:
 .foo {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }
 
-Prefix Input:
+Transform Input:
 .foo {
-  @include transition(opacity 50ms ease-in-out);
+  @include transform(translateX(50px));
 }
 
 Output:
 .foo {
-  -webkit-transition: opacity 50ms ease-in-out;
-  -moz-transition: opacity 50ms ease-in-out;
-  -ms-transition: opacity 50ms ease-in-out;
-  -o-transition: opacity 50ms ease-in-out;
-  transition: opacity 50ms ease-in-out;
+  -webkit-transform: translate(50px);
+  -ms-transform: translate(50px);
+  transform: translate(50px);
 }
 
-Gradient Input:
+User-select Input:
 .foo {
-  @include gradient(#900, #950, #900) // from red to orange, red fallback
+  @include user-select(text);
 }
 
 Output:
-.foo {
-  background: #900;
-  background: -moz-linear-gradient(top, #900 0%, #950 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#900), color-stop(100%,#950));
-  background: -webkit-linear-gradient(top, #900 0%, #950 100%);
-  background: -o-linear-gradient(top, #900 0%, #950 100%);
-  background: -ms-linear-gradient(top, #900 0%, #950 100%);
-  background: linear-gradient(top bottom, #900 0%, #950 100%);
+.foot {
+  -webkit-user-select: text;
+  -mox-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
+
+Backface Input:
+.foo {
+  @include backface();
+}
+
+Output:
+.foot {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 
 </pre>
         </div>
