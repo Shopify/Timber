@@ -219,7 +219,7 @@ $socialIconFontStack: 'icons';
   @include prefixer(transform, $transform, ms webkit spec);
 }
 
-@mixin user-select($value) {
+@mixin user-select($value: none) {
   @include prefixer(user-select, $value, webkit moz ms spec);
 }
 
