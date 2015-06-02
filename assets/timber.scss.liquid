@@ -215,16 +215,16 @@ $socialIconFontStack: 'icons';
   }
 }
 
-@mixin transform($transform: 0.1s all) {
+@mixin transform($transform) {
   @include prefixer(transform, $transform, ms webkit spec);
 }
 
-@mixin user-select($value) {
+@mixin user-select($value: none) {
   @include prefixer(user-select, $value, webkit moz ms spec);
 }
 
 @mixin backface($visibility: hidden) {
-  @include prefixer(backface-visiblity, $visibility, webkit spec);
+  @include prefixer(backface-visibility, $visibility, webkit spec);
 }
 
 @function em($target, $context: $baseFontSize) {
