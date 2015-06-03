@@ -92,8 +92,6 @@
 
           {% if product.compare_at_price_max > product.price %}
             <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-          {% else %}
-            <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
           {% endif %}
           <span id="ProductPrice" class="h2" itemprop="price">
             {{ current_variant.price | money }}
