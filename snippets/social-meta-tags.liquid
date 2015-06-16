@@ -56,8 +56,7 @@
     - https://dev.twitter.com/docs/cards/validation/validator
 
   More information:
-   - https://dev.twitter.com/docs/cards/types/product-card
-   - https://dev.twitter.com/docs/cards/types/summary-card
+   - https://dev.twitter.com/cards/types/summary
 {% endcomment %}
 
 {% comment %}
@@ -66,8 +65,8 @@
 {% if settings.twittercard_handle != blank %}
   <meta name="twitter:site" content="{{ settings.twittercard_handle }}">
 {% endif %}
+<meta name="twitter:card" content="summary">
 {% if template contains 'product' %}
-  <meta name="twitter:card" content="product">
   <meta name="twitter:title" content="{{ product.title }}">
   <meta name="twitter:description" content="{{ product.description | strip_html | truncatewords: 140, '' | escape }}">
   <meta name="twitter:image" content="https:{{ product.featured_image.src | img_url: 'medium' }}">
@@ -84,7 +83,6 @@
   <meta name="twitter:data2" content="In stock">
   {% endif %}
 {% elsif template contains 'article' %}
-  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="{{ article.title }}">
   <meta name="twitter:description" content="{{ article.excerpt_or_content | strip_html | truncatewords: 140, '' | escape }}">
   {% comment %}
