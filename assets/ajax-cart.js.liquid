@@ -142,7 +142,7 @@ var ajaxCart = (function(module, $) {
   var init, loadCart;
 
   // Private general variables
-  var settings, $body;
+  var settings, isUpdating, $body;
 
   // Private plugin variables
   var $formContainer, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer;
@@ -179,6 +179,9 @@ var ajaxCart = (function(module, $) {
 
     // General Selectors
     $body = $('body');
+
+    // Track cart activity status
+    isUpdating = false;
 
     // Setup ajax quantity selectors on the any template if enableQtySelectors is true
     if (settings.enableQtySelectors) {
@@ -362,6 +365,13 @@ var ajaxCart = (function(module, $) {
       }
     });
 
+    // Prevent cart from being submitted while quantities are changing
+    $body.on('submit', 'form.ajaxcart', function(evt) {
+      if (isUpdating) {
+        evt.preventDefault();
+      }
+    });
+
     // Highlight the text when focused
     $body.on('focus', '.ajaxcart__qty-adjust', function() {
       var $el = $(this);
@@ -371,6 +381,8 @@ var ajaxCart = (function(module, $) {
     });
 
     function updateQuantity(line, qty) {
+      isUpdating = true;
+
       // Add activity classes when changing cart quantities
       var $row = $('.ajaxcart__row[data-line="' + line + '"]').addClass('is-loading');
 
@@ -394,6 +406,8 @@ var ajaxCart = (function(module, $) {
   };
 
   adjustCartCallback = function (cart) {
+    isUpdating = false;
+
     // Update quantity and price
     updateCountPrice(cart);
 
