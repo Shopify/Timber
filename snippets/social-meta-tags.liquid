@@ -72,7 +72,6 @@
   <meta name="twitter:image" content="https:{{ product.featured_image.src | img_url: 'medium' }}">
   <meta name="twitter:image:width" content="240">
   <meta name="twitter:image:height" content="240">
-  {% endif %}
 {% elsif template contains 'article' %}
   <meta name="twitter:title" content="{{ article.title }}">
   <meta name="twitter:description" content="{{ article.excerpt_or_content | strip_html | truncatewords: 140, '' | escape }}">
