@@ -72,16 +72,6 @@
   <meta name="twitter:image" content="https:{{ product.featured_image.src | img_url: 'medium' }}">
   <meta name="twitter:image:width" content="240">
   <meta name="twitter:image:height" content="240">
-  <meta name="twitter:label1" content="Price">
-  {% assign price = product.price | money_with_currency | strip_html | escape %}
-  <meta name="twitter:data1" content="{% if product.price_varies %}{{ 'products.general.from_text_html' | t: price: price }}{% else %}{{ price }}{% endif %}">
-  {% if product.vendor != blank %}
-  <meta name="twitter:label2" content="Brand">
-  <meta name="twitter:data2" content="{{ product.vendor | escape }}">
-  {% else %}
-  <meta name="twitter:label2" content="Availability">
-  <meta name="twitter:data2" content="In stock">
-  {% endif %}
 {% elsif template contains 'article' %}
   <meta name="twitter:title" content="{{ article.title }}">
   <meta name="twitter:description" content="{{ article.excerpt_or_content | strip_html | truncatewords: 140, '' | escape }}">
