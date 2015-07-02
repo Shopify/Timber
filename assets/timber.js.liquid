@@ -399,6 +399,9 @@ timber.Drawers = (function () {
     this.$nodes.parent.addClass(this.config.openClass + ' ' + this.config.dirOpenClass);
     this.drawerIsOpen = true;
 
+    // Set focus on drawer
+    Drawer.prototype.trapFocus(this.$drawer, 'drawer_focus');
+
     // Run function when draw opens if set
     if (this.config.onDrawerOpen && typeof(this.config.onDrawerOpen) == 'function') {
       if (!externalCall) {
@@ -437,7 +440,31 @@ timber.Drawers = (function () {
 
     this.drawerIsOpen = false;
 
+    // Remove focus on drawer
+    Drawer.prototype.removeTrapFocus(this.$drawer, 'drawer_focus');
+
     this.$nodes.page.off('.drawer');
+  };
+
+  Drawer.prototype.trapFocus = function ($container, eventNamespace) {
+    var eventName = eventNamespace ? 'focusin.' + eventNamespace : 'focusin';
+
+    $container.attr('tabindex', '-1');
+
+    $container.focus();
+
+    $(document).on(eventName, function (evt) {
+      if ($container[0] !== evt.target && !$container.has(evt.target).length) {
+        $container.focus();
+      }
+    });
+  };
+
+  Drawer.prototype.removeTrapFocus = function ($container, eventNamespace) {
+    var eventName = eventNamespace ? 'focusin.' + eventNamespace : 'focusin';
+
+    $container.removeAttr('tabindex');
+    $(document).off(eventName);
   };
 
   return Drawer;
