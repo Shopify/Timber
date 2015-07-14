@@ -57,7 +57,7 @@
 
       {% else %}
 
-        {% if collection.handle == 'all' %}
+        {% if collection.handle == 'all' and current_tags == '' %}
 
           {% comment %}
             Add default products to help with onboarding for collections/all only
