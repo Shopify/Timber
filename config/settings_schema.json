@@ -116,7 +116,7 @@
         "type": "text",
         "id": "logo_max_width",
         "label": "Max Logo Width",
-        "default": "450",
+        "default": "450px",
         "info": "Defines the CSS max-width. Ex. 120px"
       },
       {
