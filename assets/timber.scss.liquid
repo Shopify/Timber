@@ -80,10 +80,6 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 // Timber Colors
 $colorPrimary: {{ settings.color_primary }};
 $colorSecondary: {{ settings.color_secondary }};
-$logoMaxWidth: 450px; // Default value
-{% unless settings.logo_max_width == blank %}
-  $logoMaxWidth: {{ settings.logo_max_width }};
-{% endunless %}
 
 // Button colors
 $colorBtnPrimary: $colorPrimary;
@@ -116,6 +112,12 @@ $colorNavText: #333;
 // Site Footer
 $colorFooterBg: {{ settings.color_footer_bg }};
 $colorFooterText: {{ settings.color_footer_text }};
+
+// Logo max width
+$logoMaxWidth: 450px; // Default value
+{% unless settings.logo_max_width == blank %}
+  $logoMaxWidth: {{ settings.logo_max_width }};
+{% endunless %}
 
 // Helper colors
 $disabledGrey: #f6f6f6;
