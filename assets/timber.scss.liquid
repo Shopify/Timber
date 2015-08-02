@@ -80,6 +80,10 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 // Timber Colors
 $colorPrimary: {{ settings.color_primary }};
 $colorSecondary: {{ settings.color_secondary }};
+$logoMaxWidth: 450px; // Default value
+{% unless settings.logo_max_width == blank %}
+  $logoMaxWidth: {{ settings.logo_max_width }};
+{% endunless %}
 
 // Button colors
 $colorBtnPrimary: $colorPrimary;
@@ -1791,7 +1795,7 @@ label.error {
 }
 
 .site-header__logo-link {
-  max-width: 450px; // max upload size
+  max-width: $logoMaxWidth;
   margin: 0 auto;
 }
 
