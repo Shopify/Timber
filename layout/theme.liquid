@@ -185,9 +185,7 @@
             {% endcomment %}
             <div>
               <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
-                <span class="icon-fallback-text">
-                  <span class="icon icon-cart" aria-hidden="true"></span>
-                </span>
+                <span class="icon icon-cart" aria-hidden="true"></span>
                 {{ 'layout.cart.title' | t }}
                 (<span id="CartCount">{{ cart.item_count }}</span>
                 {{ 'layout.cart.items_count' | t: count: cart.item_count }}
