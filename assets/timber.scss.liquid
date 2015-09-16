@@ -244,6 +244,14 @@ $socialIconFontStack: 'icons';
 }
 
 /*============================================================================
+  Layer promotion mixin for creating smoother animations with higher FPS.
+==============================================================================*/
+@mixin promote-layer($properties: transform) {
+  -webkit-transform: translateZ(0); // translateZ hack
+  will-change: $properties; // spec
+}
+
+/*============================================================================
   Dependency-free breakpoint mixin
     - Based on http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
     - Usage docs: http://shopify.github.io/Timber/#sass-mixins
@@ -2046,9 +2054,11 @@ label.error {
 ==============================================================================*/
 .js-drawer-open {
   overflow: hidden;
+  height: 100%;
 }
 
 .drawer {
+  @include promote-layer();
   display: none;
   position: fixed;
   overflow-y: auto;
@@ -2113,6 +2123,7 @@ label.error {
 }
 
 .is-moved-by-drawer {
+  @include promote-layer();
   transition: $drawerTransition;
 
   .js-drawer-open-left & {
