@@ -52,15 +52,15 @@
 /*============================================================================
   #Breakpoint and Grid Variables
 ==============================================================================*/
-$viewportIncrement: 1px;
+$viewportIncrement: 1px !default;
 
-$small: 480px;
-$medium: 768px;
-$large: 769px;
+$small: 480px !default;
+$medium: 768px !default;
+$large: 769px !default;
 
-$postSmall: $small + $viewportIncrement;
-$preMedium: $medium - $viewportIncrement;
-$preLarge: $large - $viewportIncrement;
+$postSmall: $small + $viewportIncrement !default;
+$preMedium: $medium - $viewportIncrement !default;
+$preLarge: $large - $viewportIncrement !default;
 
 /*================ The following are dependencies of csswizardry grid ================*/
 $breakpoints: (
@@ -68,84 +68,84 @@ $breakpoints: (
   'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
   'medium-down' '(max-width: #{$medium})',
   'large' '(min-width: #{$large})'
-);
-$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
-$breakpoint-has-push:  ('medium', 'medium-down', 'large');
-$breakpoint-has-pull:  ('medium', 'medium-down', 'large');
+) !default;
+$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large') !default;
+$breakpoint-has-push:  ('medium', 'medium-down', 'large') !default;
+$breakpoint-has-pull:  ('medium', 'medium-down', 'large') !default;
 
 /*============================================================================
   #General Variables
 ==============================================================================*/
 
 // Timber Colors
-$colorPrimary: {{ settings.color_primary }};
-$colorSecondary: {{ settings.color_secondary }};
+$colorPrimary: {{ settings.color_primary }} !default;
+$colorSecondary: {{ settings.color_secondary }} !default;
 
 // Button colors
-$colorBtnPrimary: $colorPrimary;
-$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
-$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
-$colorBtnPrimaryText: #fff;
+$colorBtnPrimary: $colorPrimary !default;
+$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%) !default;
+$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%) !default;
+$colorBtnPrimaryText: #fff !default;
 
-$colorBtnSecondary: $colorSecondary;
-$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
-$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
-$colorBtnSecondaryText: #fff;
+$colorBtnSecondary: $colorSecondary !default;
+$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%) !default;
+$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%) !default;
+$colorBtnSecondaryText: #fff !default;
 
 // Text link colors
-$colorLink: $colorPrimary;
-$colorLinkHover: lighten($colorPrimary, 15%);
+$colorLink: $colorPrimary !default;
+$colorLinkHover: lighten($colorPrimary, 15%) !default;
 
 // Text colors
-$colorTextBody: {{ settings.color_body_text }};
+$colorTextBody: {{ settings.color_body_text }} !default;
 
 // Backgrounds
-$colorBody: {{ settings.color_body_bg }};
+$colorBody: {{ settings.color_body_bg }} !default;
 
 // Border colors
-$colorBorder: {{ settings.color_borders }};
+$colorBorder: {{ settings.color_borders }} !default;
 
 // Nav and dropdown link background
-$colorNav: #f2f2f2;
-$colorNavText: #333;
+$colorNav: #f2f2f2 !default;
+$colorNavText: #333 !default;
 
 // Site Footer
-$colorFooterBg: {{ settings.color_footer_bg }};
-$colorFooterText: {{ settings.color_footer_text }};
+$colorFooterBg: {{ settings.color_footer_bg }} !default;
+$colorFooterText: {{ settings.color_footer_text }} !default;
 
 // Helper colors
-$disabledGrey: #f6f6f6;
-$disabledBorder: darken($disabledGrey, 25%);
-$errorRed: #d02e2e;
-$errorRedBg: #fff6f6;
-$successGreen: #56ad6a;
-$successGreenBg: #ecfef0;
+$disabledGrey: #f6f6f6 !default;
+$disabledBorder: darken($disabledGrey, 25%) !default;
+$errorRed: #d02e2e !default;
+$errorRedBg: #fff6f6 !default;
+$successGreen: #56ad6a !default;
+$successGreenBg: #ecfef0 !default;
 
 // Drawers
-$drawerNavWidth: 300px;
-$drawerCartWidth: 300px;
-$colorDrawers: #f6f6f6;
-$colorDrawerBorder: darken($colorDrawers, 5%);
-$colorDrawerText: #333;
-$drawerTransition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
+$drawerNavWidth: 300px !default;
+$drawerCartWidth: 300px !default;
+$colorDrawers: #f6f6f6 !default;
+$colorDrawerBorder: darken($colorDrawers, 5%) !default;
+$colorDrawerText: #333 !default;
+$drawerTransition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1) !default;
 
 // Sizing variables
-$siteWidth: 1180px;
-$gutter: 30px;
-$gridGutter: 30px; // can be a %, but nested grids will have smaller margins because of it
-$radius: 3px;
+$siteWidth: 1180px !default;
+$gutter: 30px !default;
+$gridGutter: 30px !default; // can be a %, but nested grids will have smaller margins because of it
+$radius: 3px !default;
 
 // Z-index
-$zindexNavDropdowns: 5;
-$zindexDrawer: 10;
+$zindexNavDropdowns: 5 !default;
+$zindexDrawer: 10 !default;
 
 /*================ Typography ================*/
 
-$headerFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$headerFontWeight: 700;
+$headerFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$headerFontWeight: 700 !default;
 
-$bodyFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$baseFontSize: 14px; // Henseforth known as 1em
+$bodyFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$baseFontSize: 14px !default; // Henseforth known as 1em
 
 @font-face {
   font-family: 'icons';
@@ -157,7 +157,7 @@ $baseFontSize: 14px; // Henseforth known as 1em
   font-weight: normal;
   font-style: normal;
 }
-$socialIconFontStack: 'icons';
+$socialIconFontStack: 'icons' !default;
 
 
 /*============================================================================
@@ -256,8 +256,8 @@ $socialIconFontStack: 'icons';
     - Based on http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
     - Usage docs: http://shopify.github.io/Timber/#sass-mixins
 ==============================================================================*/
-$min: min-width;
-$max: max-width;
+$min: min-width !default;
+$max: max-width !default;
 @mixin at-query ($constraint_, $viewport1_, $viewport2_:null) {
  $constraint: $constraint_; $viewport1: $viewport1_; $viewport2: $viewport2_;
   @if type-of($constraint_) == number {
@@ -315,11 +315,11 @@ input[type="search"]::-webkit-search-decoration {
     - Breakpoints defined above, under #Breakpoint and Grid Variables
     - Note the inclusion of .grid-uniform to take care of clearfixes on evenly sized grid items
 ==============================================================================*/
-$responsive:         true;
-$mobile-first:       true;
-$use-silent-classes: false;
-$push:               true;
-$pull:               false;
+$responsive:         true !default;
+$mobile-first:       true !default;
+$use-silent-classes: false !default;
+$push:               true !default;
+$pull:               false !default;
 
 /* Force clearfix on grids */
 .grid,
