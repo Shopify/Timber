@@ -113,6 +113,9 @@ $colorNavText: #333;
 $colorFooterBg: {{ settings.color_footer_bg }};
 $colorFooterText: {{ settings.color_footer_text }};
 
+// Logo max width
+$logoMaxWidth: {{ settings.logo_max_width | default: '450' | remove: 'px' }}px;
+
 // Helper colors
 $disabledGrey: #f6f6f6;
 $disabledBorder: darken($disabledGrey, 25%);
@@ -1799,7 +1802,7 @@ label.error {
 }
 
 .site-header__logo-link {
-  max-width: 450px; // max upload size
+  max-width: $logoMaxWidth;
   margin: 0 auto;
 }
 
