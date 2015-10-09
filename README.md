@@ -71,15 +71,14 @@ Get involved with Timber or follow along with updates and news.
 
 - Track all issues and feature requests here on GitHub.
 - Follow author [@cshold on Twitter](http://twitter.com/cshold).
-- Provide feedback at timber@shopify.com.
 
 Additional resources
 ---------------------
 - [Themes Documentation][1]: Learn more about Liquid and theme templates.
 - [Theme Gem][2]: Run the command line for a more intimate way of managing your theme files.
-- [Desktop Theme Editor][3]: For Mac OS X users, we recommend our free app to sync theme files in development.
+- [Theme Kit][7]: Next generation tool for syncing theme files. Currently in beta.
 - [Liquid Tag Cheat Sheet][4]
-- [Free Workshops][5]: Sign up for a free Shopify For Designers workshop in a city near you.
+- [Retail Tours][5]: Sign up for a workshop in a city near you to learn all things Shopify.
 - Need more help? Ask a question in our [Design Forums][6].
 
 License
@@ -90,5 +89,6 @@ Timber is released under the [MIT License](LICENSE).
 [2]: https://github.com/Shopify/shopify_theme
 [3]: http://apps.shopify.com/desktop-theme-editor
 [4]: http://cheat.markdunkley.com
-[5]: http://meetup.shopify.com/
+[5]: https://www.shopify.com/retailtour
 [6]: http://ecommerce.shopify.com/c/ecommerce-design
+[7]: https://github.com/Shopify/themekit
