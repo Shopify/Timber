@@ -286,7 +286,8 @@
       "active": "Expires on {{ expiry }}",
       "redeem": "Use this code at checkout to redeem your gift card",
       "shop_link": "Start shopping",
-      "print": "Print"
+      "print": "Print",
+      "add_to_apple_wallet": "Add to Apple Wallet"
     }
   },
   "date_formats":{
