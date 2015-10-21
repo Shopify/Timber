@@ -286,7 +286,8 @@
       "active": "Expira em {{ expiry }}",
       "redeem": "Para resgatar o seu vale-presente, utilize este código no fechamento do pedido",
       "shop_link": "Comece a comprar",
-      "print": "Imprimir"
+      "print": "Imprimir",
+      "add_to_apple_wallet": "Adicionar ao Apple Wallet"
     }
   },
   "date_formats":{
