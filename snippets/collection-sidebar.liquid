@@ -13,7 +13,7 @@
 {% comment %}
   Product tags in the current collection
 {% endcomment %}
-{% if collection.all_tags.size > 0 %}
+{% if collection.tags.size > 0 %}
   <h3>{{ 'collections.sidebar.tags' | t }}</h3>
 
   {% comment %}
@@ -52,7 +52,7 @@
     {% comment %}
       And for the good stuff, loop through the tags themselves.
     {% endcomment %}
-    {% for tag in collection.all_tags %}
+    {% for tag in collection.tags %}
       {% if current_tags contains tag %}
         <li class="filter--active">
           {{ tag | link_to_remove_tag: tag }}
