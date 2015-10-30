@@ -404,6 +404,9 @@ timber.Drawers = (function () {
       return this.close();
     }
 
+    // Notify the drawer is going to open
+    $(document.body).trigger('beforeDrawerOpen.timber', this);
+
     // Add is-transitioning class to moved elements on open so drawer can have
     // transition for close animation
     this.$nodes.moved.addClass('is-transitioning');
@@ -435,12 +438,18 @@ timber.Drawers = (function () {
       this.close();
       return false;
     }, this));
+
+    // Notify the drawer has opened
+    $(document.body).trigger('afterDrawerOpen.timber', this);
   };
 
   Drawer.prototype.close = function () {
     if (!this.drawerIsOpen) { // don't close a closed drawer
       return;
     }
+
+    // Notify the drawer is going to close
+    $(document.body).trigger('beforeDrawerClose.timber', this);
 
     // deselect any focused form elements
     $(document.activeElement).trigger('blur');
@@ -457,6 +466,9 @@ timber.Drawers = (function () {
     this.removeTrapFocus(this.$drawer, 'drawer_focus');
 
     this.$nodes.page.off('.drawer');
+
+    // Notify the drawer is closed now
+    $(document.body).trigger('afterDrawerClose.timber', this);
   };
 
   Drawer.prototype.trapFocus = function ($container, eventNamespace) {
