@@ -198,11 +198,6 @@ timber.getHash = function () {
   return window.location.hash;
 };
 
-timber.updateHash = function (hash) {
-  window.location.hash = '#' + hash;
-  $('#' + hash).attr('tabindex', -1).focus();
-};
-
 timber.productPage = function (options) {
   var moneyFormat = options.money_format,
       variant = options.variant,

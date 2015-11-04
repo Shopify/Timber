@@ -382,11 +382,6 @@
     Template-specific js
   {% endcomment %}
   <script>
-    {% if newHash %}
-      $(function() {
-        timber.updateHash('{{ newHash }}');
-      });
-    {% endif %}
     {% if resetPassword %}
       $(function() {
         timber.resetPasswordSuccess();
