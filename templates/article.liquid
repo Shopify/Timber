@@ -127,11 +127,7 @@
 
           {% endif %}
 
-          {% comment %}
-            #comment-form is required, it is used as an anchor link by Shopify
-            when an error occurs during submission.
-          {% endcomment %}
-          <div id="comment-form" class="form-vertical">
+          <div class="form-vertical">
             {% form 'new_comment', article %}
               <h3>{{ 'blogs.comments.title' | t }}</h3>
 
