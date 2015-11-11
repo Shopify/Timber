@@ -55,7 +55,7 @@
       <ul class="inline-list">
         {% if blog.comments_enabled? %}
         <li>
-          <a href="{{ article.url }}#Comments">
+          <a href="{{ article.url }}#comments">
             {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
           </a>
         </li>
