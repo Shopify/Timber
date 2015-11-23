@@ -30,42 +30,42 @@
       },
       {
         "type": "header",
-        "content": "General Colors"
+        "content": "General colors"
       },
       {
         "type": "color",
         "id": "color_primary",
-        "label": "Primary Color",
+        "label": "Primary",
         "default": "#204a80",
         "info": "Used for text links, and primary buttons"
       },
       {
         "type": "color",
         "id": "color_secondary",
-        "label": "Secondary Color",
+        "label": "Secondary",
         "default": "#dcdcdc",
         "info": "Used for secondary buttons"
       },
       {
         "type": "color",
-        "id": "color_body_bg",
-        "label": "Body Background",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
         "id": "color_borders",
-        "label": "Border Colors",
+        "label": "Borders",
         "default": "#e5e5e5"
       },
       {
         "type": "header",
-        "content": "Body Text"
+        "content": "Body"
+      },
+      {
+        "type": "color",
+        "id": "color_body_bg",
+        "label": "Background",
+        "default": "#ffffff"
       },
       {
         "type": "color",
         "id": "color_body_text",
-        "label": "Body Text",
+        "label": "Text",
         "default": "#333333"
       },
       {
@@ -75,19 +75,19 @@
       {
         "type": "color",
         "id": "color_footer_bg",
-        "label": "Footer Background",
+        "label": "Background",
         "default": "#f2f2f2"
       },
       {
         "type": "color",
         "id": "color_footer_text",
-        "label": "Footer Text",
+        "label": "Text",
         "default": "#636363"
       },
       {
         "type": "color",
         "id": "color_footer_social_link",
-        "label": "Social Icons",
+        "label": "Social media icons",
         "default": "#bbbbbb"
       }
     ]
@@ -102,12 +102,12 @@
       {
         "type": "checkbox",
         "id": "logo_use_image",
-        "label": "Use Custom Logo"
+        "label": "Use custom logo"
       },
       {
         "type": "image",
         "id": "logo.png",
-        "label": "Custom Logo",
+        "label": "Custom logo",
         "max-width": 450,
         "max-height": 200,
         "info": "Maximum logo dimensions are 450px wide by 200px high. The uploaded file will be resized to fit within those constraints."
@@ -115,7 +115,7 @@
       {
         "type": "text",
         "id": "logo_max_width",
-        "label": "Max Logo Width",
+        "label": "Max logo width",
         "default": "450",
         "info": "Defined in pixels. Do not add the 'px' unit."
       },
@@ -126,12 +126,12 @@
       {
         "type": "checkbox",
         "id": "favicon_enable",
-        "label": "Use custom icon?"
+        "label": "Use custom icon"
       },
       {
         "type": "image",
         "id": "favicon.png",
-        "label": "16px x 16px png",
+        "label": "16 x 16px png",
         "max-width": 16,
         "max-height": 16
       }
@@ -143,38 +143,40 @@
       {
         "type": "checkbox",
         "id": "footer_social_enable",
-        "label": "Show social media links"
+        "label": "Show social media icons"
       },
       {
         "type": "text",
         "id": "social_twitter_link",
-        "label": "Twitter link"
+        "label": "Twitter URL",
+        "info": "Example: https://twitter.com/shopify"
       },
       {
         "type": "text",
         "id": "social_facebook_link",
-        "label": "Facebook link"
+        "label": "Facebook URL",
+        "info": "Example: https://www.facebook.com/shopify"
       },
       {
         "type": "checkbox",
         "id": "footer_newsletter_enable",
-        "label": "Show Newsletter Field"
+        "label": "Show newsletter field"
       },
       {
         "type": "text",
         "id": "newsletter_form_action",
-        "label": "MailChimp Form Action URL",
+        "label": "MailChimp form action URL",
         "info": "[Where do I find my MailChimp form action URL?](http:\/\/docs.shopify.com\/support\/configuration\/store-customization\/where-do-i-get-my-mailchimp-form-action)"
       }
     ]
   },
   {
-    "name": "Cart Page",
+    "name": "Cart page",
     "settings": [
       {
         "type": "checkbox",
         "id": "cart_notes_enable",
-        "label": "Allow notes with orders"
+        "label": "Enable cart notes"
       },
       {
         "type": "checkbox",
@@ -182,21 +184,30 @@
         "label": "Show product vendor"
       },
       {
-        "type": "checkbox",
-        "id": "ajax_cart_enable",
-        "label": "Enable Ajax Cart Drawer",
-        "info": "[View Documentation](http:\/\/shopify.com\/timber#ajax-cart)"
+        "type": "select",
+        "id": "ajax_cart_method",
+        "label": "Cart type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ]
       }
     ]
   },
   {
-    "name": "Social Sharing",
+    "name": "Social media",
     "settings": [
       {
         "type": "text",
         "id": "twittercard_handle",
-        "label": "Twitter Handle",
-        "default": "@"
+        "label": "Twitter handle",
+        "info": "Example: @shopify"
       }
     ]
   }
