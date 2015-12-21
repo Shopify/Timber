@@ -25,8 +25,15 @@
 {% elsif template contains 'article' %}
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ article.title | strip_html | escape }}">
+  {% comment %}
+    Check to see if the Article has a featured image.
+    Otherwise check to see if the Article contains an image.
+  {% endcomment %}
   {% assign img_tag = '<' | append: 'img' %}
-  {% if article.content contains img_tag %}
+  {% if article.image %}
+  <meta property="og:image" content="http:{{ article | img_url: '1024x1024' }}">
+  <meta property="og:image:secure_url" content="https:{{ article | img_url: '1024x1024' }}">
+  {% elsif article.content contains img_tag %}
     {% assign src = article.content | split: 'src="' %}
     {% assign src = src[1] | split: '"' | first | remove: 'https:' | remove: 'http:' %}
     {% if src %}
@@ -76,10 +83,13 @@
   <meta name="twitter:title" content="{{ article.title }}">
   <meta name="twitter:description" content="{{ page_description | truncatewords: 140, '' | escape }}">
   {% comment %}
-    Check if content contains an image to add to the card
+    Check to see if the Article has a featured image.
+    Otherwise check to see if the Article contains an image.
       - Source: http://blog.viralica.com/2013/09/twitter-product-cards-on-shopify/
   {% endcomment %}
-  {% if article.content contains "<img" %}
+  {% if article.image %}
+    <meta property="twitter:image" content="http:{{ article | img_url: '1024x1024' }}">
+  {% elsif article.content contains "<img" %}
     {% assign src = article.content | split: 'src="' %}
     {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:' %}
     {% if src %}
