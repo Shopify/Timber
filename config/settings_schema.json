@@ -110,7 +110,7 @@
         "label": "Custom logo",
         "max-width": 450,
         "max-height": 200,
-        "info": "Maximum logo dimensions are 450px wide by 200px high. The uploaded file will be resized to fit within those constraints."
+        "info": "450 x 200px .png"
       },
       {
         "type": "text",
@@ -131,9 +131,10 @@
       {
         "type": "image",
         "id": "favicon.png",
-        "label": "16 x 16px png",
-        "max-width": 16,
-        "max-height": 16
+        "label": "Icon",
+        "max-width": 32,
+        "max-height": 32,
+        "info": "32 x 32px .png required"
       }
     ]
   },
@@ -144,18 +145,6 @@
         "type": "checkbox",
         "id": "footer_social_enable",
         "label": "Show social media icons"
-      },
-      {
-        "type": "text",
-        "id": "social_twitter_link",
-        "label": "Twitter URL",
-        "info": "Example: https://twitter.com/shopify"
-      },
-      {
-        "type": "text",
-        "id": "social_facebook_link",
-        "label": "Facebook URL",
-        "info": "Example: https://www.facebook.com/shopify"
       },
       {
         "type": "checkbox",
@@ -205,9 +194,15 @@
     "settings": [
       {
         "type": "text",
-        "id": "twittercard_handle",
-        "label": "Twitter handle",
-        "info": "Example: @shopify"
+        "id": "social_twitter_link",
+        "label": "Twitter URL",
+        "info": "https://twitter.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook URL",
+        "info": "https://www.facebook.com/shopify"
       }
     ]
   }
