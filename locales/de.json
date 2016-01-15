@@ -14,7 +14,8 @@
     },
     "newsletter_form": {
       "newsletter_email": "email@beispiel.com",
-      "submit": "Abonnieren"
+      "submit": "Abonnieren",
+      "confirmation": "Danke fürs Anmelden"
     },
     "search": {
       "no_results_html": "Ihre Suche nach \"{{ terms }}\" hat keine Ergebnisse hervorgebracht.",
