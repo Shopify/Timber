@@ -17,6 +17,18 @@
       "submit": "Subscribe",
       "confirmation": "Thanks for subscribing"
     },
+    "password_page": {
+      "password_link": "Password Link",
+      "opening_soon": "Opening Soon",
+      "signup_form_heading": "Sign Up",
+      "signup_form_email_placeholder": "your email",
+      "signup_form_submit": "Submit",
+      "spread_the_word": "Spread the word",
+      "powered_by_shopify_html": "Powered by Shopify",
+      "login_form_heading": "Login to your Account",
+      "login_form_submit": "submit",
+      "admin_link_html": "admin"
+    },
     "search": {
       "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
       "results_for_html": "Your search for \"{{ terms }}\" revealed the following:",
