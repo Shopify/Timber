@@ -399,6 +399,11 @@ timber.Drawers = (function () {
       return this.close();
     }
 
+    // Don't try to open an open drawer
+    if (this.drawerIsOpen) {
+      return;
+    }
+
     // Add is-transitioning class to moved elements on open so drawer can have
     // transition for close animation
     this.$nodes.moved.addClass('is-transitioning');
@@ -408,7 +413,7 @@ timber.Drawers = (function () {
     this.drawerIsOpen = true;
 
     // Set focus on drawer
-    this.trapFocus(this.$drawer, 'drawer_focus');
+    this.trapFocus(this.$drawer, 'drawer_focus-' + this.position);
 
     // Run function when draw opens if set
     if (this.config.onDrawerOpen && typeof(this.config.onDrawerOpen) == 'function') {
@@ -449,7 +454,7 @@ timber.Drawers = (function () {
     this.drawerIsOpen = false;
 
     // Remove focus on drawer
-    this.removeTrapFocus(this.$drawer, 'drawer_focus');
+    this.removeTrapFocus(this.$drawer, 'drawer_focus-' + this.position);
 
     this.$nodes.page.off('.drawer');
   };
@@ -460,6 +465,9 @@ timber.Drawers = (function () {
     $container.attr('tabindex', '-1');
 
     $container.focus();
+
+    // Remove any events of the same name in case multiple drawers are open
+    $(document).off(eventName);
 
     $(document).on(eventName, function (evt) {
       if ($container[0] !== evt.target && !$container.has(evt.target).length) {
