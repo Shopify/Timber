@@ -77,9 +77,9 @@
       {% endcomment %}
       {% paginate article.comments by 5 %}
         {% comment %}
-          #Comments is required, it is used as an anchor link by Shopify.
+          #comments is required, it is used as an anchor link by Shopify.
         {% endcomment %}
-        <div id="Comments">
+        <div id="comments">
 
           {% if comment and comment.created_at %}
             <p class="note form-success">
@@ -127,16 +127,9 @@
 
           {% endif %}
 
-          {% comment %}
-            Comment submission form
-          {% endcomment %}
           <div class="form-vertical">
             {% form 'new_comment', article %}
-
-              {% comment %}
-                #AddCommentTitle is used simply as an anchor link
-              {% endcomment %}
-              <h3 id="AddCommentTitle">{{ 'blogs.comments.title' | t }}</h3>
+              <h3>{{ 'blogs.comments.title' | t }}</h3>
 
               {{ form.errors | default_errors }}
 
@@ -162,18 +155,6 @@
               {% endif %}
 
               <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
-
-              {% comment %}
-                Assign variable to be used after timber.init() is run in theme.liquid
-              {% endcomment %}
-              {% if form.errors %}
-                {% assign newHash = 'AddCommentTitle' %}
-              {% endif %}
-
-              {% if form.posted_successfully? %}
-                {% assign newHash = 'Comments' %}
-              {% endif %}
-
             {% endform %}
           </div>
 

@@ -2,7 +2,7 @@
   "current": "Default",
   "presets": {
     "Default": {
-      "ajax_cart_enable": true,
+      "ajax_cart_method": "drawer",
       "cart_notes_enable": true,
       "color_body_bg": "#fff",
       "color_body_text": "#333333",
@@ -16,8 +16,8 @@
       "footer_newsletter_enable": true,
       "footer_social_enable": true,
       "logo_use_image": false,
-      "social_facebook_link": "https://www.facebook.com/shopify",
-      "social_twitter_link": "https://twitter.com/shopify"
+      "social_facebook_link": "",
+      "social_twitter_link": ""
     }
   }
 }
