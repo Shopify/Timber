@@ -124,11 +124,9 @@
           <li class="mobile-nav__item">
             {{ 'layout.customer.log_in' | t | customer_login_link }}
           </li>
-          {% if shop.customer_accounts_optional %}
           <li class="mobile-nav__item">
             {{ 'layout.customer.create_account' | t | customer_register_link }}
           </li>
-          {% endif %}
         {% endif %}
       {% endif %}
     </ul>
@@ -208,9 +206,7 @@
                   | {{ 'layout.customer.log_out' | t | customer_logout_link }}
                 {% else %}
                   {{ 'layout.customer.log_in' | t | customer_login_link }}
-                  {% if shop.customer_accounts_optional %}
                   | {{ 'layout.customer.create_account' | t | customer_register_link }}
-                  {% endif %}
                 {% endif %}
               </div>
             {% endif %}
