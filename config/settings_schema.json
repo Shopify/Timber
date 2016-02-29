@@ -25,10 +25,6 @@
     "name": "Colors",
     "settings": [
       {
-        "type": "paragraph",
-        "content": "Use class=\"color\" on a an input tag to bring up the color picker. Only a few colors have been included here as an example."
-      },
-      {
         "type": "header",
         "content": "General colors"
       },
