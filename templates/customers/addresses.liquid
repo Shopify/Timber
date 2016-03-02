@@ -205,11 +205,13 @@
   });
 
   // Setup province selector on each customer address
-  {% for address in customer.addresses %}
-    new Shopify.CountryProvinceSelector('AddressCountry_{{ address.id }}', 'AddressProvince_{{ address.id }}', {
-      hideElement: 'AddressProvinceContainer_{{ address.id }}'}
-    );
-  {% endfor %}
+  {% paginate customer.addresses by 5 %}
+    {% for address in customer.addresses %}
+      new Shopify.CountryProvinceSelector('AddressCountry_{{ address.id }}', 'AddressProvince_{{ address.id }}', {
+        hideElement: 'AddressProvinceContainer_{{ address.id }}'}
+      );
+    {% endfor %}
+  {% endpaginate %}
 
   // Modified contents of customer_area.js (global asset)
   Shopify.CustomerAddress = {
