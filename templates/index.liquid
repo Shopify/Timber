@@ -149,7 +149,7 @@
         <li>
           <a href="{{ article.url }}#comments">
             {{ article.comments_count }}
-            {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+            {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
           </a>
         </li>
         {% endif %}

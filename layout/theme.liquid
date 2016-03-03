@@ -24,7 +24,7 @@
   <!-- Helpers ================================================== -->
   {% include 'social-meta-tags' %}
   <link rel="canonical" href="{{ canonical_url }}">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
   <!-- CSS ================================================== -->
@@ -124,11 +124,9 @@
           <li class="mobile-nav__item">
             {{ 'layout.customer.log_in' | t | customer_login_link }}
           </li>
-          {% if shop.customer_accounts_optional %}
           <li class="mobile-nav__item">
             {{ 'layout.customer.create_account' | t | customer_register_link }}
           </li>
-          {% endif %}
         {% endif %}
       {% endif %}
     </ul>
@@ -208,9 +206,7 @@
                   | {{ 'layout.customer.log_out' | t | customer_logout_link }}
                 {% else %}
                   {{ 'layout.customer.log_in' | t | customer_login_link }}
-                  {% if shop.customer_accounts_optional %}
                   | {{ 'layout.customer.create_account' | t | customer_register_link }}
-                  {% endif %}
                 {% endif %}
               </div>
             {% endif %}
