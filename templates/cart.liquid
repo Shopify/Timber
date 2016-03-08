@@ -82,9 +82,15 @@
               <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0">
             </td>
             <td data-label="{{ 'cart.label.total' | t }}" class="text-right">
+              {% if item.original_line_price != item.line_price %}
+                <span class="cart-item__original-price"><s>{{ item.original_line_price | money }}</s></span>
+              {% endif %}
               <span class="h3">
                 {{ item.line_price | money }}
               </span>
+              {% for discount in item.discounts %}
+                <span class="cart-item__discount">{{ discount.title }}</span>
+              {% endfor %}  
             </td>
           </tr>
         {% endfor %}
@@ -102,6 +108,12 @@
           <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
           <span class="h3 cart__subtotal">{{ cart.total_price | money }}</span>
         </p>
+        {% if cart.total_discounts > 0 %}
+          {% assign savings = cart.total_discounts | money %}
+          <p>
+            <span class="cart-subtotal__savings"><em>{{ 'cart.general.savings_html' | t: price: savings }}</em></span>  
+          </p>
+        {% endif %}  
         <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
         <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
         <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
