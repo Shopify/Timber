@@ -132,18 +132,20 @@
     </ul>
     <!-- //mobile-nav -->
   </div>
-  <div id="CartDrawer" class="drawer drawer--right">
-    <div class="drawer__header">
-      <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
-      <div class="drawer__close js-drawer-close">
-        <button type="button" class="icon-fallback-text">
-          <span class="icon icon-x" aria-hidden="true"></span>
-          <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
-        </button>
+  {% if settings.ajax_cart_method == "drawer" %}
+    <div id="CartDrawer" class="drawer drawer--right">
+      <div class="drawer__header">
+        <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+        <div class="drawer__close js-drawer-close">
+          <button type="button" class="icon-fallback-text">
+            <span class="icon icon-x" aria-hidden="true"></span>
+            <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+          </button>
+        </div>
       </div>
+      <div id="CartContainer"></div>
     </div>
-    <div id="CartContainer"></div>
-  </div>
+  {% endif %}
   <div id="PageContainer" class="is-moved-by-drawer">
     <header class="site-header" role="banner">
       <div class="wrapper">
@@ -327,9 +329,9 @@
                 Use the link below to find your MailChimp form action
                 and insert it in your site settings.
 
-                If the form action URL is not set in the theme settings, 
+                If the form action URL is not set in the theme settings,
                 it will fallback to a customer form so you can still capture the email.
-                
+
                 MailChimp newsletter integration and requirement:
                  - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
               {% endcomment %}
@@ -357,7 +359,7 @@
                   {% endif %}
                 {% endform %}
               {% endif %}
-              
+
             </div>
           {% endif %}
           <div class="grid__item text-center">
