@@ -50,7 +50,23 @@
                     </div>
                   </div>
                   <div class="grid__item display-table-cell one-half text-right">
-                    {{{price}}}
+                    {{#if discountsApplied}}
+                      <small class="ajaxcart-item__price-strikethrough"><s>{{{originalPrice}}}</s></small>
+                      <br><span>{{{linePrice}}}</span>
+                    {{else}}
+                      <span>{{{linePrice}}}</span>
+                    {{/if}}
+                    </div>
+                  </div>
+                  {{#if discountsApplied}}
+                    <div class="grid--full display-table">
+                      <div class="grid__item text-right">
+                        {{#each discounts}}
+                          <small class="ajaxcart-item__discount">{{ this.title }}</small><br>
+                        {{/each}}
+                      </div>
+                    </div>
+                  {{/if}} 
                   </div>
                 </div>
               </div>
@@ -74,6 +90,9 @@
           <div class="grid__item one-third text-right">
             <p>{{{totalPrice}}}</p>
           </div>
+          {{#if totalCartDiscount}}
+            <p class="ajaxcart__savings text-center"><em>{{{totalCartDiscount}}}</em></p>
+          {{/if}}
         </div>
         <p class="text-center">{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</p>
         <button type="submit" class="btn--secondary btn--full cart__checkout" name="checkout">
