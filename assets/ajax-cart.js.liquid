@@ -333,6 +333,10 @@ var ajaxCart = (function(module, $) {
 
     // Add or remove from the quantity
     $body.on('click', '.ajaxcart__qty-adjust', function() {
+      if (isUpdating) {
+        return;
+      }
+      
       var $el = $(this),
           line = $el.data('line'),
           $qtySelector = $el.siblings('.ajaxcart__qty-num'),
@@ -359,6 +363,10 @@ var ajaxCart = (function(module, $) {
 
     // Update quantity based on input on change
     $body.on('change', '.ajaxcart__qty-num', function() {
+      if (isUpdating) {
+        return;
+      }
+      
       var $el = $(this),
           line = $el.data('line'),
           qty = parseInt($el.val().replace(/\D/g, ''));
@@ -412,13 +420,12 @@ var ajaxCart = (function(module, $) {
   };
 
   adjustCartCallback = function (cart) {
-    isUpdating = false;
-
     // Update quantity and price
     updateCountPrice(cart);
 
     // Reprint cart on short timeout so you don't see the content being removed
     setTimeout(function() {
+      isUpdating = false;
       ShopifyAPI.getCart(buildCart);
     }, 150)
   };
