@@ -207,6 +207,7 @@ timber.productPage = function (options) {
 
   // Selectors
   var $productImage = $('#ProductPhotoImg'),
+      $thumbImages = $('#ProductThumbs').find('a.product-single__thumbnail');
       $addToCart = $('#AddToCart'),
       $productPrice = $('#ProductPrice'),
       $comparePrice = $('#ComparePrice'),
@@ -218,7 +219,15 @@ timber.productPage = function (options) {
     // Update variant image, if one is set
     if (variant.featured_image) {
       var newImg = variant.featured_image,
-          el = $productImage[0];
+          el = $productImage[0],
+          pattern = /[?&]v=([^&#]*)/,
+          v = pattern.exec(newImg.src)[1];
+      $thumbImages.each(function() {
+        if (pattern.exec($(this).attr('href'))[1] === v) {
+          newImg.alt = $(this).find('img').attr('alt');
+          return false;
+        }
+      });
       Shopify.Image.switchImage(newImg, el, timber.switchImage);
     }
 
@@ -265,7 +274,8 @@ timber.productImageSwitch = function () {
     timber.cache.$thumbImages.on('click', function(evt) {
       evt.preventDefault();
       var newImage = $(this).attr('href');
-      timber.switchImage(newImage, null, timber.cache.$productImage);
+      var newImageAlt = $(this).find('img').attr('alt');
+      timber.switchImage(newImage, { alt: newImageAlt }, timber.cache.$productImage);
     });
   }
 };
@@ -274,6 +284,7 @@ timber.switchImage = function (src, imgObject, el) {
   // Make sure element is a jquery object
   var $el = $(el);
   $el.attr('src', src);
+  $el.attr('alt', imgObject.alt);
 };
 
 timber.responsiveVideos = function () {
