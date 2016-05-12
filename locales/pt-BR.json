@@ -27,7 +27,7 @@
   },
   "blogs": {
     "article": {
-      "author_on_date_html": "Postado por{{ author }} em {{ date }}",
+      "author_on_date_html": "Postado por {{ author }} em {{ date }}",
       "older_post": "Postagem anterior",
       "newer_post": "Postagem seguinte",
       "tags": "Marcadores",
