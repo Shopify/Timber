@@ -44,6 +44,9 @@ ShopifyAPI.updateCartNote = function(note, callback) {
     url: '/cart/update.js',
     data: 'note=' + attributeToString(note),
     dataType: 'json',
+    beforeSend: function() {
+      $('body').trigger('ajaxCart.updateCartNote', note);
+    },
     success: function(cart) {
       if ((typeof callback) === 'function') {
         callback(cart);
@@ -51,8 +54,10 @@ ShopifyAPI.updateCartNote = function(note, callback) {
       else {
         ShopifyAPI.onCartUpdate(cart);
       }
+      $('body').trigger('ajaxCart.updatedCartNote', note, cart);
     },
     error: function(XMLHttpRequest, textStatus) {
+      $('body').trigger('ajaxCart.updateCartNoteError', XMLHttpRequest, textStatus);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
     }
   };
@@ -77,6 +82,9 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
     url: '/cart/add.js',
     data: jQuery(form).serialize(),
     dataType: 'json',
+    beforeSend: function(jqxhr, settings) {
+      $('body').trigger('ajaxCart.addItem', form);
+    },
     success: function(line_item) {
       if ((typeof callback) === 'function') {
         callback(line_item, form);
@@ -84,6 +92,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       else {
         ShopifyAPI.onItemAdded(line_item, form);
       }
+      $('body').trigger('ajaxCart.addedItem', line_item, form);
     },
     error: function(XMLHttpRequest, textStatus) {
       if ((typeof errorCallback) === 'function') {
@@ -92,6 +101,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       else {
         ShopifyAPI.onError(XMLHttpRequest, textStatus);
       }
+      $('body').trigger('ajaxCart.addItemError', XMLHttpRequest, textStatus);
     }
   };
   jQuery.ajax(params);
@@ -99,6 +109,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
 
 // Get from cart.js returns the cart in JSON
 ShopifyAPI.getCart = function(callback) {
+  $('body').trigger('ajaxCart.getCart');
   jQuery.getJSON('/cart.js', function (cart, textStatus) {
     if ((typeof callback) === 'function') {
       callback(cart);
@@ -106,6 +117,7 @@ ShopifyAPI.getCart = function(callback) {
     else {
       ShopifyAPI.onCartUpdate(cart);
     }
+    $('body').trigger('ajaxCart.gotCart', cart);
   });
 };
 
@@ -116,6 +128,9 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
     url: '/cart/change.js',
     data: 'quantity=' + quantity + '&line=' + line,
     dataType: 'json',
+    beforeSend: function() {
+      $('body').trigger('ajaxCart.changeItem', line, quantity);
+    },
     success: function(cart) {
       if ((typeof callback) === 'function') {
         callback(cart);
@@ -123,8 +138,10 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
       else {
         ShopifyAPI.onCartUpdate(cart);
       }
+      $('body').trigger('ajaxCart.changedItem', line, quantity, cart);
     },
     error: function(XMLHttpRequest, textStatus) {
+      $('body').trigger('ajaxCart.changeItemError', XMLHttpRequest, textStatus);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
     }
   };
@@ -217,6 +234,7 @@ var ajaxCart = (function(module, $) {
 
   formOverride = function () {
     $formContainer.on('submit', function(evt) {
+      $body.trigger('ajaxCart.beforeSubmit');
       evt.preventDefault();
 
       // Add class to be styled if desired
@@ -226,6 +244,7 @@ var ajaxCart = (function(module, $) {
       $('.qty-error').remove();
 
       ShopifyAPI.addItemFromForm(evt.target, itemAddedCallback, itemErrorCallback);
+      $body.trigger('ajaxCart.afterSubmit', evt);
     });
   };
 
@@ -241,6 +260,7 @@ var ajaxCart = (function(module, $) {
 
     if (!!data.message) {
       if (data.status == 422) {
+        $body.trigger('ajaxCart.itemError', data);
         $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
       }
     }
