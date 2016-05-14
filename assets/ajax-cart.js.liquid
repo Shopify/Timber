@@ -10,7 +10,7 @@
   This requires:
     - jQuery 1.8+
     - handlebars.min.js (for cart template)
-    - modernizer.min.js
+    - modernizr.min.js
     - snippet/ajax-cart-template.liquid
 
   Customized version of Shopify's jQuery API
@@ -299,7 +299,11 @@ var ajaxCart = (function(module, $) {
         itemMinus: cartItem.quantity - 1,
         itemQty: cartItem.quantity,
         price: Shopify.formatMoney(cartItem.price, settings.moneyFormat),
-        vendor: cartItem.vendor
+        vendor: cartItem.vendor,
+        linePrice: Shopify.formatMoney(cartItem.line_price, settings.moneyFormat),
+        originalPrice: Shopify.formatMoney((cartItem.line_price + cartItem.total_discount), settings.moneyFormat), 
+        discounts: cartItem.discounts,
+        discountsApplied: cartItem.line_price === (cartItem.line_price - cartItem.total_discount) ? false : true
       };
 
       items.push(item);
@@ -309,7 +313,9 @@ var ajaxCart = (function(module, $) {
     data = {
       items: items,
       note: cart.note,
-      totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat)
+      totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat),
+      totalCartDiscount: cart.total_discount === 0 ? 0 : {{ 'cart.general.savings_html' | t: price: '[savings]' | json }}.replace('[savings]', Shopify.formatMoney(cart.total_discount, settings.moneyFormat)),
+      totalCartDiscountApplied: cart.total_discount === 0 ? false : true
     }
 
     $cartContainer.append(template(data));
@@ -327,6 +333,10 @@ var ajaxCart = (function(module, $) {
 
     // Add or remove from the quantity
     $body.on('click', '.ajaxcart__qty-adjust', function() {
+      if (isUpdating) {
+        return;
+      }
+      
       var $el = $(this),
           line = $el.data('line'),
           $qtySelector = $el.siblings('.ajaxcart__qty-num'),
@@ -353,6 +363,10 @@ var ajaxCart = (function(module, $) {
 
     // Update quantity based on input on change
     $body.on('change', '.ajaxcart__qty-num', function() {
+      if (isUpdating) {
+        return;
+      }
+      
       var $el = $(this),
           line = $el.data('line'),
           qty = parseInt($el.val().replace(/\D/g, ''));
@@ -406,13 +420,12 @@ var ajaxCart = (function(module, $) {
   };
 
   adjustCartCallback = function (cart) {
-    isUpdating = false;
-
     // Update quantity and price
     updateCountPrice(cart);
 
     // Reprint cart on short timeout so you don't see the content being removed
     setTimeout(function() {
+      isUpdating = false;
       ShopifyAPI.getCart(buildCart);
     }, 150)
   };

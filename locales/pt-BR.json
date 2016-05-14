@@ -27,7 +27,7 @@
   },
   "blogs": {
     "article": {
-      "author_on_date_html": "Postado por{{ author }} em {{ date }}",
+      "author_on_date_html": "Postado por {{ author }} em {{ date }}",
       "older_post": "Postagem anterior",
       "newer_post": "Postagem seguinte",
       "tags": "Marcadores",
@@ -64,7 +64,8 @@
       "checkout": "Fechar pedido",
       "empty": "Seu carrinho está vazio no momento.",
       "continue_browsing_html": "Continue navegando <a href=\"/collections/all\">aqui</a>.",
-      "close_cart": "Fechar carrinho"
+      "close_cart": "Fechar carrinho",
+      "savings_html": "Você está economizando {{ price }}"
     },
     "label": {
       "product": "Produto",
