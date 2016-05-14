@@ -54,10 +54,10 @@ ShopifyAPI.updateCartNote = function(note, callback) {
       else {
         ShopifyAPI.onCartUpdate(cart);
       }
-      $('body').trigger('updatedCartNote.ajaxCart', note, cart);
+      $('body').trigger('updatedCartNote.ajaxCart', [note, cart]);
     },
     error: function(XMLHttpRequest, textStatus) {
-      $('body').trigger('updateCartNoteError.ajaxCart', XMLHttpRequest, textStatus);
+      $('body').trigger('updateCartNoteError.ajaxCart', [XMLHttpRequest, textStatus]);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
     }
   };
@@ -92,7 +92,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       else {
         ShopifyAPI.onItemAdded(line_item, form);
       }
-      $('body').trigger('addedItem.ajaxCart', line_item, form);
+      $('body').trigger('addedItem.ajaxCart', [line_item, form]);
     },
     error: function(XMLHttpRequest, textStatus) {
       if ((typeof errorCallback) === 'function') {
@@ -101,10 +101,10 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       else {
         ShopifyAPI.onError(XMLHttpRequest, textStatus);
       }
-      $('body').trigger('addItemError.ajaxCart', XMLHttpRequest, textStatus);
+      $('body').trigger('addItemError.ajaxCart', [XMLHttpRequest, textStatus]);
     },
     complete: function(jqxhr, text) {
-      $('body').trigger('addItemComplete.ajaxCart', this, text);
+      $('body').trigger('addItemComplete.ajaxCart', [this, text]);
     }
   };
   jQuery.ajax(params);
@@ -132,7 +132,7 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
     data: 'quantity=' + quantity + '&line=' + line,
     dataType: 'json',
     beforeSend: function() {
-      $('body').trigger('changeItem.ajaxCart', line, quantity);
+      $('body').trigger('changeItem.ajaxCart', [line, quantity]);
     },
     success: function(cart) {
       if ((typeof callback) === 'function') {
@@ -141,14 +141,14 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
       else {
         ShopifyAPI.onCartUpdate(cart);
       }
-      $('body').trigger('changedItem.ajaxCart', line, quantity, cart);
+      $('body').trigger('changedItem.ajaxCart', [line, quantity, cart]);
     },
     error: function(XMLHttpRequest, textStatus) {
-      $('body').trigger('changeItemError.ajaxCart', XMLHttpRequest, textStatus);
+      $('body').trigger('changeItemError.ajaxCart', [XMLHttpRequest, textStatus]);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
     },
     complete: function(jqxhr, text) {
-      $('body').trigger('changeItemComplete.ajaxCart', this, text);
+      $('body').trigger('changeItemComplete.ajaxCart', [this, text]);
     }
   };
   jQuery.ajax(params);
@@ -380,6 +380,7 @@ var ajaxCart = (function(module, $) {
 
       // If it has a data-line, update the cart.
       // Otherwise, just update the input's number
+      $('body').trigger('adjustCart.ajaxCart', [this, line, qty]);
       if (line) {
         updateQuantity(line, qty);
       } else {
@@ -401,6 +402,7 @@ var ajaxCart = (function(module, $) {
 
       // If it has a data-line, update the cart
       if (line) {
+        $('body').trigger('adjustCart.ajaxCart', [this, line, qty]);
         updateQuantity(line, qty);
       }
     });
