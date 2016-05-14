@@ -102,6 +102,9 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
         ShopifyAPI.onError(XMLHttpRequest, textStatus);
       }
       $('body').trigger('addItemError.ajaxCart', XMLHttpRequest, textStatus);
+    },
+    complete: function(jqxhr, text) {
+      $('body').trigger('addItemComplete.ajaxCart', this, text);
     }
   };
   jQuery.ajax(params);
@@ -143,6 +146,9 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
     error: function(XMLHttpRequest, textStatus) {
       $('body').trigger('changeItemError.ajaxCart', XMLHttpRequest, textStatus);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
+    },
+    complete: function(jqxhr, text) {
+      $('body').trigger('changeItemComplete.ajaxCart', this, text);
     }
   };
   jQuery.ajax(params);
