@@ -39,7 +39,7 @@ ShopifyAPI.onCartUpdate = function(cart) {
 };
 
 ShopifyAPI.updateCartNote = function(note, callback) {
-  var $body = $('body'),
+  var $body = $(document.body),
   params = {
     type: 'POST',
     url: '/cart/update.js',
@@ -78,7 +78,7 @@ ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
     - Allow custom error callback
 ==============================================================================*/
 ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
-  var $body = $('body'),
+  var $body = $(document.body),
   params = {
     type: 'POST',
     url: '/cart/add.js',
@@ -114,7 +114,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
 
 // Get from cart.js returns the cart in JSON
 ShopifyAPI.getCart = function(callback) {
-  $('body').trigger('getCart.ajaxCart');
+  $(document.body).trigger('getCart.ajaxCart');
   jQuery.getJSON('/cart.js', function (cart, textStatus) {
     if ((typeof callback) === 'function') {
       callback(cart);
@@ -122,13 +122,13 @@ ShopifyAPI.getCart = function(callback) {
     else {
       ShopifyAPI.onCartUpdate(cart);
     }
-    $('body').trigger('gotCart.ajaxCart', cart);
+    $(document.body).trigger('gotCart.ajaxCart', cart);
   });
 };
 
 // POST to cart/change.js returns the cart in JSON
 ShopifyAPI.changeItem = function(line, quantity, callback) {
-  var $body = $('body'),
+  var $body = $(document.body),
   params = {
     type: 'POST',
     url: '/cart/change.js',
@@ -204,7 +204,7 @@ var ajaxCart = (function(module, $) {
     $cartCostSelector  = $(settings.cartCostSelector);
 
     // General Selectors
-    $body = $('body');
+    $body = $(document.body);
 
     // Track cart activity status
     isUpdating = false;
