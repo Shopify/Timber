@@ -46,7 +46,7 @@ ShopifyAPI.updateCartNote = function(note, callback) {
     data: 'note=' + attributeToString(note),
     dataType: 'json',
     beforeSend: function() {
-      $body.trigger('updateCartNote.ajaxCart', note);
+      $body.trigger('beforeUpdateCartNote.ajaxCart', note);
     },
     success: function(cart) {
       if ((typeof callback) === 'function') {
@@ -55,11 +55,14 @@ ShopifyAPI.updateCartNote = function(note, callback) {
       else {
         ShopifyAPI.onCartUpdate(cart);
       }
-      $body.trigger('updatedCartNote.ajaxCart', [note, cart]);
+      $body.trigger('afterUpdateCartNote.ajaxCart', [note, cart]);
     },
     error: function(XMLHttpRequest, textStatus) {
-      $body.trigger('updateCartNoteError.ajaxCart', [XMLHttpRequest, textStatus]);
+      $body.trigger('errorUpdateCartNote.ajaxCart', [XMLHttpRequest, textStatus]);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
+    },
+    complete: function(jqxhr, text) {
+      $body.trigger('completeUpdateCartNote.ajaxCart', [this, jqxhr, text]);
     }
   };
   jQuery.ajax(params);
@@ -85,7 +88,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
     data: jQuery(form).serialize(),
     dataType: 'json',
     beforeSend: function(jqxhr, settings) {
-      $body.trigger('addItem.ajaxCart', form);
+      $body.trigger('beforeAddItem.ajaxCart', form);
     },
     success: function(line_item) {
       if ((typeof callback) === 'function') {
@@ -94,7 +97,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       else {
         ShopifyAPI.onItemAdded(line_item, form);
       }
-      $body.trigger('addedItem.ajaxCart', [line_item, form]);
+      $body.trigger('afterAddItem.ajaxCart', [line_item, form]);
     },
     error: function(XMLHttpRequest, textStatus) {
       if ((typeof errorCallback) === 'function') {
@@ -103,10 +106,10 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       else {
         ShopifyAPI.onError(XMLHttpRequest, textStatus);
       }
-      $body.trigger('addItemError.ajaxCart', [XMLHttpRequest, textStatus]);
+      $body.trigger('errorAddItem.ajaxCart', [XMLHttpRequest, textStatus]);
     },
     complete: function(jqxhr, text) {
-      $body.trigger('addItemComplete.ajaxCart', [this, text]);
+      $body.trigger('completeAddItem.ajaxCart', [this, jqxhr, text]);
     }
   };
   jQuery.ajax(params);
@@ -114,7 +117,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
 
 // Get from cart.js returns the cart in JSON
 ShopifyAPI.getCart = function(callback) {
-  $(document.body).trigger('getCart.ajaxCart');
+  $(document.body).trigger('beforeGetCart.ajaxCart');
   jQuery.getJSON('/cart.js', function (cart, textStatus) {
     if ((typeof callback) === 'function') {
       callback(cart);
@@ -122,7 +125,7 @@ ShopifyAPI.getCart = function(callback) {
     else {
       ShopifyAPI.onCartUpdate(cart);
     }
-    $(document.body).trigger('gotCart.ajaxCart', cart);
+    $(document.body).trigger('afterGotCart.ajaxCart', cart);
   });
 };
 
@@ -135,7 +138,7 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
     data: 'quantity=' + quantity + '&line=' + line,
     dataType: 'json',
     beforeSend: function() {
-      $body.trigger('changeItem.ajaxCart', [line, quantity]);
+      $body.trigger('beforeChangeItem.ajaxCart', [line, quantity]);
     },
     success: function(cart) {
       if ((typeof callback) === 'function') {
@@ -144,14 +147,14 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
       else {
         ShopifyAPI.onCartUpdate(cart);
       }
-      $body.trigger('changedItem.ajaxCart', [line, quantity, cart]);
+      $body.trigger('afterChangeItem.ajaxCart', [line, quantity, cart]);
     },
     error: function(XMLHttpRequest, textStatus) {
-      $body.trigger('changeItemError.ajaxCart', [XMLHttpRequest, textStatus]);
+      $body.trigger('errorChangeItem.ajaxCart', [XMLHttpRequest, textStatus]);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
     },
     complete: function(jqxhr, text) {
-      $body.trigger('changeItemComplete.ajaxCart', [this, text]);
+      $body.trigger('completeChangeItem.ajaxCart', [this, jqxhr, text]);
     }
   };
   jQuery.ajax(params);
@@ -365,7 +368,7 @@ var ajaxCart = (function(module, $) {
       if (isUpdating) {
         return;
       }
-      
+
       var $el = $(this),
           line = $el.data('line'),
           $qtySelector = $el.siblings('.ajaxcart__qty-num'),
@@ -396,7 +399,7 @@ var ajaxCart = (function(module, $) {
       if (isUpdating) {
         return;
       }
-      
+
       var $el = $(this),
           line = $el.data('line'),
           qty = parseInt($el.val().replace(/\D/g, ''));
