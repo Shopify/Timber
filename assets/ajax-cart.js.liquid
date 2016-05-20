@@ -125,7 +125,7 @@ ShopifyAPI.getCart = function(callback) {
     else {
       ShopifyAPI.onCartUpdate(cart);
     }
-    $(document.body).trigger('afterGotCart.ajaxCart', cart);
+    $(document.body).trigger('afterGetCart.ajaxCart', cart);
   });
 };
 
