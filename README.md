@@ -19,8 +19,7 @@ To run the documentation locally, follow these steps:
     * Use `sass -v` to make sure it worked
 4. Install Compass: `gem install compass`
 5. Setup dependencies `bundle install`
-6. Run `jekyll serve --watch`
-    * Recent versions of Jekyll may require `bundle exec jekyll serve` instead
+6. Run `bundle exec jekyll serve --watch`
 7. In another terminal window, run `compass watch`
 8. Access the docs at `http://localhost:4000`
 
