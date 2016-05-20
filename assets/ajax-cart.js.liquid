@@ -246,7 +246,6 @@ var ajaxCart = (function(module, $) {
 
   formOverride = function () {
     $formContainer.on('submit', function(evt) {
-      $body.trigger('beforeSubmit.ajaxCart');
       evt.preventDefault();
 
       // Add class to be styled if desired
@@ -256,7 +255,6 @@ var ajaxCart = (function(module, $) {
       $('.qty-error').remove();
 
       ShopifyAPI.addItemFromForm(evt.target, itemAddedCallback, itemErrorCallback);
-      $body.trigger('afterSubmit.ajaxCart', evt);
     });
   };
 
@@ -272,7 +270,6 @@ var ajaxCart = (function(module, $) {
 
     if (!!data.message) {
       if (data.status == 422) {
-        $body.trigger('itemError.ajaxCart', data);
         $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
       }
     }
@@ -386,7 +383,6 @@ var ajaxCart = (function(module, $) {
 
       // If it has a data-line, update the cart.
       // Otherwise, just update the input's number
-      $body.trigger('adjustCart.ajaxCart', [this, line, qty]);
       if (line) {
         updateQuantity(line, qty);
       } else {
@@ -408,7 +404,6 @@ var ajaxCart = (function(module, $) {
 
       // If it has a data-line, update the cart
       if (line) {
-        $body.trigger('adjustCart.ajaxCart', [this, line, qty]);
         updateQuantity(line, qty);
       }
     });
