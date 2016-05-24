@@ -91,7 +91,7 @@
           </select>
 
           <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-          <span id="ProductPrice" class="h2" itemprop="price">
+          <span id="ProductPrice" class="h2" itemprop="price" content="{{ current_variant.price | divided_by: 100 }}">
             {{ current_variant.price | money }}
           </span>
 
