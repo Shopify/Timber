@@ -427,8 +427,8 @@
         });
       });
 
-      jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
-        // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+      jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
+        // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
         timber.RightDrawer.open();
       });
     </script>
