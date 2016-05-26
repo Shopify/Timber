@@ -506,6 +506,10 @@ ul.tabs li.current a {
     margin: 0 0 $margin 0;
   }
 
+  pre {
+    margin-top: $margin;
+  }
+
   code {
     display: inline-block;
     padding: 0 ($margin / 4);

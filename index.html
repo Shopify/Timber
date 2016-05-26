@@ -3,7 +3,7 @@ layout: default
 title: Shopify Theme Development Framework - Timber
 description: Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
 canonical: /timber
-version: v2.1.6
+version: v2.2.0
 ---
 
 <!-- gh-pages -->
@@ -1119,16 +1119,161 @@ ajaxCart.init({ [options] })
 
         <div id="ajax-cart-callback">
           <h4 class="docs-h4">Ajax Cart Callback</h4>
-          <p class="docs-text">A custom event is fired when the cart has loaded in the DOM. To access it, set up a listener on the body element for <code>ajaxCart.afterCartLoad</code>. Use this callback in external files or below the initialize JS. Multiple callback listeners is also valid.</p>
+          <p class="docs-text">A custom event is fired when the cart has loaded in the DOM. To access it, set up a listener on the body element for <code>afterCartLoad.ajaxCart</code>. Use this callback in external files or below the initialize JS. Multiple callback listeners is also valid.</p>
 <pre>
-jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
-  // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+jQuery('body').on('afterCartLoad.ajaxCart', function(evt, cart) {
+  // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
   // cart is the result of /GET cart.js (https://docs.shopify.com/support/your-website/themes/can-i-use-ajax-api#get-cart)
 
   // Open Timber's drawer when cart is ready
   timber.RightDrawer.open();
 });
 </pre>
+
+        </div>
+
+        <div id="ajax-cart-callback" class="overflow-auto">
+          <h4 class="docs-h4">Ajax Cart Custom Events</h4>
+          <p class="docs-text">Events were added in <strong>v2.2.0</strong>. Usage is the same as the example above.</p>
+          <p class="docs-text">Disable all events with <code>$(document.body).off('.ajaxCart')</code>.</p>
+          <table class="docs-table text-left">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Parameters received</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>beforeUpdateCartNote.ajaxCart</code></td>
+                <td><code>evt</code>, <code>note</code></td>
+                <td>
+                  <p>Fired before the ajax post to update the cart's note</p>
+                </td>
+              </tr>
+              <tr>
+                <td><code>afterUpdateCartNote.ajaxCart</code></td>
+                <td><code>evt</code>, <code>note</code>, <code>cart</code></td>
+                <td>
+                  <p>Fired after the ajax post to update the cart's note</p>
+                </td>
+              </tr>
+              <tr>
+                <td><code>errorUpdateCartNote.ajaxCart</code></td>
+                <td><code>evt</code>, <code>XMLHttpRequest</code>, <code>textStatus</code></td>
+                <td>
+                  <p>Fired anytime there is an ajax error posting the cart note</p>
+                </td>
+              </tr>
+              <tr>
+                <td><code>completeUpdateCartNote.ajaxCart</code></td>
+                <td><code>evt</code>, <code>obj</code>, <code>jqxhr</code>, <code>text</code></td>
+                <td>
+                  <p>Fired after the request finishes</p>
+                </td>
+              </tr>
+              <tr>
+                <td><code>beforeAddItem.ajaxCart</code></td>
+                <td><code>evt</code></td>
+                <td>Fired before an item is added to the cart from a form</td>
+              </tr>
+              <tr>
+                <td><code>afterAddItem.ajaxCart</code></td>
+                <td><code>evt</code>, <code>product</code>, <code>form</code></td>
+                <td>Fired after an item is added to the cart from a form</td>
+              </tr>
+              <tr>
+                <td><code>errorAddItem.ajaxCart</code></td>
+                <td><code>evt</code>, <code>XMLHttpRequest</code>, <code>textStatus</code></td>
+                <td>Fired anytime there is an ajax error adding a product to the cart</td>
+              </tr>
+              <tr>
+                <td><code>completeAddItem.ajaxCart</code></td>
+                <td><code>evt</code>, <code>obj</code>, <code>jqxhr</code>, <code>text</code></td>
+                <td>Fired after the request finishes</td>
+              </tr>
+              <tr>
+              <tr>
+                <td><code>beforeGetCart.ajaxCart</code></td>
+                <td><code>evt</code></td>
+                <td>Fired before the cart is requested</td>
+              </tr>
+              <tr>
+                <td><code>afterGetCart.ajaxCart</code></td>
+                <td><code>evt</code>, <code>cart</code></td>
+                <td>Fired after the cart is received. This runs regardless of a custom callback being sent to <code>ShopifyAPI.getCart</code>.</td>
+              </tr>
+              <tr>
+                <td><code>beforeChangeItem.ajaxCart</code></td>
+                <td><code>evt</code>, <code>line</code>, <code>quantity</code></td>
+                <td>Fired before an item in the cart is changed</td>
+              </tr>
+              <tr>
+                <td><code>afterChangeItem.ajaxCart</code></td>
+                <td><code>evt</code>, <code>line</code>, <code>quantity</code>, <code>cart</code></td>
+                <td>Fired after an item in the cart is changed</td>
+              </tr>
+              <tr>
+                <td><code>errorChangeItem.ajaxCart</code></td>
+                <td><code>evt</code>, <code>XMLHttpRequest</code>, <code>textStatus</code></td>
+                <td>Fired anytime there is an ajax error changing a product item</td>
+              </tr>
+              <tr>
+                <td><code>completeChangeItem.ajaxCart</code></td>
+                <td><code>evt</code>, <code>obj</code>, <code>jqxhr</code>, <code>text</code></td>
+                <td>Fired after the request finishes</td>
+              </tr>
+              <tr>
+                <td><code>afterCartLoad.ajaxCart</code></td>
+                <td><code>cart</code></td>
+                <td>Fired after the cart is loaded. Similar to <code>afterGetCart.ajaxCart</code>, but in the Timber-specific callback.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 class="docs-h4">Timber custom events</h4>
+          <p class="docs-text">Events were added in <strong>v2.2.0</strong>. Usage is the same as the example above.</p>
+          <p class="docs-text">Disable all events with <code>$(document.body).off('.timber')</code>.</p>
+          <table class="docs-table text-left">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Parameters received</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>beforeDrawerOpen.timber</code></td>
+                <td><code>evt</code>, <code>drawer</code></td>
+                <td>
+                  <p>Fired before the drawer is opened</p>
+                </td>
+              </tr>
+              <tr>
+                <td><code>afterDrawerOpen.timber</code></td>
+                <td><code>evt</code>, <code>drawer</code>
+                <td>
+                  <p>Fired after the drawer is opened</p>
+                </td>
+              </tr>
+              <tr>
+                <td><code>beforeDrawerClose.timber</code></td>
+                <td><code>evt</code>, <code>drawer</code>
+                <td>
+                  <p>Fired before the drawer is closed</p>
+                </td>
+              </tr>
+              <tr>
+                <td><code>afterDrawerClose.timber</code></td>
+                <td><code>evt</code>, <code>drawer</code>
+                <td>
+                  <p>Fired after the drawer is closed</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
 
@@ -1154,8 +1299,8 @@ jQuery(function($) {
   });
 });
 
-jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
-  // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+jQuery('body').on('afterCartLoad.ajaxCart', function(evt, cart) {
+  // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
   timber.RightDrawer.open();
 });
 &lt;/script&gt;
@@ -1572,38 +1717,8 @@ jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
             </li>
             <li>
               <div class="icon-fallback-text">
-                <span class="icon icon-visa"></span>
-                <span class="fallback-text">Visa</span>
-              </div>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-paypal"></span>
-                <span class="fallback-text">PayPal</span>
-              </div>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-discover"></span>
-                <span class="fallback-text">Discover</span>
-              </div>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-master"></span>
-                <span class="fallback-text">MasterCard</span>
-              </div>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-stripe"></span>
-                <span class="fallback-text">Stripe</span>
-              </div>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-interac"></span>
-                <span class="fallback-text">Interac</span>
+                <span class="icon icon-bitcoin"></span>
+                <span class="fallback-text">Bitcoin</span>
               </div>
             </li>
             <li>
@@ -1614,26 +1729,8 @@ jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
             </li>
             <li>
               <div class="icon-fallback-text">
-                <span class="icon icon-google_wallet"></span>
-                <span class="fallback-text">Google Wallet</span>
-              </div>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
                 <span class="icon icon-dankort"></span>
-                <span class="fallback-text">DK</span>
-              </div>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-jcb"></span>
-                <span class="fallback-text">JCB</span>
-              </div>
-            </li>
-            <li>
-              <div class="icon-fallback-text">
-                <span class="icon icon-maestro"></span>
-                <span class="fallback-text">Maestro</span>
+                <span class="fallback-text">Dankort</span>
               </div>
             </li>
             <li>
@@ -1644,8 +1741,92 @@ jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
             </li>
             <li>
               <div class="icon-fallback-text">
-                <span class="icon icon-bitcoin"></span>
-                <span class="fallback-text">Bitcoin</span>
+                <span class="icon icon-discover"></span>
+                <span class="fallback-text">Discover</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-dogecoin"></span>
+                <span class="fallback-text">Dogecoin</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-dwolla"></span>
+                <span class="fallback-text">Dwolla</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-forbrugsforeningen"></span>
+                <span class="fallback-text">Forbrugsforeningen</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-interac"></span>
+                <span class="fallback-text">Interac</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-jcb"></span>
+                <span class="fallback-text">JCB</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-laser"></span>
+                <span class="fallback-text">Laser</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-litecoin"></span>
+                <span class="fallback-text">Litecoin</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-maestro"></span>
+                <span class="fallback-text">Maestro</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-master"></span>
+                <span class="fallback-text">Master</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-paypal"></span>
+                <span class="fallback-text">Paypal</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-solo"></span>
+                <span class="fallback-text">Solo</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-stripe"></span>
+                <span class="fallback-text">stripe</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-switch"></span>
+                <span class="fallback-text">switch</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-fallback-text">
+                <span class="icon icon-visa"></span>
+                <span class="fallback-text">Visa</span>
               </div>
             </li>
           </ul>
@@ -1672,7 +1853,7 @@ jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
             </li>
             <li>
               <div class="icon-fallback-text">
-                <span class="icon icon-google"></span>
+                <span class="icon icon-google-plus"></span>
                 <span class="fallback-text">Google</span>
               </div>
             </li>
@@ -1768,208 +1949,13 @@ jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
           </ul>
         </div>
 
+        <h4 class="docs-example">Usage</h4>
         <div id="icons-code">
 <pre>
-&lt;ul class="inline-list icon-font-demo"&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-amazon_payments"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Amazon Payments&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-american_express"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;American Express&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-visa"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Visa&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-paypal"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;PayPal&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-discover"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Discover&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-master"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;MasterCard&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-stripe"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Stripe&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-interac"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Interac&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-cirrus"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Cirrus&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-google_wallet"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Google Wallet&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-dankort"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;DK&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-jcb"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;JCB&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-maestro"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Maestro&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-diners_club"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Diners Club&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-bitcoin"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Bitcoin&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-tumblr"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Tumblr&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-vimeo"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Vimeo&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-youtube"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;YouTube&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-google"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Google&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-twitter"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Twitter&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-facebook"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Facebook&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-pinterest"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Pinterest&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-instagram"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Instagram&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-fancy"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Fancy&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-rss"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;RSS&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-cart"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Cart&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-arrow-down"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Arrow Down&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-grid-view"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Grid View&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-list-view"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;List View&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-x"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;X&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-plus"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;+&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-minus"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;-&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;div class="icon-fallback-text"&gt;
-      &lt;span class="icon icon-hamburger"&gt;&lt;/span&gt;
-      &lt;span class="fallback-text"&gt;Menu&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class="icon-fallback-text"&gt;
+  &lt;span class="icon icon-amazon_payments"&gt;&lt;/span&gt;
+  &lt;span class="fallback-text"&gt;Amazon Payments&lt;/span&gt;
+&lt;/div&gt;
 </pre>
         </div>
 
