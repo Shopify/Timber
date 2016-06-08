@@ -330,9 +330,9 @@ var ajaxCart = (function(module, $) {
         price: Shopify.formatMoney(cartItem.price, settings.moneyFormat),
         vendor: cartItem.vendor,
         linePrice: Shopify.formatMoney(cartItem.line_price, settings.moneyFormat),
-        originalPrice: Shopify.formatMoney((cartItem.line_price + cartItem.total_discount), settings.moneyFormat), 
+        originalLinePrice: Shopify.formatMoney(cartItem.original_line_price, settings.moneyFormat),
         discounts: cartItem.discounts,
-        discountsApplied: cartItem.line_price === (cartItem.line_price - cartItem.total_discount) ? false : true
+        discountsApplied: cartItem.line_price === cartItem.original_line_price ? false : true
       };
 
       items.push(item);
