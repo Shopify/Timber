@@ -368,7 +368,7 @@
               Loop through available payment methods and show their icons.
             {% endcomment %}
             {% unless shop.enabled_payment_types == empty %}
-              {% assign payment_icons_available = 'amazon_payments,american_express,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,interac,jcb,laser,litecoin,maestro,master,paypal,solo,stripe,switch,visa' | split: ',' %}
+              {% assign payment_icons_available = 'amazon_payments,american_express,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,interac,jcb,litecoin,maestro,master,paypal,stripe,visa' | split: ',' %}
               <h4 class="text-center">{{ 'layout.footer.accepted_payments' | t }}</h4>
               <ul class="inline-list payment-icons">
                 {% for type in shop.enabled_payment_types %}
