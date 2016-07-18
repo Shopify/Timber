@@ -6,7 +6,8 @@
     },
     "404": {
       "title": "404 Página no encontrada",
-      "subtext_html": "La página que ha solicitado no existe. Haga clic <a href=\"/collections/all\">aquí</a> para continuar la compra."
+      "subtext_html": "La página solicitado no existe.",
+      "continue_html": "Continuar Compras"
     },
     "breadcrumbs": {
       "home": "Inicio",
