@@ -10,7 +10,7 @@
     },
     "breadcrumbs": {
       "home": "Home",
-      "home_link_title": "Back to the frontpage"
+      "home_link_title": "Back to the home page"
     },
     "newsletter_form": {
       "newsletter_email": "email@example.com",
@@ -225,10 +225,10 @@
     },
     "onboarding": {
       "modal_title": "Almost there...",
-      "no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"/admin/collections?tutorial=Frontpage\">add a product to this collection</a>.",
+      "no_products_html": "You have no products in your home page collection. This placeholder will appear until you <a href=\"/admin/collections?tutorial=Frontpage\">add a product to this collection</a>.",
       "add_product": "Add a Product",
       "product_title": "Example Product Title",
-      "no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default Frontpage.",
+      "no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default home page.",
       "add_collection": "Add a Collection",
       "collection_title": "Example Collection Title"
     }
