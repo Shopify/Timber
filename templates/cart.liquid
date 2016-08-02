@@ -90,7 +90,7 @@
               </span>
               {% for discount in item.discounts %}
                 <span class="cart-item__discount">{{ discount.title }}</span>
-              {% endfor %}  
+              {% endfor %}
             </td>
           </tr>
         {% endfor %}
@@ -111,12 +111,12 @@
         {% if cart.total_discounts > 0 %}
           {% assign savings = cart.total_discounts | money %}
           <p>
-            <span class="cart-subtotal__savings"><em>{{ 'cart.general.savings_html' | t: price: savings }}</em></span>  
+            <span class="cart-subtotal__savings"><em>{{ 'cart.general.savings_html' | t: price: savings }}</em></span>
           </p>
-        {% endif %}  
+        {% endif %}
         <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
-        <input type="submit" name="update" class="btn--secondary update-cart" value="{{ 'cart.general.update' | t }}">
-        <input type="submit" name="checkout" class="btn" value="{{ 'cart.general.checkout' | t }}">
+        <button type="submit" name="update" class="btn--secondary update-cart">{{ 'cart.general.update' | t }}</button>
+        <button type="submit" name="checkout" class="btn">{{ 'cart.general.checkout' | t }}</button>
       </div>
     </div>
   </form>
