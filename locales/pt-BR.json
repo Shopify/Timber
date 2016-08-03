@@ -65,7 +65,9 @@
       "empty": "Seu carrinho está vazio no momento.",
       "continue_browsing_html": "Continue navegando <a href=\"/collections/all\">aqui</a>.",
       "close_cart": "Fechar carrinho",
-      "savings_html": "Você está economizando {{ price }}"
+      "savings_html": "Você está economizando {{ price }}",
+      "reduce_quantity": "Reduzir quantidade em uma unidade",
+      "increase_quantity": "Aumentar quantidade em uma unidade"
     },
     "label": {
       "product": "Produto",

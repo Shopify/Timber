@@ -65,7 +65,9 @@
       "empty": "Ihr Einkaufswagen ist im Moment leer.",
       "continue_browsing_html": "Mit der Suche <a href=\"/collections/all\">hier</a> fortfahren.",
       "close_cart": "Einkaufswagen schließen",
-      "savings_html": "Sie sparen  {{ price }}"
+      "savings_html": "Sie sparen  {{ price }}",
+      "reduce_quantity": "Artikelmenge um eins reduzieren",
+      "increase_quantity": "Artikelmenge um eins erhöhen"
     },
     "label": {
       "product": "Artikel",

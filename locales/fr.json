@@ -65,7 +65,9 @@
       "empty": "Votre panier est vide.",
       "continue_browsing_html": "<a href=\"/collections/all\">Retourner au magasinage</a>.",
       "close_cart": "Fermer le panier",
-      "savings_html": "Vous économisez {{ price }}"
+      "savings_html": "Vous économisez {{ price }}",
+      "reduce_quantity": "Réduire la quantité de l'article de un",
+      "increase_quantity": "Augmenter la quantité de l'article de un"
     },
     "label": {
       "product": "Produit",
