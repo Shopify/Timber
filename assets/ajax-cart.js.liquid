@@ -473,7 +473,7 @@ var ajaxCart = (function(module, $) {
         var source   = $("#AjaxQty").html(),
             template = Handlebars.compile(source),
             data = {
-              id: $el.data('id'),
+              key: $el.data('id'),
               itemQty: itemQty,
               itemAdd: itemAdd,
               itemMinus: itemMinus
@@ -504,7 +504,7 @@ var ajaxCart = (function(module, $) {
         var source   = $("#JsQty").html(),
             template = Handlebars.compile(source),
             data = {
-              id: $el.data('id'),
+              key: $el.data('id'),
               itemQty: itemQty,
               itemAdd: itemAdd,
               itemMinus: itemMinus,
