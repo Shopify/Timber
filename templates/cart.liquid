@@ -79,7 +79,7 @@
               </span>
             </td>
             <td data-label="{{ 'cart.label.quantity' | t }}">
-              <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0">
+              <input type="number" name="updates[]" id="updates_{{ item.key }}" data-id="{{ item.key }}" value="{{ item.quantity }}" min="0">
             </td>
             <td data-label="{{ 'cart.label.total' | t }}" class="text-right">
               {% if item.original_line_price != item.line_price %}

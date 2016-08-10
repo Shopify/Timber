@@ -317,7 +317,7 @@ var ajaxCart = (function(module, $) {
 
       // Create item's data object and add to 'items' array
       item = {
-        id: cartItem.variant_id,
+        key: cartItem.key,
         line: index + 1, // Shopify uses a 1+ index in the API
         url: cartItem.url,
         img: prodImg,
@@ -473,7 +473,7 @@ var ajaxCart = (function(module, $) {
         var source   = $("#AjaxQty").html(),
             template = Handlebars.compile(source),
             data = {
-              id: $el.data('id'),
+              key: $el.data('id'),
               itemQty: itemQty,
               itemAdd: itemAdd,
               itemMinus: itemMinus
@@ -504,7 +504,7 @@ var ajaxCart = (function(module, $) {
         var source   = $("#JsQty").html(),
             template = Handlebars.compile(source),
             data = {
-              id: $el.data('id'),
+              key: $el.data('id'),
               itemQty: itemQty,
               itemAdd: itemAdd,
               itemMinus: itemMinus,
