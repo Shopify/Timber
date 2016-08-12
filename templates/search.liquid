@@ -102,6 +102,7 @@
                             {% assign price = item.price | money %}
                             <span itemprop="price">{{ 'products.general.from_text_html' | t: price: price }}</span>
                           {% else %}
+                            <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
                             <span itemprop="price">{{ item.price | money }}</span>
                           {% endif %}
                         {% endif %}
@@ -109,7 +110,7 @@
                           <br><strong>{{ 'products.product.sold_out' | t }}</strong>
                         {% endif %}
                         {% if on_sale %}
-                          <br><span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span><s>{{ item.compare_at_price | money }}</s>
+                          <br><span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span><s>{{ item.compare_at_price | money }}</s>
                         {% endif %}
                       </p>
                     {% endif %}
