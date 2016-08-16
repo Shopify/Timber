@@ -10,7 +10,7 @@
   This requires:
     - jQuery 1.8+
     - handlebars.min.js (for cart template)
-    - modernizer.min.js
+    - modernizr.min.js
     - snippet/ajax-cart-template.liquid
 
   Customized version of Shopify's jQuery API
@@ -39,11 +39,15 @@ ShopifyAPI.onCartUpdate = function(cart) {
 };
 
 ShopifyAPI.updateCartNote = function(note, callback) {
-  var params = {
+  var $body = $(document.body),
+  params = {
     type: 'POST',
     url: '/cart/update.js',
     data: 'note=' + attributeToString(note),
     dataType: 'json',
+    beforeSend: function() {
+      $body.trigger('beforeUpdateCartNote.ajaxCart', note);
+    },
     success: function(cart) {
       if ((typeof callback) === 'function') {
         callback(cart);
@@ -51,9 +55,14 @@ ShopifyAPI.updateCartNote = function(note, callback) {
       else {
         ShopifyAPI.onCartUpdate(cart);
       }
+      $body.trigger('afterUpdateCartNote.ajaxCart', [note, cart]);
     },
     error: function(XMLHttpRequest, textStatus) {
+      $body.trigger('errorUpdateCartNote.ajaxCart', [XMLHttpRequest, textStatus]);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
+    },
+    complete: function(jqxhr, text) {
+      $body.trigger('completeUpdateCartNote.ajaxCart', [this, jqxhr, text]);
     }
   };
   jQuery.ajax(params);
@@ -72,11 +81,15 @@ ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
     - Allow custom error callback
 ==============================================================================*/
 ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
-  var params = {
+  var $body = $(document.body),
+  params = {
     type: 'POST',
     url: '/cart/add.js',
     data: jQuery(form).serialize(),
     dataType: 'json',
+    beforeSend: function(jqxhr, settings) {
+      $body.trigger('beforeAddItem.ajaxCart', form);
+    },
     success: function(line_item) {
       if ((typeof callback) === 'function') {
         callback(line_item, form);
@@ -84,6 +97,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       else {
         ShopifyAPI.onItemAdded(line_item, form);
       }
+      $body.trigger('afterAddItem.ajaxCart', [line_item, form]);
     },
     error: function(XMLHttpRequest, textStatus) {
       if ((typeof errorCallback) === 'function') {
@@ -92,6 +106,10 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
       else {
         ShopifyAPI.onError(XMLHttpRequest, textStatus);
       }
+      $body.trigger('errorAddItem.ajaxCart', [XMLHttpRequest, textStatus]);
+    },
+    complete: function(jqxhr, text) {
+      $body.trigger('completeAddItem.ajaxCart', [this, jqxhr, text]);
     }
   };
   jQuery.ajax(params);
@@ -99,6 +117,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
 
 // Get from cart.js returns the cart in JSON
 ShopifyAPI.getCart = function(callback) {
+  $(document.body).trigger('beforeGetCart.ajaxCart');
   jQuery.getJSON('/cart.js', function (cart, textStatus) {
     if ((typeof callback) === 'function') {
       callback(cart);
@@ -106,16 +125,21 @@ ShopifyAPI.getCart = function(callback) {
     else {
       ShopifyAPI.onCartUpdate(cart);
     }
+    $(document.body).trigger('afterGetCart.ajaxCart', cart);
   });
 };
 
 // POST to cart/change.js returns the cart in JSON
 ShopifyAPI.changeItem = function(line, quantity, callback) {
-  var params = {
+  var $body = $(document.body),
+  params = {
     type: 'POST',
     url: '/cart/change.js',
     data: 'quantity=' + quantity + '&line=' + line,
     dataType: 'json',
+    beforeSend: function() {
+      $body.trigger('beforeChangeItem.ajaxCart', [line, quantity]);
+    },
     success: function(cart) {
       if ((typeof callback) === 'function') {
         callback(cart);
@@ -123,9 +147,14 @@ ShopifyAPI.changeItem = function(line, quantity, callback) {
       else {
         ShopifyAPI.onCartUpdate(cart);
       }
+      $body.trigger('afterChangeItem.ajaxCart', [line, quantity, cart]);
     },
     error: function(XMLHttpRequest, textStatus) {
+      $body.trigger('errorChangeItem.ajaxCart', [XMLHttpRequest, textStatus]);
       ShopifyAPI.onError(XMLHttpRequest, textStatus);
+    },
+    complete: function(jqxhr, text) {
+      $body.trigger('completeChangeItem.ajaxCart', [this, jqxhr, text]);
     }
   };
   jQuery.ajax(params);
@@ -178,7 +207,7 @@ var ajaxCart = (function(module, $) {
     $cartCostSelector  = $(settings.cartCostSelector);
 
     // General Selectors
-    $body = $('body');
+    $body = $(document.body);
 
     // Track cart activity status
     isUpdating = false;
@@ -288,7 +317,7 @@ var ajaxCart = (function(module, $) {
 
       // Create item's data object and add to 'items' array
       item = {
-        id: cartItem.variant_id,
+        key: cartItem.key,
         line: index + 1, // Shopify uses a 1+ index in the API
         url: cartItem.url,
         img: prodImg,
@@ -301,9 +330,9 @@ var ajaxCart = (function(module, $) {
         price: Shopify.formatMoney(cartItem.price, settings.moneyFormat),
         vendor: cartItem.vendor,
         linePrice: Shopify.formatMoney(cartItem.line_price, settings.moneyFormat),
-        originalPrice: Shopify.formatMoney((cartItem.line_price + cartItem.total_discount), settings.moneyFormat), 
+        originalLinePrice: Shopify.formatMoney(cartItem.original_line_price, settings.moneyFormat),
         discounts: cartItem.discounts,
-        discountsApplied: cartItem.line_price === (cartItem.line_price - cartItem.total_discount) ? false : true
+        discountsApplied: cartItem.line_price === cartItem.original_line_price ? false : true
       };
 
       items.push(item);
@@ -325,7 +354,7 @@ var ajaxCart = (function(module, $) {
 
   cartCallback = function(cart) {
     $body.removeClass('drawer--is-loading');
-    $body.trigger('ajaxCart.afterCartLoad', cart);
+    $body.trigger('afterCartLoad.ajaxCart', cart);
   };
 
   adjustCart = function () {
@@ -336,7 +365,7 @@ var ajaxCart = (function(module, $) {
       if (isUpdating) {
         return;
       }
-      
+
       var $el = $(this),
           line = $el.data('line'),
           $qtySelector = $el.siblings('.ajaxcart__qty-num'),
@@ -366,7 +395,7 @@ var ajaxCart = (function(module, $) {
       if (isUpdating) {
         return;
       }
-      
+
       var $el = $(this),
           line = $el.data('line'),
           qty = parseInt($el.val().replace(/\D/g, ''));
@@ -444,7 +473,7 @@ var ajaxCart = (function(module, $) {
         var source   = $("#AjaxQty").html(),
             template = Handlebars.compile(source),
             data = {
-              id: $el.data('id'),
+              key: $el.data('id'),
               itemQty: itemQty,
               itemAdd: itemAdd,
               itemMinus: itemMinus
@@ -475,7 +504,7 @@ var ajaxCart = (function(module, $) {
         var source   = $("#JsQty").html(),
             template = Handlebars.compile(source),
             data = {
-              id: $el.data('id'),
+              key: $el.data('id'),
               itemQty: itemQty,
               itemAdd: itemAdd,
               itemMinus: itemMinus,

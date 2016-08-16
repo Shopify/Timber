@@ -81,7 +81,7 @@
                     If we don't have a featured_image, add a push-- class to keep the alignment the same
                   {% endcomment %}
                   <div class="grid__item two-thirds {% unless item.featured_image %}push--one-third{% endunless %}">
-                    <h3>{{ item.title | link_to: item.url }}</h3>
+                    <h2 class="h3">{{ item.title | link_to: item.url }}</h2>
 
                     {% if item.price %}
                       <p>

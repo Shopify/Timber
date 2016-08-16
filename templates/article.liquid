@@ -68,7 +68,7 @@
     {% if blog.comments_enabled? %}
       <hr>
 
-      <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
+      <h2 class="h3">{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h2>
 
       <hr>
 
@@ -129,7 +129,7 @@
 
           <div class="form-vertical">
             {% form 'new_comment', article %}
-              <h3>{{ 'blogs.comments.title' | t }}</h3>
+              <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>
 
               {{ form.errors | default_errors }}
 

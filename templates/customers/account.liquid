@@ -13,7 +13,7 @@
 <div class="grid">
 
   <div class="grid__item two-thirds medium-down--one-whole">
-    <h4>{{ 'customer.orders.title' | t }}</h4>
+    <h2 class="h4">{{ 'customer.orders.title' | t }}</h2>
 
     {% comment %}
       If we have past orders, loop through each one
@@ -61,9 +61,9 @@
   </div>
 
   <div class="grid__item one-third medium-down--one-whole">
-    <h4>{{ 'customer.account.details' | t }}</h4>
+    <h2 class="h4">{{ 'customer.account.details' | t }}</h2>
 
-    <h5>{{ customer.name }}</h5>
+    <h3 class="h5">{{ customer.name }}</h3>
 
     {% if customer.default_address != nil %}
       <p>

@@ -111,8 +111,8 @@
         {% if customer %}
           <li class="mobile-nav__item">
             {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+              {% capture first_name %}{{ customer.first_name }}{% endcapture %}
+              <a href="/account">{{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}</a>
             {% else %}
               <a href="/account">{{ 'layout.customer.account' | t }}</a>
             {% endif %}
@@ -368,15 +368,18 @@
               Loop through available payment methods and show their icons.
             {% endcomment %}
             {% unless shop.enabled_payment_types == empty %}
+              {% assign payment_icons_available = 'amazon_payments,american_express,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,interac,jcb,litecoin,maestro,master,paypal,visa' | split: ',' %}
               <h4 class="text-center">{{ 'layout.footer.accepted_payments' | t }}</h4>
               <ul class="inline-list payment-icons">
                 {% for type in shop.enabled_payment_types %}
-                  <li>
-                    <span class="icon-fallback-text">
-                      <span class="icon icon-{{type}}" aria-hidden="true"></span>
-                      <span class="fallback-text">{{ type | replace: '_',' '}}</span>
-                    </span>
-                  </li>
+                  {% if payment_icons_available contains type %}
+                    <li>
+                      <span class="icon-fallback-text">
+                        <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                        <span class="fallback-text">{{ type | replace: '_',' '}}</span>
+                      </span>
+                    </li>
+                  {% endif %}
                 {% endfor %}
               </ul>
             {% endunless %}
@@ -424,8 +427,8 @@
         });
       });
 
-      jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
-        // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+      jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
+        // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
         timber.RightDrawer.open();
       });
     </script>
