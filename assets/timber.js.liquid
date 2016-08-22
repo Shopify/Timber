@@ -211,7 +211,6 @@ timber.productPage = function (options) {
       $productPrice = $('#ProductPrice'),
       $comparePrice = $('#ComparePrice'),
       $comparePriceA11y = $('#ComparePriceA11y'),
-      $priceA11y = $('#PriceA11y'),
       $quantityElements = $('.quantity-selector, label + .js-qty'),
       $addToCartText = $('#AddToCartText');
 
@@ -246,7 +245,6 @@ timber.productPage = function (options) {
         .html({{ 'products.product.compare_at' | t | json }} + ' ' + Shopify.formatMoney(variant.compare_at_price, moneyFormat))
         .show();
       $comparePriceA11y.attr('aria-hidden', 'false');
-      $priceA11y.attr('aria-hidden', 'false');
     } else {
       $comparePrice.hide();
       $comparePriceA11y.attr('aria-hidden', 'true');
