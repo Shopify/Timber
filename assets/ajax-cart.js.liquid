@@ -356,7 +356,7 @@ var ajaxCart = (function(module, $) {
     $body.removeClass('drawer--is-loading');
     $body.trigger('afterCartLoad.ajaxCart', cart);
 
-    if (window.Shopify && Shopify.StorefrontExpressButtons)
+    if (window.Shopify && Shopify.StorefrontExpressButtons) {
       Shopify.StorefrontExpressButtons.initialize();
     }
   };
