@@ -15,12 +15,9 @@
 
     {% include footer.html %}
 
-    <script type="text/javascript" src="//visitors.shopify.com/track.js?v=2"></script>
-    <script type="text/javascript">_visit.tag('timber');</script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-49178120-1']);
-      _gaq.push(['_setCustomVar', 5, 'token', _visit.multitrackToken(), 1]);
       _gaq.push(['_trackPageview']);
 
       (function() {
@@ -41,7 +38,6 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','_gaUTracker');
 
       _gaUTracker('create', 'UA-82702-49', {
-        clientId: _visit.multitrackToken(),
         cookieDomain: 'shopify.com',
         legacyCookieDomain: 'shopify.com'
       });
