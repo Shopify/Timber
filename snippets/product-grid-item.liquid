@@ -76,6 +76,7 @@
         {% assign price = product.price | money %}
         {{ 'products.general.from_text_html' | t: price: price }}
       {% else %}
+        <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
         {{ product.price | money }}
       {% endif %}
     {% endif %}
