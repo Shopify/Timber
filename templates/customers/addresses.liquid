@@ -29,10 +29,10 @@
     {% comment %}
       Add address form, hidden by default
     {% endcomment %}
-    <div id="AddAddress" class="form-vertical" style="display: none;">
-      {% form 'customer_address', customer.new_address %}
-
+    {% form 'customer_address', customer.new_address %}
+      <div id="AddAddress" class="form-vertical" {% unless form.errors %}style="display:none;"{% endunless %}>
         <h2>{{ 'customer.addresses.add_new' | t }}</h2>
+        {{ form.errors | default_errors }}
 
         <div class="grid">
 
@@ -93,8 +93,8 @@
         <p><a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a></p>
 
         <hr>
-      {% endform %}
-    </div>
+      </div>
+    {% endform %}
 
     <h2>{{ 'customer.addresses.title' | t }}</h2>
 
@@ -125,10 +125,10 @@
         {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}
       </p>
 
-      <div id="EditAddress_{{ address.id }}" class="form-vertical" style="display:none;">
-        {% form 'customer_address', address %}
-
+      {% form 'customer_address', address %}
+        <div id="EditAddress_{{ address.id }}" class="form-vertical" {% unless form.errors %}style="display:none;"{% endunless %}>
           <h4>{{ 'customer.addresses.edit_address' | t }}</h4>
+          {{ form.errors | default_errors }}
 
           <div class="grid">
             <div class="grid__item one-half small--one-whole">
@@ -183,8 +183,8 @@
           <p><a href="#" onclick="Shopify.CustomerAddress.toggleForm({{ form.id }}); return false;">{{ 'customer.addresses.cancel' | t }}</a></p>
 
           <hr>
-        {% endform %}
-      </div>
+        </div>
+      {% endform %}
 
     {% endfor %}
 
