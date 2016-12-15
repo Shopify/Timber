@@ -494,21 +494,21 @@ $class-type: unquote(".");
 /*================ Clearfix helper on uniform grids ================*/
 @mixin clearfix-helper($namespace:"") {
   .grid-uniform {
-    #{$class-type}#{$namespace}one-half:nth-child(2n+1),
-    #{$class-type}#{$namespace}one-third:nth-child(3n+1),
-    #{$class-type}#{$namespace}one-quarter:nth-child(4n+1),
-    #{$class-type}#{$namespace}one-fifth:nth-child(5n+1),
-    #{$class-type}#{$namespace}one-sixth:nth-child(6n+1),
-    #{$class-type}#{$namespace}two-sixths:nth-child(3n+1),
-    #{$class-type}#{$namespace}three-sixths:nth-child(2n+1),
-    #{$class-type}#{$namespace}two-eighths:nth-child(4n+1),
-    #{$class-type}#{$namespace}four-eighths:nth-child(2n+1),
-    #{$class-type}#{$namespace}five-tenths:nth-child(2n+1),
-    #{$class-type}#{$namespace}one-twelfth:nth-child(12n+1),
-    #{$class-type}#{$namespace}two-twelfths:nth-child(6n+1),
-    #{$class-type}#{$namespace}three-twelfths:nth-child(4n+1),
-    #{$class-type}#{$namespace}four-twelfths:nth-child(3n+1),
-    #{$class-type}#{$namespace}six-twelfths:nth-child(2n+1)    { clear: both; }
+    #{$class-type}#{$namespace}one-half:nth-of-type(2n+1),
+    #{$class-type}#{$namespace}one-third:nth-of-type(3n+1),
+    #{$class-type}#{$namespace}one-quarter:nth-of-type(4n+1),
+    #{$class-type}#{$namespace}one-fifth:nth-of-type(5n+1),
+    #{$class-type}#{$namespace}one-sixth:nth-of-type(6n+1),
+    #{$class-type}#{$namespace}two-sixths:nth-of-type(3n+1),
+    #{$class-type}#{$namespace}three-sixths:nth-of-type(2n+1),
+    #{$class-type}#{$namespace}two-eighths:nth-of-type(4n+1),
+    #{$class-type}#{$namespace}four-eighths:nth-of-type(2n+1),
+    #{$class-type}#{$namespace}five-tenths:nth-of-type(2n+1),
+    #{$class-type}#{$namespace}one-twelfth:nth-of-type(12n+1),
+    #{$class-type}#{$namespace}two-twelfths:nth-of-type(6n+1),
+    #{$class-type}#{$namespace}three-twelfths:nth-of-type(4n+1),
+    #{$class-type}#{$namespace}four-twelfths:nth-of-type(3n+1),
+    #{$class-type}#{$namespace}six-twelfths:nth-of-type(2n+1)    { clear: both; }
   }
 }
 
