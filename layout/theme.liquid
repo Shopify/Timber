@@ -416,6 +416,8 @@
     {% include 'ajax-cart-template' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
+      $.ajaxSetup({ cache: false });
+
       jQuery(function($) {
         ajaxCart.init({
           formSelector: '#AddToCartForm',
