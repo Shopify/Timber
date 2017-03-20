@@ -7,7 +7,7 @@ You can continue to use Timber; however, this repo will not be kept up-to-date w
 
 ---
 
-Shopify Timber [![Circle CI](https://circleci.com/gh/Shopify/Timber.svg?style=svg)](https://circleci.com/gh/Shopify/Timber)
+Shopify Timber
 =====================
 
 Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
@@ -65,6 +65,7 @@ Basic structure
 ├── config.yml
 │   └── if using the theme gem (see link under Additional Resources)
 ```
+
 i18n testing
 ---------------------
 Tests make sure there are no missing or extra i18n strings or invalid html in your locale liquid files.
@@ -74,12 +75,6 @@ All PRs must pass the tests before being merged. Check the test status when you 
 - `bundle install` to install all the dependecies
 - `rspec spec` to run all the tests
 
-Support
----------------------
-Get involved with Timber or follow along with updates and news.
-
-- Track all issues and feature requests here on GitHub.
-- Follow author [@cshold on Twitter](http://twitter.com/cshold).
 
 Additional resources
 ---------------------
