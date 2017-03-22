@@ -1,11 +1,20 @@
-Shopify Timber [![Circle CI](https://circleci.com/gh/Shopify/Timber.svg?style=svg)](https://circleci.com/gh/Shopify/Timber)
+## Deprecation warning ⚠️
+
+The Timber theme is no longer being maintained by Shopify.  Developers are encouraged to check out [Slate](https://github.com/Shopify/slate) -
+a theme scaffolding and command line tool built for developing Shopify themes.
+
+You can continue to use Timber; however, this repo will not be kept up-to-date with changes in Shopify theme development.
+
+---
+
+Shopify Timber
 =====================
 
 Timber is a theme framework for Shopify that helps you get your store up and running quickly. It provides all required theme templates, a starter set of liquid tags, and some basic styles and modules for you to extend on.
 
 Styling and customization is left up to you. Some base styles and helpers are included, but there is **no need to remove any code before you start**. Simply download and get designing.
 
-Designing a store for a client? Earn 20% revenue through our <a href="http://www.shopify.com/partners">Partner program<a/>.
+Designing a store for a client? Earn revenue through our <a href="http://www.shopify.com/partners">Partner program<a/>.
 
 Ways to Get Started
 ---------------------
@@ -56,6 +65,7 @@ Basic structure
 ├── config.yml
 │   └── if using the theme gem (see link under Additional Resources)
 ```
+
 i18n testing
 ---------------------
 Tests make sure there are no missing or extra i18n strings or invalid html in your locale liquid files.
@@ -65,30 +75,21 @@ All PRs must pass the tests before being merged. Check the test status when you 
 - `bundle install` to install all the dependecies
 - `rspec spec` to run all the tests
 
-Support
----------------------
-Get involved with Timber or follow along with updates and news.
-
-- Track all issues and feature requests here on GitHub.
-- Follow author [@cshold on Twitter](http://twitter.com/cshold).
 
 Additional resources
 ---------------------
 - [Themes Documentation][1]: Learn more about Liquid and theme templates.
-- [Theme Gem][2]: Run the command line for a more intimate way of managing your theme files.
-- [Theme Kit][7]: Next generation tool for syncing theme files. Currently in beta.
-- [Liquid Tag Cheat Sheet][4]
-- [Retail Tours][5]: Sign up for a workshop in a city near you to learn all things Shopify.
-- Need more help? Ask a question in our [Design Forums][6].
+- [Shopify Theme Kit][2]: A cross-platform command line tool for building Shopify Themes.
+- [Liquid Cheat Sheet][3]
+- [Retail Tours][4]: Sign up for a workshop in a city near you to learn all things Shopify.
+- Need more help? Ask a question in our [Design Forums][5].
 
 License
 ---------------------
 Timber is released under the [MIT License](LICENSE).
 
-[1]: http://docs.shopify.com/themes
-[2]: https://github.com/Shopify/shopify_theme
-[3]: http://apps.shopify.com/desktop-theme-editor
-[4]: http://cheat.markdunkley.com
-[5]: https://www.shopify.com/retailtour
-[6]: http://ecommerce.shopify.com/c/ecommerce-design
-[7]: https://github.com/Shopify/themekit
+[1]: http://help.shopify.com/themes
+[2]: ttps://github.com/Shopify/themekit
+[3]: https://www.shopify.ca/partners/shopify-cheat-sheet
+[4]: https://www.shopify.com/retailtour
+[5]: http://ecommerce.shopify.com/c/ecommerce-design
