@@ -707,10 +707,12 @@ $class-type: unquote(".");
 ==============================================================================*/
 html {
   background-color: $colorFooterBg;
+  overflow-x: hidden;
 }
 
 body {
   background-color: $colorBody;
+  overflow-x: hidden;
 }
 
 [tabindex='-1']:focus {
@@ -2177,6 +2179,12 @@ label.error {
     background-color: darken($colorDrawers, 5%);
   }
 }
+
+
+html.supports-touch .drawer {
+    -webkit-overflow-scrolling: auto;
+}
+
 
 /*============================================================================
   #Site Footer
