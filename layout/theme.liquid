@@ -393,6 +393,8 @@
   </div>
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
+  {% include 'timber-js-locales' %}
+  <script> window.timber = window.timber || {}; timber.settings = {{ settings | json }};</script>
   {{ 'timber.js' | asset_url | script_tag }}
 
   {% comment %}
@@ -414,6 +416,7 @@
   {% if settings.ajax_cart_method == "drawer" %}
     {{ 'handlebars.min.js' | asset_url | script_tag }}
     {% include 'ajax-cart-template' %}
+    {% include 'ajax-cart-locales' %}
     {{ 'ajax-cart.js' | asset_url | script_tag }}
     <script>
       jQuery(function($) {
