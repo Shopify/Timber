@@ -1,3 +1,52 @@
 <!-- /templates/404.liquid -->
-<h1>{{ 'general.404.title' | t }}</h1>
-<p>{{ 'general.404.subtext_html' | t }}</p>
+<div class="grid">
+  <div class="grid__item large--two-thirds push--large--one-sixth">
+
+    <h1>{{ 'general.404.title' | t }}</h1>
+	<p>{{ 'general.404.subtext_html' | t }}</p>
+    <a href="{{ shop.url }}/collections/all" class="btn">{{ 'general.404.continue_html' | t }}</a>
+    
+    <hr>
+    
+    <h2>{{ 'homepage.sections.news_title' | t }}</h2>
+    <div class="grid">
+      {% for article in blogs['news'].articles limit:3 %}
+      <div class="grid__item large--one-third">
+
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>
+        <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+
+        {% comment %}
+        Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
+        Since this is just a listing page, you can either use the excerpt or truncate the full article.
+        {% endcomment %}
+        <div class="rte">
+          {% if article.excerpt.size > 0 %}
+          {{ article.excerpt }}
+          {% else %}
+          <p>{{ article.content | strip_html | truncatewords: 20 }}</p>
+          {% endif %}
+        </div>
+
+        {% comment %}
+        Show off meta information like number of comments and tags.
+        {% endcomment %}
+        <ul>
+          {% if blog.comments_enabled? %}
+          <li>
+            <a href="{{ article.url }}#comments">
+              {{ article.comments_count }}
+              {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+
+        <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
+
+      </div>
+      {% endfor %}
+      </div>
+    
+  </div>  
+</div>

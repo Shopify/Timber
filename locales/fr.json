@@ -6,7 +6,8 @@
     },
     "404": {
       "title": "404 - Page non trouvée",
-      "subtext_html": "Cette page n'est pas disponible. <a href=\"/collections/all\">Retourner au magasinage</a>"
+      "subtext_html": "Cette page n'est pas disponible.",
+      "continue_html": "Continuer achats"
     },
     "breadcrumbs": {
       "home": "Accueil",
